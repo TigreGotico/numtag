@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0a1](https://github.com/TigreGotico/numtag/tree/0.6.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.5.0a1...0.6.0a1)
+
+**Merged pull requests:**
+
+- feat: read French, Italian, Romanian, Basque and Indonesian numbers [\#8](https://github.com/TigreGotico/numtag/pull/8) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.5.0a1](https://github.com/TigreGotico/numtag/tree/0.5.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.4.0a1...0.5.0a1)
