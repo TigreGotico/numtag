@@ -53,7 +53,7 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 
 | Setting | Value | Source |
 |---|---|---|
-| `joiner_tens_units` | never | Merriam-Webster, "twenty-one" |
+| `joiner_tens_units` | never | Wikipedia, "English numerals" |
 | `joiner_after_hundred` | optional | CLDR 49 RBNF en; Wikipedia, "English numerals" |
 | `joiner_between_groups` | optional | the same |
 | `joiner_before_last_group` | optional | the same |
@@ -62,12 +62,25 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 | `plural_scale_needs_count` | true | Wiktionary, "million" |
 | `scale_noun_agrees` | false | Wiktionary, "million", usage notes |
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |
+| `ten_joins_unit_ordinal` | false | Wikipedia, "English numerals" |
+| `part_after_joiner_needs_article` | true | Wikipedia, "English numerals" |
 
 [../rulings.md](../rulings.md) quotes each source and shows each rule at work.
 
 > CLDR 49 RBNF en %spellout-ordinal: "20: twent[y->>|ieth];", "100: <%spellout-numbering< hundred[ >>|th];".
 
 In these rules the words before the last are cardinal. Only the last word of an ordinal is ordinal: "twenty-first", "one hundred and first".
+
+A unit ordinal joins a ten from twenty up, with a hyphen or a space and no "and", as a unit does in a cardinal. So "ten fifth" is 10 and 5th, and "forty and first" is 40 and 1st.
+
+```python
+>>> read("The school sent ten fifth graders to the science fair.")
+[('ten', '10'), ('fifth', '5')]
+>>> read("He turned forty and first visited Japan that spring.")
+[('forty', '40'), ('first', '1')]
+```
+
+> Wikipedia, "English numerals": "if a number is in the range 21 to 99, and the second digit is not zero, the number is typically written as two words separated by a hyphen".
 
 > Wiktionary, "million", numeral sense 2: "(colloquial, hyperbolic) An unspecified very large number".
 

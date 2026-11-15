@@ -715,8 +715,9 @@ class Grammar:
                 continue
             found += [replace(f, value=_sum(run) + f.value) for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
-            found += [Parse(j + 1, _sum(run) + Rational("1", e.value), ambiguous=e.ambiguous)
-                      for e in self._readings(j, "denominator") if not e.plural]
+            if not self.lex.part_after_joiner_needs_article:
+                found += [Parse(j + 1, _sum(run) + Rational("1", e.value), ambiguous=e.ambiguous)
+                          for e in self._readings(j, "denominator") if not e.plural]
         return found
 
     def case_fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
@@ -844,8 +845,11 @@ class Grammar:
         found = []
         by_place = self.lex.ordinal_joiner_by_place
         for start, prefix, policy, run in prefixes:
+            # after a ten, the joiner is the one between a ten and a unit:
+            # "forty and eighth" is 40 and 8th, as "forty and eight" is 40 and 8
+            tens = bool(run) and not run[-1].exponent and not _whole(run[-1].count).endswith("00")
             positions = [start] if prefix is None or self.lex.ordinal_style == "every_word" \
-                else self._after_joiner(start, policy if by_place else Joiner.OPTIONAL)
+                else self._after_joiner(start, policy if by_place or tens else Joiner.OPTIONAL)
             last_group_counts = by_place and len(run) > 1 and not run[-1].exponent
             # "soixante-dixième": a ten that takes a teen takes a teen ordinal
             teens = any(t.teens for t in self._readings(start - 1, "ten")) and bool(run)
