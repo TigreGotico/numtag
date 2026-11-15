@@ -84,6 +84,8 @@ def check_row(row, lang: str = "") -> None:
         assert end == len(text) or not _same_run(span[-1], text[end]), f"span {span!r} ends inside a word"
         assert not (span[-1].isdigit() and text[end:end + 1] in (",", ".")
                     and text[end + 1:end + 2].isdigit()), f"span {span!r} stops before a digit mark"
+        assert not (span[0].isdigit() and start >= 2 and text[start - 1] in (",", ".")
+                    and text[start - 2].isdigit()), f"span {span!r} starts after a digit mark"
         check_value(m["value"], m["kind"])
         if lang in DECIMAL_MARKS and m["kind"] in ("decimal", "fraction"):
             words = re.findall(r"\w+|[.,]", span.lower())
@@ -118,7 +120,8 @@ def main(paths: list[str]) -> int:
     failed = False
     for path in files:
         n_in, errors = check_file(path)
-        print(f"{path.name}: {n_in} in, {n_in - len(errors)} out")
+        n_out = n_in - len(errors) if path.stem in DECIMAL_MARKS else 0
+        print(f"{path.name}: {n_in} in, {n_out} out")
         for error in errors:
             print("  " + error)
         failed = failed or bool(errors)

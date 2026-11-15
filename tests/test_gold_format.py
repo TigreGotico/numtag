@@ -1,4 +1,6 @@
+import contextlib
 import importlib.util
+import io
 import json
 import tempfile
 import unittest
@@ -108,6 +110,11 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
     def test_span_that_stops_before_a_digit_mark(self):
         self.assertRefused(_row("Pesava 3,5 quilos.", _m(7, 8, "3")))
         self.assertRefused(_row("It cost 1,000 dollars.", _m(8, 9, "1")))
+        self.assertRefused(_row("It is 3.5 m.", _m(6, 7, "3")))
+
+    def test_span_that_starts_after_a_digit_mark(self):
+        self.assertRefused(_row("Pesava 3,5 quilos.", _m(9, 10, "5")))
+        self.assertRefused(_row("Custa 1.000 euros.", _m(8, 11, "000")))
 
     def test_a_list_after_the_digits_is_no_digit_mark(self):
         check_gold.check_row(_row("1, 2 e 3", _m(0, 1, "1"), _m(3, 4, "2"), _m(7, 8, "3")))
@@ -119,6 +126,16 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
             n_in, errors = check_gold.check_file(path)
         self.assertEqual(len(errors), 1)
         self.assertIn("no decimal marks", errors[0])
+
+    def test_a_file_with_no_known_decimal_marks_reports_no_row_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "xx.jsonl"
+            path.write_text('{"text": "dez", "mentions": [], "source": "arithmetic"}\n' * 2, encoding="utf-8")
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                status = check_gold.main([str(path)])
+        self.assertEqual(status, 1)
+        self.assertIn("xx.jsonl: 2 in, 0 out", out.getvalue())
 
     def test_a_unit_may_touch_the_digits(self):
         check_gold.check_row(_row("Pesava 3,5kg.", _m(7, 10, "3.5", "decimal")), "pt-PT")
