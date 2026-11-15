@@ -39,6 +39,15 @@ class TestTokenize(unittest.TestCase):
     def test_minus_sign_only_at_the_start_of_a_word(self):
         self.assertEqual([t.text for t in tokenize("-5 e 5-7")], ["-5", "e", "5", "7"])
 
+    def test_only_ascii_digits_make_a_digit_string(self):
+        # Arabic-Indic, fullwidth and Devanagari digits, alone or mixed with
+        # ASCII digits, are no token and break the link between the words
+        for text in ("٣", "３", "१२", "1٣", "٣1", "12３4"):
+            with self.subTest(text=text):
+                tokens = tokenize(f"tenho {text} maçãs")
+                self.assertEqual([t.text for t in tokens], ["tenho", "maçãs"])
+                self.assertFalse(tokens[1].links_to_previous())
+
     def test_digits_glued_to_a_word_are_dropped(self):
         self.assertEqual([t.text for t in tokenize("mp3 player")], ["mp", "player"])
 

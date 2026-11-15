@@ -2,7 +2,8 @@ import unittest
 from decimal import Decimal
 from fractions import Fraction
 
-from numtag import Form, Kind, NumberMention, is_canonical_value
+from numtag import Form, Kind, NumberMention, Scale, is_canonical_value
+from numtag import lexicon
 
 
 class TestCanonicalValue(unittest.TestCase):
@@ -39,6 +40,22 @@ class TestNumberMention(unittest.TestCase):
     def test_a_value_that_is_not_canonical_is_refused(self):
         with self.assertRaises(ValueError):
             NumberMention((0, 3), "2,5", "2,5", Kind.DECIMAL, Form.DIGITS)
+
+    def test_number_scale_is_a_scale_or_none(self):
+        mention = NumberMention((0, 9), "um bilião", "1" + "0" * 12, Kind.CARDINAL, Form.WORDS,
+                                number_scale=Scale.LONG)
+        self.assertIs(mention.number_scale, Scale.LONG)
+        self.assertIsNone(NumberMention((0, 4), "dois", "2", Kind.CARDINAL, Form.WORDS).number_scale)
+        with self.assertRaises(ValueError):
+            NumberMention((0, 9), "um bilião", "1" + "0" * 12, Kind.CARDINAL, Form.WORDS,
+                          number_scale="long")
+
+    def test_number_scale_is_part_of_equality(self):
+        long = NumberMention((0, 3), "one", "1", Kind.CARDINAL, Form.WORDS, number_scale=Scale.LONG)
+        self.assertNotEqual(long, NumberMention((0, 3), "one", "1", Kind.CARDINAL, Form.WORDS))
+
+    def test_the_contract_module_owns_the_scale(self):
+        self.assertIs(lexicon.Scale, Scale)
 
     def test_confidence_is_not_part_of_equality(self):
         a = NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS, confidence=0.3)

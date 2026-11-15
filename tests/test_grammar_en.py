@@ -1,9 +1,10 @@
 """English grammar rules. Each expected value is worked out by hand in the
 comment beside it; sources are in numtag/lexicon/en.json."""
+import time
 import unittest
 
 from helpers import read
-from numtag import tag_numbers
+from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -40,6 +41,13 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("one hundred and two hundred"),
                          [("one hundred", "100", C), ("two hundred", "200", C)])
 
+    def test_a_cardinal_counts_a_larger_scale_noun(self):
+        # (2000 + 500) x 10^6; 1000 x 10^6; 10000 x 10^6
+        self.assertEqual(en("two thousand five hundred million"),
+                         [("two thousand five hundred million", "2500000000", C)])
+        self.assertEqual(en("a thousand million"), [("a thousand million", "1000000000", C)])
+        self.assertEqual(en("ten thousand million"), [("ten thousand million", "10000000000", C)])
+
     def test_a_scale_noun_needs_a_count(self):
         self.assertEqual(en("a million"), [("a million", "1000000", C)])
         self.assertEqual(en("the million"), [])
@@ -55,6 +63,18 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("a billion", scale="long")[0][1], "1" + "0" * 12)
         # short scale: 10^(3 x 10 + 3)
         self.assertEqual(en("a decillion")[0][1], "1" + "0" * 33)
+
+    def test_a_billion_class_word_names_the_scale_of_its_value(self):
+        mentions = tag_numbers("one billion", "en")
+        self.assertEqual([(m.value, m.number_scale) for m in mentions], [("1" + "0" * 9, Scale.SHORT)])
+        mentions = tag_numbers("one billion", "en", scale=Scale.LONG)
+        self.assertEqual([(m.value, m.number_scale) for m in mentions], [("1" + "0" * 12, Scale.LONG)])
+
+    def test_a_value_that_is_the_same_in_both_scales_has_no_scale(self):
+        for text in ("a million", "two thousand", "1,000,000,000", "a thousand million"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.number_scale) for m in tag_numbers(text, "en")],
+                                 [(text, None)])
 
     def test_a_centillion(self):
         # short scale 10^(3 x 100 + 3)
@@ -93,6 +113,12 @@ class TestCollectivesAndHalves(unittest.TestCase):
     def test_half_a_million(self):
         self.assertEqual(en("half a million"), [("half a million", "500000", C)])
 
+    def test_an_article_before_a_half(self):
+        # 10^6 / 2 = 500000; 12 / 2 = 6
+        self.assertEqual(en("a half million"), [("a half million", "500000", C)])
+        self.assertEqual(en("a half dozen eggs"), [("a half dozen", "6", C)])
+        self.assertEqual(en("a half"), [("a half", "0.5", F)])
+
 
 class TestFractions(unittest.TestCase):
     def test_numerator_and_denominator(self):
@@ -100,6 +126,11 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("two thirds"), [("two thirds", "2/3", F)])
         self.assertEqual(en("three quarters"), [("three quarters", "0.75", F)])
         self.assertEqual(en("one hundredth"), [("one hundredth", "0.01", F)])
+
+    def test_a_fraction_of_a_collective_is_that_part_of_it(self):
+        # 12 / 3 = 4; 3 x 12 / 4 = 9
+        self.assertEqual(en("one third of a dozen"), [("one third of a dozen", "4", C)])
+        self.assertEqual(en("three quarters of a dozen eggs"), [("three quarters of a dozen", "9", C)])
 
     def test_a_count_before_a_singular_ordinal_is_an_ordinal(self):
         # 20 + 3 = 23
@@ -136,6 +167,21 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("two point five"), [("two point five", "2.5", D)])
         self.assertEqual(en("zero point zero five"), [("zero point zero five", "0.05", D)])
 
+    def test_a_ten_and_its_unit_after_point_are_one_part(self):
+        # 3 + 25/100 = 3.25, not 3.205
+        self.assertEqual(en("three point twenty five"), [("three point twenty five", "3.25", D)])
+        self.assertEqual(en("three point twenty-five"), [("three point twenty-five", "3.25", D)])
+        self.assertEqual(en("zero point one two three"), [("zero point one two three", "0.123", D)])
+
+    def test_a_long_decimal_reads_in_linear_time(self):
+        # 16 pairs "twenty one" took 22 s when every split was a reading
+        text = "three point" + " twenty one" * 16
+        started = time.perf_counter()
+        mentions = en(text)
+        elapsed = time.perf_counter() - started
+        self.assertEqual(mentions, [(text, "3." + "21" * 16, D)])
+        self.assertLess(elapsed, 0.5)
+
     def test_digit_marks(self):
         self.assertEqual(en("1,000,000.5"), [("1,000,000.5", "1000000.5", D)])
         self.assertEqual(en("1.5"), [("1.5", "1.5", D)])
@@ -148,10 +194,22 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("3 million"), [("3 million", "3000000", C)])
 
 
+class TestNonAsciiDigits(unittest.TestCase):
+    def test_digits_of_other_scripts_are_no_number(self):
+        for text in ("٣", "３", "१२", "1٣", "١٢٣٤"):
+            with self.subTest(text=text):
+                self.assertEqual(en(f"I have {text} apples"), [])
+
+
 class TestMinusAndArticles(unittest.TestCase):
     def test_minus_words(self):
         self.assertEqual(en("minus five"), [("minus five", "-5", C)])
         self.assertEqual(en("negative two point five"), [("negative two point five", "-2.5", D)])
+
+    def test_a_minus_word_with_no_number_after_it_is_no_number(self):
+        for text in ("the temperature is negative", "that is negative, sadly", "minus"):
+            with self.subTest(text=text):
+                self.assertEqual(en(text), [])
 
     def test_an_article_alone_is_no_number(self):
         self.assertEqual(en("I have a dog"), [])

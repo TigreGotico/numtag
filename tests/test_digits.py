@@ -5,6 +5,7 @@ random cases for a long run on a compute box.
 """
 import os
 import random
+import time
 import io
 import tokenize
 import unittest
@@ -13,7 +14,7 @@ from decimal import Decimal, localcontext
 from fractions import Fraction
 from pathlib import Path
 
-from numtag import digits
+from numtag import digits, tag_numbers
 from numtag.digits import Rational
 
 CASES = int(os.environ.get("NUMTAG_SWEEP", "1"))
@@ -129,6 +130,20 @@ class TestRational(unittest.TestCase):
         got = Rational.from_decimal(whole, fraction).canonical()
         self.assertEqual(Fraction(got), expected)
         self.assertEqual(got, (whole + "." + fraction).rstrip("0").rstrip("."))
+
+    def test_a_long_decimal_is_written_in_linear_time(self):
+        # 2000 decimal digits took 35 s when every value went through Euclid
+        rng = random.Random(7)
+        whole, fraction = _number(rng, 50), _number(rng, 4000) + "5"
+        started = time.perf_counter()
+        got = Rational.from_decimal(whole, fraction + "000").canonical()
+        negative = (-Rational.from_decimal("0", "0" * 3000 + "25")).canonical()
+        mentions = tag_numbers("0," + "3" * 4000, "pt-PT")
+        elapsed = time.perf_counter() - started
+        self.assertEqual(got, whole + "." + fraction)
+        self.assertEqual(negative, "-0." + "0" * 3000 + "25")
+        self.assertEqual([m.value for m in mentions], ["0." + "3" * 4000])
+        self.assertLess(elapsed, 1.0)
 
     def test_zero_is_never_negative(self):
         self.assertEqual(Rational("0", "5", True).canonical(), "0")

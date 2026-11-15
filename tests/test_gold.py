@@ -1,7 +1,8 @@
 """Scoreboard over the gold corpus in tests/gold/<lang>.jsonl.
 
 A row scores when the tagger returns exactly its mentions, compared on
-(start, end, value, kind), and gives a confidence below 0.5 to each gold
+(start, end, value, kind, number_scale), where a missing "number_scale"
+means None, and gives a confidence below 0.5 to each gold
 mention marked "low_confidence". Each language's score must reach its floor
 in tests/gold_floor.json. The rows each language misses are written to
 tests/.gold-report/<lang>.txt, the work queue for the next fix.
@@ -34,8 +35,10 @@ class Score:
 
 def row_matches(row: dict, lang: str) -> tuple[bool, list]:
     mentions = tag_numbers(row["text"], lang)
-    got = [(m.char_span[0], m.char_span[1], m.value, m.kind.value) for m in mentions]
-    expected = [(g["start"], g["end"], g["value"], g["kind"]) for g in row["mentions"]]
+    got = [(m.char_span[0], m.char_span[1], m.value, m.kind.value,
+            m.number_scale and m.number_scale.value) for m in mentions]
+    expected = [(g["start"], g["end"], g["value"], g["kind"], g.get("number_scale"))
+                for g in row["mentions"]]
     if got != expected:
         return False, got
     weak = all(m.confidence < 0.5 for m, g in zip(mentions, row["mentions"]) if g.get("low_confidence"))
@@ -103,6 +106,18 @@ class TestScoring(unittest.TestCase):
                 {"start": start, "end": end, "value": value, "kind": kind}]}
             with self.subTest(row=row):
                 self.assertFalse(row_matches(row, "pt-PT")[0])
+
+    def test_number_scale_is_compared_and_missing_means_none(self):
+        mention = {"start": 0, "end": 9, "value": "1" + "0" * 12, "kind": "cardinal"}
+        self.assertTrue(row_matches({"text": "um bilião", "mentions": [
+            {**mention, "number_scale": "long"}]}, "pt-PT")[0])
+        for other in ({**mention, "number_scale": "short"}, mention):
+            with self.subTest(mention=other):
+                self.assertFalse(row_matches({"text": "um bilião", "mentions": [other]}, "pt-PT")[0])
+        million = {"start": 0, "end": 9, "value": "1000000", "kind": "cardinal"}
+        self.assertTrue(row_matches({"text": "um milhão", "mentions": [million]}, "pt-PT")[0])
+        self.assertFalse(row_matches({"text": "um milhão", "mentions": [
+            {**million, "number_scale": "long"}]}, "pt-PT")[0])
 
     def test_a_missing_or_extra_mention_does_not_score(self):
         self.assertFalse(row_matches({"text": "dois e três", "mentions": [

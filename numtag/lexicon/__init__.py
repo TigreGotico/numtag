@@ -12,13 +12,9 @@ from enum import Enum
 from functools import cache
 from pathlib import Path
 
+from numtag.mention import Scale
+
 _HERE = Path(__file__).parent
-
-
-class Scale(str, Enum):
-    """Short scale: a billion is a thousand millions. Long scale: a million millions."""
-    SHORT = "short"
-    LONG = "long"
 
 
 class Joiner(str, Enum):
@@ -48,6 +44,8 @@ class Entry:
     addend: bool = False
     # The form stands only before the rest of the number ("cento e um").
     bound: bool = False
+    # The power of ten differs between the long and the short scale ("bilião").
+    scale_dependent: bool = False
 
 
 @dataclass(frozen=True)
@@ -72,6 +70,8 @@ class Lexicon:
     articles: frozenset[str]
     of_words: frozenset[str]
     denominator_particles: frozenset[str]
+    # "um terço de dúzia": the word between a fraction and a collective.
+    fraction_of_words: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
@@ -121,13 +121,19 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), **facts))
         elif role in SCALE_ROLES:
-            exponent = spec["value"] if "value" in spec else _illion_exponent(spec["rank"], scale)
-            put(spec, Entry(role, exponent=exponent, **facts))
+            if "value" in spec:
+                put(spec, Entry(role, exponent=spec["value"], **facts))
+            else:
+                rank = spec["rank"]
+                dependent = _illion_exponent(rank, Scale.SHORT) != _illion_exponent(rank, Scale.LONG)
+                put(spec, Entry(role, exponent=_illion_exponent(rank, scale),
+                                scale_dependent=dependent, **facts))
         elif role == "half":
             put(spec, Entry(role, "1", **facts))
         elif role == "ordinal_scale":
             cardinal = [e for e in readings[spec["value"]] if e.role in SCALE_ROLES]
-            put(spec, Entry(role, exponent=cardinal[0].exponent, **facts))
+            put(spec, Entry(role, exponent=cardinal[0].exponent,
+                            scale_dependent=cardinal[0].scale_dependent, **facts))
         elif role == "ordinal_suffix":
             suffixes[spec["word"].casefold()] = spec.get("gender")
         else:
@@ -150,5 +156,6 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         articles=frozenset(words["article_one"]),
         of_words=frozenset(words["of"]),
         denominator_particles=frozenset(words["denominator_particle"]),
+        fraction_of_words=frozenset(words["fraction_of"]),
         ordinal_suffixes=suffixes,
     )

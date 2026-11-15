@@ -98,6 +98,13 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
     def test_low_confidence_false(self):
         self.assertRefused(_row("uma casa", _m(0, 3, "1", low_confidence=False)))
 
+    def test_number_scale_is_long_or_short(self):
+        check_gold.check_row(_row("um bilião", _m(0, 9, "1" + "0" * 12, number_scale="long")))
+        check_gold.check_row(_row("um bilhão", _m(0, 9, "1" + "0" * 9, number_scale="short")))
+        for scale in ("LONG", "", None, True, "medium"):
+            with self.subTest(scale=scale):
+                self.assertRefused(_row("um bilião", _m(0, 9, "1" + "0" * 12, number_scale=scale)))
+
     def test_unknown_key(self):
         self.assertRefused(_row("dez", _m(0, 3, "10", gender="masculine")))
 

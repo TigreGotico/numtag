@@ -59,6 +59,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
+            _number_scale(lexicon, run[start:best.end]),
             _confidence(grammar, lexicon, run, start, best)))
         i = best.end
     return mentions
@@ -66,8 +67,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
 
 def _is_minus(grammar: Grammar, lexicon: Lexicon, run: list[Token], i: int) -> bool:
     """A minus word that starts a number: not after a number ("cinco menos
-    dois") and not inside an idiom ("pelo menos dois")."""
-    if run[i].is_digits or run[i].norm not in lexicon.minus_words:
+    dois"), not inside an idiom ("pelo menos dois") and not at the end of a
+    run ("Quero menos.")."""
+    if i + 1 == len(run) or run[i].is_digits or run[i].norm not in lexicon.minus_words:
         return False
     if i > 0 and grammar.starts_number(i - 1):
         return False
@@ -104,6 +106,14 @@ def _gender(lexicon: Lexicon, tokens: list[Token]) -> str | None:
         if len(genders) == 1 and None not in genders:
             return genders.pop()
     return None
+
+
+def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
+    """The lexicon's scale when a word of the number has a power of ten that
+    differs between the long and the short scale."""
+    dependent = any(e.scale_dependent for t in tokens if not t.is_digits
+                    for e in lexicon.readings.get(t.norm, ()))
+    return lexicon.scale if dependent else None
 
 
 def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> float:

@@ -3,7 +3,7 @@ comment beside it; sources are in numtag/lexicon/pt-PT.json."""
 import unittest
 
 from helpers import read
-from numtag import Form, tag_numbers
+from numtag import Form, Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -20,6 +20,9 @@ class TestBindingRulings(unittest.TestCase):
     def test_after_milhao_the_collective_counts_only_the_cardinal_after_it(self):
         # 1000000 + 2 x 12 = 1000024
         self.assertEqual(pt("um milhão e duas dúzias"), [("um milhão e duas dúzias", "1000024", C)])
+
+    def test_de_and_a_singular_scale_noun_do_not_multiply_a_collective(self):
+        self.assertEqual(pt("uma dúzia de milhão"), [("uma dúzia", "12", C)])
 
     def test_a_collective_ends_its_number(self):
         # 1 x 12 = 12; 2 x 1000 x 12 = 24000
@@ -54,6 +57,15 @@ class TestHalves(unittest.TestCase):
     def test_a_half_after_a_scale_noun_is_half_the_noun(self):
         # 1000000 + 1000000 / 2 = 1500000
         self.assertEqual(pt("um milhão e meio"), [("um milhão e meio", "1500000", C)])
+
+    def test_de_and_a_collective_multiply_a_noun_and_its_half(self):
+        # (10^6 + 10^6 / 2) x 12 = 18000000
+        self.assertEqual(pt("um milhão e meio de dúzias"), [("um milhão e meio de dúzias", "18000000", C)])
+        self.assertEqual(pt("um milhão e meio de euros"), [("um milhão e meio", "1500000", C)])
+
+    def test_a_half_after_mil_milhoes_is_half_of_a_thousand_millions(self):
+        # 2 x 10^9 + 10^9 / 2 = 2500000000
+        self.assertEqual(pt("dois mil milhões e meio"), [("dois mil milhões e meio", "2500000000", C)])
 
     def test_a_half_after_mil_is_half_of_one(self):
         self.assertEqual(pt("mil e meio"), [("mil e meio", "1000.5", F)])
@@ -128,11 +140,30 @@ class TestCardinals(unittest.TestCase):
 
     def test_scales_must_descend(self):
         self.assertEqual(pt("mil mil"), [("mil", "1000", C), ("mil", "1000", C)])
+        self.assertEqual(pt("dez mil mil"), [("dez mil", "10000", C), ("mil", "1000", C)])
 
     def test_a_count_belongs_to_the_scale_word_after_it(self):
         self.assertEqual(pt("dois mil e três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])
         self.assertEqual(pt("entre dois milhões e três milhões"),
                          [("dois milhões", "2000000", C), ("três milhões", "3000000", C)])
+
+    def test_a_cardinal_counts_a_larger_scale_noun(self):
+        # (1000 + 500) x 10^6; (2000 + 500) x 10^6; (1000 + 1) x 10^6
+        self.assertEqual(pt("mil e quinhentos milhões de euros"),
+                         [("mil e quinhentos milhões", "1500000000", C)])
+        self.assertEqual(pt("dois mil e quinhentos milhões"),
+                         [("dois mil e quinhentos milhões", "2500000000", C)])
+        self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
+        # 1500 x 10^6 + 300 x 10^3 + 1 = 1500300001
+        self.assertEqual(pt("mil e quinhentos milhões trezentos mil e um"),
+                         [("mil e quinhentos milhões trezentos mil e um", "1500300001", C)])
+
+    def test_a_group_must_fit_in_the_zeros_before_it(self):
+        # 500000 has five zeros, too few for 200000
+        self.assertEqual(pt("meio milhão e duzentos mil"),
+                         [("meio milhão", "500000", C), ("duzentos mil", "200000", C)])
+        self.assertEqual(read("um bilhão e dois mil milhões", "pt-BR"),
+                         [("um bilhão e dois mil", "1000002000", C)])
 
     def test_two_units_are_two_numbers(self):
         self.assertEqual(pt("dois três"), [("dois", "2", C), ("três", "3", C)])
@@ -173,6 +204,31 @@ class TestScale(unittest.TestCase):
     def test_a_bare_pt_tag_reads_pt_pt(self):
         self.assertEqual(read("um bilião", "pt")[0][1], "1" + "0" * 12)
         self.assertEqual(read("um bilião", "pt_br")[0][1], "1" + "0" * 9)
+
+
+class TestNumberScale(unittest.TestCase):
+    def scales(self, text, lang="pt-PT", **options):
+        return [(m.text, m.value, m.number_scale) for m in tag_numbers(text, lang, **options)]
+
+    def test_a_billion_class_word_names_the_scale_of_its_value(self):
+        self.assertEqual(self.scales("um bilião"), [("um bilião", "1" + "0" * 12, Scale.LONG)])
+        self.assertEqual(self.scales("um bilhão"), [("um bilhão", "1" + "0" * 12, Scale.LONG)])
+        self.assertEqual(self.scales("um bilhão", "pt-BR"), [("um bilhão", "1" + "0" * 9, Scale.SHORT)])
+        self.assertEqual(self.scales("2 biliões"), [("2 biliões", "2" + "0" * 12, Scale.LONG)])
+        # 3 x 10^12 + 500 x 10^9 = 3500000000000
+        self.assertEqual(self.scales("três biliões e quinhentos mil milhões"),
+                         [("três biliões e quinhentos mil milhões", "35" + "0" * 11, Scale.LONG)])
+
+    def test_the_scale_option_shows_in_the_mention(self):
+        self.assertEqual(self.scales("um bilião", scale=Scale.SHORT),
+                         [("um bilião", "1" + "0" * 9, Scale.SHORT)])
+
+    def test_a_value_that_is_the_same_in_both_scales_has_no_scale(self):
+        for text in ("um milhão", "mil milhões", "dois mil", "1000000000", "vinte e um",
+                     "dois terços", "vigésimo primeiro", "duas dúzias"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.number_scale) for m in tag_numbers(text, "pt-PT")],
+                                 [(text, None)])
 
 
 class TestDecimals(unittest.TestCase):
@@ -266,6 +322,13 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(pt("três quartos"), [("três quartos", "0.75", F)])
         self.assertEqual(pt("um sétimo"), [("um sétimo", "1/7", F)])
 
+    def test_meios_counts_halves(self):
+        # 3 / 2 = 1.5; 5 / 2 = 2.5
+        self.assertEqual(pt("três meios"), [("três meios", "1.5", F)])
+        self.assertEqual(pt("cinco meios"), [("cinco meios", "2.5", F)])
+        mentions = tag_numbers("três meios de transporte", "pt-PT")
+        self.assertLess(mentions[0].confidence, 0.5)
+
     def test_the_avos_denominator(self):
         # 12 / 25 = 0.48
         self.assertEqual(pt("doze vinte e cinco avos"), [("doze vinte e cinco avos", "0.48", F)])
@@ -274,8 +337,22 @@ class TestFractions(unittest.TestCase):
         # 2 + 1/3 = 7/3
         self.assertEqual(pt("dois e um terço"), [("dois e um terço", "7/3", F)])
 
+    def test_a_fraction_of_a_collective_is_that_part_of_it(self):
+        # 12 / 3 = 4; 2 x 12 / 3 = 8; 3 x 12 / 4 = 9
+        self.assertEqual(pt("um terço de dúzia"), [("um terço de dúzia", "4", C)])
+        self.assertEqual(pt("dois terços de dúzia"), [("dois terços de dúzia", "8", C)])
+        self.assertEqual(pt("três quartos de uma dúzia"), [("três quartos de uma dúzia", "9", C)])
+        self.assertEqual(pt("dois terços de dúzias"), [("dois terços", "2/3", F)])
+
     def test_a_count_and_a_singular_denominator_is_no_fraction(self):
         self.assertEqual(pt("dois terço"), [("dois", "2", C)])
+
+
+class TestNonAsciiDigits(unittest.TestCase):
+    def test_digits_of_other_scripts_are_no_number(self):
+        for text in ("٣", "３", "१२", "1٣", "١٢٣٤"):
+            with self.subTest(text=text):
+                self.assertEqual(pt(f"tenho {text} maçãs"), [])
 
 
 class TestMinus(unittest.TestCase):
@@ -288,6 +365,12 @@ class TestMinus(unittest.TestCase):
 
     def test_minus_between_numbers_is_no_sign(self):
         self.assertEqual(pt("cinco menos dois"), [("cinco", "5", C), ("dois", "2", C)])
+
+    def test_a_minus_word_with_no_number_after_it_is_no_number(self):
+        for text in ("Quero menos.", "Custa menos, mas é pior.", "Ele ganha menos", "menos"):
+            with self.subTest(text=text):
+                self.assertEqual(pt(text), [])
+        self.assertEqual(read("Ele ganha menos", "pt-BR"), [])
 
 
 class TestArticleAndGender(unittest.TestCase):

@@ -168,6 +168,14 @@ class Rational:
     def canonical(self) -> str:
         """The canonical string: a whole number, a decimal or a fraction in
         lowest terms, with no "-0"."""
+        denominator = normalise(self.denominator)
+        if denominator.rstrip("0") == "1":
+            # A power of ten: place the point, in time linear in the digits.
+            places = len(denominator) - 1
+            written = normalise(self.numerator).rjust(places + 1, "0")
+            whole, fraction = written[:len(written) - places], written[len(written) - places:].rstrip("0")
+            sign = "-" if self.negative and (whole != "0" or fraction) else ""
+            return f"{sign}{whole}.{fraction}" if fraction else sign + whole
         common = gcd(self.numerator, self.denominator)
         numerator = divide_whole(self.numerator, common)[0]
         denominator = divide_whole(self.denominator, common)[0]

@@ -17,6 +17,7 @@
     "minus_idioms": {"value": ["pelo menos", "ao menos", "mais ou menos", "a menos"], "source": "\"pelo menos dois\" is \"at least two\", not -2 (NEGATIVE_IDIOMS in ovos-number-parser numbers_pt.py)."},
     "article_one": {"value": ["um", "uma"], "source": "\"um\" and \"uma\" are also the indefinite article; alone before a noun they are a weak number (\"comprei uma casa\")."},
     "of": {"value": ["de"], "source": "After a scale noun, bare \"de\" and a plural noun multiply it (\"dois milhões de dúzias\"). Priberam, \"dos\": \"Contracção de preposição de e do artigo e pronome os.\", so \"dos\" does not: \"uma dezena dos milhares\" is 10."},
+    "fraction_of": {"value": ["de"], "source": "Priberam, \"dúzia\", sense 1: \"Conjunto de doze.\" A fraction, \"de\" and a singular collective take that part of the collective: maintainer ruling, \"um terço de dúzia\" = 4 and \"dois terços de dúzia\" = 8."},
     "denominator_particle": {"value": ["avos"], "source": "Priberam, \"avo\": \"doze vinte e cinco avos = 12/25\"."}
   },
   "entries": [
@@ -174,6 +175,7 @@
     {"word": "meio", "role": "half", "gender": "masculine", "ambiguous": true, "source": "Dicio, \"Meio-dia e meio ou meio-dia e meia\": \"A palavra meia é um numeral fracionário e se refere à metade de um todo, de uma unidade\"; Priberam, \"dúzia\": \"meia dúzia\": \"Conjunto de seis.\"."},
     {"word": "meia", "role": "half", "gender": "feminine", "ambiguous": true, "source": "Dicio, \"Meio-dia e meio ou meio-dia e meia\": \"A palavra meia é um numeral fracionário e se refere à metade de um todo, de uma unidade\"; Priberam, \"dúzia\": \"meia dúzia\": \"Conjunto de seis.\"."},
     {"word": "terço", "role": "denominator", "value": "3", "source": "Priberam, \"vigésimo\", noun sense 2: \"Cada uma das vinte partes iguais em que se divide um todo.\""},
+    {"word": "meios", "role": "denominator", "value": "2", "plural": true, "ambiguous": true, "source": "Wiktionary (pt), \"meio\", substantivo, plural \"meios\": \"(Matemática) número racional que é metade de uma unidade\"; a count before the plural counts halves, as \"dois terços\" counts thirds. Also a common noun (Priberam, \"meio\", sense 14: \"meios\": \"Bens, fortuna, recursos, haveres\")."},
     {"word": "terços", "role": "denominator", "value": "3", "plural": true, "source": "Priberam, \"vigésimo\", noun sense 2: \"Cada uma das vinte partes iguais em que se divide um todo.\""},
     {"word": "quarto", "role": "denominator", "value": "4", "ambiguous": true, "source": "Priberam, \"vigésimo\", noun sense 2: \"Cada uma das vinte partes iguais em que se divide um todo.\""},
     {"word": "quartos", "role": "denominator", "value": "4", "plural": true, "ambiguous": true, "source": "Priberam, \"vigésimo\", noun sense 2: \"Cada uma das vinte partes iguais em que se divide um todo.\""},
