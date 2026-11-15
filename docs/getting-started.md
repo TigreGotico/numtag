@@ -7,7 +7,7 @@ This guide shows the first call to numtag and the tasks that most callers need. 
 numtag needs Python 3.11 or later. It has no dependencies.
 
 ```bash
-uv pip install numtag
+uv pip install --prerelease=allow numtag
 ```
 
 ## The first call

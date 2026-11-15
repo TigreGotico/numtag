@@ -1,6 +1,6 @@
 # Benchmarks
 
-This page compares numtag with ovos-number-parser on accuracy, memory and time. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it.
+This page compares numtag with ovos-number-parser on accuracy, memory and time. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
 
 ## What was measured
 
@@ -9,7 +9,7 @@ This page compares numtag with ovos-number-parser on accuracy, memory and time. 
 | numtag | commit ef3a883, the pt-PT, pt-BR and en engine |
 | ovos-number-parser | 0.24.62a1 from PyPI, `extract_number_spans(text, lang, ordinals=True)` |
 | Corpus | `tests/gold/`: 458 pt-PT rows, 456 pt-BR rows, 420 en rows |
-| Python | 3.14.6 |
+| Python | 3.14.6, the uv interpreter of the laptop (the JSON reports do not record it) |
 | Machine | a laptop with an Intel Core i9-11900H |
 
 The parser runs with ordinals on, because that mode finds more of the gold mentions.

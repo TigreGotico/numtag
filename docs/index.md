@@ -2,7 +2,7 @@
 
 numtag is a number tagger. It finds every number in a text and returns one mention per number. A mention holds the exact words, their character span and an exact value as a digit string. It also holds the kind, the form, a confidence score and, where it matters, the number scale.
 
-numtag only reads numbers. It does not write numbers as words, and it reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. chronologia, a date library, builds its dates that way.
+numtag only reads numbers. It does not write numbers as words, and it reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. A date library can build its dates that way: it reads the mentions and applies its own date rules. Support for numtag in chronologia is planned.
 
 ## Start here
 
