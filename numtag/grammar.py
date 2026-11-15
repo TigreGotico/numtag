@@ -542,6 +542,11 @@ class Grammar:
                     count = group.count.scaled(group.exponent)
                     if compound and not group.top and self._takes_count(group.end, count, group.exponent, whole_group=True):
                         continue
+                    # a comma between classes stands only before a group of a
+                    # hundred or more: "one thousand, two hundred", not
+                    # "one thousand, fifty"
+                    if j == last.end and self.tokens[j].gap.startswith(",") and len(_whole(count)) < 3:
+                        continue
                     if group.order < last.order and len(_whole(count)) <= room:
                         frontier.append(run + (group,))
         self._cardinals[key] = found

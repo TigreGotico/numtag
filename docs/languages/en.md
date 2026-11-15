@@ -58,7 +58,7 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 | `joiner_between_groups` | optional | the same |
 | `joiner_before_last_group` | optional | the same |
 | `joiner_before_round_hundred` | false | CLDR 49 RBNF en %spellout-cardinal-verbose |
-| `comma_between_classes` | false | CLDR 49 RBNF en, and a structural choice |
+| `comma_between_classes` | true | Wikipedia, "English numerals"; CLDR 49 RBNF en |
 | `plural_scale_needs_count` | true | Wiktionary, "million" |
 | `scale_noun_agrees` | false | Wiktionary, "million", usage notes |
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |
