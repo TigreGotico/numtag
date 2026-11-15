@@ -152,6 +152,13 @@ A collective of a place value ("dezena", "centena") after "mil e" counts only th
 [('mil', '1000'), ('duzentas dúzias', '2400')]
 ```
 
+The count starts a new number also where the joiner rule lets a group follow with no "e". "mil duzentas e três" is one number, 1203, but before a collective the count "duzentas e três" starts a new number.
+
+```python
+>>> read("Compraram mil duzentas e três dúzias de ovos.")
+[('mil', '1000'), ('duzentas e três dúzias', '2436')]
+```
+
 The joiner rule decides where the number ends before a collective. A round last class such as "duzentos mil" needs "e" after "um milhão". Without the "e", the class and its collective start a new number.
 
 ```python
