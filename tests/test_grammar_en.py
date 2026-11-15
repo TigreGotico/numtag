@@ -140,6 +140,11 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("between two thousand and one hundred and fifty thousand"),
                          [("two thousand", "2000", C), ("one hundred and fifty thousand", "150000", C)])
 
+    def test_a_group_that_counts_the_scale_word_after_it_starts_a_new_number(self):
+        # "two million" counts "billion", so it does not join "one trillion";
+        # the reading of "two million billion" is plan open question 6
+        self.assertEqual(en("one trillion two million billion")[0], ("one trillion", "1000000000000", C))
+
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 2000 x 10^6; 3000 x 10^6
         self.assertEqual(en("two thousand million and three thousand million"),
