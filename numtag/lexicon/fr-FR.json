@@ -10,6 +10,8 @@
     "joiner_after_hundred": {"value": "never", "source": "TLFi, CENT: \"un n'est pas relié à cent par et\" (except the old \"cent et un\")."},
     "joiner_between_groups": {"value": "optional", "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"1001: mille >%spellout-cardinal-masculine>;\"; \"mille et un\" keeps \"et\" in set phrases (\"Les Mille et Une Nuits\"); reading accepts both."},
     "joiner_before_round_hundred": {"value": false, "source": "Académie 9e éd., MILLE: \"Dans cet emploi on dira mille et un, mille et une, plutôt que mille un, mille une.\": \"et\" after \"mille\" goes before \"un\" only, so a well-formed last group after \"mille et\" is below a hundred."},
+    "comma_between_classes": {"value": false, "source": "The CLDR 48 RBNF (ICU 78) fr-FR rules quoted for joiner_between_groups write no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."},
+    "joiner_before_last_group": {"value": "optional", "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"1001: mille >%spellout-cardinal-masculine>;\"; Académie 9e éd., MILLE: \"Dans cet emploi on dira mille et un, mille et une, plutôt que mille un, mille une.\": both forms occur, so \"et\" before the last group is optional."},
     "ordinal_style": {"value": "last_word", "source": "CLDR 48 RBNF (ICU 78) fr %%spellout-ordinal: \"21: vingt->%%et-unieme>;\": only the last word of an ordinal is ordinal."}
   },
   "words": {

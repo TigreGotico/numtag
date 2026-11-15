@@ -36,6 +36,10 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("two million three hundred thousand"),
                          [("two million three hundred thousand", "2300000", C)])
         self.assertEqual(en("two thousand and five"), [("two thousand and five", "2005", C)])
+        # a second group of the same scale starts a new number
+        self.assertEqual(en("ten thousand two thousand"), [("ten thousand", "10000", C), ("two thousand", "2000", C)])
+        self.assertEqual(en("two hundred million ten million"),
+                         [("two hundred million", "200000000", C), ("ten million", "10000000", C)])
 
     def test_a_count_belongs_to_the_multiplier_after_it(self):
         self.assertEqual(en("one hundred and two hundred"),
@@ -191,6 +195,19 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(read("twenty-one", "en-US"), [("twenty-one", "21", C)])
 
 
+    def test_a_last_round_group_joins_with_or_without_and(self):
+        # English "and" before the last group is optional (Cambridge
+        # Dictionary, "Numbers"): 1000 + 200, 1000 + 2, 2000000 + 500000
+        self.assertEqual(en("one thousand two hundred"), [("one thousand two hundred", "1200", C)])
+        self.assertEqual(en("one thousand two"), [("one thousand two", "1002", C)])
+        self.assertEqual(en("one thousand and two"), [("one thousand and two", "1002", C)])
+        self.assertEqual(en("two million five hundred thousand"),
+                         [("two million five hundred thousand", "2500000", C)])
+
+    def test_a_comma_ends_an_english_number(self):
+        self.assertEqual(en("two million, three hundred thousand"),
+                         [("two million", "2000000", C), ("three hundred thousand", "300000", C)])
+
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_dozen(self):
         # 12; 2 x 12 = 24
@@ -255,6 +272,29 @@ class TestOrdinals(unittest.TestCase):
         # 2 x 100 = 200
         self.assertEqual(en("hundredth"), [("hundredth", "100", O)])
         self.assertEqual(en("two hundredth"), [("two hundredth", "200", O)])
+
+    def test_an_ordinal_scale_word_multiplies_only_the_last_group(self):
+        # 6000 + 2 x 100 = 6200; 1000 + 2 x 100 = 1200; 156000 + 2 x 100 = 156200
+        self.assertEqual(en("six thousand two hundredth"), [("six thousand two hundredth", "6200", O)])
+        self.assertEqual(en("one thousand two hundredth"), [("one thousand two hundredth", "1200", O)])
+        self.assertEqual(en("one hundred fifty-six thousand two hundredth"),
+                         [("one hundred fifty-six thousand two hundredth", "156200", O)])
+        # 8 x 10^12 + 830 x 10^9 + 874 x 10^6 + 156 x 10^3 + 2 x 100
+        text = "eight trillion eight hundred thirty billion eight hundred seventy-four million one hundred fifty-six thousand two hundredth"
+        self.assertEqual(en(text), [(text, "8830874156200", O)])
+        # 2000000 + 300 x 1000 = 2300000; 10^9 + 5 x 1000 = 1000005000
+        self.assertEqual(en("two million three hundred thousandth"),
+                         [("two million three hundred thousandth", "2300000", O)])
+        self.assertEqual(en("one billion five thousandth"), [("one billion five thousandth", "1000005000", O)])
+        # 10^9 + 200 x 10^6 = 1200000000; 3 x 10^12 + 4 x 10^6 = 3000004000000
+        self.assertEqual(en("one billion two hundred millionth"),
+                         [("one billion two hundred millionth", "1200000000", O)])
+        self.assertEqual(en("three trillion four millionth"), [("three trillion four millionth", "3000004000000", O)])
+        # one group: 200 x 1000 = 200000
+        self.assertEqual(en("two hundred thousandth"), [("two hundred thousandth", "200000", O)])
+        # 2 x 1000 does not fit below "one thousand": no reading of 3000
+        self.assertEqual(en("one thousand two thousandth"),
+                         [("one thousand two", "1002", C), ("thousandth", "1000", O)])
 
     def test_an_ordinal_cannot_fill_a_place_already_taken(self):
         self.assertEqual(en("twenty-one first"), [("twenty-one", "21", C), ("first", "1", O)])

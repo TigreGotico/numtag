@@ -10,6 +10,8 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"201: <%spellout-cardinal< ratus >%spellout-cardinal>;\": no joiner."},
     "joiner_between_groups": {"value": "never", "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"2001: <%spellout-cardinal< ribu >%spellout-cardinal>;\": no joiner."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"2001: <%spellout-cardinal< ribu >%spellout-cardinal>;\": no joiner after the thousands, so no group follows one."},
+    "comma_between_classes": {"value": false, "source": "The CLDR 48 RBNF (ICU 78) id rules quoted for joiner_between_groups write no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."},
+    "joiner_before_last_group": {"value": "never", "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"2001: <%spellout-cardinal< ribu >%spellout-cardinal>;\": no joiner before the last group."},
     "joiner_before_half": {"value": "never", "source": "EYD V, G.8.b: \"tiga dua-pertiga (3⅔)\"; KBBI, \"setengah\": \"seperdua\": a half or a fraction follows the whole number with no joiner (\"dua setengah\", \"tiga dua-pertiga\")."},
     "ordinal_style": {"value": "last_word", "source": "CLDR 48 RBNF (ICU 78) id %spellout-ordinal: \"2: ke=%spellout-cardinal=;\": \"ke-\" makes the whole cardinal after it an ordinal."},
     "compound_words": {"value": true, "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"100: seratus;\", \"1000: seribu;\": \"se-\" and \"ke-\" are part of the word (\"seratus\", \"kedua\"), so a word splits into number words."}
