@@ -496,6 +496,14 @@ class TestJoinerBeforeTheLastGroup(unittest.TestCase):
         self.assertEqual(pt("dois milhões quinhentos mil e quatro"),
                          [("dois milhões quinhentos mil e quatro", "2500004", C)])
 
+    def test_a_last_count_of_a_thousand_or_more_joins_with_no_e(self):
+        # 10^12 + 1500 x 10^6: the count 1500 is neither below a hundred
+        # nor a round hundred
+        self.assertEqual(pt("um bilião mil e quinhentos milhões"),
+                         [("um bilião mil e quinhentos milhões", "1001500000000", C)])
+        # 10^12 + 2000 x 10^6
+        self.assertEqual(pt("um bilião dois mil milhões"), [("um bilião dois mil milhões", "1002000000000", C)])
+
     def test_a_collective_after_a_last_group_with_no_e(self):
         # 1000; 200 x 12
         self.assertEqual(pt("mil duzentas dúzias"), [("mil", "1000", C), ("duzentas dúzias", "2400", C)])
