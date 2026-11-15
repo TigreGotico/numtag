@@ -532,6 +532,11 @@ class TestJoinerBeforeTheLastGroup(unittest.TestCase):
         self.assertEqual(pt("dois milhões, três"), [("dois milhões", "2000000", C), ("três", "3", C)])
         self.assertEqual(pt("dois mil, três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])
         self.assertEqual(pt("vinte, trinta e um"), [("vinte", "20", C), ("trinta e um", "31", C)])
+        self.assertEqual(pt("dois, mil"), [("dois", "2", C), ("mil", "1000", C)])
+        self.assertEqual(pt("vigésimo, primeiro"), [("vigésimo", "20", O), ("primeiro", "1", O)])
+        # a comma with no space after it is no class separator
+        self.assertEqual(pt("dois milhões,duzentos e trinta e seis mil"),
+                         [("dois milhões", "2000000", C), ("duzentos e trinta e seis mil", "236000", C)])
         self.assertEqual(pt("dois milhões, e trezentos mil"),
                          [("dois milhões", "2000000", C), ("trezentos mil", "300000", C)])
 

@@ -288,6 +288,9 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(en("three trillion four millionth"), [("three trillion four millionth", "3000004000000", O)])
         # one group: 200 x 1000 = 200000
         self.assertEqual(en("two hundred thousandth"), [("two hundred thousandth", "200000", O)])
+        # 2 x 1000 does not fit below "one thousand": no reading of 3000
+        self.assertEqual(en("one thousand two thousandth"),
+                         [("one thousand two", "1002", C), ("thousandth", "1000", O)])
 
     def test_an_ordinal_cannot_fill_a_place_already_taken(self):
         self.assertEqual(en("twenty-one first"), [("twenty-one", "21", C), ("first", "1", O)])
