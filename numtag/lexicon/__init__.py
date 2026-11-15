@@ -145,6 +145,9 @@ class Lexicon:
     # A hundred or ten multiplier after a group of thousands starts the next
     # group and counts no group ("bin yüz" is 1100, not 100000).
     small_multiplier_starts_group: bool
+    # A hundred multiplier takes no count of a thousand or more ("dvou
+    # tisíc sta" is 2100).
+    hundred_counts_below_thousand: bool
     # Number words written together as one word ("zweihundert",
     # "kaksikymmentäviisi"): the tokenizer splits the word into the chain of
     # number words it is made of.
@@ -261,6 +264,7 @@ DEFAULT_SETTINGS = {
     "ten_joins_unit_ordinal": True,
     "bare_hundred_after_scale": False,
     "small_multiplier_starts_group": False,
+    "hundred_counts_below_thousand": False,
     "compound_words": False,
     "compound_shared_letter": False,
     "period_ordinals": False,
@@ -391,6 +395,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ten_joins_unit_ordinal=settings["ten_joins_unit_ordinal"],
         bare_hundred_after_scale=settings["bare_hundred_after_scale"],
         small_multiplier_starts_group=settings["small_multiplier_starts_group"],
+        hundred_counts_below_thousand=settings["hundred_counts_below_thousand"],
         compound_words=settings["compound_words"],
         compound_shared_letter=settings["compound_shared_letter"],
         period_ordinals=settings["period_ordinals"],

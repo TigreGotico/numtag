@@ -173,9 +173,11 @@ class Grammar:
                 return False
             if self.lex.small_multiplier_starts_group and any(e.exponent <= count_exponent for e in small):
                 return False
-            # A hundred multiplier takes no count of a thousand or more: in
-            # "dvou tisíc sta" (2100) "sta" is 100 itself.
-            return self._takes_multiplier(i) and len(_whole(count)) <= 3 and not (
+            # Where the lexicon says so, a hundred multiplier takes no count
+            # of a thousand or more: in "dvou tisíc sta" (2100) "sta" is 100.
+            if self.lex.hundred_counts_below_thousand and len(_whole(count)) > 3:
+                return False
+            return self._takes_multiplier(i) and not (
                 whole_group and self.lex.bare_hundred_after_scale and len(_whole(count)) > 2)
         return any(self._agrees(noun, plural, count) and count_exponent < exponent
                    for _, exponent, _, noun, _, plural in scale_words)

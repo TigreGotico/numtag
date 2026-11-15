@@ -10,6 +10,7 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR RBNF ru: \"100: сто[ >>];\", no conjunction after the hundreds."},
     "joiner_between_groups": {"value": "never", "source": "CLDR RBNF ru renders 1001 as \"одна тысяча один\", no conjunction between groups."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR RBNF ru renders 1100 as \"одна тысяча сто\" and 1500 as \"одна тысяча пятьсот\": no joiner stands before a round hundred after the thousands."},
+    "hundred_counts_below_thousand": {"value": true, "source": "unicode-rbnf 2.4.1 (CLDR RBNF ru data), %spellout-cardinal, rendering of 2100: \"две тысячи сто\": the hundred after the thousands is the next group, so a hundred multiplier takes no count of a thousand or more."},
     "compound_parts_by_role": {"value": true, "source": "compound_words is true, with the source quoted there: the compound number words it cites join cardinal and ordinal words and joiners only, so a fraction noun or a collective is no part of one (\"petin|dvajset\" is no split)."},
     "comma_between_classes": {"value": false, "source": "CLDR RBNF ru writes no comma between two classes (1001, 1100 and 1500 in the joiner settings above). No source opened shows a comma between two classes of one number, so a comma ends a number."},
     "joiner_before_last_group": {"value": "never", "source": "CLDR RBNF ru renders 1001 as \"одна тысяча один\": no conjunction stands before the last group."},
