@@ -24,6 +24,14 @@ class TestArabic(unittest.TestCase):
         self.assertEqual(ar("اثنا عشر"), [("اثنا عشر", "12", C)])
         self.assertEqual(ar("يوم الأحد"), [])
 
+    def test_digits_glued_to_the_joiner_prefix(self):
+        # 2 x 10^6 + 500 x 10^3 = 2500000; with no scale word after them
+        # the digits start a new number
+        self.assertEqual(ar("2 مليون و500 ألف"), [("2 مليون و500 ألف", "2500000", C)])
+        self.assertEqual(ar("2 مليون و 500 ألف"), [("2 مليون و 500 ألف", "2500000", C)])
+        self.assertEqual(ar("بين 15 و20"), [("15", "15", C), ("و20", "20", C)])
+        self.assertEqual(ar("mp3"), [])
+
     def test_the_dual_holds_its_count(self):
         # ألفان = 2 x 1000, + 500 = 2500; مليونان = 2 x 10^6
         self.assertEqual(ar("ألفان وخمسمائة"), [("ألفان وخمسمائة", "2500", C)])

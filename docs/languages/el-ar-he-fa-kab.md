@@ -5,7 +5,7 @@ numtag reads Greek, Arabic, Hebrew, Persian and Kabyle. Arabic and Persian text 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | Greek | every `el` tag | `numtag/lexicon/el.json` | short | 159 | 158 |
-| Arabic | every `ar` tag | `numtag/lexicon/ar.json` | short | 155 | 154 |
+| Arabic | every `ar` tag | `numtag/lexicon/ar.json` | short | 157 | 156 |
 | Hebrew | every `he` tag | `numtag/lexicon/he.json` | long | 160 | 157 |
 | Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 151 | 151 |
 | Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 163 | 163 |
@@ -22,6 +22,8 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('٣٤٥', '345')]
 >>> read('خمسة وعشرون', 'ar')
 [('خمسة وعشرون', '25')]
+>>> read('نحو 2 مليون و500 ألف نسمة', 'ar')
+[('2 مليون و500 ألف', '2500000')]
 >>> read('۱۲۳ کتاب', 'fa')
 [('۱۲۳', '123')]
 >>> read('بیست و پنج', 'fa')

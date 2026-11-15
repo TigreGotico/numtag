@@ -293,7 +293,11 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             start += cut
             latin = latin[cut:]
         gap = scan[previous_end:start]
-        if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
+        # a digit string glued to a word is dropped, except after a word
+        # that is a joiner prefix alone: "و500" is "و" and "500"
+        after_joiner = is_digits and gap == "" and tokens and not tokens[-1].is_digits \
+            and script.fold(tokens[-1].text) in script.joiner_prefixes
+        if is_digits and gap == "" and tokens and not tokens[-1].is_digits and not after_joiner:
             previous_end = match.end()
             continue
         if not is_digits and tokens and tokens[-1].is_digits and not tokens[-1].suffix \
@@ -343,7 +347,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             period = (period_ordinals is not None and is_digits and not suffix
                       and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
             tokens.append(Token(word, start, end, is_digits, gap, suffix, key=key, folded=folded,
-                                period_ordinal=period))
+                                attached=bool(after_joiner), period_ordinal=period))
         previous_end = end
     if compounds:
         tokens = _join_compounds(text, tokens, compounds)
