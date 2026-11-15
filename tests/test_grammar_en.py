@@ -86,6 +86,17 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("five hundred thousand and two million"),
                          [("five hundred thousand and two million", "500002000000", C)])
 
+    def test_a_scale_word_keeps_the_singular_after_a_count(self):
+        self.assertEqual(en("two million"), [("two million", "2000000", C)])
+        # (1000 + 1) x 10^6
+        self.assertEqual(en("one thousand and one million"),
+                         [("one thousand and one million", "1001000000", C)])
+
+    def test_the_first_number_takes_a_plain_group_before_a_compound_count(self):
+        # 10^6 + 500 x 1000 = 1500000; 2 x 10^6
+        self.assertEqual(en("one million five hundred thousand and two million"),
+                         [("one million five hundred thousand", "1500000", C), ("two million", "2000000", C)])
+
     def test_a_range_cue_ends_the_first_number_at_the_range_joiner(self):
         # 500 x 1000; 2 x 10^6
         self.assertEqual(en("between five hundred thousand and two million"),

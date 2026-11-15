@@ -309,6 +309,36 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("mil e quinhentos e dois mil"),
                          [("mil e quinhentos", "1500", C), ("dois mil", "2000", C)])
 
+    def test_a_singular_scale_noun_takes_only_the_count_one(self):
+        # a scale noun agrees in number with its count: 100000; 10^6
+        self.assertEqual(pt("cem mil e um milhão"),
+                         [("cem mil", "100000", C), ("um milhão", "1000000", C)])
+        self.assertEqual(pt("mil e um milhão"), [("mil", "1000", C), ("um milhão", "1000000", C)])
+        self.assertEqual(pt("passou de oitocentos mil e um milhão para dois milhões"),
+                         [("oitocentos mil", "800000", C), ("um milhão", "1000000", C),
+                          ("dois milhões", "2000000", C)])
+        self.assertEqual(read("cem mil e um bilhão", "pt-BR"),
+                         [("cem mil", "100000", C), ("um bilhão", "1000000000", C)])
+        # (1000 + 1) x 10^6, plural
+        self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
+        # a count that the noun does not take stays a number
+        self.assertEqual(pt("dois milhão"), [("dois", "2", C)])
+        self.assertEqual(pt("meio milhão"), [("meio milhão", "500000", C)])
+
+    def test_the_first_number_takes_a_plain_group_before_a_compound_count(self):
+        # 10^6 + 500 x 1000 = 1500000; 2 x 10^6
+        self.assertEqual(pt("um milhão e quinhentos mil e dois milhões"),
+                         [("um milhão e quinhentos mil", "1500000", C), ("dois milhões", "2000000", C)])
+        # with nothing before it, the compound count reads: (200000 + 2) x 10^6
+        self.assertEqual(pt("duzentos mil e dois milhões"),
+                         [("duzentos mil e dois milhões", "200002000000", C)])
+
+    def test_a_range_cue_never_reads_worse_than_no_cue(self):
+        # with no cue: 1500 and 2000, which has fewer significant digits
+        # than the split after "mil", 1000 and 502000
+        self.assertEqual(pt("entre mil e quinhentos e dois mil"),
+                         [("mil e quinhentos", "1500", C), ("dois mil", "2000", C)])
+
     def test_a_range_cue_ends_the_first_number_at_the_range_joiner(self):
         # 100 x 1000 = 100000; 10^6
         self.assertEqual(pt("entre cem mil e um milhão de euros"),

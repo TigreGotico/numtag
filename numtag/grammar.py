@@ -124,6 +124,19 @@ class Grammar:
         return i < len(self.tokens) and not self.tokens[i].is_digits and any(
             e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ()))
 
+    def _agrees(self, noun: bool, plural: bool, count: Rational) -> bool:
+        """Where a noun agrees with its count, a singular noun takes only a
+        count below two: "um milhão", "meio milhão", "mil e um milhões"."""
+        return not (noun and not plural and self.lex.scale_noun_agrees and _whole(count) not in ("0", "1"))
+
+    def _takes_count(self, i: int, count: Rational) -> bool:
+        """True when a multiplier at ``i`` takes ``count``: in "dois milhão"
+        the "dois" stays a number."""
+        scale_words = self.multipliers(i)
+        if not scale_words:
+            return self._takes_multiplier(i)
+        return any(self._agrees(noun, plural, count) for *_, noun, _, plural in scale_words)
+
     def starts_number(self, i: int) -> bool:
         if i >= len(self.tokens):
             return False
@@ -238,8 +251,8 @@ class Grammar:
             found.append(Count(end, value, decimal=decimal))
         return found
 
-    def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, bool, bool]]:
-        """(end, exponent, noun, needs_count) of each multiplier at ``i``.
+    def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, bool, bool, bool]]:
+        """(end, exponent, noun, needs_count, plural) of each multiplier at ``i``.
 
         A noun needs a count, and so does a plural scale word when the
         language says so. A singular noun that ``starts`` the number counts
@@ -251,7 +264,7 @@ class Grammar:
                 needs_count = noun or (entry.plural and self.lex.plural_scale_needs_count)
                 if starts and noun and not entry.plural and self._is_word(i + 1, self.lex.of_words):
                     needs_count = False
-                found.append((i + 1, entry.exponent, noun, needs_count))
+                found.append((i + 1, entry.exponent, noun, needs_count, entry.plural))
         return found
 
     def cardinal_counts(self, i: int, first: bool) -> list[Count]:
@@ -284,8 +297,10 @@ class Grammar:
                 found.append(Group(count.end, count.value, decimal=count.decimal))
             if count.value.is_zero():
                 continue
-            for end, exponent, noun, needs_count in self.multipliers(count.end, first and not count.explicit):
+            for end, exponent, noun, needs_count, plural in self.multipliers(count.end, first and not count.explicit):
                 if (needs_count and not count.explicit) or (count.top and exponent <= count.top):
+                    continue
+                if not self._agrees(noun, plural, count.value):
                     continue
                 found.append(Group(end, count.value, exponent, noun, count.decimal,
                                    count.top, count.half_top))
@@ -306,7 +321,7 @@ class Grammar:
             last = run[-1]
             # A count belongs to the scale word after it: "dois milhões e três
             # milhões" is two numbers, not 2000003 and a stray "milhões".
-            if compound and last.exponent == 0 and self._takes_multiplier(last.end):
+            if compound and last.exponent == 0 and self._takes_count(last.end, last.count):
                 continue
             found.append(run)
             if last.exponent == 0 or last.decimal:
@@ -314,10 +329,11 @@ class Grammar:
             room = _room(last)
             for j in self._after_joiner(last.end, self.lex.joiner_between_groups):
                 following = self.groups(j, first=False, compound=compound)
-                # Where a count starts ("dois mil" milhões, "mil e quinhentos"
-                # milhões), its first word is no group of this run: "mil milhões
-                # e dois mil milhões" is two numbers, not 1000002000 and "milhões".
-                counted = any(g.top for g in following)
+                # A plain group right before a scale word is the count of that
+                # word: "mil milhões e dois mil milhões" is two numbers, not
+                # 1000002000 and "milhões". Any other plain group joins the
+                # run, so "um milhão e quinhentos mil e dois milhões" is
+                # 1500000 and 2000000.
                 # Nor is the first word of a count below a thousand: "um milhão
                 # e vinte e cinco milhões" is 1000000 and 25000000.
                 # Only a count that may follow the group: in "mil e quinhentos
@@ -326,7 +342,7 @@ class Grammar:
                 counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
                           and self._well_formed_after(last, Rational(value))}
                 for group in following:
-                    if counted and not group.top:
+                    if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent)):
                         continue
                     if compound and group.exponent == 0 and any(end > group.end for end in counts):
                         continue
@@ -590,14 +606,18 @@ class Grammar:
         and then the longest left side: "entre dois milhões e mil e quinhentos
         milhões" is 2000000 and 1500000000, not 2001000 and 500000000. A
         joiner inside a number below a thousand ("sessenta e sete") splits
-        nothing."""
+        nothing, unless the words read as two numbers there with no cue."""
         if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
             return None
+        # Where the words read as more than one number with no cue, that
+        # split is a candidate too, so a cue never reads worse than none.
+        plain = self._numbers(i)
+        default = max(plain, key=lambda p: p.end).end if plain else None
         best, best_digits = None, None
         for k in range(i + 1, len(self.tokens)):
             if not self._number_word(k - 1):
                 break
-            if not self._is_word(k, self.lex.joiners) or any(
+            if not self._is_word(k, self.lex.joiners) or k != default and any(
                     end > k + 1 for x in range(i, k) for end, _ in self.small(x)):
                 continue
             left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]

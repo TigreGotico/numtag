@@ -57,6 +57,7 @@ class Lexicon:
     # Digits may also be grouped by a space ("1 000 000").
     space_groups: bool
     plural_scale_needs_count: bool
+    scale_noun_agrees: bool
     joiner_tens_units: Joiner
     joiner_after_hundred: Joiner
     joiner_between_groups: Joiner
@@ -153,6 +154,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         group_mark=settings["group_mark"], decimal_mark=settings["decimal_mark"],
         space_groups=settings["space_groups"],
         plural_scale_needs_count=settings["plural_scale_needs_count"],
+        scale_noun_agrees=settings["scale_noun_agrees"],
         joiner_tens_units=Joiner(settings["joiner_tens_units"]),
         joiner_after_hundred=Joiner(settings["joiner_after_hundred"]),
         joiner_between_groups=Joiner(settings["joiner_between_groups"]),
