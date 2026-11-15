@@ -72,7 +72,6 @@ These readings wait for a ruling. The table shows what numtag reads.
 | Text | numtag reads | Question |
 |---|---|---|
 | "a million billion" | 1000000, and "billion" reads no number | Is it 10^15? |
-| "one million, two hundred thousand" | 1000000 and 200000 | Should English link classes across a comma, as Portuguese does? |
 | "dois mil meio" | 2000 and 0.5 | Is it 2000.5? No source gives that reading. |
 | "meio milhões de pessoas" | 500000 | "meio" and a plural noun do not agree. Is it a number? |
 

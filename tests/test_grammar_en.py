@@ -204,9 +204,13 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("two million five hundred thousand"),
                          [("two million five hundred thousand", "2500000", C)])
 
-    def test_a_comma_ends_an_english_number(self):
-        self.assertEqual(en("two million, three hundred thousand"),
-                         [("two million", "2000000", C), ("three hundred thousand", "300000", C)])
+    def test_a_comma_links_a_class_of_a_hundred_or_more(self):
+        # 2 x 10^6 + 300 x 10^3 = 2300000; before a group below a hundred the
+        # comma ends the number
+        self.assertEqual(en("two million, three hundred thousand"), [("two million, three hundred thousand", "2300000", C)])
+        self.assertEqual(en("one thousand, nine hundred"), [("one thousand, nine hundred", "1900", C)])
+        self.assertEqual(en("two thousand, five"), [("two thousand", "2000", C), ("five", "5", C)])
+        self.assertEqual(en("five million, three million"), [("five million", "5000000", C), ("three million", "3000000", C)])
 
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_dozen(self):

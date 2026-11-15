@@ -74,14 +74,16 @@ In Portuguese, a comma after a scale word and before a number word links two cla
 
 > Gramática do Português (Fundação Calouste Gulbenkian, 2013-2020, p. 932/933), quoted in Ciberdúvidas 8981: "Nos outros casos, a conjunção é omitida entre as classes [ex. 2 236 321 – dois milhões, duzentos e trinta e seis mil trezentos e vinte e um]". The same page: "é costume os milhões e os milhares serem simplesmente separados com vírgula, ficando o e subentendido".
 
-In English, a comma ends a number. CLDR writes a comma between classes in its verbose spellout only. In English running text, a comma after a number word more often ends a list item. This choice is structural, with no outside source.
+In English, a comma after a scale word also links the next class, when that class is a hundred or more. Before a smaller group the comma ends the number, because English writes "and" there, not a comma.
 
 ```python
->>> read("They counted one million, two hundred thousand votes.", "en")
-[('one million', '1000000'), ('two hundred thousand', '200000')]
+>>> read("The city has one million, two hundred thousand people.", "en")
+[('one million, two hundred thousand', '1200000')]
+>>> read("They printed two thousand, five of which were signed.", "en")
+[('two thousand', '2000'), ('five', '5')]
 ```
 
-> CLDR 49 RBNF en %spellout-cardinal-verbose writes a comma before a group of a hundred or more after "million" and larger ("1000000: << million[>%%commas>];", "%%commas: 1: ' and =%spellout-cardinal-verbose=; 100: , =%spellout-cardinal-verbose=;"), and %spellout-cardinal writes none ("1000000: << million[ >>];").
+> Wikipedia, "English numerals", the table of spoken forms: "One thousand, two hundred (and) twenty-five" for 1225, "One thousand, nine hundred" for 1900, and "One thousand (and) fifty" for 1050, with no comma before a group below a hundred.
 
 ## A count before a larger scale noun
 

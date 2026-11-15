@@ -41,7 +41,7 @@ A word glued to digits is an ordinal suffix when the lexicon lists it: "1.º", "
 
 ### 2. Runs
 
-A run is a stretch of tokens with only spaces or hyphens between them. A number never crosses punctuation, so each run is parsed on its own. In Portuguese one exception holds: a comma after a scale word and before a number word links two classes of one number.
+A run is a stretch of tokens with only spaces or hyphens between them. A number never crosses punctuation, so each run is parsed on its own. In Portuguese and English one exception holds: a comma after a scale word and before a number word links two classes of one number. The class after the comma is a hundred or more.
 
 ```python
 >>> read("Vieram três, quatro e cinco.")
