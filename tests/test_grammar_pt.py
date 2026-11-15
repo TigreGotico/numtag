@@ -518,10 +518,22 @@ class TestDecimals(unittest.TestCase):
     def test_each_word_after_the_marker_gives_its_digits(self):
         self.assertEqual(pt("zero vírgula zero cinco"), [("zero vírgula zero cinco", "0.05", D)])
         self.assertEqual(pt("dois vírgula vinte e cinco"), [("dois vírgula vinte e cinco", "2.25", D)])
+        self.assertEqual(pt("zero vírgula dois cinco"), [("zero vírgula dois cinco", "0.25", D)])
+
+    def test_the_fractional_part_follows_the_grammar_of_the_whole_part(self):
+        # "cem" never follows units in a cardinal, so the decimal ends
+        # before it: 0.25 and 100, not 0.251
+        self.assertEqual(pt("zero vírgula vinte e cinco cem"),
+                         [("zero vírgula vinte e cinco", "0.25", D), ("cem", "100", C)])
+        self.assertEqual(pt("dois vírgula cinco cem"), [("dois vírgula cinco", "2.5", D), ("cem", "100", C)])
+        # a hundreds word may start the fractional part: 1 + 125/1000
+        self.assertEqual(pt("um vírgula cento e vinte e cinco"), [("um vírgula cento e vinte e cinco", "1.125", D)])
 
     def test_a_decimal_counts_the_scale_after_it(self):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(pt("dois vírgula cinco milhões"), [("dois vírgula cinco milhões", "2500000", C)])
+        # 1.2 x 1000
+        self.assertEqual(pt("um vírgula dois mil"), [("um vírgula dois mil", "1200", C)])
 
 
 class TestDigits(unittest.TestCase):

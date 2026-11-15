@@ -193,10 +193,14 @@ class Grammar:
                               for unit in self._readings(j, "unit") if unit.value != "0"]
         return found
 
-    def hundreds(self, i: int) -> list[tuple[int, str, bool]]:
+    def hundreds(self, i: int, multiplied: bool = True) -> list[tuple[int, str, bool]]:
         """(end, value, bound): a bound form stands only before the rest of
-        the number ("cento e um", never "cento" alone)."""
+        the number ("cento e um", never "cento" alone). Without
+        ``multiplied``, no hundreds from a count and a multiplier ("two
+        hundred")."""
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")]
+        if not multiplied:
+            return found
         counts = self.tens_units(i, nonzero=True)
         if self._is_word(i, self.lex.articles):
             counts.append((i + 1, "1"))
@@ -206,9 +210,9 @@ class Grammar:
                     found.append((end + 1, digits.shift(count, multiplier.exponent), False))
         return found
 
-    def small(self, i: int, nonzero: bool = False) -> list[tuple[int, str]]:
+    def small(self, i: int, nonzero: bool = False, multiplied: bool = True) -> list[tuple[int, str]]:
         found = self.tens_units(i, nonzero)
-        for end, hundreds, bound in self.hundreds(i):
+        for end, hundreds, bound in self.hundreds(i, multiplied):
             if not bound:
                 found.append((end, hundreds))
             for j in self._after_joiner(end, self.lex.joiner_after_hundred):
@@ -219,7 +223,14 @@ class Grammar:
         """Digits after a decimal marker, one reading per end: each word
         gives its own digits ("vírgula zero cinco" is .05). Where the words
         split in more than one way, the reading with the fewest parts wins,
-        so "point twenty five" is .25 and not .205."""
+        so "point twenty five" is .25 and not .205.
+
+        The fractional part follows the grammar of the whole part (a
+        structural ruling, no external source): a hundreds word never
+        follows another part, as "cem" never follows units in a cardinal,
+        so "zero vírgula vinte e cinco cem" is 0.25 and 100. A multiplier
+        ("hundred") makes no digits: it multiplies the decimal number, so
+        "one point two hundred" is 120."""
         if not self._is_word(i, self.lex.decimal_markers):
             return []
         best = {i + 1: (0, "")}
@@ -227,7 +238,9 @@ class Grammar:
             if position not in best:
                 continue
             parts, written = best[position]
-            for end, chunk in self.small(position):
+            for end, chunk in self.small(position, multiplied=False):
+                if parts and len(chunk) == 3:
+                    continue
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk)
         return [(end, written) for end, (parts, written) in best.items() if parts]
@@ -246,8 +259,12 @@ class Grammar:
         if self._is_word(i, self.lex.articles) and self._readings(i + 1, "half"):
             found.append(Count(i + 2, HALF, needs_multiplier=True))
         for end, value in smalls:
-            found += [Count(e, Rational.from_decimal(value, fraction), decimal=True)
-                      for e, fraction in self.decimal_digits(end)]
+            for e, fraction in self.decimal_digits(end):
+                decimal = Rational.from_decimal(value, fraction)
+                found.append(Count(e, decimal, decimal=True))
+                # "one point two hundred": a multiplier after the decimals
+                found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True)
+                          for m in self._readings(e, "hundred_multiplier") if not m.plural]
             # "two and a half million"
             for j in self._after_joiner(end, Joiner.REQUIRED):
                 k = j + 1 if self._is_word(j, self.lex.articles) else j
