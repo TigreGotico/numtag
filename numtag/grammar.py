@@ -632,15 +632,17 @@ class Grammar:
         """The ordinal words at ``j`` after the cardinal ``prefix``, with the
         scale ordinals that multiply the whole prefix when ``scales``; no
         joiner stands before a scale ordinal ("two hundredth", not "two and
-        hundredth"). A scale ordinal below ``top``, the power of ten of the
-        prefix's last group, adds one of its own: "duizendhonderdste" is
-        1100, "two million thousandth" 2001000."""
+        hundredth"). Where an ordinal is its cardinal with the last word made
+        ordinal, a scale ordinal below ``top``, the power of ten of the
+        prefix's last group, adds one of its own when its cardinal word names
+        a number by itself: "duizendhonderdste" is 1100, as "duizend honderd"
+        is 1100."""
         found = []
         one_is_fraction = self.lex.one_before_ordinal_scale_is_fraction
         for scale in self._readings(j, "ordinal_scale") if scales else ():
             if scale.plural or (one_is_fraction and prefix is not None and prefix.canonical() == "1"):
                 continue  # "dois milésimos" and "um milésimo" are fractions
-            if prefix is not None and scale.exponent < top:
+            if prefix is not None and scale.exponent < top and scale.alone and self.lex.ordinal_style == "last_word":
                 value = prefix + ONE.scaled(scale.exponent)
             else:
                 value = (prefix or ONE).scaled(scale.exponent)

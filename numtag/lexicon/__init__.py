@@ -54,6 +54,9 @@ class Entry:
     bound: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
+    # The cardinal word of an ordinal scale word names a number by itself
+    # ("tausend", "honderd"), not only after a count ("thousand").
+    alone: bool = False
 
 
 @dataclass(frozen=True)
@@ -201,8 +204,9 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             put(spec, Entry(role, "1", **facts))
         elif role == "ordinal_scale":
             cardinal = [e for e in readings[spec["value"]] if e.role in SCALE_ROLES]
+            alone = any(e.role in ("hundred", "scale_numeral") for e in readings[spec["value"]])
             put(spec, Entry(role, exponent=cardinal[0].exponent,
-                            scale_dependent=cardinal[0].scale_dependent, **facts))
+                            scale_dependent=cardinal[0].scale_dependent, alone=alone, **facts))
         elif role == "ordinal_suffix":
             suffixes[spec["word"].casefold()] = spec.get("gender")
         else:
