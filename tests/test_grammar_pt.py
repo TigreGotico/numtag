@@ -386,6 +386,18 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("duzentos mil e dois milhões"),
                          [("duzentos mil e dois milhões", "200002000000", C)])
 
+    def test_a_scale_word_counts_no_group_with_a_larger_scale_word(self):
+        # 10^12 + 50 x 10^9 + 1000 + 40: "mil" counts no billions
+        self.assertEqual(read("um trilhão cinquenta bilhões mil e quarenta", "pt-BR"),
+                         [("um trilhão cinquenta bilhões mil e quarenta", "1050000001040", C)])
+        # 10^18 + 50 x 10^12 + 1000
+        self.assertEqual(pt("um trilião cinquenta biliões mil"),
+                         [("um trilião cinquenta biliões mil", "1000050000000001000", C)])
+
+    def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
+        self.assertEqual(pt("entre dois e"), [("dois", "2", C)])
+        self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
+
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
         self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])

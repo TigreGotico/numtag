@@ -132,13 +132,16 @@ class Grammar:
         count below two: "um milhão", "meio milhão", "mil e um milhões"."""
         return not (noun and not plural and self.lex.scale_noun_agrees and _whole(count) not in ("0", "1"))
 
-    def _takes_count(self, i: int, count: Rational) -> bool:
-        """True when a multiplier at ``i`` takes ``count``: in "dois milhão"
-        the "dois" stays a number."""
+    def _takes_count(self, i: int, count: Rational, count_exponent: int = 0) -> bool:
+        """True when a multiplier at ``i`` takes ``count``, whose own scale
+        word has ``count_exponent``: a larger scale word that agrees with the
+        count. In "dois milhão" the "dois" stays a number, and in "cinquenta
+        bilhões mil" the "mil" counts no billions."""
         scale_words = self.multipliers(i)
         if not scale_words:
             return self._takes_multiplier(i)
-        return any(self._agrees(noun, plural, count) for *_, noun, _, plural in scale_words)
+        return any(self._agrees(noun, plural, count) and count_exponent < exponent
+                   for _, exponent, noun, _, plural in scale_words)
 
     def starts_number(self, i: int) -> bool:
         if i >= len(self.tokens):
@@ -345,7 +348,7 @@ class Grammar:
                 counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
                           and self._well_formed_after(last, Rational(value))}
                 for group in following:
-                    if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent)):
+                    if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent), group.exponent):
                         continue
                     if compound and group.exponent == 0 and any(end > group.end for end in counts):
                         continue
@@ -647,7 +650,7 @@ class Grammar:
         no split."""
         plain = self._numbers(i)
         default = max(plain, key=lambda p: p.end).end if plain else None
-        for k in range(i + 1, len(self.tokens)):
+        for k in range(i + 1, len(self.tokens) - 1):
             if not self._number_word(k - 1):
                 break
             if not self._is_word(k, self.lex.joiners):
