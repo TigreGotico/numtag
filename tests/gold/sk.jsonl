@@ -128,7 +128,7 @@
 {"text": "Je to dvadsiate prvé storočie.", "mentions": [{"start": 6, "end": 20, "value": "21", "kind": "ordinal"}], "source": "CLDR RBNF sk %spellout-ordinal-neuter: \"dvadsiate prvé\""}
 {"text": "Zľava je nula eur.", "mentions": [{"start": 9, "end": 13, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF sk: \"nula\""}
 {"text": "Päť plus tri je osem.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 9, "end": 12, "value": "3", "kind": "cardinal"}, {"start": 16, "end": 20, "value": "8", "kind": "cardinal"}], "source": "three numbers: 5, 3, 8"}
-{"text": "Kúpil som dva tucty vajec.", "mentions": [{"start": 10, "end": 19, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 2 x 12; Wiktionary (en), \"tucet\""}
+{"text": "Kúpil som dva tucty vajec.", "mentions": [{"start": 10, "end": 19, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 2 x 12; Wiktionary (en), \"tucet\" (\"dozen\", in its Czech and Serbo-Croatian sections); the Slovak plural is a paraphrase"}
 {"text": "Vrátil sa o pätnásť minút.", "mentions": [{"start": 12, "end": 19, "value": "15", "kind": "cardinal"}], "source": "CLDR RBNF sk: \"pätnásť\""}
 {"text": "Dve ženy čakali pred domom.", "mentions": [{"start": 0, "end": 3, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF sk %spellout-cardinal-feminine: \"dve\""}
 {"text": "Bol to dvetisíci rok.", "mentions": [{"start": 7, "end": 16, "value": "2000", "kind": "ordinal"}], "source": "CLDR RBNF sk %spellout-ordinal-masculine: \"dvetisíci\""}

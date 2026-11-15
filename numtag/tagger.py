@@ -25,8 +25,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
                       lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
-                      lexicon.word_apostrophes, lexicon.ordinal_suffix_marks, lexicon.compound_parts,
-                      lexicon.joiners)
+                      lexicon.word_apostrophes, lexicon.ordinal_suffix_marks, lexicon.compound_parts)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -52,7 +51,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = grammar.numbers(start)
+        # A mention never starts or ends inside a word ("Trojedne" is no 3 and 1).
+        parses = [p for p in grammar.numbers(start)
+                  if not run[i].joined and (p.end == len(run) or not run[p.end].joined)]
         if not parses:
             i += 1
             continue

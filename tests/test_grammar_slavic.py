@@ -166,6 +166,12 @@ class TestCompoundEdges(unittest.TestCase):
         self.assertEqual(read("čtyřiapadesát", "cs"), [("čtyřiapadesát", "54", C)])
         self.assertEqual(read("enaindvajset", "sl"), [("enaindvajset", "21", C)])
 
+    def test_number_words_inside_a_longer_word_are_no_mention(self):
+        # "Trojedne" (triune) splits into tro|jedne, but no number covers the
+        # whole word, so no part of it reads
+        self.assertEqual(read("bana Trojedne Kraljevine", "hr"), [])
+        self.assertEqual(read("Půldruhého století", "cs"), [])
+
 
 class TestHomographs(unittest.TestCase):
     def confidences(self, text: str, lang: str) -> list[tuple[str, str, float]]:

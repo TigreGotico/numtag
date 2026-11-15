@@ -234,7 +234,7 @@
     {"word": "хилядни", "role": "denominator", "value": "1000", "plural": true, "source": "Wiktionary (en), \"трети\": \"third\". The plural ordinal names the parts of a fraction, as in две трети (two thirds): a paraphrase, with no page quote."},
     {"word": "единият", "role": "unit", "value": "1", "gender": "masculine", "source": "Wiktionary (en), \"един\": the definite forms are in its inflection table."},
     {"word": "единия", "role": "unit", "value": "1", "gender": "masculine", "source": "Wiktionary (en), \"един\": the definite forms are in its inflection table."},
-    {"word": "едната", "role": "unit", "value": "1", "gender": "feminine", "source": "Wiktionary (en), \"една\": an inflection of \"един\"; the definite form is in the inflection table of \"един\"."},
+    {"word": "едната", "role": "unit", "value": "1", "gender": "feminine", "source": "Wiktionary (en), \"една\": an inflection of \"един\"; Wiktionary (en), \"един\": its inflection table holds the definite feminine \"едната\"."},
     {"word": "едното", "role": "unit", "value": "1", "gender": "neuter", "source": "Wiktionary (en), \"едно\": an inflection of \"един\"; the definite form is in the inflection table of \"един\"."},
     {"word": "двата", "role": "unit", "value": "2", "source": "Wiktionary (en), \"два\", \"три\", \"пет\": the inflection tables give the definite forms \"двата\", \"двете\", \"трите\", \"петте\"; the other units take the same ending -те, and the personal forms take -та."},
     {"word": "двете", "role": "unit", "value": "2", "source": "Wiktionary (en), \"два\", \"три\", \"пет\": the inflection tables give the definite forms \"двата\", \"двете\", \"трите\", \"петте\"; the other units take the same ending -те, and the personal forms take -та."},
