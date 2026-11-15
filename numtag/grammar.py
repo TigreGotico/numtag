@@ -136,12 +136,14 @@ class Grammar:
         """True when a multiplier at ``i`` takes ``count``, whose own scale
         word has ``count_exponent``: a larger scale word that agrees with the
         count. In "dois milhão" the "dois" stays a number, and in "cinquenta
-        bilhões mil" the "mil" counts no billions. A ``whole_group`` count of
-        a hundred or more is no count of "hundred": in "tusind hundrede" the
-        thousand ends its group and "hundrede" is the next one."""
+        bilhões mil" the "mil" counts no billions. Where a bare hundred word
+        follows a scale word, a ``whole_group`` count of a hundred or more is
+        no count of "hundred": in "tusind hundrede" the thousand ends its
+        group and "hundrede" is the next one."""
         scale_words = self.multipliers(i)
         if not scale_words:
-            return self._takes_multiplier(i) and not (whole_group and len(_whole(count)) > 2)
+            return self._takes_multiplier(i) and not (
+                whole_group and self.lex.bare_hundred_after_scale and len(_whole(count)) > 2)
         return any(self._agrees(noun, plural, count) and count_exponent < exponent
                    for _, exponent, _, noun, _, plural in scale_words)
 
@@ -647,12 +649,13 @@ class Grammar:
         prefixes += [(run[-1].end, _sum(run), self._joiner_after(run[-1]), run) for run in self.cardinals(i)
                      if not run[-1].decimal]
         found = []
+        by_place = self.lex.ordinal_joiner_by_place
         for start, prefix, policy, run in prefixes:
             positions = [start] if prefix is None or self.lex.ordinal_style == "every_word" \
-                else self._after_joiner(start, policy)
-            last_group_counts = len(run) > 1 and not run[-1].exponent
+                else self._after_joiner(start, policy if by_place else Joiner.OPTIONAL)
+            last_group_counts = by_place and len(run) > 1 and not run[-1].exponent
             for j in positions:
-                found += self._ordinal_words(j, run, scales=j == start and not last_group_counts)
+                found += self._ordinal_words(j, run, scales=not by_place or (j == start and not last_group_counts))
             if not last_group_counts:
                 continue
             # "six thousand nine hundredth": the scale ordinal counts only the
@@ -677,9 +680,9 @@ class Grammar:
 
     def _ordinal_words(self, j: int, run: tuple[Group, ...], scales: bool = True) -> list[Parse]:
         """The ordinal words at ``j`` after the cardinal ``run``, with the
-        scale ordinals that multiply its last group when ``scales``; no
-        joiner stands before a scale ordinal ("two hundredth", not "two and
-        hundredth"). Where an ordinal is its cardinal with the last word made
+        scale ordinals that multiply its last group when ``scales``. Where the
+        joiner goes by place, no joiner stands before a scale ordinal ("to
+        og hundrede" is 2 and 100th). Where an ordinal is its cardinal with the last word made
         ordinal, a scale ordinal below the power of ten of the run's last
         group adds one of its own when its cardinal word names a number by
         itself: "duizendhonderdste" is 1100, as "duizend honderd" is 1100."""
@@ -711,7 +714,8 @@ class Grammar:
                 else:
                     found += rest
             elif self.lex.ordinal_style == "last_word" and _room_for(prefix, value) \
-                    and not (len(value) == 1 and prefix.numerator.endswith("10")):
+                    and (self.lex.ten_joins_unit_ordinal
+                         or not (len(value) == 1 and prefix.numerator.endswith("10"))):
                 # a unit ordinal joins no "ten": "ten third" is 10 and 3rd
                 found.append(Parse(end, prefix + Rational(value), Kind.ORDINAL))
         return found

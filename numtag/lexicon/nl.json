@@ -56,6 +56,18 @@
    "value": false,
    "source": "The joiner after \"duizend\" is shown only before a group below a hundred (\"1001: duizend en een\"): Team Taaladvies (Vlaamse overheid), \"Aaneenschrijven - 07. Getallen, telwoorden en breuken\", regel 1: \"Schrijf getallen in woorden aaneen tot aan het woord duizend. Schrijf achter het woord duizend een spatie.\" (\"32: tweeëndertig\", \"101: honderdeen of honderdeneen\", \"1001: duizend en een of duizend een\", \"3254: drieduizend tweehonderdvierenvijftig\"). No source shows it before a round hundred."
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"honderd\" names 100 alone, so after a group of thousands it starts the next group: \"honderd\" alone is 100: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"100: honderd[→→]\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"dertiende\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: 1 → \"eerste\", 2 → \"tweede\", 3 → \"derde\", 4 → \"vierde\", 5 → \"vijfde\", 6 → \"zesde\", 7 → \"zevende\", 8 → \"achtste\", 9 → \"negende\", 10 → \"tiende\", 11 → \"elfde\", 12 → \"twaalfde\", 13 → \"dertiende\", 14 → \"veertiende\", 15 → \"vijftiende\", 16 → \"zestiende\", 17 → \"zeventiende\", 18 → \"achttiende\", 19 → \"negentiende\", 20 → \"twintigste\", 30 → \"dertigste\", 40 → \"veertigste\", 50 → \"vijftigste\", 60 → \"zestigste\", 70 → \"zeventigste\", 80 → \"tachtigste\", 90 → \"negentigste\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): Dutch puts the unit before the ten: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"20: [→%%number-en→]twintig\" After a hundred (optional): \"honderdeen\" and \"honderdeneen\" are both correct: Team Taaladvies (Vlaamse overheid), \"Aaneenschrijven - 07. Getallen, telwoorden en breuken\", regel 1: \"Schrijf getallen in woorden aaneen tot aan het woord duizend. Schrijf achter het woord duizend een spatie.\" (\"32: tweeëndertig\", \"101: honderdeen of honderdeneen\", \"1001: duizend en een of duizend een\", \"3254: drieduizend tweehonderdvierenvijftig\"); CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"100: honderd[→→]\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"1000000: ←← miljoen[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."

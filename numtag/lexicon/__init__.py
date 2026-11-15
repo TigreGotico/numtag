@@ -101,6 +101,16 @@ class Lexicon:
     unit_ten_one_word: bool
     # A count of one before an ordinal scale word makes a fraction ("um milésimo").
     one_before_ordinal_scale_is_fraction: bool
+    # The joiner before an ordinal word stands where it stands before the
+    # cardinal word in that place, and none before a scale ordinal: "tjue og
+    # tredje" is 20 and 3rd, "hundre og femte" is 105th.
+    ordinal_joiner_by_place: bool
+    # A unit ordinal after "ten" adds to it ("ten fifth" is 15th); where the
+    # teen ordinals are words of their own, it does not ("zehn dritte").
+    ten_joins_unit_ordinal: bool
+    # A hundred word after a group of a hundred or more starts the next group
+    # ("tusind hundrede" is 1100), as the hundred word names 100 alone.
+    bare_hundred_after_scale: bool
     # Number words written together as one word ("zweihundert"), split by the tokenizer.
     compound_words: bool
     # Two parts of a compound share a doubled letter ("ettusen" is "ett" and "tusen").
@@ -165,6 +175,9 @@ DEFAULT_SETTINGS = {
     "tens_order": TensOrder.TEN_UNIT.value,
     "joiner_unit_ten": Joiner.REQUIRED.value,
     "one_before_ordinal_scale_is_fraction": True,
+    "ordinal_joiner_by_place": False,
+    "ten_joins_unit_ordinal": True,
+    "bare_hundred_after_scale": False,
     "compound_words": False,
     "compound_shared_letter": False,
     "period_ordinals": False,
@@ -262,6 +275,9 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_unit_ten=Joiner(settings["joiner_unit_ten"]),
         unit_ten_one_word=settings["unit_ten_one_word"],
         one_before_ordinal_scale_is_fraction=settings["one_before_ordinal_scale_is_fraction"],
+        ordinal_joiner_by_place=settings["ordinal_joiner_by_place"],
+        ten_joins_unit_ordinal=settings["ten_joins_unit_ordinal"],
+        bare_hundred_after_scale=settings["bare_hundred_after_scale"],
         compound_words=settings["compound_words"],
         compound_shared_letter=settings["compound_shared_letter"],
         period_ordinals=settings["period_ordinals"],

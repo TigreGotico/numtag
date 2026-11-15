@@ -44,6 +44,18 @@
    "value": false,
    "source": "No joiner follows \"tusen\": CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\""
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundra\" names 100 alone, so after a group of thousands it starts the next group: \"hundra\" alone is 100 (SAOL; the page needs JavaScript, so not checked against the page); CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"100: ←%spellout-numbering←hundra[→→]\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettonde\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"20: tjugo[→→]\" (\"tjugoett\") After a hundred (never): CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"100: ←%spellout-numbering←hundra[→→]\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."

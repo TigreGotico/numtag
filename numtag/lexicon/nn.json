@@ -56,6 +56,18 @@
    "value": true,
    "source": "\"og\" follows \"tusen\" before every group, round hundreds included: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→]\"; CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: 1500 → \"eitt tusen og fem hundre\", 1250 → \"eitt tusen og to hundre og femti\""
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundre\" names 100 alone, so after a group of thousands it starts the next group: \"hundre\" alone is 100: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"100: ←%spellout-cardinal-neuter← hundre[ og →→]\"; Nynorskordboka, \"hundre\": \"grunntalet 100\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettande\", so \"ten\" and a unit ordinal are two numbers: Nynorsk ordinals end in -ande: Nynorskordboka, \"tiande\" (article 78684): \"rekkjetal til ti (10.)\"; \"tjuande\" (article 79531): \"rekkjetal til 20\". CLDR has no nn ordinal rules; the other words follow the same pattern (not checked against the page)"
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): The new order puts the unit after the ten with no joiner: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"20: tjue[→→]\"; CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: 21 → \"tjueéin\" After a hundred (optional): CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"100: ←%spellout-cardinal-neuter← hundre[ og →→]\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."

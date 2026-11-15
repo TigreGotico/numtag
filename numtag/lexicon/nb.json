@@ -56,6 +56,18 @@
    "value": false,
    "source": "\"og\" after \"tusen\" goes only before a group below 100: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"1000: tusen[ →%%and-small→]\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %and-small: \"0: og =%%spellout-cardinal-reale=\", \"100: =%%spellout-cardinal-reale=\""
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundre\" names 100 alone, so after a group of thousands it starts the next group: \"hundre\" alone is 100: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"100: hundre[ og →→]\"; Bokmålsordboka, \"hundre\": \"grunntallet 100\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettende\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"sjuende\", 8 → \"åttende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 19 → \"nittende\", 21 → \"tjueførste\", 30 → \"trettiende\", 90 → \"nittiende\"; Bokmålsordboka, \"tjuende\" (article 61230): \"ordenstall til 20\", where CLDR writes \"tjueende\"; \"syvende\" and \"tyvende\" follow \"syv\" and \"tyve\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): The new order puts the unit after the ten with no joiner: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"20: tjue[→→]\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: 21 → \"tjueén\" After a hundred (optional): CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"100: hundre[ og →→]\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"1000: tusen[ →%%and-small→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."

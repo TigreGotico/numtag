@@ -56,6 +56,18 @@
    "value": false,
    "source": "\"og\" after \"tusinde\" goes only before a group below 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\""
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundrede\" names 100 alone, so after a group of thousands it starts the next group: \"hundrede\" alone is 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettende\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\" After a hundred (optional): CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\"; Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."

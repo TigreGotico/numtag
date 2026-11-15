@@ -56,6 +56,18 @@
    "value": false,
    "source": "No joiner follows \"tausend\": CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\""
   },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundert\" names 100 alone, so after a group of thousands it starts the next group: \"hundert\" alone is 100: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"100: ←%spellout-cardinal-masculine←hundert[→→]\"; Duden, \"hundert\": Wortart \"Zahlwort\", Grammatik \"Kardinalzahl\", Bedeutung \"(als Zahl:) 100\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"dreizehnte\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 1 → \"erste\", 2 → \"zweite\", 3 → \"dritte\", 7 → \"siebte\", 8 → \"achte\", 9 → \"neunte\", 12 → \"zwölfte\", 13 → \"dreizehnte\", 19 → \"neunzehnte\", 20 → \"zwanzigste\", 30 → \"dreißigste\", 90 → \"neunzigste\"; the ordinal declines as an adjective: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal-n: 21 → \"einundzwanzigsten\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal-r: 21 → \"einundzwanzigster\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal-s: 21 → \"einundzwanzigstes\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal-m: 21 → \"einundzwanzigstem\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): German puts the unit before the ten, never after it: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"20: [→%spellout-cardinal-masculine→und]zwanzig\" After a hundred (never): No word joins the rest: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"100: ←%spellout-cardinal-masculine←hundert[→→]\""
+  },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000: eine Million[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
