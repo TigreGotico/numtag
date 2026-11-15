@@ -35,4 +35,4 @@ include = ["numtag*"]
 version = { attr = "numtag.version.VERSION_STR" }
 
 [tool.setuptools.package-data]
-numtag = ["py.typed", "lexicon/*.toml"]
+numtag = ["py.typed", "lexicon/*.json"]

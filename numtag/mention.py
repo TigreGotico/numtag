@@ -13,6 +13,12 @@ class Kind(str, Enum):
     DECIMAL = "decimal"     # "dois vírgula cinco", "2,5"
 
 
+class Scale(str, Enum):
+    """Short scale: a billion is a thousand millions. Long scale: a million millions."""
+    SHORT = "short"
+    LONG = "long"
+
+
 class Form(str, Enum):
     """How the number is written."""
     WORDS = "words"         # "dois milhões"
@@ -50,7 +56,11 @@ class NumberMention:
     is set when the words show it ("duas" is feminine). ``confidence`` is a
     deterministic score in ``(0, 1]`` that the words are a number at all
     (low for an article such as "uma casa"); it is not a probability and it
-    is left out of equality.
+    is left out of equality. ``number_scale``, a keyword-only field, is the
+    scale that gave the value, set only when the value depends on it: the
+    words hold a scale word whose value differs between the long and the
+    short scale ("bilião", "billion" and up). It is None for "mil", "milhão",
+    "million", digits alone and every smaller number.
     """
     char_span: Tuple[int, int]
     text: str
@@ -59,6 +69,7 @@ class NumberMention:
     form: Form
     gender: Optional[str] = None
     confidence: float = field(default=1.0, compare=False)
+    number_scale: Optional[Scale] = field(default=None, kw_only=True)
 
     def __post_init__(self):
         start, end = self.char_span
@@ -66,3 +77,5 @@ class NumberMention:
             raise ValueError(f"char_span {self.char_span} does not fit text {self.text!r}")
         if not is_canonical_value(self.value):
             raise ValueError(f"value {self.value!r} is not a canonical digit string")
+        if self.number_scale is not None and not isinstance(self.number_scale, Scale):
+            raise ValueError(f"number_scale {self.number_scale!r} is not a Scale")
