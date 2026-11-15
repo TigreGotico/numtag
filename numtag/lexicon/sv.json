@@ -44,6 +44,14 @@
    "value": false,
    "source": "No joiner follows \"tusen\": CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\""
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "No joiner stands between groups: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\""
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 21 → \"tjugoförste\""

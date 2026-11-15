@@ -56,6 +56,14 @@
    "value": false,
    "source": "No source read: no joiner follows \"tûzen\" in this lexicon (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source read (ovos-number-parser numbers_fy.py, a lead) writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "No source read: no joiner follows \"tûzen\" in this lexicon (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "Wiktionary, Category:West Frisian ordinal numbers (\"twadde\", \"tredde\" …); ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"

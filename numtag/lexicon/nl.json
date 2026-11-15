@@ -56,6 +56,14 @@
    "value": false,
    "source": "The joiner after \"duizend\" is shown only before a group below a hundred (\"1001: duizend en een\"): Team Taaladvies (Vlaamse overheid), \"Aaneenschrijven - 07. Getallen, telwoorden en breuken\", regel 1: \"Schrijf getallen in woorden aaneen tot aan het woord duizend. Schrijf achter het woord duizend een spatie.\" (\"32: tweeëndertig\", \"101: honderdeen of honderdeneen\", \"1001: duizend en een of duizend een\", \"3254: drieduizend tweehonderdvierenvijftig\"). No source shows it before a round hundred."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"1000000: ←← miljoen[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "\"duizend een\" and \"duizend en een\" are both correct: Team Taaladvies (Vlaamse overheid), \"Aaneenschrijven - 07. Getallen, telwoorden en breuken\", regel 1: \"1001: duizend en een of duizend een\"."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: 21 → \"eenentwintigste\", 101 → \"honderdeerste\""

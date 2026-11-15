@@ -56,6 +56,14 @@
    "value": true,
    "source": "\"og\" follows \"tusen\" before every group, round hundreds included: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→]\"; CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: 1500 → \"eitt tusen og fem hundre\", 1250 → \"eitt tusen og to hundre og femti\""
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→]\" writes \"og\" before the last group. No source read says that a last group with no \"og\" starts a new number, so the reader takes both forms."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: 21 → \"tjueførste\""

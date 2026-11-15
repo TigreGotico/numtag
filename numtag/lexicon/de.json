@@ -56,6 +56,14 @@
    "value": false,
    "source": "No joiner follows \"tausend\": CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\""
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000: eine Million[ →→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "No joiner stands between groups: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\", \"1000000: eine Million[ →→]\""
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "Only the last word is ordinal: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 21 → \"einundzwanzigste\", 101 → \"einhunderterste\""

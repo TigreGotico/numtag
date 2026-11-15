@@ -56,6 +56,14 @@
    "value": false,
    "source": "\"og\" after \"tusen\" goes only before a group below 100: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"1000: tusen[ →%%and-small→]\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %and-small: \"0: og =%%spellout-cardinal-reale=\", \"100: =%%spellout-cardinal-reale=\""
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"1000: tusen[ →%%and-small→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-reale: \"1000: tusen[ →%%and-small→]\"; %and-small: \"0: og =%%spellout-cardinal-reale=\", \"100: =%%spellout-cardinal-reale=\": \"og\" goes before a last group below 100 and not before a round hundred (\"tusen to hundre\"), so the joiner before the last group is not required."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: 21 → \"tjueførste\""

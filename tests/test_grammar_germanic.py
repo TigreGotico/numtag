@@ -95,9 +95,8 @@ class TestUnitBeforeTen(unittest.TestCase):
         # and "two million thousandth" adds no thousand
         self.assertEqual(read("two million thousand", "en"), [("two million", "2000000", C)])
         self.assertNotEqual(read("two million thousandth", "en")[0][1], "2001000")
-        # pt-PT makes every word ordinal, so its cardinal "dois milhões mil"
-        # (2001000) is not the value of "dois milhões milésimo"
-        self.assertEqual(read("dois milhões mil", "pt-PT"), [("dois milhões mil", "2001000", C)])
+        # pt-PT makes every word ordinal, so "dois milhões milésimo" adds no
+        # thousand to 2000000
         self.assertNotEqual(read("dois milhões milésimo", "pt-PT")[0][1], "2001000")
 
     def test_one_before_a_scale_ordinal_is_an_ordinal_where_fractions_take_their_own_word(self):

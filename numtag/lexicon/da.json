@@ -56,6 +56,14 @@
    "value": false,
    "source": "\"og\" after \"tusinde\" goes only before a group below 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\""
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\": \"og\" goes before a last group below 100 and not before a round hundred (\"tusinde to hundrede\"), so the joiner before the last group is not required."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
