@@ -9,8 +9,8 @@ from functools import cache
 # that a run with any digit outside 0-9 ("٣", "１２") is found whole and then
 # dropped. The modifier apostrophe (U+02BC) counts as a letter in Unicode;
 # here it is an apostrophe that ends a word, as in "bintʼi un".
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_ʼ]+)")
-_ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
+_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])(?:[-−][.,]?|[.,]))?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_ʼ]+)")
+_ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 
 
@@ -54,8 +54,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     lists it, after an optional dot ("1.º"). A digit string glued to the end
     of a word ("mp3") is part of a name and is dropped, and so is a digit
     string with a digit outside 0-9. A digit string keeps a mark before its
-    first digit only when the language lists the mark as a lone decimal mark
-    and only digits follow it (".5"). An abbreviation is a listed word with a
+    first digit, also after a sign, only when the language lists the mark as
+    a lone decimal mark and only digits follow it (".5", "-.5"). An abbreviation is a listed word with a
     period that no sentence end follows ("dez. 2025"); it is dropped, so it
     breaks the link between the words around it. Given ``number_words``, a
     compound joined by hyphens or dot signs with a word outside them is one
@@ -76,9 +76,10 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(text, match.end()):
             continue
         start = match.start()
-        if is_digits and match.group()[0] in ".," and not (
-                match.group()[0] in lone_decimal_marks and _LONE_MARK.fullmatch(match.group())):
-            start += 1
+        unsigned = match.group().lstrip("-−")
+        if is_digits and unsigned[0] in ".," and not (
+                unsigned[0] in lone_decimal_marks and _LONE_MARK.fullmatch(unsigned)):
+            start += len(match.group()) - len(unsigned) + 1
         gap = text[previous_end:start]
         if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
             previous_end = match.end()

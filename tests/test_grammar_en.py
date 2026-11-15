@@ -36,6 +36,10 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("two million three hundred thousand"),
                          [("two million three hundred thousand", "2300000", C)])
         self.assertEqual(en("two thousand and five"), [("two thousand and five", "2005", C)])
+        # a second group of the same scale starts a new number
+        self.assertEqual(en("ten thousand two thousand"), [("ten thousand", "10000", C), ("two thousand", "2000", C)])
+        self.assertEqual(en("two hundred million ten million"),
+                         [("two hundred million", "200000000", C), ("ten million", "10000000", C)])
 
     def test_a_count_belongs_to_the_multiplier_after_it(self):
         self.assertEqual(en("one hundred and two hundred"),
@@ -114,6 +118,8 @@ class TestCardinals(unittest.TestCase):
     def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
         self.assertEqual(en("between two and"), [("two", "2", C)])
         self.assertEqual(en("between -1 and"), [("-1", "-1", C)])
+        # digits glued to a word are dropped, so "and20" leaves a final joiner
+        self.assertEqual(en("between 15 and20"), [("15", "15", C)])
 
     def test_a_scale_word_keeps_the_singular_after_a_count(self):
         self.assertEqual(en("two million"), [("two million", "2000000", C)])
@@ -137,6 +143,11 @@ class TestCardinals(unittest.TestCase):
         # split inside "one hundred and fifty" wins only with fewer digits
         self.assertEqual(en("between two thousand and one hundred and fifty thousand"),
                          [("two thousand", "2000", C), ("one hundred and fifty thousand", "150000", C)])
+
+    def test_a_group_that_counts_the_scale_word_after_it_starts_a_new_number(self):
+        # "two million" counts "billion", so it does not join "one trillion";
+        # the reading of "two million billion" is plan open question 6
+        self.assertEqual(en("one trillion two million billion")[0], ("one trillion", "1000000000000", C))
 
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 2000 x 10^6; 3000 x 10^6
@@ -183,6 +194,19 @@ class TestCardinals(unittest.TestCase):
     def test_an_en_region_tag_reads_en(self):
         self.assertEqual(read("twenty-one", "en-US"), [("twenty-one", "21", C)])
 
+
+    def test_a_last_round_group_joins_with_or_without_and(self):
+        # English "and" before the last group is optional (Cambridge
+        # Dictionary, "Numbers"): 1000 + 200, 1000 + 2, 2000000 + 500000
+        self.assertEqual(en("one thousand two hundred"), [("one thousand two hundred", "1200", C)])
+        self.assertEqual(en("one thousand two"), [("one thousand two", "1002", C)])
+        self.assertEqual(en("one thousand and two"), [("one thousand and two", "1002", C)])
+        self.assertEqual(en("two million five hundred thousand"),
+                         [("two million five hundred thousand", "2500000", C)])
+
+    def test_a_comma_ends_an_english_number(self):
+        self.assertEqual(en("two million, three hundred thousand"),
+                         [("two million", "2000000", C), ("three hundred thousand", "300000", C)])
 
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_dozen(self):
@@ -249,6 +273,29 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(en("hundredth"), [("hundredth", "100", O)])
         self.assertEqual(en("two hundredth"), [("two hundredth", "200", O)])
 
+    def test_an_ordinal_scale_word_multiplies_only_the_last_group(self):
+        # 6000 + 2 x 100 = 6200; 1000 + 2 x 100 = 1200; 156000 + 2 x 100 = 156200
+        self.assertEqual(en("six thousand two hundredth"), [("six thousand two hundredth", "6200", O)])
+        self.assertEqual(en("one thousand two hundredth"), [("one thousand two hundredth", "1200", O)])
+        self.assertEqual(en("one hundred fifty-six thousand two hundredth"),
+                         [("one hundred fifty-six thousand two hundredth", "156200", O)])
+        # 8 x 10^12 + 830 x 10^9 + 874 x 10^6 + 156 x 10^3 + 2 x 100
+        text = "eight trillion eight hundred thirty billion eight hundred seventy-four million one hundred fifty-six thousand two hundredth"
+        self.assertEqual(en(text), [(text, "8830874156200", O)])
+        # 2000000 + 300 x 1000 = 2300000; 10^9 + 5 x 1000 = 1000005000
+        self.assertEqual(en("two million three hundred thousandth"),
+                         [("two million three hundred thousandth", "2300000", O)])
+        self.assertEqual(en("one billion five thousandth"), [("one billion five thousandth", "1000005000", O)])
+        # 10^9 + 200 x 10^6 = 1200000000; 3 x 10^12 + 4 x 10^6 = 3000004000000
+        self.assertEqual(en("one billion two hundred millionth"),
+                         [("one billion two hundred millionth", "1200000000", O)])
+        self.assertEqual(en("three trillion four millionth"), [("three trillion four millionth", "3000004000000", O)])
+        # one group: 200 x 1000 = 200000
+        self.assertEqual(en("two hundred thousandth"), [("two hundred thousandth", "200000", O)])
+        # 2 x 1000 does not fit below "one thousand": no reading of 3000
+        self.assertEqual(en("one thousand two thousandth"),
+                         [("one thousand two", "1002", C), ("thousandth", "1000", O)])
+
     def test_an_ordinal_cannot_fill_a_place_already_taken(self):
         self.assertEqual(en("twenty-one first"), [("twenty-one", "21", C), ("first", "1", O)])
 
@@ -266,6 +313,14 @@ class TestDecimalsAndDigits(unittest.TestCase):
     def test_point(self):
         self.assertEqual(en("two point five"), [("two point five", "2.5", D)])
         self.assertEqual(en("zero point zero five"), [("zero point zero five", "0.05", D)])
+        self.assertEqual(en("three point one four one six"), [("three point one four one six", "3.1416", D)])
+
+    def test_a_multiplier_after_the_decimals_multiplies_the_decimal(self):
+        # 1.2 x 100, as "one point two million" is 1.2 x 10^6
+        self.assertEqual(en("one point two hundred"), [("one point two hundred", "120", C)])
+        # 1.25 x 100
+        self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
+        self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
 
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205
@@ -291,6 +346,12 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("about .5 percent"), [(".5", "0.5", D)])
         # the comma only groups digits
         self.assertEqual(en(",5"), [("5", "5", C)])
+        self.assertEqual(en("about -.5 percent"), [("-.5", "-0.5", D)])
+
+    def test_a_decimal_point_after_a_leading_zero(self):
+        self.assertEqual(en("weighs 0.500 kg"), [("0.500", "0.5", D)])
+        # the comma groups digits, and a group never follows a leading zero
+        self.assertEqual(en("weighs 0,500 kg"), [])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_point(self):
         self.assertEqual(en("two point zero"), [("two point zero", "2", C)])
