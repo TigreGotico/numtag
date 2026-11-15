@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.3a1](https://github.com/TigreGotico/numtag/tree/0.7.3a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.2a1...0.7.3a1)
+
+**Merged pull requests:**
+
+- fix: link an English class across a comma before a group of a hundred or more [\#21](https://github.com/TigreGotico/numtag/pull/21) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.2a1](https://github.com/TigreGotico/numtag/tree/0.7.2a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.1a1...0.7.2a1)
