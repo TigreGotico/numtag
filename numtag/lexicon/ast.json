@@ -29,8 +29,8 @@
    "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\"; Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
   },
   "joiner_after_hundred": {
-   "value": "never",
-   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\""
+   "value": "optional",
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\" No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"cientu y dos\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
   },
   "joiner_between_groups": {
    "value": "never",

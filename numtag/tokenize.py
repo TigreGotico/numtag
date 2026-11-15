@@ -7,8 +7,9 @@ from functools import cache
 # sign or a lone mark belongs to it only at the start of a word ("-5" and
 # ".5", not "5-7" or "...5"). The pattern takes digits of every script, so
 # that a run with any digit outside 0-9 ("٣", "１２") is found whole and then
-# dropped.
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+)")
+# dropped. The modifier apostrophe (U+02BC) counts as a letter in Unicode;
+# here it is an apostrophe that ends a word, as in "bintʼi un".
+_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_ʼ]+)")
 _ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 
@@ -57,8 +58,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     and only digits follow it (".5"). An abbreviation is a listed word with a
     period that no sentence end follows ("dez. 2025"); it is dropped, so it
     breaks the link between the words around it. Given ``number_words``, a
-    hyphenated compound with a word outside them is one noun
-    ("segunda-feira"): its words are dropped in the same way. The words of
+    compound joined by hyphens or dot signs with a word outside them is one
+    noun ("segunda-feira", "mil·límetres"): its words are dropped in the same
+    way. The words of
     a listed compound become one token ("dètz-e-sèt", "bint'i un").
     """
     tokens: list[Token] = []
@@ -97,17 +99,23 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
 
 
 # The marks that may stand between the words of a compound. A hyphen and a
-# space stand for each other ("dètz-e-sèt", "dètz e sèt"); the typographic
-# apostrophe stands for the straight one; a period stands for the middle dot
-# ("mil.lèsim").
-COMPOUND_MARK = re.compile(r"[-\s'’·.]")
-_MARK_CLASS = {"-": "-", "'": "'", "’": "'", "·": "·", ".": "·"}
+# space stand for each other ("dètz-e-sèt", "dètz e sèt"); a space next to an
+# apostrophe is part of it ("bint' uito"); each apostrophe sign stands for the
+# straight one; a period and each dot sign stand for the middle dot
+# ("mil.lèsim", "mil•lèsim").
+COMPOUND_MARK = re.compile(r"\s*['’‘ʼ]\s*|[·•∙⋅‧.-]|\s+")
+_MARK_CLASS = {"-": "-", "'": "'", "’": "'", "‘": "'", "ʼ": "'",
+               "·": "·", "•": "·", "∙": "·", "⋅": "·", "‧": "·", ".": "·"}
+# A dot sign between two letters is inside one word, as a hyphen is
+# ("mil·límetres").
+_WORD_DOTS = frozenset("·•∙⋅‧")
 
 
 def _mark(gap: str) -> str | None:
     if gap and gap.isspace():
         return "-"
-    return _MARK_CLASS.get(gap)
+    mark = _MARK_CLASS.get(gap.strip())
+    return mark if mark == "'" or gap == gap.strip() else None
 
 
 def compound_parts(word: str) -> tuple[tuple[str, ...], tuple[str | None, ...]]:
@@ -146,13 +154,13 @@ def _join_compounds(text: str, tokens: list[Token], compounds: frozenset[str]) -
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:
-    """The tokens without the words of each hyphenated compound that holds
-    a word outside ``number_words``. The token after a dropped word gets the
+    """The tokens without the words of each compound joined by hyphens or
+    dot signs that holds a word outside ``number_words``. The token after a dropped word gets the
     text since the last kept token as its gap, so it links to nothing."""
     dropped = set()
     start = 0
     for i in range(1, len(tokens) + 1):
-        if i < len(tokens) and tokens[i].gap == "-":
+        if i < len(tokens) and (tokens[i].gap == "-" or tokens[i].gap in _WORD_DOTS):
             continue
         compound = tokens[start:i]
         if len(compound) > 1 and any(not t.is_digits and t.norm not in number_words for t in compound):

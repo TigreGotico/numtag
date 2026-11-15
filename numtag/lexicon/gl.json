@@ -29,8 +29,8 @@
    "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\"; 16.1: \"Cando os numerais vinte, trinta, corenta..., noventa van seguidos da conxunción e\""
   },
   "joiner_after_hundred": {
-   "value": "never",
-   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": \"cento un\" takes no \"e\"."
+   "value": "optional",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": \"cento un\" takes no \"e\". No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"cento e vinte\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value. ovos-number-parser numbers_gl.py (a lead) writes \"cento e un\"."
   },
   "joiner_between_groups": {
    "value": "never",

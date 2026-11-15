@@ -374,6 +374,18 @@
    "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; written with hyphens or spaces, read as one word"
   },
   {
+   "word": "dètz-e-ueit",
+   "role": "ten",
+   "value": "18",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": 18 is \"dètz-e-\" and the unit, as \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòch",
+   "role": "ten",
+   "value": "18",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": 18 is \"dètz-e-\" and the unit, as \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
    "word": "cent",
    "role": "hundred",
    "value": "100",
@@ -1679,6 +1691,126 @@
    "gender": "feminine",
    "plural": true,
    "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "dètz-e-uechen",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueiten",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oiten",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchen",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
   },
   {
    "word": "centen",

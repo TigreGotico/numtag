@@ -484,40 +484,40 @@
    "word": "desena",
    "role": "collective",
    "value": "10",
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "desenes",
    "role": "collective",
    "value": "10",
    "plural": true,
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "dotzena",
    "role": "collective",
    "value": "12",
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "dotzenes",
    "role": "collective",
    "value": "12",
    "plural": true,
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "centena",
    "role": "collective",
    "value": "100",
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "centenes",
    "role": "collective",
    "value": "100",
    "plural": true,
-   "source": "DIEC2 (IEC), \"dotzena\": \"Conjunt de dotze unitats\"; \"desena\": \"Conjunt de deu unitats\"; \"centena\": \"Conjunt de cent unitats\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
   },
   {
    "word": "mig",
@@ -537,21 +537,21 @@
    "word": "terç",
    "role": "denominator",
    "value": "3",
-   "source": "DIEC2 \"terç\": \"Cadascuna de les tres parts iguals en què es divideix un tot\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 \"terç\" 2 1: \"Part d'una cosa dividida en tres parts iguals. Un terç , 1/3. Dos terços , 2/3.\""
   },
   {
    "word": "terços",
    "role": "denominator",
    "value": "3",
    "plural": true,
-   "source": "DIEC2 \"terç\", plural \"terços\""
+   "source": "DIEC2 \"terç\" 2 1: \"Part d'una cosa dividida en tres parts iguals. Un terç , 1/3. Dos terços , 2/3.\""
   },
   {
    "word": "quart",
    "role": "denominator",
    "value": "4",
    "ambiguous": true,
-   "source": "DIEC2 \"quart\": \"Cadascuna de les quatre parts iguals d'un tot\"; also \"room\", so it is ambiguous"
+   "source": "DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "quarts",
@@ -559,7 +559,7 @@
    "value": "4",
    "plural": true,
    "ambiguous": true,
-   "source": "DIEC2 \"quart\", plural \"quarts\""
+   "source": "DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "primer",
@@ -661,7 +661,7 @@
    "value": "4",
    "gender": "masculine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"quart\" is also a room"
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "quarta",
@@ -669,7 +669,7 @@
    "value": "4",
    "gender": "feminine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"quart\" is also a room"
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "quarts",
@@ -678,7 +678,7 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"quart\" is also a room"
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "quartes",
@@ -687,7 +687,7 @@
    "gender": "feminine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"quart\" is also a room"
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
   },
   {
    "word": "cinquè",
@@ -1533,105 +1533,136 @@
    "word": "cinquè",
    "role": "denominator",
    "value": "5",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "cinquens",
    "role": "denominator",
    "value": "5",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "sisè",
    "role": "denominator",
    "value": "6",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "sisens",
    "role": "denominator",
    "value": "6",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "setè",
    "role": "denominator",
    "value": "7",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "setens",
    "role": "denominator",
    "value": "7",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "vuitè",
    "role": "denominator",
    "value": "8",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "vuitens",
    "role": "denominator",
    "value": "8",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "novè",
    "role": "denominator",
    "value": "9",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "novens",
    "role": "denominator",
    "value": "9",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "desè",
    "role": "denominator",
    "value": "10",
-   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "desens",
    "role": "denominator",
    "value": "10",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; IEC fractions take the ordinal form (\"un cinquè\", \"dos cinquens\"), as DIEC2 \"cinquè\": \"Cadascuna de les cinc parts iguals\""
+   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
   },
   {
    "word": "centèsim",
    "role": "denominator",
    "value": "100",
-   "source": "DIEC2 \"centèsim\": \"Cadascuna de les cent parts iguals d'un tot\" (en.wiktionary Catalan, ref IEC2)"
+   "source": "DIEC2 \"centèsim\": \"Centè 1 . Va llegir la carta per centèsima vegada. La centèsima part d'una cosa. Tres centèsims , 3/100.\""
   },
   {
    "word": "centèsims",
    "role": "denominator",
    "value": "100",
    "plural": true,
-   "source": "DIEC2 \"centèsim\", plural"
+   "source": "DIEC2 \"centèsim\": \"Centè 1 . Va llegir la carta per centèsima vegada. La centèsima part d'una cosa. Tres centèsims , 3/100.\""
   },
   {
    "word": "mil·lèsim",
    "role": "denominator",
    "value": "1000",
-   "source": "DIEC2 \"mil·lèsim\": \"Cadascuna de les mil parts iguals d'un tot\" (en.wiktionary Catalan, ref IEC2)"
+   "gender": "masculine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the fraction noun is sense 3"
   },
   {
    "word": "mil·lèsims",
    "role": "denominator",
    "value": "1000",
+   "gender": "masculine",
    "plural": true,
-   "source": "DIEC2 \"mil·lèsim\", plural"
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the fraction noun is sense 3"
+  },
+  {
+   "word": "mil·lèsima",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the feminine fraction adjective is sense 2, as DIEC2 \"cinquè\" 2: \"dues cinquenes parts\""
+  },
+  {
+   "word": "mil·lèsimes",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the feminine fraction adjective is sense 2, as DIEC2 \"cinquè\" 2: \"dues cinquenes parts\""
+  },
+  {
+   "word": "mil·lèsim",
+   "role": "ordinal",
+   "value": "1000",
+   "gender": "masculine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the ordinal is sense 1"
+  },
+  {
+   "word": "mil·lèsima",
+   "role": "ordinal",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the ordinal is sense 1"
   },
   {
    "word": "milè",
@@ -1662,72 +1693,298 @@
    "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
   },
   {
-   "word": "centè",
-   "role": "ordinal_scale",
-   "value": "cents",
+   "word": "dos-centè",
+   "role": "ordinal",
+   "value": "200",
    "gender": "masculine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\": \"dos-centè\""
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
   },
   {
-   "word": "centena",
-   "role": "ordinal_scale",
-   "value": "cents",
+   "word": "dos-centena",
+   "role": "ordinal",
+   "value": "200",
    "gender": "feminine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\": \"dos-centena\""
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "dos-centens",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "dos-centenes",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centè",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centena",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centens",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centenes",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centè",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centena",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centens",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centenes",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centè",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centena",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centens",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centenes",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centè",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centena",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centens",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centenes",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centè",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centena",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centens",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centenes",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centè",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centena",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centens",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centenes",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centè",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centena",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centens",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centenes",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
   },
   {
    "word": "r",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "n",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "t",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "è",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "rs",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "ns",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "ts",
    "role": "ordinal_suffix",
    "gender": "masculine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "a",
    "role": "ordinal_suffix",
    "gender": "feminine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   },
   {
    "word": "es",
    "role": "ordinal_suffix",
    "gender": "feminine",
-   "source": "IEC, abbreviations of the ordinals: \"1r, 2n, 3r, 4t, 5è\" masculine and \"1a, 2a\" feminine, plurals \"1rs, 2ns, 4ts, 5ns, 1es\""
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
   }
  ]
 }

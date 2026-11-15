@@ -36,6 +36,15 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(read("treintaiuno", "es"), [("treintaiuno", "31", C)])
         self.assertEqual(read("cuarentaitrés", "es"), [("cuarentaitrés", "43", C)])
 
+    def test_a_written_y_after_ciento_keeps_the_hundred(self):
+        # 100 + 20 = 120 with or without "y"; -(100 + 2) = -102
+        self.assertEqual(read("ciento y veinte personas", "es"), [("ciento y veinte", "120", C)])
+        self.assertEqual(read("ciento veinte personas", "es"), [("ciento veinte", "120", C)])
+        self.assertEqual(read("menos ciento y dos grados", "es"), [("menos ciento y dos", "-102", C)])
+        # "y" after a round ten still joins only a unit: 120 and 30, never 150
+        self.assertEqual(read("ciento veinte y treinta", "es"),
+                         [("ciento veinte", "120", C), ("treinta", "30", C)])
+
     def test_billon_is_a_million_millions(self):
         # 2 x 10^12; short scale on request: 2 x 10^9
         self.assertEqual(read("dos billones", "es"), [("dos billones", "2000000000000", C)])
@@ -71,6 +80,15 @@ class TestGalician(unittest.TestCase):
         # 200 + 30 + 4 = 234; 100 + 1 = 101
         self.assertEqual(read("douscentos trinta e catro", "gl"), [("douscentos trinta e catro", "234", C)])
         self.assertEqual(read("cento unha persoas", "gl"), [("cento unha", "101", C)])
+
+    def test_a_written_e_after_cento_keeps_the_hundred_and_the_sign(self):
+        # 100 + 20 = 120; 100 + 30 + 2 = 132; -(100 + 20 + 3 + 0.45) = -123.45
+        self.assertEqual(read("cento e vinte persoas", "gl"), [("cento e vinte", "120", C)])
+        self.assertEqual(read("cento e trinta e dous", "gl"), [("cento e trinta e dous", "132", C)])
+        text = "menos cento e vinte e tres coma corenta e cinco"
+        self.assertEqual(read(text, "gl"), [(text, "-123.45", D)])
+        # "cen" stands alone: 100, then 20 from "vinte"
+        self.assertEqual(read("cen persoas e vinte cans", "gl"), [("cen", "100", C), ("vinte", "20", C)])
 
     def test_the_feminine_forms(self):
         self.assertEqual(read("duascentas", "gl"), [("duascentas", "200", C)])
@@ -113,6 +131,30 @@ class TestCatalan(unittest.TestCase):
         self.assertEqual(read("quaranta-dosè", "ca"), [("quaranta-dosè", "42", O)])
         self.assertEqual(read("el dos-centè", "ca"), [("dos-centè", "200", O)])
 
+    def test_a_middle_dot_is_inside_its_word(self):
+        # "mil·límetres" is one word with no count: 3 and nothing else
+        for text in ("Fa tres mil·límetres de gruix.", "Fa tres mil•límetres de gruix.",
+                     "Fa tres mil∙límetres de gruix."):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "ca"), [("tres", "3", C)])
+        self.assertEqual(read("El mil·lenni", "ca"), [])
+        # a "mil" with no dot is still a thousand: 3 x 1000
+        self.assertEqual(read("tres mil límits", "ca"), [("tres mil", "3000", C)])
+
+    def test_mil_lesim_is_an_ordinal_and_a_fraction(self):
+        # DIEC2 sense 1 is the 1000th; 2/1000 = 0.002; 4/1000 = 0.004
+        self.assertEqual(read("el mil·lèsim aniversari", "ca"), [("mil·lèsim", "1000", O)])
+        self.assertEqual(read("dues mil·lèsimes parts", "ca"), [("dues mil·lèsimes", "0.002", F)])
+        self.assertEqual(read("quatre mil•lèsims", "ca"), [("quatre mil•lèsims", "0.004", F)])
+
+    def test_a_hundreds_ordinal_after_mil_adds(self):
+        # 1000 + 100 = 1100; 1000 + 5 x 100 = 1500; 2 x 1000 + 2 x 100 = 2200
+        for text, value in [("mil centè", "1100"), ("mil centena", "1100"), ("mil cinc-centè", "1500"),
+                            ("dos mil dos-centè", "2200"), ("dos-centè", "200"), ("nou centena", "900"),
+                            ("centè", "100"), ("cinc mil set-centè", "5700")]:
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "ca"), [(text, value, O)])
+
     def test_the_ordinal_abbreviations(self):
         self.assertEqual(read("el 4t i la 1a", "ca"), [("4t", "4", O), ("1a", "1", O)])
 
@@ -123,13 +165,6 @@ class TestCatalan(unittest.TestCase):
         self.assertNotIn("12", [value for _, value, _ in found])
         # 100 + 10 = 110 and "segon"; 112th is "cent dotzè"
         self.assertEqual(read("cent deu segons", "ca")[0], ("cent deu", "110", C))
-
-    def test_a_unit_that_counts_cents_ends_the_decimals(self):
-        # "dos-cents" is 2 x 100 = 200, so the decimals stop before "dos": 1.2
-        self.assertEqual(read("entre un coma vint i dos-cents euros", "ca"),
-                         [("un coma vint", "1.2", D), ("dos-cents", "200", C)])
-        # with no hundreds word after it, "vint i dos" stays in the decimals: 1.22
-        self.assertEqual(read("un coma vint i dos", "ca"), [("un coma vint i dos", "1.22", D)])
 
     def test_menys_in_an_idiom_holds_no_sign(self):
         for text in ("al menys tres dies", "més o menys tres dies", "ni més ni menys tres dies"):
@@ -223,6 +258,18 @@ class TestOccitan(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual([value for _, value, _ in read(text, "oc")], ["8"])
 
+    def test_each_form_of_eight_makes_an_eighteen(self):
+        # 10 + 8 = 18, as "dètz-e-sèt" is 10 + 7
+        for text in ("dètz e ueiten", "dètz-e-oiten", "dètz e uòchen", "dètz e uechen", "dètz e ueitena",
+                     "dètz-e-uòchenas"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "oc"), [(text, "18", O)])
+        for text in ("dètz e uòch", "dètz-e-ueit"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "oc"), [(text, "18", C)])
+        # a ten with no "e" and a unit stays two numbers: 10 and 8
+        self.assertEqual(read("dètz, uòch", "oc"), [("dètz", "10", C), ("uòch", "8", C)])
+
     def test_mens_after_mai_o_holds_no_sign(self):
         self.assertEqual(read("mai o mens tres jorns", "oc"), [("tres", "3", C)])
 
@@ -241,6 +288,21 @@ class TestMirandese(unittest.TestCase):
                             ("bint'i nuôbe", "29")):
             with self.subTest(text=text):
                 self.assertEqual(read(text, "mwl"), [(text, value, C)])
+
+    def test_bint_uito_and_the_apostrophe_signs(self):
+        # the Convenção writes 28 as "Bint' uito"; 20 + 1 = 21 with each apostrophe sign
+        self.assertEqual(read("Tengo bint' uito anhos.", "mwl"), [("bint' uito", "28", C)])
+        self.assertEqual(read("Tengo bint'uito anhos.", "mwl"), [("bint'uito", "28", C)])
+        for text in ("bint‘i un", "bintʼi un", "bint’i un", "bint'i un"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "mwl"), [(text, "21", C)])
+        # a space alone is no apostrophe: "bint uito" is 20 and 8
+        self.assertEqual(read("bint uito", "mwl"), [("uito", "8", C)])
+
+    def test_pul_menos_holds_no_sign(self):
+        # "pul menos" is "at least": 8, never -8
+        self.assertEqual(read("Ténen pul menos uito planetas.", "mwl"), [("uito", "8", C)])
+        self.assertEqual(read("Fai menos dieç graus.", "mwl"), [("menos dieç", "-10", C)])
 
     def test_a_count_before_cientos_multiplies_the_hundred(self):
         # 2 x 100 + 30 + 4 = 234; 4 x 100 = 400

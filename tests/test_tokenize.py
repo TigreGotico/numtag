@@ -65,6 +65,22 @@ class TestTokenize(unittest.TestCase):
         self.assertEqual([t.norm for t in tokenize("mil.lèsim", compounds=compounds)], ["mil·lèsim"])
         self.assertEqual([t.norm for t in tokenize("bint-i un", compounds=compounds)], ["bint", "i", "un"])
 
+    def test_a_space_after_an_apostrophe_and_each_apostrophe_sign(self):
+        compounds = frozenset({"bint' uito", "bint'i un"})
+        self.assertEqual([t.norm for t in tokenize("bint' uito", compounds=compounds)], ["bint' uito"])
+        self.assertEqual([t.norm for t in tokenize("bint‘i un", compounds=compounds)], ["bint'i un"])
+        self.assertEqual([t.norm for t in tokenize("bintʼi un", compounds=compounds)], ["bint'i un"])
+        # a space next to a hyphen or a dot is no part of the mark
+        self.assertEqual([t.norm for t in tokenize("dètz - e - sèt", compounds=frozenset({"dètz-e-sèt"}))],
+                         ["dètz", "e", "sèt"])
+
+    def test_a_dot_sign_between_letters_holds_one_word(self):
+        words = frozenset({"tres", "mil"})
+        for text in ("tres mil·límetres", "tres mil•límetres", "tres mil∙límetres"):
+            with self.subTest(text=text):
+                self.assertEqual([t.text for t in tokenize(text, number_words=words)], ["tres"])
+        self.assertEqual([t.text for t in tokenize("tres mil", number_words=words)], ["tres", "mil"])
+
     def test_a_compound_keeps_the_gap_before_it(self):
         tokens = tokenize("a dètz e sèt", compounds=frozenset({"dètz-e-sèt"}))
         self.assertEqual([(t.text, t.gap) for t in tokens], [("a", ""), ("dètz e sèt", " ")])

@@ -29,8 +29,8 @@
    "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
   },
   "joiner_after_hundred": {
-   "value": "never",
-   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+   "value": "optional",
+   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\" No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"ciento y veinte\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
   },
   "joiner_between_groups": {
    "value": "never",

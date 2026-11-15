@@ -29,8 +29,8 @@
    "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; \"cuaranta y cuatro trallos\" (7.4)"
   },
   "joiner_after_hundred": {
-   "value": "never",
-   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": \"ciento diez\"."
+   "value": "optional",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": \"ciento diez\". No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"ciento y dos\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
   },
   "joiner_between_groups": {
    "value": "never",

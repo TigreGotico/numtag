@@ -2,7 +2,7 @@
  "settings": {
   "scale": {
    "value": "long",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"mil milhones\" is 10^9 and \"un bilion\" 10^12."
   },
   "group_mark": {
    "value": ".",
@@ -10,35 +10,35 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"bírgula\", the comma, marks the decimals as in pt-PT."
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"bírgula\", the comma, marks the decimals as in pt-PT."
   },
   "space_groups": {
    "value": true,
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": the Convenção writes \"1 000\" and \"1 000 000\" with a space."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": the Convenção writes \"1 000\" and \"1 000 000\" with a space."
   },
   "plural_scale_needs_count": {
    "value": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; a plural scale noun with no count names no number."
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\"; a plural scale noun with no count names no number."
   },
   "scale_noun_agrees": {
    "value": true,
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"un milhon\", \"dous milhones\"."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"un milhon\", \"dous milhones\"."
   },
   "joiner_tens_units": {
    "value": "required",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"trinta i quatro\"."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"trinta i quatro\"."
   },
   "joiner_after_hundred": {
    "value": "required",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"ciento i un\"."
   },
   "joiner_between_groups": {
    "value": "optional",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"mil dous cientos i trinta i quatro\"; test_number_parser_mwl.py also reads \"mil i duzientos i trinta i quatro\"."
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"mil dous cientos i trinta i quatro\" has no \"i\" after \"mil\"; \"dous milhones i quinhentos\" has one before the last group."
   },
   "joiner_before_round_hundred": {
    "value": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": test_number_parser_mwl.py reads \"mil i duzientos i trinta i quatro\" as 1234, so \"i\" after \"mil\" goes before a group of hundreds, and a round hundred (\"mil i duzientos\") is well formed too."
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"dous milhones i quinhentos\" = 2000500, so \"i\" goes before a round hundred."
   },
   "ordinal_style": {
    "value": "every_word",
@@ -50,7 +50,7 @@
    "value": [
     "i"
    ],
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   "decimal_marker": {
    "value": [
@@ -58,17 +58,19 @@
     "birgula",
     "ponto"
    ],
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\")"
   },
   "minus": {
    "value": [
     "menos"
    ],
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"menos dieç\"."
   },
   "minus_idioms": {
-   "value": [],
-   "source": "No source names a Mirandese idiom that ends in \"menos\"; the Convençon has no \"menos\", and ovos-number-parser numbers_mwl.py lists none."
+   "value": [
+    "pul menos"
+   ],
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Preposições\", \"Formas essenciais\": \"a, [...] de, dende, desde, menos, para\"; en.wiktionary \"pul\": \"contraction of por l; by the; for the\"; mwl.wikipedia \"Fraguesie\": \"todos ls cunceilhos ténen pul menos ua freguesie\"; \"Sol\": \"grabitan pul menos uito planetas\". \"pul menos\" is \"at least\", as pt \"pelo menos\", and holds no sign."
   },
   "article_one": {
    "value": [
@@ -76,19 +78,19 @@
     "ũa",
     "ua"
    ],
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; \"un\" and \"ũa\" are also the indefinite article (Convenção, \"Artigo indefinido\")."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; Convenção Ortográfica da Língua Mirandesa (1999), \"Representação da nasalidade\" (PDF page 19): \"Para estas palavras recomenda-se o emprego de til sobre o u (ũa, algũa, etc.). Se isso não for possível por dificuldades técnicas, admite-se a sua omissão.\" The Convenção calls these words the feminine indefinite article (\"artigo indefinido feminino\"), and \"un\" is the masculine one."
   },
   "of": {
    "value": [
     "de"
    ],
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"un milhon de beçs\"."
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"un milhon de beçs\"."
   },
   "fraction_of": {
    "value": [
     "de"
    ],
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"de\" before the counted noun, as in \"un milhon de beçs\"."
   },
   "denominator_particle": {
    "value": [
@@ -112,7 +114,7 @@
     "mes",
     "anho"
    ],
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"meio\" before a unit noun is half of that unit."
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\": \"un meio\"; \"meio\" before a unit noun is half of that unit, as in pt-PT."
   },
   "abbreviation": {
    "value": [],
@@ -137,72 +139,72 @@
    "word": "zero",
    "role": "unit",
    "value": "0",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "un",
    "role": "unit",
    "value": "1",
    "gender": "masculine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the text extracted from the PDF drops the tilde and the apostrophe glyphs, so the table reads \"Ua\" and \"Bint i un\"; \"ũa\" is the form with the tilde, as in Omniglot and ovos-number-parser"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "ũa",
    "role": "unit",
    "value": "1",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the text extracted from the PDF drops the tilde and the apostrophe glyphs, so the table reads \"Ua\" and \"Bint i un\"; \"ũa\" is the form with the tilde, as in Omniglot and ovos-number-parser"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "ua",
    "role": "unit",
    "value": "1",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the form as the extracted table spells it"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Representação da nasalidade\" (PDF page 19): \"Para estas palavras recomenda-se o emprego de til sobre o u (ũa, algũa, etc.). Se isso não for possível por dificuldades técnicas, admite-se a sua omissão.\": \"ua\" is \"ũa\" with the tilde left out"
   },
   {
    "word": "dous",
    "role": "unit",
    "value": "2",
    "gender": "masculine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "dues",
    "role": "unit",
    "value": "2",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "trés",
    "role": "unit",
    "value": "3",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "quatro",
    "role": "unit",
    "value": "4",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "cinco",
    "role": "unit",
    "value": "5",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "seis",
    "role": "unit",
    "value": "6",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "siête",
    "role": "unit",
    "value": "7",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "siete",
@@ -214,13 +216,13 @@
    "word": "uito",
    "role": "unit",
    "value": "8",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "nuôbe",
    "role": "unit",
    "value": "9",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "nuobe",
@@ -232,19 +234,19 @@
    "word": "dieç",
    "role": "ten",
    "value": "10",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "onze",
    "role": "ten",
    "value": "11",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "doze",
    "role": "ten",
    "value": "12",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "duoze",
@@ -256,25 +258,25 @@
    "word": "treze",
    "role": "ten",
    "value": "13",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "catorze",
    "role": "ten",
    "value": "14",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "quinze",
    "role": "ten",
    "value": "15",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "dezasseis",
    "role": "ten",
    "value": "16",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "zasseis",
@@ -286,7 +288,7 @@
    "word": "dezassiête",
    "role": "ten",
    "value": "17",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "dezassiete",
@@ -304,7 +306,7 @@
    "word": "dezuito",
    "role": "ten",
    "value": "18",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "zuio",
@@ -316,7 +318,7 @@
    "word": "dezanuôbe",
    "role": "ten",
    "value": "19",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "dezanuobe",
@@ -334,119 +336,131 @@
    "word": "binte",
    "role": "ten",
    "value": "20",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "trinta",
    "role": "ten",
    "value": "30",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "quarenta",
    "role": "ten",
    "value": "40",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "cinquenta",
    "role": "ten",
    "value": "50",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "sessenta",
    "role": "ten",
    "value": "60",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "setenta",
    "role": "ten",
    "value": "70",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "uitenta",
    "role": "ten",
    "value": "80",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "nobenta",
    "role": "ten",
    "value": "90",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "bint'i un",
    "role": "ten",
    "value": "21",
    "gender": "masculine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i ũa",
    "role": "ten",
    "value": "21",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i ua",
    "role": "ten",
    "value": "21",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i dous",
    "role": "ten",
    "value": "22",
    "gender": "masculine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i dues",
    "role": "ten",
    "value": "22",
    "gender": "feminine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i trés",
    "role": "ten",
    "value": "23",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i quatro",
    "role": "ten",
    "value": "24",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i cinco",
    "role": "ten",
    "value": "25",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i seis",
    "role": "ten",
    "value": "26",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i siête",
    "role": "ten",
    "value": "27",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
   },
   {
    "word": "bint'i siete",
    "role": "ten",
    "value": "27",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i nuôbe",
+   "role": "ten",
+   "value": "29",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i nuobe",
+   "role": "ten",
+   "value": "29",
    "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
   },
   {
@@ -456,63 +470,57 @@
    "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
   },
   {
-   "word": "bint'i nuôbe",
+   "word": "bint' uito",
    "role": "ten",
-   "value": "29",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
-  },
-  {
-   "word": "bint'i nuobe",
-   "role": "ten",
-   "value": "29",
-   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
+   "value": "28",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the \"i\" falls before \"uito\"; written with an apostrophe, read as one word"
   },
   {
    "word": "cien",
    "role": "hundred",
    "value": "100",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "ciento",
    "role": "hundred",
    "value": "100",
    "bound": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"ciento i un\""
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500; the docstring: \"\"cien\" standalone and \"ciento\" before a remainder\""
   },
   {
    "word": "ciêntos",
    "role": "hundred_multiplier",
    "value": 2,
    "gender": "masculine",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
   },
   {
    "word": "cientos",
    "role": "hundred_multiplier",
    "value": 2,
    "gender": "masculine",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
   },
   {
    "word": "ciêntas",
    "role": "hundred_multiplier",
    "value": 2,
    "gender": "feminine",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: the feminine ending of \"dous cientas\" on the Convenção spelling \"ciêntos\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
   },
   {
    "word": "cientas",
    "role": "hundred_multiplier",
    "value": 2,
    "gender": "feminine",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
   },
   {
    "word": "duziêntos",
    "role": "hundred",
    "value": "200",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "duzientos",
@@ -524,7 +532,7 @@
    "word": "treziêntos",
    "role": "hundred",
    "value": "300",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "trezientos",
@@ -542,7 +550,7 @@
    "word": "quenhiêntos",
    "role": "hundred",
    "value": "500",
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "quinhentos",
@@ -578,67 +586,67 @@
    "word": "mil",
    "role": "scale_numeral",
    "value": 3,
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "milhon",
    "role": "scale_noun",
    "rank": 1,
-   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\" (PDF page 55, read from the page image): \"1 -Un, Ũa\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 -Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ũa\", \"28 - Bint' uito\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
   },
   {
    "word": "milhones",
    "role": "scale_noun",
    "rank": 1,
    "plural": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "bilion",
    "role": "scale_noun",
    "rank": 2,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "biliones",
    "role": "scale_noun",
    "rank": 2,
    "plural": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\"; the plural in -es, as \"milhones\""
   },
   {
    "word": "meio",
    "role": "half",
    "gender": "masculine",
    "ambiguous": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also \"middle\", so it is ambiguous"
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\"; ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); also \"middle\", so it is ambiguous"
   },
   {
    "word": "meia",
    "role": "half",
    "gender": "feminine",
    "ambiguous": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also \"middle\", so it is ambiguous"
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); also \"middle\", so it is ambiguous"
   },
   {
    "word": "tércio",
    "role": "denominator",
    "value": "3",
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\")"
   },
   {
    "word": "tércios",
    "role": "denominator",
    "value": "3",
    "plural": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); the plural in -s"
   },
   {
    "word": "quarto",
    "role": "denominator",
    "value": "4",
    "ambiguous": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also a room, so it is ambiguous"
+   "source": "ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\"; ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); also a room, so it is ambiguous"
   },
   {
    "word": "quartos",
@@ -646,7 +654,7 @@
    "value": "4",
    "plural": true,
    "ambiguous": true,
-   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"); the plural in -s"
   },
   {
    "word": "purmeiro",
@@ -683,14 +691,14 @@
    "role": "ordinal",
    "value": "1",
    "gender": "masculine",
-   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "purmeria",
    "role": "ordinal",
    "value": "1",
    "gender": "feminine",
-   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "purmerios",
@@ -698,7 +706,7 @@
    "value": "1",
    "gender": "masculine",
    "plural": true,
-   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "purmerias",
@@ -706,7 +714,7 @@
    "value": "1",
    "gender": "feminine",
    "plural": true,
-   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_number_parser_mwl.py (no review note, a lead): \"zero\", \"dous milhones\", \"mil milhones\", \"un bilion\", \"un bírgula cinco\", \"menos dieç\", \"un meio\", \"quarto\", \"un milhon de beçs\", \"bigésimo purmerio\", \"sessagésima quarta\""
   },
   {
    "word": "segundo",
