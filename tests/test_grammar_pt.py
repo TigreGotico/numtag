@@ -397,6 +397,8 @@ class TestCardinals(unittest.TestCase):
     def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
         self.assertEqual(pt("entre dois e"), [("dois", "2", C)])
         self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
+        self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
+        self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
 
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
