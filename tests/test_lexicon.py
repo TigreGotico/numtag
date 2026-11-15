@@ -7,13 +7,17 @@ from pathlib import Path
 
 from numtag.lexicon import Joiner, load
 
+SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
+
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
 #: each language's word for a million
 MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
            "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
            "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
-           "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
+           "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun",
+           "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
+           "sl": "milijon", "hr": "milijun"}
 
 
 class TestLexiconFiles(unittest.TestCase):
@@ -65,6 +69,20 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)
         self.assertEqual(load("pt-BR").of("bilião", "scale_noun")[0].exponent, 9)
         self.assertEqual(load("pt-PT").of("bilião", "scale_noun")[0].exponent, 12)
+
+    def test_slavic_scales(self):
+        # Russian "миллиард" is 10^9 in both scales; "триллион" counts the short scale.
+        self.assertEqual(load("ru").of("миллиард", "scale_numeral")[0].exponent, 9)
+        self.assertFalse(load("ru").of("миллиард", "scale_numeral")[0].scale_dependent)
+        self.assertEqual(load("ru").of("триллион", "scale_numeral")[0].exponent, 12)
+        # Polish "bilion" is 10^12 in the long scale.
+        self.assertEqual(load("pl").of("bilion", "scale_numeral")[0].exponent, 12)
+        self.assertTrue(load("pl").of("bilion", "scale_numeral")[0].scale_dependent)
+
+    def test_ukrainian_apostrophes_are_one_letter(self):
+        lexicon = load("uk")
+        self.assertIn("п'ять", lexicon.readings)
+        self.assertEqual(lexicon.word_apostrophes, frozenset({"'", "\u2019"}))
 
     def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
         langs = ("az", "en", "et", "fi", "hu", "pt-BR", "pt-PT", "tr")

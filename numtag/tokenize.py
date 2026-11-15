@@ -15,6 +15,16 @@ _NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
 _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
 
 
+# Apostrophes that a language may keep inside a word ("п'ять"); a word's
+# lookup form writes each of them as "'".
+_APOSTROPHES = str.maketrans({"\u2019": "'", "\u02bc": "'"})
+
+
+def fold(word: str) -> str:
+    """The form a lexicon looks a word up by."""
+    return word.casefold().translate(_APOSTROPHES)
+
+
 @dataclass(frozen=True)
 class PeriodCues:
     """What makes a period after digits an ordinal mark rather than a
@@ -104,20 +114,21 @@ DEFAULT_SCRIPT = Script()
 
 
 @cache
-def _token_pattern(script: Script) -> re.Pattern:
+def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset()) -> re.Pattern:
     """A digit string keeps its group and decimal marks ("1.000.000,5"). A
     minus sign or a lone mark belongs to it only at the start of a word ("-5",
     ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
     so that a run with a digit the language does not read ("٣", "１２") is
     found whole and then dropped. A soft hyphen between letters stays in
-    the word."""
+    the word, and so does one of ``apostrophes`` ("п'ять")."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
+    joins = SOFT_HYPHEN + "".join(re.escape(a) for a in sorted(apostrophes))
     word = r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
         inner = (_combining_marks() if script.fold_marks else "") + re.escape(script.word_chars)
-        word = rf"{word}(?:[^\W\d_]|[{inner}]|{SOFT_HYPHEN}[^\W\d_])*"
+        word = rf"{word}(?:[^\W\d_]|[{inner}]|[{joins}][^\W\d_])*"
     else:
-        word = rf"{word}+(?:{SOFT_HYPHEN}[^\W\d_]+)*"
+        word = rf"{word}+(?:[{joins}][^\W\d_]+)*"
     return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
 
 
@@ -151,7 +162,7 @@ class Token:
     def norm(self) -> str:
         if self.key is not None:
             return self.key
-        return self.folded or self.text.casefold()
+        return self.folded or fold(self.text)
 
     @property
     def latin(self) -> str:
@@ -182,19 +193,6 @@ def fold_dotted_i(text: str) -> str:
     return text.replace("I", "ı").replace("İ", "i").casefold()
 
 
-def split_compound(word: str, known: frozenset[str]) -> list[str] | None:
-    """The fewest known words that make up ``word`` with nothing between
-    them, or None when no such chain exists."""
-    best: list[list[str] | None] = [[]] + [None] * len(word)
-    for start in range(len(word)):
-        if best[start] is None:
-            continue
-        for end in range(start + 1, len(word) + 1):
-            if word[start:end] in known and (best[end] is None or len(best[start]) + 1 < len(best[end])):
-                best[end] = best[start] + [word[start:end]]
-    return best[-1]
-
-
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
@@ -204,6 +202,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              compound_inner: frozenset[str] = frozenset(),
              shared_letter: bool = False,
              dotted_i: bool = False,
+             apostrophes: frozenset[str] = frozenset(),
              suffix_marks: frozenset[str] = frozenset({"", "."}),
              digit_suffix_marks: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
@@ -231,7 +230,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     ``suffix_marks`` are the marks that may stand between a digit string and
     its ordinal suffix ("" in "21st", ":" in "3:e"). A word after one of
     ``digit_suffix_marks`` right after a digit string is its ordinal suffix
-    or else its case ending, which is dropped ("5'inci", "5-öt").
+    or else its case ending, which is dropped ("5'inci", "5-öt"). A
+    language may list ``apostrophes`` that join letters into one word
+    ("п'ять").
 
     With ``period_ordinals``, a period between a digit string and the next
     word makes it an ordinal when one of the cues shows it ("am 3. Mai", not
@@ -247,7 +248,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     table = script.digit_table
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_token_pattern(script).finditer(scan))
+    matches = list(_token_pattern(script, apostrophes).finditer(scan))
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
@@ -286,13 +287,14 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         word = text[start:end]
         letters = word.replace(SOFT_HYPHEN, "")
         folded = "" if is_digits else fold_dotted_i(letters) if dotted_i else \
-            letters.casefold() if letters != word else ""
+            fold(letters) if fold(letters) != word.casefold() else ""
         lookup = folded or word.casefold()
         # the offset in the text of each letter of the word
         offsets = [start + k for k, char in enumerate(word) if char != SOFT_HYPHEN]
         parts = []
-        if compound_words and not is_digits and lookup not in compound_words:
-            source = fold_dotted_i(letters) if dotted_i else letters
+        if compound_words and not is_digits and lookup not in compound_words and (
+                number_words is None or lookup not in number_words):
+            source = fold_dotted_i(letters) if dotted_i else letters.translate(_APOSTROPHES)
             if len(source) == len(offsets):
                 parts = _split_compound(source, compound_words, compound_inner, shared_letter)
         if parts:

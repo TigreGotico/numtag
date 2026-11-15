@@ -2,7 +2,7 @@
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import PeriodCues, Token, tokenize
+from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -27,9 +27,9 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     words = lexicon.number_words
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
                       lexicon.abbreviations, words, lexicon.script,
-                      compound_words=words if lexicon.compound_words else frozenset(),
+                      compound_words=lexicon.compound_parts,
                       compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
-                      dotted_i=lexicon.dotted_i,
+                      dotted_i=lexicon.dotted_i, apostrophes=lexicon.word_apostrophes,
                       suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
                       period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
                                                  lexicon.period_ordinal_free_digits)
@@ -153,7 +153,7 @@ def _gender(lexicon: Lexicon, tokens: list[Token]) -> str | None:
     """The gender of the last word that shows one."""
     for token in reversed(tokens):
         if token.is_digits:
-            gender = lexicon.ordinal_suffixes.get(token.suffix.casefold())
+            gender = lexicon.ordinal_suffixes.get(fold(token.suffix))
             if gender:
                 return gender
             continue
