@@ -40,6 +40,10 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): ordinals \"desen\", \"onzen\", \"vinten\": a teen ordinal is one word, so a unit ordinal after \"dètz\" joins no teen."
+  },
   "comma_between_classes": {
    "value": false,
    "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."

@@ -1,0 +1,11 @@
+{
+  "extends": "fr-FR",
+  "entries": [
+    {"word": "septante", "role": "ten", "value": "70", "source": "Académie 9e éd., SEPTANTE: \"En Belgique et en Suisse romande. S’emploie pour soixante-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"70: septante;\", \"71: septante->%%et-un>;\""},
+    {"word": "nonante", "role": "ten", "value": "90", "source": "Académie 9e éd., NONANTE: \"En Belgique, au Canada et en Suisse. Quatre-vingt-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"90: nonante;\", \"91: nonante->%%et-un>;\""},
+    {"word": "septantième", "role": "ordinal", "value": "70", "source": "Académie 9e éd., SEPTANTE: \"En Belgique et en Suisse romande. S’emploie pour soixante-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"70: septante;\", \"71: septante->%%et-un>;\""},
+    {"word": "septantièmes", "role": "ordinal", "value": "70", "plural": true, "source": "Académie 9e éd., SEPTANTE: \"En Belgique et en Suisse romande. S’emploie pour soixante-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"70: septante;\", \"71: septante->%%et-un>;\""},
+    {"word": "nonantième", "role": "ordinal", "value": "90", "source": "Académie 9e éd., NONANTE: \"En Belgique, au Canada et en Suisse. Quatre-vingt-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"90: nonante;\", \"91: nonante->%%et-un>;\""},
+    {"word": "nonantièmes", "role": "ordinal", "value": "90", "plural": true, "source": "Académie 9e éd., NONANTE: \"En Belgique, au Canada et en Suisse. Quatre-vingt-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"90: nonante;\", \"91: nonante->%%et-un>;\""}
+  ]
+}

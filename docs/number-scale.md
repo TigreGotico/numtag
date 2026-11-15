@@ -22,7 +22,7 @@ Large scale words have two values. In the short scale, a billion is a thousand m
 [('1000000000', <Scale.SHORT: 'short'>)]
 ```
 
-The pt-BR lexicon is the European Portuguese lexicon with the short scale. Both read both spellings, "bilião" and "bilhão". The scale alone decides the value.
+The pt-BR lexicon is the European Portuguese lexicon with the short scale, and with no space between digit groups. Both read both spellings, "bilião" and "bilhão". The scale alone decides the value.
 
 ```python
 >>> read("um bilhão", "pt-PT")

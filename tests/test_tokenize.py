@@ -1,6 +1,6 @@
 import unittest
 
-from numtag.tokenize import tokenize
+from numtag.tokenize import Script, tokenize
 
 
 def words(text: str, suffixes=frozenset()) -> list[tuple[str, int, int]]:
@@ -84,6 +84,36 @@ class TestTokenize(unittest.TestCase):
     def test_a_compound_keeps_the_gap_before_it(self):
         tokens = tokenize("a dètz e sèt", compounds=frozenset({"dètz-e-sèt"}))
         self.assertEqual([(t.text, t.gap) for t in tokens], [("a", ""), ("dètz e sèt", " ")])
+    def test_a_suffix_listed_with_a_hyphen_glues_after_one(self):
+        tokens = tokenize("al 2-lea și 5-th", frozenset({"-lea", "th"}))
+        self.assertEqual([(t.text, t.suffix) for t in tokens],
+                         [("al", ""), ("2-lea", "-lea"), ("și", ""), ("5", ""), ("th", "")])
+
+    def test_a_word_splits_into_the_fewest_listed_pieces(self):
+        parts = frozenset({"venti", "tré", "tre", "e", "vent"})
+        tokens = tokenize("ha ventitré anni", number_words=parts, compound_words=parts)
+        self.assertEqual([(t.text, t.start, t.end, t.part, t.glued) for t in tokens],
+                         [("ha", 0, 2, False, False), ("venti", 3, 8, True, False),
+                          ("tré", 8, 11, True, True), ("anni", 12, 16, False, False)])
+        self.assertTrue(tokens[2].links_to_previous())
+
+    def test_a_number_word_or_a_word_with_a_rest_is_not_split(self):
+        parts = frozenset({"venti", "tre"})
+        self.assertEqual([t.text for t in tokenize("venti ventitrex", number_words=frozenset({"venti"}), compound_words=parts)],
+                         ["venti", "ventitrex"])
+
+    def test_the_words_of_a_phrase_become_one_token(self):
+        phrases = frozenset({("quatre", "vingts"), ("dix", "sept")})
+        for text in ("quatre-vingts", "quatre vingts"):
+            with self.subTest(text=text):
+                tokens = tokenize(text, number_words=frozenset({"quatre", "vingts"}), phrases=phrases)
+                self.assertEqual([(t.text, t.norm) for t in tokens], [(text, "quatre-vingts")])
+        tokens = tokenize("quatre, vingts", number_words=frozenset({"quatre", "vingts"}), phrases=phrases)
+        self.assertEqual([t.text for t in tokens], ["quatre", "vingts"])
+
+    def test_fold_gives_the_lexicon_letters(self):
+        tokens = tokenize("Şase", script=Script(letter_folds=(("ş", "ș"),)))
+        self.assertEqual([(t.text, t.norm) for t in tokens], [("Şase", "șase")])
 
 
 if __name__ == "__main__":

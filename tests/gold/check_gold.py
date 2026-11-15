@@ -22,7 +22,20 @@ SCALES = {"long", "short"}
 WHOLE = re.compile(r"-?[0-9]+")
 #: the marks that make a value a decimal, per gold file: a digit mark or a word
 DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula", "virgula"),
-                 "en": (".", "point"), "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
+                 "en": (".", "point"), "de": (",", "komma"), "nl": (",", "komma"), "fy": (",", "komma"),
+                 "da": (",", "komma"), "sv": (",", "komma"), "nb": (",", "komma"), "nn": (",", "komma"),
+                 "fi": (",", "pilkku"), "et": (",", "koma"), "hu": (",", "egész"),
+                 "tr": (",", "virgül"), "az": (",", "tam", "vergül"),
+                 "el": (",", "κόμμα"), "ar": (".", "٫", "فاصلة", "فاصل"), "he": (".", "נקודה"),
+                 "fa": (".", "٫", "ممیز"), "kab": (",",),
+                 "ru": (",", "целых", "целая", "целой", "запятая"), "uk": (",", "цілих", "ціла", "цілої", "кома"),
+                 "bg": (",", "цяло", "цели", "запетая"), "pl": (",", "przecinek", "całych", "cała", "całe"),
+                 "cs": (",", "celá", "celé", "celých", "čárka"), "sk": (",", "celá", "celé", "celých", "čiarka"),
+                 "sl": (",", "cela", "celi", "cele", "celih", "vejica"), "hr": (",", "zarez", "cijela", "cijelih", "cijele"),
+                 "fr-FR": (",", "virgule"), "fr-BE": (",", "virgule"), "fr-CH": (",", "virgule"),
+                 "it": (",", "virgola"), "ro": (",", "virgulă", "virgula"), "eu": (",", "koma"),
+                 "id": (",", "koma", "titik"),
+                 "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
                  "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),
                  "mwl": (",", "bírgula", "birgula", "ponto")}
 
@@ -91,7 +104,7 @@ def check_row(row, lang: str = "") -> None:
                     and text[start - 2].isdigit()), f"span {span!r} starts after a digit mark"
         check_value(m["value"], m["kind"])
         if lang in DECIMAL_MARKS and m["kind"] in ("decimal", "fraction"):
-            words = re.findall(r"\w+|[.,]", span.lower())
+            words = re.findall(r"\w+|[.,٫]", span.lower())
             marked = any(mark in words for mark in DECIMAL_MARKS[lang])
             assert marked == (m["kind"] == "decimal"), \
                 f"span {span!r} is {m['kind']}, but a decimal is exactly the kind with a decimal mark"

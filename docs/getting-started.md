@@ -7,7 +7,7 @@ This guide shows the first call to numtag and the tasks that most callers need. 
 numtag needs Python 3.11 or later. It has no dependencies.
 
 ```bash
-uv pip install numtag
+uv pip install --prerelease=allow numtag
 ```
 
 ## The first call
@@ -111,10 +111,10 @@ numtag reads `pt-BR` as Brazilian Portuguese, every other `pt` tag as European P
 ```python
 >>> [m.value for m in tag_numbers("dois", "pt_AO")]
 ['2']
->>> tag_numbers("deux", "fr")
+>>> tag_numbers("二", "ja")
 Traceback (most recent call last):
   ...
-ValueError: no lexicon for language 'fr'
+ValueError: no lexicon for language 'ja'
 ```
 
 ## What numtag does not read

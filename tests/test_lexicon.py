@@ -1,16 +1,27 @@
 import json
+import re
 import tomllib
 import unittest
 from fnmatch import fnmatch
 from pathlib import Path
 
 from numtag.lexicon import Joiner, load
+from numtag.tagger import lexicon_name
+
+SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
-# The word for 10**6 in each language.
-MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "es": "millón", "gl": "millón",
-           "ca": "milió", "ast": "millón", "an": "millón", "oc": "milion", "mwl": "milhon"}
+#: each language's word for a million
+MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
+           "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
+           "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
+           "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun",
+           "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
+           "sl": "milijon", "hr": "milijun", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
+           "fr-FR": "million", "id": "juta", "it": "milione", "ro": "milion",
+           "es": "millón", "gl": "millón", "ca": "milió", "ast": "millón", "an": "millón",
+           "oc": "milion", "mwl": "milhon"}
 
 
 class TestLexiconFiles(unittest.TestCase):
@@ -29,10 +40,26 @@ class TestLexiconFiles(unittest.TestCase):
         for path in LEXICONS:
             data = json.loads(path.read_text(encoding="utf-8"))
             items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
-            items += data.get("entries", [])
+            items += data.get("entries", []) + list(data.get("inflection", {}).values())
             with self.subTest(file=path.name):
                 self.assertGreater(len(items), 0)
                 self.assertEqual([i for i in items if not i.get("source", "").strip()], [])
+
+    def test_every_source_quotes_a_page_or_says_it_is_structural(self):
+        # A quote is a double-quoted run of two words or more; a bare term or a digit mark is no quote.
+        def quotes(source):
+            return [q for q in re.findall(r'"([^"]*)"', source) if " " in q.strip() and len(q) >= 4]
+
+        sources = []
+        for lang in ("en", "pt-BR", "pt-PT"):
+            data = json.loads((ROOT / "numtag" / "lexicon" / f"{lang}.json").read_text(encoding="utf-8"))
+            items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
+            sources += [(lang, i["source"]) for i in items + data.get("entries", [])]
+            gold = (ROOT / "tests" / "gold" / f"{lang}.jsonl").read_text(encoding="utf-8")
+            sources += [(f"gold {lang}", json.loads(line)["source"]) for line in gold.splitlines()]
+        unquoted = sorted({(name, s) for name, s in sources
+                           if not quotes(s) and "no external source" not in s.lower()})
+        self.assertEqual(unquoted, [])
 
     def test_every_lexicon_loads_in_both_scales(self):
         for path in LEXICONS:
@@ -40,16 +67,52 @@ class TestLexiconFiles(unittest.TestCase):
                 with self.subTest(file=path.name, scale=scale):
                     lexicon = load(path.stem, scale)
                     self.assertEqual(lexicon.scale.value, scale)
-                    self.assertEqual(lexicon.of(MILLION[path.stem], "scale_noun")[0].exponent, 6)
+                    self.assertIn(lexicon.script.fold(MILLION[path.stem]), lexicon.readings)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)
         self.assertEqual(load("pt-BR").of("bilião", "scale_noun")[0].exponent, 9)
         self.assertEqual(load("pt-PT").of("bilião", "scale_noun")[0].exponent, 12)
 
-    def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
-        self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in ("en", "pt-BR", "pt-PT")},
-                         {"en": False, "pt-BR": True, "pt-PT": True})
+    def test_slavic_scales(self):
+        # Russian "миллиард" is 10^9 in both scales; "триллион" counts the short scale.
+        self.assertEqual(load("ru").of("миллиард", "scale_numeral")[0].exponent, 9)
+        self.assertFalse(load("ru").of("миллиард", "scale_numeral")[0].scale_dependent)
+        self.assertEqual(load("ru").of("триллион", "scale_numeral")[0].exponent, 12)
+        # Polish "bilion" is 10^12 in the long scale.
+        self.assertEqual(load("pl").of("bilion", "scale_numeral")[0].exponent, 12)
+        self.assertTrue(load("pl").of("bilion", "scale_numeral")[0].scale_dependent)
+
+    def test_ukrainian_apostrophes_are_one_letter(self):
+        lexicon = load("uk")
+        self.assertIn("п'ять", lexicon.readings)
+        self.assertEqual(lexicon.word_apostrophes, frozenset({"'", "\u2019"}))
+
+    def test_the_round_hundred_after_the_thousands_joiner_is_per_language(self):
+        langs = ("az", "en", "et", "eu", "fi", "fr-FR", "hu", "id", "it", "pt-BR", "pt-PT", "ro", "tr")
+        self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in langs},
+                         {"az": False, "en": False, "et": False, "eu": True, "fi": False, "fr-FR": False,
+                          "hu": False, "id": False, "it": True, "pt-BR": True, "pt-PT": True, "ro": False,
+                          "tr": False})
+    def test_fr_be_extends_fr_fr_with_septante_and_nonante(self):
+        base, belgian = load("fr-FR").readings, load("fr-BE").readings
+        self.assertLessEqual(base.keys(), belgian.keys())
+        self.assertEqual(set(belgian) - set(base),
+                         {"septante", "septantième", "septantièmes", "nonante", "nonantième", "nonantièmes"})
+        self.assertEqual(load("fr-BE").of("septante", "ten")[0].value, "70")
+
+    def test_fr_ch_extends_fr_be_with_huitante(self):
+        belgian, swiss = load("fr-BE").readings, load("fr-CH").readings
+        self.assertEqual(set(swiss) - set(belgian), {"huitante", "huitantième", "huitantièmes"})
+        self.assertEqual(load("fr-CH").of("huitante", "ten")[0].value, "80")
+
+    def test_a_region_without_a_file_reads_with_the_base_lexicon(self):
+        self.assertEqual(lexicon_name("fr"), "fr-FR")
+        self.assertEqual(lexicon_name("fr-CA"), "fr-FR")
+        self.assertEqual(lexicon_name("fr_be"), "fr-BE")
+        self.assertEqual(lexicon_name("fr-CH"), "fr-CH")
+        self.assertEqual(lexicon_name("it-IT"), "it")
+        self.assertEqual(lexicon_name("pt"), "pt-PT")
 
     def test_only_portuguese_requires_the_joiner_before_a_last_round_group(self):
         self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},
