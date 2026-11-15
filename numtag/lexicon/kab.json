@@ -49,7 +49,7 @@
       "source": "Tatoeba sentence 11376255 \"alef u tesεemya u xemsin\", 11387744 \"zuǧ alaf u rebεa\": these write \"u\" after the thousands. No saved page shows the last group after the thousands without \"u\", so the reader takes both forms."
     },
     "tens_order": {
-      "value": "unit_first",
+      "value": "unit_ten",
       "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"starting with the unit, followed by the conjunction u , then the ten\"."
     },
     "ordinal_style": {

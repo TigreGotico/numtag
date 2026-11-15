@@ -49,7 +49,7 @@
       "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\": و goes before any rest after a thousand, so a last group below a hundred or a round hundred with no و starts a new number."
     },
     "tens_order": {
-      "value": "unit_first",
+      "value": "unit_ten",
       "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wikipedia \"Arabic grammar\", Numerals: \"The numbers 20–99 are expressed with the units preceding the tens.\""
     },
     "ordinal_style": {

@@ -9,12 +9,15 @@ from numtag.lexicon import Joiner, load
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
-MILLION = {"ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
+#: each language's word for a million
+MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
+           "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
+           "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
 
 
 class TestLexiconFiles(unittest.TestCase):
     def test_every_language_is_there(self):
-        self.assertEqual([p.stem for p in LEXICONS], ["ar", "el", "en", "fa", "he", "kab", "pt-BR", "pt-PT"])
+        self.assertEqual([p.stem for p in LEXICONS], sorted(MILLION))
 
     def test_package_data_ships_every_lexicon(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
@@ -55,8 +58,7 @@ class TestLexiconFiles(unittest.TestCase):
                 with self.subTest(file=path.name, scale=scale):
                     lexicon = load(path.stem, scale)
                     self.assertEqual(lexicon.scale.value, scale)
-                    million = MILLION.get(path.stem, "milhão" if path.stem.startswith("pt") else "million")
-                    self.assertIn(lexicon.script.fold(million), lexicon.readings)
+                    self.assertIn(lexicon.script.fold(MILLION[path.stem]), lexicon.readings)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)

@@ -2,7 +2,7 @@
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import Lexicon, Scale, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import Token, tokenize
+from numtag.tokenize import PeriodCues, Token, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -12,20 +12,28 @@ AMBIGUOUS_CONFIDENCE = 0.4
 
 def lexicon_name(lang: str) -> str:
     """The lexicon file for a language tag: "pt-br" reads pt-BR, every other
-    "pt" tag pt-PT, and every "en" tag en."""
+    "pt" tag pt-PT, "no" (Norwegian) reads Bokmål, nb, and every other tag
+    its primary language ("de-AT" reads de)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
     if primary == "pt":
         return "pt-BR" if region == "BR" else "pt-PT"
-    return primary
+    return "nb" if primary == "no" else primary
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
+    words = lexicon.number_words
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
-                      lexicon.script)
+                      lexicon.abbreviations, words,
+                      compound_words=words if lexicon.compound_words else frozenset(),
+                      compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
+                      suffix_marks=lexicon.ordinal_suffix_marks,
+                      period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
+                                                 lexicon.period_ordinal_free_digits)
+                      if lexicon.period_ordinals else None,
+                      script=lexicon.script)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
@@ -60,7 +68,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = grammar.numbers(start)
+        # A number starts and ends with a whole word, not inside a compound.
+        parses = [] if run[i].glued else [
+            p for p in grammar.numbers(start) if p.end == len(run) or not run[p.end].glued]
         if not parses:
             i += 1
             continue
@@ -135,5 +145,8 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
                     and parse.end < len(run) and not run[parse.end].is_digits
                     and not grammar.starts_number(parse.end))
     if lone_article:
+        return ARTICLE_CONFIDENCE
+    # "Er lud mich ein.": a lone article that ends the clause is no numeral
+    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
         return ARTICLE_CONFIDENCE
     return AMBIGUOUS_CONFIDENCE if parse.ambiguous else 1.0

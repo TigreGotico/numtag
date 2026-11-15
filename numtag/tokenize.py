@@ -6,6 +6,22 @@ from functools import cache
 
 _ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+_NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
+_PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
+
+
+@dataclass(frozen=True)
+class PeriodCues:
+    """What makes a period after digits an ordinal mark rather than a
+    sentence end: a word before the digits ("zum 1000. Mal"), with
+    ``lowercase`` any lower-case word after the period ("17. mai"), and a
+    number of at most ``free_digits`` digits with no cue ("3. Platz", where
+    every noun takes a capital)."""
+    before: frozenset[str] = frozenset()
+    lowercase: bool = False
+    free_digits: int = 0
+
+
 # Directional marks and embedding controls: no letter, so a script that sets
 # them aside reads each as a space ("‏٣" is "٣").
 BIDI_CONTROLS = "؜‎‏‪‫‬‭‮⁦⁧⁨⁩"
@@ -117,6 +133,10 @@ class Token:
     # Read without a clitic prefix: a preposition or an article opens a
     # number and never stands inside one ("خمسة بالمائة" is two numbers).
     clitic: bool = False
+    # A digit string that a period makes an ordinal ("3" in "am 3. Mai").
+    period_ordinal: bool = False
+    # A part of a compound word after its first part ("zwanzig" in "einundzwanzig").
+    glued: bool = False
 
     @property
     def norm(self) -> str:
@@ -131,14 +151,15 @@ class Token:
     def digits(self) -> str:
         """A digit string without its ordinal suffix."""
         latin = self.latin
-        return latin[:len(latin) - len(self.suffix)].rstrip(".") if self.suffix else latin
+        return latin[:len(latin) - len(self.suffix)].rstrip(".:") if self.suffix else latin
 
     def links_to_previous(self) -> bool:
         """True when this token can continue a number that the previous
         token is part of: only a space or a hyphen lies between them, or the
-        token is glued to a joiner prefix. A word with a clitic prefix and
-        no joiner prefix links to nothing before it."""
-        if self.attached:
+        token is glued to a joiner prefix or to the part of a compound word
+        before it. A word with a clitic prefix and no joiner prefix links to
+        nothing before it."""
+        if self.attached or self.glued:
             return True
         return not self.clitic and (self.gap == "-" or (self.gap != "" and self.gap.isspace()))
 
@@ -147,6 +168,11 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
              number_words: frozenset[str] | None = None,
+             compound_words: frozenset[str] = frozenset(),
+             compound_inner: frozenset[str] = frozenset(),
+             shared_letter: bool = False,
+             suffix_marks: frozenset[str] = frozenset({"", "."}),
+             period_ordinals: PeriodCues | None = None,
              script: Script = DEFAULT_SCRIPT) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
@@ -162,6 +188,16 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     word outside them is one noun ("segunda-feira"): its words are dropped in
     the same way; and a word outside them loses a prefix of the script when
     the rest is a number word.
+
+    Given ``compound_words``, a word that is no compound word itself but
+    splits whole into them ("einundzwanzig") becomes one token per part. A
+    word in ``compound_inner`` ("und") is never the first or last part.
+    With ``shared_letter``, two parts may share a doubled letter ("ettusen").
+    ``suffix_marks`` are the marks that may stand between a digit string and
+    its ordinal suffix ("" in "21st", ":" in "3:e"). With ``period_ordinals``,
+    a period between a digit string and the next word makes it an ordinal
+    when one of the cues shows it ("am 3. Mai", not "in 1905. Dann"); the
+    period is not part of the token.
     """
     scan = text
     if script.bidi_controls:
@@ -195,15 +231,27 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
             between = scan[match.end():following.start()]
-            if (following.lastgroup == "word" and between in ("", ".")
+            if (following.lastgroup == "word" and between in suffix_marks
                     and following.group().casefold() in ordinal_suffixes):
                 end, suffix = following.end(), following.group()
                 latin += text[match.end():end]
                 skip_until = following.end()
+        if not is_digits and compound_words and match.group().casefold() not in compound_words:
+            parts = _split_compound(match.group(), compound_words, compound_inner, shared_letter)
+            if parts:
+                for n, (a, b) in enumerate(parts):
+                    piece = text[start + a:start + b]
+                    tokens.append(Token(piece, start + a, start + b, False, gap if n == 0 else "",
+                                        key=None if script == DEFAULT_SCRIPT else script.fold(piece),
+                                        glued=n > 0))
+                previous_end = end
+                continue
         key = None
         if script != DEFAULT_SCRIPT:
             key = latin if is_digits else script.fold(text[start:end])
-        tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix, key))
+        period = (period_ordinals is not None and is_digits and not suffix
+                  and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
+        tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix, key=key, period_ordinal=period))
         previous_end = end
     if number_words is None:
         return tokens
@@ -262,6 +310,49 @@ def _joiner_split(token: Token, number_words: frozenset[str], script: Script) ->
             return (replace(token, text=head, end=middle, key=script.fold(head)),
                     Token(rest, middle, token.end, False, "", key=key, attached=True))
     return None
+
+
+def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
+                    shared_letter: bool = False) -> list[tuple[int, int]]:
+    """The offsets of the fewest parts that ``word`` splits into, each one in
+    ``parts`` after case folding and no ``inner`` part at either end; [] when
+    it splits in no way. Among splits with as many parts, the one with the
+    longest last part wins. With ``shared_letter``, a part that ends in a
+    double letter shares its last letter with the next part ("ettusen" is
+    "ett" and "tusen"), so the two parts overlap by one letter."""
+    longest = max(map(len, parts), default=0)
+    # best[k]: the fewest parts that cover word[:k], as a list of offsets
+    best: dict[int, list[tuple[int, int]]] = {0: []}
+    for covered in range(len(word)):
+        if covered not in best:
+            continue
+        starts = [covered]
+        if shared_letter and covered >= 2 and word[covered - 1] == word[covered - 2]:
+            starts.append(covered - 1)
+        for start in starts:
+            for end in range(min(len(word), start + longest), covered, -1):
+                part = word[start:end].casefold()
+                if part not in parts or (part in inner and (start == 0 or end == len(word))):
+                    continue
+                split = best[covered] + [(start, end)]
+                if end not in best or len(split) < len(best[end]):
+                    best[end] = split
+    found = best.get(len(word), [])
+    return found if len(found) > 1 else []
+
+
+def _period_ordinal(text: str, start: int, end: int, cues: PeriodCues) -> bool:
+    """True when a period, one space and a word follow the digits from
+    ``start`` to ``end``, and a cue shows the period marks an ordinal: "am
+    3. Mai", "17. mai", not "i 1905. Dette" or "3." at a text end."""
+    after = _NEXT_WORD.match(text, end)
+    if after is None:
+        return False
+    word = after.group(1)
+    if end - start <= cues.free_digits or (cues.lowercase and word[0].islower()):
+        return True
+    before = _PREVIOUS_WORD.search(text, max(0, start - 64), start)
+    return before is not None and before.group(1).casefold() in cues.before
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:
