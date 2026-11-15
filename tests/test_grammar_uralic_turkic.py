@@ -25,6 +25,16 @@ class TestCompoundWords(unittest.TestCase):
         # "viisi" + "kolme" in one word is no well-formed number
         self.assertEqual(read("viisikolme", "fi"), [])
 
+    def test_a_soft_hyphen_inside_a_word_is_no_break(self):
+        # ICU writes U+00AD between the parts: 20 + 5 = 25; 10 + 5 = 15 in the genitive
+        self.assertEqual(read("huszon\u00adöt forint", "hu"), [("huszon\u00adöt", "25", C)])
+        self.assertEqual(read("viiden\u00adtoista päivän", "fi"), [("viiden\u00adtoista", "15", C)])
+        self.assertEqual(read("kolme\u00adsataa\u00adkuusi\u00adkymmentä\u00adviisi", "fi"),
+                         [("kolme\u00adsataa\u00adkuusi\u00adkymmentä\u00adviisi", "365", C)])
+        # a soft hyphen joins letters only: a hyphen or a space still splits
+        self.assertEqual(read("huszon öt", "hu"), [("huszon öt", "25", C)])
+        self.assertEqual(read("kaksi \u00ad viisi", "fi"), [("kaksi", "2", C), ("viisi", "5", C)])
+
 
 class TestGroupsAfterAScale(unittest.TestCase):
     def test_a_bare_hundred_or_ten_after_thousands_joins_the_number(self):
@@ -36,6 +46,17 @@ class TestGroupsAfterAScale(unittest.TestCase):
 
 
 class TestTeensAndTens(unittest.TestCase):
+    def test_a_teen_joins_only_the_unit_in_its_own_word(self):
+        # "yksi toista vastaan" is "one against the other"; "yksitoista" is 1 + 10 = 11
+        self.assertEqual(read("yksi toista vastaan", "fi"), [("yksi", "1", C), ("toista", "2", O)])
+        self.assertEqual(read("yksitoista", "fi"), [("yksitoista", "11", C)])
+        # an ordinal unit joins a Finnish teen: the 11th; the Estonian 12th is
+        # built on the genitive, so "teineteist" (each other) is no number
+        self.assertEqual(read("yhdestoista", "fi"), [("yhdestoista", "11", O)])
+        self.assertEqual(read("Nad aitavad teineteist.", "et"), [])
+        self.assertEqual(read("kaheteistkümnes", "et"), [("kaheteistkümnes", "12", O)])
+        self.assertEqual(read("kaksteist", "et"), [("kaksteist", "12", C)])
+
     def test_a_teen_is_a_unit_and_a_bound_ten(self):
         # 1 + 10 = 11; 2 + 10 = 12; Hungarian 10 + 1 = 11, 20 + 5 = 25
         self.assertEqual(read("yksitoista", "fi"), [("yksitoista", "11", C)])
@@ -72,8 +93,27 @@ class TestInflection(unittest.TestCase):
         self.assertEqual(read("kétezer-ötszázat", "hu"), [("kétezer-ötszázat", "2500", C)])
 
     def test_a_case_ending_closes_the_number(self):
-        # "beşte" (at five) ends the number, so "iki" (two) starts the next one
-        self.assertEqual(read("saat beşte iki kişi geldi", "tr"), [("beşte", "5", C), ("iki", "2", C)])
+        # "beşte" (at five) ends the number; no count follows it
+        self.assertEqual(read("saat beşte geldi", "tr"), [("beşte", "5", C)])
+        # "ikide yüz": a hundred is no part of two, so no fraction either
+        self.assertEqual(read("ikide yüz kişi", "tr"), [("ikide", "2", C), ("yüz", "100", C)])
+
+    def test_the_locative_names_the_parts_of_a_fraction(self):
+        # "üçte biri" is one of three parts, 1/3; "dörtte bir" 1/4; "beşte iki" 2/5 = 0.4
+        self.assertEqual(read("pastanın üçte biri", "tr"), [("üçte biri", "1/3", F)])
+        self.assertEqual(read("dörtte bir hisse", "tr"), [("dörtte bir", "0.25", F)])
+        self.assertEqual(read("saat beşte iki kişi geldi", "tr"), [("beşte iki", "0.4", F)])
+        # "beşdə üç" is 3/5 = 0.6
+        self.assertEqual(read("beşdə üç", "az"), [("beşdə üç", "0.6", F)])
+        # the count must be smaller than the parts: "üçte beş" is 3 and 5
+        self.assertEqual(read("üçte beş", "tr"), [("üçte", "3", C), ("beş", "5", C)])
+
+    def test_a_hundred_multiplier_counts_no_hundred_word(self):
+        # "yüz yüze" (face to face) is 100 and 100, not 100 x 100
+        self.assertEqual(read("yüz yüze", "tr"), [("yüz", "100", C), ("yüze", "100", C)])
+        # 2 x 100 = 200; 1000 + 100 = 1100
+        self.assertEqual(read("iki yüz", "tr"), [("iki yüz", "200", C)])
+        self.assertEqual(read("bin yüz", "tr"), [("bin yüz", "1100", C)])
 
     def test_a_case_ending_ends_the_count_of_a_scale_word(self):
         # "ikide" (at two) is no count of "yüz": 2 and 100, not 200
@@ -107,6 +147,19 @@ class TestOrdinals(unittest.TestCase):
     def test_an_estonian_form_that_is_also_a_case_reads_as_the_ordinal(self):
         # "viies" is the 5th and also the inessive of "viis"
         self.assertEqual(read("viies", "et"), [("viies", "5", O)])
+
+    def test_a_period_after_a_year_before_a_month_is_no_ordinal(self):
+        # the year of a Hungarian date takes a full stop: 2008, then the 3rd day
+        self.assertEqual(read("2008. február 3-án", "hu"), [("2008", "2008", C), ("3", "3", C)])
+        self.assertEqual(read("2008. februárban", "hu"), [("2008", "2008", C)])
+        self.assertEqual(read("2008. febr. 3-án", "hu"), [("2008", "2008", C), ("3", "3", C)])
+        # any other lower-case word keeps the ordinal: the 3rd line, the 5th novella
+        self.assertEqual(read("a 3. sor", "hu"), [("3", "3", O)])
+        self.assertEqual(read("a 3. novella", "hu"), [("3", "3", O)])
+
+    def test_azerbaijani_short_ordinal_suffix(self):
+        # "5-ci" is the 5th
+        self.assertEqual(read("5-ci sinif", "az"), [("5-ci", "5", O)])
 
     def test_a_period_after_digits_makes_an_ordinal(self):
         self.assertEqual(read("Asumme 5. kerroksessa.", "fi"), [("5", "5", O)])
@@ -155,6 +208,9 @@ class TestFractionsAndDecimals(unittest.TestCase):
     def test_azerbaijani_decimal_words(self):
         # 2 + 5/10 = 2.5
         self.assertEqual(read("iki tam beş", "az"), [("iki tam beş", "2.5", D)])
+        # the parts in the locative, then the count: 2 + 5/10 = 2.5; 2 + 15/100 = 2.15
+        self.assertEqual(read("iki tam onda beş", "az"), [("iki tam onda beş", "2.5", D)])
+        self.assertEqual(read("iki tam yüzdə on beş", "az"), [("iki tam yüzdə on beş", "2.15", D)])
 
 
 class TestCaseFolding(unittest.TestCase):
@@ -178,6 +234,44 @@ class TestConfidence(unittest.TestCase):
         # 100 x 1000 = 100000 in the partitive
         self.assertEqual(self.confidence("sataatuhatta", "fi"), [("sataatuhatta", False)])
         self.assertEqual(self.confidence("on dört", "tr"), [("on dört", False)])
+
+    def test_an_inflected_homograph_is_weak(self):
+        # each form is also another word: "for", "his", "him", "because of", "on",
+        # "with him", "all of a sudden"
+        self.assertEqual(self.confidence("sənin üçün", "az"), [("üçün", True)])
+        self.assertEqual(self.confidence("Onun evi", "az"), [("Onun", True)])
+        self.assertEqual(self.confidence("Onu gördüm.", "az"), [("Onu", True)])
+        self.assertEqual(self.confidence("Bu yüzden geldim.", "tr"), [("yüzden", True)])
+        self.assertEqual(self.confidence("Live on Stage", "tr"), [("on", True)])
+        self.assertEqual(self.confidence("Onla geldim.", "tr"), [("Onla", True)])
+        self.assertEqual(self.confidence("Birden yağmur başladı.", "tr"), [("Birden", True)])
+        # "led" or "way"; "each other"; "while leading"
+        self.assertEqual(self.confidence("Ta viis lapse kooli.", "et"), [("viis", True)])
+        self.assertEqual(self.confidence("Nad aitavad üksteist.", "et"), [("üksteist", True)])
+        self.assertEqual(self.confidence("Viies lapse kooli", "et"), [("Viies", True)])
+        # "increasingly", "also", "formerly", "at once", "at first"
+        for word in ("Egyre", "Egyben", "Egykor", "Egyből", "Elsőre"):
+            self.assertEqual(self.confidence(f"{word} jobb.", "hu"), [(word, True)])
+        # "together", "equally", "spruce", "I don't care"
+        self.assertEqual(self.confidence("Laske yhteen.", "fi"), [("yhteen", True)])
+        self.assertEqual(self.confidence("yhtä hyvä", "fi"), [("yhtä", True)])
+        self.assertEqual(self.confidence("Kuusi kasvaa.", "fi"), [("Kuusi", True)])
+        self.assertEqual(self.confidence("Viis siitä!", "fi"), [("Viis", True)])
+
+    def test_the_homograph_inside_a_number_or_another_case_is_sure(self):
+        # 3 x 100 = 300; 10 + 5 = 15; 2 x 100 = 200; 2 + 10 = 12; the other case
+        # forms have no second meaning, but "egyet" is also an adverb
+        self.assertEqual(self.confidence("üç yüz", "tr"), [("üç yüz", False)])
+        self.assertEqual(self.confidence("on beş", "az"), [("on beş", False)])
+        self.assertEqual(self.confidence("kakssada", "et"), [("kakssada", False)])
+        self.assertEqual(self.confidence("kaksteist", "et"), [("kaksteist", False)])
+        self.assertEqual(self.confidence("egyet", "hu"), [("egyet", True)])
+        self.assertEqual(self.confidence("eggyel", "hu"), [("eggyel", False)])
+        self.assertEqual(self.confidence("hat ember", "hu"), [("hat", False)])
+        self.assertEqual(self.confidence("Kalelerden biri", "tr"), [("biri", False)])
+        self.assertEqual(self.confidence("birkaç bin asker", "tr"), [("bin", False)])
+        self.assertEqual(self.confidence("üçə", "az"), [("üçə", False)])
+        self.assertEqual(self.confidence("viiest", "et"), [("viiest", False)])
 
     def test_an_article_before_a_noun_is_weak(self):
         self.assertEqual(self.confidence("bir elma aldım", "tr"), [("bir", True)])

@@ -9,6 +9,8 @@ base, and an entry replaces the base entry with the same word and role.
 A language that inflects its numbers lists, in "inflection", classes of
 suffixes, and gives an entry "stems": each stem joins each suffix of its
 classes into one more form of the entry ("kahde" and "lle" make "kahdelle").
+A class may mark its forms as ordinal or as naming the parts of a fraction
+("fraction_case": "üç" and "te" make "üçte", as in "üçte bir").
 """
 import json
 from dataclasses import dataclass, field, replace
@@ -29,8 +31,8 @@ class Joiner(str, Enum):
 
 
 # Roles whose value is a digit string. A "teen" adds ten to the unit before
-# it ("yksi" "toista"); a "value_word" is a whole number on its own, also
-# one that is not whole ("puolitoista" is 3/2).
+# it in the same word ("yksi" "toista"); a "value_word" is a whole number on
+# its own, also one that is not whole ("puolitoista" is 3/2).
 VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "teen", "value_word")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
@@ -64,6 +66,12 @@ class Entry:
     # A ten that takes a unit after it although it is not a round ten from
     # twenty up ("on beş", "tizenöt").
     takes_unit: bool = False
+    # A case form that names the parts when a count follows it: Turkish
+    # "üçte bir" is one third.
+    fraction_case: bool = False
+    # A teen that also follows the ordinal form of its unit ("yhdes"
+    # "toista" is 11th; Estonian "teine" "teist" is no number).
+    ordinal_unit: bool = False
 
 
 @dataclass(frozen=True)
@@ -119,6 +127,12 @@ class Lexicon:
     dot_ordinal: bool = False
     # Marks that glue a case ending to a digit string ("5-öt", "5'te").
     digit_suffix_marks: frozenset[str] = frozenset()
+    # Month names before which the period after digits ends the year of a
+    # date, not an ordinal ("2008. február").
+    date_months: frozenset[str] = frozenset()
+    # Every form an entry lists as having a common meaning that is no
+    # number, also a number written as one word ("üksteist", each other).
+    ambiguous_words: frozenset[str] = frozenset()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -140,20 +154,22 @@ def _read(lang: str) -> dict:
             "entries": list(entries.values())}
 
 
-def _forms(spec: dict, inflection: dict, suffix_ends: bool) -> list[tuple[str, bool, bool]]:
-    """(word, ordinal, final) of every form of an entry: the word itself,
-    and each stem joined to each suffix of its classes. A suffix closes the
-    number where the language puts case endings only on the last word."""
+def _forms(spec: dict, inflection: dict, suffix_ends: bool) -> list[tuple[str, bool, bool, bool]]:
+    """(word, ordinal, final, fraction_case) of every form of an entry: the
+    word itself, and each stem joined to each suffix of its classes. A
+    suffix closes the number where the language puts case endings only on
+    the last word."""
     ordinal, final = spec.get("ordinal", False), spec.get("final", False)
-    forms = {spec["word"].casefold(): (ordinal, final)}
+    forms = {spec["word"].casefold(): (ordinal, final, False)}
     for stem, classes in spec.get("stems", {}).items():
         for name in classes:
             suffixes = inflection[name]
             for suffix in suffixes["value"]:
                 forms.setdefault((stem + suffix).casefold(), (
-                    ordinal or suffixes.get("ordinal", False), final or (suffix_ends and suffix != "")))
+                    ordinal or suffixes.get("ordinal", False), final or (suffix_ends and suffix != ""),
+                    suffixes.get("fraction_case", False)))
     excluded = {w.casefold() for w in spec.get("excluded_forms", [])}
-    return [(word, o, f) for word, (o, f) in forms.items() if word not in excluded]
+    return [(word, *flags) for word, flags in forms.items() if word not in excluded]
 
 
 def _illion_exponent(rank: int, scale: Scale) -> int:
@@ -172,11 +188,15 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     inflection = data.get("inflection", {})
     suffix_ends = settings.get("inflection_position", "every") == "last"
 
+    ambiguous_words: set[str] = set()
+
     def put(spec: dict, entry: Entry) -> None:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
-        for word, ordinal, final in _forms(spec, inflection, suffix_ends):
+        ambiguous_words.update(ambiguous)
+        for word, ordinal, final, fraction_case in _forms(spec, inflection, suffix_ends):
             readings.setdefault(word, []).append(replace(
-                entry, ordinal=ordinal, final=final, ambiguous=entry.ambiguous or word in ambiguous))
+                entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
+                ambiguous=entry.ambiguous or word in ambiguous))
 
     # Ordinal scale words come last: each takes its power of ten from the
     # cardinal scale word it names.
@@ -187,7 +207,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                      ambiguous=spec.get("ambiguous", False))
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
-                            bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False), **facts))
+                            bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
+                            ordinal_unit=spec.get("ordinal_unit", False), **facts))
         elif role in SCALE_ROLES:
             if "value" in spec:
                 put(spec, Entry(role, exponent=spec["value"], **facts))
@@ -239,4 +260,6 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         decimal_fraction=settings.get("decimal_fraction", False),
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
+        date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        ambiguous_words=frozenset(ambiguous_words),
     )

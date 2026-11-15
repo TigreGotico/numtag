@@ -7,10 +7,14 @@ from dataclasses import dataclass, replace
 # ".5", not "5-7" or "...5"). The pattern takes digits of every script, so
 # that a run with any digit outside 0-9 ("٣", "１２") is found whole and then
 # dropped.
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+)")
+# A soft hyphen (U+00AD) inside a word marks where a line may break; it
+# is no break in the word ("huszon\u00adöt").
+SOFT_HYPHEN = "\u00ad"
+_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+(?:\u00ad[^\W\d_]+)*)")
 _ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 _TRAILING_MARK = re.compile(r"\D+$")
+_WORD = re.compile(r"[^\W\d_]+")
 
 
 @dataclass(frozen=True)
@@ -70,7 +74,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              number_words: frozenset[str] | None = None, *,
              compound_words: frozenset[str] = frozenset(), dotted_i: bool = False,
              digit_suffix_marks: frozenset[str] = frozenset(),
-             dot_ordinal: bool = False) -> list[Token]:
+             dot_ordinal: bool = False, date_months: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -90,7 +94,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     suffix or else its case ending, which is dropped ("5'inci", "5-öt").
     With ``dot_ordinal``, a period after a digit string makes it an
     ordinal when a lower-case word or a digit follows ("2. emelet"); the
-    period stays outside the token.
+    period stays outside the token. Before one of ``date_months`` the
+    period follows the year of a date, which is no ordinal ("2008. február").
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -123,19 +128,23 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                     and following.group().casefold() in ordinal_suffixes):
                 end, suffix = following.end(), following.group()
                 skip_until = following.end()
-        if is_digits and dot_ordinal and not suffix and _dot_ordinal(text, end):
+        if is_digits and dot_ordinal and not suffix and _dot_ordinal(text, end, date_months):
             suffix = "."  # the period stays outside the span, as punctuation
         word = text[start:end]
-        folded = fold_dotted_i(word) if dotted_i and not is_digits else ""
+        letters = word.replace(SOFT_HYPHEN, "")
+        folded = "" if is_digits else fold_dotted_i(letters) if dotted_i else \
+            letters.casefold() if letters != word else ""
+        key = folded or word.casefold()
+        # the offset in the text of each letter of the word
+        offsets = [start + k for k, char in enumerate(word) if char != SOFT_HYPHEN]
         parts = None
-        if compound_words and not is_digits and (folded or word.casefold()) not in compound_words \
-                and len(folded or word.casefold()) == len(word):
-            parts = split_compound(folded or word.casefold(), compound_words)
+        if compound_words and not is_digits and key not in compound_words and len(key) == len(offsets):
+            parts = split_compound(key, compound_words)
         if parts and len(parts) > 1:
-            at = start
+            at = 0
             for k, part in enumerate(parts):
-                piece = text[at:at + len(part)]
-                tokens.append(Token(piece, at, at + len(part), False, gap if k == 0 else "",
+                first, last = offsets[at], offsets[at + len(part) - 1] + 1
+                tokens.append(Token(text[first:last], first, last, False, gap if k == 0 else "",
                                     glued=k > 0, folded=part))
                 at += len(part)
         else:
@@ -167,14 +176,24 @@ def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset
     return kept
 
 
-def _dot_ordinal(text: str, end: int) -> bool:
+def _dot_ordinal(text: str, end: int, date_months: frozenset[str]) -> bool:
     """True when a period, a space and a lower-case word or a digit follow
-    the digit string that ends at ``end``."""
+    the digit string that ends at ``end``, and the word is no month of
+    ``date_months``: a full name, with or without a case ending
+    ("januárban"), or an abbreviation listed with its period ("jan.")."""
     if not text.startswith(".", end):
         return False
     rest = text[end + 1:]
     stripped = rest.lstrip()
-    return bool(stripped) and len(stripped) < len(rest) and (stripped[0].islower() or stripped[0].isdigit())
+    if not stripped or len(stripped) == len(rest) or not (stripped[0].islower() or stripped[0].isdigit()):
+        return False
+    word = _WORD.match(stripped)
+    if not word:
+        return True
+    name = word.group().casefold()
+    if stripped.startswith(".", word.end()) and name + "." in date_months:
+        return False  # an abbreviated month ("2008. febr. 3.")
+    return not any(name.startswith(month) for month in date_months if not month.endswith("."))
 
 
 def _abbreviated(text: str, end: int) -> bool:

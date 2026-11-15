@@ -51,6 +51,9 @@ class Parse:
     decimal: bool = False
     # A word of the number has a common meaning that is no number.
     ambiguous: bool = False
+    # The position of the case form that names the parts ("üçte" in "üçte
+    # bir"): the number goes on after it although its ending closes it.
+    parts_at: int | None = None
 
 
 @dataclass(frozen=True)
@@ -134,6 +137,10 @@ class Grammar:
         if i < 0 or i >= len(self.tokens) or self.tokens[i].is_digits:
             return False
         entries = self.lex.readings.get(self.tokens[i].norm, ())
+        # the parts after a decimal marker leave it open: "iki tam onda beş"
+        if self.lex.decimal_fraction and self._is_word(i - 1, self.lex.decimal_markers) \
+                and any(e.fraction_case for e in entries):
+            return False
         return bool(entries) and all(e.final for e in entries)
 
     def _ordinal_form(self, i: int) -> bool:
@@ -152,10 +159,13 @@ class Grammar:
         """True when a multiplier at ``i`` takes ``count``: in "dois milhão"
         the "dois" stays a number. A hundred or ten multiplier counts no
         group of thousands (``exponent``): "bin yüz" is 1100, and
-        "kaksituhatta kymmenen" is 2010."""
+        "kaksituhatta kymmenen" is 2010. Nor does a hundred multiplier count
+        a hundred word: "yüz yüze" is 100 and 100."""
         scale_words = self.multipliers(i)
         if not scale_words:
             small = self._readings(i, "hundred_multiplier") + self._readings(i, "ten_multiplier")
+            if self._readings(i - 1, "hundred") and self._readings(i, "hundred_multiplier"):
+                return False
             return self._takes_multiplier(i) and all(e.exponent > exponent for e in small)
         return any(self._agrees(noun, plural, count) for *_, noun, _, plural in scale_words)
 
@@ -200,11 +210,15 @@ class Grammar:
         units = self._readings(i, "unit")
         found = [(i + 1, e.value) for e in units if not (nonzero and e.value == "0")]
         tens = [(i + 1, ten.value, ten.bound, ten.takes_unit) for ten in self._readings(i, "ten")]
+        # a teen is written in one word with its unit: "yksitoista" is 11,
+        # "yksi toista" (one the other) is no number
+        teens = self._readings(i + 1, "teen") if i + 1 < len(self.tokens) and self.tokens[i + 1].glued else ()
         for unit in units:
             if unit.value == "0":
                 continue
             # "yksi" "toista" is 11; "kaksi" "kymmentä" is 20.
-            found += [(i + 2, digits.add(teen.value, unit.value)) for teen in self._readings(i + 1, "teen")]
+            found += [(i + 2, digits.add(teen.value, unit.value)) for teen in teens
+                      if teen.ordinal_unit or not unit.ordinal]
             tens += [(i + 2, unit.value + "0", False, True)
                      for m in self._readings(i + 1, "ten_multiplier") if m.exponent == 1]
         for end, value, bound, takes_unit in tens:
@@ -256,17 +270,27 @@ class Grammar:
             for end, chunk in self.small(position):
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk)
-        return fractions + [(end, written) for end, (parts, written) in best.items() if parts]
+        # a fraction reading wins over digits that end at the same word
+        taken = {end for end, _ in fractions}
+        return fractions + [(end, written) for end, (parts, written) in best.items() if parts and end not in taken]
 
     def _decimal_fractions(self, i: int) -> list[tuple[int, str]]:
         """"két tized" after "egész" is .2: a numerator below a denominator
-        that is a power of ten gives that many decimal places."""
+        that is a power of ten gives that many decimal places. With the parts
+        in a case that names them, the parts come first: "onda beş" after
+        "tam" is .5."""
         found = []
         for end, numerator in self.small(i, nonzero=True):
             for entry in self._readings(end, "denominator"):
                 places = len(entry.value) - 1
                 if entry.value == digits.shift("1", places) and len(numerator) <= places:
                     found.append((end + 1, numerator.rjust(places, "0")))
+            places = len(numerator) - 1
+            last = self.tokens[end - 1]
+            if places and numerator == digits.shift("1", places) and not last.is_digits and any(
+                    e.fraction_case for e in self.lex.readings.get(last.norm, ())):
+                found += [(stop, count.rjust(places, "0")) for stop, count in self.small(end, nonzero=True)
+                          if len(count) <= places]
         return found
 
     # Groups -----------------------------------------------------------
@@ -537,6 +561,21 @@ class Grammar:
                       for e in self._readings(j, "denominator") if not e.plural]
         return found
 
+    def case_fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"üçte bir" is 1/3: a cardinal whose last word is a case form that
+        names the parts, and after it a count of parts below that number, so
+        "ikide yüz" (at two, a hundred) is no fraction."""
+        last = run[-1]
+        at = last.end - 1
+        if last.decimal or self.tokens[at].is_digits or not any(
+                e.fraction_case for e in self.lex.readings.get(self.tokens[at].norm, ())):
+            return []
+        parts = _sum(run)
+        if _whole(parts) in ("0", "1"):
+            return []
+        return [Parse(end, Rational(numerator, parts.canonical()), parts_at=at)
+                for end, numerator in self.small(last.end, nonzero=True) if _less(Rational(numerator), parts)]
+
     # Other numbers ----------------------------------------------------
 
     def fractions(self, i: int) -> list[Parse]:
@@ -751,6 +790,7 @@ class Grammar:
             found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
+            found += self.case_fraction_tail(run)
         return found
 
 

@@ -27,7 +27,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                       lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
                       compound_words=frozenset(lexicon.readings) if lexicon.compound_words else frozenset(),
                       dotted_i=lexicon.dotted_i, digit_suffix_marks=lexicon.digit_suffix_marks,
-                      dot_ordinal=lexicon.dot_ordinal)
+                      dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -53,7 +53,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = [p for p in grammar.numbers(start) if _whole_words(grammar, run, start, p.end)]
+        parses = [p for p in grammar.numbers(start) if _whole_words(grammar, run, start, p)]
         # a number starts and ends at the edges of a word, never inside one
         if not parses or run[i].glued:
             i += 1
@@ -82,13 +82,15 @@ def _is_minus(grammar: Grammar, lexicon: Lexicon, run: list[Token], i: int) -> b
     return not any(tuple(words[-len(idiom):]) == idiom for idiom in lexicon.minus_idioms)
 
 
-def _whole_words(grammar: Grammar, run: list[Token], start: int, end: int) -> bool:
-    """True when the tokens from ``start`` to ``end`` end at the edge of a
+def _whole_words(grammar: Grammar, run: list[Token], start: int, parse: Parse) -> bool:
+    """True when the tokens of ``parse`` from ``start`` end at the edge of a
     word, and no form before the last one closes the number with a case
-    ending ("yüzde" ends its number, so "yüzde elli" is no 150)."""
+    ending ("yüzde" ends its number, so "yüzde elli" is no 150), except the
+    form that names the parts of a fraction ("üçte bir")."""
+    end = parse.end
     if end < len(run) and run[end].glued:
         return False
-    return not any(grammar.closes(k) for k in range(start, end - 1))
+    return not any(grammar.closes(k) for k in range(start, end - 1) if k != parse.parts_at)
 
 
 def _ordinal_word(lexicon: Lexicon, tokens: list[Token]) -> bool:
@@ -159,4 +161,9 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
     # one word whose every reading has a common meaning that is no number
     entries = () if run[start].is_digits else lexicon.readings.get(run[start].norm, ())
     lone_ambiguous = parse.end == start + 1 and bool(entries) and all(e.ambiguous for e in entries)
-    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous else 1.0
+    # a number written as one word that the lexicon lists with another
+    # meaning ("üksteist" is eleven and "each other")
+    word = run[start:parse.end]
+    listed = len(word) > 1 and all(t.glued for t in word[1:]) \
+        and "".join(t.norm for t in word) in lexicon.ambiguous_words
+    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous or listed else 1.0
