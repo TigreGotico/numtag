@@ -104,6 +104,11 @@ class TestCardinals(unittest.TestCase):
         # 10^6 + 200 x 1000 = 1200000; 2 x 10^6
         self.assertEqual(en("between one million two hundred thousand and two million"),
                          [("one million two hundred thousand", "1200000", C), ("two million", "2000000", C)])
+        # 2000 and 150000 tie with the reading with no cue, 2100 and 50000,
+        # on significant digits; a split inside "one hundred and fifty" wins
+        # only with fewer digits
+        self.assertEqual(en("between two thousand and one hundred and fifty thousand"),
+                         [("two thousand", "2000", C), ("one hundred and fifty thousand", "150000", C)])
 
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 2000 x 10^6; 3000 x 10^6

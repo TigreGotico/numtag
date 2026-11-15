@@ -606,19 +606,23 @@ class Grammar:
         and then the longest left side: "entre dois milhões e mil e quinhentos
         milhões" is 2000000 and 1500000000, not 2001000 and 500000000. A
         joiner inside a number below a thousand ("sessenta e sete") splits
-        nothing, unless the words read as two numbers there with no cue."""
+        nothing, unless the words read as two numbers there with no cue and
+        that split has fewer significant digits than every other: so a cue
+        never reads worse than none ("entre mil e quinhentos e dois mil" is
+        1500 and 2000), and "between two thousand and one hundred and fifty
+        thousand" is 2000 and 150000."""
         if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
             return None
-        # Where the words read as more than one number with no cue, that
-        # split is a candidate too, so a cue never reads worse than none.
         plain = self._numbers(i)
         default = max(plain, key=lambda p: p.end).end if plain else None
         best, best_digits = None, None
         for k in range(i + 1, len(self.tokens)):
             if not self._number_word(k - 1):
                 break
-            if not self._is_word(k, self.lex.joiners) or k != default and any(
-                    end > k + 1 for x in range(i, k) for end, _ in self.small(x)):
+            if not self._is_word(k, self.lex.joiners):
+                continue
+            inner = any(end > k + 1 for x in range(i, k) for end, _ in self.small(x))
+            if inner and k != default:
                 continue
             left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]
             right = self._numbers(k + 1)
@@ -626,7 +630,9 @@ class Grammar:
                 continue
             low, high = left[0].value, max(right, key=lambda p: p.end).value
             limit_digits = _significant_digits(low) + _significant_digits(high)
-            if _less(low, high) and (best_digits is None or limit_digits <= best_digits):
+            better = best_digits is None or limit_digits < best_digits or (
+                limit_digits == best_digits and not inner)
+            if _less(low, high) and better:
                 best, best_digits = left, limit_digits
         return best
 
