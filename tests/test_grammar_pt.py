@@ -227,6 +227,10 @@ class TestCardinals(unittest.TestCase):
                          [("dois milhões", "2000000", C), ("três biliões", "3" + "0" * 12, C)])
         self.assertEqual(pt("um milhão e um bilião"),
                          [("um milhão", "1000000", C), ("um bilião", "1" + "0" * 12, C)])
+        # "cem" is a round hundred, so only the rule on "milhão" splits these
+        self.assertEqual(read("um milhão e cem bilhões", "pt-BR"),
+                         [("um milhão", "1000000", C), ("cem bilhões", "1" + "0" * 11, C)])
+        self.assertEqual(read("um milhão bilhões", "pt-BR"), [("um milhão", "1000000", C)])
         # 3 x 10^12 + 500 x 10^3 x 10^6 = 3500000000000
         self.assertEqual(pt("três biliões e quinhentos mil milhões"),
                          [("três biliões e quinhentos mil milhões", "35" + "0" * 11, C)])

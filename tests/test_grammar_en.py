@@ -51,6 +51,8 @@ class TestCardinals(unittest.TestCase):
     def test_only_a_cardinal_with_thousand_counts_a_larger_scale_noun(self):
         self.assertEqual(en("between two million and three billion dollars"),
                          [("two million", "2000000", C), ("three billion", "3000000000", C)])
+        self.assertEqual(en("one million two billion"),
+                         [("one million", "1000000", C), ("two billion", "2000000000", C)])
 
     def test_a_group_fits_below_the_digits_of_the_count_before_it(self):
         # 2500 x 10^6 leaves eight zeros; 600 x 10^6 has nine digits
