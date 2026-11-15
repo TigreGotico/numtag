@@ -1,0 +1,415 @@
+# Rulings
+
+A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. The lexicon files carry the same sources, word for word.
+
+All examples on this page use this helper:
+
+```python
+>>> from numtag import tag_numbers
+>>> def read(text, lang="pt-PT"):
+...     return [(m.text, m.value) for m in tag_numbers(text, lang)]
+```
+
+## The joiner before the last group
+
+In Portuguese, "e" joins the tens and the units, and the hundreds to the rest of their class ("trezentos e vinte e um"). Between two classes, "e" is required before a last group that is below a hundred or a round hundred. Without the "e", that group starts a new number. Before any other group, the "e" is optional.
+
+```python
+>>> read("No cheque lia-se mil duzentos euros, sem o e.")
+[('mil', '1000'), ('duzentos', '200')]
+>>> read("A viagem custou mil e duzentos euros.")
+[('mil e duzentos', '1200')]
+>>> read("O comboio transporta mil duzentos e cinquenta passageiros.")
+[('mil duzentos e cinquenta', '1250')]
+>>> read("O formulário dizia mil trinta páginas, sem o e.")
+[('mil', '1000'), ('trinta', '30')]
+>>> read("O livro tem mil e trinta páginas.")
+[('mil e trinta', '1030')]
+```
+
+The same rule holds after every scale word.
+
+```python
+>>> read("A empresa faturou dois milhões e trezentos mil euros no ano passado.")
+[('dois milhões e trezentos mil', '2300000')]
+>>> read("O relatório escreveu dois milhões trezentos mil euros, sem o e.")
+[('dois milhões', '2000000'), ('trezentos mil', '300000')]
+>>> read("Plantámos um milhão duzentos mil e trezentos pinheiros.")
+[('um milhão duzentos mil e trezentos', '1200300')]
+```
+
+> Gramática do Português (Fundação Calouste Gulbenkian, 2013-2020, p. 932/933), quoted in Ciberdúvidas 8981: "Liga também as duas classes mais à direita do numeral que contenham valores expressos (ou seja, com casas preeenchidas com algarismos diferentes de zero) quando a segunda termina em dois zeros [...] ou quando começa por zero [...]. Nos outros casos, a conjunção é omitida entre as classes".
+
+> Cunha & Cintra, Nova Gramática do Português Contemporâneo (1984), p. 372, quoted in Ciberdúvidas 34389: "Não se emprega a conjunção entre os milhares e as centenas, salvo quando o número terminar numa centena com dois zeros: 1892 = mil oitocentos e noventa e dois 1800 = mil e oitocentos".
+
+> Teyssier, Manual de Língua Portuguesa (1989), pp. 181-182, quoted in Ciberdúvidas 31900: "E não figura entre os milhares e as centenas, excepto quando a mil se segue um algarismo simples, p. ex.: 4.226: Quatro mil duzentos e vinte e seis 1.400: mil e quatrocentos 1.030: mil e trinta".
+
+> Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
+
+In English, "and" is optional between groups and after "hundred". Both forms read the same number.
+
+```python
+>>> read("The war ended in two thousand and one.", "en")
+[('two thousand and one', '2001')]
+>>> read("The war ended in two thousand one.", "en")
+[('two thousand one', '2001')]
+>>> read("The book has one hundred and one pages.", "en")
+[('one hundred and one', '101')]
+```
+
+> CLDR 49 RBNF en: %spellout-cardinal writes no "and" ("100: << hundred[ >>];", "1000: << thousand[ >>];") and %spellout-cardinal-verbose writes one before a last group below 100.
+
+> Wikipedia, "English numerals": in American English "many students are taught [...] not to use the word and anywhere in the whole part of a number, so it is not used before the tens and ones"; "Despite this rule, some Americans use the and in reading numbers containing tens and ones as an alternative".
+
+## A comma between classes
+
+In Portuguese, a comma after a scale word and before a number word links two classes of one number. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
+
+```python
+>>> read("O cheque era de dois milhões, duzentos e trinta e seis mil trezentos e vinte e um euros.")
+[('dois milhões, duzentos e trinta e seis mil trezentos e vinte e um', '2236321')]
+>>> read("Dos dois milhões, trezentos mil foram para impostos.")
+[('dois milhões', '2000000'), ('trezentos mil', '300000')]
+```
+
+> Gramática do Português (Fundação Calouste Gulbenkian, 2013-2020, p. 932/933), quoted in Ciberdúvidas 8981: "Nos outros casos, a conjunção é omitida entre as classes [ex. 2 236 321 – dois milhões, duzentos e trinta e seis mil trezentos e vinte e um]". The same page: "é costume os milhões e os milhares serem simplesmente separados com vírgula, ficando o e subentendido".
+
+In English, a comma ends a number. CLDR writes a comma between classes in its verbose spellout only. In English running text, a comma after a number word more often ends a list item. This choice is structural, with no outside source.
+
+```python
+>>> read("They counted one million, two hundred thousand votes.", "en")
+[('one million', '1000000'), ('two hundred thousand', '200000')]
+```
+
+> CLDR 49 RBNF en %spellout-cardinal-verbose writes a comma before a group of a hundred or more after "million" and larger ("1000000: << million[>%%commas>];", "%%commas: 1: ' and =%spellout-cardinal-verbose=; 100: , =%spellout-cardinal-verbose=;"), and %spellout-cardinal writes none ("1000000: << million[ >>];").
+
+## A count before a larger scale noun
+
+Only "mil" or "thousand" counts a larger scale noun: "mil milhões" is 10^9. A count with "e" after "mil" counts the noun only when the count is well formed. In Portuguese the last group after "mil e" is below a hundred or a round hundred. In English the last group after "thousand and" is below a hundred.
+
+```python
+>>> read("O estádio custou mil e quinhentos milhões de euros.")
+[('mil e quinhentos milhões', '1500000000')]
+>>> read("O país deve dois mil e trezentos milhões.")
+[('dois mil e trezentos milhões', '2300000000')]
+>>> read("Escreveu mil e cento e vinte milhões.")
+[('mil', '1000'), ('cento e vinte milhões', '120000000')]
+>>> read("The debt is two thousand five hundred million.", "en")
+[('two thousand five hundred million', '2500000000')]
+>>> read("The debt is two thousand and five hundred million.", "en")
+[('two thousand', '2000'), ('five hundred million', '500000000')]
+```
+
+A scale noun closes its group, so "milhão" counts no larger noun.
+
+```python
+>>> read("Gastou um milhão e dois bilhões.", "pt-BR")
+[('um milhão', '1000000'), ('dois bilhões', '2000000000')]
+```
+
+> Gramática do Português (Fundação Calouste Gulbenkian, 2013-2020, p. 932/933), as quoted for joiner_before_last_group: "e" joins the two rightmost classes "quando a segunda termina em dois zeros [...] ou quando começa por zero".
+
+> CLDR 49 RBNF en: "%%and: 1: ' and =%spellout-cardinal-verbose=; 100: ' =%spellout-cardinal-verbose=;"
+
+## A scale noun agrees with its count
+
+In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. English keeps the singular after any count.
+
+```python
+>>> read("Doaram cem mil e um milhão de euros.")
+[('cem mil', '100000'), ('um milhão', '1000000')]
+>>> read("Contaram mil e um milhões de estrelas.")
+[('mil e um milhões', '1001000000')]
+>>> read("The town got two million dollars.", "en")
+[('two million', '2000000')]
+```
+
+> Squarisi, "Milhão, milhar e mil — concordância", Blog da Dad, Correio Braziliense: "Milhão é substantivo masculino. O numeral ou o adjetivo que o modifica deve concordar com ele: dois milhões de pessoas, duzentos milhões de estrelas, o milhão de dólares".
+
+> Wiktionary, "million", usage notes: "Until the early 20th century, million behaved much like an ordinary quantificational noun".
+
+## Collectives
+
+A collective noun ("dúzia", "dezena", "centena", "dozen", "score") takes a count and ends its number. Its count is the whole cardinal before it, so "mil e duas dúzias" is 1002 × 12. After a scale noun, the collective counts only its own group, because the noun closes the group before it.
+
+```python
+>>> read("Encomendámos mil e duas dúzias de ovos.")
+[('mil e duas dúzias', '12024')]
+>>> read("Vendeu um milhão e duas dúzias de rosas.")
+[('um milhão e duas dúzias', '1000024')]
+>>> read("Pediu uma dúzia e duas mil dúzias de pastéis.")
+[('uma dúzia', '12'), ('duas mil dúzias', '24000')]
+```
+
+A collective of a place value ("dezena", "centena") after "mil e" counts only the group after the joiner. Without the joiner, a count and a collective after a scale numeral start a new number.
+
+```python
+>>> read("Vieram treze mil e duas centenas de pessoas.")
+[('treze mil e duas centenas', '13200')]
+>>> read("Vieram treze mil duas centenas de pessoas.")
+[('treze mil', '13000'), ('duas centenas', '200')]
+>>> read("Compraram mil duzentas dúzias de ovos.")
+[('mil', '1000'), ('duzentas dúzias', '2400')]
+```
+
+Source: maintainer ruling.
+
+"de" and a plural collective or scale noun multiply a collective. A singular class noun after "de" names that class.
+
+```python
+>>> read("Comprou uma dúzia de dúzias de ovos.")
+[('uma dúzia de dúzias', '144')]
+>>> read("Chegaram duas dezenas de milhar de pessoas.")
+[('duas dezenas de milhar', '20000')]
+>>> read("Comeu um terço de dúzia de ovos.")
+[('um terço de dúzia', '4')]
+```
+
+> Priberam, "milhar", sense 3: "Ordem ou grupo de algarismos intermédio às unidades e aos milhões."
+
+> Priberam, "dúzia", sense 1: "Conjunto de doze."
+
+In English, "score" takes a cardinal after "and".
+
+```python
+>>> read("Four score and seven years ago our fathers brought forth a nation.", "en")
+[('Four score and seven', '87')]
+```
+
+> Wiktionary, "dozen", noun: "A set of twelve"; "score", noun: "Twenty (20)".
+
+## Halves
+
+"e meio" after a scale noun adds half of that noun. After a collective it adds half of the collective. After a small number it adds a half of one.
+
+```python
+>>> read("Venderam um milhão e meio de bilhetes.")
+[('um milhão e meio', '1500000')]
+>>> read("Comprei dúzia e meia de ovos.")
+[('dúzia e meia', '18')]
+>>> read("A medição deu mil e meio.")
+[('mil e meio', '1000.5')]
+>>> read("Juntou cem e meia dúzia de cromos.")
+[('cem e meia dúzia', '106')]
+>>> read("Two and a half million people voted.", "en")
+[('Two and a half million', '2500000')]
+```
+
+Source: maintainer ruling for the half of a scale noun, and Priberam for the half dozen:
+
+> Priberam, "dúzia": "meia dúzia": "Conjunto de seis.".
+
+A half before a noun that it halves is not part of the number before it. "uma hora e meia" is a duration: one hour and a half hour. numtag gives the two numbers, and a date library reads the duration. This reading is a maintainer ruling. A half before a unit of measure is half of that unit.
+
+```python
+>>> read("Esperou uma hora e meia.")
+[('uma', '1'), ('meia', '0.5')]
+>>> read("Pesou um milhão e meio quilo.")
+[('um milhão', '1000000'), ('meio', '0.5')]
+```
+
+> Dicio, "Meio-dia e meio ou meio-dia e meia": "A palavra meia é um numeral fracionário e se refere à metade de um todo, de uma unidade. Sendo um numeral fracionário, deverá estabelecer concordância com a unidade fracionada".
+
+A half after a small cardinal joins it: "às três e meia" is 3.5. No outside source covers a half after a small cardinal, so this reading is structural. A clock reader takes the hour and the half from the words.
+
+```python
+>>> read("Saímos às três e meia.")
+[('três e meia', '3.5')]
+```
+
+## Ranges after "entre" and "between"
+
+After a range cue, the first number ends at a joiner that splits the words into two complete numbers, the first one smaller.
+
+```python
+>>> read("O prémio fica entre cem mil e um milhão de euros.")
+[('cem mil', '100000'), ('um milhão', '1000000')]
+>>> read("O custo fica entre cinco mil e sessenta e sete milhões.")
+[('cinco mil', '5000'), ('sessenta e sete milhões', '67000000')]
+>>> read("The prize is between five hundred thousand and two million dollars.", "en")
+[('five hundred thousand', '500000'), ('two million', '2000000')]
+```
+
+With no cue, the same words can read as one number.
+
+```python
+>>> read("O custo foi de cinco mil e sessenta e sete milhões.")
+[('cinco mil e sessenta e sete milhões', '5067000000')]
+```
+
+> Priberam, "entre", sense 3: "Indica situação entre duas ou mais coisas, duas ou mais ideias, dois ou mais conceitos, etc."
+
+> Wiktionary, "between", sense 1: "In the position or interval that separates (two things), or intermediate in quantity or degree".
+
+## The tie-break between splits
+
+Where the same words split into two numbers at more than one joiner, the split with the fewest significant digits wins. When two splits tie, the longer first number wins. A split inside a number below a thousand wins only with fewer digits. The same rule picks the split after a range cue, and a range cue never reads worse than the same words with no cue. This rule is structural, with no outside source: the limits of a range are most often round numbers.
+
+```python
+>>> read("Foram mil milhões e mil e quinhentos milhões.")
+[('mil milhões', '1000000000'), ('mil e quinhentos milhões', '1500000000')]
+>>> read("Gastou dois milhões e mil e três milhões.")
+[('dois milhões e mil', '2001000'), ('três milhões', '3000000')]
+>>> read("O valor fica entre dois milhões e quinhentos mil e três milhões.")
+[('dois milhões e quinhentos mil', '2500000'), ('três milhões', '3000000')]
+>>> read("The fee is between two thousand and one hundred and fifty thousand dollars.", "en")
+[('two thousand', '2000'), ('one hundred and fifty thousand', '150000')]
+```
+
+In the first example, 1 + 2 significant digits beat the split 1000001000 and 500000000, with 7 + 1. In the second, both splits have 5 significant digits, so the longer first number wins.
+
+## The leftmost longest number
+
+At each position numtag takes the longest number. Where a number can still grow by a plain group, it takes the group, and a later count starts the next number. With nothing before it, a compound count reads as one number. A number ends where no rule takes the next word.
+
+```python
+>>> read("Foram um milhão e quinhentos mil e dois milhões.")
+[('um milhão e quinhentos mil', '1500000'), ('dois milhões', '2000000')]
+>>> read("Foram duzentos mil e dois milhões.")
+[('duzentos mil e dois milhões', '200002000000')]
+>>> read("twenty one twenty", "en")
+[('twenty one', '21'), ('twenty', '20')]
+>>> read("um um um")
+[('um', '1'), ('um', '1'), ('um', '1')]
+```
+
+No rule joins "um" to "um", so each word is a number. This rule is structural, with no outside source.
+
+## Decimals
+
+A decimal marker ("vírgula", "ponto", "point") or a decimal mark in digits ("2,5", "2.5") starts the fraction part. Each word after the marker gives its own digits. Where the words split in more than one way, the reading with the fewest parts wins.
+
+```python
+>>> read("O bebé pesa dois vírgula cinco quilos.")
+[('dois vírgula cinco', '2.5')]
+>>> read("O valor de pi é três vírgula um quatro.")
+[('três vírgula um quatro', '3.14')]
+>>> read("The rate is three point twenty five.", "en")
+[('three point twenty five', '3.25')]
+```
+
+> CLDR 49 RBNF pt_PT and pt %spellout-cardinal-masculine: "x.x: << vírgula >>;"; Priberam, "vírgula", sense 2: "[Matemática] Sinal gráfico (,) que serve para separar os números inteiros das fracções decimais."
+
+> Wiktionary, "point", noun sense 4: "A decimal point".
+
+The fraction part follows the grammar of the whole part. A hundreds word never follows another part, as "cem" never follows units in a cardinal. So the decimal ends before it. This rule is structural, with no outside source.
+
+```python
+>>> read("zero vírgula vinte e cinco cem")
+[('zero vírgula vinte e cinco', '0.25'), ('cem', '100')]
+>>> read("zero vírgula dois cinco")
+[('zero vírgula dois cinco', '0.25')]
+```
+
+A multiplier after a decimal multiplies it, as a scale word does.
+
+```python
+>>> read("one point two hundred", "en")
+[('one point two hundred', '120')]
+>>> read("Sales hit one point two million units.", "en")
+[('one point two million', '1200000')]
+>>> read("um vírgula dois mil")
+[('um vírgula dois mil', '1200')]
+```
+
+> Wikipedia, "English numerals": a decimal is read "as a cardinal number, followed by", then "point", "and then by the digits of the fractional part". 1.2 million is "one point two million".
+
+A mark right before the first digit is a decimal mark, because a group mark stands only between digits. An ellipsis is not a decimal mark.
+
+```python
+>>> read("A taxa é de ,5 por cento e o resto ...5.")
+[(',5', '0.5'), ('5', '5')]
+>>> read("The rate is .5 percent.", "en")
+[('.5', '0.5')]
+```
+
+## Ordinals
+
+An ordinal scale word multiplies only the last group of the number before it. The larger groups before that add. Where the product does not fit after the groups before it, the ordinal starts a new number.
+
+```python
+>>> read("He was the two million three hundred thousandth customer.", "en")
+[('two million three hundred thousandth', '2300000')]
+>>> read("six thousand two hundredth", "en")
+[('six thousand two hundredth', '6200')]
+>>> read("one thousand two thousandth", "en")
+[('one thousand two', '1002'), ('thousandth', '1000')]
+>>> read("dois milhões e trezentos milésimo")
+[('dois milhões e trezentos milésimo', '2300000')]
+```
+
+> CLDR 49 RBNF en %spellout-ordinal: "100: <%spellout-numbering< hundred[ >>|th];", "1000: <%spellout-numbering< thousand[ >>|th];".
+
+In Portuguese every word of an ordinal is ordinal, and a cardinal count before "milésimo" multiplies it. In English only the last word is ordinal.
+
+```python
+>>> read("Ficou em vigésimo primeiro lugar.")
+[('vigésimo primeiro', '21')]
+>>> read("O dois milésimo visitante ganhou.")
+[('dois milésimo', '2000')]
+>>> read("It was the twenty-first day.", "en")
+[('twenty-first', '21')]
+```
+
+> Teyssier, p. 183: 2000.º is "dois milésimo"; the ordinal scale word takes the power of the cardinal it names.
+
+## Fractions
+
+A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.
+
+```python
+>>> read("Cada herdeiro recebe um doze avos.")
+[('um doze avos', '1/12')]
+>>> read("A resposta é doze vinte e cinco avos.")
+[('doze vinte e cinco avos', '0.48')]
+>>> read("Escreveu dez avos no quadro.")
+[('dez', '10')]
+>>> read("Ganhou dois milhões e quarto.")
+[('dois milhões e quarto', '2000000.25')]
+```
+
+> Priberam, "avo", [Matemática]: "Palavra que se junta a um denominador maior que dez para indicar a divisão da unidade no número de partes iguais indicado por esse denominador (ex.: doze vinte e cinco avos = 12/25)."
+
+## Words that are no number
+
+A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.
+
+```python
+>>> read("Ganhou o milhão.")
+[]
+>>> read("Havia milhões de pessoas na rua.")
+[]
+>>> read("Chegou um milhão de pessoas, quase milhão de votos.")
+[('um milhão', '1000000'), ('milhão', '1000000')]
+>>> read("Millions of people watched.", "en")
+[]
+```
+
+> Priberam, "milhão", sense 2: "[Informal, Figurado] Número ou quantidade muito grande".
+
+A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
+
+```python
+>>> read("Na segunda-feira chegam três.")
+[('três', '3')]
+>>> read("A reunião é a 3 dez. 2025.")
+[('3', '3'), ('2025', '2025')]
+>>> read("Os bilhetes eram dez.")
+[('dez', '10')]
+```
+
+> Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
+
+"menos" before a number makes it negative, except in idioms such as "pelo menos" and "mais ou menos". "meios" is a noun in "meios de pagamento", so it gives no fraction.
+
+```python
+>>> read("A temperatura desceu para menos quarenta e dois graus.")
+[('menos quarenta e dois', '-42')]
+>>> read("Precisa de pelo menos dois dias.")
+[('dois', '2')]
+>>> read("Aceitamos dois meios de pagamento.")
+[('dois', '2')]
+```
+
+---
+[← Confidence and homographs](confidence-and-homographs.md) · [Home](index.md) · [Portuguese →](languages/pt.md)

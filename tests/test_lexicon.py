@@ -4,7 +4,7 @@ import unittest
 from fnmatch import fnmatch
 from pathlib import Path
 
-from numtag.lexicon import load
+from numtag.lexicon import Joiner, load
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
@@ -50,6 +50,14 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertEqual({p.stem: load(p.stem).joiner_before_round_hundred for p in LEXICONS},
                          {"az": False, "en": False, "et": False, "fi": False, "hu": False,
                           "pt-BR": True, "pt-PT": True, "tr": False})
+
+    def test_only_portuguese_requires_the_joiner_before_a_last_round_group(self):
+        self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": Joiner.OPTIONAL, "pt-BR": Joiner.REQUIRED, "pt-PT": Joiner.REQUIRED})
+
+    def test_only_portuguese_takes_a_comma_between_classes(self):
+        self.assertEqual({lang: load(lang).comma_between_classes for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": False, "pt-BR": True, "pt-PT": True})
 
     def test_an_unknown_language_is_refused(self):
         with self.assertRaises(ValueError):

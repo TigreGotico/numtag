@@ -10,8 +10,8 @@ from dataclasses import dataclass, replace
 # A soft hyphen (U+00AD) inside a word marks where a line may break; it
 # is no break in the word ("huszon\u00adöt").
 SOFT_HYPHEN = "\u00ad"
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+(?:\u00ad[^\W\d_]+)*)")
-_ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
+_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])(?:[-−][.,]?|[.,]))?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+(?:\u00ad[^\W\d_]+)*)")
+_ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
@@ -81,8 +81,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     lists it, after an optional dot ("1.º"). A digit string glued to the end
     of a word ("mp3") is part of a name and is dropped, and so is a digit
     string with a digit outside 0-9. A digit string keeps a mark before its
-    first digit only when the language lists the mark as a lone decimal mark
-    and only digits follow it (".5"). An abbreviation is a listed word with a
+    first digit, also after a sign, only when the language lists the mark as
+    a lone decimal mark and only digits follow it (".5", "-.5"). An abbreviation is a listed word with a
     period that no sentence end follows ("dez. 2025"); it is dropped, so it
     breaks the link between the words around it. Given ``number_words``, a
     hyphenated compound with a word outside them is one noun
@@ -110,9 +110,10 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(text, match.end()):
             continue
         start = match.start()
-        if is_digits and match.group()[0] in ".," and not (
-                match.group()[0] in lone_decimal_marks and _LONE_MARK.fullmatch(match.group())):
-            start += 1
+        unsigned = match.group().lstrip("-−")
+        if is_digits and unsigned[0] in ".," and not (
+                unsigned[0] in lone_decimal_marks and _LONE_MARK.fullmatch(unsigned)):
+            start += len(match.group()) - len(unsigned) + 1
         gap = text[previous_end:start]
         if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
             previous_end = match.end()
