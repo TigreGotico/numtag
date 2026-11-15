@@ -1,4 +1,5 @@
 import json
+import re
 import tomllib
 import unittest
 from fnmatch import fnmatch
@@ -31,6 +32,22 @@ class TestLexiconFiles(unittest.TestCase):
             with self.subTest(file=path.name):
                 self.assertGreater(len(items), 0)
                 self.assertEqual([i for i in items if not i.get("source", "").strip()], [])
+
+    def test_every_source_quotes_a_page_or_says_it_is_structural(self):
+        # A quote is a double-quoted run of two words or more; a bare term or a digit mark is no quote.
+        def quotes(source):
+            return [q for q in re.findall(r'"([^"]*)"', source) if " " in q.strip() and len(q) >= 4]
+
+        sources = []
+        for lang in ("en", "pt-BR", "pt-PT"):
+            data = json.loads((ROOT / "numtag" / "lexicon" / f"{lang}.json").read_text(encoding="utf-8"))
+            items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
+            sources += [(lang, i["source"]) for i in items + data.get("entries", [])]
+            gold = (ROOT / "tests" / "gold" / f"{lang}.jsonl").read_text(encoding="utf-8")
+            sources += [(f"gold {lang}", json.loads(line)["source"]) for line in gold.splitlines()]
+        unquoted = sorted({(name, s) for name, s in sources
+                           if not quotes(s) and "no external source" not in s.lower()})
+        self.assertEqual(unquoted, [])
 
     def test_every_lexicon_loads_in_both_scales(self):
         for path in LEXICONS:
