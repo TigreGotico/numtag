@@ -291,6 +291,12 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("about .5 percent"), [(".5", "0.5", D)])
         # the comma only groups digits
         self.assertEqual(en(",5"), [("5", "5", C)])
+        self.assertEqual(en("about -.5 percent"), [("-.5", "-0.5", D)])
+
+    def test_a_decimal_point_after_a_leading_zero(self):
+        self.assertEqual(en("weighs 0.500 kg"), [("0.500", "0.5", D)])
+        # the comma groups digits, and a group never follows a leading zero
+        self.assertEqual(en("weighs 0,500 kg"), [])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_point(self):
         self.assertEqual(en("two point zero"), [("two point zero", "2", C)])

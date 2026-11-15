@@ -106,7 +106,7 @@ class Grammar:
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
-            rf"-?(?:[0-9]{{1,3}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
+            rf"-?(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
 
     # Token access -----------------------------------------------------
 
@@ -157,10 +157,11 @@ class Grammar:
         if i >= len(self.tokens) or not self.tokens[i].is_digits or self.tokens[i].suffix:
             return None
         end, text = i + 1, self.tokens[i].text.replace("\u2212", "-")
-        if text[0] in ".,":
-            # a lone decimal mark (".5"): the tokenizer keeps only a listed one
-            return end, Rational.from_decimal("0", text[1:]), True
-        if self.lex.space_groups and re.fullmatch(r"-?[0-9]{1,3}", text):
+        if text.lstrip("-")[0] in ".,":
+            # a lone decimal mark (".5", "-.5"): the tokenizer keeps only a listed one
+            value = Rational.from_decimal("0", text.lstrip("-")[1:])
+            return end, (-value if text.startswith("-") else value), True
+        if self.lex.space_groups and re.fullmatch(r"-?[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
                 text += self.lex.group_mark + self.tokens[end].text
                 end += 1

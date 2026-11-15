@@ -533,6 +533,19 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("...5"), [("5", "5", C)])
         self.assertEqual(pt("custa .5.000"), [("5.000", "5000", C)])
 
+    def test_a_lone_decimal_mark_after_a_sign(self):
+        self.assertEqual(pt("estão -.5 graus"), [("-.5", "-0.5", D)])
+        self.assertEqual(pt("estão -,5 graus"), [("-,5", "-0.5", D)])
+
+    def test_no_digit_group_follows_a_leading_zero(self):
+        # "." groups digits in pt, and a group never follows a leading zero:
+        # "0.500" and "01.500" are no number
+        self.assertEqual(pt("pesa 0.500 kg"), [])
+        self.assertEqual(pt("pesa 01.500 kg"), [])
+        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [])
+        self.assertEqual(pt("os números 0 500"), [("0", "0", C), ("500", "500", C)])
+        self.assertEqual(pt("pesa 1.500 kg"), [("1.500", "1500", C)])
+
     def test_a_whole_value_is_cardinal_even_with_a_decimal_mark(self):
         self.assertEqual(pt("dois vírgula zero"), [("dois vírgula zero", "2", C)])
         self.assertEqual(pt("3,00 euros"), [("3,00", "3", C)])
