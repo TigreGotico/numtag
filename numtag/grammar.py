@@ -682,10 +682,14 @@ class Grammar:
         for a joiner inside a number below a thousand, and the significant
         digits of both. A joiner inside a number below a thousand ("sessenta
         e sete") splits only where the words read as two numbers there with
-        no split."""
+        no split. A first number never ends past the longest reading from
+        ``i``, so the search stops there: a run of number words with no
+        joiner ("um um um") is a list, and the search stays linear."""
         plain = self._numbers(i)
-        default = max(plain, key=lambda p: p.end).end if plain else None
-        for k in range(i + 1, len(self.tokens) - 1):
+        if not plain:
+            return
+        default = max(plain, key=lambda p: p.end).end
+        for k in range(i + 1, min(default + 1, len(self.tokens) - 1)):
             if not self._number_word(k - 1):
                 break
             if not self._is_word(k, self.lex.joiners):
