@@ -114,7 +114,12 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
 
     def test_span_that_starts_after_a_digit_mark(self):
         self.assertRefused(_row("Pesava 3,5 quilos.", _m(9, 10, "5")))
-        self.assertRefused(_row("Custa 1.000 euros.", _m(8, 11, "000")))
+        self.assertRefused(_row("Custa 1.000 euros.", _m(8, 11, "0")))
+        self.assertRefused(_row("It is 3.5 m.", _m(8, 9, "5")))
+
+    def test_a_mark_after_a_letter_is_no_digit_mark(self):
+        check_gold.check_row(_row("Sala n.5", _m(7, 8, "5")))
+        check_gold.check_row(_row("Ver p.12", _m(6, 8, "12")))
 
     def test_a_list_after_the_digits_is_no_digit_mark(self):
         check_gold.check_row(_row("1, 2 e 3", _m(0, 1, "1"), _m(3, 4, "2"), _m(7, 8, "3")))
@@ -126,6 +131,16 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
             n_in, errors = check_gold.check_file(path)
         self.assertEqual(len(errors), 1)
         self.assertIn("no decimal marks", errors[0])
+
+    def test_the_run_counts_good_rows_as_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "pt-PT.jsonl"
+            path.write_text('{"text": "dez", "mentions": [], "source": "arithmetic"}\n', encoding="utf-8")
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                status = check_gold.main([str(path)])
+        self.assertEqual(status, 0)
+        self.assertIn("pt-PT.jsonl: 1 in, 1 out", out.getvalue())
 
     def test_a_file_with_no_known_decimal_marks_reports_no_row_checked(self):
         with tempfile.TemporaryDirectory() as tmp:
