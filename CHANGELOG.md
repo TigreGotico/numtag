@@ -1,16 +1,21 @@
 # Changelog
 
+## [0.2.0a1](https://github.com/TigreGotico/numtag/tree/0.2.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a1)
+
+**Merged pull requests:**
+
+- docs: quote a saved page in every lexicon and gold source field [\#14](https://github.com/TigreGotico/numtag/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: read el, ar, he, fa and kab numbers [\#10](https://github.com/TigreGotico/numtag/pull/10) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.2a1...0.1.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.1.0a1)
 
 **Merged pull requests:**
 
 - feat: tag\_numbers engine for pt-PT, pt-BR and en [\#4](https://github.com/TigreGotico/numtag/pull/4) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
-## [0.0.2a1](https://github.com/TigreGotico/numtag/tree/0.0.2a1) (2026-11-15)
-
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.0.2a1)
 
 
 

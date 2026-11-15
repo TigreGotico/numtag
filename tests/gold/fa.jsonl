@@ -1,0 +1,151 @@
+{"text": "رمز با صفر شروع می‌شود.", "mentions": [{"start": 7, "end": 10, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"0: صفر\"."}
+{"text": "یک کتاب خریدم.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF fa: \"1: یک\"; \"یک\" before a noun also marks it indefinite."}
+{"text": "فقط یک.", "mentions": [{"start": 4, "end": 6, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1: یک\"; no noun follows."}
+{"text": "دو برادر دارم.", "mentions": [{"start": 0, "end": 2, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"2: دو\"."}
+{"text": "سه گربه دیدم.", "mentions": [{"start": 0, "end": 2, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"3: سه\"."}
+{"text": "چهار فصل داریم.", "mentions": [{"start": 0, "end": 4, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"4: چهار\"."}
+{"text": "پنج دقیقه صبر کردم.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"5: پنج\"."}
+{"text": "ساعت شش بیدار شدم.", "mentions": [{"start": 5, "end": 7, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"6: شش\"."}
+{"text": "هفته هفت روز دارد.", "mentions": [{"start": 5, "end": 8, "value": "7", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"7: هفت\"."}
+{"text": "هشت ساعت کار کردم.", "mentions": [{"start": 0, "end": 3, "value": "8", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"8: هشت\"."}
+{"text": "نه سیاره.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"9: نه\"."}
+{"text": "نه، نمی‌خواهم.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "\"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "ده انگشت دارم.", "mentions": [{"start": 0, "end": 2, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"10: ده\"."}
+{"text": "یازده بازیکن.", "mentions": [{"start": 0, "end": 5, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"11: یازده\"."}
+{"text": "سال دوازده ماه دارد.", "mentions": [{"start": 4, "end": 10, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"12: دوازده\"."}
+{"text": "سیزده ساله است.", "mentions": [{"start": 0, "end": 5, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"13: سیزده\"."}
+{"text": "چهارده روز.", "mentions": [{"start": 0, "end": 6, "value": "14", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"14: چهارده\"."}
+{"text": "پانزده روز صبر کردیم.", "mentions": [{"start": 0, "end": 6, "value": "15", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"15: پانزده\"."}
+{"text": "پونزده تومن دادم.", "mentions": [{"start": 0, "end": 6, "value": "15", "kind": "cardinal"}], "source": "by hand: the spoken form پونزده."}
+{"text": "شانزده ساله.", "mentions": [{"start": 0, "end": 6, "value": "16", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"16: شانزده\"."}
+{"text": "هفده دانش‌آموز.", "mentions": [{"start": 0, "end": 4, "value": "17", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"17: هفده\"."}
+{"text": "هجده سالش شد.", "mentions": [{"start": 0, "end": 4, "value": "18", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"18: هجده\"."}
+{"text": "هیجده سالگی.", "mentions": [{"start": 0, "end": 5, "value": "18", "kind": "cardinal"}], "source": "by hand: the variant هیجده."}
+{"text": "نوزده کارت.", "mentions": [{"start": 0, "end": 5, "value": "19", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"19: نوزده\"."}
+{"text": "بیست هزار؟ نه، فقط بیست تومان.", "mentions": [{"start": 0, "end": 9, "value": "20000", "kind": "cardinal"}, {"start": 11, "end": 13, "value": "9", "kind": "cardinal", "low_confidence": true}, {"start": 19, "end": 23, "value": "20", "kind": "cardinal"}], "source": "arithmetic: 20 x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "بیست و یک سال دارد.", "mentions": [{"start": 0, "end": 9, "value": "21", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"20: بیست[ و >>]\", 20 + 1."}
+{"text": "بیست و پنج نفر آمدند.", "mentions": [{"start": 0, "end": 10, "value": "25", "kind": "cardinal"}], "source": "arithmetic: 20 + 5."}
+{"text": "سی روز.", "mentions": [{"start": 0, "end": 2, "value": "30", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"30: سی\"."}
+{"text": "سی و پنج هزار؟ نه.", "mentions": [{"start": 0, "end": 13, "value": "35000", "kind": "cardinal"}, {"start": 15, "end": 17, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic: (30 + 5) x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "چهل و دو سال دارد.", "mentions": [{"start": 0, "end": 8, "value": "42", "kind": "cardinal"}], "source": "arithmetic: 40 + 2."}
+{"text": "پنجاه کیلومتر.", "mentions": [{"start": 0, "end": 5, "value": "50", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"50: پنجاه\"."}
+{"text": "پلاک شصت و هفت.", "mentions": [{"start": 5, "end": 14, "value": "67", "kind": "cardinal"}], "source": "arithmetic: 60 + 7."}
+{"text": "هفتاد و هشت صفحه.", "mentions": [{"start": 0, "end": 11, "value": "78", "kind": "cardinal"}], "source": "arithmetic: 70 + 8."}
+{"text": "هشتاد سال.", "mentions": [{"start": 0, "end": 5, "value": "80", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"80: هشتاد\"."}
+{"text": "نمره نود و نه.", "mentions": [{"start": 5, "end": 13, "value": "99", "kind": "cardinal"}], "source": "arithmetic: 90 + 9."}
+{"text": "صد تومان دارم.", "mentions": [{"start": 0, "end": 2, "value": "100", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"100: صد\"."}
+{"text": "یکصد نفر.", "mentions": [{"start": 0, "end": 4, "value": "100", "kind": "cardinal"}], "source": "by hand: یکصد: one hundred, the formal form."}
+{"text": "صد و بیست تومان شد.", "mentions": [{"start": 0, "end": 9, "value": "120", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"100: صد[ و >>]\", 100 + 20."}
+{"text": "صد و پنجاه و سه تومان.", "mentions": [{"start": 0, "end": 15, "value": "153", "kind": "cardinal"}], "source": "arithmetic: 100 + 50 + 3."}
+{"text": "دویست نفر آمدند.", "mentions": [{"start": 0, "end": 5, "value": "200", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"200: دویست\"."}
+{"text": "دویست و پنجاه نسخه.", "mentions": [{"start": 0, "end": 13, "value": "250", "kind": "cardinal"}], "source": "arithmetic: 200 + 50."}
+{"text": "سیصد سرباز.", "mentions": [{"start": 0, "end": 4, "value": "300", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"300: سیصد\"."}
+{"text": "چهارصد متر.", "mentions": [{"start": 0, "end": 6, "value": "400", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"400: چهارصد\"."}
+{"text": "پانصد تومان.", "mentions": [{"start": 0, "end": 5, "value": "500", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"500: پانصد\"."}
+{"text": "ششصد و شصت و شش کلمه.", "mentions": [{"start": 0, "end": 15, "value": "666", "kind": "cardinal"}], "source": "arithmetic: 600 + 60 + 6."}
+{"text": "هفتصد گرم.", "mentions": [{"start": 0, "end": 5, "value": "700", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"700: هفتصد\"."}
+{"text": "هشتصد متر دویدم.", "mentions": [{"start": 0, "end": 5, "value": "800", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"800: هشتصد\"."}
+{"text": "نهصد و نود و نه متر.", "mentions": [{"start": 0, "end": 15, "value": "999", "kind": "cardinal"}], "source": "arithmetic: 900 + 90 + 9."}
+{"text": "هزار تومان.", "mentions": [{"start": 0, "end": 4, "value": "1000", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1000: << هزار\"; \"هزار\" alone is a thousand."}
+{"text": "سال هزار و نهصد و هشتاد و چهار.", "mentions": [{"start": 4, "end": 30, "value": "1984", "kind": "cardinal"}], "source": "arithmetic: 1000 + 900 + 80 + 4."}
+{"text": "سال هزار و سیصد و پنجاه و هفت.", "mentions": [{"start": 4, "end": 29, "value": "1357", "kind": "cardinal"}], "source": "arithmetic: 1000 + 300 + 50 + 7."}
+{"text": "هزار و دویست تومان.", "mentions": [{"start": 0, "end": 12, "value": "1200", "kind": "cardinal"}], "source": "arithmetic: 1000 + 200."}
+{"text": "سال دو هزار و بیست و پنج.", "mentions": [{"start": 4, "end": 24, "value": "2025", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1000: << هزار[ و >>]\", 2 x 1000 + 25."}
+{"text": "سه هزار نفر.", "mentions": [{"start": 0, "end": 7, "value": "3000", "kind": "cardinal"}], "source": "arithmetic: 3 x 1000."}
+{"text": "پنج هزار و پانصد تومان.", "mentions": [{"start": 0, "end": 16, "value": "5500", "kind": "cardinal"}], "source": "arithmetic: 5 x 1000 + 500."}
+{"text": "ده هزار هوادار.", "mentions": [{"start": 0, "end": 7, "value": "10000", "kind": "cardinal"}], "source": "arithmetic: 10 x 1000."}
+{"text": "بیست و یک هزار نفر.", "mentions": [{"start": 0, "end": 14, "value": "21000", "kind": "cardinal"}], "source": "arithmetic: (20 + 1) x 1000."}
+{"text": "صد هزار نفر جمعیت.", "mentions": [{"start": 0, "end": 7, "value": "100000", "kind": "cardinal"}], "source": "arithmetic: 100 x 1000."}
+{"text": "سیصد و پنجاه هزار نسخه.", "mentions": [{"start": 0, "end": 17, "value": "350000", "kind": "cardinal"}], "source": "arithmetic: (300 + 50) x 1000."}
+{"text": "یک میلیون تومان.", "mentions": [{"start": 0, "end": 9, "value": "1000000", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1000000: << میلیون\"."}
+{"text": "ده میلیون نفر.", "mentions": [{"start": 0, "end": 9, "value": "10000000", "kind": "cardinal"}], "source": "arithmetic: 10 x 10^6."}
+{"text": "سه میلیون و دویست هزار تومان.", "mentions": [{"start": 0, "end": 22, "value": "3200000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 200 x 1000."}
+{"text": "هشت میلیارد انسان.", "mentions": [{"start": 0, "end": 11, "value": "8000000000", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1000000000: << میلیارد\", 8 x 10^9."}
+{"text": "هزار میلیارد تومان.", "mentions": [{"start": 0, "end": 12, "value": "1000000000000", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1000000000000: << هزار میلیارد\"."}
+{"text": "یک میلیون و هزار و هفتصد و ده نفر.", "mentions": [{"start": 0, "end": 29, "value": "1001710", "kind": "cardinal"}], "source": "arithmetic: 10^6 + 1000 + 700 + 10."}
+{"text": "میلیون‌ها نفر دیدند.", "mentions": [], "source": "the plural alone names no number."}
+{"text": "هزاران نفر آمدند.", "mentions": [], "source": "by hand: هزاران: thousands of, no number."}
+{"text": "اول شد.", "mentions": [{"start": 0, "end": 3, "value": "1", "kind": "ordinal", "low_confidence": true}], "source": "by hand: اول is first; it is also beginning, so the reading is weak."}
+{"text": "روز یکم ماه.", "mentions": [{"start": 4, "end": 7, "value": "1", "kind": "ordinal"}], "source": "by hand: یکم, first."}
+{"text": "نخستین بار.", "mentions": [{"start": 0, "end": 6, "value": "1", "kind": "ordinal"}], "source": "by hand: نخستین, first."}
+{"text": "طبقه دوم.", "mentions": [{"start": 5, "end": 8, "value": "2", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "در سوم.", "mentions": [{"start": 3, "end": 6, "value": "3", "kind": "ordinal"}], "source": "by hand: سوم, third."}
+{"text": "فصل چهارم.", "mentions": [{"start": 4, "end": 9, "value": "4", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "بازیکن پنجم.", "mentions": [{"start": 7, "end": 11, "value": "5", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "طبقه ششم.", "mentions": [{"start": 5, "end": 8, "value": "6", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "روز هفتم.", "mentions": [{"start": 4, "end": 8, "value": "7", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "ماه هشتم.", "mentions": [{"start": 4, "end": 8, "value": "8", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "سمفونی نهم.", "mentions": [{"start": 7, "end": 10, "value": "9", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "سالگرد دهم.", "mentions": [{"start": 7, "end": 10, "value": "10", "kind": "ordinal", "low_confidence": true}], "source": "by hand: دهم; it is also the verb I give, so the reading is weak."}
+{"text": "قرن بیستم.", "mentions": [{"start": 4, "end": 9, "value": "20", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "قرن بیست و یکم.", "mentions": [{"start": 4, "end": 14, "value": "21", "kind": "ordinal"}], "source": "by hand: -م on the last word, 20 + 1."}
+{"text": "روز سی‌ام.", "mentions": [{"start": 4, "end": 9, "value": "30", "kind": "ordinal"}], "source": "by hand: سی‌ام, 30th."}
+{"text": "سالگرد پنجاهم.", "mentions": [{"start": 7, "end": 13, "value": "50", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "سالگرد صدم.", "mentions": [{"start": 7, "end": 10, "value": "100", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "بازدیدکننده هزارم.", "mentions": [{"start": 12, "end": 17, "value": "1000", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
+{"text": "دومین بار.", "mentions": [{"start": 0, "end": 5, "value": "2", "kind": "ordinal"}], "source": "by hand: -مین before the noun."}
+{"text": "سومین جلسه.", "mentions": [{"start": 0, "end": 5, "value": "3", "kind": "ordinal"}], "source": "by hand: -مین before the noun."}
+{"text": "بیست و پنجمین سالگرد.", "mentions": [{"start": 0, "end": 13, "value": "25", "kind": "ordinal"}], "source": "by hand: -مین on the last word, 20 + 5."}
+{"text": "نیم کیلو.", "mentions": [{"start": 0, "end": 3, "value": "0.5", "kind": "fraction"}], "source": "by hand: نیم: half."}
+{"text": "نصف نان.", "mentions": [{"start": 0, "end": 3, "value": "0.5", "kind": "fraction"}], "source": "by hand: نصف: half."}
+{"text": "سه و نیم ساعت.", "mentions": [{"start": 0, "end": 8, "value": "3.5", "kind": "fraction"}], "source": "by hand: نیم; 3 + 1/2."}
+{"text": "دو و نیم کیلو.", "mentions": [{"start": 0, "end": 8, "value": "2.5", "kind": "fraction"}], "source": "arithmetic: 2 + 1/2."}
+{"text": "یک و نیم میلیون تومان.", "mentions": [{"start": 0, "end": 15, "value": "1500000", "kind": "cardinal"}], "source": "arithmetic: 1.5 x 10^6."}
+{"text": "یک ربع ساعت.", "mentions": [{"start": 0, "end": 6, "value": "0.25", "kind": "fraction"}], "source": "by hand: ربع: a quarter."}
+{"text": "ربع ساعت.", "mentions": [{"start": 0, "end": 3, "value": "0.25", "kind": "fraction"}], "source": "by hand: ربع: a quarter."}
+{"text": "یک سوم آرا.", "mentions": [{"start": 0, "end": 6, "value": "1/3", "kind": "fraction"}], "source": "by hand: a cardinal and the ordinal in -م."}
+{"text": "دو سوم شهر.", "mentions": [{"start": 0, "end": 6, "value": "2/3", "kind": "fraction"}], "source": "by hand: the ordinal does not change with the numerator."}
+{"text": "سه چهارم راه.", "mentions": [{"start": 0, "end": 8, "value": "0.75", "kind": "fraction"}], "source": "arithmetic: 3/4."}
+{"text": "یک پنجم حقوق.", "mentions": [{"start": 0, "end": 7, "value": "0.2", "kind": "fraction"}], "source": "arithmetic: 1/5."}
+{"text": "هفت دهم جمعیت.", "mentions": [{"start": 0, "end": 7, "value": "0.7", "kind": "fraction"}], "source": "arithmetic: 7/10."}
+{"text": "سه ممیز پنج درجه.", "mentions": [{"start": 0, "end": 11, "value": "3.5", "kind": "decimal"}], "source": "CLDR RBNF fa: \"x.x: << ممیز >>\"."}
+{"text": "دو ممیز هفت درصد.", "mentions": [{"start": 0, "end": 11, "value": "2.7", "kind": "decimal"}], "source": "CLDR RBNF fa: \"x.x: << ممیز >>\"."}
+{"text": "منفی پنج درجه.", "mentions": [{"start": 0, "end": 8, "value": "-5", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"-x: منفی >>\"."}
+{"text": "دما به منفی ده رسید.", "mentions": [{"start": 7, "end": 14, "value": "-10", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"-x: منفی >>\"."}
+{"text": "۱۲٬۳۴۵٫۶۷ تومان.", "mentions": [{"start": 0, "end": 9, "value": "12345.67", "kind": "decimal"}], "source": "CLDR root arabext: decimal \"٫\", group \"٬\"."}
+{"text": "۲۵۰۰۰۰۰ نفر.", "mentions": [{"start": 0, "end": 7, "value": "2500000", "kind": "cardinal"}], "source": "CLDR arabext digits."}
+{"text": "۳٫۷۵ کیلو.", "mentions": [{"start": 0, "end": 4, "value": "3.75", "kind": "decimal"}], "source": "CLDR root arabext: decimal \"٫\"."}
+{"text": "۱۵ تومان.", "mentions": [{"start": 0, "end": 2, "value": "15", "kind": "cardinal"}], "source": "CLDR arabext digits."}
+{"text": "٣٤٥ صفحه.", "mentions": [{"start": 0, "end": 3, "value": "345", "kind": "cardinal"}], "source": "CLDR arab digits; Persian text also uses them."}
+{"text": "1,234.5 دلار.", "mentions": [{"start": 0, "end": 7, "value": "1234.5", "kind": "decimal"}], "source": "CLDR main/fa latn: group \",\", decimal \".\"."}
+{"text": "15 دلار.", "mentions": [{"start": 0, "end": 2, "value": "15", "kind": "cardinal"}], "source": "digits."}
+{"text": "دما ‏‎−5 درجه است.", "mentions": [{"start": 6, "end": 8, "value": "-5", "kind": "cardinal"}], "source": "CLDR main/fa writes the minus as \"‎−\"; the directional mark is no part of the number."}
+{"text": "۳ میلیون تومان.", "mentions": [{"start": 0, "end": 8, "value": "3000000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6."}
+{"text": "دو آمدند و سه رفتند.", "mentions": [{"start": 0, "end": 2, "value": "2", "kind": "cardinal"}, {"start": 11, "end": 13, "value": "3", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "پنج سیب و هفت پرتقال.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 10, "end": 13, "value": "7", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "بین ده و بیست نفر.", "mentions": [{"start": 4, "end": 6, "value": "10", "kind": "cardinal"}, {"start": 9, "end": 13, "value": "20", "kind": "cardinal"}], "source": "arithmetic; \"بین\" opens a range."}
+{"text": "بیست، سی و چهل.", "mentions": [{"start": 0, "end": 4, "value": "20", "kind": "cardinal"}, {"start": 6, "end": 8, "value": "30", "kind": "cardinal"}, {"start": 11, "end": 14, "value": "40", "kind": "cardinal"}], "source": "arithmetic; the comma splits the numbers."}
+{"text": "پانزده خواست و دوازده گرفت.", "mentions": [{"start": 0, "end": 6, "value": "15", "kind": "cardinal"}, {"start": 15, "end": 21, "value": "12", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "بین هزار و دو هزار تومان.", "mentions": [{"start": 4, "end": 8, "value": "1000", "kind": "cardinal"}, {"start": 11, "end": 18, "value": "2000", "kind": "cardinal"}], "source": "arithmetic; \"بین\" opens a range."}
+{"text": "یازده بازیکن و پنج ذخیره.", "mentions": [{"start": 0, "end": 5, "value": "11", "kind": "cardinal"}, {"start": 15, "end": 18, "value": "5", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "دو و سه می‌شود پنج.", "mentions": [{"start": 0, "end": 2, "value": "2", "kind": "cardinal"}, {"start": 5, "end": 7, "value": "3", "kind": "cardinal"}, {"start": 15, "end": 18, "value": "5", "kind": "cardinal"}], "source": "arithmetic; \"و\" between two units makes no number."}
+{"text": "پول ندارم.", "mentions": [], "source": "no number."}
+{"text": "علی بلند است.", "mentions": [], "source": "no number."}
+{"text": "دویست تومان و سی ریال.", "mentions": [{"start": 0, "end": 5, "value": "200", "kind": "cardinal"}, {"start": 14, "end": 16, "value": "30", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "سه کیلومتر دور است.", "mentions": [{"start": 0, "end": 2, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF fa."}
+{"text": "چهل و هشت ساعت گذشت.", "mentions": [{"start": 0, "end": 9, "value": "48", "kind": "cardinal"}], "source": "arithmetic: 40 + 8."}
+{"text": "هفتاد از صد.", "mentions": [{"start": 0, "end": 5, "value": "70", "kind": "cardinal"}, {"start": 9, "end": 11, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "صد و دو کتاب.", "mentions": [{"start": 0, "end": 7, "value": "102", "kind": "cardinal"}], "source": "arithmetic: 100 + 2."}
+{"text": "سه میلیون و پانصد هزار تومان.", "mentions": [{"start": 0, "end": 22, "value": "3500000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 500 x 1000."}
+{"text": "يک و دو.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal"}, {"start": 5, "end": 7, "value": "2", "kind": "cardinal"}], "source": "Arabic yeh in \"يک\" reads as Persian ی."}
+{"text": "دوازده ماه.", "mentions": [{"start": 0, "end": 6, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"12: دوازده\"."}
+{"text": "شصت دقیقه.", "mentions": [{"start": 0, "end": 3, "value": "60", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"60: شصت\"."}
+{"text": "نود ثانیه.", "mentions": [{"start": 0, "end": 3, "value": "90", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"90: نود\"."}
+{"text": "هشتصد و هشتاد کیلومتر.", "mentions": [{"start": 0, "end": 13, "value": "880", "kind": "cardinal"}], "source": "arithmetic: 800 + 80."}
+{"text": "چهار هزار نفر.", "mentions": [{"start": 0, "end": 9, "value": "4000", "kind": "cardinal"}], "source": "arithmetic: 4 x 1000."}
+{"text": "هفت هزار و هفتصد تومان.", "mentions": [{"start": 0, "end": 16, "value": "7700", "kind": "cardinal"}], "source": "arithmetic: 7 x 1000 + 700."}
+{"text": "پنجاه هزار تماشاگر.", "mentions": [{"start": 0, "end": 10, "value": "50000", "kind": "cardinal"}], "source": "arithmetic: 50 x 1000."}
+{"text": "دویست هزار نفر.", "mentions": [{"start": 0, "end": 10, "value": "200000", "kind": "cardinal"}], "source": "arithmetic: 200 x 1000."}
+{"text": "دو میلیارد دلار.", "mentions": [{"start": 0, "end": 10, "value": "2000000000", "kind": "cardinal"}], "source": "arithmetic: 2 x 10^9."}
+{"text": "دوازده ممیز پنج درصد.", "mentions": [{"start": 0, "end": 15, "value": "12.5", "kind": "decimal"}], "source": "CLDR RBNF fa: \"x.x: << ممیز >>\"; 12 + 0.5."}
+{"text": "منفی سی درجه.", "mentions": [{"start": 0, "end": 7, "value": "-30", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"-x: منفی >>\"."}
+{"text": "چهارده و پانزده.", "mentions": [{"start": 0, "end": 6, "value": "14", "kind": "cardinal"}, {"start": 9, "end": 15, "value": "15", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "بیست و دو بهمن.", "mentions": [{"start": 0, "end": 9, "value": "22", "kind": "cardinal"}], "source": "arithmetic: 20 + 2."}
+{"text": "هفده شهریور.", "mentions": [{"start": 0, "end": 4, "value": "17", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"17: هفده\"."}
+{"text": "سیصد و شصت و پنج روز.", "mentions": [{"start": 0, "end": 16, "value": "365", "kind": "cardinal"}], "source": "arithmetic: 300 + 60 + 5."}
+{"text": "بیست و چهار ساعت.", "mentions": [{"start": 0, "end": 11, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 20 + 4."}
+{"text": "هزار و یک شب.", "mentions": [{"start": 0, "end": 9, "value": "1001", "kind": "cardinal"}], "source": "arithmetic: 1000 + 1."}
+{"text": "یک روز خوب.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "\"یک\" before a noun also marks it indefinite."}
+{"text": "شش ماه.", "mentions": [{"start": 0, "end": 2, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"6: شش\"."}
+{"text": "ششصد تومان.", "mentions": [{"start": 0, "end": 4, "value": "600", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"600: ششصد\"."}
+{"text": "او گفت نه و رفت.", "mentions": [{"start": 7, "end": 9, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "\"نه\" here is \"no\"; alone it reads as nine at low confidence."}

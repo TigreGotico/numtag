@@ -1,0 +1,1017 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: << میلیارد\" and \"1000000000000: << هزار میلیارد\": میلیارد is 10^9 and 10^12 is a thousand of them, the short-scale values."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "CLDR main/fa.xml, latn symbols inherited from root: group \",\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "CLDR main/fa.xml, latn symbols inherited from root: decimal \".\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000000000: =#,##0=;\": digits are grouped with a mark, not a space."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "en.wiktionary \"میلیون\": \"( plural میلیون‌ها ( milyun-hâ, melyun-hâ ) )\"; fa.wikipedia \"دستور زبان فارسی\": \"-ها زمانی استفاده می‌شود که اسم معرفه باشد و پیش از آن عدد نباشد.\" (the plural in -ها stands with no number before it, so it names no count)."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون[ و >>]\": میلیون keeps the singular after every count; fa.wikipedia \"دستور زبان فارسی\": \"شکل‌های جمع پس از اعداد یا صفت‌های زیاد یا بسیاری پدیدار نمی‌شوند.\" (plural forms do not stand after numbers)."
+    },
+    "joiner_tens_units": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"20: بیست[ و >>]\"."
+    },
+    "joiner_after_hundred": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد[ و >>]\"."
+    },
+    "joiner_between_groups": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\"."
+    },
+    "joiner_before_round_hundred": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\": و goes before any rest after a thousand, a round hundred too."
+    },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\" writes و and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\": و goes before any rest after a thousand, so a last group below a hundred or a round hundred with no و starts a new number."
+    },
+    "ordinal_style": {
+      "value": "last_word",
+      "source": "en.wiktionary \"یکم\": \"بیست و یکم ― bist o yekom ― twenty- first\"; en.wiktionary \"ـمین\": \"بیست و یکمین ― bist-o yek -omin ― twenty-fir st\": the ordinal suffix goes on the last word."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "en.wiktionary \"اول\" writes the same word with and without short-vowel marks: \"Ordinal : اَوَّل ( avval )\" and \"اول • ( avval )\"; en.wikipedia \"Persian alphabet\": \"Persian script has adopted a subset of Arabic diacritics\"; en.wikipedia \"Arabic diacritics\": \"Tashkīl is optional to represent missing vowels and consonant length.\""
+    },
+    "letter_folds": {
+      "value": {
+        "ي": "ی",
+        "ى": "ی",
+        "ك": "ک"
+      },
+      "source": "en.wikipedia \"Persian alphabet\", \"Deviations from the Arabic script\", gives the Persian and Arabic letters side by side: \"ی ye U+06CC ي [ b ] U+064A\" and \"ک kâf U+06A9 ك U+0643\"; en.wikipedia, article Yāʼ: \"Traditionally, in its isolated and final forms, the letter does not have dots ( ی ), much like the Arabic Alif maqṣūrah\"; en.wikipedia \"Arabic diacritics\": \"The same unification of yā and alif maqṣūrā has happened in Persian\"."
+    },
+    "word_chars": {
+      "value": "‌",
+      "source": "en.wikipedia \"Zero-width non-joiner\": \"Persian uses this character extensively for certain prefixes, suffixes and compound words.\"; en.wikipedia \"Persian alphabet\": \"On a computer, they are separated from the word using the zero-width non-joiner\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR main/fa.xml writes the minus sign with a left-to-right mark before it: \"<minusSign>‎−</minusSign>\"."
+    },
+    "native_digits": {
+      "value": {
+        "digits": [
+          "۰۱۲۳۴۵۶۷۸۹",
+          "٠١٢٣٤٥٦٧٨٩"
+        ],
+        "decimal_mark": "٫",
+        "group_mark": "٬"
+      },
+      "source": "CLDR main/fa.xml: \"<defaultNumberingSystem>arabext</defaultNumberingSystem>\"; en.wikipedia \"Persian alphabet\": \"Persian uses the Eastern Arabic numerals\", \"All the digits also have different codepoints in Unicode\", \"۰ صفر sefr U+06F0 ٠ U+0660\"; en.wikipedia \"Eastern Arabic numerals\": \"The Arabic decimal separator ٫ (U+066B)\", \"The Arabic thousands separator ٬ (U+066C)\"."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "و"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"[ و >>]\"."
+    },
+    "decimal_marker": {
+      "value": [
+        "ممیز"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << ممیز >>\"."
+    },
+    "minus": {
+      "value": [
+        "منفی"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"-x: منفی >>\"."
+    },
+    "range_cue": {
+      "value": [
+        "بین"
+      ],
+      "source": "en.wiktionary \"بین\": \"بین این دو ― bayn-i īn du / beyn-e in do ― between these two\"."
+    },
+    "article_one": {
+      "value": [
+        "یک"
+      ],
+      "source": "en.wikipedia \"Persian grammar\": \"The indefinite article in both spoken and literary Persian is the same as the word for 1, یک yek\"; \"روی میز یک کتاب است\"."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    }
+  },
+  "entries": [
+    {
+      "word": "صفر",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"0: صفر;\"."
+    },
+    {
+      "word": "یک",
+      "role": "unit",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1: یک;\"."
+    },
+    {
+      "word": "دو",
+      "role": "unit",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"2: دو;\"."
+    },
+    {
+      "word": "سه",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"3: سه;\"."
+    },
+    {
+      "word": "چهار",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"4: چهار;\"."
+    },
+    {
+      "word": "پنج",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"5: پنج;\"."
+    },
+    {
+      "word": "شش",
+      "role": "unit",
+      "value": "6",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"6: شش;\"."
+    },
+    {
+      "word": "شیش",
+      "role": "unit",
+      "value": "6",
+      "source": "en.wiktionary \"شش\", alternative forms: \"شیش ( šiš ) ( dialectal , Tehrani )\"."
+    },
+    {
+      "word": "هفت",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"7: هفت;\"."
+    },
+    {
+      "word": "هشت",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"8: هشت;\"."
+    },
+    {
+      "word": "نه",
+      "role": "unit",
+      "value": "9",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"9: نه;\"."
+    },
+    {
+      "word": "ده",
+      "role": "ten",
+      "value": "10",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"10: ده;\"."
+    },
+    {
+      "word": "یازده",
+      "role": "ten",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"11: یازده;\"."
+    },
+    {
+      "word": "دوازده",
+      "role": "ten",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"12: دوازده;\"."
+    },
+    {
+      "word": "سیزده",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"13: سیزده;\"."
+    },
+    {
+      "word": "چهارده",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"14: چهارده;\"."
+    },
+    {
+      "word": "پانزده",
+      "role": "ten",
+      "value": "15",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"15: پانزده;\"."
+    },
+    {
+      "word": "پونزده",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary \"پانزده\", alternative forms: \"پونزده ( punzdah ) ( colloquial Iranian )\"."
+    },
+    {
+      "word": "شانزده",
+      "role": "ten",
+      "value": "16",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"16: شانزده;\"."
+    },
+    {
+      "word": "شونزده",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary \"شانزده\", alternative forms: \"شونزده ( šunzdah ) ( colloquial Iranian )\"."
+    },
+    {
+      "word": "هفده",
+      "role": "ten",
+      "value": "17",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"17: هفده;\"."
+    },
+    {
+      "word": "هجده",
+      "role": "ten",
+      "value": "18",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"18: هجده;\"."
+    },
+    {
+      "word": "هیجده",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary \"هجده\", alternative forms: \"هیجده ( hijdah ) , هژده ( heždah )\"."
+    },
+    {
+      "word": "هژده",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary \"هجده\", alternative forms: \"هیجده ( hijdah ) , هژده ( heždah )\"."
+    },
+    {
+      "word": "نوزده",
+      "role": "ten",
+      "value": "19",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"19: نوزده;\"."
+    },
+    {
+      "word": "بیست",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"20: بیست[ و >>];\"."
+    },
+    {
+      "word": "سی",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"30: سی[ و >>];\"."
+    },
+    {
+      "word": "چهل",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"40: چهل[ و >>];\"."
+    },
+    {
+      "word": "پنجاه",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"50: پنجاه[ و >>];\"."
+    },
+    {
+      "word": "شصت",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"60: شصت[ و >>];\"."
+    },
+    {
+      "word": "هفتاد",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"70: هفتاد[ و >>];\"."
+    },
+    {
+      "word": "هشتاد",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"80: هشتاد[ و >>];\"."
+    },
+    {
+      "word": "نود",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"90: نود[ و >>];\"."
+    },
+    {
+      "word": "صد",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد[ و >>];\"."
+    },
+    {
+      "word": "یکصد",
+      "role": "hundred",
+      "value": "100",
+      "source": "en.wiktionary \"صد\": \"Cardinal : صد ( sad ) , یکصد ( yeksad )\"."
+    },
+    {
+      "word": "دویست",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"200: دویست[ و >>];\"."
+    },
+    {
+      "word": "سیصد",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"300: سیصد[ و >>];\"."
+    },
+    {
+      "word": "چهارصد",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"400: چهارصد[ و >>];\"."
+    },
+    {
+      "word": "پانصد",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"500: پانصد[ و >>];\"."
+    },
+    {
+      "word": "پونصد",
+      "role": "hundred",
+      "value": "500",
+      "source": "en.wiktionary \"پانصد\", alternative forms: \"پونصد ( punsad ) ( colloquial , tehran )\"."
+    },
+    {
+      "word": "ششصد",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"600: ششصد[ و >>];\"."
+    },
+    {
+      "word": "هفتصد",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"700: هفتصد[ و >>];\"."
+    },
+    {
+      "word": "هشتصد",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"800: هشتصد[ و >>];\"."
+    },
+    {
+      "word": "نهصد",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"900: نهصد[ و >>];\"."
+    },
+    {
+      "word": "هزار",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار\"; en.wiktionary \"هزارم\": \"هزار ( hezâr , “ thousand , one thousand ” )\"."
+    },
+    {
+      "word": "میلیون",
+      "role": "scale_noun",
+      "value": 6,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\"."
+    },
+    {
+      "word": "میلیون‌ها",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\". en.wiktionary \"میلیون\": \"( plural میلیون‌ها ( milyun-hâ, melyun-hâ ) )\"; fa.wikipedia \"دستور زبان فارسی\": \"همه اسم‌ها در فارسی با پسوند -ها جمع می‌شوند\"; fa.wiktionary \"میلیارد\" names it a noun: \"ملیارد: هزار میلیون.\""
+    },
+    {
+      "word": "میلیارد",
+      "role": "scale_noun",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\". fa.wiktionary \"میلیارد\": \"ملیارد: هزار میلیون.\""
+    },
+    {
+      "word": "میلیاردها",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\". en.wiktionary \"میلیون\": \"( plural میلیون‌ها ( milyun-hâ, melyun-hâ ) )\"; fa.wikipedia \"دستور زبان فارسی\": \"همه اسم‌ها در فارسی با پسوند -ها جمع می‌شوند\"; fa.wiktionary \"میلیارد\" names it a noun: \"ملیارد: هزار میلیون.\""
+    },
+    {
+      "word": "نیم",
+      "role": "half",
+      "source": "en.wiktionary \"نیم\": \"نیم • ( nim ) half\"."
+    },
+    {
+      "word": "نصف",
+      "role": "half",
+      "source": "en.wiktionary \"نصف\": \"نصف • ( nisf / nesf ) ( Tajik spelling нисф ) half\"."
+    },
+    {
+      "word": "نصفه",
+      "role": "half",
+      "source": "fa.wiktionary, entry نصفه: \"(عا.) نیمه.\" (colloquial: half)."
+    },
+    {
+      "word": "ربع",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "invariant": true,
+      "source": "en.wiktionary \"ربع\": \"quarter , one- fourth\", \"دو و ربع ― do o rob' ― two and a quarter\"; fa.wikipedia \"کسر\": \"یک چهارم (ربع)\"."
+    },
+    {
+      "word": "یکم",
+      "role": "ordinal",
+      "value": "1",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "یکمین",
+      "role": "ordinal",
+      "value": "1",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دوم",
+      "role": "ordinal",
+      "value": "2",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دومین",
+      "role": "ordinal",
+      "value": "2",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دوم",
+      "role": "denominator",
+      "value": "2",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "سوم",
+      "role": "ordinal",
+      "value": "3",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سومین",
+      "role": "ordinal",
+      "value": "3",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سوم",
+      "role": "denominator",
+      "value": "3",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "چهارم",
+      "role": "ordinal",
+      "value": "4",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهارمین",
+      "role": "ordinal",
+      "value": "4",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهارم",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "پنجم",
+      "role": "ordinal",
+      "value": "5",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پنجمین",
+      "role": "ordinal",
+      "value": "5",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پنجم",
+      "role": "denominator",
+      "value": "5",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "ششم",
+      "role": "ordinal",
+      "value": "6",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "ششمین",
+      "role": "ordinal",
+      "value": "6",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "ششم",
+      "role": "denominator",
+      "value": "6",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "هفتم",
+      "role": "ordinal",
+      "value": "7",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتمین",
+      "role": "ordinal",
+      "value": "7",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتم",
+      "role": "denominator",
+      "value": "7",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "هشتم",
+      "role": "ordinal",
+      "value": "8",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتمین",
+      "role": "ordinal",
+      "value": "8",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتم",
+      "role": "denominator",
+      "value": "8",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "نهم",
+      "role": "ordinal",
+      "value": "9",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نهمین",
+      "role": "ordinal",
+      "value": "9",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نهم",
+      "role": "denominator",
+      "value": "9",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "دهم",
+      "role": "ordinal",
+      "value": "10",
+      "ambiguous": true,
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دهمین",
+      "role": "ordinal",
+      "value": "10",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دهم",
+      "role": "denominator",
+      "value": "10",
+      "invariant": true,
+      "ambiguous": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "یازدهم",
+      "role": "ordinal",
+      "value": "11",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "یازدهمین",
+      "role": "ordinal",
+      "value": "11",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دوازدهم",
+      "role": "ordinal",
+      "value": "12",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دوازدهمین",
+      "role": "ordinal",
+      "value": "12",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سیزدهم",
+      "role": "ordinal",
+      "value": "13",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سیزدهمین",
+      "role": "ordinal",
+      "value": "13",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهاردهم",
+      "role": "ordinal",
+      "value": "14",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهاردهمین",
+      "role": "ordinal",
+      "value": "14",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پانزدهم",
+      "role": "ordinal",
+      "value": "15",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پانزدهمین",
+      "role": "ordinal",
+      "value": "15",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "شانزدهم",
+      "role": "ordinal",
+      "value": "16",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "شانزدهمین",
+      "role": "ordinal",
+      "value": "16",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفدهم",
+      "role": "ordinal",
+      "value": "17",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفدهمین",
+      "role": "ordinal",
+      "value": "17",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هجدهم",
+      "role": "ordinal",
+      "value": "18",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هجدهمین",
+      "role": "ordinal",
+      "value": "18",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نوزدهم",
+      "role": "ordinal",
+      "value": "19",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نوزدهمین",
+      "role": "ordinal",
+      "value": "19",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "بیستم",
+      "role": "ordinal",
+      "value": "20",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "بیستمین",
+      "role": "ordinal",
+      "value": "20",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سی‌ام",
+      "role": "ordinal",
+      "value": "30",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سی‌امین",
+      "role": "ordinal",
+      "value": "30",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهلم",
+      "role": "ordinal",
+      "value": "40",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهلمین",
+      "role": "ordinal",
+      "value": "40",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پنجاهم",
+      "role": "ordinal",
+      "value": "50",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پنجاهمین",
+      "role": "ordinal",
+      "value": "50",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "شصتم",
+      "role": "ordinal",
+      "value": "60",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "شصتمین",
+      "role": "ordinal",
+      "value": "60",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتادم",
+      "role": "ordinal",
+      "value": "70",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتادمین",
+      "role": "ordinal",
+      "value": "70",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتادم",
+      "role": "ordinal",
+      "value": "80",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتادمین",
+      "role": "ordinal",
+      "value": "80",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نودم",
+      "role": "ordinal",
+      "value": "90",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نودمین",
+      "role": "ordinal",
+      "value": "90",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "صدم",
+      "role": "ordinal",
+      "value": "100",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "صدمین",
+      "role": "ordinal",
+      "value": "100",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "صدم",
+      "role": "denominator",
+      "value": "100",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\"."
+    },
+    {
+      "word": "دویستم",
+      "role": "ordinal",
+      "value": "200",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "دویستمین",
+      "role": "ordinal",
+      "value": "200",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سیصدم",
+      "role": "ordinal",
+      "value": "300",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "سیصدمین",
+      "role": "ordinal",
+      "value": "300",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهارصدم",
+      "role": "ordinal",
+      "value": "400",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "چهارصدمین",
+      "role": "ordinal",
+      "value": "400",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پانصدم",
+      "role": "ordinal",
+      "value": "500",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "پانصدمین",
+      "role": "ordinal",
+      "value": "500",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "ششصدم",
+      "role": "ordinal",
+      "value": "600",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "ششصدمین",
+      "role": "ordinal",
+      "value": "600",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتصدم",
+      "role": "ordinal",
+      "value": "700",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هفتصدمین",
+      "role": "ordinal",
+      "value": "700",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتصدم",
+      "role": "ordinal",
+      "value": "800",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هشتصدمین",
+      "role": "ordinal",
+      "value": "800",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نهصدم",
+      "role": "ordinal",
+      "value": "900",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "نهصدمین",
+      "role": "ordinal",
+      "value": "900",
+      "source": "en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "اول",
+      "role": "ordinal",
+      "value": "1",
+      "ambiguous": true,
+      "source": "en.wiktionary \"ـمین\": \"For the irregular Arabic-derived plural اول ( avval , “ first ” )\"; en.wiktionary \"اول\" also lists it as an adverb: \"first , firstly\"."
+    },
+    {
+      "word": "نخستین",
+      "role": "ordinal",
+      "value": "1",
+      "source": "en.wiktionary \"نخستین\": \"نخستین • ( nuxustīn / noxostin or naxustīn / naxostin )\", \"originally , foremost , very first , earliest\"."
+    },
+    {
+      "word": "هزارم",
+      "role": "ordinal_scale",
+      "value": "هزار",
+      "source": "en.wiktionary \"هزارم\": \"From هزار ( hezâr , “ thousand , one thousand ” ) + ـم ( -om , “ -th ( ordinal number suffix)) ” ) .\", \"thousandth\"."
+    },
+    {
+      "word": "هزارمین",
+      "role": "ordinal_scale",
+      "value": "هزار",
+      "source": "en.wiktionary \"هزارم\": \"From هزار ( hezâr , “ thousand , one thousand ” ) + ـم ( -om , “ -th ( ordinal number suffix)) ” ) .\", \"thousandth\". en.wiktionary \"ـمین\": \"Persian has two ways to form the ordinals: ـم ( -om ) , and ـمین ( -omin )\", \"پنجمین ― panj -omin ― fif th\"; en.wiktionary \"دوم\": \"From دو ( du / do , “ two ” ) + ـم ( -um / -om , “ -st , -nd , -rd , -th ( ordinal number suffix) ” )\"; en.wiktionary \"یکم\": \"Compound numbers, however, are always formed with یکم ( yakum / yekom ) .\"; en.wiktionary \"سی\": \"Ordinal : سی‌ام ( siom )\"."
+    },
+    {
+      "word": "هزارم",
+      "role": "denominator",
+      "value": "1000",
+      "invariant": true,
+      "source": "fa.wikipedia \"کسر\": \"مثل: یک دوم، هشت پنجم، سه چهارم\": a fraction is a cardinal and the ordinal in -م of the denominator, and the ordinal does not change with the numerator; en.wiktionary \"سوم\": \"( fraction ) third , one- third\"; en.wiktionary \"چهارم\": \"( fraction ) fourth , one- fourth , quarter\". en.wiktionary \"هزارم\": \"From هزار ( hezâr , “ thousand , one thousand ” ) + ـم ( -om , “ -th ( ordinal number suffix)) ” ) .\", \"thousandth\"."
+    },
+    {
+      "word": "میلیونم",
+      "role": "ordinal_scale",
+      "value": "میلیون",
+      "source": "en.wiktionary \"میلیونم\": \"From میلیون ( milyun, melyun , “ million ” ) + ـم ( -om , “ -th ( ordinal number suffix)) ” ) .\", \"millionth\"."
+    }
+  ]
+}

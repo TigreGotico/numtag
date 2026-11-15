@@ -1,4 +1,5 @@
 import json
+import re
 import tomllib
 import unittest
 from fnmatch import fnmatch
@@ -8,11 +9,12 @@ from numtag.lexicon import Joiner, load
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
+MILLION = {"ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
 
 
 class TestLexiconFiles(unittest.TestCase):
-    def test_the_three_languages_are_there(self):
-        self.assertEqual([p.stem for p in LEXICONS], ["en", "pt-BR", "pt-PT"])
+    def test_every_language_is_there(self):
+        self.assertEqual([p.stem for p in LEXICONS], ["ar", "el", "en", "fa", "he", "kab", "pt-BR", "pt-PT"])
 
     def test_package_data_ships_every_lexicon(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
@@ -31,13 +33,30 @@ class TestLexiconFiles(unittest.TestCase):
                 self.assertGreater(len(items), 0)
                 self.assertEqual([i for i in items if not i.get("source", "").strip()], [])
 
+    def test_every_source_quotes_a_page_or_says_it_is_structural(self):
+        # A quote is a double-quoted run of two words or more; a bare term or a digit mark is no quote.
+        def quotes(source):
+            return [q for q in re.findall(r'"([^"]*)"', source) if " " in q.strip() and len(q) >= 4]
+
+        sources = []
+        for lang in ("en", "pt-BR", "pt-PT"):
+            data = json.loads((ROOT / "numtag" / "lexicon" / f"{lang}.json").read_text(encoding="utf-8"))
+            items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
+            sources += [(lang, i["source"]) for i in items + data.get("entries", [])]
+            gold = (ROOT / "tests" / "gold" / f"{lang}.jsonl").read_text(encoding="utf-8")
+            sources += [(f"gold {lang}", json.loads(line)["source"]) for line in gold.splitlines()]
+        unquoted = sorted({(name, s) for name, s in sources
+                           if not quotes(s) and "no external source" not in s.lower()})
+        self.assertEqual(unquoted, [])
+
     def test_every_lexicon_loads_in_both_scales(self):
         for path in LEXICONS:
             for scale in ("short", "long"):
                 with self.subTest(file=path.name, scale=scale):
                     lexicon = load(path.stem, scale)
                     self.assertEqual(lexicon.scale.value, scale)
-                    self.assertIn("milhão" if path.stem.startswith("pt") else "million", lexicon.readings)
+                    million = MILLION.get(path.stem, "milhão" if path.stem.startswith("pt") else "million")
+                    self.assertIn(lexicon.script.fold(million), lexicon.readings)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)
