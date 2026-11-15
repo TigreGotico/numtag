@@ -111,6 +111,10 @@ class TestCardinals(unittest.TestCase):
                          [("a thousand million and one thousand", "1000001000", C),
                           ("five hundred million", "500000000", C)])
 
+    def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
+        self.assertEqual(en("between two and"), [("two", "2", C)])
+        self.assertEqual(en("between -1 and"), [("-1", "-1", C)])
+
     def test_a_scale_word_keeps_the_singular_after_a_count(self):
         self.assertEqual(en("two million"), [("two million", "2000000", C)])
         # (1000 + 1) x 10^6
@@ -287,6 +291,12 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("about .5 percent"), [(".5", "0.5", D)])
         # the comma only groups digits
         self.assertEqual(en(",5"), [("5", "5", C)])
+        self.assertEqual(en("about -.5 percent"), [("-.5", "-0.5", D)])
+
+    def test_a_decimal_point_after_a_leading_zero(self):
+        self.assertEqual(en("weighs 0.500 kg"), [("0.500", "0.5", D)])
+        # the comma groups digits, and a group never follows a leading zero
+        self.assertEqual(en("weighs 0,500 kg"), [])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_point(self):
         self.assertEqual(en("two point zero"), [("two point zero", "2", C)])
