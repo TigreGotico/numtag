@@ -1,8 +1,8 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
 from numtag.grammar import Grammar, Parse
-from numtag.lexicon import Lexicon, Scale, exists, load
+from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import Token, tokenize
+from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -12,13 +12,14 @@ AMBIGUOUS_CONFIDENCE = 0.4
 
 # The lexicon of a language tag with no region, or with a region that has no
 # lexicon of its own.
-BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR"}
+BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"}
 
 
 def lexicon_name(lang: str) -> str:
     """The lexicon file for a language tag: the region's file when there is
-    one ("pt-br" reads pt-BR, "fr-be" fr-BE), else the language's base file
-    (every other "pt" tag reads pt-PT, every "en" tag en)."""
+    one ("pt-br" reads pt-BR, "fr-be" fr-BE), else the language's base file:
+    every other "pt" tag reads pt-PT, "no" (Norwegian) reads Bokmål, nb, and
+    every other tag its primary language ("de-AT" reads de)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
     if region and exists(f"{primary}-{region}"):
@@ -29,11 +30,18 @@ def lexicon_name(lang: str) -> str:
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
-    words = frozenset(lexicon.readings)
+    words = lexicon.number_words
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, words | lexicon.joiners, fold=lexicon.fold,
-                      phrases=lexicon.phrases, split=words if lexicon.compound_words else frozenset(),
-                      group_mark=lexicon.group_mark)
+                      lexicon.abbreviations, words, lexicon.script,
+                      compound_words=lexicon.compound_parts,
+                      compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
+                      dotted_i=lexicon.dotted_i, apostrophes=lexicon.word_apostrophes,
+                      suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
+                      period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
+                                                 lexicon.period_ordinal_free_digits)
+                      if lexicon.period_ordinals else None,
+                      dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
+                      phrases=lexicon.phrases, group_mark=lexicon.group_mark)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
@@ -68,17 +76,19 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        # A number starts and ends where a word does: not inside "ventitré".
-        parses = [] if run[i].joined else [
-            p for p in grammar.numbers(start) if p.end == len(run) or not run[p.end].joined]
-        if not parses:
+        parses = [p for p in grammar.numbers(start) if _whole_words(grammar, run, start, p)]
+        # a number starts and ends at the edges of a word, never inside one
+        if not parses or run[i].glued:
             i += 1
             continue
         best = max(parses, key=lambda p: p.end)
         value = -best.value if negative else best.value
-        span = (run[i].start, run[best.end - 1].end)
+        # a number glued to a joiner prefix it does not use ("ושבעה") keeps
+        # the whole word: a span never starts inside a word
+        first = i - 1 if run[i].attached else i
+        span = (run[first].start, run[best.end - 1].end)
         mentions.append(NumberMention(
-            span, text[span[0]:span[1]], value.canonical(), _kind(best),
+            span, text[span[0]:span[1]], value.canonical(), _kind(lexicon, run[start:best.end], best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
             _confidence(grammar, lexicon, run, start, best),
             number_scale=_number_scale(lexicon, run[start:best.end])))
@@ -98,12 +108,43 @@ def _is_minus(grammar: Grammar, lexicon: Lexicon, run: list[Token], i: int) -> b
     return not any(tuple(words[-len(idiom):]) == idiom for idiom in lexicon.minus_idioms)
 
 
-def _kind(parse: Parse) -> Kind:
+def _whole_words(grammar: Grammar, run: list[Token], start: int, parse: Parse) -> bool:
+    """True when the tokens of ``parse`` from ``start`` end at the edge of a
+    word, and no form before the last one closes the number with a case
+    ending ("yüzde" ends its number, so "yüzde elli" is no 150), except the
+    form that names the parts of a fraction ("üçte bir")."""
+    end = parse.end
+    if end < len(run) and run[end].glued:
+        return False
+    return not any(grammar.closes(k) for k in range(start, end - 1) if k != parse.parts_at)
+
+
+def _ordinal_word(lexicon: Lexicon, tokens: list[Token]) -> bool:
+    """True when the last word of a number has an ordinal form among its
+    readings. A form that is both an ordinal and a case of a cardinal reads
+    as the ordinal (Estonian "viies" is "fifth" and "in five"). A teen
+    with no ordinal form ("toista" in "yhdestoista") leaves the choice to
+    the unit before it."""
+    last = tokens[-1]
+    if last.is_digits:
+        return False
+    entries = [e for e in lexicon.readings.get(last.norm, ()) if e.role in CARDINAL_ROLES]
+    teens = [e for e in entries if e.role == "teen"]
+    if len(tokens) > 1 and teens:
+        return any(e.ordinal for e in teens) or _ordinal_word(lexicon, tokens[:-1])
+    entries = [e for e in entries if e.role != "teen"] or entries
+    return any(e.ordinal for e in entries)
+
+
+def _kind(lexicon: Lexicon, tokens: list[Token], parse: Parse) -> Kind:
     """A whole value is cardinal, also when the words hold a decimal mark or
     a half ("2,5 milhões", "dois vírgula zero"). A value that is not whole is
-    decimal when the words use a decimal mark, else a fraction."""
+    decimal when the words use a decimal mark, else a fraction. A whole
+    value whose last word is an ordinal form is ordinal ("kahdeskymmenes")."""
     if parse.kind == Kind.ORDINAL:
         return parse.kind
+    if parse.value.is_whole() and _ordinal_word(lexicon, tokens):
+        return Kind.ORDINAL
     if parse.value.is_whole():
         return Kind.CARDINAL
     return Kind.DECIMAL if parse.decimal else Kind.FRACTION
@@ -119,7 +160,7 @@ def _gender(lexicon: Lexicon, tokens: list[Token]) -> str | None:
     """The gender of the last word that shows one."""
     for token in reversed(tokens):
         if token.is_digits:
-            gender = lexicon.ordinal_suffixes.get(token.suffix.casefold())
+            gender = lexicon.ordinal_suffixes.get(fold(token.suffix))
             if gender:
                 return gender
             continue
@@ -146,4 +187,15 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
                     and not grammar.starts_number(noun))
     if lone_article:
         return ARTICLE_CONFIDENCE
-    return AMBIGUOUS_CONFIDENCE if parse.ambiguous else 1.0
+    # "Er lud mich ein.": a lone article that ends the clause is no numeral
+    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
+        return ARTICLE_CONFIDENCE
+    # one word whose every reading has a common meaning that is no number
+    entries = () if run[start].is_digits else lexicon.readings.get(run[start].norm, ())
+    lone_ambiguous = parse.end == start + 1 and bool(entries) and all(e.ambiguous for e in entries)
+    # a number written as one word that the lexicon lists with another
+    # meaning ("üksteist" is eleven and "each other")
+    word = run[start:parse.end]
+    listed = len(word) > 1 and all(t.glued for t in word[1:]) \
+        and "".join(t.norm for t in word) in lexicon.ambiguous_words
+    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous or listed else 1.0

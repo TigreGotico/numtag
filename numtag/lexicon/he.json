@@ -1,0 +1,868 @@
+{
+  "settings": {
+    "scale": {
+      "value": "long",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: מיליארד\", \"1000000000000: ביליון\": the milliard is 10^9 and ביליון is 10^12. he.wikipedia \"ביליון\" (redirects to מיליארד): \"מיליארד (1,000,000,000) הוא מספר טבעי השווה לאלף מיליונים\"; \"ב שיטת הספירה האמריקאית משמשת המילה ביליון במקום ה מילה\" (only the American system uses ביליון for the milliard)."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "CLDR main/he.xml defines no symbol of its own (\"<group>↑↑↑</group>\"). he.wikipedia \"ביליון\" (redirects to מיליארד) groups digits with a comma: \"מיליארד (1,000,000,000)\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "CLDR main/he.xml defines no symbol of its own (\"<decimal>↑↑↑</decimal>\"). he.wikipedia \"ביליון\" (redirects to מיליארד) writes decimals with a point: \"כ-2.5 מיליארד פעימות\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "he.wikipedia \"ביליון\" (redirects to מיליארד) groups digits with a comma, not a space: \"מיליארד (1,000,000,000)\"."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"3000: <%%thousands< אלפים\", the plural takes a count; \"אלפים\" alone names no number."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"2000000: שני מיליון\", \"3000000: <%%spellout-numbering-m< מיליון\": מיליון keeps the singular after every count."
+    },
+    "joiner_tens_units": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"20: עשרים[ >%%and-feminine>];\" with \"%%and-feminine: 1: ו=%spellout-numbering=;\": ו joins the unit to the ten (עשרים ושלוש). No source opened writes a ten and a unit without ו."
+    },
+    "joiner_after_hundred": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה[ >%%and-feminine>];\" with the %%and-feminine rules \"1: ו=%spellout-numbering=;\" and \"20: עשרים;\": ו comes before a unit (מאה ואחת) but not before a ten (מאה עשרים). en.wiktionary \"מאה\" lists \"עַד מֵאָה וְעֶשְׂרִים\" (up to 120), with ו before the ten."
+    },
+    "joiner_between_groups": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\" with the %%and-feminine rules \"1: ו=%spellout-numbering=;\" and \"100: מאה;\": ו comes before a unit (אלף ואחת) but not before a hundred (אלף מאה)."
+    },
+    "joiner_before_round_hundred": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>]\" with \"%%and-feminine: 1: ו=%spellout-numbering=;\" and \"500: חמש מאות;\": ו goes before a unit, not before a hundred."
+    },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\" writes a space and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\" with the %%and-feminine rules \"1: ו=%spellout-numbering=;\" and \"100: מאה;\": ו comes before a last unit (אלף ואחת) but not before a round hundred (אלף מאה). So ו before the last group is optional."
+    },
+    "ordinal_style": {
+      "value": "every_word",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"10: עשירי;\" then \"11: =%%spellout-numbering-m=;\": ordinal words exist only for 1-10; above ten the cardinal serves, so no ordinal has more than one word."
+    },
+    "half_of_scale": {
+      "value": true,
+      "source": "he.wiktionary \"חצי\": \"חלק אחד מתוך שניים . במספרים: ½ או 0.5.\" and \"אַמָּתַיִם וָחֵצִי אָרְכּוֹ\" (two cubits and a half): the half after ו is half of the unit before it. he.wikipedia \"סטוקהולם\": \"כשני מיליון וחצי תושבים\", the same after a scale word."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "en.wikipedia \"Niqqud\": \"In modern Israeli orthography, niqqud is mainly used in specialised texts such as dictionaries, poetry, or texts for children or new immigrants to Israel.\" en.wiktionary \"שישה\" gives the same number with and without points: \"שישה / שִׁשָּׁה\"."
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR main/he.xml writes the minus sign as \"‎-\": directional marks stand next to numbers in right-to-left text."
+    },
+    "clitic_min_rest": {
+      "value": 2,
+      "source": "The shortest Hebrew number word has two letters: CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"6: שש;\"."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "ו"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1: ו=%spellout-numbering=;\"."
+    },
+    "joiner_prefix": {
+      "value": [
+        "ו"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1: ו=%spellout-numbering=;\", \"2: ושתיים;\": ו is written joined to the next word. en.wiktionary \"כ־\": \"Like all one-letter words in Hebrew, כ־ functions as a clitic, attaching to the word that follows it.\""
+    },
+    "clitic_prefix": {
+      "value": [
+        "ה",
+        "ב",
+        "ל",
+        "מ",
+        "כ",
+        "ש"
+      ],
+      "source": "en.wiktionary \"כ־\": \"Like all one-letter words in Hebrew, כ־ functions as a clitic, attaching to the word that follows it.\" en.wiktionary \"ה־\": \"( definite article ) The .\"; \"ב־\": \"In (a place or time).\"; \"ל־\": \"To ; the first part of a to-infinitive.\"; \"מ־\": \"From , of , from inside .\"; \"כ־\": \"Like , as .\"; \"ש־\": \"Introduces a subordinate clause.\" en.wikipedia \"Modern Hebrew grammar\": \"Several of Hebrew's most common prepositions are prefixes rather than separate words.\""
+    },
+    "decimal_marker": {
+      "value": [
+        "נקודה"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << נקודה >>\"."
+    },
+    "minus": {
+      "value": [
+        "מינוס"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"-x: מינוס >>\"."
+    },
+    "range_cue": {
+      "value": [
+        "בין"
+      ],
+      "source": "en.wiktionary \"בין\": \"between , among , amid\". Usage notes: \"A variety of terms may separate the two elements introduced by בין\"; the most common is ל־, and \"ו־ ( v'- , “ and ” ) exist as well\"."
+    },
+    "article_one": {
+      "value": [],
+      "source": "en.wiktionary \"ה־\": \"Traditionally, Hebrew nouns are considered to have three “states”: indefinite (“a(n)/some __”), definite (“the __”), and construct\": the indefinite is the bare noun, with no article word."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"-x: מינוס >>;\" is the only minus rule. No source opened gives an idiom with מינוס that is no negative number."
+    },
+    "of": {
+      "value": [],
+      "source": "en.wiktionary \"שלושה\": \"שְׁלוֹשָׁה סְפָרִים ― sh'loshá s'farím ― three books\"; CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"3000000: <%%spellout-numbering-m< מיליון\". A count stands right before its noun or scale word, with no word between."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "he.wiktionary \"חצי\": \"בחול המועד נהוג לעבוד רק חצי יום.\": a fraction stands right before the noun it divides, with no word between."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "he.wiktionary \"חצי\", fractions: \"שש עשרית\": a denominator above ten is one word form, with no particle."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "he.wikipedia \"ביליון\" (redirects to מיליארד): \"מאות מיליארדי פרטים\": after a collective the scale noun is plural; no singular noun names a class."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "he.wiktionary \"חצי\": \"חצי יום\" puts a half before a unit noun. The list holds no unit noun, so such a phrase reads as the half alone."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "CLDR main/he.xml abbreviates month names with a geresh, not a period: \"דצמ׳\". No Hebrew number word is listed as an abbreviation."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "he.wikipedia \"ביליון\" (redirects to מיליארד) writes a digit before the decimal point: \"כ-2.5 מיליארד\". No source opened writes a bare decimal point before the digits."
+    }
+  },
+  "entries": [
+    {
+      "word": "אפס",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"0: אפס;\"."
+    },
+    {
+      "word": "אחד",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"1: אחד;\"."
+    },
+    {
+      "word": "אחת",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"1: אחת;\"."
+    },
+    {
+      "word": "שניים",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"2: שניים;\"."
+    },
+    {
+      "word": "שנים",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "en.wiktionary \"שנים\": \"defective spelling of שניים : two\"; also \"years\". CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"12: שניים עשר;\", two before עשר."
+    },
+    {
+      "word": "שתיים",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"2: שתיים;\"."
+    },
+    {
+      "word": "שתים",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"12: שתים עשרה;\"."
+    },
+    {
+      "word": "שני",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"2000000: שני מיליון\". en.wiktionary \"שני\": \"masculine construct state of שניים\"; also the ordinal \"second\". en.wiktionary \"יום שני\": \"Monday\"."
+    },
+    {
+      "word": "שתי",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-feminine: \"2: שתי;\". en.wiktionary \"שתי\": \"feminine construct state of שניים\"."
+    },
+    {
+      "word": "שלושה",
+      "role": "unit",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"3: שלושה;\"."
+    },
+    {
+      "word": "שלוש",
+      "role": "unit",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"3: שלוש;\"."
+    },
+    {
+      "word": "שלושת",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"3: שלושת;\"."
+    },
+    {
+      "word": "שלשה",
+      "role": "unit",
+      "value": "3",
+      "source": "en.wiktionary \"שלשה\": \"defective spelling of שְׁלוֹשָׁה ( sh'loshá , “ three ” )\"."
+    },
+    {
+      "word": "שלש",
+      "role": "unit",
+      "value": "3",
+      "source": "en.wiktionary \"שלש\": \"defective spelling of שָׁלוֹשׁ ( shalósh , “ three ” )\"."
+    },
+    {
+      "word": "שלשת",
+      "role": "unit",
+      "value": "3",
+      "source": "en.wiktionary \"שלשת\": \"defective spelling of שְׁלוֹשֶׁת ( sh'lóshet )\"."
+    },
+    {
+      "word": "ארבעה",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"4: ארבעה;\"."
+    },
+    {
+      "word": "ארבע",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"4: ארבע;\"."
+    },
+    {
+      "word": "ארבעת",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"4: ארבעת;\"."
+    },
+    {
+      "word": "חמישה",
+      "role": "unit",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"5: חמישה;\"."
+    },
+    {
+      "word": "חמש",
+      "role": "unit",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"5: חמש;\"."
+    },
+    {
+      "word": "חמשת",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"5: חמשת;\"."
+    },
+    {
+      "word": "חמשה",
+      "role": "unit",
+      "value": "5",
+      "source": "en.wiktionary, page חמשה: \"defective spelling of חֲמִישָּׁה ( khamishá , “ five ” )\"."
+    },
+    {
+      "word": "שישה",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"6: שישה;\"."
+    },
+    {
+      "word": "שש",
+      "role": "unit",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"6: שש;\"."
+    },
+    {
+      "word": "ששת",
+      "role": "unit",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"6: ששת;\"."
+    },
+    {
+      "word": "ששה",
+      "role": "unit",
+      "value": "6",
+      "source": "en.wiktionary \"ששה\": \"defective spelling of שישה ( shishá , “ six ” )\"."
+    },
+    {
+      "word": "שבעה",
+      "role": "unit",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"7: שבעה;\"."
+    },
+    {
+      "word": "שבע",
+      "role": "unit",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"7: שבע;\"."
+    },
+    {
+      "word": "שבעת",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"7: שבעת;\"."
+    },
+    {
+      "word": "שמונה",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"8: שמונה;\"."
+    },
+    {
+      "word": "שמונת",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"8: שמונת;\"."
+    },
+    {
+      "word": "תשעה",
+      "role": "unit",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"9: תשעה;\"."
+    },
+    {
+      "word": "תשע",
+      "role": "unit",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"9: תשע;\"."
+    },
+    {
+      "word": "תשעת",
+      "role": "unit",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"9: תשעת;\"."
+    },
+    {
+      "word": "עשר",
+      "role": "ten",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form): \"10: עשר;\"."
+    },
+    {
+      "word": "עשרה",
+      "role": "ten",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), %%spellout-numbering-m (masculine): \"10: עשרה;\"."
+    },
+    {
+      "word": "עשרת",
+      "role": "ten",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-construct-masculine: \"10: עשרת;\"."
+    },
+    {
+      "word": "עשרה",
+      "role": "teen",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"13: >> עשרה\" (feminine) and \"13: >> עשר\" (masculine): the unit, then the teen word."
+    },
+    {
+      "word": "עשר",
+      "role": "teen",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"13: >> עשרה\" (feminine) and \"13: >> עשר\" (masculine): the unit, then the teen word."
+    },
+    {
+      "word": "עשרים",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"20: עשרים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "שלושים",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"30: שלושים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "שלשים",
+      "role": "ten",
+      "value": "30",
+      "source": "en.wiktionary, page שלשים: \"defective spelling of שלושים\"."
+    },
+    {
+      "word": "ארבעים",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"40: ארבעים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "חמישים",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"50: חמישים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "חמשים",
+      "role": "ten",
+      "value": "50",
+      "source": "en.wiktionary, page חמשים: \"defective spelling of חמישים\"."
+    },
+    {
+      "word": "שישים",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"60: שישים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "ששים",
+      "role": "ten",
+      "value": "60",
+      "source": "en.wiktionary, page ששים: \"defective spelling of שישים\"."
+    },
+    {
+      "word": "שבעים",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"70: שבעים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "שמונים",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"80: שמונים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "תשעים",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"90: תשעים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "מאה",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "המאה",
+      "role": "hundred",
+      "value": "100",
+      "ambiguous": true,
+      "source": "en.wiktionary \"מאה\": \"hundred , one hundred\" and \"century\". With the article or ב it is mostly the century, so the reading is low confidence."
+    },
+    {
+      "word": "במאה",
+      "role": "hundred",
+      "value": "100",
+      "ambiguous": true,
+      "source": "en.wiktionary \"מאה\": \"hundred , one hundred\" and \"century\". With the article or ב it is mostly the century, so the reading is low confidence."
+    },
+    {
+      "word": "מאתיים",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"200: מאתיים[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "מאתים",
+      "role": "hundred",
+      "value": "200",
+      "source": "en.wiktionary, page מאתים: \"defective spelling of מאתיים\"."
+    },
+    {
+      "word": "מאות",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "plural": true,
+      "counted": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< מאות[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "אלף",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\", \"2000: אלפיים[ >%%and-feminine>];\" (the dual), \"3000: <%%thousands< אלפים[ >%%and-feminine>];\", \"11000/1000: <%%spellout-numbering-m< אלף[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "אלפיים",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\", \"2000: אלפיים[ >%%and-feminine>];\" (the dual), \"3000: <%%thousands< אלפים[ >%%and-feminine>];\", \"11000/1000: <%%spellout-numbering-m< אלף[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "אלפים",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\", \"2000: אלפיים[ >%%and-feminine>];\" (the dual), \"3000: <%%thousands< אלפים[ >%%and-feminine>];\", \"11000/1000: <%%spellout-numbering-m< אלף[ >%%and-feminine>];\"."
+    },
+    {
+      "word": "מיליון",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון[ >%%and-feminine>];\": each needs no count (\"מיליון\" alone is a million)."
+    },
+    {
+      "word": "מיליונים",
+      "role": "scale_numeral",
+      "rank": 1,
+      "plural": true,
+      "source": "he.wikipedia \"ביליון\" (redirects to מיליארד): \"השווה לאלף מיליונים\". he.wiktionary \"מיליון\": \"ר׳ מִלְיוֹנִים, מִלְיוֹנֵי־\"."
+    },
+    {
+      "word": "מיליארד",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: מיליארד[ >%%and-feminine>];\": each needs no count (\"מיליון\" alone is a million). he.wikipedia \"ביליון\" (redirects to מיליארד): \"מיליארד (1,000,000,000) הוא מספר טבעי השווה לאלף מיליונים\"."
+    },
+    {
+      "word": "מיליארדים",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "he.wikipedia \"טריליון\": \"השווה לאלף מיליארדים\". he.wikipedia \"ביליון\" (redirects to מיליארד): \"דוגמאות לסדר גודל של מיליארדים\"."
+    },
+    {
+      "word": "ביליון",
+      "role": "scale_numeral",
+      "value": 12,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ביליון[ >%%and-feminine>];\": each needs no count (\"מיליון\" alone is a million)."
+    },
+    {
+      "word": "טריליון",
+      "role": "scale_numeral",
+      "value": 12,
+      "source": "he.wikipedia \"טריליון\": \"טריליון (1,000,000,000,000) הוא מספר טבעי השווה לאלף מיליארדים\". he.wiktionary \"מיליון\", powers of ten: \"10 12 | טרה־ | T | טריליון\". CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50) gives \"1000000000000000: טריליון\"; the Hebrew Wikipedia value is the one Hebrew text uses."
+    },
+    {
+      "word": "תריסר",
+      "role": "collective",
+      "value": "12",
+      "source": "en.wiktionary \"תריסר\": \"תְּרֵיסָר • ( tresár )\", \"dozen\"."
+    },
+    {
+      "word": "תריסרים",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "en.wiktionary \"תריסר\": plural \"תְּרֵיסָרִים\"; \"dozen\"."
+    },
+    {
+      "word": "חצי",
+      "role": "half",
+      "source": "he.wiktionary \"חצי\": \"חלק אחד מתוך שניים . במספרים: ½ או 0.5.\""
+    },
+    {
+      "word": "שליש",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". en.wiktionary \"שליש\": \"A third : one of three equal parts.\""
+    },
+    {
+      "word": "שלישים",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "en.wiktionary \"שליש\": plural \"שְׁלִישִׁים\"."
+    },
+    {
+      "word": "רבע",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". en.wiktionary \"רבע\": \"quarter , one fourth\""
+    },
+    {
+      "word": "רבעים",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "en.wiktionary \"רבע\": plural \"רְבַעִים\"."
+    },
+    {
+      "word": "חמישית",
+      "role": "denominator",
+      "value": "5",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"חמישית\": \"חלק אחד מבין חמישה חלקים שווים.\""
+    },
+    {
+      "word": "חמישיות",
+      "role": "denominator",
+      "value": "5",
+      "plural": true,
+      "source": "he.wiktionary \"חמישית\": \"ר׳ חֲמִישִׁיּוֹת\"."
+    },
+    {
+      "word": "שישית",
+      "role": "denominator",
+      "value": "6",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"שישית\": \"חלק אחד מבין ששה חלקים שווים.\""
+    },
+    {
+      "word": "שישיות",
+      "role": "denominator",
+      "value": "6",
+      "plural": true,
+      "source": "he.wiktionary \"שישית\": \"ר׳ שִׁשִּׁיּוֹת\"."
+    },
+    {
+      "word": "שביעית",
+      "role": "denominator",
+      "value": "7",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"שביעית\": \"חלק אחד מבין שבעה חלקים שווים.\""
+    },
+    {
+      "word": "שביעיות",
+      "role": "denominator",
+      "value": "7",
+      "plural": true,
+      "source": "he.wiktionary \"שביעית\": \"ר׳ שְׁבִיעִיּוֹת\"."
+    },
+    {
+      "word": "שמינית",
+      "role": "denominator",
+      "value": "8",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"שמינית\": \"חלק אחד מבין שמונה חלקים שווים.\""
+    },
+    {
+      "word": "שמיניות",
+      "role": "denominator",
+      "value": "8",
+      "plural": true,
+      "source": "he.wiktionary \"שמינית\": \"ר׳ שְׁמִינִיּוֹת\"."
+    },
+    {
+      "word": "תשיעית",
+      "role": "denominator",
+      "value": "9",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\"."
+    },
+    {
+      "word": "עשירית",
+      "role": "denominator",
+      "value": "10",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"עשירית\": \"דבר השוה ל־1/10 מתוך דבר מסוים.\""
+    },
+    {
+      "word": "עשיריות",
+      "role": "denominator",
+      "value": "10",
+      "plural": true,
+      "source": "he.wikipedia \"שבר עשרוני\": \"הספרה הראשונה מימין לנקודה מציינת כמות עשיריות\"."
+    },
+    {
+      "word": "מאית",
+      "role": "denominator",
+      "value": "100",
+      "numerator": "1",
+      "source": "he.wiktionary \"חצי\", fractions: \"חצי | שליש | רבע | חמישית | שישית | שביעית | שמינית | תשיעית | עשירית | תריסרית | שש עשרית | מאית | רבבית\". he.wiktionary \"מאית\": \"דבר השוה ל1/100 מתוך דבר מסוים.\""
+    },
+    {
+      "word": "מאיות",
+      "role": "denominator",
+      "value": "100",
+      "plural": true,
+      "source": "he.wikipedia \"שבר עשרוני\": \"הספרה מימין לה את כמות המאיות\"."
+    },
+    {
+      "word": "אלפית",
+      "role": "denominator",
+      "value": "1000",
+      "numerator": "1",
+      "source": "he.wiktionary \"אלפית\": \"דבר השוה ל1/1000 מתוך דבר מסוים.\""
+    },
+    {
+      "word": "ראשון",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"1: ראשון;\". en.wiktionary \"יום ראשון\": \"Sunday\"."
+    },
+    {
+      "word": "ראשונה",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"1: ראשונה;\"."
+    },
+    {
+      "word": "שנייה",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "source": "en.wiktionary \"שני\": \"Ordinal : שֵׁנִי ( shení ) m , שנייה / שְׁנִיָּה ( shniyá ) f\"."
+    },
+    {
+      "word": "שלישי",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"3: שלישי;\". en.wiktionary \"יום שלישי\": \"Tuesday\"."
+    },
+    {
+      "word": "שלישית",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"3: שלישית;\"."
+    },
+    {
+      "word": "רביעי",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"4: רביעי;\". en.wiktionary \"יום רביעי\": \"Wednesday\"."
+    },
+    {
+      "word": "רביעית",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"4: רביעית;\"."
+    },
+    {
+      "word": "חמישי",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"5: חמישי;\". en.wiktionary \"יום חמישי\": \"Thursday\"."
+    },
+    {
+      "word": "חמישית",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"5: חמישית;\"."
+    },
+    {
+      "word": "שישי",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"6: שישי;\". en.wiktionary \"יום שישי\": \"Friday\"."
+    },
+    {
+      "word": "שישית",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"6: שישית;\"."
+    },
+    {
+      "word": "שביעי",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"7: שביעי;\"."
+    },
+    {
+      "word": "שביעית",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"7: שביעית;\"."
+    },
+    {
+      "word": "שמיני",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"8: שמיני;\"."
+    },
+    {
+      "word": "שמינית",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"8: שמינית;\"."
+    },
+    {
+      "word": "תשיעי",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"9: תשיעי;\"."
+    },
+    {
+      "word": "תשיעית",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"9: תשיעית;\"."
+    },
+    {
+      "word": "עשירי",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"10: עשירי;\"."
+    },
+    {
+      "word": "עשירית",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"10: עשירית;\"."
+    },
+    {
+      "word": "שניה",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-feminine: \"2: שניה;\". en.wiktionary \"שניה\": \"feminine singular indefinite form of שֵׁנִי ( shení )\"; also \"A second : one sixtieth of a minute of time.\""
+    }
+  ]
+}

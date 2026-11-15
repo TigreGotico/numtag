@@ -66,12 +66,11 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `joiner_after_hundred` | required | the same |
 | `joiner_between_groups` | optional | Gulbenkian, Cunha & Cintra, maintainer ruling |
 | `joiner_before_last_group` | required | Gulbenkian, Cunha & Cintra, Teyssier, maintainer ruling |
-| `joiner_before_round_hundred` | true | the same |
+| `joiner_before_round_hundred` | true | Gulbenkian, Cunha & Cintra, Teyssier |
 | `comma_between_classes` | true | Gulbenkian, via Ciberdúvidas 8981 |
 | `plural_scale_needs_count` | true | Priberam, "milhão" and "milhar" |
 | `scale_noun_agrees` | true | Squarisi, Correio Braziliense; Priberam, "milhão" |
-| `ordinal_style` | every_word | Teyssier, p. 183 |
-| `range_cue` | "entre" | Priberam, "entre" |
+| `ordinal_style` | every_word | CLDR 49 RBNF pt %spellout-ordinal-masculine |
 
 [../rulings.md](../rulings.md) quotes each source and shows each rule at work. The main rule of Portuguese numbers is the joiner before the last group.
 
@@ -98,7 +97,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `half_unit` | 20 units of measure and of time | "meio quilo", "meia hora" |
 | `abbreviation` | "dez" | "dez." for "dezembro" |
 | `lone_decimal_mark` | ",", "." | ",5" and ".5" |
-| `range_cue` | "entre" | "entre cem mil e um milhão" |
+| `range_cue` | "entre" | "entre cem mil e um milhão" (source: Priberam, "entre") |
 
 ## Known misreadings
 
