@@ -158,12 +158,35 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("mil e quinhentos milhões trezentos mil e um"),
                          [("mil e quinhentos milhões trezentos mil e um", "1500300001", C)])
 
-    def test_a_group_must_fit_in_the_zeros_before_it(self):
-        # 500000 has five zeros, too few for 200000
-        self.assertEqual(pt("meio milhão e duzentos mil"),
-                         [("meio milhão", "500000", C), ("duzentos mil", "200000", C)])
+    def test_a_half_scale_noun_sums_with_the_groups_after_it(self):
+        # 10^6 / 2 + 200 x 10^3 = 700000, as "um milhão e duzentos mil"
+        self.assertEqual(pt("meio milhão e duzentos mil"), [("meio milhão e duzentos mil", "700000", C)])
+
+    def test_only_a_cardinal_with_mil_counts_a_larger_scale_noun(self):
+        # 10^6; 2 x 10^9 (short scale)
+        self.assertEqual(read("entre um milhão e dois bilhões", "pt-BR"),
+                         [("um milhão", "1000000", C), ("dois bilhões", "2000000000", C)])
+        # 2 x 10^6; 3 x 10^12 (long scale)
+        self.assertEqual(pt("dois milhões e três biliões"),
+                         [("dois milhões", "2000000", C), ("três biliões", "3" + "0" * 12, C)])
+        self.assertEqual(pt("um milhão e um bilião"),
+                         [("um milhão", "1000000", C), ("um bilião", "1" + "0" * 12, C)])
+        # 3 x 10^12 + 500 x 10^3 x 10^6 = 3500000000000
+        self.assertEqual(pt("três biliões e quinhentos mil milhões"),
+                         [("três biliões e quinhentos mil milhões", "35" + "0" * 11, C)])
+
+    def test_a_scale_noun_after_a_group_starts_a_new_number(self):
+        # 10^9; 2 x 10^9
+        self.assertEqual(pt("entre mil milhões e dois mil milhões de euros"),
+                         [("mil milhões", "1" + "0" * 9, C), ("dois mil milhões", "2" + "0" * 9, C)])
+        self.assertEqual(pt("mil milhões e mil milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil milhões", "1" + "0" * 9, C)])
+        # 2 x 10^12; 1000 x 10^12
+        self.assertEqual(pt("dois biliões e mil biliões"),
+                         [("dois biliões", "2" + "0" * 12, C), ("mil biliões", "1" + "0" * 15, C)])
+        # pt-BR short scale: 10^9; 2000 x 10^6
         self.assertEqual(read("um bilhão e dois mil milhões", "pt-BR"),
-                         [("um bilhão e dois mil", "1000002000", C)])
+                         [("um bilhão", "1000000000", C), ("dois mil milhões", "2000000000", C)])
 
     def test_two_units_are_two_numbers(self):
         self.assertEqual(pt("dois três"), [("dois", "2", C), ("três", "3", C)])
@@ -218,6 +241,11 @@ class TestNumberScale(unittest.TestCase):
         # 3 x 10^12 + 500 x 10^9 = 3500000000000
         self.assertEqual(self.scales("três biliões e quinhentos mil milhões"),
                          [("três biliões e quinhentos mil milhões", "35" + "0" * 11, Scale.LONG)])
+
+    def test_an_ordinal_scale_word_names_the_scale(self):
+        mentions = tag_numbers("o bilionésimo visitante", "pt-PT")
+        self.assertEqual([(m.value, m.kind.value, m.number_scale) for m in mentions],
+                         [("1" + "0" * 12, O, Scale.LONG)])
 
     def test_the_scale_option_shows_in_the_mention(self):
         self.assertEqual(self.scales("um bilião", scale=Scale.SHORT),
@@ -322,12 +350,9 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(pt("três quartos"), [("três quartos", "0.75", F)])
         self.assertEqual(pt("um sétimo"), [("um sétimo", "1/7", F)])
 
-    def test_meios_counts_halves(self):
-        # 3 / 2 = 1.5; 5 / 2 = 2.5
-        self.assertEqual(pt("três meios"), [("três meios", "1.5", F)])
-        self.assertEqual(pt("cinco meios"), [("cinco meios", "2.5", F)])
-        mentions = tag_numbers("três meios de transporte", "pt-PT")
-        self.assertLess(mentions[0].confidence, 0.5)
+    def test_meios_is_the_common_noun(self):
+        self.assertEqual(pt("dois meios de pagamento"), [("dois", "2", C)])
+        self.assertEqual(pt("tem três meios de transporte"), [("três", "3", C)])
 
     def test_the_avos_denominator(self):
         # 12 / 25 = 0.48

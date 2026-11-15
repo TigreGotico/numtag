@@ -48,6 +48,20 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("a thousand million"), [("a thousand million", "1000000000", C)])
         self.assertEqual(en("ten thousand million"), [("ten thousand million", "10000000000", C)])
 
+    def test_only_a_cardinal_with_thousand_counts_a_larger_scale_noun(self):
+        self.assertEqual(en("between two million and three billion dollars"),
+                         [("two million", "2000000", C), ("three billion", "3000000000", C)])
+
+    def test_a_scale_noun_after_a_group_starts_a_new_number(self):
+        # 2000 x 10^6; 3000 x 10^6
+        self.assertEqual(en("two thousand million and three thousand million"),
+                         [("two thousand million", "2000000000", C), ("three thousand million", "3000000000", C)])
+
+    def test_an_ordinal_scale_word_names_the_scale(self):
+        mentions = tag_numbers("the billionth visitor", "en")
+        self.assertEqual([(m.value, m.kind.value, m.number_scale) for m in mentions],
+                         [("1" + "0" * 9, O, Scale.SHORT)])
+
     def test_a_scale_noun_needs_a_count(self):
         self.assertEqual(en("a million"), [("a million", "1000000", C)])
         self.assertEqual(en("the million"), [])

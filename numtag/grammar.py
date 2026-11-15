@@ -9,7 +9,7 @@ the next word.
     cardinal    := group (joiner? group)*            group scales strictly descending
     group       := count? multiplier | small | small-decimal | digits
     multiplier  := scale-word
-    count       := small | small-decimal | digits | cardinal      ("mil e quinhentos" milhões)
+    count       := small | small-decimal | digits | cardinal of thousands   ("mil e quinhentos" milhões)
     small       := hundreds (joiner tens-units)? | tens-units      below 1000
     tail        := collective-tail | of-tail | half-tail | fraction-tail | decimal-tail
 """
@@ -24,6 +24,9 @@ from numtag.tokenize import Token
 
 ONE = Rational("1")
 HALF = Rational("1", "2")
+# The power of ten of "mil" and "thousand": the only scale whose cardinal
+# counts a larger scale noun ("mil milhões", "mil biliões", "a thousand million").
+THOUSAND = 3
 
 
 @dataclass(frozen=True)
@@ -240,11 +243,13 @@ class Grammar:
         return found
 
     def cardinal_counts(self, i: int, first: bool) -> list[Count]:
-        """A cardinal with a scale word counts a larger scale noun after it:
-        "mil e quinhentos milhões" is 1500 x 10^6, "a thousand million" is 10^9."""
+        """A cardinal whose largest scale is the thousand counts a larger scale
+        noun after it: "mil e quinhentos milhões" is 1500 x 10^6, "a thousand
+        million" is 10^9. A larger noun closes its group, so "um milhão e dois
+        bilhões" is two numbers."""
         found = []
         for run in self.cardinals(i, first, compound=False):
-            if run[0].exponent:
+            if run[0].exponent == THOUSAND:
                 single = len(run) == 1
                 found.append(Count(run[-1].end, _sum(run), needs_multiplier=True,
                                    decimal=any(g.decimal for g in run), top=run[0].exponent,
@@ -285,16 +290,17 @@ class Grammar:
             run = frontier.pop()
             last = run[-1]
             # A count belongs to the scale word after it: "dois milhões e três
-            # milhões" is two numbers, not 2000003 and a stray "milhões".
-            if compound and last.exponent == 0 and self._takes_multiplier(last.end):
+            # milhões" is two numbers, not 2000003 and a stray "milhões", and
+            # "mil milhões e dois mil milhões" is two, not 1000002000 and "milhões".
+            if compound and (last.exponent == 0 and self._takes_multiplier(last.end)
+                             or any(e.exponent > last.order for e in self._readings(last.end, "scale_noun"))):
                 continue
             found.append(run)
             if last.exponent == 0 or last.decimal:
                 continue
-            total = _sum(run)
             for j in self._after_joiner(last.end, self.lex.joiner_between_groups):
                 for group in self.groups(j, first=False, compound=compound):
-                    if group.order < last.order and _fits(total, group):
+                    if group.order < last.order:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
@@ -494,19 +500,6 @@ class Grammar:
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run)
         return found
-
-
-def _whole_part(value: Rational) -> str:
-    return digits.divide_whole(value.numerator, value.denominator)[0]
-
-
-def _fits(total: Rational, group: Group) -> bool:
-    """True when the value of ``group`` fits in the trailing zeros of the
-    whole ``total``: "três biliões e quinhentos mil milhões" is one number,
-    "meio milhão e duzentos mil" is two."""
-    if not total.is_whole():
-        return False
-    return _room_for(Rational(_whole_part(total)), _whole_part(group.count.scaled(group.exponent)))
 
 
 def _room_for(total: Rational, addend: str) -> bool:

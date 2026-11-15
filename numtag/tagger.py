@@ -59,8 +59,8 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
-            _number_scale(lexicon, run[start:best.end]),
-            _confidence(grammar, lexicon, run, start, best)))
+            _confidence(grammar, lexicon, run, start, best),
+            number_scale=_number_scale(lexicon, run[start:best.end])))
         i = best.end
     return mentions
 

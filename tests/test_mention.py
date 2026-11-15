@@ -50,6 +50,13 @@ class TestNumberMention(unittest.TestCase):
             NumberMention((0, 9), "um bilião", "1" + "0" * 12, Kind.CARDINAL, Form.WORDS,
                           number_scale="long")
 
+    def test_number_scale_is_keyword_only_and_confidence_keeps_its_place(self):
+        # the seventh positional argument is confidence, as in the contract on dev
+        mention = NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS, "feminine", 0.3)
+        self.assertEqual((mention.gender, mention.number_scale, mention.confidence), ("feminine", None, 0.3))
+        with self.assertRaises(TypeError):
+            NumberMention((0, 3), "one", "1", Kind.CARDINAL, Form.WORDS, None, Scale.LONG, 1.0)
+
     def test_number_scale_is_part_of_equality(self):
         long = NumberMention((0, 3), "one", "1", Kind.CARDINAL, Form.WORDS, number_scale=Scale.LONG)
         self.assertNotEqual(long, NumberMention((0, 3), "one", "1", Kind.CARDINAL, Form.WORDS))
