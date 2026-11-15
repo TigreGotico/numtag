@@ -114,6 +114,8 @@ class TestCardinals(unittest.TestCase):
     def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
         self.assertEqual(en("between two and"), [("two", "2", C)])
         self.assertEqual(en("between -1 and"), [("-1", "-1", C)])
+        # digits glued to a word are dropped, so "and20" leaves a final joiner
+        self.assertEqual(en("between 15 and20"), [("15", "15", C)])
 
     def test_a_scale_word_keeps_the_singular_after_a_count(self):
         self.assertEqual(en("two million"), [("two million", "2000000", C)])

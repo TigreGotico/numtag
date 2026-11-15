@@ -411,6 +411,8 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
         self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
         self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
+        # digits glued to a word are dropped, so "e20" leaves a final joiner
+        self.assertEqual(pt("entre 15 e20"), [("15", "15", C)])
 
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
