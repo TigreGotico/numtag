@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.2.0a3](https://github.com/TigreGotico/numtag/tree/0.2.0a3) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a2...0.2.0a3)
+
+**Merged pull requests:**
+
+- test: a round last class before a collective needs the joiner [\#16](https://github.com/TigreGotico/numtag/pull/16) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.2.0a2](https://github.com/TigreGotico/numtag/tree/0.2.0a2) (2026-11-15)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a2)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a1...0.2.0a2)
+
+## [0.2.0a1](https://github.com/TigreGotico/numtag/tree/0.2.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a1)
 
 **Merged pull requests:**
 
@@ -11,11 +23,15 @@
 
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.1.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.2a1...0.1.0a1)
 
 **Merged pull requests:**
 
 - feat: tag\_numbers engine for pt-PT, pt-BR and en [\#4](https://github.com/TigreGotico/numtag/pull/4) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.0.2a1](https://github.com/TigreGotico/numtag/tree/0.0.2a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.0.2a1)
 
 
 
