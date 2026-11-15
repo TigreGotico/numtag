@@ -4,7 +4,7 @@ each language under numtag/lexicon/."""
 import unittest
 
 from helpers import read
-from numtag import Scale
+from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -115,7 +115,8 @@ class TestOrdinals(unittest.TestCase):
 
     def test_a_digit_ordinal_takes_a_hyphen_before_its_suffix(self):
         self.assertEqual(read("2-й", "ru"), [("2-й", "2", O)])
-        self.assertEqual(read("5-го", "uk"), [("5-го", "5", O)])
+        self.assertEqual(read("5-ий", "uk"), [("5-ий", "5", O)])
+        self.assertEqual(read("4-ма", "bg"), [("4", "4", C)])
 
 
 class TestFractionsAndDecimals(unittest.TestCase):
@@ -148,6 +149,81 @@ class TestFractionsAndDecimals(unittest.TestCase):
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5
         self.assertEqual(read("две цяло и пет", "bg"), [("две цяло и пет", "2.5", D)])
+
+
+class TestCompoundEdges(unittest.TestCase):
+    def test_a_joiner_never_starts_or_ends_a_split_word(self):
+        # "isto" is "the same", not i|sto; "ijedan" is "any", not i|jedan
+        for word in ("isto", "ijedan", "ijednog"):
+            self.assertEqual(read(word, "hr"), [])
+        # whole words from the declension tables, never štyri|a or tisíc|a
+        self.assertEqual(read("štyria", "sk"), [("štyria", "4", C)])
+        self.assertEqual(read("tisíca", "sk"), [("tisíca", "1000", C)])
+        self.assertEqual(read("třema", "cs"), [("třema", "3", C)])
+
+    def test_a_joiner_inside_a_split_word_still_joins(self):
+        # 4 + 50; 1 + 20
+        self.assertEqual(read("čtyřiapadesát", "cs"), [("čtyřiapadesát", "54", C)])
+        self.assertEqual(read("enaindvajset", "sl"), [("enaindvajset", "21", C)])
+
+
+class TestHomographs(unittest.TestCase):
+    def confidences(self, text: str, lang: str) -> list[tuple[str, str, float]]:
+        return [(m.text, m.value, m.confidence) for m in tag_numbers(text, lang)]
+
+    def test_a_number_word_that_is_also_a_common_word_reads_with_low_confidence(self):
+        for text, lang, value in (("семью", "ru", "7"), ("сорока", "ru", "40"), ("nič", "sl", "0"),
+                                  ("друга", "uk", "2"), ("četvrti", "hr", "4"), ("druga", "sl", "2"),
+                                  ("drugi", "hr", "2"), ("druhý", "cs", "2"), ("druhý", "sk", "2"),
+                                  ("drugi", "pl", "2"), ("žádná", "cs", "0"), ("stotina", "hr", "100")):
+            with self.subTest(text=text, lang=lang):
+                (word, read_value, confidence), = self.confidences(text, lang)
+                self.assertEqual((word, read_value), (text, value))
+                self.assertLess(confidence, 1.0)
+
+    def test_the_plain_number_word_keeps_full_confidence(self):
+        for text, lang in (("семь", "ru"), ("сорок", "ru"), ("dva", "cs"), ("dvije stotine", "hr")):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual([c for *_, c in self.confidences(text, lang)], [1.0])
+
+    def test_a_homograph_inside_a_longer_number_is_no_homograph(self):
+        # 0 + 5/10
+        self.assertEqual(self.confidences("nič cela pet", "sl"), [("nič cela pet", "0.5", 1.0)])
+        self.assertEqual(self.confidences("žádná celá pět", "cs"), [("žádná celá pět", "0.5", 1.0)])
+
+
+class TestPersonalAndCountForms(unittest.TestCase):
+    def test_slovak_masculine_personal_forms(self):
+        # 2, 3, 4; 120 + 4
+        self.assertEqual(read("dvaja pocestní", "sk"), [("dvaja", "2", C)])
+        self.assertEqual(read("traja muži", "sk"), [("traja", "3", C)])
+        self.assertEqual(read("stodvadsiati štyria muži", "sk"), [("stodvadsiati štyria", "124", C)])
+
+    def test_czech_one_hundred_counted_by_jedno(self):
+        # 2 x 1000 + 1 x 100 + 60 + 8
+        self.assertEqual(read("dva tisíce jedno sto šedesát osm", "cs"), [("dva tisíce jedno sto šedesát osm", "2168", C)])
+
+    def test_russian_whole_part_and_a_fraction(self):
+        # 3 + 6/7 = 27/7; 2 + 5/10
+        self.assertEqual(read("три целых и шесть седьмых", "ru"), [("три целых и шесть седьмых", "27/7", F)])
+        self.assertEqual(read("две целых и пять десятых", "ru"), [("две целых и пять десятых", "2.5", D)])
+
+
+class TestDigitGroups(unittest.TestCase):
+    def test_a_space_groups_digits_where_the_group_mark_is_a_space(self):
+        # 10^6
+        for lang in ("ru", "uk", "bg", "pl", "cs", "sk"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("1 000 000", lang), [("1 000 000", "1000000", C)])
+
+    def test_a_dot_groups_digits_only_where_a_source_says_so(self):
+        # CLDR sl and hr; IJP for Czech money amounts; no dot in ru, uk, bg, pl, sk
+        for lang in ("sl", "hr", "cs"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("1.000.000", lang), [("1.000.000", "1000000", C)])
+        for lang in ("ru", "uk", "bg", "pl", "sk"):
+            with self.subTest(lang=lang):
+                self.assertNotIn("1000000", [value for _, value, _ in read("1.000.000", lang)])
 
 
 class TestApostrophes(unittest.TestCase):

@@ -54,7 +54,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
              number_words: frozenset[str] | None = None,
              apostrophes: frozenset[str] = frozenset(), suffix_marks: frozenset[str] = frozenset(),
-             compound_parts: frozenset[str] = frozenset()) -> list[Token]:
+             compound_parts: frozenset[str] = frozenset(),
+             compound_joiners: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -72,7 +73,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     ("п'ять"), ``suffix_marks`` that may stand between a digit string and its
     ordinal suffix besides a dot ("2-й"), and ``compound_parts``: a word
     that is no number word but a sequence of these parts ("dvadsaťjeden") is
-    split into them.
+    split into them. A part in ``compound_joiners`` is never the first or the
+    last part of a split ("isto" stays one word).
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -110,15 +112,17 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 skip_until = following.end()
         token = Token(text[start:end], start, end, is_digits, gap, suffix)
         whole_word = number_words is not None and token.norm in number_words
-        tokens += _split_compound(token, compound_parts) if compound_parts and not (is_digits or whole_word) else [token]
+        tokens += _split_compound(token, compound_parts, compound_joiners) if compound_parts and not (is_digits or whole_word) else [token]
         previous_end = end
     return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
 
 
-def _split_compound(token: Token, parts: frozenset[str]) -> list[Token]:
+def _split_compound(token: Token, parts: frozenset[str], joiners: frozenset[str] = frozenset()) -> list[Token]:
     """The parts of a compound number word, or the word alone when it is a
     number word itself or no sequence of number words spells it. The split
-    with the fewest parts wins, and among those the longest first part."""
+    with the fewest parts wins, and among those the longest first part. A
+    joiner is never the first or the last part, so "isto" and "štyria" stay
+    whole words: a mention never starts or ends inside a word."""
     word = token.norm
     if word in parts or len(word) != len(token.text):
         return [token]
@@ -128,6 +132,8 @@ def _split_compound(token: Token, parts: frozenset[str]) -> list[Token]:
         if i not in best:
             continue
         for j in range(len(word), i, -1):
+            if word[i:j] in joiners and (i == 0 or j == len(word)):
+                continue
             if word[i:j] in parts and (j not in best or len(best[i]) + 1 < len(best[j])):
                 best[j] = best[i] + (j,)
     ends = best.get(len(word), ())

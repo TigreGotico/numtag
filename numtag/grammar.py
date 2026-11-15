@@ -530,7 +530,11 @@ class Grammar:
         if last.decimal:
             return []
         found = []
-        for j in self._after_joiner(last.end, Joiner.REQUIRED):
+        starts = self._after_joiner(last.end, Joiner.REQUIRED)
+        if self.lex.joiner_after_decimal_marker != Joiner.NEVER and self._is_word(last.end, self.lex.decimal_markers):
+            # "три целых и шесть седьмых": the whole part, its marker, a joiner and a fraction
+            starts += self._after_joiner(last.end + 1, Joiner.REQUIRED)
+        for j in starts:
             found += [replace(f, value=_sum(run) + f.value) for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
             found += [Parse(j + 1, _sum(run) + Rational("1", e.value), ambiguous=e.ambiguous)
@@ -741,6 +745,12 @@ class Grammar:
         best = min(splits, key=lambda s: (s[2], s[1], -s[0][0].end), default=None)
         return None if best is None else best[0]
 
+    def _ambiguous_cardinal(self, i: int) -> bool:
+        """True when every cardinal reading of the word at ``i`` is also a
+        common word that is no number: "семью" is 7 and "family"."""
+        cardinal = [e for role in ("unit", "ten", "hundred") for e in self._readings(i, role)]
+        return bool(cardinal) and all(e.ambiguous for e in cardinal)
+
     def _number_word(self, i: int) -> bool:
         token = self.tokens[i]
         return token.is_digits or token.norm in self.lex.readings or token.norm in (
@@ -760,11 +770,13 @@ class Grammar:
             # "дюжина яиц", "четверть часа": the noun alone is one of it
             for entry in self._readings(i, "collective"):
                 if not entry.plural:
-                    found += self._collective(ZERO, ONE, entry, i, may_take_of=True)
+                    found += [replace(p, ambiguous=entry.ambiguous)
+                              for p in self._collective(ZERO, ONE, entry, i, may_take_of=True)]
             found += [Parse(i + 1, Rational("1", e.value), ambiguous=e.ambiguous)
                       for e in self._readings(i, "denominator") if not e.plural]
         for run in self.cardinals(i):
-            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
+            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run),
+                               ambiguous=run[-1].end == i + 1 and self._ambiguous_cardinal(i)))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
         return found
