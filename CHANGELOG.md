@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0a1](https://github.com/TigreGotico/numtag/tree/0.7.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.6.0a1...0.7.0a1)
+
+**Merged pull requests:**
+
+- feat: read es, gl, ca, ast, an, oc and mwl numbers [\#11](https://github.com/TigreGotico/numtag/pull/11) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.6.0a1](https://github.com/TigreGotico/numtag/tree/0.6.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.5.0a1...0.6.0a1)
