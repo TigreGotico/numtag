@@ -394,10 +394,12 @@ class Grammar:
         found = []
         for entry in self._readings(last.end, "collective"):
             # A collective of a place value counts only the group after the
-            # joiner: "treze mil e duas centenas" is 13200 (Miro). Any other
-            # collective counts the whole cardinal: "mil e duas dúzias" is
-            # 12024 (Miro).
-            place = split < len(run) - 1 and entry.value.strip("0") == "1"
+            # joiner, where the product fits below the group before it:
+            # "treze mil e duas centenas" is 13200 (Miro), "três mil e
+            # quinhentas centenas" is 350000. Any other collective counts the
+            # whole cardinal: "mil e duas dúzias" is 12024 (Miro).
+            place = split < len(run) - 1 and entry.value.strip("0") == "1" and len(
+                _whole(last.count * Rational(entry.value))) <= _room(run[-2])
             cut = len(run) - 1 if place else split
             found += self._collective(_sum(run[:cut]), _sum(run[cut:]), entry, last.end, may_take_of=cut == 0 or place)
         decimal = any(g.decimal for g in run)

@@ -25,6 +25,9 @@ class TestBindingRulings(unittest.TestCase):
     def test_a_place_collective_after_the_joiner_counts_only_its_group(self):
         # Miro: 13000 + 2 x 100
         self.assertEqual(pt("treze mil e duas centenas"), [("treze mil e duas centenas", "13200", C)])
+        # 500 x 100 does not fit below 3000, so the whole cardinal counts
+        # the collective: (3000 + 500) x 100
+        self.assertEqual(pt("três mil e quinhentas centenas"), [("três mil e quinhentas centenas", "350000", C)])
         # (3000 + 2 x 100) x 10^6
         self.assertEqual(pt("três mil e duas centenas de milhões"),
                          [("três mil e duas centenas de milhões", "3200000000", C)])
