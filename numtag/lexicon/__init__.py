@@ -76,14 +76,22 @@ class Lexicon:
     tens_order: TensOrder
     # The joiner between a unit and the ten after it ("und" in "einundzwanzig").
     joiner_unit_ten: Joiner
+    # A unit before the ten is one written word with it: "zwei und vierzig" is two numbers.
+    unit_ten_one_word: bool
     # A count of one before an ordinal scale word makes a fraction ("um milésimo").
     one_before_ordinal_scale_is_fraction: bool
     # Number words written together as one word ("zweihundert"), split by the tokenizer.
     compound_words: bool
     # Two parts of a compound share a doubled letter ("ettusen" is "ett" and "tusen").
     compound_shared_letter: bool
-    # A period after digits makes an ordinal ("am 3. Mai").
+    # A period after digits makes an ordinal ("am 3. Mai") when a cue shows
+    # it: a word before the digits ("zum 1000. Mal"), with
+    # period_ordinal_lowercase any lower-case word after it ("17. mai"), or
+    # a number of at most period_ordinal_free_digits digits.
     period_ordinals: bool
+    period_ordinal_lowercase: bool
+    # A number of at most this many digits needs no cue ("3. Platz").
+    period_ordinal_free_digits: int
     # The marks that may stand between digits and an ordinal suffix ("." in "1.º").
     ordinal_suffix_marks: frozenset[str]
     readings: dict[str, tuple[Entry, ...]]
@@ -107,6 +115,11 @@ class Lexicon:
     # "einhalb" in "zweieinhalb": a word that adds a half to the number before it.
     and_a_half: frozenset[str]
     range_cues: frozenset[str]
+    # "zum" in "zum 1000. Mal": a word before digits that makes their period an ordinal mark.
+    period_ordinal_before: frozenset[str]
+    # "ein" in "Er lud mich ein.": an article that alone at the end of a
+    # clause is no numeral.
+    article_needs_noun: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
@@ -126,9 +139,12 @@ DEFAULT_SETTINGS = {
     "compound_words": False,
     "compound_shared_letter": False,
     "period_ordinals": False,
+    "period_ordinal_lowercase": False,
+    "period_ordinal_free_digits": 0,
+    "unit_ten_one_word": False,
     "ordinal_suffix_marks": ["", "."],
 }
-DEFAULT_WORDS = {"and_a_half": []}
+DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": []}
 
 
 def _read(lang: str) -> dict:
@@ -205,10 +221,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_style=settings["ordinal_style"],
         tens_order=TensOrder(settings["tens_order"]),
         joiner_unit_ten=Joiner(settings["joiner_unit_ten"]),
+        unit_ten_one_word=settings["unit_ten_one_word"],
         one_before_ordinal_scale_is_fraction=settings["one_before_ordinal_scale_is_fraction"],
         compound_words=settings["compound_words"],
         compound_shared_letter=settings["compound_shared_letter"],
         period_ordinals=settings["period_ordinals"],
+        period_ordinal_lowercase=settings["period_ordinal_lowercase"],
+        period_ordinal_free_digits=settings["period_ordinal_free_digits"],
         ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]),
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),
@@ -225,5 +244,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         and_a_half=frozenset(w.casefold() for w in words["and_a_half"]),
         range_cues=frozenset(words["range_cue"]),
+        period_ordinal_before=frozenset(w.casefold() for w in words["period_ordinal_before"]),
+        article_needs_noun=frozenset(words["article_needs_noun"]),
         ordinal_suffixes=suffixes,
     )

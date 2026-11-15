@@ -117,6 +117,13 @@
 {"text": "Die Stadt hat achtundvierzig Einwohner.", "mentions": [{"start": 14, "end": 28, "value": "48", "kind": "cardinal"}], "source": "CLDR RBNF de spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "Er läuft neunundsechzig Meter.", "mentions": [{"start": 9, "end": 23, "value": "69", "kind": "cardinal"}], "source": "CLDR RBNF de spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "Im Garten wachsen einhundertdreizehn Bäume.", "mentions": [{"start": 18, "end": 36, "value": "113", "kind": "cardinal"}], "source": "CLDR RBNF de spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
+{"text": "Die Temperatur liegt zwischen zwei und vierzig Grad.", "mentions": [{"start": 30, "end": 34, "value": "2", "kind": "cardinal"}, {"start": 39, "end": 46, "value": "40", "kind": "cardinal"}], "source": "Duden D 65: a number below a million is one word, so the spaced words are two numbers"}
+{"text": "Er las Kapitel eins und zwanzig.", "mentions": [{"start": 15, "end": 19, "value": "1", "kind": "cardinal"}, {"start": 24, "end": 31, "value": "20", "kind": "cardinal"}], "source": "Duden D 65: a number below a million is one word"}
+{"text": "Die Stadt wuchs bis 1905. Danach schrumpfte sie.", "mentions": [{"start": 20, "end": 24, "value": "1905", "kind": "cardinal"}], "source": "A year before a period with no article before it or month after it ends the sentence"}
+{"text": "Er belegte den 3. Platz.", "mentions": [{"start": 15, "end": 16, "value": "3", "kind": "ordinal"}], "source": "Duden: \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\""}
+{"text": "Er lud mich ein.", "mentions": [{"start": 12, "end": 15, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "\"ein\" alone at the clause end is the verb particle; the counting form is \"eins\""}
+{"text": "Sie wurde zwei Millionen tausendste Besucherin.", "mentions": [{"start": 10, "end": 35, "value": "2001000", "kind": "ordinal"}], "source": "arithmetic"}
+{"text": "Das ist der tausendhundertste Versuch.", "mentions": [{"start": 12, "end": 29, "value": "1100", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Das ist der erste Versuch.", "mentions": [{"start": 12, "end": 17, "value": "1", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Wir wohnen im dritten Stock.", "mentions": [{"start": 14, "end": 21, "value": "3", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Er feiert seinen zwanzigsten Geburtstag.", "mentions": [{"start": 17, "end": 28, "value": "20", "kind": "ordinal"}], "source": "arithmetic"}

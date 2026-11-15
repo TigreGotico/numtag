@@ -196,12 +196,16 @@ class Grammar:
 
     def _unit_tens(self, i: int, units: list[str], role: str) -> list[tuple[int, str, Entry]]:
         """A unit, the joiner and a round ten of ``role`` after it:
-        "einundzwanzig" is 21, "enogtyvende" the ordinal 21."""
+        "einundzwanzig" is 21, "enogtyvende" the ordinal 21. Where the
+        lexicon writes them as one word, only the parts of one word count:
+        "zwei und vierzig" is 2 and 40."""
         found = []
         for unit in units:
             if unit == "0":
                 continue
             for j in self._after_joiner(i + 1, self.lex.joiner_unit_ten):
+                if self.lex.unit_ten_one_word and not all(t.glued for t in self.tokens[i + 1:j + 1]):
+                    continue
                 found += [(j + 1, ten.value[0] + unit, ten) for ten in self._readings(j, role)
                           if _round_ten(ten.value)]
         return found
@@ -583,8 +587,9 @@ class Grammar:
             positions = [start] if prefix is None or self.lex.ordinal_style == "every_word" \
                 else self._after_joiner(start, policy)
             last_group_counts = len(run) > 1 and not run[-1].exponent
+            top = run[-1].exponent if run else 0
             for j in positions:
-                found += self._ordinal_words(j, prefix, scales=j == start and not last_group_counts)
+                found += self._ordinal_words(j, prefix, scales=j == start and not last_group_counts, top=top)
             if not last_group_counts:
                 continue
             # "six thousand nine hundredth": the scale ordinal counts only the
@@ -607,17 +612,23 @@ class Grammar:
             return self.lex.joiner_after_hundred
         return self.lex.joiner_tens_units
 
-    def _ordinal_words(self, j: int, prefix: Rational | None, scales: bool = True) -> list[Parse]:
+    def _ordinal_words(self, j: int, prefix: Rational | None, scales: bool = True,
+                       top: int = 0) -> list[Parse]:
         """The ordinal words at ``j`` after the cardinal ``prefix``, with the
         scale ordinals that multiply the whole prefix when ``scales``; no
         joiner stands before a scale ordinal ("two hundredth", not "two and
-        hundredth")."""
+        hundredth"). A scale ordinal below ``top``, the power of ten of the
+        prefix's last group, adds one of its own: "duizendhonderdste" is
+        1100, "two million thousandth" 2001000."""
         found = []
         one_is_fraction = self.lex.one_before_ordinal_scale_is_fraction
         for scale in self._readings(j, "ordinal_scale") if scales else ():
             if scale.plural or (one_is_fraction and prefix is not None and prefix.canonical() == "1"):
                 continue  # "dois milésimos" and "um milésimo" are fractions
-            value = (prefix or ONE).scaled(scale.exponent)
+            if prefix is not None and scale.exponent < top:
+                value = prefix + ONE.scaled(scale.exponent)
+            else:
+                value = (prefix or ONE).scaled(scale.exponent)
             found += self._ordinal_rest(j + 1, value, scale.ambiguous)
         words = [(j + 1, entry.value, entry) for entry in self._readings(j, "ordinal")]
         if self.lex.tens_order != TensOrder.TEN_UNIT:

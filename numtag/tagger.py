@@ -2,7 +2,7 @@
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import Lexicon, Scale, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import Token, tokenize
+from numtag.tokenize import PeriodCues, Token, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -30,7 +30,9 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                       compound_words=words if lexicon.compound_words else frozenset(),
                       compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
                       suffix_marks=lexicon.ordinal_suffix_marks,
-                      period_ordinals=lexicon.period_ordinals)
+                      period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
+                                                 lexicon.period_ordinal_free_digits)
+                      if lexicon.period_ordinals else None)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -130,5 +132,8 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
                     and parse.end < len(run) and not run[parse.end].is_digits
                     and not grammar.starts_number(parse.end))
     if lone_article:
+        return ARTICLE_CONFIDENCE
+    # "Er lud mich ein.": a lone article that ends the clause is no numeral
+    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
         return ARTICLE_CONFIDENCE
     return AMBIGUOUS_CONFIDENCE if parse.ambiguous else 1.0

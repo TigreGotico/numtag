@@ -58,6 +58,15 @@ class TestUnitBeforeTen(unittest.TestCase):
     def test_a_ten_takes_no_unit_after_it_where_the_unit_goes_first(self):
         self.assertEqual(read("zwanzig eins", "de"), [("zwanzig", "20", C), ("eins", "1", C)])
 
+    def test_spaced_words_are_two_numbers_where_the_unit_and_ten_are_one_word(self):
+        # Duden D 65, Team Taaladvies, Dansk Sprognaevn: 2 and 40, not 42
+        self.assertEqual(read("zwischen zwei und vierzig Grad", "de"), [("zwei", "2", C), ("vierzig", "40", C)])
+        self.assertEqual(read("Kapitel eins und zwanzig", "de"), [("eins", "1", C), ("zwanzig", "20", C)])
+        self.assertEqual(read("tussen twee en veertig graden", "nl"), [("twee", "2", C), ("veertig", "40", C)])
+        self.assertEqual(read("mellem to og fyrre grader", "da"), [("to", "2", C), ("fyrre", "40", C)])
+        # the old Norwegian order is written as separate words: 3 + 20 = 23
+        self.assertEqual(read("tre og tjue", "nb"), [("tre og tjue", "23", C)])
+
     def test_a_joiner_between_two_units_joins_nothing(self):
         self.assertEqual(read("sieben und neun", "de"), [("sieben", "7", C), ("neun", "9", C)])
 
@@ -71,6 +80,15 @@ class TestUnitBeforeTen(unittest.TestCase):
         self.assertEqual(read("sechstausendneunhundertste", "de"), [("sechstausendneunhundertste", "6900", O)])
         self.assertEqual(read("honderdtweeënzestigduizendachthonderdste", "nl"),
                          [("honderdtweeënzestigduizendachthonderdste", "162800", O)])
+
+    def test_a_scale_ordinal_below_the_last_group_adds_one_of_its_own(self):
+        # 1000 + 100 = 1100; 2 x 10^6 + 1000 = 2001000; 1000 + 100 = 1100
+        self.assertEqual(read("duizendhonderdste", "nl"), [("duizendhonderdste", "1100", O)])
+        self.assertEqual(read("tweemiljoenduizendste", "nl"), [("tweemiljoenduizendste", "2001000", O)])
+        self.assertEqual(read("zwei Millionen tausendste", "de"), [("zwei Millionen tausendste", "2001000", O)])
+        self.assertEqual(read("ettusen hundrade", "sv"), [("ettusen hundrade", "1100", O)])
+        # a scale ordinal above the last group still multiplies: 2 x 1000 = 2000
+        self.assertEqual(read("zweitausendste", "de"), [("zweitausendste", "2000", O)])
 
     def test_one_before_a_scale_ordinal_is_an_ordinal_where_fractions_take_their_own_word(self):
         # German fractions end in -stel ("Hundertstel"), so 1 x 100 = 100th
@@ -131,6 +149,20 @@ class TestDigitOrdinals(unittest.TestCase):
 
     def test_a_period_at_the_end_of_the_text_ends_a_sentence(self):
         self.assertEqual(read("Ich habe 3.", "de"), [("3", "3", C)])
+
+    def test_a_period_before_a_new_sentence_ends_it(self):
+        self.assertEqual(read("Unionen ble oppløst i 1905. Dette ble bekreftet.", "nb"), [("1905", "1905", C)])
+        self.assertEqual(read("Die Stadt wuchs bis 1905. Danach schrumpfte sie.", "de"), [("1905", "1905", C)])
+        # up to three digits, a capital after the period is a German noun: 3rd place
+        self.assertEqual(read("Er wurde 3. Sieger.", "de"), [("3", "3", O)])
+
+    def test_a_cue_marks_the_period_as_an_ordinal(self):
+        # a contracted article before four digits, a lower-case word after the period
+        self.assertEqual(read("Er kam zum 1000. Mal.", "de"), [("1000", "1000", O)])
+        # four digits with no cue read as a year that ends a sentence
+        self.assertEqual(read("Er kam 1000. Mal.", "de"), [("1000", "1000", C)])
+        self.assertEqual(read("han kom på 2. plass", "nb"), [("2", "2", O)])
+        self.assertEqual(read("Han kom 2. Plass", "nb"), [("2", "2", C)])
 
     def test_the_swedish_colon_suffix(self):
         self.assertEqual(read("den 3:e maj", "sv"), [("3:e", "3", O)])
@@ -197,6 +229,20 @@ class TestArticles(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertEqual([m.confidence for m in tag_numbers(text, lang)], [1.0])
 
+    def test_a_lone_ein_at_the_clause_end_is_the_verb_particle(self):
+        found = tag_numbers("Er lud mich ein.", "de")
+        self.assertEqual([m.value for m in found], ["1"])
+        self.assertLess(found[0].confidence, 0.5)
+        # the counting form "eins" is a numeral there
+        self.assertEqual([m.confidence for m in tag_numbers("Er nahm eins.", "de")], [1.0])
+
+    def test_tiende_is_also_the_tithe(self):
+        for lang in ("da", "nb"):
+            with self.subTest(lang=lang):
+                found = tag_numbers("betalte tiende", lang)
+                self.assertEqual([m.value for m in found], ["10"])
+                self.assertLess(found[0].confidence, 0.5)
+
     def test_an_article_that_is_no_numeral_is_no_number(self):
         self.assertEqual(read("et fint hus", "nb"), [])
         self.assertEqual(read("eit fint hus", "nn"), [])
@@ -216,6 +262,14 @@ class TestRanges(unittest.TestCase):
 class TestLanguageTags(unittest.TestCase):
     def test_no_reads_bokmal(self):
         self.assertEqual(read("tjueen", "no"), [("tjueen", "21", C)])
+
+    def test_cldr_ordinals_read(self):
+        # CLDR renderings: da 40th, 1000000th; sv 100th, 1000th, 1000000th
+        self.assertEqual(read("fyrrende", "da"), [("fyrrende", "40", O)])
+        self.assertEqual(read("millionte", "da"), [("millionte", "1000000", O)])
+        self.assertEqual(read("etthundrade", "sv"), [("etthundrade", "100", O)])
+        self.assertEqual(read("ettusende", "sv"), [("ettusende", "1000", O)])
+        self.assertEqual(read("en miljonte", "sv"), [("en miljonte", "1000000", O)])
         self.assertEqual(read("einundzwanzig", "de-AT"), [("einundzwanzig", "21", C)])
 
 

@@ -10,6 +10,20 @@ from dataclasses import dataclass, replace
 _TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+)")
 _ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+_NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
+_PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
+
+
+@dataclass(frozen=True)
+class PeriodCues:
+    """What makes a period after digits an ordinal mark rather than a
+    sentence end: a word before the digits ("zum 1000. Mal"), with
+    ``lowercase`` any lower-case word after the period ("17. mai"), and a
+    number of at most ``free_digits`` digits with no cue ("3. Platz", where
+    every noun takes a capital)."""
+    before: frozenset[str] = frozenset()
+    lowercase: bool = False
+    free_digits: int = 0
 
 
 @dataclass(frozen=True)
@@ -50,7 +64,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              compound_inner: frozenset[str] = frozenset(),
              shared_letter: bool = False,
              suffix_marks: frozenset[str] = frozenset({"", "."}),
-             period_ordinals: bool = False) -> list[Token]:
+             period_ordinals: PeriodCues | None = None) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -71,7 +85,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     ``suffix_marks`` are the marks that may stand between a digit string and
     its ordinal suffix ("" in "21st", ":" in "3:e"). With ``period_ordinals``,
     a period between a digit string and the next word makes it an ordinal
-    ("am 3. Mai"); the period is not part of the token.
+    when one of the cues shows it ("am 3. Mai", not "in 1905. Dann"); the
+    period is not part of the token.
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -109,8 +124,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                                         gap if n == 0 else "", glued=n > 0))
                 previous_end = end
                 continue
-        period = (period_ordinals and is_digits and not suffix
-                  and match.group().isdigit() and _period_ordinal(text, end))
+        period = (period_ordinals is not None and is_digits and not suffix
+                  and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
         tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix, period))
         previous_end = end
     return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
@@ -145,11 +160,18 @@ def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
     return found if len(found) > 1 else []
 
 
-def _period_ordinal(text: str, end: int) -> bool:
-    """True when a period follows the digits that end at ``end``, then one
-    space, then a letter or a digit: "3. Mai", not "3." at a text end."""
-    return text[end:end + 1] == "." and text[end + 1:end + 2].isspace() and \
-        text[end + 2:end + 3].isalnum()
+def _period_ordinal(text: str, start: int, end: int, cues: PeriodCues) -> bool:
+    """True when a period, one space and a word follow the digits from
+    ``start`` to ``end``, and a cue shows the period marks an ordinal: "am
+    3. Mai", "17. mai", not "i 1905. Dette" or "3." at a text end."""
+    after = _NEXT_WORD.match(text, end)
+    if after is None:
+        return False
+    word = after.group(1)
+    if end - start <= cues.free_digits or (cues.lowercase and word[0].islower()):
+        return True
+    before = _PREVIOUS_WORD.search(text, max(0, start - 64), start)
+    return before is not None and before.group(1).casefold() in cues.before
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:

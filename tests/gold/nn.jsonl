@@ -125,7 +125,7 @@
 {"text": "Han er tjueéin år.", "mentions": [{"start": 7, "end": 14, "value": "21", "kind": "cardinal"}], "source": "CLDR RBNF nn \"20: tjue[→→]\", \"1: éin\""}
 {"text": "Det kosta femogtretti kroner.", "mentions": [{"start": 10, "end": 21, "value": "35", "kind": "cardinal"}], "source": "Store norske leksikon, \"den nye tellemåten\": 23 went from \"tre og tjue\" to \"tjuetre\"; both orders are in use"}
 {"text": "Det kosta trettifem kroner.", "mentions": [{"start": 10, "end": 19, "value": "35", "kind": "cardinal"}], "source": "Store norske leksikon, \"den nye tellemåten\": 23 went from \"tre og tjue\" to \"tjuetre\"; both orders are in use"}
-{"text": "Han er tjuge år.", "mentions": [{"start": 7, "end": 12, "value": "20", "kind": "cardinal"}], "source": "Nynorskordboka, \"tjuge\" (not checked against the page)"}
+{"text": "Unionen vart oppløyst i 1905. Dette vart stadfesta.", "mentions": [{"start": 24, "end": 28, "value": "1905", "kind": "cardinal"}], "source": "A period before a capital ends the sentence: the year is a cardinal"}
 {"text": "Eg tek to tredjedelar av det.", "mentions": [{"start": 7, "end": 21, "value": "2/3", "kind": "fraction"}], "source": "arithmetic"}
 {"text": "Vi ventar to og ein halv time.", "mentions": [{"start": 10, "end": 24, "value": "2.5", "kind": "fraction"}], "source": "arithmetic"}
 {"text": "Eg kjøper ein halv liter mjølk.", "mentions": [{"start": 10, "end": 18, "value": "0.5", "kind": "fraction"}], "source": "arithmetic"}

@@ -2,35 +2,35 @@
  "settings": {
   "scale": {
    "value": "long",
-   "source": "Swedish uses the long scale: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard\", \"1000000000000: en biljon\", \"1000000000000000: en biljard\""
+   "source": "Swedish uses the long scale: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard[ →→]\", \"1000000000000: en biljon[ →→]\", \"1000000000000000: en biljard[ →→]\""
   },
   "group_mark": {
-   "value": " ",
-   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group '\\xa0'"
+   "value": " ",
+   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group ' '"
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group '\\xa0'"
+   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group ' '"
   },
   "space_groups": {
    "value": true,
-   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group '\\xa0': digits are grouped by a space"
+   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group ' ': digits are grouped by a space"
   },
   "compound_words": {
    "value": true,
-   "source": "Swedish writes a number below a million as one word: see the RBNF rules quoted on each entry."
+   "source": "Swedish writes the words of a number below a thousand, and the thousands, as one word: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: 21 → \"tjugoett\", 342 → \"trehundrafyrtiotvå\", 2500 → \"tvåtusen femhundra\""
   },
   "plural_scale_needs_count": {
    "value": true,
-   "source": "\"miljoner\" alone names no number: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2000000: ←← miljoner[ →→]\""
+   "source": "\"miljoner\" alone names no number: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2000000: ←%spellout-cardinal-reale← miljoner[ →→]\""
   },
   "scale_noun_agrees": {
    "value": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon\", \"2000000: ←%spellout-cardinal-reale← miljoner\": a count above one takes the plural"
+   "source": "A count above one takes the plural: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon[ →→]\", \"2000000: ←%spellout-cardinal-reale← miljoner[ →→]\""
   },
   "joiner_tens_units": {
    "value": "never",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"20: tjugo[→→]\": \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"20: tjugo[→→]\" (\"tjugoett\")"
   },
   "joiner_after_hundred": {
    "value": "never",
@@ -40,19 +40,27 @@
    "value": "never",
    "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\""
   },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "No joiner follows \"tusen\": CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\""
+  },
   "ordinal_style": {
    "value": "last_word",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-neuter: \"tjugoförsta\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 21 → \"tjugoförste\""
+  },
+  "one_before_ordinal_scale_is_fraction": {
+   "value": false,
+   "source": "A fraction is the ordinal and \"-del\" (\"hundradel\"), so a count of one before an ordinal scale word makes an ordinal: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\""
   },
   "compound_shared_letter": {
    "value": true,
-   "source": "Svenska skrivregler: three equal consonants at a compound boundary are written as two (rule quoted from memory, not checked against the page); CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-cardinal-reale: \"1000: ettusen[ →→]\" is ett + tusen"
+   "source": "\"ettusen\" is \"et\" + \"tusen\": CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000: ←%%spellout-numbering-t←tusen[ →→]\"; CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering-t: \"1: et\". Svenska skrivregler: three equal consonants at a compound boundary are written as two (rule quoted from memory, not checked against the page)"
   },
   "ordinal_suffix_marks": {
    "value": [
     ":"
    ],
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal: %digits-ordinal-feminine \"0: =#,##0=$(ordinal,one{:a}other{:e})$\" (\"1:a\", \"3:e\")"
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %digits-ordinal-feminine: \"0: =#,##0=$(ordinal,one{:a}other{:e})$\"; CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %digits-ordinal-masculine: \"0: =#,##0=:e\""
   }
  },
  "words": {
@@ -60,7 +68,7 @@
    "value": [
     "och"
    ],
-   "source": "\"en och en halv\" (SAOL, \"halv\"); no joiner stands inside a Swedish number: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"20: tjugo[→→]\""
+   "source": "\"en och en halv\" (SAOL; the page needs JavaScript, so not checked against the page); no joiner stands inside a Swedish number: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"20: tjugo[→→]\""
   },
   "decimal_marker": {
    "value": [
@@ -83,7 +91,7 @@
     "en",
     "ett"
    ],
-   "source": "\"en\" and \"ett\" are the indefinite article and the numeral 1: CLDR RBNF sv %spellout-cardinal-reale \"1: en\", %spellout-numbering \"1: ett\""
+   "source": "\"en\" and \"ett\" are the indefinite article and the numeral 1: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-cardinal-reale: \"1: en\"; CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1: ett\""
   },
   "of": {
    "value": [],
@@ -113,13 +121,13 @@
    "value": [
     ","
    ],
-   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group '\\xa0'"
+   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group ' '"
   },
   "range_cue": {
    "value": [
     "mellan"
    ],
-   "source": "SAOL, \"mellan\": preposition \"between\"; \"mellan 20 och 30\" names a range (not checked against the page)"
+   "source": "\"mellan\" is the preposition \"between\"; \"mellan 20 och 30\" names a range (SAOL; the page needs JavaScript, so not checked against the page)"
   }
  },
  "entries": [
@@ -145,163 +153,163 @@
    "word": "två",
    "role": "unit",
    "value": "2",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "tre",
    "role": "unit",
    "value": "3",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "fyra",
    "role": "unit",
    "value": "4",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "fem",
    "role": "unit",
    "value": "5",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sex",
    "role": "unit",
    "value": "6",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sju",
    "role": "unit",
    "value": "7",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "åtta",
    "role": "unit",
    "value": "8",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "nio",
    "role": "unit",
    "value": "9",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "tio",
    "role": "ten",
    "value": "10",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "elva",
    "role": "ten",
    "value": "11",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "tolv",
    "role": "ten",
    "value": "12",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "tretton",
    "role": "ten",
    "value": "13",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "fjorton",
    "role": "ten",
    "value": "14",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "femton",
    "role": "ten",
    "value": "15",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sexton",
    "role": "ten",
    "value": "16",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sjutton",
    "role": "ten",
    "value": "17",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "arton",
    "role": "ten",
    "value": "18",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "nitton",
    "role": "ten",
    "value": "19",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "tjugo",
    "role": "ten",
    "value": "20",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "trettio",
    "role": "ten",
    "value": "30",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "fyrtio",
    "role": "ten",
    "value": "40",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "femtio",
    "role": "ten",
    "value": "50",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sextio",
    "role": "ten",
    "value": "60",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "sjuttio",
    "role": "ten",
    "value": "70",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "åttio",
    "role": "ten",
    "value": "80",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "nittio",
    "role": "ten",
    "value": "90",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\" … \"19: nitton\", \"20: tjugo\" … \"90: nittio\"; Wiktionary, \"tjugoett\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"2: två\", \"3: tre\", \"4: fyra\", \"5: fem\", \"6: sex\", \"7: sju\", \"8: åtta\", \"9: nio\", \"10: tio\", \"11: elva\", \"12: tolv\", \"13: tretton\", \"14: fjorton\", \"15: femton\", \"16: sexton\", \"17: sjutton\", \"18: arton\", \"19: nitton\", \"20: tjugo[→→]\", \"30: trettio[→→]\", \"40: fyrtio[→→]\", \"50: femtio[→→]\", \"60: sextio[→→]\", \"70: sjuttio[→→]\", \"80: åttio[→→]\", \"90: nittio[→→]\""
   },
   {
    "word": "hundra",
    "role": "hundred",
    "value": "100",
-   "source": "\"hundra\" alone is 100 (SAOL, \"hundra\"); CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"100: ←%spellout-numbering←hundra[→→]\""
+   "source": "\"hundra\" alone is 100 (SAOL; the page needs JavaScript, so not checked against the page); CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"100: ←%spellout-numbering←hundra[→→]\""
   },
   {
    "word": "hundra",
@@ -319,461 +327,485 @@
    "word": "miljon",
    "role": "scale_noun",
    "rank": 1,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon, 2000000: … miljoner\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon[ →→]\", \"2000000: ←%spellout-cardinal-reale← miljoner[ →→]\""
   },
   {
    "word": "miljoner",
    "role": "scale_noun",
    "rank": 1,
    "plural": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon, 2000000: … miljoner\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000: en miljon[ →→]\", \"2000000: ←%spellout-cardinal-reale← miljoner[ →→]\""
   },
   {
    "word": "miljard",
    "role": "scale_noun",
    "value": 9,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard[ →→]\", \"2000000000: ←%spellout-cardinal-reale← miljarder[ →→]\""
   },
   {
    "word": "miljarder",
    "role": "scale_noun",
    "value": 9,
    "plural": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard[ →→]\", \"2000000000: ←%spellout-cardinal-reale← miljarder[ →→]\""
   },
   {
    "word": "biljon",
    "role": "scale_noun",
    "rank": 2,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000: en biljon\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000: en biljon[ →→]\", \"2000000000000: ←%spellout-cardinal-reale← biljoner[ →→]\""
   },
   {
    "word": "biljoner",
    "role": "scale_noun",
    "rank": 2,
    "plural": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000: en biljon\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000: en biljon[ →→]\", \"2000000000000: ←%spellout-cardinal-reale← biljoner[ →→]\""
   },
   {
    "word": "biljard",
    "role": "scale_noun",
    "value": 15,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000000: en biljard\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000000: en biljard[ →→]\", \"2000000000000000: ←%spellout-cardinal-reale← biljarder[ →→]\""
   },
   {
    "word": "biljarder",
    "role": "scale_noun",
    "value": 15,
    "plural": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000000: en biljard\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000000000: en biljard[ →→]\", \"2000000000000000: ←%spellout-cardinal-reale← biljarder[ →→]\""
   },
   {
    "word": "triljon",
    "role": "scale_noun",
    "rank": 3,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"Wiktionary, \"tjugoett\" navigation: triljon 10^18\""
+   "source": "Long scale: \"triljon\" is 10^18 (no dictionary page read)"
   },
   {
    "word": "triljoner",
    "role": "scale_noun",
    "rank": 3,
    "plural": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"Wiktionary, \"tjugoett\" navigation: triljon 10^18\""
+   "source": "Long scale: \"triljon\" is 10^18 (no dictionary page read)"
   },
   {
    "word": "dussin",
    "role": "collective",
    "value": "12",
-   "source": "SAOL, \"dussin\": tolv stycken (not checked against the page)"
+   "source": "\"dussin\": twelve pieces (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tjog",
    "role": "collective",
    "value": "20",
-   "source": "SAOL, \"tjog\": tjugo stycken (not checked against the page)"
+   "source": "\"tjog\": twenty pieces (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halv",
    "role": "half",
    "ambiguous": true,
-   "source": "SAOL, \"halv\" (not checked against the page)"
+   "source": "\"halv\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halvt",
    "role": "half",
    "ambiguous": true,
-   "source": "SAOL, \"halv\" (not checked against the page)"
+   "source": "\"halv\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halva",
    "role": "half",
    "ambiguous": true,
-   "source": "SAOL, \"halv\" (not checked against the page)"
+   "source": "\"halv\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halv",
    "role": "denominator",
    "value": "2",
-   "source": "\"en halv\" is 1/2 (SAOL, \"halv\")"
+   "source": "\"en halv\" is 1/2 (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halvannan",
    "role": "fraction",
    "value": "3/2",
-   "source": "SAOL, \"halvannan\": en och en halv (not checked against the page)"
+   "source": "\"halvannan\": one and a half (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "halvtannat",
    "role": "fraction",
    "value": "3/2",
-   "source": "neuter of \"halvannan\""
+   "source": "neuter of \"halvannan\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "kvart",
    "role": "denominator",
    "value": "4",
-   "source": "SAOL, \"kvart\": fjärdedel; \"trekvart\" (not checked against the page)"
+   "source": "\"kvart\": a fourth; \"trekvart\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "kvart",
    "role": "denominator",
    "value": "4",
    "plural": true,
-   "source": "SAOL, \"kvart\": fjärdedel; \"trekvart\" (not checked against the page)"
+   "source": "\"kvart\": a fourth; \"trekvart\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tredjedel",
    "role": "denominator",
    "value": "3",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tredjedelar",
    "role": "denominator",
    "value": "3",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "fjärdedel",
    "role": "denominator",
    "value": "4",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "fjärdedelar",
    "role": "denominator",
    "value": "4",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "femtedel",
    "role": "denominator",
    "value": "5",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "femtedelar",
    "role": "denominator",
    "value": "5",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "sjättedel",
    "role": "denominator",
    "value": "6",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "sjättedelar",
    "role": "denominator",
    "value": "6",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "sjundedel",
    "role": "denominator",
    "value": "7",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "sjundedelar",
    "role": "denominator",
    "value": "7",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "åttondel",
    "role": "denominator",
    "value": "8",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "åttondelar",
    "role": "denominator",
    "value": "8",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "niondel",
    "role": "denominator",
    "value": "9",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "niondelar",
    "role": "denominator",
    "value": "9",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tiondel",
    "role": "denominator",
    "value": "10",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tiondelar",
    "role": "denominator",
    "value": "10",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "hundradel",
    "role": "denominator",
    "value": "100",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "hundradelar",
    "role": "denominator",
    "value": "100",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tusendel",
    "role": "denominator",
    "value": "1000",
-   "source": "A fraction is the ordinal and \"-del\" (SAOL, \"tredjedel\")"
+   "source": "A fraction is the ordinal and \"-del\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "tusendelar",
    "role": "denominator",
    "value": "1000",
    "plural": true,
-   "source": "plural \"-delar\": \"två tredjedelar\""
-  },
-  {
-   "word": "första",
-   "role": "ordinal",
-   "value": "1",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "plural \"-delar\": \"två tredjedelar\" (SAOL; the page needs JavaScript, so not checked against the page)"
   },
   {
    "word": "förste",
    "role": "ordinal",
    "value": "1",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "tredje",
    "role": "ordinal",
    "value": "3",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "fjärde",
    "role": "ordinal",
    "value": "4",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "femte",
    "role": "ordinal",
    "value": "5",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sjätte",
    "role": "ordinal",
    "value": "6",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sjunde",
    "role": "ordinal",
    "value": "7",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "åttonde",
    "role": "ordinal",
    "value": "8",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "nionde",
    "role": "ordinal",
    "value": "9",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "tionde",
    "role": "ordinal",
    "value": "10",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "elfte",
    "role": "ordinal",
    "value": "11",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "tolfte",
    "role": "ordinal",
    "value": "12",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "trettonde",
    "role": "ordinal",
    "value": "13",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "fjortonde",
    "role": "ordinal",
    "value": "14",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "femtonde",
    "role": "ordinal",
    "value": "15",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sextonde",
    "role": "ordinal",
    "value": "16",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sjuttonde",
    "role": "ordinal",
    "value": "17",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "artonde",
    "role": "ordinal",
    "value": "18",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "nittonde",
    "role": "ordinal",
    "value": "19",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "tjugonde",
    "role": "ordinal",
    "value": "20",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "trettionde",
    "role": "ordinal",
    "value": "30",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "fyrtionde",
    "role": "ordinal",
    "value": "40",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "femtionde",
    "role": "ordinal",
    "value": "50",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sextionde",
    "role": "ordinal",
    "value": "60",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "sjuttionde",
    "role": "ordinal",
    "value": "70",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "åttionde",
    "role": "ordinal",
    "value": "80",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
   },
   {
    "word": "nittionde",
    "role": "ordinal",
    "value": "90",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 1 → \"förste\", 3 → \"tredje\", 4 → \"fjärde\", 5 → \"femte\", 6 → \"sjätte\", 7 → \"sjunde\", 8 → \"åttonde\", 9 → \"nionde\", 10 → \"tionde\", 11 → \"elfte\", 12 → \"tolfte\", 13 → \"trettonde\", 14 → \"fjortonde\", 15 → \"femtonde\", 16 → \"sextonde\", 17 → \"sjuttonde\", 18 → \"artonde\", 19 → \"nittonde\", 20 → \"tjugonde\", 30 → \"trettionde\", 40 → \"fyrtionde\", 50 → \"femtionde\", 60 → \"sextionde\", 70 → \"sjuttionde\", 80 → \"åttionde\", 90 → \"nittionde\""
+  },
+  {
+   "word": "första",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-neuter: 1 → \"första\""
   },
   {
    "word": "andra",
    "role": "ordinal",
    "value": "2",
    "ambiguous": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\"; The word also means \"other\" (Bokmålsordboka, Den Danske Ordbog, SAOL), so it is ambiguous outside a number."
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-neuter: 2 → \"andra\"; CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 2 → \"andre\"; The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
   },
   {
    "word": "andre",
    "role": "ordinal",
    "value": "2",
    "ambiguous": true,
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"förste\", \"tredje\", \"sjunde\", \"åttonde\", \"tjugonde\", \"tjugoförste\"; -neuter \"första\"; The word also means \"other\" (Bokmålsordboka, Den Danske Ordbog, SAOL), so it is ambiguous outside a number."
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-neuter: 2 → \"andra\"; CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 2 → \"andre\"; The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
+  },
+  {
+   "word": "nollte",
+   "role": "ordinal",
+   "value": "0",
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 0 → \"nollte\""
   },
   {
    "word": "hundrade",
    "role": "ordinal_scale",
    "value": "hundra",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"etthundrade\", \"ettusende\", \"en miljonte\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
   },
   {
    "word": "tusende",
    "role": "ordinal_scale",
    "value": "tusen",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"etthundrade\", \"ettusende\", \"en miljonte\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
   },
   {
    "word": "miljonte",
    "role": "ordinal_scale",
    "value": "miljon",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: \"etthundrade\", \"ettusende\", \"en miljonte\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
+  },
+  {
+   "word": "miljardte",
+   "role": "ordinal_scale",
+   "value": "miljard",
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
+  },
+  {
+   "word": "biljonte",
+   "role": "ordinal_scale",
+   "value": "biljon",
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
+  },
+  {
+   "word": "biljardte",
+   "role": "ordinal_scale",
+   "value": "biljard",
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal-masculine: 100 → \"etthundrade\", 1000 → \"ettusende\", 1000000 → \"en miljonte\", 1000000000 → \"en miljardte\", 1000000000000 → \"en biljonte\", 1000000000000000 → \"en biljardte\""
   },
   {
    "word": "a",
    "role": "ordinal_suffix",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal: %digits-ordinal-feminine \"0: =#,##0=$(ordinal,one{:a}other{:e})$\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %digits-ordinal-feminine: \"0: =#,##0=$(ordinal,one{:a}other{:e})$\""
   },
   {
    "word": "e",
    "role": "ordinal_suffix",
-   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-ordinal: %digits-ordinal-feminine \"0: =#,##0=$(ordinal,one{:a}other{:e})$\""
+   "source": "CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %digits-ordinal-feminine: \"0: =#,##0=$(ordinal,one{:a}other{:e})$\""
   }
  ]
 }

@@ -117,6 +117,11 @@
 {"text": "De stad telt achtenveertig inwoners.", "mentions": [{"start": 13, "end": 26, "value": "48", "kind": "cardinal"}], "source": "CLDR RBNF nl spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "Hij loopt negenenzestig meter.", "mentions": [{"start": 10, "end": 23, "value": "69", "kind": "cardinal"}], "source": "CLDR RBNF nl spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "In de tuin groeien honderddertien bomen.", "mentions": [{"start": 19, "end": 33, "value": "113", "kind": "cardinal"}], "source": "CLDR RBNF nl spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
+{"text": "Het is tussen twee en veertig graden.", "mentions": [{"start": 14, "end": 18, "value": "2", "kind": "cardinal"}, {"start": 22, "end": 29, "value": "40", "kind": "cardinal"}], "source": "Team Taaladvies: a number below duizend is one word, so the spaced words are two numbers"}
+{"text": "Hij werd duizendhonderdste.", "mentions": [{"start": 9, "end": 26, "value": "1100", "kind": "ordinal"}], "source": "CLDR RBNF nl renders 1100 as the ordinal \"duizendhonderdste\""}
+{"text": "Zij was de tweemiljoenduizendste bezoeker.", "mentions": [{"start": 11, "end": 32, "value": "2001000", "kind": "ordinal"}], "source": "arithmetic"}
+{"text": "Het boek heeft honderdeneen bladzijden.", "mentions": [{"start": 15, "end": 27, "value": "101", "kind": "cardinal"}], "source": "Team Taaladvies: \"101: honderdeen of honderdeneen\""}
+{"text": "Het verhaal heet duizend en een nacht.", "mentions": [{"start": 17, "end": 31, "value": "1001", "kind": "cardinal"}], "source": "Team Taaladvies: \"1001: duizend en een of duizend een\""}
 {"text": "Dit is de eerste poging.", "mentions": [{"start": 10, "end": 16, "value": "1", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "We wonen op de derde verdieping.", "mentions": [{"start": 15, "end": 20, "value": "3", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Hij viert zijn twintigste verjaardag.", "mentions": [{"start": 15, "end": 25, "value": "20", "kind": "ordinal"}], "source": "arithmetic"}
