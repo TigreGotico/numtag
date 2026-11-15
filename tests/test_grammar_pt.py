@@ -368,6 +368,38 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("entre dois milhões e mil e quinhentos milhões"),
                          [("dois milhões", "2000000", C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
 
+    def test_two_numbers_split_where_the_fewest_digits_are(self):
+        # 1000 x 10^6 = 1000000000 and 1500 x 10^6 = 1500000000: 1 + 2 = 3
+        # significant digits, against 1000001000 and 500000000: 7 + 1 = 8
+        self.assertEqual(pt("mil milhões e mil e quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        self.assertEqual(pt("mil milhões e mil quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil quinhentos milhões", "15" + "0" * 8, C)])
+        # 1500000 and 2000000: 2 + 1 = 3, against 1000000 and 500002000000: 1 + 6 = 7
+        self.assertEqual(pt("um milhão e quinhentos mil e dois milhões"),
+                         [("um milhão e quinhentos mil", "1500000", C), ("dois milhões", "2000000", C)])
+        # 2001000 and 3000000 (4 + 1 = 5) tie with 2000000 and 1003000000
+        # (1 + 4 = 5): the longer first number wins
+        self.assertEqual(pt("dois milhões e mil e três milhões"),
+                         [("dois milhões e mil", "2001000", C), ("três milhões", "3000000", C)])
+        # One number beats two: (200000 + 2) x 10^6
+        self.assertEqual(pt("duzentos mil e dois milhões"),
+                         [("duzentos mil e dois milhões", "200002000000", C)])
+
+    def test_a_scale_word_counts_no_group_with_a_larger_scale_word(self):
+        # 10^12 + 50 x 10^9 + 1000 + 40: "mil" counts no billions
+        self.assertEqual(read("um trilhão cinquenta bilhões mil e quarenta", "pt-BR"),
+                         [("um trilhão cinquenta bilhões mil e quarenta", "1050000001040", C)])
+        # 10^18 + 50 x 10^12 + 1000
+        self.assertEqual(pt("um trilião cinquenta biliões mil"),
+                         [("um trilião cinquenta biliões mil", "1000050000000001000", C)])
+
+    def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
+        self.assertEqual(pt("entre dois e"), [("dois", "2", C)])
+        self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
+        self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
+        self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
+
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
         self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])
@@ -500,6 +532,19 @@ class TestDigits(unittest.TestCase):
         # is no decimal mark either
         self.assertEqual(pt("...5"), [("5", "5", C)])
         self.assertEqual(pt("custa .5.000"), [("5.000", "5000", C)])
+
+    def test_a_lone_decimal_mark_after_a_sign(self):
+        self.assertEqual(pt("estão -.5 graus"), [("-.5", "-0.5", D)])
+        self.assertEqual(pt("estão -,5 graus"), [("-,5", "-0.5", D)])
+
+    def test_no_digit_group_follows_a_leading_zero(self):
+        # "." groups digits in pt, and a group never follows a leading zero:
+        # "0.500" and "01.500" are no number
+        self.assertEqual(pt("pesa 0.500 kg"), [])
+        self.assertEqual(pt("pesa 01.500 kg"), [])
+        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [])
+        self.assertEqual(pt("os números 0 500"), [("0", "0", C), ("500", "500", C)])
+        self.assertEqual(pt("pesa 1.500 kg"), [("1.500", "1500", C)])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_mark(self):
         self.assertEqual(pt("dois vírgula zero"), [("dois vírgula zero", "2", C)])

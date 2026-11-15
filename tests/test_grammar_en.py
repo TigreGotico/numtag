@@ -86,6 +86,35 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("five hundred thousand and two million"),
                          [("five hundred thousand and two million", "500002000000", C)])
 
+    def test_and_after_thousand_takes_only_a_last_group_below_a_hundred(self):
+        # "two thousand and five hundred" is no count of "million": 2000 and
+        # 500 x 10^6
+        self.assertEqual(en("two thousand and five hundred million"),
+                         [("two thousand", "2000", C), ("five hundred million", "500000000", C)])
+        # 2000 + 1 = 2001: a group below a hundred
+        self.assertEqual(en("two thousand and one million"),
+                         [("two thousand and one million", "2001000000", C)])
+
+    def test_two_numbers_split_where_the_fewest_digits_are(self):
+        # 2000 and 150 x 1000 tie with 2100 and 50 x 1000 on significant
+        # digits (1 + 2 = 2 + 1); a split inside "one hundred and fifty"
+        # wins only with fewer digits
+        self.assertEqual(en("two thousand and one hundred and fifty thousand"),
+                         [("two thousand", "2000", C), ("one hundred and fifty thousand", "150000", C)])
+        # 10^9 and 1500 x 10^6: 1 + 2 = 3, against 1000001000 and 500 x 10^6: 7 + 1 = 8
+        self.assertEqual(en("one thousand million and one thousand five hundred million"),
+                         [("one thousand million", "1" + "0" * 9, C),
+                          ("one thousand five hundred million", "15" + "0" * 8, C)])
+        # A split keeps the words of the second number: "one thousand and
+        # five hundred" is no count of "million", so 10^9 + 1000 and 500 x 10^6
+        self.assertEqual(en("a thousand million and one thousand and five hundred million"),
+                         [("a thousand million and one thousand", "1000001000", C),
+                          ("five hundred million", "500000000", C)])
+
+    def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
+        self.assertEqual(en("between two and"), [("two", "2", C)])
+        self.assertEqual(en("between -1 and"), [("-1", "-1", C)])
+
     def test_a_scale_word_keeps_the_singular_after_a_count(self):
         self.assertEqual(en("two million"), [("two million", "2000000", C)])
         # (1000 + 1) x 10^6
@@ -104,9 +133,8 @@ class TestCardinals(unittest.TestCase):
         # 10^6 + 200 x 1000 = 1200000; 2 x 10^6
         self.assertEqual(en("between one million two hundred thousand and two million"),
                          [("one million two hundred thousand", "1200000", C), ("two million", "2000000", C)])
-        # 2000 and 150000 tie with the reading with no cue, 2100 and 50000,
-        # on significant digits; a split inside "one hundred and fifty" wins
-        # only with fewer digits
+        # 2000 and 150000 tie with 2100 and 50000 on significant digits; a
+        # split inside "one hundred and fifty" wins only with fewer digits
         self.assertEqual(en("between two thousand and one hundred and fifty thousand"),
                          [("two thousand", "2000", C), ("one hundred and fifty thousand", "150000", C)])
 
@@ -263,6 +291,12 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("about .5 percent"), [(".5", "0.5", D)])
         # the comma only groups digits
         self.assertEqual(en(",5"), [("5", "5", C)])
+        self.assertEqual(en("about -.5 percent"), [("-.5", "-0.5", D)])
+
+    def test_a_decimal_point_after_a_leading_zero(self):
+        self.assertEqual(en("weighs 0.500 kg"), [("0.500", "0.5", D)])
+        # the comma groups digits, and a group never follows a leading zero
+        self.assertEqual(en("weighs 0,500 kg"), [])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_point(self):
         self.assertEqual(en("two point zero"), [("two point zero", "2", C)])

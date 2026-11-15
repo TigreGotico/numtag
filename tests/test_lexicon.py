@@ -63,6 +63,10 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertIn("п'ять", lexicon.readings)
         self.assertEqual(lexicon.word_apostrophes, frozenset({"'", "\u2019"}))
 
+    def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
+        self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": False, "pt-BR": True, "pt-PT": True})
+
     def test_an_unknown_language_is_refused(self):
         with self.assertRaises(ValueError):
             load("xx")
