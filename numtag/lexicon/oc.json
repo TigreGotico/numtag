@@ -1,0 +1,1856 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"): \"miliard\" names 10^9, so \"bilion\" is 10^12."
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 48 numbers, oc (latn): decimal \",\", group \" \"; the dot groups digits in ovos-number-parser (a lead)."
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 48 numbers, oc (latn): decimal \",\", group \" \""
+  },
+  "space_groups": {
+   "value": true,
+   "source": "CLDR 48 numbers, oc (latn): decimal \",\", group \" \": the group mark is a space, so \"1 000 000\" is one number."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; a plural scale noun with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "fr.wiktionary (Occitan, ref Cantalausa), \"milion\" is a masculine noun (\"=== {{S|nom|oc}} === '''milion''' [...] {{m}} # Million\"); Omniglot: \"1 000 000 un milion\". The plural \"milions\" after a count comes from ovos-number-parser numbers_oc.py pluralize_oc (a lead, after Ubaud)."
+  },
+  "joiner_tens_units": {
+   "value": "optional",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": \"vint e un\" takes \"e\", \"trenta un\" does not."
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": \"Dos cent vingt mètres\"."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); numbers_oc.py: \"mila dos cents\"."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): ordinals \"desen\", \"onzen\", \"vinten\": a teen ordinal is one word, so a unit ordinal after \"dètz\" joins no teen."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner stands between two groups, the last group too. No saved page shows an Occitan number above \"mil\" with its last group."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\": \"vint e unena\": only the last word is ordinal."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "e"
+   ],
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  "decimal_marker": {
+   "value": [
+    "virgula"
+   ],
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  "minus": {
+   "value": [
+    "mens"
+   ],
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  "minus_idioms": {
+   "value": [
+    "mai o mens"
+   ],
+   "source": "en.wiktionary, Occitan \"mens\", Derived terms: \"almens\", \"mai o mens\", \"pasmens\"; \"almens\" and \"pasmens\" are one word, so only \"mai o mens\" ends at \"mens\"."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "fr.wiktionary (Occitan) \"un\": article indéfini, \"Me caldriá un bon informatician\"."
+  },
+  "of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "fr.wiktionary (Occitan) \"cent\": \"De cent parts una\"; \"de\" elides to \"d'\"."
+  },
+  "fraction_of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Occitan forms fraction nouns from the ordinal, with no particle."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Occitan."
+  },
+  "half_unit": {
+   "value": [
+    "quilo",
+    "litre",
+    "mètre",
+    "ora",
+    "minuta",
+    "jorn",
+    "setmana",
+    "mes",
+    "an",
+    "sègle",
+    "camin",
+    "camba"
+   ],
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\": \"Una ora e mièja\", \"A mièja camba\": \"mièja\" before a unit noun is half of it."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Occitan number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "entre"
+   ],
+   "source": "en.wiktionary, Occitan \"entre\", preposition: \"between\". In \"entre A e B\" the \"e\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "zèro",
+   "role": "unit",
+   "value": "0",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "zero",
+   "role": "unit",
+   "value": "0",
+   "source": "fr.wiktionary (Occitan) \"un\": \"zèro, zero (auv.)\""
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "una",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "dos",
+   "role": "unit",
+   "value": "2",
+   "gender": "masculine",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "doas",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quatre",
+   "role": "unit",
+   "value": "4",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinc",
+   "role": "unit",
+   "value": "5",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "sièis",
+   "role": "unit",
+   "value": "6",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "sèt",
+   "role": "unit",
+   "value": "7",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "uèch",
+   "role": "unit",
+   "value": "8",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "uèit",
+   "role": "unit",
+   "value": "8",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "ueit",
+   "role": "unit",
+   "value": "8",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "uòch",
+   "role": "unit",
+   "value": "8",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\""
+  },
+  {
+   "word": "nòu",
+   "role": "unit",
+   "value": "9",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz",
+   "role": "ten",
+   "value": "10",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "onze",
+   "role": "ten",
+   "value": "11",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dotze",
+   "role": "ten",
+   "value": "12",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tretze",
+   "role": "ten",
+   "value": "13",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "catòrze",
+   "role": "ten",
+   "value": "14",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quinze",
+   "role": "ten",
+   "value": "15",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setze",
+   "role": "ten",
+   "value": "16",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "vint",
+   "role": "ten",
+   "value": "20",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "trenta",
+   "role": "ten",
+   "value": "30",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "quaranta",
+   "role": "ten",
+   "value": "40",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquanta",
+   "role": "ten",
+   "value": "50",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seissanta",
+   "role": "ten",
+   "value": "60",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "setanta",
+   "role": "ten",
+   "value": "70",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochanta",
+   "role": "ten",
+   "value": "80",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "oitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "ueitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "uechanta",
+   "role": "ten",
+   "value": "80",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\""
+  },
+  {
+   "word": "uòchanta",
+   "role": "ten",
+   "value": "80",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\""
+  },
+  {
+   "word": "nonanta",
+   "role": "ten",
+   "value": "90",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-sèt",
+   "role": "ten",
+   "value": "17",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uèch",
+   "role": "ten",
+   "value": "18",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uèit",
+   "role": "ten",
+   "value": "18",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-nòu",
+   "role": "ten",
+   "value": "19",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueit",
+   "role": "ten",
+   "value": "18",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": 18 is \"dètz-e-\" and the unit, as \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòch",
+   "role": "ten",
+   "value": "18",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": 18 is \"dètz-e-\" and the unit, as \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "cent",
+   "role": "hundred",
+   "value": "100",
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "cent",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": \"Dos cent vingt mètres\": a count before \"cent\" multiplies it"
+  },
+  {
+   "word": "cents",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\": \"Dos cents mètres\"; the plural is the form after a count"
+  },
+  {
+   "word": "mila",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "milion",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "milions",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; plural with -s (ovos-number-parser pluralize_oc, after Ubaud)"
+  },
+  {
+   "word": "miliard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "miliards",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\""
+  },
+  {
+   "word": "bilion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "bilions",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "mièg",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "mièja",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "mèg",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; \"mièg\" is also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "mèja",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; \"mièja\" is also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "tèrç",
+   "role": "denominator",
+   "value": "3",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "tèrces",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "quart",
+   "role": "denominator",
+   "value": "4",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "quarts",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "cinquen",
+   "role": "denominator",
+   "value": "5",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "cinquens",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "seisen",
+   "role": "denominator",
+   "value": "6",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "seisens",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "seten",
+   "role": "denominator",
+   "value": "7",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "setens",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "ochen",
+   "role": "denominator",
+   "value": "8",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "ochens",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "noven",
+   "role": "denominator",
+   "value": "9",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "novens",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "desen",
+   "role": "denominator",
+   "value": "10",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "desens",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "centen",
+   "role": "denominator",
+   "value": "100",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "centens",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "milen",
+   "role": "denominator",
+   "value": "1000",
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\"; \"un tèrç [...] un seisen\": a fraction noun takes the ordinal form"
+  },
+  {
+   "word": "milens",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "fr.wiktionary (Occitan) \"mièg\": \"Demi\", \"Una ora e mièja\", variantes \"mieg\", \"mèg\"; \"tèrç\": \"Los dos tèrces\" (les deux tiers); \"quart\": \"Quart\""
+  },
+  {
+   "word": "primièr",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "primièra",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "primièrs",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "primièras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+  },
+  {
+   "word": "premièr",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "premièra",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "premièrs",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "premièras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "segond",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "segonda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "segonds",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "segondas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "unen",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "unena",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "unens",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "unenas",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dosen",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dosena",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dosens",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dosenas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tresen",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tresena",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tresens",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tresenas",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quatren",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quatrena",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quatrens",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quatrenas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquen",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquena",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquens",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquenas",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seisen",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seisena",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seisens",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seisenas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seten",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setena",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setens",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setenas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochen",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "noven",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "novens",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "novenas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "desen",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "desena",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "desens",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "desenas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "onzen",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "onzena",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "onzens",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "onzenas",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dotzen",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dotzena",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dotzens",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dotzenas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tretzen",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tretzena",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tretzens",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "tretzenas",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "catorzen",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "catorzena",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "catorzens",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "catorzenas",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quinzen",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quinzena",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quinzens",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quinzenas",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setzen",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setzena",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setzens",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setzenas",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-seten",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-setena",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-setens",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-setenas",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-ochen",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-ochena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-ochens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-ochenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-noven",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-novena",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-novens",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "dètz-e-novenas",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "vinten",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "vintena",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "vintens",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "vintenas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "trenten",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "trentena",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "trentens",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "trentenas",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quaranten",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quarantena",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quarantens",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "quarantenas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquanten",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquantena",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquantens",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "cinquantenas",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seissanten",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seissantena",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seissantens",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "seissantenas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setanten",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setantena",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setantens",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "setantenas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochanten",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochantena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochantens",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "ochantenas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "nonanten",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "nonantena",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "nonantens",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "nonantenas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "centen",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "centena",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "centens",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "centenas",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  },
+  {
+   "word": "uechen",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uechena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uechens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uechenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "ueiten",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "ueitena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "ueitens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "ueitenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "oiten",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "oitena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "oitens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "oitenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchen",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchanten",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchantena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchantens",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "uòchantenas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; the feminine ends in -a, as in \"primièra\""
+  },
+  {
+   "word": "dètz-e-uechen",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uechenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueiten",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-ueitenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oiten",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-oitenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchen",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "dètz-e-uòchenas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "OpenVoiceOS/ovos-number-parser issue 302, from a reporter who writes Occitan: \"8: uèch and uèit and locally uòch in Montpellier\", \"8th: ochen, uechen, ueiten, oiten\", \"80: ochanta and uechanta\", \"mièg and mièja [...] Other forms: mèg (masc.) and mèja (fem.)\", \"uechanta too in Diccionari ortografic gramatical e morfologic de l'occitan by Josiana Ubaud\"; Montpellier: \"8: uòch\", \"8th: uòchen\", \"80: uòchanta\", \"80th: uòchanten\"; fr.wiktionary (Occitan; refs Lo Congrès, Cantalausa, Laux, Ubaud): \"un\" (adjectif numéral; fém. \"una\"), \"doas\" (\"deux\", fém.), \"vint\" with \"vint e un\", \"vint e dos, vint e doas\"; \"trenta\" with \"trenta un\", \"trenta dos, trenta doas\"; \"seissanta un\"; \"ochanta\" (variantes \"oitanta\", \"ueitanta\"); \"dètz-e-sèt\" (variante \"dètz e sèt\"); \"cent\": \"Dos cents mètres\", \"Dos cent vingt mètres\"; \"mil\" (variante \"mila\"); \"milion\": \"Million\"; \"miliard\": \"Milliard\"; 18th is \"dètz-e-\" and the 8th form, as \"dètz-e-ochen\" and the cardinal \"dètz-e-sèt\"; written with hyphens or spaces, read as one word"
+  },
+  {
+   "word": "centen",
+   "role": "ordinal_scale",
+   "value": "cents",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\": \"200 dos cents, dos centena\""
+  },
+  {
+   "word": "centena",
+   "role": "ordinal_scale",
+   "value": "cents",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\": \"300 tres cents, tres centena\""
+  },
+  {
+   "word": "milen",
+   "role": "ordinal_scale",
+   "value": "mila",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\": \"milena\""
+  },
+  {
+   "word": "milena",
+   "role": "ordinal_scale",
+   "value": "mila",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+  }
+ ]
+}

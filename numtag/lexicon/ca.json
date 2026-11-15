@@ -1,0 +1,2002 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\" (\"mil milions\" for 10^9)."
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 48 numbers, ca (latn): decimal \",\", group \".\""
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 48 numbers, ca (latn): decimal \",\", group \".\""
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR 48 numbers, ca (latn): decimal \",\", group \".\": the dot groups digits; a space between digit strings separates two numbers."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; a plural scale noun with no count (\"milions de persones\") names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"un milió\", \"dos milions\": a singular \"milió\" takes only the count one."
+  },
+  "joiner_tens_units": {
+   "value": "optional",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"vint-i-un\" joins the twenties with \"i\", \"trenta-un\" joins the rest with a hyphen alone."
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"cent un\", \"dos-cents un\"."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"mil un\", \"vint-i-un mil\"."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"setzè\", \"dissetè\": a teen ordinal is one word, so a unit ordinal after \"deu\" joins no teen (\"deu segons\" is 10 and \"segons\")."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF ca, \"1000: mil[ >>];\", writes a space, not a comma, between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml, saved as knowledge/wiki/audits/numtag/lang-ports/ibero/sources/cldr-rbnf-ca.xml), %spellout-cardinal-masculine: \"1000: mil[ >>];\": no joiner stands before the last group (\"mil dos-cents\")."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\": only the last word of a compound ordinal is ordinal."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "i"
+   ],
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"vint-i-un\"."
+  },
+  "decimal_marker": {
+   "value": [
+    "coma"
+   ],
+   "source": "CLDR RBNF ca: \"x.x: << coma >>;\""
+  },
+  "minus": {
+   "value": [
+    "menys"
+   ],
+   "source": "CLDR RBNF ca: \"-x: menys >>;\""
+  },
+  "minus_idioms": {
+   "value": [
+    "al menys",
+    "més o menys",
+    "ni més ni menys"
+   ],
+   "source": "DIEC2 \"menys\": \"[LC] més o menys V. més\", \"[LC] ni més ni menys V. més\", \"a menys que loc. conj. Llevat que\"; DIEC2 \"almenys\" adv.: \"Eren almenys quinze\". The split spelling \"al menys\" comes from ovos-number-parser numbers_ca.py NEGATIVE_IDIOMS (a lead: \"al menys\", \"a menys que\", \"més o menys\", \"ni més ni menys\")."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "en.wiktionary (Catalan) \"un\": \"an; the indefinite article\" and \"cardinal one\"."
+  },
+  "of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; \"un milió de persones\"; \"de\" elides to \"d'\" before a vowel."
+  },
+  "fraction_of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "A fraction of a collective: \"un terç de dotzena\"."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Catalan forms fraction nouns from the ordinal (\"cinquè\"), with no particle."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Catalan."
+  },
+  "half_unit": {
+   "value": [
+    "quilo",
+    "gram",
+    "litre",
+    "metre",
+    "quilòmetre",
+    "hora",
+    "minut",
+    "segon",
+    "dia",
+    "setmana",
+    "mes",
+    "any",
+    "segle"
+   ],
+   "source": "en.wiktionary (Catalan; ref IEC DIEC2): \"mig: [...] half\": \"mig\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Catalan number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "entre"
+   ],
+   "source": "en.wiktionary, Catalan \"entre\" (ref GDLC), preposition: \"between\". In \"entre A i B\" the \"i\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "zero",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR RBNF ca \"0: zero;\""
+  },
+  {
+   "word": "u",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\"; \"u\" is the counting form"
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "una",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "dos",
+   "role": "unit",
+   "value": "2",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "dues",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "quatre",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "cinc",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "sis",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "set",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "vuit",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "nou",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+  },
+  {
+   "word": "huit",
+   "role": "unit",
+   "value": "8",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "deu",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "onze",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "dotze",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "tretze",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "catorze",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "quinze",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "setze",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "disset",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "divuit",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "dinou",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "vint",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "trenta",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "quaranta",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "cinquanta",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "seixanta",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "setanta",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "vuitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "noranta",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR RBNF ca: \"10: deu; 11: onze; [...] 16: setze; 17: disset; 18: divuit; 19: dinou; 20: vint[-i->>]; 30: trenta[->>]; 40: quaranta[->>]; 50: cinquanta[->>]; 60: seixanta[->>]; 70: setanta[->>]; 80: vuitanta[->>]; 90: noranta[->>];\""
+  },
+  {
+   "word": "dèsset",
+   "role": "ten",
+   "value": "17",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "desset",
+   "role": "ten",
+   "value": "17",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "díhuit",
+   "role": "ten",
+   "value": "18",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "dihuit",
+   "role": "ten",
+   "value": "18",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "dènou",
+   "role": "ten",
+   "value": "19",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "dèneu",
+   "role": "ten",
+   "value": "19",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "huitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC, DCVB): \"disset\" alt. \"dèsset, desset (Valencian)\", \"divuit\" alt. \"díhuit (Valencian)\", \"dinou\" alt. \"dènou, dèneu (Valencian)\", \"vuit\" alt. \"huit (Valencian)\", \"vuitanta\" alt. \"huitanta (Valencian)\""
+  },
+  {
+   "word": "cent",
+   "role": "hundred",
+   "value": "100",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "cents",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "masculine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"dos-cents\", \"dues-centes\": a unit counts the hundreds. The plural form is the form after a count."
+  },
+  {
+   "word": "centes",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "feminine",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\": \"dos-cents\", \"dues-centes\": a unit counts the hundreds. The plural form is the form after a count."
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "milió",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "milions",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "bilió",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "bilions",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "trilió",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "trilions",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "quadrilió",
+   "role": "scale_noun",
+   "rank": 4,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "quadrilions",
+   "role": "scale_noun",
+   "rank": 4,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "quintilió",
+   "role": "scale_noun",
+   "rank": 5,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "quintilions",
+   "role": "scale_noun",
+   "rank": 5,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\""
+  },
+  {
+   "word": "miliard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\""
+  },
+  {
+   "word": "miliards",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\""
+  },
+  {
+   "word": "desena",
+   "role": "collective",
+   "value": "10",
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "desenes",
+   "role": "collective",
+   "value": "10",
+   "plural": true,
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "dotzena",
+   "role": "collective",
+   "value": "12",
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "dotzenes",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "centena",
+   "role": "collective",
+   "value": "100",
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "centenes",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "source": "DIEC2 (IEC), \"dotzena\" 1: \"Conjunt de dotze coses de la mateixa espècie. Una dotzena de figues.\"; \"desena\" 1: \"Conjunt de deu unitats.\"; \"centena\" 1: \"Conjunt de cent unitats.\""
+  },
+  {
+   "word": "mig",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "en.wiktionary (Catalan; ref IEC DIEC2): \"mig: [...] half\"; \"mig\" is also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "mitja",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "en.wiktionary (Catalan; ref IEC DIEC2): \"mig: [...] half\"; feminine \"mitja\"; also \"stocking\", so it is ambiguous"
+  },
+  {
+   "word": "terç",
+   "role": "denominator",
+   "value": "3",
+   "source": "DIEC2 \"terç\" 2 1: \"Part d'una cosa dividida en tres parts iguals. Un terç , 1/3. Dos terços , 2/3.\""
+  },
+  {
+   "word": "terços",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "DIEC2 \"terç\" 2 1: \"Part d'una cosa dividida en tres parts iguals. Un terç , 1/3. Dos terços , 2/3.\""
+  },
+  {
+   "word": "quart",
+   "role": "denominator",
+   "value": "4",
+   "ambiguous": true,
+   "source": "DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "quarts",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "primer",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "primera",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "primers",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "primeres",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "segon",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+  },
+  {
+   "word": "segona",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+  },
+  {
+   "word": "segons",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+  },
+  {
+   "word": "segones",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+  },
+  {
+   "word": "tercer",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tercera",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tercers",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "terceres",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quart",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "quarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "quarts",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "quartes",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+  },
+  {
+   "word": "cinquè",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquena",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquens",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquenes",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "sisè",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "sisena",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "sisens",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "sisenes",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setè",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setena",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setens",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setenes",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitè",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitenes",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "novè",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "novens",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "novenes",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "desè",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "desena",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "desens",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "desenes",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "onzè",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "onzena",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "onzens",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "onzenes",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dotzè",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dotzena",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dotzens",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dotzenes",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tretzè",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tretzena",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tretzens",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tretzenes",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "catorzè",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "catorzena",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "catorzens",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "catorzenes",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quinzè",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quinzena",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quinzens",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quinzenes",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setzè",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setzena",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setzens",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setzenes",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dissetè",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dissetena",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dissetens",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dissetenes",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "divuitè",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "divuitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "divuitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "divuitenes",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dinovè",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dinovena",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dinovens",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dinovenes",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vintè",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vintena",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vintens",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vintenes",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "trentè",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "trentena",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "trentens",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "trentenes",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quarantè",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quarantena",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quarantens",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quarantenes",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquantè",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquantena",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquantens",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquantenes",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "seixantè",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "seixantena",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "seixantens",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "seixantenes",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setantè",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setantena",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setantens",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "setantenes",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitantè",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitantena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitantens",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "vuitantenes",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "norantè",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "norantena",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "norantens",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "norantenes",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "centè",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "centena",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "centens",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "centenes",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "unè",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "unena",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "unens",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "unenes",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dosè",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dosena",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dosens",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dosenes",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tresè",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tresena",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tresens",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "tresenes",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quatrè",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quatrena",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quatrens",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "quatrenes",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "cinquè",
+   "role": "denominator",
+   "value": "5",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "cinquens",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"cinquè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "sisè",
+   "role": "denominator",
+   "value": "6",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "sisens",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"sisè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "setè",
+   "role": "denominator",
+   "value": "7",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "setens",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"setè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "vuitè",
+   "role": "denominator",
+   "value": "8",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "vuitens",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"vuitè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "novè",
+   "role": "denominator",
+   "value": "9",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "novens",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"novè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "desè",
+   "role": "denominator",
+   "value": "10",
+   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "desens",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal: \"desè\"; a fraction takes the masculine ordinal form, as DIEC2 \"cinquè\" 2: \"Que és una de les cinc parts iguals en què es divideix una quantitat o un tot.\" 3: \"Un cinquè , 1/5. Dos cinquens , 2/5.\"; DIEC2 \"desè\" 3: \"Un desè, 1/10.\""
+  },
+  {
+   "word": "centèsim",
+   "role": "denominator",
+   "value": "100",
+   "source": "DIEC2 \"centèsim\": \"Centè 1 . Va llegir la carta per centèsima vegada. La centèsima part d'una cosa. Tres centèsims , 3/100.\""
+  },
+  {
+   "word": "centèsims",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "DIEC2 \"centèsim\": \"Centè 1 . Va llegir la carta per centèsima vegada. La centèsima part d'una cosa. Tres centèsims , 3/100.\""
+  },
+  {
+   "word": "mil·lèsim",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "masculine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the fraction noun is sense 3"
+  },
+  {
+   "word": "mil·lèsims",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the fraction noun is sense 3"
+  },
+  {
+   "word": "mil·lèsima",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the feminine fraction adjective is sense 2, as DIEC2 \"cinquè\" 2: \"dues cinquenes parts\""
+  },
+  {
+   "word": "mil·lèsimes",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the feminine fraction adjective is sense 2, as DIEC2 \"cinquè\" 2: \"dues cinquenes parts\""
+  },
+  {
+   "word": "mil·lèsim",
+   "role": "ordinal",
+   "value": "1000",
+   "gender": "masculine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the ordinal is sense 1"
+  },
+  {
+   "word": "mil·lèsima",
+   "role": "ordinal",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "DIEC2 \"mil·lèsim -a\" 1: \"Que, en una sèrie, en té 999 davant seu.\" 2: \"Que és una de les mil parts iguals en què es divideix una quantitat o un tot. La mil·lèsima part d'un metre.\" 3: \"Quatre mil·lèsims , 4/1.000.\"; the ordinal is sense 1"
+  },
+  {
+   "word": "milè",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "milena",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "milionè",
+   "role": "ordinal_scale",
+   "value": "milió",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "milionena",
+   "role": "ordinal_scale",
+   "value": "milió",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+  },
+  {
+   "word": "dos-centè",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "dos-centena",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "dos-centens",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "dos-centenes",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centè",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centena",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centens",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "tres-centenes",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centè",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centena",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centens",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "quatre-centenes",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centè",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centena",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centens",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "cinc-centenes",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centè",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centena",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centens",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "sis-centenes",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centè",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centena",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centens",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "set-centenes",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centè",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centena",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centens",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "vuit-centenes",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centè",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centena",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centens",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "nou-centenes",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "plural": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"centè\", \"dos-centè\", \"tres-centè\", \"cinc-centè\", \"nou-centè\", \"mil centè\", \"dos mil dos-centè\"; \"centena\", \"dos-centena\", \"cinc-centena\", \"nou-centena\", \"mil centena\"; a count joins \"centè\" with a hyphen into one ordinal, written with a hyphen or a space, read as one word; the plurals end in -ens and -enes, as DIEC2 \"cinquè\": \"Dos cinquens\", \"dues cinquenes parts\""
+  },
+  {
+   "word": "r",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "n",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "t",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "è",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "rs",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "ns",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "ts",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "a",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  },
+  {
+   "word": "es",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "CLDR RBNF ca %digits-ordinal-masculine/-feminine and their plurals, ICU 78 rendering: \"1r\", \"2n\", \"3r\", \"4t\", \"5è\", \"11è\"; \"1rs\", \"2ns\", \"3rs\", \"4ts\", \"5ns\"; \"1a\", \"5a\"; \"1es\", \"5es\". en.wiktionary \"1r\": \"1r (feminine 1a, masculine plural 1rs, feminine plural 1es)\"; \"4t\": \"4t (feminine 4a, masculine plural 4ts, feminine plural 4es)\""
+  }
+ ]
+}

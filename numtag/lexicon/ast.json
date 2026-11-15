@@ -1,0 +1,1731 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\""
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\""
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\": the dot groups digits; a space between digit strings separates two numbers."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\"; a plural scale noun with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\": \"un millón llobos\", \"dos millones vaques\"."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\"; Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\" No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"cientu y dos\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "en.wiktionary, Asturian \"mil\": \"In compound numbers, mil does not inflect or change: mil dos, mil trenta y nueve, tres mil, venti mil\""
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "en.wiktionary, Asturian \"mil\": \"mil dos, mil trenta y nueve\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "en.wiktionary, Asturian \"mil\": \"In compound numbers, mil does not inflect or change: mil dos, mil trenta y nueve, tres mil, venti mil\": no joiner stands before the last group."
+  },
+  "ordinal_style": {
+   "value": "every_word",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\": \"ventésimu primeru\", \"cuarentenu primeru\"."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "y"
+   ],
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\""
+  },
+  "decimal_marker": {
+   "value": [
+    "coma",
+    "puntu"
+   ],
+   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\"; en.wiktionary, Asturian \"puntu\", noun: \"dot\", \"full stop, period\". \"coma\" comes from ovos-number-parser numbers_ast.py DECIMAL_MARKER (a lead: \"coma\", \"punto\"); en.wiktionary lists Asturian \"coma\" only as a form of \"comer\", so a native speaker must confirm it."
+  },
+  "minus": {
+   "value": [
+    "menos"
+   ],
+   "source": "ovos-number-parser numbers_ast.py NEGATIVE_SIGN (a lead): \"menos\"."
+  },
+  "minus_idioms": {
+   "value": [
+    "más o menos"
+   ],
+   "source": "ovos-number-parser numbers_ast.py NEGATIVE_IDIOMS (a lead): \"más\", \"o\", \"menos\"; en.wiktionary, Asturian \"menos\": adverb \"less\". No source names another Asturian idiom with \"menos\"."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; the same words are the indefinite article."
+  },
+  "of": {
+   "value": [
+    "de"
+   ],
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  "fraction_of": {
+   "value": [
+    "de"
+   ],
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "No separate particle is read for Asturian."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Asturian."
+  },
+  "half_unit": {
+   "value": [
+    "quilu",
+    "gramu",
+    "llitru",
+    "metru",
+    "quilómetru",
+    "hora",
+    "minutu",
+    "segundu",
+    "día",
+    "selmana",
+    "mes",
+    "añu",
+    "sieglu"
+   ],
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\": \"media\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Asturian number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "ente"
+   ],
+   "source": "en.wiktionary, Asturian \"ente\", preposition sense 1: \"between\"; Asturian \"entre\" is a form of the verb \"entrar\". In \"ente A y B\" the \"y\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "cero",
+   "role": "unit",
+   "value": "0",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "unu",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\": \"1 un, unu (m); una (f)\""
+  },
+  {
+   "word": "uno",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "una",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "dos",
+   "role": "unit",
+   "value": "2",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "cuatro",
+   "role": "unit",
+   "value": "4",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "cinco",
+   "role": "unit",
+   "value": "5",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "siete",
+   "role": "unit",
+   "value": "7",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "ocho",
+   "role": "unit",
+   "value": "8",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "nueve",
+   "role": "unit",
+   "value": "9",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; Omniglot: \"2 dos [...] 9 nueve\""
+  },
+  {
+   "word": "oito",
+   "role": "unit",
+   "value": "8",
+   "source": "en.wiktionary, Asturian \"ocho\", Alternative forms: \"{{alt|ast|oito||Patsuezu}}\""
+  },
+  {
+   "word": "otso",
+   "role": "unit",
+   "value": "8",
+   "source": "en.wiktionary, Asturian \"ocho\", Alternative forms: \"{{alt|ast|otso||Quirosan}}\""
+  },
+  {
+   "word": "diez",
+   "role": "ten",
+   "value": "10",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "once",
+   "role": "ten",
+   "value": "11",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "doce",
+   "role": "ten",
+   "value": "12",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "trece",
+   "role": "ten",
+   "value": "13",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "catorce",
+   "role": "ten",
+   "value": "14",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "quince",
+   "role": "ten",
+   "value": "15",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "dieciséis",
+   "role": "ten",
+   "value": "16",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "diecisiete",
+   "role": "ten",
+   "value": "17",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "dieciocho",
+   "role": "ten",
+   "value": "18",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "diecinueve",
+   "role": "ten",
+   "value": "19",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "venti",
+   "role": "ten",
+   "value": "20",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "trenta",
+   "role": "ten",
+   "value": "30",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cuarenta",
+   "role": "ten",
+   "value": "40",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cincuenta",
+   "role": "ten",
+   "value": "50",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "sesenta",
+   "role": "ten",
+   "value": "60",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "setenta",
+   "role": "ten",
+   "value": "70",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ochenta",
+   "role": "ten",
+   "value": "80",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "noventa",
+   "role": "ten",
+   "value": "90",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventiún",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventiuno",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventiuna",
+   "role": "ten",
+   "value": "21",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\"; \"una\" is the feminine of \"un\", so \"ventiuna\" is the feminine of \"ventiún\""
+  },
+  {
+   "word": "ventidós",
+   "role": "ten",
+   "value": "22",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventitrés",
+   "role": "ten",
+   "value": "23",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "venticuatro",
+   "role": "ten",
+   "value": "24",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "venticinco",
+   "role": "ten",
+   "value": "25",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventiséis",
+   "role": "ten",
+   "value": "26",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventisiete",
+   "role": "ten",
+   "value": "27",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventiocho",
+   "role": "ten",
+   "value": "28",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ventinueve",
+   "role": "ten",
+   "value": "29",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cien",
+   "role": "hundred",
+   "value": "100",
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\""
+  },
+  {
+   "word": "cientu",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "en.wiktionary, Asturian \"cien\": \"The indeclinable form cien means \\\"one hundred\\\" only. To say \\\"one hundred one\\\", the combining form cientu is used, as cientu un. Likewise, \\\"one hundred thirty\\\" is cientu trenta, and \\\"one hundred fifty-four\\\" is cientu cincuenta y cuatro.\""
+  },
+  {
+   "word": "ciento",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "doscientos",
+   "role": "hundred",
+   "value": "200",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "doscientes",
+   "role": "hundred",
+   "value": "200",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "trescientos",
+   "role": "hundred",
+   "value": "300",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "trescientes",
+   "role": "hundred",
+   "value": "300",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cuatrocientos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cuatrocientes",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "quinientos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "quinientes",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cincocientos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "cincocientes",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "seiscientos",
+   "role": "hundred",
+   "value": "600",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "seiscientes",
+   "role": "hundred",
+   "value": "600",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "setecientos",
+   "role": "hundred",
+   "value": "700",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "setecientes",
+   "role": "hundred",
+   "value": "700",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ochocientos",
+   "role": "hundred",
+   "value": "800",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "ochocientes",
+   "role": "hundred",
+   "value": "800",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "novecientos",
+   "role": "hundred",
+   "value": "900",
+   "gender": "masculine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "novecientes",
+   "role": "hundred",
+   "value": "900",
+   "gender": "feminine",
+   "source": "en.wiktionary, Category:Asturian cardinal numbers: \"un\", \"una\", \"dos\", \"venti\", \"ventiún\", \"ventidós\", \"trenta\", \"cien\", \"doscientos\", \"doscientes\", \"cincocientos\", \"cincocientes\", \"quinientos\", \"quinientes\", \"mil\", \"millón\", \"millones\", \"billón\", \"billones\"; \"un\": alt. \"uno\"; \"una\": \"inflection of un f s\"; \"doscientes\": \"inflection of doscientos f\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "en.wiktionary, Asturian \"mil\": \"In compound numbers, mil does not inflect or change: mil dos, mil trenta y nueve, tres mil, venti mil\""
+  },
+  {
+   "word": "millón",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  {
+   "word": "millones",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  {
+   "word": "billón",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  {
+   "word": "billones",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "en.wiktionary, Asturian \"millón\": \"million; 1,000,000\", \"un millón llobos\", \"dos millones vaques\"; \"billón\": \"trillion; 10^12\""
+  },
+  {
+   "word": "mediu",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "media",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\"; feminine of \"mediu\"; also a noun, so it is ambiguous"
+  },
+  {
+   "word": "terciu",
+   "role": "denominator",
+   "value": "3",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "tercios",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\" (plural \"tercios\")"
+  },
+  {
+   "word": "cuartu",
+   "role": "denominator",
+   "value": "4",
+   "ambiguous": true,
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\"; also an ordinal and a room, so it is ambiguous"
+  },
+  {
+   "word": "cuartos",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "ambiguous": true,
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\" (plural \"cuartos\")"
+  },
+  {
+   "word": "primeru",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "primera",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "primero",
+   "role": "ordinal",
+   "value": "1",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "primeros",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "primeres",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "segundu",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"segundu\" is also a unit of time"
+  },
+  {
+   "word": "segunda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"segundu\" is also a unit of time"
+  },
+  {
+   "word": "segundo",
+   "role": "ordinal",
+   "value": "2",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"segundu\" is also a unit of time; the neuter form ends in -o"
+  },
+  {
+   "word": "segundos",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"segundu\" is also a unit of time"
+  },
+  {
+   "word": "segundes",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"segundu\" is also a unit of time"
+  },
+  {
+   "word": "terceru",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "tercera",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "tercero",
+   "role": "ordinal",
+   "value": "3",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "terceros",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "terceres",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cuartu",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"cuartu\" is also a room"
+  },
+  {
+   "word": "cuarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"cuartu\" is also a room"
+  },
+  {
+   "word": "cuarto",
+   "role": "ordinal",
+   "value": "4",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"cuartu\" is also a room; the neuter form ends in -o"
+  },
+  {
+   "word": "cuartos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"cuartu\" is also a room"
+  },
+  {
+   "word": "cuartes",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; \"cuartu\" is also a room"
+  },
+  {
+   "word": "quintu",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "quinta",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "quinto",
+   "role": "ordinal",
+   "value": "5",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "quintos",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "quintes",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sestu",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesta",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesto",
+   "role": "ordinal",
+   "value": "6",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "sestos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sestes",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "séptimu",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "séptima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "séptimo",
+   "role": "ordinal",
+   "value": "7",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "séptimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "séptimes",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "octavu",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "octava",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "octavo",
+   "role": "ordinal",
+   "value": "8",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "octavos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "octaves",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "novenu",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "noveno",
+   "role": "ordinal",
+   "value": "9",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "novenos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "novenes",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "décimu",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "décima",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "décimo",
+   "role": "ordinal",
+   "value": "10",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "décimos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "décimes",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoprimeru",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoprimera",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoprimero",
+   "role": "ordinal",
+   "value": "11",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimoprimeros",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoprimeres",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosegundu",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosegunda",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosegundo",
+   "role": "ordinal",
+   "value": "12",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimosegundos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosegundes",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoterceru",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimotercera",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimotercero",
+   "role": "ordinal",
+   "value": "13",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimoterceros",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoterceres",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimocuartu",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimocuarta",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimocuarto",
+   "role": "ordinal",
+   "value": "14",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimocuartos",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimocuartes",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoquintu",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoquinta",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoquinto",
+   "role": "ordinal",
+   "value": "15",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimoquintos",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoquintes",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosestu",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosesta",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosesto",
+   "role": "ordinal",
+   "value": "16",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimosestos",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimosestes",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoséptimu",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoséptima",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoséptimo",
+   "role": "ordinal",
+   "value": "17",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimoséptimos",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoséptimes",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoctavu",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoctava",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoctavo",
+   "role": "ordinal",
+   "value": "18",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimoctavos",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimoctaves",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimonovenu",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimonovena",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimonoveno",
+   "role": "ordinal",
+   "value": "19",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "decimonovenos",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "decimonovenes",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventésimu",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventésima",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventésimo",
+   "role": "ordinal",
+   "value": "20",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "ventésimos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventésimes",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "trentésimu",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "trentésima",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "trentésimo",
+   "role": "ordinal",
+   "value": "30",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "trentésimos",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "trentésimes",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cuarentenu",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cuarentena",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cuarenteno",
+   "role": "ordinal",
+   "value": "40",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "cuarentenos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cuarentenes",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cincuentenu",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cincuentena",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cincuenteno",
+   "role": "ordinal",
+   "value": "50",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "cincuentenos",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "cincuentenes",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesentenu",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesentena",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesenteno",
+   "role": "ordinal",
+   "value": "60",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "sesentenos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "sesentenes",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "setentenu",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "setentena",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "setenteno",
+   "role": "ordinal",
+   "value": "70",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "setentenos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "setentenes",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ochentenu",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ochentena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ochenteno",
+   "role": "ordinal",
+   "value": "80",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "ochentenos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ochentenes",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "noventenu",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "noventena",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "noventeno",
+   "role": "ordinal",
+   "value": "90",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "noventenos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "noventenes",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "centésimu",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "centésima",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "centésimo",
+   "role": "ordinal",
+   "value": "100",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\"; the neuter form ends in -o"
+  },
+  {
+   "word": "centésimos",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "centésimes",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "ventenu",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "ventena",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "trentenu",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "trentena",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "centenu",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "centena",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "primer",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "en.wiktionary, Asturian: \"venti\" derived \"ventenu\", \"trenta\" derived \"trentenu\", \"cien\" derived \"centenu\"; \"primeru\" alt. \"primer (before a noun)\"; \"cuartu\": \"fourth, quarter\"; \"terciu\": \"third (one of three equal parts)\"; \"mediu\": \"half\""
+  },
+  {
+   "word": "milésimu",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "milésima",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\""
+  },
+  {
+   "word": "º",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "The masculine ordinal indicator after digits (\"1.º\"), as in es and pt."
+  },
+  {
+   "word": "ª",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "The feminine ordinal indicator after digits (\"1.ª\")."
+  }
+ ]
+}

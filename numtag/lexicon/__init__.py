@@ -19,7 +19,7 @@ from functools import cache
 from pathlib import Path
 
 from numtag.mention import Scale
-from numtag.tokenize import Script, fold
+from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
 
@@ -267,6 +267,9 @@ class Lexicon:
     # A fraction word after a scale word takes a part of it ("milioi erdi
     # bat" is 500000, "hiru milioi laurden" 750000).
     fraction_after_scale: bool = False
+    # Words written in several parts ("dètz-e-sèt", "bint'i un"): the
+    # tokenizer reads each as one token.
+    compounds: frozenset[str] = frozenset()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -488,6 +491,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_articles=frozenset(words.get("ordinal_article", ())),
         article_after_noun=settings.get("article_after_noun", False),
         fraction_after_scale=settings.get("fraction_after_scale", False),
+        compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
     )
 
 

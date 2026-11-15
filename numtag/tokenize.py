@@ -113,7 +113,8 @@ DEFAULT_SCRIPT = Script()
 
 
 @cache
-def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), group_mark: str = ".") -> re.Pattern:
+def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), group_mark: str = ".",
+                   apostrophe_ends_word: bool = False) -> re.Pattern:
     """A digit string keeps its group and decimal marks ("1.000.000,5"). A
     minus sign or a lone mark belongs to it only at the start of a word ("-5",
     ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
@@ -121,16 +122,18 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
     found whole and then dropped. A soft hyphen between letters stays in
     the word, and so does one of ``apostrophes`` ("п'ять"). A group mark
     other than "." and "," ("1'234'567" in Switzerland) also stands between
-    digits."""
+    digits. The modifier apostrophe (U+02BC) counts as a letter in Unicode;
+    with ``apostrophe_ends_word`` it is an apostrophe that ends a word, as in
+    "bintʼi un"."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
     between = marks + (re.escape(group_mark) if group_mark not in ".," else "")
     joins = SOFT_HYPHEN + "".join(re.escape(a) for a in sorted(apostrophes))
-    word = r"[^\W\d_]"
+    letter = r"[^\W\d_ʼ]" if apostrophe_ends_word else r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
         inner = (_combining_marks() if script.fold_marks else "") + re.escape(script.word_chars)
-        word = rf"{word}(?:[^\W\d_]|[{inner}]|[{joins}][^\W\d_])*"
+        word = rf"{letter}(?:{letter}|[{inner}]|[{joins}]{letter})*"
     else:
-        word = rf"{word}+(?:[{joins}][^\W\d_]+)*"
+        word = rf"{letter}+(?:[{joins}]{letter}+)*"
     return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{between}]\d+)*)|(?P<word>{word})")
 
 
@@ -219,7 +222,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              digit_suffix_marks: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
              dot_ordinal: bool = False, date_months: frozenset[str] = frozenset(),
-             phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".") -> list[Token]:
+             phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".",
+             compounds: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -258,7 +262,10 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     The words of each phrase in ``phrases`` become one token
     ("quatre-vingts"). ``group_mark`` joins digits as "." and "," do
     ("1'234"). An ordinal suffix listed with a hyphen ("-lea") follows a
-    hyphen ("2-lea").
+    hyphen ("2-lea"). The words of each listed compound in ``compounds``
+    become one token ("dètz-e-sèt", "bint'i un"). A compound joined by
+    hyphens or dot signs with a word outside ``number_words`` is one noun
+    ("segunda-feira", "mil·límetres"): its words are dropped.
     """
     scan = text
     if script.bidi_controls:
@@ -266,7 +273,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     table = script.digit_table
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_token_pattern(script, apostrophes, group_mark).finditer(scan))
+    matches = list(_token_pattern(script, apostrophes, group_mark, bool(compounds)).finditer(scan))
     ascii_digits = _ascii_digits(group_mark)
     skip_until = -1
     for index, match in enumerate(matches):
@@ -338,6 +345,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             tokens.append(Token(word, start, end, is_digits, gap, suffix, key=key, folded=folded,
                                 period_ordinal=period))
         previous_end = end
+    if compounds:
+        tokens = _join_compounds(text, tokens, compounds)
     if number_words is None:
         return tokens
     if script.joiner_prefixes or script.clitic_prefixes:
@@ -464,14 +473,69 @@ def _period_ordinal(text: str, start: int, end: int, cues: PeriodCues) -> bool:
     return before is not None and before.group(1).casefold() in cues.before
 
 
+# The marks that may stand between the words of a compound. A hyphen and a
+# space stand for each other ("dètz-e-sèt", "dètz e sèt"); a space next to an
+# apostrophe is part of it ("bint' uito"); each apostrophe sign stands for the
+# straight one; a period and each dot sign stand for the middle dot
+# ("mil.lèsim", "mil•lèsim").
+COMPOUND_MARK = re.compile(r"\s*['’‘ʼ]\s*|[·•∙⋅‧.-]|\s+")
+_MARK_CLASS = {"-": "-", "'": "'", "’": "'", "‘": "'", "ʼ": "'",
+               "·": "·", "•": "·", "∙": "·", "⋅": "·", "‧": "·", ".": "·"}
+# A dot sign between two letters is inside one word, as a hyphen is
+# ("mil·límetres").
+_WORD_DOTS = frozenset("·•∙⋅‧")
+
+
+def _mark(gap: str) -> str | None:
+    if gap and gap.isspace():
+        return "-"
+    mark = _MARK_CLASS.get(gap.strip())
+    return mark if mark == "'" or gap == gap.strip() else None
+
+
+def compound_parts(word: str) -> tuple[tuple[str, ...], tuple[str | None, ...]]:
+    """The words of a compound and the class of each mark between them."""
+    parts = COMPOUND_MARK.split(word.casefold())
+    marks = tuple(_mark(m) for m in COMPOUND_MARK.findall(word))
+    return tuple(parts), marks
+
+
+@cache
+def _shapes(compounds: frozenset[str]) -> list[tuple[tuple[str, ...], tuple[str | None, ...], str]]:
+    """(words, marks, key) of each compound, the longest first."""
+    return sorted((compound_parts(c) + (c.casefold(),) for c in compounds), key=lambda shape: -len(shape[0]))
+
+
+def _join_compounds(text: str, tokens: list[Token], compounds: frozenset[str]) -> list[Token]:
+    """The tokens with the words of each listed compound joined into one
+    token, the longest compound first."""
+    shapes = _shapes(compounds)
+    joined: list[Token] = []
+    i = 0
+    while i < len(tokens):
+        for parts, marks, key in shapes:
+            run = tokens[i:i + len(parts)]
+            if (len(run) == len(parts) and all(not t.is_digits for t in run)
+                    and tuple(t.norm for t in run) == parts
+                    and tuple(_mark(t.gap) for t in run[1:]) == marks):
+                joined.append(Token(text[run[0].start:run[-1].end], run[0].start, run[-1].end,
+                                    False, run[0].gap, key=key))
+                i += len(parts)
+                break
+        else:
+            joined.append(tokens[i])
+            i += 1
+    return joined
+
+
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:
-    """The tokens without the words of each hyphenated compound that holds
-    a word outside ``number_words``. The token after a dropped word gets the
+    """The tokens without the words of each compound joined by hyphens or
+    dot signs that holds a word outside ``number_words``. The token after a dropped word gets the
     text since the last kept token as its gap, so it links to nothing."""
     dropped = set()
     start = 0
     for i in range(1, len(tokens) + 1):
-        if i < len(tokens) and (tokens[i].gap == "-" or tokens[i].glued):
+        if i < len(tokens) and (tokens[i].gap == "-" or tokens[i].gap in _WORD_DOTS or tokens[i].glued):
             continue
         compound = tokens[start:i]
         if len(compound) > 1 and any(not t.is_digits and t.norm not in number_words for t in compound):

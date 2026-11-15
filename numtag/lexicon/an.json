@@ -1,0 +1,1995 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; \"Lo numero mil y los substantivos millón, billón, trillón\" follow the Spanish and Catalan long scale, as ovos-number-parser numbers_an.py DEFAULT_SCALE (a lead)."
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "AAL Ortografía 8.1: \"puede marcar, sin espacios debant ni dezaga, la separación de millars, millons, etc. entre cifras, seguindo la tradición europea\""
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "AAL Ortografía 8.2: \"Tamién se fa servir la coma en expresions numericas ta deseparar los decimals d'os enters [...] 25,95 €\""
+  },
+  "space_groups": {
+   "value": false,
+   "source": "AAL Ortografía 8.1: the dot groups digits, \"sin espacios\"."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; a plural scale noun with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "AAL Ortografía 7.4: \"los substantivos millón, billón, trillón\" and, on numerals that \"acompanyen a substantivos como millón, billón\": \"M'han tocau 35 millons en a lotería\": a count above one takes the plural noun."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; \"cuaranta y cuatro trallos\" (7.4)"
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": \"ciento diez\". No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"ciento y dos\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": \"cuaranta mil, mil cincocientos\"."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"mil cincocientos\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": no joiner stands before the last group."
+  },
+  "ordinal_style": {
+   "value": "every_word",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; no source names the shape of a compound ordinal, so every word may be ordinal, as in es."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "y"
+   ],
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  "decimal_marker": {
+   "value": [
+    "coma"
+   ],
+   "source": "AAL Ortografía 8.2: \"la coma en expresions numericas ta deseparar los decimals\"."
+  },
+  "minus": {
+   "value": [
+    "menos"
+   ],
+   "source": "ovos-number-parser numbers_an.py NEGATIVE_SIGN (a lead): \"menos\"; AAL Ortografía uses \"a menos que\" (8.1)."
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No source names an Aragonese idiom that ends in \"menos\"; ovos-number-parser numbers_an.py lists none."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\"; \"un\" and \"una\" are the indefinite article."
+  },
+  "of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "AAL Ortografía 7.4: \"35 millons en a lotería\"; \"de\" elides to \"d'\" (2.6: \"l'11 d'agosto\")."
+  },
+  "fraction_of": {
+   "value": [
+    "de",
+    "d"
+   ],
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  "denominator_particle": {
+   "value": [
+    "avos"
+   ],
+   "source": "ovos-number-parser numbers_an.py DENOMINATOR_PARTICLE (a lead): \"avos\"."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Aragonese."
+  },
+  "half_unit": {
+   "value": [
+    "kilo",
+    "litro",
+    "metro",
+    "hora",
+    "minuto",
+    "día",
+    "semana",
+    "mes",
+    "anyo",
+    "sieglo"
+   ],
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\": \"meya\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Aragonese number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "entre"
+   ],
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600\": \"entre\" opens a range and \"y\" joins its two limits, so the \"y\" ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "zero",
+   "role": "unit",
+   "value": "0",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "cero",
+   "role": "unit",
+   "value": "0",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "uno",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\" (\"l'uno de chinero\")"
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "una",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "dos",
+   "role": "unit",
+   "value": "2",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "cuatro",
+   "role": "unit",
+   "value": "4",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "cinco",
+   "role": "unit",
+   "value": "5",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "siete",
+   "role": "unit",
+   "value": "7",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "siet",
+   "role": "unit",
+   "value": "7",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "ueito",
+   "role": "unit",
+   "value": "8",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "nueu",
+   "role": "unit",
+   "value": "9",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "diez",
+   "role": "ten",
+   "value": "10",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "once",
+   "role": "ten",
+   "value": "11",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "doce",
+   "role": "ten",
+   "value": "12",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trece",
+   "role": "ten",
+   "value": "13",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "catorce",
+   "role": "ten",
+   "value": "14",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "catorze",
+   "role": "ten",
+   "value": "14",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "quince",
+   "role": "ten",
+   "value": "15",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "deciséis",
+   "role": "ten",
+   "value": "16",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "decisiete",
+   "role": "ten",
+   "value": "17",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "decisiet",
+   "role": "ten",
+   "value": "17",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "deciueito",
+   "role": "ten",
+   "value": "18",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "decinueu",
+   "role": "ten",
+   "value": "19",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "vinte",
+   "role": "ten",
+   "value": "20",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vint",
+   "role": "ten",
+   "value": "20",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "trenta",
+   "role": "ten",
+   "value": "30",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "cuaranta",
+   "role": "ten",
+   "value": "40",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "cincuanta",
+   "role": "ten",
+   "value": "50",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "sixanta",
+   "role": "ten",
+   "value": "60",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setanta",
+   "role": "ten",
+   "value": "70",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "uitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "novanta",
+   "role": "ten",
+   "value": "90",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "noranta",
+   "role": "ten",
+   "value": "90",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "vintiun",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "vintiún",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; AAL Ortografía 3.4 writes \"vintiun\" with no accent"
+  },
+  {
+   "word": "vintiuno",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "vintiuna",
+   "role": "ten",
+   "value": "21",
+   "gender": "feminine",
+   "source": "\"una\" is the feminine of \"un\", so \"vintiuna\" is the feminine of \"vintiun\""
+  },
+  {
+   "word": "vintidós",
+   "role": "ten",
+   "value": "22",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vintitrés",
+   "role": "ten",
+   "value": "23",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "vinticuatro",
+   "role": "ten",
+   "value": "24",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; \"cuatro\" (7.4)"
+  },
+  {
+   "word": "vintiquatre",
+   "role": "ten",
+   "value": "24",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vinticuatre",
+   "role": "ten",
+   "value": "24",
+   "source": "AAL Ortografía 1.2.2: \"La letra u grafema <c> representa lo fonema velar oclusivo sordo /k/ debant d'as vocals a, o, u [...]: [...] cuatro, acuicultura, cuota\"; so the /k/ of Omniglot \"quatre\" is written <c>; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "vinticinco",
+   "role": "ten",
+   "value": "25",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vintiséis",
+   "role": "ten",
+   "value": "26",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "vintisiete",
+   "role": "ten",
+   "value": "27",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vintiueito",
+   "role": "ten",
+   "value": "28",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vintinueu",
+   "role": "ten",
+   "value": "29",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "cient",
+   "role": "hundred",
+   "value": "100",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "ciento",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\" (\"ciento diez\")"
+  },
+  {
+   "word": "docientos",
+   "role": "hundred",
+   "value": "200",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "docientas",
+   "role": "hundred",
+   "value": "200",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "trecientos",
+   "role": "hundred",
+   "value": "300",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "trecientas",
+   "role": "hundred",
+   "value": "300",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cuatrocientos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cuatrocientas",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "quatrecientos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "quatrecientas",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cuatrecientos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "AAL Ortografía 1.2.2: \"La letra u grafema <c> representa lo fonema velar oclusivo sordo /k/ debant d'as vocals a, o, u [...]: [...] cuatro, acuicultura, cuota\"; so the /k/ of Omniglot \"quatre\" is written <c>; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cuatrecientas",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "AAL Ortografía 1.2.2: \"La letra u grafema <c> representa lo fonema velar oclusivo sordo /k/ debant d'as vocals a, o, u [...]: [...] cuatro, acuicultura, cuota\"; so the /k/ of Omniglot \"quatre\" is written <c>; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cincocientos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "cincocientas",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "seicientos",
+   "role": "hundred",
+   "value": "600",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "seicientas",
+   "role": "hundred",
+   "value": "600",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "sietecientos",
+   "role": "hundred",
+   "value": "700",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "sietecientas",
+   "role": "hundred",
+   "value": "700",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "uitcientos",
+   "role": "hundred",
+   "value": "800",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "uitcientas",
+   "role": "hundred",
+   "value": "800",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "noucientos",
+   "role": "hundred",
+   "value": "900",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "noucientas",
+   "role": "hundred",
+   "value": "900",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; the feminine ends in -as, as in \"una\""
+  },
+  {
+   "word": "oncecientos",
+   "role": "hundred",
+   "value": "1100",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "docecientos",
+   "role": "hundred",
+   "value": "1200",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "trececientos",
+   "role": "hundred",
+   "value": "1300",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "catorcecientos",
+   "role": "hundred",
+   "value": "1400",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "quincecientos",
+   "role": "hundred",
+   "value": "1500",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "sececientos",
+   "role": "hundred",
+   "value": "1600",
+   "source": "AAL Ortografía 7.4: \"Los numeros multiples de cient entre 1.100 y 1.600 tamién pueden expresar-se en una parola como oncecientos, docecientos, trececientos, catorcecientos, quincecientos y sececientos\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\""
+  },
+  {
+   "word": "millón",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "millons",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "billón",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "billons",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "trillón",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "trillons",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"S'escriben con una sola parola: Los numeros comprendius entre lo zero y lo trenta: tres, once, decinueu, vintitrés. Los numeros que expresan decenas u centenas exactas: cuaranta, setanta, cincocientos [...] Lo numero mil y los substantivos millón, billón, trillón\"; \"Los demás numeros s'escriben con mas d'una parola y sin guions: trenta y uno, ciento diez, cuaranta mil, mil cincocientos\"; plural \"millons\" (AAL 7.4: \"35 millons\")"
+  },
+  {
+   "word": "meyo",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "meya",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; AAL writes \"Edat Meya\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "tercio",
+   "role": "denominator",
+   "value": "3",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "tercios",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuarto",
+   "role": "denominator",
+   "value": "4",
+   "ambiguous": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; also a room, so it is ambiguous"
+  },
+  {
+   "word": "cuartos",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "ambiguous": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "primero",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "primera",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "primeros",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "primeras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "segundo",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segunda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundos",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "tercero",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "tercera",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "terceros",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "terceras",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "cuatreno",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuatrena",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuatrenos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuatrenas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cinqueno",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cinquena",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cinquenos",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cinquenas",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "seiseno",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "seisena",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "seisenos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "seisenas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "seteno",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setena",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setenos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setenas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uiteno",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitenos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitenas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "noveno",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novenos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novenas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "deceno",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "decena",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "decenos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "decenas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "onceno",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\"; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "oncena",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\"; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "oncenos",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\"; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "oncenas",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\"; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "doceno",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "docena",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "docenos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "docenas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "treceno",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trecena",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trecenos",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trecenas",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "catorzeno",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "catorzena",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "catorzenos",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "catorzenas",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "quinceno",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "quincena",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "quincenos",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "quincenas",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "venteno",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "ventena",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "ventenos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "ventenas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trenteno",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trentena",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trentenos",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "trentenas",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuaranteno",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuarantena",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuarantenos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cuarantenas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cincuanteno",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cincuantena",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cincuantenos",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "cincuantenas",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "sixanteno",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "sixantena",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "sixantenos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "sixantenas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setanteno",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setantena",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setantenos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "setantenas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitanteno",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitantena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitantenos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "uitantenas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novanteno",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novantena",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novantenos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "novantenas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "centeno",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "centena",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "centenos",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "centenas",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "primer",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; AAL Ortografía: \"cuaranta y cuatro trallos\" (7.4), \"de 8 (de ueito)\", \"l'11o (l'onceno), pero la 11a (la oncena)\" (2.6), \"uitanta\" (1.2), \"vintiun\" (3.4), \"cient\" (1.2.17: \"formas apocopadas [...] sant, cient\"), \"sèt (numeral)\", \"dèu ('diez')\" (benasqués), \"Lo capítol siete\", \"M'han tocau 35 millons\", \"zero / cero\", \"Edat Meya\""
+  },
+  {
+   "word": "quarto",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"quarto\" is also a room"
+  },
+  {
+   "word": "quarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"quarto\" is also a room"
+  },
+  {
+   "word": "quartos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"quarto\" is also a room"
+  },
+  {
+   "word": "quartas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\"; \"quarto\" is also a room"
+  },
+  {
+   "word": "sexto",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sexta",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sextos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sextas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septimo",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septimas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octavo",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octava",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octavos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octavas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "uitavo",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "uitava",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "uitavos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "uitavas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "decimo",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "decima",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "decimos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "decimas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vichesimo",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vichesima",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vichesimos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vichesimas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quadrachesimo",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quadrachesima",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quadrachesimos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quadrachesimas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sexachesimo",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sexachesima",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sexachesimos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "sexachesimas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septuachesimo",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septuachesima",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septuachesimos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "septuachesimas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octachesimo",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octachesima",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octachesimos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "octachesimas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "nonachesimo",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "nonachesima",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "nonachesimos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "nonachesimas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "vintuno",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quatro",
+   "role": "unit",
+   "value": "4",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "quatre",
+   "role": "unit",
+   "value": "4",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "cinc",
+   "role": "unit",
+   "value": "5",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "sies",
+   "role": "unit",
+   "value": "6",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "sieis",
+   "role": "unit",
+   "value": "6",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "set",
+   "role": "unit",
+   "value": "7",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "ueit",
+   "role": "unit",
+   "value": "8",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "nou",
+   "role": "unit",
+   "value": "9",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "deu",
+   "role": "ten",
+   "value": "10",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "dotze",
+   "role": "ten",
+   "value": "12",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "tretze",
+   "role": "ten",
+   "value": "13",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "decisiéis",
+   "role": "ten",
+   "value": "16",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "setze",
+   "role": "ten",
+   "value": "16",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "dechiset",
+   "role": "ten",
+   "value": "17",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "dechiueit",
+   "role": "ten",
+   "value": "18",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "decinou",
+   "role": "ten",
+   "value": "19",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "vente",
+   "role": "ten",
+   "value": "20",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "vintisiéis",
+   "role": "ten",
+   "value": "26",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "vintinou",
+   "role": "ten",
+   "value": "29",
+   "source": "Omniglot, \"Numbers in Aragonese\", the other forms in each cell: \"5 cinc / cinco\", \"6 seis / sies /sieis\", \"7 siete / set\", \"8 ueit / ueito\", \"9 nueu / nou\", \"10 diez / deu\", \"12 dotze\", \"13 tretze\", \"16 decisiéis / setze\", \"17 decisiete / dechiset\", \"18 deciueito / dechiueit\", \"19 decinueu, decinou\", \"20 vint, vinte, vente\", \"26 vintisiéis\", \"29 vintinueu, vintinou\""
+  },
+  {
+   "word": "cuatre",
+   "role": "unit",
+   "value": "4",
+   "source": "AAL Ortografía 1.2.2: \"La letra u grafema <c> representa lo fonema velar oclusivo sordo /k/ debant d'as vocals a, o, u [...]: [...] cuatro, acuicultura, cuota\"; so the /k/ of Omniglot \"quatre\" is written <c>; ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "tercer",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
+  },
+  {
+   "word": "mileno",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "milena",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\""
+  },
+  {
+   "word": "o",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "AAL Ortografía 2.6: \"l'11o (l'onceno)\""
+  },
+  {
+   "word": "a",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "AAL Ortografía 2.6: \"la 11a (la oncena)\""
+  },
+  {
+   "word": "º",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "AAL Ortografía 2.6 writes the masculine indicator after digits (\"11o\"); \"º\" is that indicator."
+  },
+  {
+   "word": "ª",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "AAL Ortografía 2.6 writes the feminine indicator after digits (\"11a\"); \"ª\" is that indicator."
+  }
+ ]
+}

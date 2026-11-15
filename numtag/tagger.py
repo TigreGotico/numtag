@@ -41,7 +41,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                                                  lexicon.period_ordinal_free_digits)
                       if lexicon.period_ordinals else None,
                       dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
-                      phrases=lexicon.phrases, group_mark=lexicon.group_mark)
+                      phrases=lexicon.phrases, group_mark=lexicon.group_mark,
+                      compounds=lexicon.compounds)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)

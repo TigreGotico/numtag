@@ -1,0 +1,1884 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \"; the dot groups digits as in es and pt-PT (\"1.000.000\"), as ovos-number-parser reads gl."
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \""
+  },
+  "space_groups": {
+   "value": true,
+   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \": the group mark is a space, so \"1 000 000\" is one number."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\" A plural scale noun with no count (\"millóns de persoas\") names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\" Dicionario RAG, \"billón\": \"No firmamento hai centos de billóns de estrelas\": the noun takes the plural after a count above one."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\"; 16.1: \"Cando os numerais vinte, trinta, corenta..., noventa van seguidos da conxunción e\""
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": \"cento un\" takes no \"e\". No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"cento e vinte\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value. ovos-number-parser numbers_gl.py (a lead) writes \"cento e un\"."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": the groups stand side by side as the hundreds do (\"cento un\"); RAG does not write \"e\" after \"mil\"."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner stands between two groups, the last group too. RAG e ILG, Normas (2003), 16.1 lists no number above \"mil\", so no saved page shows the last group."
+  },
+  "ordinal_style": {
+   "value": "every_word",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "e"
+   ],
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  "decimal_marker": {
+   "value": [
+    "coma",
+    "punto"
+   ],
+   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \"; \"coma\" names the decimal sign, as ovos-number-parser numbers_gl.py DECIMAL_MARKER reads it."
+  },
+  "minus": {
+   "value": [
+    "menos"
+   ],
+   "source": "The minus word, as in es and pt; ovos-number-parser numbers_gl.py NEGATIVE_SIGN."
+  },
+  "minus_idioms": {
+   "value": [
+    "polo menos",
+    "ao menos",
+    "máis ou menos"
+   ],
+   "source": "ovos-number-parser numbers_gl.py NEGATIVE_IDIOMS: \"polo menos\", \"ao menos\", \"a menos que\", \"máis ou menos\"."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "unha"
+   ],
+   "source": "RAG Normas 16.1: \"Os numerais un, unha, cando son adxectivos, contraen [...] da mesma maneira ca os artigos indeterminados\"."
+  },
+  "of": {
+   "value": [
+    "de"
+   ],
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\" \"No firmamento hai centos de billóns de estrelas\" (Dicionario RAG, \"billón\")."
+  },
+  "fraction_of": {
+   "value": [
+    "de"
+   ],
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\": the suffix -avo joins the cardinal, so no separate particle."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Galician."
+  },
+  "half_unit": {
+   "value": [
+    "quilo",
+    "gramo",
+    "litro",
+    "metro",
+    "quilómetro",
+    "hora",
+    "minuto",
+    "segundo",
+    "día",
+    "semana",
+    "mes",
+    "ano",
+    "século"
+   ],
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\": \"medio\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Galician number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "entre",
+    "antre",
+    "ontre"
+   ],
+   "source": "en.wiktionary, Galician \"entre\" (alternative forms \"antre\", \"ontre\"), preposition: \"between, among\". In \"entre A e B\" the \"e\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "cero",
+   "role": "unit",
+   "value": "0",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "unha",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dous",
+   "role": "unit",
+   "value": "2",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dúas",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "catro",
+   "role": "unit",
+   "value": "4",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cinco",
+   "role": "unit",
+   "value": "5",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "sete",
+   "role": "unit",
+   "value": "7",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "oito",
+   "role": "unit",
+   "value": "8",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "nove",
+   "role": "unit",
+   "value": "9",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dez",
+   "role": "ten",
+   "value": "10",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "once",
+   "role": "ten",
+   "value": "11",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "doce",
+   "role": "ten",
+   "value": "12",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "trece",
+   "role": "ten",
+   "value": "13",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "catorce",
+   "role": "ten",
+   "value": "14",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "quince",
+   "role": "ten",
+   "value": "15",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dezaseis",
+   "role": "ten",
+   "value": "16",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dezasete",
+   "role": "ten",
+   "value": "17",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dezaoito",
+   "role": "ten",
+   "value": "18",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "dezanove",
+   "role": "ten",
+   "value": "19",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "vinte",
+   "role": "ten",
+   "value": "20",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "trinta",
+   "role": "ten",
+   "value": "30",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "corenta",
+   "role": "ten",
+   "value": "40",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cincuenta",
+   "role": "ten",
+   "value": "50",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "sesenta",
+   "role": "ten",
+   "value": "60",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "setenta",
+   "role": "ten",
+   "value": "70",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "oitenta",
+   "role": "ten",
+   "value": "80",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "noventa",
+   "role": "ten",
+   "value": "90",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cen",
+   "role": "hundred",
+   "value": "100",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cento",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\"; \"cento\" stands before the rest of the number"
+  },
+  {
+   "word": "douscentos",
+   "role": "hundred",
+   "value": "200",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "duascentas",
+   "role": "hundred",
+   "value": "200",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "trescentos",
+   "role": "hundred",
+   "value": "300",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "trescentas",
+   "role": "hundred",
+   "value": "300",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "catrocentos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "catrocentas",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cincocentos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "cincocentas",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "quiñentos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "quiñentas",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "seiscentos",
+   "role": "hundred",
+   "value": "600",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "seiscentas",
+   "role": "hundred",
+   "value": "600",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "setecentos",
+   "role": "hundred",
+   "value": "700",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "setecentas",
+   "role": "hundred",
+   "value": "700",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "oitocentos",
+   "role": "hundred",
+   "value": "800",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "oitocentas",
+   "role": "hundred",
+   "value": "800",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "novecentos",
+   "role": "hundred",
+   "value": "900",
+   "gender": "masculine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "novecentas",
+   "role": "hundred",
+   "value": "900",
+   "gender": "feminine",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\""
+  },
+  {
+   "word": "millón",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "millóns",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "billón",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "billóns",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "trillón",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "trillóns",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\"; Dicionario da Real Academia Galega, \"billón\": \"Un millón de millóns.\""
+  },
+  {
+   "word": "decena",
+   "role": "collective",
+   "value": "10",
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "decenas",
+   "role": "collective",
+   "value": "10",
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "ducia",
+   "role": "collective",
+   "value": "12",
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "ducias",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "centena",
+   "role": "collective",
+   "value": "100",
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "centenas",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "source": "RAG Normas 16.1: \"Cento, millón, billón, trillón, aínda que expresan número, funcionan como substantivos, igual que ducia, decena, centena.\""
+  },
+  {
+   "word": "medio",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"medio\" is also a noun, so it is ambiguous"
+  },
+  {
+   "word": "media",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"media\" is also a noun, so it is ambiguous"
+  },
+  {
+   "word": "terzo",
+   "role": "denominator",
+   "value": "3",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "terza",
+   "role": "denominator",
+   "value": "3",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "terzos",
+   "role": "denominator",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "terzas",
+   "role": "denominator",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "cuarto",
+   "role": "denominator",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuarta",
+   "role": "denominator",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuartos",
+   "role": "denominator",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuartas",
+   "role": "denominator",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "quinto",
+   "role": "denominator",
+   "value": "5",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quinta",
+   "role": "denominator",
+   "value": "5",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quintos",
+   "role": "denominator",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quintas",
+   "role": "denominator",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sexto",
+   "role": "denominator",
+   "value": "6",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sexta",
+   "role": "denominator",
+   "value": "6",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sextos",
+   "role": "denominator",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sextas",
+   "role": "denominator",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sétimo",
+   "role": "denominator",
+   "value": "7",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sétima",
+   "role": "denominator",
+   "value": "7",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sétimos",
+   "role": "denominator",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "sétimas",
+   "role": "denominator",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "oitavo",
+   "role": "denominator",
+   "value": "8",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "oitava",
+   "role": "denominator",
+   "value": "8",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "oitavos",
+   "role": "denominator",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "oitavas",
+   "role": "denominator",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "noveno",
+   "role": "denominator",
+   "value": "9",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "novena",
+   "role": "denominator",
+   "value": "9",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "novenos",
+   "role": "denominator",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "novenas",
+   "role": "denominator",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "décimo",
+   "role": "denominator",
+   "value": "10",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "décima",
+   "role": "denominator",
+   "value": "10",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "décimos",
+   "role": "denominator",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "décimas",
+   "role": "denominator",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "onceavo",
+   "role": "denominator",
+   "value": "11",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "onceava",
+   "role": "denominator",
+   "value": "11",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "onceavos",
+   "role": "denominator",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "onceavas",
+   "role": "denominator",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "doceavo",
+   "role": "denominator",
+   "value": "12",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "doceava",
+   "role": "denominator",
+   "value": "12",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "doceavos",
+   "role": "denominator",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "doceavas",
+   "role": "denominator",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "treceavo",
+   "role": "denominator",
+   "value": "13",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "treceava",
+   "role": "denominator",
+   "value": "13",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "treceavos",
+   "role": "denominator",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "treceavas",
+   "role": "denominator",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "catorceavo",
+   "role": "denominator",
+   "value": "14",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "catorceava",
+   "role": "denominator",
+   "value": "14",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "catorceavos",
+   "role": "denominator",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "catorceavas",
+   "role": "denominator",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quinceavo",
+   "role": "denominator",
+   "value": "15",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quinceava",
+   "role": "denominator",
+   "value": "15",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quinceavos",
+   "role": "denominator",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "quinceavas",
+   "role": "denominator",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseisavo",
+   "role": "denominator",
+   "value": "16",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseisava",
+   "role": "denominator",
+   "value": "16",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseisavos",
+   "role": "denominator",
+   "value": "16",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseisavas",
+   "role": "denominator",
+   "value": "16",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseteavo",
+   "role": "denominator",
+   "value": "17",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseteava",
+   "role": "denominator",
+   "value": "17",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseteavos",
+   "role": "denominator",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaseteavas",
+   "role": "denominator",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaoitoavo",
+   "role": "denominator",
+   "value": "18",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaoitoava",
+   "role": "denominator",
+   "value": "18",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaoitoavos",
+   "role": "denominator",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezaoitoavas",
+   "role": "denominator",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezanoveavo",
+   "role": "denominator",
+   "value": "19",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezanoveava",
+   "role": "denominator",
+   "value": "19",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezanoveavos",
+   "role": "denominator",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "dezanoveavas",
+   "role": "denominator",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "vinteavo",
+   "role": "denominator",
+   "value": "20",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "vinteava",
+   "role": "denominator",
+   "value": "20",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "vinteavos",
+   "role": "denominator",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "vinteavas",
+   "role": "denominator",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "centésimo",
+   "role": "denominator",
+   "value": "100",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "centésima",
+   "role": "denominator",
+   "value": "100",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "centésimos",
+   "role": "denominator",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "centésimas",
+   "role": "denominator",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "milésimo",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "milésima",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "milésimos",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "milésimas",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "millonésimo",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "masculine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "millonésima",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "feminine",
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "millonésimos",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "millonésimas",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.4 Partitivos: \"medio, -a\", \"terzo, -a\", \"cuarto, -a\", \"onceavo, -a\", \"doceavo, -a\", \"centésimo, -a\", \"milésimo, -a\", \"millonésimo, -a\"; \"a partir de 1/11 [...] o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo\""
+  },
+  {
+   "word": "primeiro",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "primeira",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "primeiros",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "primeiras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "segundo",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segunda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundos",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "terceiro",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "terceira",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "terceiros",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "terceiras",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "cuarto",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuartos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuartas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "quinto",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quinta",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quintos",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quintas",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sexto",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sexta",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sextos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sextas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sétimo",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sétima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sétimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sétimas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "oitavo",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "oitava",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "oitavos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "oitavas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "noveno",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "novenos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "novenas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "décimo",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "décima",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "décimos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "décimas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "undécimo",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "undécima",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "undécimos",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "undécimas",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "duodécimo",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "duodécima",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "duodécimos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "duodécimas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "vixésimo",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "vixésima",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "vixésimos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "vixésimas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "trixésimo",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "trixésima",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "trixésimos",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "trixésimas",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "cuadraxésimo",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "cuadraxésima",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "cuadraxésimos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "cuadraxésimas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quincuaxésimo",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quincuaxésima",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quincuaxésimos",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "quincuaxésimas",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sesaxésimo",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sesaxésima",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sesaxésimos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sesaxésimas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "septuaxésimo",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "septuaxésima",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "septuaxésimos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "septuaxésimas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "octoxésimo",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "octoxésima",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "octoxésimos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "octoxésimas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "nonaxésimo",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "nonaxésima",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "nonaxésimos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "nonaxésimas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "centésimo",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "centésima",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "centésimos",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "centésimas",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "milésimo",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "milésima",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "millonésimo",
+   "role": "ordinal_scale",
+   "value": "millón",
+   "gender": "masculine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "millonésima",
+   "role": "ordinal_scale",
+   "value": "millón",
+   "gender": "feminine",
+   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "º",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "The masculine ordinal indicator after digits (\"1.º\"), as ovos-number-parser and pt read it."
+  },
+  {
+   "word": "ª",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "The feminine ordinal indicator after digits (\"1.ª\")."
+  }
+ ]
+}
