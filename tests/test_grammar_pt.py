@@ -227,7 +227,7 @@ class TestCardinals(unittest.TestCase):
                          [("dois milhões", "2000000", C), ("três biliões", "3" + "0" * 12, C)])
         self.assertEqual(pt("um milhão e um bilião"),
                          [("um milhão", "1000000", C), ("um bilião", "1" + "0" * 12, C)])
-        # "cem" is a round hundred, so only the rule on "milhão" splits these
+        # "milhão" closes its group: 10^6; 100 x 10^9 (short scale)
         self.assertEqual(read("um milhão e cem bilhões", "pt-BR"),
                          [("um milhão", "1000000", C), ("cem bilhões", "1" + "0" * 11, C)])
         self.assertEqual(read("um milhão bilhões", "pt-BR"), [("um milhão", "1000000", C)])
@@ -276,17 +276,41 @@ class TestCardinals(unittest.TestCase):
         # 2 x 10^6 + 25 x 1000 = 2025000; 10^6 + 25 = 1000025
         self.assertEqual(pt("dois milhões e vinte e cinco mil"), [("dois milhões e vinte e cinco mil", "2025000", C)])
         self.assertEqual(pt("um milhão e vinte e cinco"), [("um milhão e vinte e cinco", "1000025", C)])
+        # with no range cue too: 10^6; 25 x 10^6, and 2 x 1000; 25 x 1000
+        self.assertEqual(pt("um milhão e vinte e cinco milhões"),
+                         [("um milhão", "1000000", C), ("vinte e cinco milhões", "25000000", C)])
+        self.assertEqual(pt("dois mil e vinte e cinco mil"),
+                         [("dois mil", "2000", C), ("vinte e cinco mil", "25000", C)])
 
-    def test_mil_e_counts_a_larger_noun_only_before_a_round_hundred(self):
-        # Cunha & Cintra, p. 372: "e" joins the thousands and the hundreds
-        # only before a round hundred, so "mil e quinhentos" milhões is one
-        # count: (2000 + 300) x 10^6 = 2300000000
+    def test_a_well_formed_count_with_mil_e_counts_a_larger_noun(self):
+        # Cunha & Cintra, p. 372, and Ciberdúvidas 34389: "e" follows "mil"
+        # before a round hundred or a class that begins with a zero.
+        # (2000 + 300) x 10^6 = 2300000000; (5000 + 67) x 10^6 = 5067000000
         self.assertEqual(pt("dois mil e trezentos milhões"),
                          [("dois mil e trezentos milhões", "2300000000", C)])
-        # any other "N mil e Y" closes its number: 500000; 3 x 10^6
+        self.assertEqual(pt("cinco mil e sessenta e sete milhões"),
+                         [("cinco mil e sessenta e sete milhões", "5067000000", C)])
+        # (500000 + 3) x 10^6 = 500003000000
         self.assertEqual(pt("quinhentos mil e três milhões"),
-                         [("quinhentos mil", "500000", C), ("três milhões", "3000000", C)])
-        # 100000; 10^6
+                         [("quinhentos mil e três milhões", "500003000000", C)])
+        # the whole part 500 is a round hundred: 1500.5 x 10^6 = 1500500000
+        self.assertEqual(pt("mil e quinhentos vírgula cinco milhões"),
+                         [("mil e quinhentos vírgula cinco milhões", "1500500000", C)])
+        # "mil e cento e vinte" is not well formed: 1000; 120 x 10^6
+        self.assertEqual(pt("mil e cento e vinte milhões"),
+                         [("mil", "1000", C), ("cento e vinte milhões", "120000000", C)])
+
+    def test_a_group_after_a_compound_count_needs_room(self):
+        # 1001 x 10^6 leaves six digits; "um milhão" has seven: 1001000000; 1000000
+        self.assertEqual(pt("mil e um milhões e um milhão"),
+                         [("mil e um milhões", "1001000000", C), ("um milhão", "1000000", C)])
+        # "mil e quinhentos e dois" is not well formed, so the number ends at
+        # the round hundred; 1500 leaves two digits, "dois mil" has four
+        self.assertEqual(pt("mil e quinhentos e dois mil"),
+                         [("mil e quinhentos", "1500", C), ("dois mil", "2000", C)])
+
+    def test_a_range_cue_ends_the_first_number_at_the_range_joiner(self):
+        # 100 x 1000 = 100000; 10^6
         self.assertEqual(pt("entre cem mil e um milhão de euros"),
                          [("cem mil", "100000", C), ("um milhão", "1000000", C)])
         self.assertEqual(read("entre cem mil e um milhão de reais", "pt-BR"),
@@ -294,12 +318,29 @@ class TestCardinals(unittest.TestCase):
         # 2 x 10^6 + 500 x 1000 = 2500000; 3 x 10^6
         self.assertEqual(pt("entre dois milhões e quinhentos mil e três milhões"),
                          [("dois milhões e quinhentos mil", "2500000", C), ("três milhões", "3000000", C)])
-        # 120 is no round hundred: 1000; 120 x 10^6
-        self.assertEqual(pt("mil e cento e vinte milhões"),
-                         [("mil", "1000", C), ("cento e vinte milhões", "120000000", C)])
-        # the whole part 500 is a round hundred: 1500.5 x 10^6 = 1500500000
-        self.assertEqual(pt("mil e quinhentos vírgula cinco milhões"),
-                         [("mil e quinhentos vírgula cinco milhões", "1500500000", C)])
+        # 200 x 1000 = 200000; 100 x 10^6
+        self.assertEqual(pt("entre duzentos mil e cem milhões"),
+                         [("duzentos mil", "200000", C), ("cem milhões", "100000000", C)])
+        # the joiner of "sessenta e sete" splits nothing: 5000; 67 x 10^6
+        self.assertEqual(pt("entre cinco mil e sessenta e sete milhões"),
+                         [("cinco mil", "5000", C), ("sessenta e sete milhões", "67000000", C)])
+        # 10^9 is less than 1500 x 10^6; 1000001000 is not less than 500 x 10^6
+        self.assertEqual(pt("entre mil milhões e mil e quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        self.assertEqual(pt("entre dez e vinte"), [("dez", "10", C), ("vinte", "20", C)])
+        # the joiners of "cento e vinte e cinco" split nothing: 125 x 1000; 200 x 1000
+        self.assertEqual(pt("entre cento e vinte e cinco mil e duzentos mil"),
+                         [("cento e vinte e cinco mil", "125000", C), ("duzentos mil", "200000", C)])
+
+    def test_the_range_limits_with_the_fewest_digits_win(self):
+        # 2000000 and 1500000000 (3 significant digits), not 2001000 and
+        # 500000000 (5): both left values are less than their right values
+        self.assertEqual(pt("entre dois milhões e mil e quinhentos milhões"),
+                         [("dois milhões", "2000000", C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+
+    def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
+        # 1000 is not less than 500: 1500
+        self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])
 
     def test_mil_and_a_count_with_no_e_count_a_larger_noun(self):
         # (1000 + 500) x 10^6; (2000 + 350) x 10^6

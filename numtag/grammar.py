@@ -13,6 +13,10 @@ the next word.
     small       := hundreds (joiner tens-units)? | tens-units      below 1000
     tail        := collective-tail | of-tail | half-tail | fraction-tail | decimal-tail
                  | half-collective-tail                              "cem e meia dúzia"
+
+After a range cue ("entre", "between") the first number ends at a joiner that
+splits the words into two numbers, the first smaller: "entre cem mil e um
+milhão" is two numbers.
 """
 import re
 from dataclasses import dataclass, replace
@@ -254,14 +258,11 @@ class Grammar:
         """A cardinal whose largest scale is the thousand counts a larger scale
         noun after it: "mil e quinhentos milhões" is 1500 x 10^6, "a thousand
         million" is 10^9. A larger noun closes its group, so "um milhão e dois
-        bilhões" is two numbers."""
+        bilhões" is two numbers. A count with "e" after "mil" that is not
+        well formed ("mil e cento e vinte" milhões) counts no noun."""
         found = []
         for run in self.cardinals(i, first, compound=False):
-            # "e" joins the hundreds to the thousands only before a round
-            # hundred: "mil e quinhentos" milhões is one count, while in
-            # "quinhentos mil e três milhões" the thousands end a number.
-            joined = len(run) > 1 and self._is_word(run[0].end, self.lex.joiners)
-            if joined and not _round_hundred(run[1].count):
+            if len(run) > 1 and not self._well_formed_after(run[0], run[1].count):
                 continue
             if run[0].exponent == THOUSAND:
                 single = len(run) == 1
@@ -319,7 +320,11 @@ class Grammar:
                 counted = any(g.top for g in following)
                 # Nor is the first word of a count below a thousand: "um milhão
                 # e vinte e cinco milhões" is 1000000 and 25000000.
-                counts = {end for end, _ in self.small(j) if self._takes_multiplier(end)}
+                # Only a count that may follow the group: in "mil e quinhentos
+                # e dois mil", "e quinhentos e dois" is not well formed after
+                # "mil", so the number is 1500 and "dois mil" starts the next.
+                counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
+                          and self._well_formed_after(last, Rational(value))}
                 for group in following:
                     if counted and not group.top:
                         continue
@@ -329,6 +334,16 @@ class Grammar:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
+
+    def _well_formed_after(self, group: Group, count: Rational) -> bool:
+        """False for a count below a thousand after "e" and the thousands
+        that is neither below a hundred nor a round hundred (Cunha & Cintra,
+        p. 372; Ciberdúvidas 34389): "mil e quinhentos" and "mil e vinte" are
+        well formed, "mil e cento e vinte" is not."""
+        if group.exponent != THOUSAND or not self._is_word(group.end, self.lex.joiners):
+            return True
+        whole = _whole(count)
+        return len(whole) < 3 or whole.endswith("00")
 
     # Tails after a cardinal -------------------------------------------
 
@@ -562,7 +577,45 @@ class Grammar:
     def numbers(self, i: int) -> list[Parse]:
         """Every reading from ``i``. Among readings of the same length the
         first wins, so "a million and a half" takes the half of the noun
-        before the half of one."""
+        before the half of one. After a range cue the first number ends at
+        the range joiner."""
+        left = self._range_left(i)
+        return self._numbers(i) if left is None else left
+
+    def _range_left(self, i: int) -> list[Parse] | None:
+        """After a range cue ("entre", "between"), the readings of the first
+        number when a joiner splits the words into two numbers, the left one
+        smaller: "entre cem mil e um milhão" is 100000 and 1000000. Where more
+        joiners split so, the limits with the fewest significant digits win,
+        and then the longest left side: "entre dois milhões e mil e quinhentos
+        milhões" is 2000000 and 1500000000, not 2001000 and 500000000. A
+        joiner inside a number below a thousand ("sessenta e sete") splits
+        nothing."""
+        if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
+            return None
+        best, best_digits = None, None
+        for k in range(i + 1, len(self.tokens)):
+            if not self._number_word(k - 1):
+                break
+            if not self._is_word(k, self.lex.joiners) or any(
+                    end > k + 1 for x in range(i, k) for end, _ in self.small(x)):
+                continue
+            left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]
+            right = self._numbers(k + 1)
+            if not (left and right):
+                continue
+            low, high = left[0].value, max(right, key=lambda p: p.end).value
+            limit_digits = _significant_digits(low) + _significant_digits(high)
+            if _less(low, high) and (best_digits is None or limit_digits <= best_digits):
+                best, best_digits = left, limit_digits
+        return best
+
+    def _number_word(self, i: int) -> bool:
+        token = self.tokens[i]
+        return token.is_digits or token.norm in self.lex.readings or token.norm in (
+            self.lex.joiners | self.lex.of_words | self.lex.decimal_markers | self.lex.articles)
+
+    def _numbers(self, i: int) -> list[Parse]:
         fractions = self.fractions(i)
         found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions
         for fraction in fractions:
@@ -583,11 +636,15 @@ def _whole(value: Rational) -> str:
     return digits.divide_whole(value.numerator, value.denominator)[0]
 
 
-def _round_hundred(count: Rational) -> bool:
-    """True when the whole part of a count below a thousand is 100, 200, ...
-    900: "quinhentos" and "quinhentos vírgula cinco" end the thousands with a
-    round hundred."""
-    return _whole(count).endswith("00")
+def _significant_digits(value: Rational) -> int:
+    """The digits of a value without its leading and trailing zeros: a limit
+    of a range is most often a round number."""
+    return len(value.canonical().lstrip("-").replace(".", "").strip("0"))
+
+
+def _less(a: Rational, b: Rational) -> bool:
+    difference = b + -a
+    return not difference.negative and not difference.is_zero()
 
 
 def _room(group: Group) -> int:

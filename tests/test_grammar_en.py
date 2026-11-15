@@ -77,8 +77,16 @@ class TestCardinals(unittest.TestCase):
         # 2 x 10^6; 150 x 10^6
         self.assertEqual(en("between two million and one hundred and fifty million"),
                          [("two million", "2000000", C), ("one hundred and fifty million", "150000000", C)])
+        # with no range cue too
+        self.assertEqual(en("two million and one hundred and fifty million"),
+                         [("two million", "2000000", C), ("one hundred and fifty million", "150000000", C)])
 
-    def test_thousand_and_counts_a_larger_noun_only_before_a_round_hundred(self):
+    def test_a_well_formed_count_with_thousand_and_counts_a_larger_noun(self):
+        # (500000 + 2) x 10^6 = 500002000000
+        self.assertEqual(en("five hundred thousand and two million"),
+                         [("five hundred thousand and two million", "500002000000", C)])
+
+    def test_a_range_cue_ends_the_first_number_at_the_range_joiner(self):
         # 500 x 1000; 2 x 10^6
         self.assertEqual(en("between five hundred thousand and two million"),
                          [("five hundred thousand", "500000", C), ("two million", "2000000", C)])

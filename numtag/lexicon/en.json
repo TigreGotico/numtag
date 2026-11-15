@@ -22,7 +22,8 @@
     "class_noun": {"value": [], "source": "English names no class with a singular noun after a collective: \"tens of thousands\" takes the plural."},
     "half_unit": {"value": [], "source": "In English a half before a unit takes \"a\" (\"half a pound\"), so no unit noun follows \"and a half\" directly."},
     "abbreviation": {"value": [], "source": "No English number word is also an abbreviation with a period."},
-    "lone_decimal_mark": {"value": ["."], "source": "The point is the English decimal mark (see decimal_mark). A group mark stands only between digits, so a point right before the first digit marks decimals: \".5\" is 0.5. The comma only groups digits, so \",5\" is no decimal."}
+    "lone_decimal_mark": {"value": ["."], "source": "The point is the English decimal mark (see decimal_mark). A group mark stands only between digits, so a point right before the first digit marks decimals: \".5\" is 0.5. The comma only groups digits, so \",5\" is no decimal."},
+    "range_cue": {"value": ["between"], "source": "Wiktionary, \"between\", sense 1: \"In the position or interval that separates (two things), or intermediate in quantity or degree\", as in \"somewhere between forty and fifty dollars\". The \"and\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."}
   },
   "entries": [
     {"word": "zero", "role": "unit", "value": "0", "source": "Merriam-Webster entries for each cardinal word."},

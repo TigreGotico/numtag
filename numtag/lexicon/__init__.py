@@ -80,6 +80,7 @@ class Lexicon:
     abbreviations: frozenset[str]
     # "." in ".5": a mark that makes the digits after it decimals.
     lone_decimal_marks: frozenset[str]
+    range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
@@ -169,5 +170,6 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         half_units=frozenset(words["half_unit"]),
         abbreviations=frozenset(words["abbreviation"]),
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
+        range_cues=frozenset(words["range_cue"]),
         ordinal_suffixes=suffixes,
     )

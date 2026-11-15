@@ -407,3 +407,4 @@
 {"text": "The train arrived late.", "mentions": [], "source": "arithmetic"}
 {"text": "Someone left the door open.", "mentions": [], "source": "arithmetic"}
 {"text": "Everyone enjoyed the show.", "mentions": [], "source": "arithmetic"}
+{"text": "The prize is between five hundred thousand and two million dollars.", "mentions": [{"start": 21, "end": 42, "value": "500000", "kind": "cardinal"}, {"start": 47, "end": 58, "value": "2000000", "kind": "cardinal"}], "source": "Wiktionary, \"between\", sense 1: \"In the position or interval that separates (two things), or intermediate in quantity or degree\"; orchestrator ruling, knowledge/wiki/plans/number-tagger.md, Rulings: after \"between\" the \"and\" joins the two limits: 500 x 1000 = 500000 and 2 x 10^6"}
