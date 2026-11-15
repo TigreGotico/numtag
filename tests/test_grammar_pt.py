@@ -496,6 +496,45 @@ class TestJoinerBeforeTheLastGroup(unittest.TestCase):
         self.assertEqual(pt("dois milhões quinhentos mil e quatro"),
                          [("dois milhões quinhentos mil e quatro", "2500004", C)])
 
+    def test_the_gulbenkian_examples(self):
+        # Gramática do Português (Gulbenkian), pp. 932-933: "e" joins the two
+        # rightmost classes that are not zero when the second ends in two
+        # zeros or begins with a zero; elsewhere it is left out.
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                # 2000000 + 300 x 1000; 2000000 + 7 x 1000; 2000000 + 500
+                self.assertEqual(read("dois milhões e trezentos mil", lang),
+                                 [("dois milhões e trezentos mil", "2300000", C)])
+                self.assertEqual(read("dois milhões e sete mil", lang), [("dois milhões e sete mil", "2007000", C)])
+                self.assertEqual(read("dois milhões e quinhentos", lang), [("dois milhões e quinhentos", "2000500", C)])
+                # 2000000 + 236 x 1000 + 321
+                text = "dois milhões duzentos e trinta e seis mil trezentos e vinte e um"
+                self.assertEqual(read(text, lang), [(text, "2236321", C)])
+                # 1000000 + 200 x 1000 + 300, with or without the first "e"
+                self.assertEqual(read("um milhão duzentos mil e trezentos", lang),
+                                 [("um milhão duzentos mil e trezentos", "1200300", C)])
+                self.assertEqual(read("um milhão e duzentos mil e trezentos", lang),
+                                 [("um milhão e duzentos mil e trezentos", "1200300", C)])
+
+    def test_a_comma_after_a_scale_word_stands_between_two_classes(self):
+        # Gulbenkian, pp. 932-933: "2 236 321 – dois milhões, duzentos e
+        # trinta e seis mil trezentos e vinte e um"
+        text = "dois milhões, duzentos e trinta e seis mil trezentos e vinte e um"
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read(text, lang), [(text, "2236321", C)])
+        # 1000 + 250
+        self.assertEqual(pt("mil, duzentos e cinquenta"), [("mil, duzentos e cinquenta", "1250", C)])
+        # the last group needs "e" all the same, and a comma after a word
+        # that is no scale word, or before "e", still ends the number
+        self.assertEqual(pt("dois milhões, trezentos mil"),
+                         [("dois milhões", "2000000", C), ("trezentos mil", "300000", C)])
+        self.assertEqual(pt("dois milhões, três"), [("dois milhões", "2000000", C), ("três", "3", C)])
+        self.assertEqual(pt("dois mil, três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])
+        self.assertEqual(pt("vinte, trinta e um"), [("vinte", "20", C), ("trinta e um", "31", C)])
+        self.assertEqual(pt("dois milhões, e trezentos mil"),
+                         [("dois milhões", "2000000", C), ("trezentos mil", "300000", C)])
+
     def test_a_last_count_of_a_thousand_or_more_joins_with_no_e(self):
         # 10^12 + 1500 x 10^6: the count 1500 is neither below a hundred
         # nor a round hundred

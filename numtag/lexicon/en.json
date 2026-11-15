@@ -11,6 +11,7 @@
     "joiner_between_groups": {"value": "optional", "source": "Cambridge Dictionary, \"Numbers\": \"and\" before a last group below 100 in British English (\"two thousand and one\")."},
     "joiner_before_round_hundred": {"value": false, "source": "Cambridge Dictionary, \"Numbers\", as quoted for joiner_between_groups: \"and\" goes before a last group below 100 (\"two thousand and one\"). So after \"thousand and\" a well-formed last group is below a hundred only."},
     "joiner_before_last_group": {"value": "optional", "source": "Cambridge Dictionary, \"Numbers\", as quoted for joiner_between_groups: British English puts \"and\" before a last group below 100 (\"two thousand and one\") and American English leaves it out; both read as one number."},
+    "comma_between_classes": {"value": false, "source": "No English source read puts a comma between the classes of a number in words, so a comma ends an English number."},
     "ordinal_style": {"value": "last_word", "source": "Only the last word of an ordinal is ordinal: \"twenty-first\", \"one hundred and first\" (Merriam-Webster, \"twenty-first\")."}
   },
   "words": {

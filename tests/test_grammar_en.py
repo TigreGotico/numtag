@@ -200,6 +200,10 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("two million five hundred thousand"),
                          [("two million five hundred thousand", "2500000", C)])
 
+    def test_a_comma_ends_an_english_number(self):
+        self.assertEqual(en("two million, three hundred thousand"),
+                         [("two million", "2000000", C), ("three hundred thousand", "300000", C)])
+
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_dozen(self):
         # 12; 2 x 12 = 24

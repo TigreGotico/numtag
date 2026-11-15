@@ -52,6 +52,10 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},
                          {"en": Joiner.OPTIONAL, "pt-BR": Joiner.REQUIRED, "pt-PT": Joiner.REQUIRED})
 
+    def test_only_portuguese_takes_a_comma_between_classes(self):
+        self.assertEqual({lang: load(lang).comma_between_classes for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": False, "pt-BR": True, "pt-PT": True})
+
     def test_an_unknown_language_is_refused(self):
         with self.assertRaises(ValueError):
             load("xx")

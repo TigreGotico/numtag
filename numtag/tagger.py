@@ -26,21 +26,30 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
                       lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners)
     mentions: list[NumberMention] = []
-    for run in _runs(tokens):
+    for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
     return mentions
 
 
-def _runs(tokens: list[Token]) -> list[list[Token]]:
+def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
     """Stretches of tokens with only spaces or hyphens between them: a
-    number never crosses punctuation."""
+    number never crosses punctuation. Where the lexicon allows it, a comma
+    after a scale word links a number word: "dois milhões, duzentos e
+    trinta e seis mil" is one number."""
     runs: list[list[Token]] = []
     for token in tokens:
-        if runs and token.links_to_previous():
+        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)):
             runs[-1].append(token)
         else:
             runs.append([token])
     return runs
+
+
+def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:
+    return (lexicon.comma_between_classes and token.gap.startswith(",") and token.gap[1:].isspace()
+            and not previous.is_digits and not token.is_digits
+            and any(e.role in ("scale_numeral", "scale_noun") for e in lexicon.readings.get(previous.norm, ()))
+            and any(e.role != "half" for e in lexicon.readings.get(token.norm, ())))
 
 
 def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMention]:
