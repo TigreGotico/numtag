@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0a2](https://github.com/TigreGotico/numtag/tree/0.3.0a2) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a1...0.3.0a2)
+
+**Merged pull requests:**
+
+- test: a count and a collective after a scale numeral start a new number [\#17](https://github.com/TigreGotico/numtag/pull/17) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.3.0a1](https://github.com/TigreGotico/numtag/tree/0.3.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a4...0.3.0a1)
