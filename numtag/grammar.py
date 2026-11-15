@@ -849,6 +849,9 @@ class Grammar:
                      if not run[-1].decimal]
         found = []
         by_place = self.lex.ordinal_joiner_by_place
+        # "the one hundredth" is the ordinal, "one hundredth" the fraction
+        one_is_fraction = self.lex.one_before_ordinal_scale_is_fraction and not (
+            self.lex.ordinal_articles and self._after_article(i))
         for start, prefix, policy, run in prefixes:
             # after a ten, the joiner is the one between a ten and a unit:
             # "forty and eighth" is 40 and 8th, as "forty and eight" is 40 and 8
@@ -860,7 +863,7 @@ class Grammar:
             teens = any(t.teens for t in self._readings(start - 1, "ten")) and bool(run)
             for j in positions:
                 found += self._ordinal_words(j, run, scales=not by_place or (j == start and not last_group_counts),
-                                             teens=teens)
+                                             teens=teens, one_is_fraction=one_is_fraction)
             if not last_group_counts:
                 continue
             # "six thousand nine hundredth": the scale ordinal counts only the
@@ -910,7 +913,7 @@ class Grammar:
         return self.lex.joiner_tens_units
 
     def _ordinal_words(self, j: int, run: tuple[Group, ...], scales: bool = True,
-                       teens: bool = False) -> list[Parse]:
+                       teens: bool = False, one_is_fraction: bool = True) -> list[Parse]:
         """The ordinal words at ``j`` after the cardinal ``run``, with the
         scale ordinals that multiply its last group when ``scales``. Where the
         joiner goes by place, no joiner stands before a scale ordinal ("to
@@ -922,7 +925,6 @@ class Grammar:
         prefix = _sum(run) if run else None
         top = run[-1].exponent if run else 0
         found = []
-        one_is_fraction = self.lex.one_before_ordinal_scale_is_fraction
         for scale in self._readings(j, "ordinal_scale") if scales else ():
             if scale.plural or (one_is_fraction and prefix is not None and prefix.canonical() == "1"):
                 continue  # "dois milésimos" and "um milésimo" are fractions
