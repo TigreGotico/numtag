@@ -19,10 +19,17 @@ ROW_KEYS = {"text", "mentions", "source"}
 MENTION_KEYS = {"start", "end", "value", "kind"}
 OPTIONAL_MENTION_KEYS = {"low_confidence"}
 WHOLE = re.compile(r"-?[0-9]+")
+#: the marks that make a value a decimal, per gold file: a digit mark or a word
+DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula", "virgula"),
+                 "en": (".", "point")}
 
 
 def _is_edge_noise(ch: str) -> bool:
     return ch.isspace() or unicodedata.category(ch)[0] in "PSZ"
+
+
+def _same_run(a: str, b: str) -> bool:
+    return a.isalpha() and b.isalpha() or a.isdigit() and b.isdigit()
 
 
 def _has_finite_decimal(denominator: int) -> bool:
@@ -48,7 +55,7 @@ def check_value(value, kind) -> None:
         assert not _has_finite_decimal(den), f"fraction {value!r} has a finite decimal form, {Fraction(value)}"
 
 
-def check_row(row) -> None:
+def check_row(row, lang: str = "") -> None:
     """Raise AssertionError when one parsed row breaks the format."""
     assert isinstance(row, dict), "a row is a JSON object"
     assert set(row) == ROW_KEYS, f"row keys {sorted(row)} are not {sorted(ROW_KEYS)}"
@@ -72,7 +79,19 @@ def check_row(row) -> None:
             first = span[1]
         assert not _is_edge_noise(first), f"span {span!r} starts with space, punctuation or a symbol"
         assert not _is_edge_noise(span[-1]), f"span {span!r} ends with space, punctuation or a symbol"
+        # a unit may touch digits ("3,5kg"); a letter run or a digit run may not go on
+        assert start == 0 or not _same_run(text[start - 1], span[0]), f"span {span!r} starts inside a word"
+        assert end == len(text) or not _same_run(span[-1], text[end]), f"span {span!r} ends inside a word"
+        assert not (span[-1].isdigit() and text[end:end + 1] in (",", ".")
+                    and text[end + 1:end + 2].isdigit()), f"span {span!r} stops before a digit mark"
+        assert not (span[0].isdigit() and start >= 2 and text[start - 1] in (",", ".")
+                    and text[start - 2].isdigit()), f"span {span!r} starts after a digit mark"
         check_value(m["value"], m["kind"])
+        if lang in DECIMAL_MARKS and m["kind"] in ("decimal", "fraction"):
+            words = re.findall(r"\w+|[.,]", span.lower())
+            marked = any(mark in words for mark in DECIMAL_MARKS[lang])
+            assert marked == (m["kind"] == "decimal"), \
+                f"span {span!r} is {m['kind']}, but a decimal is exactly the kind with a decimal mark"
         if "low_confidence" in m:
             assert m["low_confidence"] is True, "low_confidence is present only as true"
 
@@ -82,10 +101,15 @@ def check_file(path: Path) -> tuple[int, list[str]]:
     lines = path.read_text(encoding="utf-8").split("\n")
     if lines and lines[-1] == "":
         lines.pop()
-    errors = []
+    if path.stem not in DECIMAL_MARKS:
+        return len(lines), [f"{path.name}: no decimal marks are known for {path.stem!r}; add them to DECIMAL_MARKS"]
+    errors, seen = [], {}
     for number, line in enumerate(lines, 1):
         try:
-            check_row(json.loads(line))
+            row = json.loads(line)
+            check_row(row, path.stem)
+            assert row["text"] not in seen, f"text repeats line {seen.get(row['text'])}"
+            seen[row["text"]] = number
         except (ValueError, AssertionError) as exc:
             errors.append(f"{path.name}:{number}: {exc}")
     return len(lines), errors
@@ -96,7 +120,8 @@ def main(paths: list[str]) -> int:
     failed = False
     for path in files:
         n_in, errors = check_file(path)
-        print(f"{path.name}: {n_in} in, {n_in - len(errors)} out")
+        n_out = n_in - len(errors) if path.stem in DECIMAL_MARKS else 0
+        print(f"{path.name}: {n_in} in, {n_out} out")
         for error in errors:
             print("  " + error)
         failed = failed or bool(errors)
