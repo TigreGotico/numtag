@@ -1,0 +1,160 @@
+"""Grammar rules of ru, uk, bg, pl, cs, sk, sl and hr. Each expected value is
+worked out by hand in the comment beside it; sources are in the lexicon of
+each language under numtag/lexicon/."""
+import unittest
+
+from helpers import read
+from numtag import Scale
+
+C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
+
+
+class TestScales(unittest.TestCase):
+    def test_russian_milliard_is_ten_to_the_ninth_in_both_scales(self):
+        # 2 x 10^9 under the short and the long scale
+        for scale in (Scale.SHORT, Scale.LONG):
+            self.assertEqual(read("два миллиарда", "ru", scale=scale), [("два миллиарда", "2000000000", C)])
+
+    def test_polish_uses_the_long_scale(self):
+        # bilion = 10^12, miliard = 10^9
+        self.assertEqual(read("dwa biliony", "pl"), [("dwa biliony", "2000000000000", C)])
+        self.assertEqual(read("trzy miliardy", "pl"), [("trzy miliardy", "3000000000", C)])
+
+    def test_a_plural_scale_noun_alone_is_no_number(self):
+        self.assertEqual(read("тысячи людей", "ru"), [])
+        self.assertEqual(read("tisuće ljudi", "hr"), [])
+
+    def test_a_singular_scale_noun_alone_is_one_of_it(self):
+        self.assertEqual(read("тысячу рублей", "ru"), [("тысячу", "1000", C)])
+        self.assertEqual(read("tisuća", "hr"), [("tisuća", "1000", C)])
+
+    def test_the_scale_noun_agrees_with_the_last_word_of_its_count(self):
+        # (20 + 1) x 10^6: the singular "миллион" after a count that ends in one
+        self.assertEqual(read("двадцать один миллион", "ru"), [("двадцать один миллион", "21000000", C)])
+        self.assertEqual(read("dvadeset i jedan milijun", "hr"), [("dvadeset i jedan milijun", "21000000", C)])
+
+    def test_slovene_dual_and_plural_of_the_scale_noun(self):
+        # 2 x 10^6, 3 x 10^6, 5 x 10^6
+        self.assertEqual(read("dva milijona", "sl"), [("dva milijona", "2000000", C)])
+        self.assertEqual(read("tri milijone", "sl"), [("tri milijone", "3000000", C)])
+        self.assertEqual(read("pet milijonov", "sl"), [("pet milijonov", "5000000", C)])
+
+
+    def test_a_hundred_word_after_the_thousands_is_no_multiplier_of_them(self):
+        # 8 x 10^6 + 2 x 1000 + 100: "sta" is the genitive of 100 and the
+        # multiplier in "tři sta" (300)
+        self.assertEqual(read("osmi miliónů dvou tisíc sta", "cs"), [("osmi miliónů dvou tisíc sta", "8002100", C)])
+        self.assertEqual(read("tři sta", "cs"), [("tři sta", "300", C)])
+
+
+class TestCases(unittest.TestCase):
+    def test_oblique_cases_read(self):
+        # 2 x 1000; 300; 2
+        self.assertEqual(read("около двух тысяч человек", "ru"), [("двух тысяч", "2000", C)])
+        self.assertEqual(read("о трёхстах страницах", "ru"), [("трёхстах", "300", C)])
+        self.assertEqual(read("с двумя друзьями", "ru"), [("двумя", "2", C)])
+        self.assertEqual(read("одною", "ru"), [("одною", "1", C)])
+
+    def test_bulgarian_definite_forms(self):
+        self.assertEqual(read("двата брата", "bg"), [("двата", "2", C)])
+        self.assertEqual(read("третият път", "bg"), [("третият", "3", O)])
+
+    def test_alternative_forms(self):
+        # 40 + 5; 200; (600 + 70 + 8) x 1000
+        self.assertEqual(read("четирийсет и пет", "bg"), [("четирийсет и пет", "45", C)])
+        self.assertEqual(read("dvjesta", "hr"), [("dvjesta", "200", C)])
+        self.assertEqual(read("šesto sedamdeset osam tisuća", "hr"), [("šesto sedamdeset osam tisuća", "678000", C)])
+        # "šesto" alone is the neuter ordinal 6th
+        self.assertEqual(read("šesto dijete", "hr"), [("šesto", "6", O)])
+
+
+class TestCompoundWords(unittest.TestCase):
+    def test_a_word_made_of_number_words_reads_as_its_parts(self):
+        # 2 x 1000, ordinal
+        self.assertEqual(read("двухтысячный год", "ru"), [("двухтысячный", "2000", O)])
+        # 7 x 10^6 + 150 x 1000
+        self.assertEqual(read("sedemmilijonovsto petdesettisoči", "sl"),
+                         [("sedemmilijonovsto petdesettisoči", "7150000", O)])
+
+    def test_a_word_in_the_lexicon_is_never_split(self):
+        # "desetin" is a fraction noun, not "deset" + "in"
+        self.assertNotIn(("deset", "10", C), read("desetin", "sl"))
+
+    def test_slovene_inverted_tens(self):
+        # 1 + 20; 5 + 20
+        self.assertEqual(read("enaindvajset", "sl"), [("enaindvajset", "21", C)])
+        self.assertEqual(read("petindvajset let", "sl"), [("petindvajset", "25", C)])
+
+    def test_czech_inverted_tens_inside_one_word_only(self):
+        # 1 + 20 in one word; "jedna a dvacet" is two numbers
+        self.assertEqual(read("jedenadvacet", "cs"), [("jedenadvacet", "21", C)])
+        self.assertEqual(read("jedna a dvacet", "cs"), [("jedna", "1", C), ("dvacet", "20", C)])
+
+    def test_slovak_tens_and_units_in_one_word(self):
+        # 20 + 1
+        self.assertEqual(read("dvadsaťjeden", "sk"), [("dvadsaťjeden", "21", C)])
+
+
+class TestOrdinals(unittest.TestCase):
+    def test_only_the_last_word_is_ordinal_in_russian(self):
+        # 2000 + 23
+        self.assertEqual(read("две тысячи двадцать третий", "ru"), [("две тысячи двадцать третий", "2023", O)])
+
+    def test_every_word_after_the_cardinal_prefix_is_ordinal_in_polish(self):
+        # 20 + 1; 2000 + 20 + 3
+        self.assertEqual(read("dwudziesty pierwszy", "pl"), [("dwudziesty pierwszy", "21", O)])
+        self.assertEqual(read("dwa tysiące dwudziesty trzeci", "pl"), [("dwa tysiące dwudziesty trzeci", "2023", O)])
+        self.assertEqual(read("dvacátý první", "cs"), [("dvacátý první", "21", O)])
+
+    def test_an_ordinal_scale_word_counts_only_the_groups_below_it(self):
+        # 2 x 10^6 + 300 x 10^3, not (2 x 10^6 + 300) x 10^3
+        self.assertEqual(read("два миллиона трехсоттысячный", "ru"), [("два миллиона трехсоттысячный", "2300000", O)])
+        self.assertEqual(read("tri milijuna dvjestotisućiti", "hr"), [("tri milijuna dvjestotisućiti", "3200000", O)])
+        self.assertEqual(read("two million three hundred thousandth", "en"),
+                         [("two million three hundred thousandth", "2300000", O)])
+
+    def test_a_digit_ordinal_takes_a_hyphen_before_its_suffix(self):
+        self.assertEqual(read("2-й", "ru"), [("2-й", "2", O)])
+        self.assertEqual(read("5-го", "uk"), [("5-го", "5", O)])
+
+
+class TestFractionsAndDecimals(unittest.TestCase):
+    def test_one_and_a_half_is_one_word(self):
+        # 3/2; 3/2 x 10^6
+        self.assertEqual(read("полтора", "ru"), [("полтора", "1.5", F)])
+        self.assertEqual(read("полтора миллиона", "ru"), [("полтора миллиона", "1500000", C)])
+        self.assertEqual(read("półtora", "pl"), [("półtora", "1.5", F)])
+
+    def test_a_bound_half_stands_only_before_the_rest_of_the_number(self):
+        # 1/2 x 10^6; "пол" alone is "floor"
+        self.assertEqual(read("полмиллиона", "ru"), [("полмиллиона", "500000", C)])
+        self.assertEqual(read("пол", "ru"), [])
+
+    def test_a_half_noun_alone_is_a_half(self):
+        # 1/2; 1/2 x 10^6
+        self.assertEqual(read("połowa", "pl"), [("połowa", "0.5", F)])
+        self.assertEqual(read("połowę miliona", "pl"), [("połowę miliona", "500000", C)])
+
+    def test_a_fraction_noun_alone_counts_one(self):
+        # 1/3; 1 x 100
+        self.assertEqual(read("trećina glasova", "hr"), [("trećina", "1/3", F)])
+        self.assertEqual(read("stotinu ljudi", "hr"), [("stotinu", "100", C)])
+
+    def test_decimals_as_a_fraction_of_a_power_of_ten(self):
+        # 2 + 5/10; 3 + 14/100
+        self.assertEqual(read("dvě celé pět desetin", "cs"), [("dvě celé pět desetin", "2.5", D)])
+        self.assertEqual(read("три целых четырнадцать сотых", "ru"), [("три целых четырнадцать сотых", "3.14", D)])
+
+    def test_a_joiner_after_the_decimal_marker(self):
+        # 2 + 0.5
+        self.assertEqual(read("две цяло и пет", "bg"), [("две цяло и пет", "2.5", D)])
+
+
+class TestApostrophes(unittest.TestCase):
+    def test_ukrainian_apostrophe_spellings_are_one_letter(self):
+        for word in ("пʼять", "п'ять", "п’ять"):
+            self.assertEqual(read(word, "uk"), [(word, "5", C)])
+
+
+if __name__ == "__main__":
+    unittest.main()

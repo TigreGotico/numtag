@@ -2,7 +2,7 @@
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import Lexicon, Scale, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import Token, tokenize
+from numtag.tokenize import Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -24,7 +24,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners)
+                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
+                      lexicon.word_apostrophes, lexicon.ordinal_suffix_marks, lexicon.compound_parts)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -99,7 +100,7 @@ def _gender(lexicon: Lexicon, tokens: list[Token]) -> str | None:
     """The gender of the last word that shows one."""
     for token in reversed(tokens):
         if token.is_digits:
-            gender = lexicon.ordinal_suffixes.get(token.suffix.casefold())
+            gender = lexicon.ordinal_suffixes.get(fold(token.suffix))
             if gender:
                 return gender
             continue

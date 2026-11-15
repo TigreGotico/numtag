@@ -13,6 +13,7 @@ from functools import cache
 from pathlib import Path
 
 from numtag.mention import Scale
+from numtag.tokenize import fold
 
 _HERE = Path(__file__).parent
 
@@ -25,9 +26,11 @@ class Joiner(str, Enum):
 
 
 # Roles whose value is a digit string.
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal")
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "rational")
 # Roles whose value is a power of ten.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun")
+# Roles of the parts of a compound number word.
+COMPOUND_ROLES = ("unit", "ten", "hundred", "ordinal", "ordinal_scale", "half", "rational") + SCALE_ROLES
 
 
 @dataclass(frozen=True)
@@ -42,7 +45,8 @@ class Entry:
     ambiguous: bool = False
     # A cardinal may follow the collective after the joiner ("four score and seven").
     addend: bool = False
-    # The form stands only before the rest of the number ("cento e um").
+    # The form stands only before the rest of the number ("cento e um",
+    # "пол" in "полмиллиона").
     bound: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
@@ -83,9 +87,36 @@ class Lexicon:
     lone_decimal_marks: frozenset[str]
     range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
+    # Settings that only some languages use; each is off by default.
+    # "petindvajset", "pětadvacet": a unit, then the joiner as this policy
+    # says, then a round ten, all parts of one compound word.
+    inverted_tens: Joiner | None = None
+    # Split a word that is a sequence of number words ("dvadsaťjeden").
+    compound_words: bool = False
+    # "дюжина яиц": a singular collective or fraction noun alone counts one.
+    bare_noun_counts_one: bool = False
+    # "две целых пять десятых": after a decimal marker, a fraction whose
+    # denominator is a power of ten gives the decimals.
+    decimal_fractions: bool = False
+    # "две цяло и пет": the joiner after a decimal marker.
+    joiner_after_decimal_marker: Joiner = Joiner.NEVER
+    # Marks that join letters into one word ("п'ять").
+    word_apostrophes: frozenset[str] = frozenset()
+    # Marks between a digit string and its ordinal suffix besides a dot ("2-й").
+    ordinal_suffix_marks: frozenset[str] = frozenset()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
+
+    @property
+    def compound_parts(self) -> frozenset[str]:
+        """The words a compound number word splits into: every word with a
+        role inside a cardinal or an ordinal, and the joiners. A fraction
+        noun or a collective is no part ("petin|dvajset" is no split)."""
+        if not self.compound_words:
+            return frozenset()
+        return frozenset(w for w, entries in self.readings.items()
+                         if any(e.role in COMPOUND_ROLES for e in entries)) | self.joiners
 
 
 def _read(lang: str) -> dict:
@@ -118,7 +149,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     suffixes: dict[str, str | None] = {}
 
     def put(spec: dict, entry: Entry) -> None:
-        readings.setdefault(spec["word"].casefold(), []).append(entry)
+        readings.setdefault(fold(spec["word"]), []).append(entry)
 
     # Ordinal scale words come last: each takes its power of ten from the
     # cardinal scale word it names.
@@ -139,13 +170,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                 put(spec, Entry(role, exponent=_illion_exponent(rank, scale),
                                 scale_dependent=dependent, **facts))
         elif role == "half":
-            put(spec, Entry(role, "1", **facts))
+            put(spec, Entry(role, "1", bound=spec.get("bound", False), **facts))
         elif role == "ordinal_scale":
             cardinal = [e for e in readings[spec["value"]] if e.role in SCALE_ROLES]
             put(spec, Entry(role, exponent=cardinal[0].exponent,
                             scale_dependent=cardinal[0].scale_dependent, **facts))
         elif role == "ordinal_suffix":
-            suffixes[spec["word"].casefold()] = spec.get("gender")
+            suffixes[fold(spec["word"])] = spec.get("gender")
         else:
             raise ValueError(f"{lang}: unknown role {role!r} for {spec['word']!r}")
 
@@ -174,4 +205,11 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         range_cues=frozenset(words["range_cue"]),
         ordinal_suffixes=suffixes,
+        inverted_tens=Joiner(settings["inverted_tens"]) if settings.get("inverted_tens") else None,
+        compound_words=settings.get("compound_words", False),
+        bare_noun_counts_one=settings.get("bare_noun_counts_one", False),
+        decimal_fractions=settings.get("decimal_fractions", False),
+        joiner_after_decimal_marker=Joiner(settings.get("joiner_after_decimal_marker", Joiner.NEVER)),
+        word_apostrophes=frozenset(words.get("word_apostrophe", ())),
+        ordinal_suffix_marks=frozenset(words.get("ordinal_suffix_mark", ())),
     )

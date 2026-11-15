@@ -10,6 +10,14 @@ from dataclasses import dataclass, replace
 _TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])[-−.,])?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+)")
 _ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+# Apostrophes that a language may keep inside a word ("п'ять"); a word's
+# normal form writes each of them as "'".
+_APOSTROPHES = str.maketrans({"\u2019": "'", "\u02bc": "'"})
+
+
+def fold(word: str) -> str:
+    """The form a lexicon looks a word up by."""
+    return word.casefold().translate(_APOSTROPHES)
 
 
 @dataclass(frozen=True)
@@ -22,26 +30,31 @@ class Token:
     gap: str = ""
     # Ordinal suffix glued to a digit string ("º" in "1.º", "st" in "21st").
     suffix: str = ""
+    # A part of a compound word after its first part ("dvadsať|jeden").
+    joined: bool = False
 
     @property
     def norm(self) -> str:
-        return self.text.casefold()
+        return fold(self.text)
 
     @property
     def digits(self) -> str:
         """A digit string without its ordinal suffix."""
-        return self.text[:len(self.text) - len(self.suffix)].rstrip(".") if self.suffix else self.text
+        return self.text[:len(self.text) - len(self.suffix)].rstrip(".-") if self.suffix else self.text
 
     def links_to_previous(self) -> bool:
         """True when this token can continue a number that the previous
-        token is part of: only a space or a hyphen lies between them."""
-        return self.gap == "-" or (self.gap != "" and self.gap.isspace())
+        token is part of: only a space or a hyphen lies between them, or
+        both are parts of one compound word."""
+        return self.joined or self.gap == "-" or (self.gap != "" and self.gap.isspace())
 
 
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
-             number_words: frozenset[str] | None = None) -> list[Token]:
+             number_words: frozenset[str] | None = None,
+             apostrophes: frozenset[str] = frozenset(), suffix_marks: frozenset[str] = frozenset(),
+             compound_parts: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -54,10 +67,21 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     breaks the link between the words around it. Given ``number_words``, a
     hyphenated compound with a word outside them is one noun
     ("segunda-feira"): its words are dropped in the same way.
+
+    A language may list ``apostrophes`` that join letters into one word
+    ("п'ять"), ``suffix_marks`` that may stand between a digit string and its
+    ordinal suffix besides a dot ("2-й"), and ``compound_parts``: a word
+    that is no number word but a sequence of these parts ("dvadsaťjeden") is
+    split into them.
     """
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_TOKEN.finditer(text))
+    pattern = _TOKEN
+    if apostrophes:
+        marks = re.escape("".join(sorted(apostrophes)))
+        pattern = re.compile(_TOKEN.pattern.replace(r"(?P<word>[^\W\d_]+)",
+                                                    rf"(?P<word>[^\W\d_]+(?:[{marks}][^\W\d_]+)*)"))
+    matches = list(pattern.finditer(text))
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
@@ -79,13 +103,41 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
             between = text[match.end():following.start()]
-            if (following.lastgroup == "word" and between in ("", ".")
+            if (following.lastgroup == "word" and (between in ("", ".") or between in suffix_marks)
                     and following.group().casefold() in ordinal_suffixes):
                 end, suffix = following.end(), following.group()
                 skip_until = following.end()
-        tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix))
+        token = Token(text[start:end], start, end, is_digits, gap, suffix)
+        whole_word = number_words is not None and token.norm in number_words
+        tokens += _split_compound(token, compound_parts) if compound_parts and not (is_digits or whole_word) else [token]
         previous_end = end
     return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
+
+
+def _split_compound(token: Token, parts: frozenset[str]) -> list[Token]:
+    """The parts of a compound number word, or the word alone when it is a
+    number word itself or no sequence of number words spells it. The split
+    with the fewest parts wins, and among those the longest first part."""
+    word = token.norm
+    if word in parts or len(word) != len(token.text):
+        return [token]
+    # best[i]: the fewest parts that spell word[:i], as their end positions
+    best: dict[int, tuple[int, ...]] = {0: ()}
+    for i in range(len(word)):
+        if i not in best:
+            continue
+        for j in range(len(word), i, -1):
+            if word[i:j] in parts and (j not in best or len(best[i]) + 1 < len(best[j])):
+                best[j] = best[i] + (j,)
+    ends = best.get(len(word), ())
+    if len(ends) < 2:
+        return [token]
+    pieces, start = [], 0
+    for n, end in enumerate(ends):
+        pieces.append(Token(token.text[start:end], token.start + start, token.start + end, False,
+                            token.gap if n == 0 else "", joined=n > 0))
+        start = end
+    return pieces
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:

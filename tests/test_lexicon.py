@@ -6,13 +6,18 @@ from pathlib import Path
 
 from numtag.lexicon import load
 
+SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
+
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
+# The word for 10^6 in each language.
+MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "ru": "миллион", "uk": "мільйон",
+           "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión", "sl": "milijon", "hr": "milijun"}
 
 
 class TestLexiconFiles(unittest.TestCase):
-    def test_the_three_languages_are_there(self):
-        self.assertEqual([p.stem for p in LEXICONS], ["en", "pt-BR", "pt-PT"])
+    def test_every_language_is_there(self):
+        self.assertEqual([p.stem for p in LEXICONS], sorted(MILLION))
 
     def test_package_data_ships_every_lexicon(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
@@ -37,12 +42,26 @@ class TestLexiconFiles(unittest.TestCase):
                 with self.subTest(file=path.name, scale=scale):
                     lexicon = load(path.stem, scale)
                     self.assertEqual(lexicon.scale.value, scale)
-                    self.assertIn("milhão" if path.stem.startswith("pt") else "million", lexicon.readings)
+                    self.assertEqual(lexicon.of(MILLION[path.stem], "scale_numeral" if path.stem in SLAVIC else "scale_noun")[0].exponent, 6)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)
         self.assertEqual(load("pt-BR").of("bilião", "scale_noun")[0].exponent, 9)
         self.assertEqual(load("pt-PT").of("bilião", "scale_noun")[0].exponent, 12)
+
+    def test_slavic_scales(self):
+        # Russian "миллиард" is 10^9 in both scales; "триллион" counts the short scale.
+        self.assertEqual(load("ru").of("миллиард", "scale_numeral")[0].exponent, 9)
+        self.assertFalse(load("ru").of("миллиард", "scale_numeral")[0].scale_dependent)
+        self.assertEqual(load("ru").of("триллион", "scale_numeral")[0].exponent, 12)
+        # Polish "bilion" is 10^12 in the long scale.
+        self.assertEqual(load("pl").of("bilion", "scale_numeral")[0].exponent, 12)
+        self.assertTrue(load("pl").of("bilion", "scale_numeral")[0].scale_dependent)
+
+    def test_ukrainian_apostrophes_are_one_letter(self):
+        lexicon = load("uk")
+        self.assertIn("п'ять", lexicon.readings)
+        self.assertEqual(lexicon.word_apostrophes, frozenset({"'", "\u2019"}))
 
     def test_an_unknown_language_is_refused(self):
         with self.assertRaises(ValueError):
