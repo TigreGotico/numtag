@@ -13,6 +13,7 @@ from functools import cache
 from pathlib import Path
 
 from numtag.mention import Scale
+from numtag.tokenize import COMPOUND_MARK
 
 _HERE = Path(__file__).parent
 
@@ -85,6 +86,9 @@ class Lexicon:
     lone_decimal_marks: frozenset[str]
     range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
+    # Words written in several parts ("dètz-e-sèt", "bint'i un"): the
+    # tokenizer reads each as one token.
+    compounds: frozenset[str] = frozenset()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -177,4 +181,5 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         range_cues=frozenset(words["range_cue"]),
         ordinal_suffixes=suffixes,
+        compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
     )

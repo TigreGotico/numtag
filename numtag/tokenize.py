@@ -1,6 +1,7 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
 from dataclasses import dataclass, replace
+from functools import cache
 
 # A digit string keeps its group and decimal marks ("1.000.000,5"). A minus
 # sign or a lone mark belongs to it only at the start of a word ("-5" and
@@ -22,10 +23,13 @@ class Token:
     gap: str = ""
     # Ordinal suffix glued to a digit string ("º" in "1.º", "st" in "21st").
     suffix: str = ""
+    # The lexicon word of a compound read as one token ("dètz-e-sèt" for
+    # "dètz e sèt").
+    key: str = ""
 
     @property
     def norm(self) -> str:
-        return self.text.casefold()
+        return self.key or self.text.casefold()
 
     @property
     def digits(self) -> str:
@@ -41,7 +45,8 @@ class Token:
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
-             number_words: frozenset[str] | None = None) -> list[Token]:
+             number_words: frozenset[str] | None = None,
+             compounds: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -53,7 +58,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     period that no sentence end follows ("dez. 2025"); it is dropped, so it
     breaks the link between the words around it. Given ``number_words``, a
     hyphenated compound with a word outside them is one noun
-    ("segunda-feira"): its words are dropped in the same way.
+    ("segunda-feira"): its words are dropped in the same way. The words of
+    a listed compound become one token ("dètz-e-sèt", "bint'i un").
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -85,7 +91,58 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 skip_until = following.end()
         tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix))
         previous_end = end
+    if compounds:
+        tokens = _join_compounds(text, tokens, compounds)
     return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
+
+
+# The marks that may stand between the words of a compound. A hyphen and a
+# space stand for each other ("dètz-e-sèt", "dètz e sèt"); the typographic
+# apostrophe stands for the straight one; a period stands for the middle dot
+# ("mil.lèsim").
+COMPOUND_MARK = re.compile(r"[-\s'’·.]")
+_MARK_CLASS = {"-": "-", "'": "'", "’": "'", "·": "·", ".": "·"}
+
+
+def _mark(gap: str) -> str | None:
+    if gap and gap.isspace():
+        return "-"
+    return _MARK_CLASS.get(gap)
+
+
+def compound_parts(word: str) -> tuple[tuple[str, ...], tuple[str | None, ...]]:
+    """The words of a compound and the class of each mark between them."""
+    parts = COMPOUND_MARK.split(word.casefold())
+    marks = tuple(_mark(m) for m in COMPOUND_MARK.findall(word))
+    return tuple(parts), marks
+
+
+@cache
+def _shapes(compounds: frozenset[str]) -> list[tuple[tuple[str, ...], tuple[str | None, ...], str]]:
+    """(words, marks, key) of each compound, the longest first."""
+    return sorted((compound_parts(c) + (c.casefold(),) for c in compounds), key=lambda shape: -len(shape[0]))
+
+
+def _join_compounds(text: str, tokens: list[Token], compounds: frozenset[str]) -> list[Token]:
+    """The tokens with the words of each listed compound joined into one
+    token, the longest compound first."""
+    shapes = _shapes(compounds)
+    joined: list[Token] = []
+    i = 0
+    while i < len(tokens):
+        for parts, marks, key in shapes:
+            run = tokens[i:i + len(parts)]
+            if (len(run) == len(parts) and all(not t.is_digits for t in run)
+                    and tuple(t.norm for t in run) == parts
+                    and tuple(_mark(t.gap) for t in run[1:]) == marks):
+                joined.append(Token(text[run[0].start:run[-1].end], run[0].start, run[-1].end,
+                                    False, run[0].gap, key=key))
+                i += len(parts)
+                break
+        else:
+            joined.append(tokens[i])
+            i += 1
+    return joined
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:

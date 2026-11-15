@@ -22,7 +22,9 @@ SCALES = {"long", "short"}
 WHOLE = re.compile(r"-?[0-9]+")
 #: the marks that make a value a decimal, per gold file: a digit mark or a word
 DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula", "virgula"),
-                 "en": (".", "point")}
+                 "en": (".", "point"), "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
+                 "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),
+                 "mwl": (",", "bírgula", "birgula", "ponto")}
 
 
 def _is_edge_noise(ch: str) -> bool:

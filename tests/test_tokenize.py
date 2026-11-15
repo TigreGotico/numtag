@@ -51,6 +51,24 @@ class TestTokenize(unittest.TestCase):
     def test_digits_glued_to_a_word_are_dropped(self):
         self.assertEqual([t.text for t in tokenize("mp3 player")], ["mp", "player"])
 
+    def test_a_listed_compound_is_one_token_with_any_mark_of_its_class(self):
+        compounds = frozenset({"dètz-e-sèt"})
+        for text in ("dètz-e-sèt", "dètz e sèt", "Dètz-e sèt"):
+            with self.subTest(text=text):
+                tokens = tokenize(text, compounds=compounds)
+                self.assertEqual([(t.text, t.start, t.end, t.norm) for t in tokens],
+                                 [(text, 0, 10, "dètz-e-sèt")])
+
+    def test_an_apostrophe_and_a_middle_dot_join_only_their_own_class(self):
+        compounds = frozenset({"bint'i un", "mil·lèsim"})
+        self.assertEqual([t.norm for t in tokenize("bint’i un", compounds=compounds)], ["bint'i un"])
+        self.assertEqual([t.norm for t in tokenize("mil.lèsim", compounds=compounds)], ["mil·lèsim"])
+        self.assertEqual([t.norm for t in tokenize("bint-i un", compounds=compounds)], ["bint", "i", "un"])
+
+    def test_a_compound_keeps_the_gap_before_it(self):
+        tokens = tokenize("a dètz e sèt", compounds=frozenset({"dètz-e-sèt"}))
+        self.assertEqual([(t.text, t.gap) for t in tokens], [("a", ""), ("dètz e sèt", " ")])
+
 
 if __name__ == "__main__":
     unittest.main()

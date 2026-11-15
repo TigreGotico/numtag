@@ -227,6 +227,10 @@ class Grammar:
                 continue
             parts, written = best[position]
             for end, chunk in self.small(position):
+                # A unit that counts a hundreds word starts a second number:
+                # "un coma vint i dos-cents" is 1.2 and 200, not 1.22.
+                if self._readings(end, "hundred_multiplier") or self._readings(end - 1, "hundred_multiplier"):
+                    continue
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk)
         return [(end, written) for end, (parts, written) in best.items() if parts]
@@ -575,7 +579,10 @@ class Grammar:
         for entry in self._readings(j, "ordinal"):
             if prefix is None:
                 found += self._ordinal_rest(j + 1, Rational(entry.value), entry.ambiguous)
-            elif self.lex.ordinal_style == "last_word" and _room_for(prefix, entry.value):
+            elif self.lex.ordinal_style == "last_word" and _room_for(prefix, entry.value) \
+                    and not (len(entry.value) == 1 and prefix.numerator.endswith("10")):
+                # As in tens_units, only a round ten from twenty up takes a
+                # unit: "ten second" is no twelfth.
                 found.append(Parse(j + 1, prefix + Rational(entry.value), Kind.ORDINAL))
         return found
 

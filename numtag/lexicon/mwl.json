@@ -1,0 +1,1574 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "Mirandese is written in Portugal, where the dot groups digits (\"1.000.000\", FLiP for pt-PT); no Mirandese source names a mark."
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"bírgula\", the comma, marks the decimals as in pt-PT."
+  },
+  "space_groups": {
+   "value": true,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": the Convenção writes \"1 000\" and \"1 000 000\" with a space."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; a plural scale noun with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"un milhon\", \"dous milhones\"."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"trinta i quatro\"."
+  },
+  "joiner_after_hundred": {
+   "value": "required",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  "joiner_between_groups": {
+   "value": "optional",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"mil dous cientos i trinta i quatro\"; test_number_parser_mwl.py also reads \"mil i duzientos i trinta i quatro\"."
+  },
+  "joiner_before_round_hundred": {
+   "value": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": test_number_parser_mwl.py reads \"mil i duzientos i trinta i quatro\" as 1234, so \"i\" after \"mil\" goes before a group of hundreds, and a round hundred (\"mil i duzientos\") is well formed too."
+  },
+  "ordinal_style": {
+   "value": "every_word",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; test_number_parser_mwl.py: \"bigésimo purmerio\", \"sessagésima quarta\"."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "i"
+   ],
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  "decimal_marker": {
+   "value": [
+    "bírgula",
+    "birgula",
+    "ponto"
+   ],
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  "minus": {
+   "value": [
+    "menos"
+   ],
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No source names a Mirandese idiom that ends in \"menos\"; the Convençon has no \"menos\", and ovos-number-parser numbers_mwl.py lists none."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "ũa",
+    "ua"
+   ],
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; \"un\" and \"ũa\" are also the indefinite article (Convenção, \"Artigo indefinido\")."
+  },
+  "of": {
+   "value": [
+    "de"
+   ],
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"un milhon de beçs\"."
+  },
+  "fraction_of": {
+   "value": [
+    "de"
+   ],
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  "denominator_particle": {
+   "value": [
+    "abos"
+   ],
+   "source": "ovos-number-parser numbers_mwl.py DENOMINATOR_PARTICLE (a lead): \"onze abos\"."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "No class noun is listed for Mirandese."
+  },
+  "half_unit": {
+   "value": [
+    "quilo",
+    "litro",
+    "metro",
+    "hora",
+    "minuto",
+    "die",
+    "sumana",
+    "mes",
+    "anho"
+   ],
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"meio\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Mirandese number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "antre"
+   ],
+   "source": "en.wiktionary, Mirandese \"antre\", preposition sense 1: \"between\"; the Convenção writes \"por antre\". In \"antre A i B\" the \"i\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "zero",
+   "role": "unit",
+   "value": "0",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the text extracted from the PDF drops the tilde and the apostrophe glyphs, so the table reads \"Ua\" and \"Bint i un\"; \"ũa\" is the form with the tilde, as in Omniglot and ovos-number-parser"
+  },
+  {
+   "word": "ũa",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the text extracted from the PDF drops the tilde and the apostrophe glyphs, so the table reads \"Ua\" and \"Bint i un\"; \"ũa\" is the form with the tilde, as in Omniglot and ovos-number-parser"
+  },
+  {
+   "word": "ua",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; the form as the extracted table spells it"
+  },
+  {
+   "word": "dous",
+   "role": "unit",
+   "value": "2",
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "dues",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "trés",
+   "role": "unit",
+   "value": "3",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "quatro",
+   "role": "unit",
+   "value": "4",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "cinco",
+   "role": "unit",
+   "value": "5",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "siête",
+   "role": "unit",
+   "value": "7",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "siete",
+   "role": "unit",
+   "value": "7",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uito",
+   "role": "unit",
+   "value": "8",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "nuôbe",
+   "role": "unit",
+   "value": "9",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "nuobe",
+   "role": "unit",
+   "value": "9",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "dieç",
+   "role": "ten",
+   "value": "10",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "onze",
+   "role": "ten",
+   "value": "11",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "doze",
+   "role": "ten",
+   "value": "12",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "duoze",
+   "role": "ten",
+   "value": "12",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "treze",
+   "role": "ten",
+   "value": "13",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "catorze",
+   "role": "ten",
+   "value": "14",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "quinze",
+   "role": "ten",
+   "value": "15",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "dezasseis",
+   "role": "ten",
+   "value": "16",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "zasseis",
+   "role": "ten",
+   "value": "16",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "dezassiête",
+   "role": "ten",
+   "value": "17",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "dezassiete",
+   "role": "ten",
+   "value": "17",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "zassiete",
+   "role": "ten",
+   "value": "17",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "dezuito",
+   "role": "ten",
+   "value": "18",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "zuio",
+   "role": "ten",
+   "value": "18",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "dezanuôbe",
+   "role": "ten",
+   "value": "19",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "dezanuobe",
+   "role": "ten",
+   "value": "19",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "zanuobe",
+   "role": "ten",
+   "value": "19",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "binte",
+   "role": "ten",
+   "value": "20",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "trinta",
+   "role": "ten",
+   "value": "30",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "quarenta",
+   "role": "ten",
+   "value": "40",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "cinquenta",
+   "role": "ten",
+   "value": "50",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "sessenta",
+   "role": "ten",
+   "value": "60",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "setenta",
+   "role": "ten",
+   "value": "70",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "uitenta",
+   "role": "ten",
+   "value": "80",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "nobenta",
+   "role": "ten",
+   "value": "90",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "bint'i un",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i ũa",
+   "role": "ten",
+   "value": "21",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i ua",
+   "role": "ten",
+   "value": "21",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i dous",
+   "role": "ten",
+   "value": "22",
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i dues",
+   "role": "ten",
+   "value": "22",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i trés",
+   "role": "ten",
+   "value": "23",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i quatro",
+   "role": "ten",
+   "value": "24",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i cinco",
+   "role": "ten",
+   "value": "25",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i seis",
+   "role": "ten",
+   "value": "26",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i siête",
+   "role": "ten",
+   "value": "27",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i siete",
+   "role": "ten",
+   "value": "27",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i uito",
+   "role": "ten",
+   "value": "28",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i nuôbe",
+   "role": "ten",
+   "value": "29",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "bint'i nuobe",
+   "role": "ten",
+   "value": "29",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; written with an apostrophe, read as one word"
+  },
+  {
+   "word": "cien",
+   "role": "hundred",
+   "value": "100",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "ciento",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"ciento i un\""
+  },
+  {
+   "word": "ciêntos",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+  },
+  {
+   "word": "cientos",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "masculine",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+  },
+  {
+   "word": "ciêntas",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "feminine",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+  },
+  {
+   "word": "cientas",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "gender": "feminine",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\": \"Quatro ciêntos\", \"dous cientos\": a unit counts the hundreds. The plural is the form after a count."
+  },
+  {
+   "word": "duziêntos",
+   "role": "hundred",
+   "value": "200",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "duzientos",
+   "role": "hundred",
+   "value": "200",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "treziêntos",
+   "role": "hundred",
+   "value": "300",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "trezientos",
+   "role": "hundred",
+   "value": "300",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quatrocientos",
+   "role": "hundred",
+   "value": "400",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quenhiêntos",
+   "role": "hundred",
+   "value": "500",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "quinhentos",
+   "role": "hundred",
+   "value": "500",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "seiscientos",
+   "role": "hundred",
+   "value": "600",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sietecientos",
+   "role": "hundred",
+   "value": "700",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uitocientos",
+   "role": "hundred",
+   "value": "800",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nuobecientos",
+   "role": "hundred",
+   "value": "900",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "milhon",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), Numerais: \"1 - Un, Ua\", \"2 - Dous, Dues\", \"3 - Trés\", \"7 - Siête\", \"8 - Uito\", \"9 - Nuôbe\", \"10 - Dieç\", \"12 - Doze\", \"16 - Dezasseis\", \"17 - Dezassiête\", \"18 - Dezuito\", \"19 - Dezanuôbe\", \"20 - Binte\", \"21 - Bint'i un, Bint'i ua\", \"30 - Trinta\", \"80 - Uitenta\", \"90 - Nobenta\", \"100 - Cien\", \"200 - Duziêntos\", \"300 - Treziêntos\", \"400 - Quatro ciêntos\", \"500 - Cinco ciêntos / Quenhiêntos\", \"1 000 - Mil\", \"1 000 000 - Milhon\""
+  },
+  {
+   "word": "milhones",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "bilion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "biliones",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "meio",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "meia",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also \"middle\", so it is ambiguous"
+  },
+  {
+   "word": "tércio",
+   "role": "denominator",
+   "value": "3",
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "tércios",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "quarto",
+   "role": "denominator",
+   "value": "4",
+   "ambiguous": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\"; also a room, so it is ambiguous"
+  },
+  {
+   "word": "quartos",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "ambiguous": true,
+   "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "purmeiro",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), examples: \"Acude a la purmeira fila\", \"purmeiro\""
+  },
+  {
+   "word": "purmeira",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), examples: \"Acude a la purmeira fila\", \"purmeiro\""
+  },
+  {
+   "word": "purmeiros",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), examples: \"Acude a la purmeira fila\", \"purmeiro\""
+  },
+  {
+   "word": "purmeiras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), examples: \"Acude a la purmeira fila\", \"purmeiro\""
+  },
+  {
+   "word": "purmerio",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "purmeria",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "purmerios",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "purmerias",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; ovos-number-parser tests/test_mwl_periphrastic_hundreds.py (reviewed by a native central-dialect speaker): \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"dous cientas\" (feminine), synthetic \"duzientos\", \"trezientos\", \"quinhentos\" understood; test_number_parser_mwl.py: \"dous milhones\", \"mil milhones\" 10^9, \"un bilion\" 10^12, \"un bírgula cinco\", \"menos dieç\", \"meio\", \"tércio\", \"quarto\""
+  },
+  {
+   "word": "segundo",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "segunda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "segundos",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "segundas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "terceiro",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "terceira",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "terceiros",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "terceiras",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quarto",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "quarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "quartos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "quartas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; also a noun (\"segundo\" of time, \"quarto\" a room)"
+  },
+  {
+   "word": "quinto",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quinta",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quintos",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quintas",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sesto",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sesta",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sestos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sestas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sétimo",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sétima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sétimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sétimas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uitabo",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uitaba",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uitabos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uitabas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nono",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nona",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "décimo",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "décima",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "décimos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "décimas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "undécimo",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "undécima",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "undécimos",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "undécimas",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "duodécimo",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "duodécima",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "duodécimos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "duodécimas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "bigésimo",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "bigésima",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "bigésimos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "bigésimas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "trigésimo",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "trigésima",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "trigésimos",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "trigésimas",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadragésimo",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadragésima",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadragésimos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadragésimas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quinquagésimo",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quinquagésima",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quinquagésimos",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quinquagésimas",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sessagésimo",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sessagésima",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sessagésimos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "sessagésimas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setuagésimo",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setuagésima",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setuagésimos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setuagésimas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctogésimo",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctogésima",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctogésimos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctogésimas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonagésimo",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonagésima",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonagésimos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "nonagésimas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "centésimo",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "centésima",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "centésimos",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "centésimas",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "ducentésimo",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "ducentésima",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "ducentésimos",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "ducentésimas",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "tricentésimo",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "tricentésima",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "tricentésimos",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "tricentésimas",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadringentésimo",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadringentésima",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadringentésimos",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quadringentésimas",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quingentésimo",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quingentésima",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quingentésimos",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "quingentésimas",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "seiscentésimo",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "seiscentésima",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "seiscentésimos",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "seiscentésimas",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setingentésimo",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setingentésima",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setingentésimos",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "setingentésimas",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctingentésimo",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctingentésima",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctingentésimos",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "uctingentésimas",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "noningentésimo",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "noningentésima",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "noningentésimos",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "noningentésimas",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "milésimo",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  },
+  {
+   "word": "milésima",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\""
+  }
+ ]
+}

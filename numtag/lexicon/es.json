@@ -1,0 +1,3224 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 48 numbers, es (latn): decimal \",\", group \".\""
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 48 numbers, es (latn): decimal \",\", group \".\""
+  },
+  "space_groups": {
+   "value": true,
+   "source": "DPD \"cardinales\" §1 groups the digits with a space: \"10 000\", \"1 000 000\", \"1 000 000 000\"."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\"; §6: \"el plural miles es un sustantivo masculino sinónimo de millares: miles de euros, muchos miles de personas\", so a plural scale word with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\": a singular \"millón\" takes only the count one, \"dos millones\"."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+  },
+  "ordinal_style": {
+   "value": "every_word",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; §2b: \"decimotercero, vigesimocuarto, trigésimo noveno, ducentésimo segundo\""
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "y"
+   ],
+   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  "decimal_marker": {
+   "value": [
+    "coma",
+    "punto"
+   ],
+   "source": "CLDR RBNF es %spellout-numbering: \"x.x: << punto >>;\", \"x,x: << coma >>;\""
+  },
+  "minus": {
+   "value": [
+    "menos"
+   ],
+   "source": "CLDR RBNF es \"-x: menos >>\"; es.wiktionary \"menos\", locuciones: \"a menos que\", \"al menos\", \"cuando menos\", \"por lo menos\", \"nada menos\", \"más o menos\" are no sign"
+  },
+  "minus_idioms": {
+   "value": [
+    "al menos",
+    "por lo menos",
+    "a lo menos",
+    "cuando menos",
+    "nada menos",
+    "más o menos"
+   ],
+   "source": "CLDR RBNF es \"-x: menos >>\"; es.wiktionary \"menos\", locuciones: \"a menos que\", \"al menos\", \"cuando menos\", \"por lo menos\", \"nada menos\", \"más o menos\" are no sign. An idiom ends at \"menos\"; \"a menos\" and \"de menos\" stay out, for \"bajó a menos tres grados\" and \"es de menos tres grados\" hold a sign."
+  },
+  "article_one": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "DPD \"cardinales\" §4: \"Cuando el cardinal uno y sus compuestos se anteponen, como determinantes, a un sustantivo masculino, adoptan siempre la forma apocopada un: un libro\"; the same words are the indefinite article."
+  },
+  "of": {
+   "value": [
+    "de"
+   ],
+   "source": "DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\""
+  },
+  "fraction_of": {
+   "value": [
+    "de"
+   ],
+   "source": "DPD \"fraccionarios\" §3: \"van normalmente seguidos de un complemento con de [...] Dos tercios de los presentes\"."
+  },
+  "denominator_particle": {
+   "value": [
+    "avos"
+   ],
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\"; \"avos\" is the plural of the suffix used as a word, as ovos-number-parser numbers_es.py DENOMINATOR_PARTICLE reads it."
+  },
+  "class_noun": {
+   "value": [
+    "millar"
+   ],
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\"; \"decenas de millar\" names tens of thousands."
+  },
+  "half_unit": {
+   "value": [
+    "kilo",
+    "kilogramo",
+    "gramo",
+    "tonelada",
+    "litro",
+    "mililitro",
+    "metro",
+    "kilómetro",
+    "centímetro",
+    "milímetro",
+    "hora",
+    "minuto",
+    "segundo",
+    "día",
+    "semana",
+    "mes",
+    "año",
+    "siglo"
+   ],
+   "source": "DPD \"fraccionarios\" §2: \"únicamente medio puede modificar directamente al sustantivo [...] medio libro, media tortilla\": \"medio\" before a unit noun is half of that unit."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Spanish number word doubles as a month abbreviation."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ",",
+    "."
+   ],
+   "source": "A mark before the first digit makes the digits decimals (\".5\"), as in pt-PT."
+  },
+  "range_cue": {
+   "value": [
+    "entre"
+   ],
+   "source": "en.wiktionary, Spanish \"entre\", preposition sense 1: \"between\", \"La frutería se encuentra entre el restaurante chileno y la panadería\". In \"entre A y B\" the \"y\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  }
+ },
+ "entries": [
+  {
+   "word": "cero",
+   "role": "unit",
+   "value": "0",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "uno",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "un",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\""
+  },
+  {
+   "word": "una",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "dos",
+   "role": "unit",
+   "value": "2",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "tres",
+   "role": "unit",
+   "value": "3",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "cuatro",
+   "role": "unit",
+   "value": "4",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "cinco",
+   "role": "unit",
+   "value": "5",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "siete",
+   "role": "unit",
+   "value": "7",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "ocho",
+   "role": "unit",
+   "value": "8",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "nueve",
+   "role": "unit",
+   "value": "9",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "diez",
+   "role": "ten",
+   "value": "10",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "once",
+   "role": "ten",
+   "value": "11",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "doce",
+   "role": "ten",
+   "value": "12",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "trece",
+   "role": "ten",
+   "value": "13",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "catorce",
+   "role": "ten",
+   "value": "14",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "quince",
+   "role": "ten",
+   "value": "15",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "dieciséis",
+   "role": "ten",
+   "value": "16",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "diecisiete",
+   "role": "ten",
+   "value": "17",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "dieciocho",
+   "role": "ten",
+   "value": "18",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "diecinueve",
+   "role": "ten",
+   "value": "19",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "veinte",
+   "role": "ten",
+   "value": "20",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "veintiuno",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "veintiún",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "veintiuna",
+   "role": "ten",
+   "value": "21",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "veintidós",
+   "role": "ten",
+   "value": "22",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veintitrés",
+   "role": "ten",
+   "value": "23",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veinticuatro",
+   "role": "ten",
+   "value": "24",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veinticinco",
+   "role": "ten",
+   "value": "25",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veintiséis",
+   "role": "ten",
+   "value": "26",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veintisiete",
+   "role": "ten",
+   "value": "27",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veintiocho",
+   "role": "ten",
+   "value": "28",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "veintinueve",
+   "role": "ten",
+   "value": "29",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+  },
+  {
+   "word": "dieciseis",
+   "role": "ten",
+   "value": "16",
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "veintidos",
+   "role": "ten",
+   "value": "22",
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "veintitres",
+   "role": "ten",
+   "value": "23",
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "veintiseis",
+   "role": "ten",
+   "value": "26",
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "veintiun",
+   "role": "ten",
+   "value": "21",
+   "gender": "masculine",
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "treinta",
+   "role": "ten",
+   "value": "30",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "cuarenta",
+   "role": "ten",
+   "value": "40",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "cincuenta",
+   "role": "ten",
+   "value": "50",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "sesenta",
+   "role": "ten",
+   "value": "60",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "setenta",
+   "role": "ten",
+   "value": "70",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "ochenta",
+   "role": "ten",
+   "value": "80",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "noventa",
+   "role": "ten",
+   "value": "90",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "treintaiuno",
+   "role": "ten",
+   "value": "31",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "treintaiún",
+   "role": "ten",
+   "value": "31",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "treintaiuna",
+   "role": "ten",
+   "value": "31",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "treintaidós",
+   "role": "ten",
+   "value": "32",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaitrés",
+   "role": "ten",
+   "value": "33",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaicuatro",
+   "role": "ten",
+   "value": "34",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaicinco",
+   "role": "ten",
+   "value": "35",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaiséis",
+   "role": "ten",
+   "value": "36",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaisiete",
+   "role": "ten",
+   "value": "37",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintaiocho",
+   "role": "ten",
+   "value": "38",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "treintainueve",
+   "role": "ten",
+   "value": "39",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaiuno",
+   "role": "ten",
+   "value": "41",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "cuarentaiún",
+   "role": "ten",
+   "value": "41",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "cuarentaiuna",
+   "role": "ten",
+   "value": "41",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "cuarentaidós",
+   "role": "ten",
+   "value": "42",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaitrés",
+   "role": "ten",
+   "value": "43",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaicuatro",
+   "role": "ten",
+   "value": "44",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaicinco",
+   "role": "ten",
+   "value": "45",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaiséis",
+   "role": "ten",
+   "value": "46",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaisiete",
+   "role": "ten",
+   "value": "47",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentaiocho",
+   "role": "ten",
+   "value": "48",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cuarentainueve",
+   "role": "ten",
+   "value": "49",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaiuno",
+   "role": "ten",
+   "value": "51",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "cincuentaiún",
+   "role": "ten",
+   "value": "51",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "cincuentaiuna",
+   "role": "ten",
+   "value": "51",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "cincuentaidós",
+   "role": "ten",
+   "value": "52",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaitrés",
+   "role": "ten",
+   "value": "53",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaicuatro",
+   "role": "ten",
+   "value": "54",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaicinco",
+   "role": "ten",
+   "value": "55",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaiséis",
+   "role": "ten",
+   "value": "56",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaisiete",
+   "role": "ten",
+   "value": "57",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentaiocho",
+   "role": "ten",
+   "value": "58",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cincuentainueve",
+   "role": "ten",
+   "value": "59",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaiuno",
+   "role": "ten",
+   "value": "61",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "sesentaiún",
+   "role": "ten",
+   "value": "61",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "sesentaiuna",
+   "role": "ten",
+   "value": "61",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "sesentaidós",
+   "role": "ten",
+   "value": "62",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaitrés",
+   "role": "ten",
+   "value": "63",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaicuatro",
+   "role": "ten",
+   "value": "64",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaicinco",
+   "role": "ten",
+   "value": "65",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaiséis",
+   "role": "ten",
+   "value": "66",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaisiete",
+   "role": "ten",
+   "value": "67",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentaiocho",
+   "role": "ten",
+   "value": "68",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "sesentainueve",
+   "role": "ten",
+   "value": "69",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaiuno",
+   "role": "ten",
+   "value": "71",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "setentaiún",
+   "role": "ten",
+   "value": "71",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "setentaiuna",
+   "role": "ten",
+   "value": "71",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "setentaidós",
+   "role": "ten",
+   "value": "72",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaitrés",
+   "role": "ten",
+   "value": "73",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaicuatro",
+   "role": "ten",
+   "value": "74",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaicinco",
+   "role": "ten",
+   "value": "75",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaiséis",
+   "role": "ten",
+   "value": "76",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaisiete",
+   "role": "ten",
+   "value": "77",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentaiocho",
+   "role": "ten",
+   "value": "78",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "setentainueve",
+   "role": "ten",
+   "value": "79",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaiuno",
+   "role": "ten",
+   "value": "81",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "ochentaiún",
+   "role": "ten",
+   "value": "81",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "ochentaiuna",
+   "role": "ten",
+   "value": "81",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "ochentaidós",
+   "role": "ten",
+   "value": "82",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaitrés",
+   "role": "ten",
+   "value": "83",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaicuatro",
+   "role": "ten",
+   "value": "84",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaicinco",
+   "role": "ten",
+   "value": "85",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaiséis",
+   "role": "ten",
+   "value": "86",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaisiete",
+   "role": "ten",
+   "value": "87",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentaiocho",
+   "role": "ten",
+   "value": "88",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "ochentainueve",
+   "role": "ten",
+   "value": "89",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaiuno",
+   "role": "ten",
+   "value": "91",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "noventaiún",
+   "role": "ten",
+   "value": "91",
+   "gender": "masculine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; apocopated as \"veintiún\" (DPD \"cardinales\" §1)"
+  },
+  {
+   "word": "noventaiuna",
+   "role": "ten",
+   "value": "91",
+   "gender": "feminine",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\""
+  },
+  {
+   "word": "noventaidós",
+   "role": "ten",
+   "value": "92",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaitrés",
+   "role": "ten",
+   "value": "93",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaicuatro",
+   "role": "ten",
+   "value": "94",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaicinco",
+   "role": "ten",
+   "value": "95",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaiséis",
+   "role": "ten",
+   "value": "96",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaisiete",
+   "role": "ten",
+   "value": "97",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventaiocho",
+   "role": "ten",
+   "value": "98",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "noventainueve",
+   "role": "ten",
+   "value": "99",
+   "source": "DPD \"cardinales\" §2: \"se documentan casos de grafía simple en los correspondientes a otras decenas (treintaicinco, cuarentaitrés, cincuentaiocho, etc.) [...] Estas grafías simples son asimismo válidas\"; the last part keeps the written accent of \"veintidós\", \"veintitrés\", \"veintiséis\""
+  },
+  {
+   "word": "cien",
+   "role": "hundred",
+   "value": "100",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "ciento",
+   "role": "hundred",
+   "value": "100",
+   "bound": true,
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; \"101 ciento uno\": \"ciento\" stands only before the rest of the number"
+  },
+  {
+   "word": "doscientos",
+   "role": "hundred",
+   "value": "200",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "doscientas",
+   "role": "hundred",
+   "value": "200",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "trescientos",
+   "role": "hundred",
+   "value": "300",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "trescientas",
+   "role": "hundred",
+   "value": "300",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "cuatrocientos",
+   "role": "hundred",
+   "value": "400",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "cuatrocientas",
+   "role": "hundred",
+   "value": "400",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "quinientos",
+   "role": "hundred",
+   "value": "500",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "quinientas",
+   "role": "hundred",
+   "value": "500",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "seiscientos",
+   "role": "hundred",
+   "value": "600",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "seiscientas",
+   "role": "hundred",
+   "value": "600",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "setecientos",
+   "role": "hundred",
+   "value": "700",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "setecientas",
+   "role": "hundred",
+   "value": "700",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "ochocientos",
+   "role": "hundred",
+   "value": "800",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "ochocientas",
+   "role": "hundred",
+   "value": "800",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "novecientos",
+   "role": "hundred",
+   "value": "900",
+   "gender": "masculine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "novecientas",
+   "role": "hundred",
+   "value": "900",
+   "gender": "feminine",
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §3: \"los correspondientes a las centenas, a partir de doscientos, cuyos femeninos adoptan la terminación -cientas (salvo quinientos [...] quinientas)\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §6: \"mil es el cardinal correspondiente al número 1000 en sus funciones determinativa y adjetiva\""
+  },
+  {
+   "word": "millar",
+   "role": "scale_noun",
+   "value": 3,
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\"; DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\""
+  },
+  {
+   "word": "millares",
+   "role": "scale_noun",
+   "value": 3,
+   "plural": true,
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\"; DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\""
+  },
+  {
+   "word": "millón",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\""
+  },
+  {
+   "word": "millones",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "DPD \"cardinales\" §6: \"Las voces millar, millón, millardo, billón, trillón [...] son sustantivos\"; \"un millón de personas, dos billones de pesos\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\""
+  },
+  {
+   "word": "millardo",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "DPD \"cardinales\" §1 table: \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "millardos",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "DPD \"cardinales\" §1 table: \"1 000 000 000 mil millones o un millardo\""
+  },
+  {
+   "word": "billón",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "billones",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "trillón",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "trillones",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "cuatrillón",
+   "role": "scale_noun",
+   "rank": 4,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "cuatrillones",
+   "role": "scale_noun",
+   "rank": 4,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "quintillón",
+   "role": "scale_noun",
+   "rank": 5,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "quintillones",
+   "role": "scale_noun",
+   "rank": 5,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "sextillón",
+   "role": "scale_noun",
+   "rank": 6,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "sextillones",
+   "role": "scale_noun",
+   "rank": 6,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "septillón",
+   "role": "scale_noun",
+   "rank": 7,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "septillones",
+   "role": "scale_noun",
+   "rank": 7,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "octillón",
+   "role": "scale_noun",
+   "rank": 8,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "octillones",
+   "role": "scale_noun",
+   "rank": 8,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "nonillón",
+   "role": "scale_noun",
+   "rank": 9,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "nonillones",
+   "role": "scale_noun",
+   "rank": 9,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "decillón",
+   "role": "scale_noun",
+   "rank": 10,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "decillones",
+   "role": "scale_noun",
+   "rank": 10,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "undecillón",
+   "role": "scale_noun",
+   "rank": 11,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "undecillones",
+   "role": "scale_noun",
+   "rank": 11,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "duodecillón",
+   "role": "scale_noun",
+   "rank": 12,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "duodecillones",
+   "role": "scale_noun",
+   "rank": 12,
+   "plural": true,
+   "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
+  },
+  {
+   "word": "millon",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "The same word without its written accent; DPD \"cardinales\" §1 writes it with the accent. Read as the same number, as ovos-number-parser numbers_es.py ALT_SPELLINGS does."
+  },
+  {
+   "word": "decena",
+   "role": "collective",
+   "value": "10",
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "decenas",
+   "role": "collective",
+   "value": "10",
+   "plural": true,
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "docena",
+   "role": "collective",
+   "value": "12",
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "docenas",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "centena",
+   "role": "collective",
+   "value": "100",
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "centenas",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "source": "es.wiktionary: \"docena: conjunto formado por doce elementos\", \"decena: Conjunto formado por diez elementos\", \"centena: Conjunto compuesto por cien unidades\", \"millar: Conjunto de mil cosas\""
+  },
+  {
+   "word": "medio",
+   "role": "half",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; DPD \"fraccionarios\" §2: \"únicamente medio puede modificar directamente al sustantivo [...] medio libro, media tortilla\"; \"medio\" is also a noun (\"en medio\"), so it is ambiguous"
+  },
+  {
+   "word": "media",
+   "role": "half",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; DPD \"fraccionarios\" §2: \"únicamente medio puede modificar directamente al sustantivo [...] medio libro, media tortilla\"; \"media\" is also a noun (an average, a stocking), so it is ambiguous"
+  },
+  {
+   "word": "tercio",
+   "role": "denominator",
+   "value": "3",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "tercios",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "cuarto",
+   "role": "denominator",
+   "value": "4",
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "cuartos",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"cuarto\" is also a room"
+  },
+  {
+   "word": "quinto",
+   "role": "denominator",
+   "value": "5",
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"quinto\" is also a conscript"
+  },
+  {
+   "word": "quintos",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"quinto\" is also a conscript"
+  },
+  {
+   "word": "sexto",
+   "role": "denominator",
+   "value": "6",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "sextos",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "séptimo",
+   "role": "denominator",
+   "value": "7",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "séptimos",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "octavo",
+   "role": "denominator",
+   "value": "8",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "octavos",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "noveno",
+   "role": "denominator",
+   "value": "9",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "novenos",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "décimo",
+   "role": "denominator",
+   "value": "10",
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"décimo\" is also a lottery ticket"
+  },
+  {
+   "word": "décimos",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\"; \"décimo\" is also a lottery ticket"
+  },
+  {
+   "word": "onceavo",
+   "role": "denominator",
+   "value": "11",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "onceavos",
+   "role": "denominator",
+   "value": "11",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "doceavo",
+   "role": "denominator",
+   "value": "12",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "doceavos",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "treceavo",
+   "role": "denominator",
+   "value": "13",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "treceavos",
+   "role": "denominator",
+   "value": "13",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "catorceavo",
+   "role": "denominator",
+   "value": "14",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "catorceavos",
+   "role": "denominator",
+   "value": "14",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "quinceavo",
+   "role": "denominator",
+   "value": "15",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "quinceavos",
+   "role": "denominator",
+   "value": "15",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "dieciseisavo",
+   "role": "denominator",
+   "value": "16",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "dieciseisavos",
+   "role": "denominator",
+   "value": "16",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "diecisieteavo",
+   "role": "denominator",
+   "value": "17",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "diecisieteavos",
+   "role": "denominator",
+   "value": "17",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "dieciochoavo",
+   "role": "denominator",
+   "value": "18",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "dieciochoavos",
+   "role": "denominator",
+   "value": "18",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "diecinueveavo",
+   "role": "denominator",
+   "value": "19",
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "diecinueveavos",
+   "role": "denominator",
+   "value": "19",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §2: \"El resto se forma hoy añadiendo el sufijo -ava al numeral cardinal escrito en una sola palabra: treceava, catorceava\"; §1 table \"1/13 treceavo\", \"1/14 catorceavo\""
+  },
+  {
+   "word": "veinteavo",
+   "role": "denominator",
+   "value": "20",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "veinteavos",
+   "role": "denominator",
+   "value": "20",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "treintavo",
+   "role": "denominator",
+   "value": "30",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "treintavos",
+   "role": "denominator",
+   "value": "30",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "centésimo",
+   "role": "denominator",
+   "value": "100",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "centésimos",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "milésimo",
+   "role": "denominator",
+   "value": "1000",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "milésimos",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "millonésimo",
+   "role": "denominator",
+   "value": "1000000",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "millonésimos",
+   "role": "denominator",
+   "value": "1000000",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "décima",
+   "role": "denominator",
+   "value": "10",
+   "gender": "feminine",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "décimas",
+   "role": "denominator",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "centésima",
+   "role": "denominator",
+   "value": "100",
+   "gender": "feminine",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "centésimas",
+   "role": "denominator",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "milésima",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "milésimas",
+   "role": "denominator",
+   "value": "1000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "millonésima",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "feminine",
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "millonésimas",
+   "role": "denominator",
+   "value": "1000000",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"fraccionarios\" §1 table: \"1/2 mitad o medio\", \"1/3 tercio\", \"1/4 cuarto\", \"1/10 décimo o décima\", \"1/11 onceavo o undécimo\", \"1/20 veinteavo o vigésimo\", \"1/100 centésimo o centésima\", \"1/1000 milésimo o milésima\", \"1/1 000 000 millonésimo o millonésima\""
+  },
+  {
+   "word": "primero",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "primera",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "primeros",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "primeras",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "primer",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "segundo",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segunda",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundos",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "segundas",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+  },
+  {
+   "word": "tercero",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tercera",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "terceros",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "terceras",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tercer",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuarto",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuarta",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuartos",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuartas",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quinto",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quinta",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quintos",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quintas",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexto",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexta",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sextos",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sextas",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "séptimo",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "séptima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "séptimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "séptimas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sétimo",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sétima",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sétimos",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sétimas",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octavo",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octava",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octavos",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octavas",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "noveno",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "novena",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "novenos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "novenas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nono",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nona",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonos",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonas",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "décimo",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "décima",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "décimos",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "décimas",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "feminine",
+   "plural": true,
+   "ambiguous": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "undécimo",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "undécima",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "undécimos",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "undécimas",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "duodécimo",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "duodécima",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "duodécimos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "duodécimas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "decimoprimero",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoprimera",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoprimeros",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoprimeras",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosegundo",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosegunda",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosegundos",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosegundas",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimotercero",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimotercera",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoterceros",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoterceras",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimocuarto",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimocuarta",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimocuartos",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimocuartas",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoquinto",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoquinta",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoquintos",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoquintas",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosexto",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosexta",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosextos",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimosextas",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoséptimo",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoséptima",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoséptimos",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoséptimas",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoctavo",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoctava",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoctavos",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimoctavas",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimonoveno",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimonovena",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimonovenos",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "decimonovenas",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigésimo",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "vigésima",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "vigésimos",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "vigésimas",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "vigesimoprimero",
+   "role": "ordinal",
+   "value": "21",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoprimera",
+   "role": "ordinal",
+   "value": "21",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoprimeros",
+   "role": "ordinal",
+   "value": "21",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoprimeras",
+   "role": "ordinal",
+   "value": "21",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosegundo",
+   "role": "ordinal",
+   "value": "22",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosegunda",
+   "role": "ordinal",
+   "value": "22",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosegundos",
+   "role": "ordinal",
+   "value": "22",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosegundas",
+   "role": "ordinal",
+   "value": "22",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimotercero",
+   "role": "ordinal",
+   "value": "23",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimotercera",
+   "role": "ordinal",
+   "value": "23",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoterceros",
+   "role": "ordinal",
+   "value": "23",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoterceras",
+   "role": "ordinal",
+   "value": "23",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimocuarto",
+   "role": "ordinal",
+   "value": "24",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimocuarta",
+   "role": "ordinal",
+   "value": "24",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimocuartos",
+   "role": "ordinal",
+   "value": "24",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimocuartas",
+   "role": "ordinal",
+   "value": "24",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoquinto",
+   "role": "ordinal",
+   "value": "25",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoquinta",
+   "role": "ordinal",
+   "value": "25",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoquintos",
+   "role": "ordinal",
+   "value": "25",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoquintas",
+   "role": "ordinal",
+   "value": "25",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosexto",
+   "role": "ordinal",
+   "value": "26",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosexta",
+   "role": "ordinal",
+   "value": "26",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosextos",
+   "role": "ordinal",
+   "value": "26",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimosextas",
+   "role": "ordinal",
+   "value": "26",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoséptimo",
+   "role": "ordinal",
+   "value": "27",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoséptima",
+   "role": "ordinal",
+   "value": "27",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoséptimos",
+   "role": "ordinal",
+   "value": "27",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoséptimas",
+   "role": "ordinal",
+   "value": "27",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoctavo",
+   "role": "ordinal",
+   "value": "28",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoctava",
+   "role": "ordinal",
+   "value": "28",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoctavos",
+   "role": "ordinal",
+   "value": "28",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimoctavas",
+   "role": "ordinal",
+   "value": "28",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimonoveno",
+   "role": "ordinal",
+   "value": "29",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimonovena",
+   "role": "ordinal",
+   "value": "29",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimonovenos",
+   "role": "ordinal",
+   "value": "29",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "vigesimonovenas",
+   "role": "ordinal",
+   "value": "29",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §3: \"los correspondientes a la primera y a la segunda decena se pueden escribir en una o en dos palabras, siendo hoy mayoritaria y siempre preferible la grafía univerbal (decimotercero, decimocuarto, vigesimoprimero, vigesimoctavo)\""
+  },
+  {
+   "word": "trigésimo",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "trigésima",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "trigésimos",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "trigésimas",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadragésimo",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadragésima",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadragésimos",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadragésimas",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quincuagésimo",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quincuagésima",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quincuagésimos",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quincuagésimas",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexagésimo",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexagésima",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexagésimos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexagésimas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septuagésimo",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septuagésima",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septuagésimos",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septuagésimas",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octogésimo",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octogésima",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octogésimos",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octogésimas",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonagésimo",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonagésima",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonagésimos",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "nonagésimas",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "centésimo",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "centésima",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "centésimos",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "centésimas",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "ducentésimo",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "ducentésima",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "ducentésimos",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "ducentésimas",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tricentésimo",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tricentésima",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tricentésimos",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "tricentésimas",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadringentésimo",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadringentésima",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadringentésimos",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "cuadringentésimas",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quingentésimo",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quingentésima",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quingentésimos",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "quingentésimas",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexcentésimo",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexcentésima",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexcentésimos",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "sexcentésimas",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septingentésimo",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septingentésima",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septingentésimos",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "septingentésimas",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octingentésimo",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octingentésima",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octingentésimos",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "octingentésimas",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "noningentésimo",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "noningentésima",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "noningentésimos",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "noningentésimas",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "feminine",
+   "plural": true,
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "decimotercer",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\": \"decimotercero o décimo tercero (apocopado decimotercer)\""
+  },
+  {
+   "word": "vigesimoprimer",
+   "role": "ordinal",
+   "value": "21",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\": \"vigesimoprimero (apocopado vigesimoprimer)\""
+  },
+  {
+   "word": "decimoprimer",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\": \"decimoprimero (apocopado decimoprimer)\""
+  },
+  {
+   "word": "milésimo",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; DPD \"ordinales\" §2a: \"milésimo, millonésimo, billonésimo\""
+  },
+  {
+   "word": "milésima",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "millonésimo",
+   "role": "ordinal_scale",
+   "value": "millón",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; DPD \"ordinales\" §2a: \"milésimo, millonésimo, billonésimo\""
+  },
+  {
+   "word": "millonésima",
+   "role": "ordinal_scale",
+   "value": "millón",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "billonésimo",
+   "role": "ordinal_scale",
+   "value": "billón",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; DPD \"ordinales\" §2a: \"milésimo, millonésimo, billonésimo\""
+  },
+  {
+   "word": "billonésima",
+   "role": "ordinal_scale",
+   "value": "billón",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\""
+  },
+  {
+   "word": "º",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §8: \"únicamente va volada la última letra del numeral ordinal (1.º, 2.º, 3.ª, 28.ª)\", \"salvo en el caso de las abreviaturas de las formas apocopadas primer, tercer [...] (3.er piso)\""
+  },
+  {
+   "word": "ª",
+   "role": "ordinal_suffix",
+   "gender": "feminine",
+   "source": "DPD \"ordinales\" §8: \"únicamente va volada la última letra del numeral ordinal (1.º, 2.º, 3.ª, 28.ª)\", \"salvo en el caso de las abreviaturas de las formas apocopadas primer, tercer [...] (3.er piso)\""
+  },
+  {
+   "word": "er",
+   "role": "ordinal_suffix",
+   "gender": "masculine",
+   "source": "DPD \"ordinales\" §8: \"únicamente va volada la última letra del numeral ordinal (1.º, 2.º, 3.ª, 28.ª)\", \"salvo en el caso de las abreviaturas de las formas apocopadas primer, tercer [...] (3.er piso)\""
+  }
+ ]
+}

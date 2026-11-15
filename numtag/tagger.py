@@ -24,7 +24,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners)
+                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
+                      lexicon.compounds)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
