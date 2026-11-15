@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "numtag"
+dynamic = ["version"]
+description = "Find every number in a text: exact values as digit strings, kinds and character spans."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [{ name = "TigreGotico" }]
+keywords = ["numbers", "numerals", "nlp", "tagger", "parser"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/TigreGotico/numtag"
+Repository = "https://github.com/TigreGotico/numtag"
+Issues = "https://github.com/TigreGotico/numtag/issues"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["numtag*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "numtag.version.VERSION_STR" }
+
+[tool.setuptools.package-data]
+numtag = ["py.typed", "lexicon/*.toml"]
