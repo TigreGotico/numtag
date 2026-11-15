@@ -13,3 +13,5 @@ tag_numbers("comprou duas dúzias de ovos e um milhão de euros", "pt-PT")
 A value is a digit string with no limit on its length: "24", "-2.5" or "1/3". numtag never converts a value to `int` or `float`, so no rounding changes a digit. Convert it with `int()`, `decimal.Decimal()` or `fractions.Fraction()` when you need a number.
 
 The language rules are data files in `numtag/lexicon/`, one per language, with the source of each rule in the file.
+
+The languages are European Portuguese (`pt-PT`, and every `pt` tag but `pt-BR`), Brazilian Portuguese (`pt-BR`) and English (every `en` tag). Pass `scale="short"` or `scale="long"` to read "billion" and "bilião" in the other scale.

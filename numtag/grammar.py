@@ -1,0 +1,441 @@
+"""The number grammar: one engine, driven by a language's lexicon.
+
+Each rule takes a token position and returns every way it can read a number
+part that starts there, as parses that record where they end. The tagger keeps
+the longest parse at each position, so a number ends where no rule can take
+the next word.
+
+    number      := minus? (cardinal tail? | half-group | fraction | ordinal | digits-ordinal)
+    cardinal    := group (joiner? group)*            group scales strictly descending
+    group       := count? multiplier | small | small-decimal | digits
+    multiplier  := scale-word | scale-numeral scale-noun          ("mil milhões")
+    small       := hundreds (joiner tens-units)? | tens-units      below 1000
+    tail        := collective-tail | of-tail | half-tail | fraction-tail | decimal-tail
+"""
+import re
+from dataclasses import dataclass, replace
+
+from numtag import digits
+from numtag.digits import Rational
+from numtag.lexicon import SCALE_ROLES, Entry, Joiner, Lexicon
+from numtag.mention import Kind
+from numtag.tokenize import Token
+
+ONE = Rational("1")
+HALF = Rational("1", "2")
+
+
+@dataclass(frozen=True)
+class Parse:
+    """A reading of the tokens from a start position up to ``end``."""
+    end: int
+    value: Rational
+    # ORDINAL, or CARDINAL for every other reading: the tagger decides
+    # between cardinal, decimal and fraction from the value.
+    kind: Kind = Kind.CARDINAL
+    # The value went through a decimal marker or a decimal digit string.
+    decimal: bool = False
+    # A word of the number has a common meaning that is no number.
+    ambiguous: bool = False
+
+
+@dataclass(frozen=True)
+class Group:
+    """``count`` times ten to the power ``exponent``."""
+    end: int
+    count: Rational
+    exponent: int = 0
+    # The multiplier is a noun ("milhão"), not a numeral ("mil").
+    noun: bool = False
+    decimal: bool = False
+
+
+@dataclass(frozen=True)
+class Count:
+    end: int
+    value: Rational
+    # Written out, as opposed to the implicit one before "mil".
+    explicit: bool = True
+    # A count that only a multiplier or a collective can follow ("a", "meio").
+    needs_multiplier: bool = False
+    decimal: bool = False
+
+
+def _sum(groups: tuple[Group, ...]) -> Rational:
+    total = Rational("0")
+    for group in groups:
+        total = total + group.count.scaled(group.exponent)
+    return total
+
+
+class Grammar:
+    def __init__(self, lexicon: Lexicon, tokens: list[Token]):
+        self.lex = lexicon
+        self.tokens = tokens
+        group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
+        self._digit_pattern = re.compile(
+            rf"-?(?:\d{{1,3}}(?:{group}\d{{3}})+|\d+)(?:{decimal}(\d+))?")
+
+    # Token access -----------------------------------------------------
+
+    def _readings(self, i: int, role: str) -> tuple[Entry, ...]:
+        if i >= len(self.tokens) or self.tokens[i].is_digits:
+            return ()
+        return self.lex.of(self.tokens[i].norm, role)
+
+    def _is_word(self, i: int, words: frozenset[str]) -> bool:
+        return i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
+
+    def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
+        """Positions where the next part may start after position ``i``."""
+        joined = [i + 1] if policy != Joiner.NEVER and self._is_word(i, self.lex.joiners) else []
+        return joined if policy == Joiner.REQUIRED else [i] + joined
+
+    def _takes_multiplier(self, i: int) -> bool:
+        return i < len(self.tokens) and not self.tokens[i].is_digits and any(
+            e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ()))
+
+    def starts_number(self, i: int) -> bool:
+        if i >= len(self.tokens):
+            return False
+        token = self.tokens[i]
+        return token.is_digits or any(
+            e.role != "half" for e in self.lex.readings.get(token.norm, ()))
+
+    def _digit_value(self, i: int) -> tuple[int, Rational, bool] | None:
+        """End, value and whether it has decimals, of the digit string at
+        ``i`` in the locale's marks; None when the marks do not fit. Where the
+        locale groups digits with a space, "1 234 567,8" is one string."""
+        if i >= len(self.tokens) or not self.tokens[i].is_digits or self.tokens[i].suffix:
+            return None
+        end, text = i + 1, self.tokens[i].text.replace("\u2212", "-")
+        if self.lex.space_groups and re.fullmatch(r"-?\d{1,3}", text):
+            while end < len(self.tokens) and self._space_group(end):
+                text += self.lex.group_mark + self.tokens[end].text
+                end += 1
+        match = self._digit_pattern.fullmatch(text)
+        if not match:
+            return None
+        whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
+        whole = whole_text.lstrip("-").replace(self.lex.group_mark, "")
+        value = Rational.from_decimal(whole, match.group(1) or "")
+        return end, (-value if text.startswith("-") else value), bool(match.group(1))
+
+    def _space_group(self, i: int) -> bool:
+        """A group of three digits after a single space ("000" in "1 000")."""
+        token = self.tokens[i]
+        return (token.is_digits and not token.suffix and len(token.gap) == 1
+                and re.fullmatch(rf"\d{{3}}(?:{re.escape(self.lex.decimal_mark)}\d+)?", token.text) is not None)
+
+    # Below a thousand -------------------------------------------------
+
+    def tens_units(self, i: int, nonzero: bool = False) -> list[tuple[int, str]]:
+        found = [(i + 1, e.value) for e in self._readings(i, "unit")
+                 if not (nonzero and e.value == "0")]
+        for ten in self._readings(i, "ten"):
+            found.append((i + 1, ten.value))
+            # Only a round ten from twenty up takes a unit after it.
+            if ten.value[1] == "0" and ten.value != "10":
+                for j in self._after_joiner(i + 1, self.lex.joiner_tens_units):
+                    found += [(j + 1, ten.value[0] + unit.value)
+                              for unit in self._readings(j, "unit") if unit.value != "0"]
+        return found
+
+    def hundreds(self, i: int) -> list[tuple[int, str, bool]]:
+        """(end, value, bound): a bound form stands only before the rest of
+        the number ("cento e um", never "cento" alone)."""
+        found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")]
+        counts = self.tens_units(i, nonzero=True)
+        if self._is_word(i, self.lex.articles):
+            counts.append((i + 1, "1"))
+        for end, count in counts:
+            for multiplier in self._readings(end, "hundred_multiplier"):
+                if not multiplier.plural:
+                    found.append((end + 1, digits.shift(count, multiplier.exponent), False))
+        return found
+
+    def small(self, i: int, nonzero: bool = False) -> list[tuple[int, str]]:
+        found = self.tens_units(i, nonzero)
+        for end, hundreds, bound in self.hundreds(i):
+            if not bound:
+                found.append((end, hundreds))
+            for j in self._after_joiner(end, self.lex.joiner_after_hundred):
+                found += [(e, digits.add(hundreds, rest)) for e, rest in self.tens_units(j, nonzero=True)]
+        return found
+
+    def decimal_digits(self, i: int) -> list[tuple[int, str]]:
+        """Digits after a decimal marker: each word gives its own digits
+        ("vírgula zero cinco" is .05, "point twenty five" is .25)."""
+        if not self._is_word(i, self.lex.decimal_markers):
+            return []
+        found, frontier = [], [(i + 1, "")]
+        while frontier:
+            position, written = frontier.pop()
+            for end, chunk in self.small(position):
+                found.append((end, written + chunk))
+                frontier.append((end, written + chunk))
+        return found
+
+    # Groups -----------------------------------------------------------
+
+    def counts(self, i: int, first: bool) -> list[Count]:
+        smalls = self.small(i)
+        found = [Count(end, Rational(value)) for end, value in smalls]
+        if self._is_word(i, self.lex.articles):
+            found.append(Count(i + 1, ONE, needs_multiplier=True))
+        if self._readings(i, "half"):
+            end = i + 2 if self._is_word(i + 1, self.lex.articles) else i + 1
+            found.append(Count(end, HALF, needs_multiplier=True))
+        for end, value in smalls:
+            found += [Count(e, Rational.from_decimal(value, fraction), decimal=True)
+                      for e, fraction in self.decimal_digits(end)]
+            # "two and a half million"
+            for j in self._after_joiner(end, Joiner.REQUIRED):
+                k = j + 1 if self._is_word(j, self.lex.articles) else j
+                if value != "0" and self._readings(k, "half"):
+                    found.append(Count(k + 1, Rational(value) + HALF, needs_multiplier=True))
+        if first and (read := self._digit_value(i)):
+            end, value, decimal = read
+            found.append(Count(end, value, decimal=decimal))
+        return found
+
+    def multipliers(self, i: int) -> list[tuple[int, int, bool, bool]]:
+        """(end, exponent, noun, needs_count) of each multiplier at ``i``.
+
+        A noun needs a count, and so does a plural scale word when the
+        language says so; "mil milhões" takes its need from "mil"."""
+        found = []
+        for role in ("scale_numeral", "scale_noun"):
+            for entry in self._readings(i, role):
+                noun = role == "scale_noun"
+                needs_count = noun or (entry.plural and self.lex.plural_scale_needs_count)
+                found.append((i + 1, entry.exponent, noun, needs_count))
+                if not noun:
+                    found += [(i + 2, entry.exponent + larger.exponent, True, needs_count)
+                              for larger in self._readings(i + 1, "scale_noun")
+                              if larger.exponent > entry.exponent]
+        return found
+
+    def groups(self, i: int, first: bool) -> list[Group]:
+        found = []
+        counts = self.counts(i, first) + [Count(i, ONE, explicit=False)]
+        for count in counts:
+            if count.explicit and not count.needs_multiplier and (first or not count.value.is_zero()):
+                found.append(Group(count.end, count.value, decimal=count.decimal))
+            if count.value.is_zero():
+                continue
+            for end, exponent, noun, needs_count in self.multipliers(count.end):
+                if needs_count and not count.explicit:
+                    continue
+                found.append(Group(end, count.value, exponent, noun, count.decimal))
+        return found
+
+    def cardinals(self, i: int) -> list[tuple[Group, ...]]:
+        """Every run of groups with strictly descending scales from ``i``."""
+        found: list[tuple[Group, ...]] = []
+        frontier = [(g,) for g in self.groups(i, first=True)]
+        while frontier:
+            run = frontier.pop()
+            last = run[-1]
+            # A count belongs to the scale word after it: "dois milhões e três
+            # milhões" is two numbers, not 2000003 and a stray "milhões".
+            if last.exponent == 0 and self._takes_multiplier(last.end):
+                continue
+            found.append(run)
+            if last.exponent == 0 or last.decimal:
+                continue
+            for j in self._after_joiner(last.end, self.lex.joiner_between_groups):
+                for group in self.groups(j, first=False):
+                    fits = (group.exponent < last.exponent if group.exponent
+                            else len(_whole_part(group.count)) <= last.exponent)
+                    if fits:
+                        frontier.append(run + (group,))
+        return found
+
+    # Tails after a cardinal -------------------------------------------
+
+    def _lone_half(self, i: int) -> int | None:
+        """End of "e meia" / "and a half" at ``i`` when no number word follows."""
+        for j in self._after_joiner(i, Joiner.REQUIRED):
+            k = j + 1 if self._is_word(j, self.lex.articles) else j
+            if self._readings(k, "half") and not self.starts_number(k + 1):
+                return k + 1
+        return None
+
+    def collective_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        last = run[-1]
+        if last.noun:
+            return []
+        split = max((n + 1 for n, g in enumerate(run) if g.noun), default=0)
+        prefix, counted = _sum(run[:split]), _sum(run[split:])
+        found = []
+        for entry in self._readings(last.end, "collective"):
+            found += self._collective(prefix, counted, entry, last.end, may_take_of=split == 0)
+        decimal = any(g.decimal for g in run)
+        return [replace(p, decimal=decimal) for p in found]
+
+    def _collective(self, prefix: Rational, count: Rational, entry: Entry, at: int,
+                    may_take_of: bool) -> list[Parse]:
+        size = Rational(entry.value)
+        value = prefix + count * size
+        end = at + 1
+        found = [Parse(end, value)]
+        if (half_end := self._lone_half(end)) is not None:
+            found.append(Parse(half_end, value + size * HALF))
+        if entry.addend:
+            for j in self._after_joiner(end, Joiner.REQUIRED):
+                found += [Parse(e, value + Rational(v)) for e, v in self.small(j, nonzero=True)]
+        if may_take_of and self._is_word(end, self.lex.of_words):
+            found += [Parse(end + 2, value.scaled(noun.exponent))
+                      for noun in self._readings(end + 1, "scale_noun") if noun.plural]
+        return found
+
+    def of_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"dois milhões de dúzias": de and a plural noun multiply a cardinal
+        that ends in a scale noun."""
+        last = run[-1]
+        if not last.noun or not self._is_word(last.end, self.lex.of_words):
+            return []
+        total, at = _sum(run), last.end + 1
+        found = [Parse(at + 1, total * Rational(e.value))
+                 for e in self._readings(at, "collective") if e.plural]
+        found += [Parse(at + 1, total.scaled(e.exponent))
+                  for e in self._readings(at, "scale_noun") if e.plural]
+        return found
+
+    def half_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"um milhão e meio" adds half the noun; "mil e meio" and "dois e
+        meio" add a half of one."""
+        last = run[-1]
+        end = self._lone_half(last.end)
+        if end is None or last.decimal:
+            return []
+        if last.noun:
+            return [Parse(end, _sum(run) + ONE.scaled(last.exponent) * HALF)]
+        return [Parse(end, _sum(run) + HALF)]
+
+    def decimal_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"um milhão vírgula cinco" is 1000000.5."""
+        last = run[-1]
+        if last.exponent == 0:
+            return []
+        return [Parse(end, _sum(run) + Rational.from_decimal("0", fraction), decimal=True)
+                for end, fraction in self.decimal_digits(last.end)]
+
+    def fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"dois e um terço" is 7/3."""
+        last = run[-1]
+        if last.decimal:
+            return []
+        found = []
+        for j in self._after_joiner(last.end, Joiner.REQUIRED):
+            found += [replace(f, value=_sum(run) + f.value) for f in self.fractions(j)]
+        return found
+
+    # Other numbers ----------------------------------------------------
+
+    def fractions(self, i: int) -> list[Parse]:
+        """A numerator and a denominator: "dois terços", "a third",
+        "doze vinte e cinco avos"."""
+        numerators = [(end, value) for end, value in self.small(i, nonzero=True)]
+        if self._is_word(i, self.lex.articles):
+            numerators.append((i + 1, "1"))
+        found = []
+        for end, numerator in numerators:
+            for entry in self._readings(end, "denominator"):
+                # "um terço", "dois terços"; "dois milésimo" is the ordinal 2000.º
+                if entry.plural == (numerator == "1"):
+                    continue
+                found.append(Parse(end + 1, Rational(numerator, entry.value), ambiguous=entry.ambiguous))
+            for after, denominator in self.small(end, nonzero=True):
+                if self._is_word(after, self.lex.denominator_particles):
+                    found.append(Parse(after + 1, Rational(numerator, denominator)))
+        return found
+
+    def half_numbers(self, i: int) -> list[Parse]:
+        """"meia dúzia", "half a dozen", "dúzia e meia", and a half alone."""
+        found = []
+        for half in self._readings(i, "half"):
+            found.append(Parse(i + 1, HALF, ambiguous=half.ambiguous))
+            at = i + 2 if self._is_word(i + 1, self.lex.articles) else i + 1
+            for entry in self._readings(at, "collective"):
+                if not entry.plural:
+                    found.append(Parse(at + 1, HALF * Rational(entry.value)))
+        for entry in self._readings(i, "collective"):
+            if not entry.plural and (end := self._lone_half(i + 1)) is not None:
+                found.append(Parse(end, Rational(entry.value) * Rational("3", "2")))
+        return found
+
+    def ordinals(self, i: int) -> list[Parse]:
+        """"vigésimo primeiro", "dois milésimo", "twenty-first", "two hundredth"."""
+        prefixes: list[tuple[int, Rational | None]] = [(i, None)]
+        prefixes += [(run[-1].end, _sum(run)) for run in self.cardinals(i)
+                     if not run[-1].decimal]
+        found = []
+        for start, prefix in prefixes:
+            positions = [start] if prefix is None or self.lex.ordinal_style == "every_word" \
+                else self._after_joiner(start, Joiner.OPTIONAL)
+            for j in positions:
+                found += self._ordinal_words(j, prefix)
+        return found
+
+    def _ordinal_words(self, j: int, prefix: Rational | None) -> list[Parse]:
+        found = []
+        for scale in self._readings(j, "ordinal_scale"):
+            if scale.plural or (prefix is not None and prefix.canonical() == "1"):
+                continue  # "dois milésimos" and "um milésimo" are fractions
+            value = (prefix or ONE).scaled(scale.exponent)
+            found += self._ordinal_rest(j + 1, value, scale.ambiguous)
+        for entry in self._readings(j, "ordinal"):
+            if prefix is None:
+                found += self._ordinal_rest(j + 1, Rational(entry.value), entry.ambiguous)
+            elif self.lex.ordinal_style == "last_word" and _room_for(prefix, entry.value):
+                found.append(Parse(j + 1, prefix + Rational(entry.value), Kind.ORDINAL))
+        return found
+
+    def _ordinal_rest(self, j: int, value: Rational, ambiguous: bool) -> list[Parse]:
+        """The parse so far, and in "every_word" style each smaller ordinal
+        word that adds to it."""
+        found = [Parse(j, value, Kind.ORDINAL, ambiguous=ambiguous)]
+        if self.lex.ordinal_style == "every_word":
+            for entry in self._readings(j, "ordinal"):
+                if _room_for(value, entry.value):
+                    found += self._ordinal_rest(j + 1, value + Rational(entry.value), False)
+        return found
+
+    def digit_ordinal(self, i: int) -> list[Parse]:
+        token = self.tokens[i]
+        if not (token.is_digits and token.suffix) or not token.digits.isdigit():
+            return []
+        return [Parse(i + 1, Rational(digits.normalise(token.digits)), Kind.ORDINAL)]
+
+    # The whole number -------------------------------------------------
+
+    def numbers(self, i: int) -> list[Parse]:
+        """Every reading from ``i``. Among readings of the same length the
+        first wins, so "a million and a half" takes the half of the noun
+        before the half of one."""
+        found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + self.fractions(i)
+        if self._is_word(i, self.lex.articles):
+            for entry in self._readings(i + 1, "collective"):
+                if not entry.plural:
+                    found += [replace(p, ambiguous=entry.ambiguous) for p in
+                              self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True)]
+        for run in self.cardinals(i):
+            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
+            found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
+            found += self.decimal_tail(run) + self.fraction_tail(run)
+        return found
+
+
+def _whole_part(value: Rational) -> str:
+    return digits.divide_whole(value.numerator, value.denominator)[0]
+
+
+def _room_for(total: Rational, addend: str) -> bool:
+    """True when ``addend`` fits in the trailing zeros of the whole ``total``
+    ("vigésimo" + "primeiro", not "vigésimo" + "décimo")."""
+    if total.denominator != "1":
+        return False
+    zeros = len(total.numerator) - len(total.numerator.rstrip("0"))
+    return zeros >= len(addend)

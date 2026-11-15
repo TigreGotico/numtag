@@ -1,0 +1,7 @@
+{
+  "extends": "pt-PT",
+  "settings": {
+    "scale": {"value": "short", "source": "Priberam, \"bilião\", sense 2: \"[Brasil] Mil milhões (10^9)\": pt-BR counts in the short scale."},
+    "space_groups": {"value": false, "source": "CLDR groups pt-BR digits with a dot only (\"1.000.000\"); a space between digit strings separates two numbers."}
+  }
+}
