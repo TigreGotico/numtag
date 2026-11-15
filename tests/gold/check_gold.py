@@ -82,6 +82,8 @@ def check_row(row, lang: str = "") -> None:
         # a unit may touch digits ("3,5kg"); a letter run or a digit run may not go on
         assert start == 0 or not _same_run(text[start - 1], span[0]), f"span {span!r} starts inside a word"
         assert end == len(text) or not _same_run(span[-1], text[end]), f"span {span!r} ends inside a word"
+        assert not (span[-1].isdigit() and text[end:end + 1] in (",", ".")
+                    and text[end + 1:end + 2].isdigit()), f"span {span!r} stops before a digit mark"
         check_value(m["value"], m["kind"])
         if lang in DECIMAL_MARKS and m["kind"] in ("decimal", "fraction"):
             words = re.findall(r"\w+|[.,]", span.lower())
@@ -97,6 +99,8 @@ def check_file(path: Path) -> tuple[int, list[str]]:
     lines = path.read_text(encoding="utf-8").split("\n")
     if lines and lines[-1] == "":
         lines.pop()
+    if path.stem not in DECIMAL_MARKS:
+        return len(lines), [f"{path.name}: no decimal marks are known for {path.stem!r}; add them to DECIMAL_MARKS"]
     errors, seen = [], {}
     for number, line in enumerate(lines, 1):
         try:

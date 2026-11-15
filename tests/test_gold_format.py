@@ -102,6 +102,24 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
     def test_span_that_cuts_a_word(self):
         self.assertRefused(_row("comprou duas dúzias", _m(8, 18, "24")))
 
+    def test_span_that_starts_inside_a_word(self):
+        self.assertRefused(_row("Custa 125 euros.", _m(7, 9, "25")))
+
+    def test_span_that_stops_before_a_digit_mark(self):
+        self.assertRefused(_row("Pesava 3,5 quilos.", _m(7, 8, "3")))
+        self.assertRefused(_row("It cost 1,000 dollars.", _m(8, 9, "1")))
+
+    def test_a_list_after_the_digits_is_no_digit_mark(self):
+        check_gold.check_row(_row("1, 2 e 3", _m(0, 1, "1"), _m(3, 4, "2"), _m(7, 8, "3")))
+
+    def test_a_file_with_no_known_decimal_marks_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "xx.jsonl"
+            path.write_text('{"text": "dez", "mentions": [], "source": "arithmetic"}\n', encoding="utf-8")
+            n_in, errors = check_gold.check_file(path)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("no decimal marks", errors[0])
+
     def test_a_unit_may_touch_the_digits(self):
         check_gold.check_row(_row("Pesava 3,5kg.", _m(7, 10, "3.5", "decimal")), "pt-PT")
 
@@ -124,12 +142,12 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
 
     def test_invalid_json_line_is_reported(self):
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "xx.jsonl"
+            path = Path(tmp) / "pt-PT.jsonl"
             path.write_text('{"text": "dez", "mentions": [], "source": "arithmetic"}\n{not json\n', encoding="utf-8")
             n_in, errors = check_gold.check_file(path)
         self.assertEqual(n_in, 2)
         self.assertEqual(len(errors), 1)
-        self.assertIn("xx.jsonl:2", errors[0])
+        self.assertIn("pt-PT.jsonl:2", errors[0])
 
 
 if __name__ == "__main__":
