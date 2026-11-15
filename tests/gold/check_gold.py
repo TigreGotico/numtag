@@ -23,7 +23,9 @@ WHOLE = re.compile(r"-?[0-9]+")
 #: the marks that make a value a decimal, per gold file: a digit mark or a word
 DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula", "virgula"),
                  "en": (".", "point"), "de": (",", "komma"), "nl": (",", "komma"), "fy": (",", "komma"),
-                 "da": (",", "komma"), "sv": (",", "komma"), "nb": (",", "komma"), "nn": (",", "komma")}
+                 "da": (",", "komma"), "sv": (",", "komma"), "nb": (",", "komma"), "nn": (",", "komma"),
+                 "el": (",", "κόμμα"), "ar": (".", "٫", "فاصلة", "فاصل"), "he": (".", "נקודה"),
+                 "fa": (".", "٫", "ممیز"), "kab": (",",)}
 
 
 def _is_edge_noise(ch: str) -> bool:
@@ -90,7 +92,7 @@ def check_row(row, lang: str = "") -> None:
                     and text[start - 2].isdigit()), f"span {span!r} starts after a digit mark"
         check_value(m["value"], m["kind"])
         if lang in DECIMAL_MARKS and m["kind"] in ("decimal", "fraction"):
-            words = re.findall(r"\w+|[.,]", span.lower())
+            words = re.findall(r"\w+|[.,٫]", span.lower())
             marked = any(mark in words for mark in DECIMAL_MARKS[lang])
             assert marked == (m["kind"] == "decimal"), \
                 f"span {span!r} is {m['kind']}, but a decimal is exactly the kind with a decimal mark"

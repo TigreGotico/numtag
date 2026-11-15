@@ -143,7 +143,11 @@ class Grammar:
         if not scale_words:
             return self._takes_multiplier(i) and not (whole_group and len(_whole(count)) > 2)
         return any(self._agrees(noun, plural, count) and count_exponent < exponent
-                   for _, exponent, noun, _, plural in scale_words)
+                   for _, exponent, _, noun, _, plural in scale_words)
+
+    def _homograph(self, i: int) -> bool:
+        readings = () if self.tokens[i].is_digits else self.lex.readings.get(self.tokens[i].norm, ())
+        return bool(readings) and all(e.ambiguous for e in readings)
 
     def starts_number(self, i: int) -> bool:
         if i >= len(self.tokens):
@@ -159,14 +163,14 @@ class Grammar:
         token = self.tokens[i] if i < len(self.tokens) else None
         if token is None or not token.is_digits or token.suffix or token.period_ordinal:
             return None
-        end, text = i + 1, self.tokens[i].text.replace("\u2212", "-")
+        end, text = i + 1, self.tokens[i].latin.replace("\u2212", "-")
         if text.lstrip("-")[0] in ".,":
             # a lone decimal mark (".5", "-.5"): the tokenizer keeps only a listed one
             value = Rational.from_decimal("0", text.lstrip("-")[1:])
             return end, (-value if text.startswith("-") else value), True
         if self.lex.space_groups and re.fullmatch(r"-?[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
-                text += self.lex.group_mark + self.tokens[end].text
+                text += self.lex.group_mark + self.tokens[end].latin
                 end += 1
         match = self._digit_pattern.fullmatch(text)
         if not match:
@@ -180,13 +184,20 @@ class Grammar:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
         return (token.is_digits and not token.suffix and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:{re.escape(self.lex.decimal_mark)}[0-9]+)?", token.text) is not None)
+                and re.fullmatch(rf"[0-9]{{3}}(?:{re.escape(self.lex.decimal_mark)}[0-9]+)?", token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 
     def tens_units(self, i: int, nonzero: bool = False) -> list[tuple[int, str]]:
-        units = [e.value for e in self._readings(i, "unit") if not (nonzero and e.value == "0")]
-        found = [(i + 1, unit) for unit in units]
+        """Below a hundred. A bound unit stands only before a teen word or a
+        ten ("أحد عشر"); a teen word after a unit adds ten to it ("ثلاثة
+        عشر", "שלושה עשר"); a unit before a ten reads unit first where the
+        language says so ("einundzwanzig", "خمسة وعشرون")."""
+        units = [e.value for e in self._readings(i, "unit") if e.value != "0"]
+        found = [(i + 1, e.value) for e in self._readings(i, "unit")
+                 if not e.bound and not (nonzero and e.value == "0")]
+        if self._readings(i + 1, "teen"):
+            found += [(i + 2, "1" + unit) for unit in units]
         for ten in self._readings(i, "ten"):
             found.append((i + 1, ten.value))
             # Only a round ten from twenty up takes a unit after it.
@@ -222,14 +233,18 @@ class Grammar:
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")]
         if not multiplied:
             return found
-        counts = self.tens_units(i, nonzero=True)
+        counts = self.tens_units(i, nonzero=True) + self._bound_units(i)
         if self._is_word(i, self.lex.articles):
             counts.append((i + 1, "1"))
         for end, count in counts:
             for multiplier in self._readings(end, "hundred_multiplier"):
-                if not multiplier.plural:
+                if not multiplier.plural or multiplier.counted:
                     found.append((end + 1, digits.shift(count, multiplier.exponent), False))
         return found
+
+    def _bound_units(self, i: int) -> list[tuple[int, str]]:
+        """A bound unit as the count of a multiplier ("telt" in "telt-mya")."""
+        return [(i + 1, e.value) for e in self._readings(i, "unit") if e.bound and e.value != "0"]
 
     def small(self, i: int, nonzero: bool = False, multiplied: bool = True) -> list[tuple[int, str]]:
         found = self.tens_units(i, nonzero)
@@ -295,25 +310,29 @@ class Grammar:
                 k = j + 1 if self._is_word(j, self.lex.articles) else j
                 if value != "0" and self._readings(k, "half"):
                     found.append(Count(k + 1, Rational(value) + HALF, needs_multiplier=True))
+        found += [Count(end, Rational(value), needs_multiplier=True) for end, value in self._bound_units(i)]
+        # "δυόμισι": a unit and a half in one word
+        found += [Count(i + 1, Rational(e.value) + HALF) for e in self._readings(i, "unit_and_half")]
         if first and (read := self._digit_value(i)):
             end, value, decimal = read
             found.append(Count(end, value, decimal=decimal))
         return found
 
-    def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, bool, bool, bool]]:
-        """(end, exponent, noun, needs_count, plural) of each multiplier at ``i``.
+    def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
+        """(end, exponent, dual, noun, needs_count, plural) of each multiplier at ``i``.
 
         A noun needs a count, and so does a plural scale word when the
         language says so. A singular noun that ``starts`` the number counts
-        one before "de": "milhão de pessoas" is 1000000."""
+        one before "de": "milhão de pessoas" is 1000000. A dual holds its
+        count ("ألفان" is two thousand) and takes none."""
         found = []
         for role in ("scale_numeral", "scale_noun"):
             for entry in self._readings(i, role):
                 noun = role == "scale_noun"
-                needs_count = noun or (entry.plural and self.lex.plural_scale_needs_count)
+                needs_count = not entry.count and (noun or (entry.plural and self.lex.plural_scale_needs_count))
                 if starts and noun and not entry.plural and self._is_word(i + 1, self.lex.of_words):
                     needs_count = False
-                found.append((i + 1, entry.exponent, noun, needs_count, entry.plural))
+                found.append((i + 1, entry.exponent, entry.count, noun, needs_count, entry.plural))
         return found
 
     def cardinal_counts(self, i: int, first: bool) -> list[Count]:
@@ -346,12 +365,15 @@ class Grammar:
                 found.append(Group(count.end, count.value, decimal=count.decimal))
             if count.value.is_zero():
                 continue
-            for end, exponent, noun, needs_count, plural in self.multipliers(count.end, first and not count.explicit):
+            for end, exponent, dual, noun, needs_count, plural in self.multipliers(count.end, first and not count.explicit):
                 if (needs_count and not count.explicit) or (count.top and exponent <= count.top):
                     continue
-                if not self._agrees(noun, plural, count.value):
+                if dual and count.explicit:
                     continue
-                found.append(Group(end, count.value, exponent, noun, count.decimal,
+                value = Rational(dual) if dual else count.value
+                if not self._agrees(noun, plural, value):
+                    continue
+                found.append(Group(end, value, exponent, noun, count.decimal,
                                    count.top, count.half_top))
         self._groups[key] = found
         return found
@@ -527,7 +549,7 @@ class Grammar:
         end = self._lone_half(last.end)
         if end is None or last.decimal:
             return []
-        if last.noun:
+        if last.noun or (self.lex.half_of_scale and last.exponent):
             group = last.count.scaled(last.exponent) + ONE.scaled(last.unit) * HALF
             prefix = _sum(run[:-1])
             return [Parse(end, prefix + group)] + self._of(group, end, prefix=prefix)
@@ -562,12 +584,15 @@ class Grammar:
         numerators = [(end, value) for end, value in self.small(i, nonzero=True)]
         found = [Parse(end + 1, Rational("1", value)) for end, value in numerators
                  if _above_ten(value) and self._is_word(end, self.lex.denominator_particles)]
+        # "ربع" alone is a quarter, "ثلثان" two thirds
+        found += [Parse(i + 1, Rational(e.numerator, e.value), ambiguous=e.ambiguous)
+                  for e in self._readings(i, "denominator") if e.numerator]
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         for end, numerator in numerators:
             for entry in self._readings(end, "denominator"):
                 # "um terço", "dois terços"; "dois milésimo" is the ordinal 2000.º
-                if entry.plural == (numerator == "1"):
+                if not entry.invariant and entry.plural == (numerator == "1"):
                     continue
                 found.append(Parse(end + 1, Rational(numerator, entry.value), ambiguous=entry.ambiguous))
             for after, denominator in self.small(end, nonzero=True):
@@ -678,7 +703,13 @@ class Grammar:
             words += self._unit_tens(j, units, "ordinal")
         for end, value, entry in words:
             if prefix is None:
-                found += self._ordinal_rest(end, Rational(value), entry.ambiguous)
+                rest = self._ordinal_rest(end, Rational(value), entry.ambiguous)
+                if entry.bound:
+                    found += rest[1:]
+                elif value in self.lex.bound_ordinal_values:
+                    found += rest[:1]
+                else:
+                    found += rest
             elif self.lex.ordinal_style == "last_word" and _room_for(prefix, value) \
                     and not (len(value) == 1 and prefix.numerator.endswith("10")):
                 # a unit ordinal joins no "ten": "ten third" is 10 and 3rd
@@ -689,6 +720,15 @@ class Grammar:
         """The parse so far, and in "every_word" style each smaller ordinal
         word that adds to it."""
         found = [Parse(j, value, Kind.ORDINAL, ambiguous=ambiguous)]
+        if self.lex.ordinal_style == "first_word" and len(value.numerator) == 1 and value.denominator == "1":
+            # "الحادي عشر", "الخامس والعشرون": the ordinal unit, then the
+            # teen word or the joiner and a cardinal ten
+            unit = value.numerator
+            if self._readings(j, "teen"):
+                found.append(Parse(j + 1, Rational("1" + unit), Kind.ORDINAL, ambiguous=ambiguous))
+            for k in self._after_joiner(j, self.lex.joiner_tens_units):
+                found += [Parse(k + 1, Rational(ten.value[0] + unit), Kind.ORDINAL, ambiguous=ambiguous)
+                          for ten in self._readings(k, "ten") if _round_ten(ten.value)]
         if self.lex.ordinal_style == "every_word":
             for entry in self._readings(j, "ordinal"):
                 if _room_for(value, entry.value):
@@ -800,6 +840,10 @@ class Grammar:
     def _numbers(self, i: int) -> list[Parse]:
         fractions = self.fractions(i)
         found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions
+        # "wis sin", "tis tlata": a particle makes the cardinal after it an ordinal
+        if self._is_word(i, self.lex.ordinal_particles):
+            found += [Parse(run[-1].end, _sum(run), Kind.ORDINAL) for run in self.cardinals(i + 1)
+                      if not run[-1].decimal]
         for fraction in fractions:
             found += self.fraction_of_collective(fraction)
         if self._is_word(i, self.lex.articles):
@@ -808,10 +852,17 @@ class Grammar:
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
                               self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True)]
         for run in self.cardinals(i):
-            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
+            # a lone homograph ("نه": nine or "no") is a low-confidence number
+            lone = run[-1].end == i + 1 and self._homograph(i)
+            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run), ambiguous=lone))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
         return found
+
+
+def _round_ten(value: str) -> bool:
+    """True for twenty, thirty, ... ninety: only these take a unit."""
+    return len(value) == 2 and value[1] == "0" and value != "10"
 
 
 def _whole(value: Rational) -> str:

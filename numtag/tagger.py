@@ -32,7 +32,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                       suffix_marks=lexicon.ordinal_suffix_marks,
                       period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
                                                  lexicon.period_ordinal_free_digits)
-                      if lexicon.period_ordinals else None)
+                      if lexicon.period_ordinals else None,
+                      script=lexicon.script)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
@@ -75,7 +76,10 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             continue
         best = max(parses, key=lambda p: p.end)
         value = -best.value if negative else best.value
-        span = (run[i].start, run[best.end - 1].end)
+        # a number glued to a joiner prefix it does not use ("ושבעה") keeps
+        # the whole word: a span never starts inside a word
+        first = i - 1 if run[i].attached else i
+        span = (run[first].start, run[best.end - 1].end)
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
