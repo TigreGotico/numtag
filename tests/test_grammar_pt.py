@@ -579,6 +579,21 @@ if __name__ == "__main__":
     unittest.main()
 
 
+class TestHyphenatedCompounds(unittest.TestCase):
+    def test_a_numeral_inside_a_compound_noun_is_no_number(self):
+        # Priberam lists "segunda-feira" as one noun
+        for day in ("segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira"):
+            with self.subTest(day=day):
+                self.assertEqual(pt(f"na {day} chegam vinte e duas pessoas"), [("vinte e duas", "22", C)])
+        self.assertEqual(pt("ao meio-dia"), [])
+
+    def test_a_compound_noun_breaks_the_link_between_numbers(self):
+        self.assertEqual(pt("dois sexta-feira mil"), [("dois", "2", C), ("mil", "1000", C)])
+
+    def test_a_compound_of_number_words_is_a_number(self):
+        self.assertEqual(pt("vinte-e-dois"), [("vinte-e-dois", "22", C)])
+
+
 class TestAbbreviations(unittest.TestCase):
     def test_dez_and_a_period_before_lower_case_or_digits_is_december(self):
         self.assertEqual(pt("a reunião é a 3 dez. 2025"), [("3", "3", C), ("2025", "2025", C)])

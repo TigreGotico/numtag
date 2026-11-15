@@ -1,6 +1,6 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 # A digit string keeps its group and decimal marks ("1.000.000,5"). A minus
 # sign or a lone mark belongs to it only at the start of a word ("-5" and
@@ -40,7 +40,8 @@ class Token:
 
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
-             abbreviations: frozenset[str] = frozenset()) -> list[Token]:
+             abbreviations: frozenset[str] = frozenset(),
+             number_words: frozenset[str] | None = None) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -50,7 +51,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     first digit only when the language lists the mark as a lone decimal mark
     and only digits follow it (".5"). An abbreviation is a listed word with a
     period that no sentence end follows ("dez. 2025"); it is dropped, so it
-    breaks the link between the words around it.
+    breaks the link between the words around it. Given ``number_words``, a
+    hyphenated compound with a word outside them is one noun
+    ("segunda-feira"): its words are dropped in the same way.
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -82,7 +85,30 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 skip_until = following.end()
         tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix))
         previous_end = end
-    return tokens
+    return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
+
+
+def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:
+    """The tokens without the words of each hyphenated compound that holds
+    a word outside ``number_words``. The token after a dropped word gets the
+    text since the last kept token as its gap, so it links to nothing."""
+    dropped = set()
+    start = 0
+    for i in range(1, len(tokens) + 1):
+        if i < len(tokens) and tokens[i].gap == "-":
+            continue
+        compound = tokens[start:i]
+        if len(compound) > 1 and any(not t.is_digits and t.norm not in number_words for t in compound):
+            dropped.update(k for k in range(start, i) if not tokens[k].is_digits)
+        start = i
+    kept: list[Token] = []
+    for i, token in enumerate(tokens):
+        if i in dropped:
+            continue
+        if i and i - 1 in dropped:
+            token = replace(token, gap=text[kept[-1].end if kept else 0:token.start])
+        kept.append(token)
+    return kept
 
 
 def _abbreviated(text: str, end: int) -> bool:
