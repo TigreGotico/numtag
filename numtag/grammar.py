@@ -106,7 +106,7 @@ class Grammar:
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
-            rf"-?(?:[0-9]{{1,3}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
+            rf"-?(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
 
     # Token access -----------------------------------------------------
 
@@ -132,15 +132,18 @@ class Grammar:
         count below two: "um milhão", "meio milhão", "mil e um milhões"."""
         return not (noun and not plural and self.lex.scale_noun_agrees and _whole(count) not in ("0", "1"))
 
-    def _takes_count(self, i: int, count: Rational, whole_group: bool = False) -> bool:
-        """True when a multiplier at ``i`` takes ``count``: in "dois milhão"
-        the "dois" stays a number. A ``whole_group`` count of a hundred or
-        more is no count of "hundred": in "tusind hundrede" the thousand ends
-        its group and "hundrede" is the next one."""
+    def _takes_count(self, i: int, count: Rational, count_exponent: int = 0, whole_group: bool = False) -> bool:
+        """True when a multiplier at ``i`` takes ``count``, whose own scale
+        word has ``count_exponent``: a larger scale word that agrees with the
+        count. In "dois milhão" the "dois" stays a number, and in "cinquenta
+        bilhões mil" the "mil" counts no billions. A ``whole_group`` count of
+        a hundred or more is no count of "hundred": in "tusind hundrede" the
+        thousand ends its group and "hundrede" is the next one."""
         scale_words = self.multipliers(i)
         if not scale_words:
             return self._takes_multiplier(i) and not (whole_group and len(_whole(count)) > 2)
-        return any(self._agrees(noun, plural, count) for *_, noun, _, plural in scale_words)
+        return any(self._agrees(noun, plural, count) and count_exponent < exponent
+                   for _, exponent, noun, _, plural in scale_words)
 
     def starts_number(self, i: int) -> bool:
         if i >= len(self.tokens):
@@ -157,10 +160,11 @@ class Grammar:
         if token is None or not token.is_digits or token.suffix or token.period_ordinal:
             return None
         end, text = i + 1, self.tokens[i].text.replace("\u2212", "-")
-        if text[0] in ".,":
-            # a lone decimal mark (".5"): the tokenizer keeps only a listed one
-            return end, Rational.from_decimal("0", text[1:]), True
-        if self.lex.space_groups and re.fullmatch(r"-?[0-9]{1,3}", text):
+        if text.lstrip("-")[0] in ".,":
+            # a lone decimal mark (".5", "-.5"): the tokenizer keeps only a listed one
+            value = Rational.from_decimal("0", text.lstrip("-")[1:])
+            return end, (-value if text.startswith("-") else value), True
+        if self.lex.space_groups and re.fullmatch(r"-?[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
                 text += self.lex.group_mark + self.tokens[end].text
                 end += 1
@@ -370,11 +374,17 @@ class Grammar:
                 counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
                           and self._well_formed_after(last, Rational(value))}
                 for group in following:
-                    if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent), whole_group=True):
+                    # A count right after a scale numeral with no joiner
+                    # counts the collective after it: "treze mil duas
+                    # centenas" is 13000 and 200 (Miro).
+                    if group.exponent == 0 and j == last.end and self._readings(group.end, "collective"):
+                        continue
+                    count = group.count.scaled(group.exponent)
+                    if compound and not group.top and self._takes_count(group.end, count, group.exponent, whole_group=True):
                         continue
                     if compound and group.exponent == 0 and any(end > group.end for end in counts):
                         continue
-                    if group.order < last.order and len(_whole(group.count.scaled(group.exponent))) <= room:
+                    if group.order < last.order and len(_whole(count)) <= room:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
@@ -410,10 +420,15 @@ class Grammar:
         if last.noun:
             return []
         split = max((n + 1 for n, g in enumerate(run) if g.noun), default=0)
-        prefix, counted = _sum(run[:split]), _sum(run[split:])
         found = []
         for entry in self._readings(last.end, "collective"):
-            found += self._collective(prefix, counted, entry, last.end, may_take_of=split == 0)
+            # A collective of a place value counts only the group after the
+            # joiner: "treze mil e duas centenas" is 13200 (Miro). Any other
+            # collective counts the whole cardinal: "mil e duas dúzias" is
+            # 12024 (Miro).
+            place = split < len(run) - 1 and entry.value.strip("0") == "1"
+            cut = len(run) - 1 if place else split
+            found += self._collective(_sum(run[:cut]), _sum(run[cut:]), entry, last.end, may_take_of=cut == 0 or place)
         decimal = any(g.decimal for g in run)
         return [replace(p, decimal=decimal) for p in found]
 
@@ -714,7 +729,7 @@ class Grammar:
         no split."""
         plain = self._numbers(i)
         default = max(plain, key=lambda p: p.end).end if plain else None
-        for k in range(i + 1, len(self.tokens)):
+        for k in range(i + 1, len(self.tokens) - 1):
             if not self._number_word(k - 1):
                 break
             if not self._is_word(k, self.lex.joiners):

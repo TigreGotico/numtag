@@ -17,6 +17,18 @@ class TestBindingRulings(unittest.TestCase):
         # (1000 + 2) x 12 = 12024
         self.assertEqual(pt("mil e duas dúzias"), [("mil e duas dúzias", "12024", C)])
 
+    def test_a_collective_after_a_scale_numeral_with_no_joiner_starts_a_number(self):
+        # Miro: 13000 and 2 x 100
+        self.assertEqual(pt("treze mil duas centenas"), [("treze mil", "13000", C), ("duas centenas", "200", C)])
+        self.assertEqual(pt("treze mil duas dúzias"), [("treze mil", "13000", C), ("duas dúzias", "24", C)])
+
+    def test_a_place_collective_after_the_joiner_counts_only_its_group(self):
+        # Miro: 13000 + 2 x 100
+        self.assertEqual(pt("treze mil e duas centenas"), [("treze mil e duas centenas", "13200", C)])
+        # (3000 + 2 x 100) x 10^6
+        self.assertEqual(pt("três mil e duas centenas de milhões"),
+                         [("três mil e duas centenas de milhões", "3200000000", C)])
+
     def test_after_milhao_the_collective_counts_only_the_cardinal_after_it(self):
         # 1000000 + 2 x 12 = 1000024
         self.assertEqual(pt("um milhão e duas dúzias"), [("um milhão e duas dúzias", "1000024", C)])
@@ -386,6 +398,22 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("duzentos mil e dois milhões"),
                          [("duzentos mil e dois milhões", "200002000000", C)])
 
+    def test_a_scale_word_counts_no_group_with_a_larger_scale_word(self):
+        # 10^12 + 50 x 10^9 + 1000 + 40: "mil" counts no billions
+        self.assertEqual(read("um trilhão cinquenta bilhões mil e quarenta", "pt-BR"),
+                         [("um trilhão cinquenta bilhões mil e quarenta", "1050000001040", C)])
+        # 10^18 + 50 x 10^12 + 1000
+        self.assertEqual(pt("um trilião cinquenta biliões mil"),
+                         [("um trilião cinquenta biliões mil", "1000050000000001000", C)])
+
+    def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
+        self.assertEqual(pt("entre dois e"), [("dois", "2", C)])
+        self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
+        self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
+        self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
+        # digits glued to a word are dropped, so "e20" leaves a final joiner
+        self.assertEqual(pt("entre 15 e20"), [("15", "15", C)])
+
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
         self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])
@@ -518,6 +546,19 @@ class TestDigits(unittest.TestCase):
         # is no decimal mark either
         self.assertEqual(pt("...5"), [("5", "5", C)])
         self.assertEqual(pt("custa .5.000"), [("5.000", "5000", C)])
+
+    def test_a_lone_decimal_mark_after_a_sign(self):
+        self.assertEqual(pt("estão -.5 graus"), [("-.5", "-0.5", D)])
+        self.assertEqual(pt("estão -,5 graus"), [("-,5", "-0.5", D)])
+
+    def test_no_digit_group_follows_a_leading_zero(self):
+        # "." groups digits in pt, and a group never follows a leading zero:
+        # "0.500" and "01.500" are no number
+        self.assertEqual(pt("pesa 0.500 kg"), [])
+        self.assertEqual(pt("pesa 01.500 kg"), [])
+        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [])
+        self.assertEqual(pt("os números 0 500"), [("0", "0", C), ("500", "500", C)])
+        self.assertEqual(pt("pesa 1.500 kg"), [("1.500", "1500", C)])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_mark(self):
         self.assertEqual(pt("dois vírgula zero"), [("dois vírgula zero", "2", C)])
