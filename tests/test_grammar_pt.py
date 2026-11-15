@@ -213,6 +213,9 @@ class TestCardinals(unittest.TestCase):
     def test_scales_must_descend(self):
         self.assertEqual(pt("mil mil"), [("mil", "1000", C), ("mil", "1000", C)])
         self.assertEqual(pt("dez mil mil"), [("dez mil", "10000", C), ("mil", "1000", C)])
+        # a second group of the same scale starts a new number, also after "e"
+        self.assertEqual(pt("dez mil e mil"), [("dez mil", "10000", C), ("mil", "1000", C)])
+        self.assertEqual(pt("duzentos mil e mil"), [("duzentos mil", "200000", C), ("mil", "1000", C)])
 
     def test_a_count_belongs_to_the_scale_word_after_it(self):
         self.assertEqual(pt("dois mil e três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])

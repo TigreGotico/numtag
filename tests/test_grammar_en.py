@@ -36,6 +36,10 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("two million three hundred thousand"),
                          [("two million three hundred thousand", "2300000", C)])
         self.assertEqual(en("two thousand and five"), [("two thousand and five", "2005", C)])
+        # a second group of the same scale starts a new number
+        self.assertEqual(en("ten thousand two thousand"), [("ten thousand", "10000", C), ("two thousand", "2000", C)])
+        self.assertEqual(en("two hundred million ten million"),
+                         [("two hundred million", "200000000", C), ("ten million", "10000000", C)])
 
     def test_a_count_belongs_to_the_multiplier_after_it(self):
         self.assertEqual(en("one hundred and two hundred"),
