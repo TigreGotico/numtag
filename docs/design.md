@@ -24,7 +24,7 @@ A digit string keeps its group and decimal marks ("1.000.000,5"). A minus sign b
 
 | Case | Example | Reason |
 |---|---|---|
-| Digits glued to the end of a word | "mp3" | part of a name |
+| Digits glued to the end of a word, unless the word is a joiner prefix alone ("و500" is "و" and "500") | "mp3" | part of a name |
 | A digit run with a digit outside 0-9 | "٣" | numtag reads ASCII digits only |
 | A listed word with a period and no sentence end after it | "dez." in "3 dez. 2025" | an abbreviation |
 | The words of a hyphenated compound with a word that is not a number word | "segunda-feira" | one noun |

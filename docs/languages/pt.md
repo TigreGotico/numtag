@@ -101,7 +101,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 
 ## Known misreadings
 
-The European Portuguese gold corpus has 458 rows, and numtag reads 452 of them right. The Brazilian corpus has 456 rows, and numtag reads 450 right. The same six sentences fail in both.
+The European Portuguese gold corpus has 462 rows, and numtag reads 456 of them right. The Brazilian corpus has 460 rows, and numtag reads 454 right. The same six sentences fail in both.
 
 | Sentence | Gold | numtag |
 |---|---|---|

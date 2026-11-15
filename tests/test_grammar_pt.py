@@ -13,6 +13,12 @@ def pt(text: str, **options) -> list[tuple[str, str, str]]:
 
 
 class TestBindingRulings(unittest.TestCase):
+    def test_digits_after_the_first_group_count_only_a_scale_word(self):
+        # 2 x 10^6 + 500 x 10^3 = 2500000; digits with no scale word after
+        # them start a new number, so a year stays a year
+        self.assertEqual(pt("2 milhões e 500 mil"), [("2 milhões e 500 mil", "2500000", C)])
+        self.assertEqual(pt("3 milhões e 2021 foi pior"), [("3 milhões", "3000000", C), ("2021", "2021", C)])
+
     def test_mil_counts_the_whole_cardinal_before_a_collective(self):
         # (1000 + 2) x 12 = 12024
         self.assertEqual(pt("mil e duas dúzias"), [("mil e duas dúzias", "12024", C)])

@@ -426,9 +426,11 @@ class Grammar:
         found += [Count(end, Rational(value), needs_multiplier=True) for end, value in self._bound_units(i)]
         # "δυόμισι": a unit and a half in one word
         found += [Count(i + 1, Rational(e.value) + HALF) for e in self._readings(i, "unit_and_half")]
-        if first and (read := self._digit_value(i)):
+        if read := self._digit_value(i):
+            # after the first group, digits only count a scale word: "2
+            # milhões e 500 mil" is one number, "2 milhões e 500" two
             end, value, decimal = read
-            found.append(Count(end, value, decimal=decimal))
+            found.append(Count(end, value, needs_multiplier=not first, decimal=decimal))
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
