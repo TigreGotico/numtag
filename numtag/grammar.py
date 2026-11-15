@@ -16,9 +16,12 @@ the next word.
 
 After a range cue ("entre", "between") the first number ends at a joiner that
 splits the words into two numbers, the first smaller: "entre cem mil e um
-milhão" is two numbers.
+milhão" is two numbers. Where two numbers could also split at another
+joiner, the split with the fewest significant digits wins: "mil milhões e
+mil e quinhentos milhões" is 1000000000 and 1500000000.
 """
 import re
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, replace
 
 from numtag import digits
@@ -352,14 +355,15 @@ class Grammar:
         return found
 
     def _well_formed_after(self, group: Group, count: Rational) -> bool:
-        """False for a count below a thousand after "e" and the thousands
-        that is neither below a hundred nor a round hundred (Cunha & Cintra,
-        p. 372; Ciberdúvidas 34389): "mil e quinhentos" and "mil e vinte" are
-        well formed, "mil e cento e vinte" is not."""
+        """False for a count below a thousand after the joiner after the
+        thousands that is not below a hundred, or, where the lexicon allows
+        it, a round hundred: "mil e quinhentos" and "mil e vinte" are well
+        formed, "mil e cento e vinte" and "thousand and five hundred" are
+        not."""
         if group.exponent != THOUSAND or not self._is_word(group.end, self.lex.joiners):
             return True
         whole = _whole(count)
-        return len(whole) < 3 or whole.endswith("00")
+        return len(whole) < 3 or (self.lex.joiner_before_round_hundred and whole.endswith("00"))
 
     # Tails after a cardinal -------------------------------------------
 
@@ -594,47 +598,86 @@ class Grammar:
         """Every reading from ``i``. Among readings of the same length the
         first wins, so "a million and a half" takes the half of the noun
         before the half of one. After a range cue the first number ends at
-        the range joiner."""
+        the range joiner. Where the words split into two numbers at more
+        than one joiner, the split with the fewest significant digits wins."""
         left = self._range_left(i)
+        if left is None:
+            left = self._split_left(i)
         return self._numbers(i) if left is None else left
 
     def _range_left(self, i: int) -> list[Parse] | None:
         """After a range cue ("entre", "between"), the readings of the first
         number when a joiner splits the words into two numbers, the left one
-        smaller: "entre cem mil e um milhão" is 100000 and 1000000. Where more
-        joiners split so, the limits with the fewest significant digits win,
-        and then the longest left side: "entre dois milhões e mil e quinhentos
-        milhões" is 2000000 and 1500000000, not 2001000 and 500000000. A
-        joiner inside a number below a thousand ("sessenta e sete") splits
-        nothing, unless the words read as two numbers there with no cue and
-        that split has fewer significant digits than every other: so a cue
-        never reads worse than none ("entre mil e quinhentos e dois mil" is
-        1500 and 2000), and "between two thousand and one hundred and fifty
-        thousand" is 2000 and 150000."""
+        smaller: "entre cem mil e um milhão" is 100000 and 1000000."""
         if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
             return None
+        return self._fewest_digits(
+            (left, inner, digits) for left, right, inner, digits in self._splits(i)
+            if _less(left[0].value, right.value))
+
+    def _split_left(self, i: int) -> list[Parse] | None:
+        """With no range cue, where the longest number from ``i`` and the
+        number right after it could also split at a joiner, the readings of
+        the first number of the split with the fewest significant digits:
+        "mil milhões e mil e quinhentos milhões" is 1000000000 and
+        1500000000, not 1000001000 and 500000000. None when the longest
+        reading wins."""
+        plain = self._numbers(i)
+        if not plain:
+            return None
+        first = max(plain, key=lambda p: p.end)
+        joined = self._is_word(first.end, self.lex.joiners)
+        start = first.end + 1 if joined else first.end
+        after = self._numbers(start) if start < len(self.tokens) else []
+        if not after:
+            return None
+        second = max(after, key=lambda p: p.end)
+        digits = _significant_digits(first.value) + _significant_digits(second.value)
+        splits = [(left, inner, n) for left, right, inner, n in self._splits(i)
+                  if right.end == second.end and left[0].end != first.end]
+        best = self._fewest_digits([([first], joined and self._inner(i, first.end), digits)] + splits)
+        return None if best[0] is first else best
+
+    def _splits(self, i: int) -> Iterator[tuple[list[Parse], Parse, bool, int]]:
+        """Each joiner that splits the words from ``i`` into two numbers:
+        the readings of the first, the longest reading of the second, True
+        for a joiner inside a number below a thousand, and the significant
+        digits of both. A joiner inside a number below a thousand ("sessenta
+        e sete") splits only where the words read as two numbers there with
+        no split."""
         plain = self._numbers(i)
         default = max(plain, key=lambda p: p.end).end if plain else None
-        best, best_digits = None, None
         for k in range(i + 1, len(self.tokens)):
             if not self._number_word(k - 1):
                 break
             if not self._is_word(k, self.lex.joiners):
                 continue
-            inner = any(end > k + 1 for x in range(i, k) for end, _ in self.small(x))
+            inner = self._inner(i, k)
             if inner and k != default:
                 continue
             left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]
             right = self._numbers(k + 1)
             if not (left and right):
                 continue
-            low, high = left[0].value, max(right, key=lambda p: p.end).value
-            limit_digits = _significant_digits(low) + _significant_digits(high)
-            better = best_digits is None or limit_digits < best_digits or (
-                limit_digits == best_digits and not inner)
-            if _less(low, high) and better:
-                best, best_digits = left, limit_digits
-        return best
+            longest = max(right, key=lambda p: p.end)
+            yield left, longest, inner, _significant_digits(left[0].value) + _significant_digits(longest.value)
+
+    def _inner(self, i: int, k: int) -> bool:
+        """True when the joiner at ``k`` is inside a number below a thousand
+        that starts at ``i`` or later: "sessenta e sete"."""
+        return any(end > k + 1 for x in range(i, k) for end, _ in self.small(x))
+
+    @staticmethod
+    def _fewest_digits(splits: Iterable[tuple[list[Parse], bool, int]]) -> list[Parse] | None:
+        """The first number of the split with the fewest significant digits
+        across both numbers, and then the longest first number: "entre dois
+        milhões e mil e quinhentos milhões" is 2000000 and 1500000000, not
+        2001000 and 500000000; "dois milhões e mil e três milhões" is 2001000
+        and 3000000. A split inside a number below a thousand wins only with
+        fewer digits, so "between two thousand and one hundred and fifty
+        thousand" is 2000 and 150000."""
+        best = min(splits, key=lambda s: (s[2], s[1], -s[0][0].end), default=None)
+        return None if best is None else best[0]
 
     def _number_word(self, i: int) -> bool:
         token = self.tokens[i]

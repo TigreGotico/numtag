@@ -61,6 +61,8 @@ class Lexicon:
     joiner_tens_units: Joiner
     joiner_after_hundred: Joiner
     joiner_between_groups: Joiner
+    # "mil e quinhentos": a round hundred may follow the joiner after a thousand.
+    joiner_before_round_hundred: bool
     # "every_word": "vigésimo primeiro"; "last_word": "twenty-first".
     ordinal_style: str
     readings: dict[str, tuple[Entry, ...]]
@@ -158,6 +160,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_tens_units=Joiner(settings["joiner_tens_units"]),
         joiner_after_hundred=Joiner(settings["joiner_after_hundred"]),
         joiner_between_groups=Joiner(settings["joiner_between_groups"]),
+        joiner_before_round_hundred=settings["joiner_before_round_hundred"],
         ordinal_style=settings["ordinal_style"],
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),

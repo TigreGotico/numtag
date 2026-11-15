@@ -368,6 +368,24 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("entre dois milhões e mil e quinhentos milhões"),
                          [("dois milhões", "2000000", C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
 
+    def test_two_numbers_split_where_the_fewest_digits_are(self):
+        # 1000 x 10^6 = 1000000000 and 1500 x 10^6 = 1500000000: 1 + 2 = 3
+        # significant digits, against 1000001000 and 500000000: 7 + 1 = 8
+        self.assertEqual(pt("mil milhões e mil e quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        self.assertEqual(pt("mil milhões e mil quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil quinhentos milhões", "15" + "0" * 8, C)])
+        # 1500000 and 2000000: 2 + 1 = 3, against 1000000 and 500002000000: 1 + 6 = 7
+        self.assertEqual(pt("um milhão e quinhentos mil e dois milhões"),
+                         [("um milhão e quinhentos mil", "1500000", C), ("dois milhões", "2000000", C)])
+        # 2001000 and 3000000 (4 + 1 = 5) tie with 2000000 and 1003000000
+        # (1 + 4 = 5): the longer first number wins
+        self.assertEqual(pt("dois milhões e mil e três milhões"),
+                         [("dois milhões e mil", "2001000", C), ("três milhões", "3000000", C)])
+        # One number beats two: (200000 + 2) x 10^6
+        self.assertEqual(pt("duzentos mil e dois milhões"),
+                         [("duzentos mil e dois milhões", "200002000000", C)])
+
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
         self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])
