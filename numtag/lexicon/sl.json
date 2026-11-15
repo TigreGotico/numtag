@@ -10,6 +10,8 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR RBNF sl renders 345 as \"tristo petinštirideset\", no conjunction after the hundreds."},
     "joiner_between_groups": {"value": "never", "source": "CLDR RBNF sl renders 1001 as \"tisoč en\", no conjunction between groups."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR RBNF sl renders 1100 as \"tisoč sto\" and 1500 as \"tisoč petsto\": no joiner stands before a round hundred after the thousands."},
+    "comma_between_classes": {"value": false, "source": "CLDR RBNF sl writes no comma between two classes (1001, 1100 and 1500 in the joiner settings above). No source opened shows a comma between two classes of one number, so a comma ends a number."},
+    "joiner_before_last_group": {"value": "never", "source": "CLDR RBNF sl renders 1001 as \"tisoč en\": no conjunction stands before the last group."},
     "ordinal_style": {"value": "last_word", "source": "CLDR RBNF sl renders 21 in %spellout-ordinal-masculine as \"enegaindvajseti\": only the last part is ordinal."},
     "compound_words": {"value": true, "source": "CLDR RBNF sl renders 345 as \"tristo petinštirideset\", with the hundreds and the tens each one word, and 2000th as \"dvatisoči\". A word that is a sequence of number words reads as its parts."},
     "inverted_tens": {"value": "required", "source": "CLDR RBNF sl: \"20: [>%spellout-cardinal-masculine-accusative>in]dvajset;\": the unit, then \"in\", then the ten, in one word."},

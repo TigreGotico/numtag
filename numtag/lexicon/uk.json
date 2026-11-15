@@ -10,6 +10,8 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR RBNF uk: \"100: сто[ >>];\", no conjunction after the hundreds."},
     "joiner_between_groups": {"value": "never", "source": "CLDR RBNF uk renders 1001 as \"одна тисяча один\", no conjunction between groups."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR RBNF uk renders 1100 as \"одна тисяча сто\" and 1500 as \"одна тисяча пʼятсот\": no joiner stands before a round hundred after the thousands."},
+    "comma_between_classes": {"value": false, "source": "CLDR RBNF uk writes no comma between two classes (1001, 1100 and 1500 in the joiner settings above). No source opened shows a comma between two classes of one number, so a comma ends a number."},
+    "joiner_before_last_group": {"value": "never", "source": "CLDR RBNF uk renders 1001 as \"одна тисяча один\": no conjunction stands before the last group."},
     "ordinal_style": {"value": "last_word", "source": "CLDR RBNF uk renders 2023 in %spellout-ordinal-masculine as \"дві тисячі двадцять третій\": only the last word is ordinal."},
     "compound_words": {"value": true, "source": "CLDR RBNF uk writes 2000th as one word (\"двотисячний\"). Український правопис (2019), § 38 \"Складні числівники\", writes such ordinals with digits and a hyphen (\"3-ти́сячний\"). A word that is a sequence of number words reads as its parts."},
     "bare_noun_counts_one": {"value": true, "source": "Ukrainian has no article, so a singular collective or fraction noun alone counts one. Wiktionary (en), \"чверть\": \"чверть години\", \"a quarter of an hour\"."},

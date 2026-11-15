@@ -211,10 +211,14 @@ class Grammar:
                               if len(ten.value) == 2 and ten.value[1] == "0" and ten.value != "10"]
         return found
 
-    def hundreds(self, i: int) -> list[tuple[int, str, bool]]:
+    def hundreds(self, i: int, multiplied: bool = True) -> list[tuple[int, str, bool]]:
         """(end, value, bound): a bound form stands only before the rest of
-        the number ("cento e um", never "cento" alone)."""
+        the number ("cento e um", never "cento" alone). Without
+        ``multiplied``, no hundreds from a count and a multiplier ("two
+        hundred")."""
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")]
+        if not multiplied:
+            return found
         counts = self.tens_units(i, nonzero=True)
         if self._is_word(i, self.lex.articles):
             counts.append((i + 1, "1"))
@@ -224,9 +228,9 @@ class Grammar:
                     found.append((end + 1, digits.shift(count, multiplier.exponent), False))
         return found
 
-    def small(self, i: int, nonzero: bool = False) -> list[tuple[int, str]]:
+    def small(self, i: int, nonzero: bool = False, multiplied: bool = True) -> list[tuple[int, str]]:
         found = self.tens_units(i, nonzero)
-        for end, hundreds, bound in self.hundreds(i):
+        for end, hundreds, bound in self.hundreds(i, multiplied):
             if not bound:
                 found.append((end, hundreds))
             for j in self._after_joiner(end, self.lex.joiner_after_hundred):
@@ -237,7 +241,14 @@ class Grammar:
         """Digits after a decimal marker, one reading per end: each word
         gives its own digits ("vírgula zero cinco" is .05). Where the words
         split in more than one way, the reading with the fewest parts wins,
-        so "point twenty five" is .25 and not .205."""
+        so "point twenty five" is .25 and not .205.
+
+        The fractional part follows the grammar of the whole part (a
+        structural ruling, no external source): a hundreds word never
+        follows another part, as "cem" never follows units in a cardinal,
+        so "zero vírgula vinte e cinco cem" is 0.25 and 100. A multiplier
+        ("hundred") makes no digits: it multiplies the decimal number, so
+        "one point two hundred" is 120."""
         if not self._is_word(i, self.lex.decimal_markers):
             return []
         starts = self._after_joiner(i + 1, self.lex.joiner_after_decimal_marker)
@@ -246,7 +257,9 @@ class Grammar:
             if position not in best:
                 continue
             parts, written = best[position]
-            for end, chunk in self.small(position):
+            for end, chunk in self.small(position, multiplied=False):
+                if parts and len(chunk) == 3:
+                    continue
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk)
         found = [(end, written) for end, (parts, written) in best.items() if parts]
@@ -282,8 +295,12 @@ class Grammar:
         if self._is_word(i, self.lex.articles) and self._readings(i + 1, "half"):
             found.append(Count(i + 2, HALF, needs_multiplier=True))
         for end, value in smalls:
-            found += [Count(e, Rational.from_decimal(value, fraction), decimal=True)
-                      for e, fraction in self.decimal_digits(end)]
+            for e, fraction in self.decimal_digits(end):
+                decimal = Rational.from_decimal(value, fraction)
+                found.append(Count(e, decimal, decimal=True))
+                # "one point two hundred": a multiplier after the decimals
+                found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True)
+                          for m in self._readings(e, "hundred_multiplier") if not m.plural]
             # "two and a half million"
             for j in self._after_joiner(end, Joiner.REQUIRED):
                 k = j + 1 if self._is_word(j, self.lex.articles) else j
@@ -366,7 +383,8 @@ class Grammar:
             # milhões" is two numbers, not 2000003 and a stray "milhões".
             if compound and last.exponent == 0 and self._takes_count(last.end, last.count):
                 continue
-            found.append(run)
+            if not self._lacks_joiner(run):
+                found.append(run)
             if last.exponent == 0 or last.decimal:
                 continue
             room = _room(last)
@@ -377,13 +395,6 @@ class Grammar:
                 # 1000002000 and "milhões". Any other plain group joins the
                 # run, so "um milhão e quinhentos mil e dois milhões" is
                 # 1500000 and 2000000.
-                # Nor is the first word of a count below a thousand: "um milhão
-                # e vinte e cinco milhões" is 1000000 and 25000000.
-                # Only a count that may follow the group: in "mil e quinhentos
-                # e dois mil", "e quinhentos e dois" is not well formed after
-                # "mil", so the number is 1500 and "dois mil" starts the next.
-                counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
-                          and self._well_formed_after(last, Rational(value))}
                 for group in following:
                     # A count right after a scale numeral with no joiner
                     # counts the collective after it: "treze mil duas
@@ -392,12 +403,23 @@ class Grammar:
                         continue
                     if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent), group.exponent):
                         continue
-                    if compound and group.exponent == 0 and any(end > group.end for end in counts):
-                        continue
                     if group.order < last.order and len(_whole(group.count.scaled(group.exponent))) <= room:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
+
+    def _lacks_joiner(self, run: tuple[Group, ...]) -> bool:
+        """True for a last group below a hundred or a round hundred with no
+        joiner before it, where the language requires the joiner there:
+        "mil duzentos" is 1000 and 200, "mil e duzentos" is 1200, and "mil
+        duzentos e quatro" is 1204. The run may still go on: "dois milhões
+        quinhentos mil e quatro" is 2500004."""
+        if len(run) < 2 or self.lex.joiner_before_last_group != Joiner.REQUIRED:
+            return False
+        if self._is_word(run[-2].end, self.lex.joiners):
+            return False
+        whole = _whole(run[-1].count)
+        return len(whole) < 3 or (len(whole) == 3 and whole.endswith("00"))
 
     def _well_formed_after(self, group: Group, count: Rational) -> bool:
         """False for a count below a thousand after the joiner after the
@@ -430,10 +452,12 @@ class Grammar:
         found = []
         for entry in self._readings(last.end, "collective"):
             # A collective of a place value counts only the group after the
-            # joiner: "treze mil e duas centenas" is 13200 (Miro). Any other
-            # collective counts the whole cardinal: "mil e duas dúzias" is
-            # 12024 (Miro).
-            place = split < len(run) - 1 and entry.value.strip("0") == "1"
+            # joiner, where the product fits below the group before it:
+            # "treze mil e duas centenas" is 13200 (Miro), "três mil e
+            # quinhentas centenas" is 350000. Any other collective counts the
+            # whole cardinal: "mil e duas dúzias" is 12024 (Miro).
+            place = split < len(run) - 1 and entry.value.strip("0") == "1" and len(
+                _whole(last.count * Rational(entry.value))) <= _room(run[-2])
             cut = len(run) - 1 if place else split
             found += self._collective(_sum(run[:cut]), _sum(run[cut:]), entry, last.end, may_take_of=cut == 0 or place)
         decimal = any(g.decimal for g in run)
@@ -607,8 +631,7 @@ class Grammar:
     def ordinals(self, i: int) -> list[Parse]:
         """"vigésimo primeiro", "dois milésimo", "twenty-first", "two hundredth"."""
         prefixes: list[tuple[int, tuple[Group, ...]]] = [(i, ())]
-        prefixes += [(run[-1].end, run) for run in self.cardinals(i)
-                     if not run[-1].decimal]
+        prefixes += [(run[-1].end, run) for run in self.cardinals(i) if not run[-1].decimal]
         found = []
         for start, run in prefixes:
             positions = [start] if not run or self.lex.ordinal_style == "every_word" \
@@ -623,14 +646,9 @@ class Grammar:
         for scale in self._readings(j, "ordinal_scale"):
             if scale.plural or (prefix is not None and prefix.canonical() == "1"):
                 continue  # "dois milésimos" and "um milésimo" are fractions
-            # The scale counts only the groups below it: "two million three
-            # hundred thousandth" is 2300000th, not 2000300000th.
-            above = tuple(g for g in run if g.exponent > scale.exponent)
-            count = _sum(run[len(above):]) if len(above) < len(run) else ONE
-            if above and len(_whole(count.scaled(scale.exponent))) > above[-1].exponent:
-                continue
-            value = _sum(above) + count.scaled(scale.exponent)
-            found += self._ordinal_rest(j + 1, value, scale.ambiguous)
+            value = _ordinal_scale_value(run, scale.exponent)
+            if value is not None:
+                found += self._ordinal_rest(j + 1, value, scale.ambiguous)
         words = [(j + 1, e.value, e.ambiguous) for e in self._readings(j, "ordinal")]
         words += [(end, digits.add(ten, unit), False) for end, ten, unit in self._inverted(j, "ordinal")]
         for end, value, ambiguous in words:
@@ -710,10 +728,14 @@ class Grammar:
         for a joiner inside a number below a thousand, and the significant
         digits of both. A joiner inside a number below a thousand ("sessenta
         e sete") splits only where the words read as two numbers there with
-        no split."""
+        no split. A first number never ends past the longest reading from
+        ``i``, so the search stops there: a run of number words with no
+        joiner ("um um um") is a list, and the search stays linear."""
         plain = self._numbers(i)
-        default = max(plain, key=lambda p: p.end).end if plain else None
-        for k in range(i + 1, len(self.tokens) - 1):
+        if not plain:
+            return
+        default = max(plain, key=lambda p: p.end).end
+        for k in range(i + 1, min(default + 1, len(self.tokens) - 1)):
             if not self._number_word(k - 1):
                 break
             if not self._is_word(k, self.lex.joiners):
@@ -795,6 +817,19 @@ def _significant_digits(value: Rational) -> int:
 def _less(a: Rational, b: Rational) -> bool:
     difference = b + -a
     return not difference.negative and not difference.is_zero()
+
+
+def _ordinal_scale_value(run: tuple[Group, ...], exponent: int) -> Rational | None:
+    """An ordinal scale word multiplies only the last group of its prefix
+    and adds the groups before it: "six thousand two hundredth" is 6200th,
+    and "one million two hundred thousandth" is 1200000th. None when the
+    product does not fit below the group before it."""
+    if not run:
+        return ONE.scaled(exponent)
+    last = run[-1].count.scaled(run[-1].exponent + exponent)
+    if len(run) > 1 and len(_whole(last)) > _room(run[-2]):
+        return None
+    return _sum(run[:-1]) + last
 
 
 def _room(group: Group) -> int:

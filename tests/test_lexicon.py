@@ -4,7 +4,7 @@ import unittest
 from fnmatch import fnmatch
 from pathlib import Path
 
-from numtag.lexicon import load
+from numtag.lexicon import Joiner, load
 
 SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
 
@@ -65,6 +65,14 @@ class TestLexiconFiles(unittest.TestCase):
 
     def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
         self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": False, "pt-BR": True, "pt-PT": True})
+
+    def test_only_portuguese_requires_the_joiner_before_a_last_round_group(self):
+        self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},
+                         {"en": Joiner.OPTIONAL, "pt-BR": Joiner.REQUIRED, "pt-PT": Joiner.REQUIRED})
+
+    def test_only_portuguese_takes_a_comma_between_classes(self):
+        self.assertEqual({lang: load(lang).comma_between_classes for lang in ("en", "pt-BR", "pt-PT")},
                          {"en": False, "pt-BR": True, "pt-PT": True})
 
     def test_an_unknown_language_is_refused(self):

@@ -25,6 +25,9 @@ class TestBindingRulings(unittest.TestCase):
     def test_a_place_collective_after_the_joiner_counts_only_its_group(self):
         # Miro: 13000 + 2 x 100
         self.assertEqual(pt("treze mil e duas centenas"), [("treze mil e duas centenas", "13200", C)])
+        # 500 x 100 does not fit below 3000, so the whole cardinal counts
+        # the collective: (3000 + 500) x 100
+        self.assertEqual(pt("três mil e quinhentas centenas"), [("três mil e quinhentas centenas", "350000", C)])
         # (3000 + 2 x 100) x 10^6
         self.assertEqual(pt("três mil e duas centenas de milhões"),
                          [("três mil e duas centenas de milhões", "3200000000", C)])
@@ -210,6 +213,9 @@ class TestCardinals(unittest.TestCase):
     def test_scales_must_descend(self):
         self.assertEqual(pt("mil mil"), [("mil", "1000", C), ("mil", "1000", C)])
         self.assertEqual(pt("dez mil mil"), [("dez mil", "10000", C), ("mil", "1000", C)])
+        # a second group of the same scale starts a new number, also after "e"
+        self.assertEqual(pt("dez mil e mil"), [("dez mil", "10000", C), ("mil", "1000", C)])
+        self.assertEqual(pt("duzentos mil e mil"), [("duzentos mil", "200000", C), ("mil", "1000", C)])
 
     def test_a_count_belongs_to_the_scale_word_after_it(self):
         self.assertEqual(pt("dois mil e três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])
@@ -385,8 +391,9 @@ class TestCardinals(unittest.TestCase):
         # significant digits, against 1000001000 and 500000000: 7 + 1 = 8
         self.assertEqual(pt("mil milhões e mil e quinhentos milhões"),
                          [("mil milhões", "1" + "0" * 9, C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        # "mil quinhentos" is no count: a round hundred needs "e"
         self.assertEqual(pt("mil milhões e mil quinhentos milhões"),
-                         [("mil milhões", "1" + "0" * 9, C), ("mil quinhentos milhões", "15" + "0" * 8, C)])
+                         [("mil milhões e mil", "1000001000", C), ("quinhentos milhões", "5" + "0" * 8, C)])
         # 1500000 and 2000000: 2 + 1 = 3, against 1000000 and 500002000000: 1 + 6 = 7
         self.assertEqual(pt("um milhão e quinhentos mil e dois milhões"),
                          [("um milhão e quinhentos mil", "1500000", C), ("dois milhões", "2000000", C)])
@@ -403,22 +410,26 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(read("um trilhão cinquenta bilhões mil e quarenta", "pt-BR"),
                          [("um trilhão cinquenta bilhões mil e quarenta", "1050000001040", C)])
         # 10^18 + 50 x 10^12 + 1000
-        self.assertEqual(pt("um trilião cinquenta biliões mil"),
-                         [("um trilião cinquenta biliões mil", "1000050000000001000", C)])
+        self.assertEqual(pt("um trilião cinquenta biliões e mil"),
+                         [("um trilião cinquenta biliões e mil", "1000050000000001000", C)])
 
     def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
         self.assertEqual(pt("entre dois e"), [("dois", "2", C)])
         self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
         self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
         self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
+        # digits glued to a word are dropped, so "e20" leaves a final joiner
+        self.assertEqual(pt("entre 15 e20"), [("15", "15", C)])
 
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
         self.assertEqual(pt("entre mil e quinhentos euros"), [("mil e quinhentos", "1500", C)])
 
     def test_mil_and_a_count_with_no_e_count_a_larger_noun(self):
-        # (1000 + 500) x 10^6; (2000 + 350) x 10^6
-        self.assertEqual(pt("mil quinhentos milhões"), [("mil quinhentos milhões", "1500000000", C)])
+        # (2000 + 350) x 10^6. A round hundred needs "e", so "mil
+        # quinhentos" counts no noun.
+        self.assertEqual(pt("mil quinhentos milhões"),
+                         [("mil", "1000", C), ("quinhentos milhões", "500000000", C)])
         self.assertEqual(pt("dois mil trezentos e cinquenta milhões"),
                          [("dois mil trezentos e cinquenta milhões", "2350000000", C)])
 
@@ -445,6 +456,120 @@ class TestCardinals(unittest.TestCase):
 
     def test_punctuation_ends_a_number(self):
         self.assertEqual(pt("mil, duzentos"), [("mil", "1000", C), ("duzentos", "200", C)])
+
+
+class TestJoinerBeforeTheLastGroup(unittest.TestCase):
+    """A last group below a hundred or a round hundred takes "e"; without it
+    the group starts a new number (Miro; Cunha & Cintra, p. 372: "1800 = mil
+    e oitocentos"; Teyssier, pp. 181-182: "1.030: mil e trinta"). An "e"
+    before any other group is optional."""
+
+    def test_a_last_round_group_with_no_e_starts_a_new_number(self):
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("mil duzentos", lang), [("mil", "1000", C), ("duzentos", "200", C)])
+                self.assertEqual(read("mil trinta", lang), [("mil", "1000", C), ("trinta", "30", C)])
+                self.assertEqual(read("dois mil cem", lang), [("dois mil", "2000", C), ("cem", "100", C)])
+                self.assertEqual(read("cem mil um", lang), [("cem mil", "100000", C), ("um", "1", C)])
+                self.assertEqual(read("dois milhões quinhentos mil", lang),
+                                 [("dois milhões", "2000000", C), ("quinhentos mil", "500000", C)])
+
+    def test_a_last_round_group_after_e_joins(self):
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("mil e duzentos", lang), [("mil e duzentos", "1200", C)])
+                self.assertEqual(read("mil e trinta", lang), [("mil e trinta", "1030", C)])
+                self.assertEqual(read("dois mil e cem", lang), [("dois mil e cem", "2100", C)])
+                self.assertEqual(read("cem mil e um", lang), [("cem mil e um", "100001", C)])
+                self.assertEqual(read("dois milhões e quinhentos mil", lang),
+                                 [("dois milhões e quinhentos mil", "2500000", C)])
+                # the sources' own examples: 1892, 1800, 4226, 1400
+                self.assertEqual(read("mil oitocentos e noventa e dois", lang),
+                                 [("mil oitocentos e noventa e dois", "1892", C)])
+                self.assertEqual(read("mil e oitocentos", lang), [("mil e oitocentos", "1800", C)])
+                self.assertEqual(read("quatro mil duzentos e vinte e seis", lang),
+                                 [("quatro mil duzentos e vinte e seis", "4226", C)])
+                self.assertEqual(read("mil e quatrocentos", lang), [("mil e quatrocentos", "1400", C)])
+
+    def test_an_e_before_any_other_group_is_optional(self):
+        # 1000 + 204, with or without "e"
+        self.assertEqual(pt("mil duzentos e quatro"), [("mil duzentos e quatro", "1204", C)])
+        self.assertEqual(pt("mil e duzentos e quatro"), [("mil e duzentos e quatro", "1204", C)])
+        # 2000000 + 500000 + 4: the round group is not the last
+        self.assertEqual(pt("dois milhões quinhentos mil e quatro"),
+                         [("dois milhões quinhentos mil e quatro", "2500004", C)])
+
+    def test_the_gulbenkian_examples(self):
+        # Gramática do Português (Gulbenkian), pp. 932-933: "e" joins the two
+        # rightmost classes that are not zero when the second ends in two
+        # zeros or begins with a zero; elsewhere it is left out.
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                # 2000000 + 300 x 1000; 2000000 + 7 x 1000; 2000000 + 500
+                self.assertEqual(read("dois milhões e trezentos mil", lang),
+                                 [("dois milhões e trezentos mil", "2300000", C)])
+                self.assertEqual(read("dois milhões e sete mil", lang), [("dois milhões e sete mil", "2007000", C)])
+                self.assertEqual(read("dois milhões e quinhentos", lang), [("dois milhões e quinhentos", "2000500", C)])
+                # 2000000 + 236 x 1000 + 321
+                text = "dois milhões duzentos e trinta e seis mil trezentos e vinte e um"
+                self.assertEqual(read(text, lang), [(text, "2236321", C)])
+                # 1000000 + 200 x 1000 + 300, with or without the first "e"
+                self.assertEqual(read("um milhão duzentos mil e trezentos", lang),
+                                 [("um milhão duzentos mil e trezentos", "1200300", C)])
+                self.assertEqual(read("um milhão e duzentos mil e trezentos", lang),
+                                 [("um milhão e duzentos mil e trezentos", "1200300", C)])
+
+    def test_a_comma_after_a_scale_word_stands_between_two_classes(self):
+        # Gulbenkian, pp. 932-933: "2 236 321 – dois milhões, duzentos e
+        # trinta e seis mil trezentos e vinte e um"
+        text = "dois milhões, duzentos e trinta e seis mil trezentos e vinte e um"
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read(text, lang), [(text, "2236321", C)])
+        # 1000 + 250
+        self.assertEqual(pt("mil, duzentos e cinquenta"), [("mil, duzentos e cinquenta", "1250", C)])
+        # the last group needs "e" all the same, and a comma after a word
+        # that is no scale word, or before "e", still ends the number
+        self.assertEqual(pt("dois milhões, trezentos mil"),
+                         [("dois milhões", "2000000", C), ("trezentos mil", "300000", C)])
+        self.assertEqual(pt("dois milhões, três"), [("dois milhões", "2000000", C), ("três", "3", C)])
+        self.assertEqual(pt("dois mil, três mil"), [("dois mil", "2000", C), ("três mil", "3000", C)])
+        self.assertEqual(pt("vinte, trinta e um"), [("vinte", "20", C), ("trinta e um", "31", C)])
+        self.assertEqual(pt("dois, mil"), [("dois", "2", C), ("mil", "1000", C)])
+        self.assertEqual(pt("vigésimo, primeiro"), [("vigésimo", "20", O), ("primeiro", "1", O)])
+        # a comma with no space after it is no class separator
+        self.assertEqual(pt("dois milhões,duzentos e trinta e seis mil"),
+                         [("dois milhões", "2000000", C), ("duzentos e trinta e seis mil", "236000", C)])
+        self.assertEqual(pt("dois milhões, e trezentos mil"),
+                         [("dois milhões", "2000000", C), ("trezentos mil", "300000", C)])
+
+    def test_a_last_count_of_a_thousand_or_more_joins_with_no_e(self):
+        # 10^12 + 1500 x 10^6: the count 1500 is neither below a hundred
+        # nor a round hundred
+        self.assertEqual(pt("um bilião mil e quinhentos milhões"),
+                         [("um bilião mil e quinhentos milhões", "1001500000000", C)])
+        # 10^12 + 2000 x 10^6
+        self.assertEqual(pt("um bilião dois mil milhões"), [("um bilião dois mil milhões", "1002000000000", C)])
+
+    def test_a_collective_after_a_last_group_with_no_e(self):
+        # 1000; 200 x 12
+        self.assertEqual(pt("mil duzentas dúzias"), [("mil", "1000", C), ("duzentas dúzias", "2400", C)])
+
+    def test_a_range_cue_takes_the_joiner_rule(self):
+        # 1200 < 2000
+        self.assertEqual(pt("entre mil e duzentos e dois mil"),
+                         [("mil e duzentos", "1200", C), ("dois mil", "2000", C)])
+        # "mil duzentos" is no number, so the first number is 1000, and
+        # "duzentos e dois" counts "mil": 202000
+        self.assertEqual(pt("entre mil duzentos e dois mil"),
+                         [("mil", "1000", C), ("duzentos e dois mil", "202000", C)])
+        # 2500000 < 3000000
+        self.assertEqual(pt("entre dois milhões e quinhentos mil e três milhões"),
+                         [("dois milhões e quinhentos mil", "2500000", C), ("três milhões", "3000000", C)])
+        # no "e" before "quinhentos mil": the first number is 2000000, and
+        # the well-formed "quinhentos mil e três" counts "milhões"
+        self.assertEqual(pt("entre dois milhões quinhentos mil e três milhões"),
+                         [("dois milhões", "2000000", C), ("quinhentos mil e três milhões", "500003000000", C)])
 
 
 class TestScale(unittest.TestCase):
@@ -513,10 +638,22 @@ class TestDecimals(unittest.TestCase):
     def test_each_word_after_the_marker_gives_its_digits(self):
         self.assertEqual(pt("zero vírgula zero cinco"), [("zero vírgula zero cinco", "0.05", D)])
         self.assertEqual(pt("dois vírgula vinte e cinco"), [("dois vírgula vinte e cinco", "2.25", D)])
+        self.assertEqual(pt("zero vírgula dois cinco"), [("zero vírgula dois cinco", "0.25", D)])
+
+    def test_the_fractional_part_follows_the_grammar_of_the_whole_part(self):
+        # "cem" never follows units in a cardinal, so the decimal ends
+        # before it: 0.25 and 100, not 0.251
+        self.assertEqual(pt("zero vírgula vinte e cinco cem"),
+                         [("zero vírgula vinte e cinco", "0.25", D), ("cem", "100", C)])
+        self.assertEqual(pt("dois vírgula cinco cem"), [("dois vírgula cinco", "2.5", D), ("cem", "100", C)])
+        # a hundreds word may start the fractional part: 1 + 125/1000
+        self.assertEqual(pt("um vírgula cento e vinte e cinco"), [("um vírgula cento e vinte e cinco", "1.125", D)])
 
     def test_a_decimal_counts_the_scale_after_it(self):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(pt("dois vírgula cinco milhões"), [("dois vírgula cinco milhões", "2500000", C)])
+        # 1.2 x 1000
+        self.assertEqual(pt("um vírgula dois mil"), [("um vírgula dois mil", "1200", C)])
 
 
 class TestDigits(unittest.TestCase):
@@ -613,6 +750,22 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual([m.value for m in mentions], ["2"])
         self.assertLess(mentions[0].confidence, 0.5)
 
+
+    def test_an_ordinal_scale_word_multiplies_only_the_last_group(self):
+        # 2000000 + 300 x 1000 = 2300000; 1000000 + 200 x 1000 = 1200000
+        self.assertEqual(pt("dois milhões e trezentos milésimo"),
+                         [("dois milhões e trezentos milésimo", "2300000", O)])
+        self.assertEqual(pt("um milhão e duzentos milésimo"), [("um milhão e duzentos milésimo", "1200000", O)])
+        # 3 x 10^90 + 400 x 1000 (long scale: quindecilião = 10^90)
+        self.assertEqual(pt("três quindecilhões e quatrocentos milésimo"),
+                         [("três quindecilhões e quatrocentos milésimo", "3" + "0" * 84 + "400000", O)])
+        # pt-BR: 200 x 10^12 + 17 x 1000 = 200000000017000
+        self.assertEqual(read("duzentos trilhões e dezessete milésimo", "pt-BR"),
+                         [("duzentos trilhões e dezessete milésimo", "200000000017000", O)])
+        # every word ordinal (CLDR): 2 x 1000 + 200 = 2200
+        self.assertEqual(pt("dois milésimo ducentésimo"), [("dois milésimo ducentésimo", "2200", O)])
+        # a plural is a fraction: 2/1000
+        self.assertEqual(pt("duas milésimas"), [("duas milésimas", "0.002", F)])
 
 class TestFractions(unittest.TestCase):
     def test_a_count_and_a_denominator(self):

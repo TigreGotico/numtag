@@ -10,6 +10,8 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR RBNF pl: \"100: sto[ >>];\", no conjunction after the hundreds."},
     "joiner_between_groups": {"value": "never", "source": "CLDR RBNF pl renders 1001 as \"tysiąc jeden\", no conjunction between groups."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR RBNF pl renders 1100 as \"tysiąc sto\" and 1500 as \"tysiąc pięćset\": no joiner stands before a round hundred after the thousands."},
+    "comma_between_classes": {"value": false, "source": "CLDR RBNF pl writes no comma between two classes (1001, 1100 and 1500 in the joiner settings above). No source opened shows a comma between two classes of one number, so a comma ends a number."},
+    "joiner_before_last_group": {"value": "never", "source": "CLDR RBNF pl renders 1001 as \"tysiąc jeden\": no conjunction stands before the last group."},
     "ordinal_style": {"value": "tail_words", "source": "CLDR RBNF pl renders 2023 in %spellout-ordinal-masculine as \"dwa tysiące dwudziesty trzeci\": the thousands stay cardinal and every word after them is ordinal."},
     "compound_words": {"value": true, "source": "CLDR RBNF pl writes 2000th as one word (\"dwutysięczny\"). A word that is a sequence of number words reads as its parts."},
     "bare_noun_counts_one": {"value": true, "source": "Polish has no article, so a singular collective or fraction noun alone counts one. Wiktionary (en), \"tuzin\": \"dozen\"; Wiktionary (en), \"ćwierć\": \"quarter\"."},
