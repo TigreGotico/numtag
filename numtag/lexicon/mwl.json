@@ -40,6 +40,14 @@
    "value": true,
    "source": "ovos-number-parser tests/test_mwl_periphrastic_hundreds.py, whose docstring reads \"Source: reviewed by a native central-dialect Mirandese speaker (2025-10-12)\": \"dous cientos\", \"ciento i un\", \"dous cientos i trinta i quatro\", \"mil dous cientos i trinta i quatro\", \"mil cinco cientos\", \"dous cientas\", \"mil duzientos i trinta i quatro\" = 1234, \"dous milhones i quinhentos\" = 2000500: \"dous milhones i quinhentos\" = 2000500, so \"i\" goes before a round hundred."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "Convenção Ortográfica da Língua Mirandesa (1999), \"Numerais\": \"1 000 - Mil\", \"1 000 000 - Milhon\" write a space between digit classes and no comma. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "joiner_between_groups is \"optional\", with the source quoted there: no joiner stands between two groups, the last group too."
+  },
   "ordinal_style": {
    "value": "every_word",
    "source": "Omniglot, \"Numbers in Mirandese\": \"7 siete\", \"9 nuobe\", \"12 duoze\", \"16 dezasseis, zasseis\", \"17 dezassiete, zassiete\", \"18 dezuito, zuio\", \"19 dezanuobe, zanuobe\", \"21 bint'i un\", \"200 duzientos\", \"400 quatrocientos\", \"500 quinhentos\", \"700 sietecientos\"; ordinals \"purmerio\", \"segundo\", \"terceiro\", \"sesto\", \"uitabo\", \"nono\", \"décimo\", \"undécimo\", \"duodécimo\", \"décimo terceiro\", \"bigésimo\", \"trigésimo\", \"quadragésimo\", \"quinquagésimo\", \"sessagésimo\", \"setuagésimo\", \"uctogésimo\", \"nonagésimo\", \"centésimo\", \"ducentésimo\", \"tricentésimo\", \"quadringentésimo\", \"quingentésimo\", \"seiscentésimo\", \"setingentésimo\", \"uctingentésimo\", \"noningentésimo\", \"milésimo\", \"un milhon\"; test_number_parser_mwl.py: \"bigésimo purmerio\", \"sessagésima quarta\"."

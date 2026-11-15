@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"mil cincocientos\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "Academia Aragonesa de la Lengua, Ortografía de l'aragonés (2023), 7.4: \"trenta y uno, ciento diez, cuaranta mil, mil cincocientos\": no joiner stands before the last group."
+  },
   "ordinal_style": {
    "value": "every_word",
    "source": "ovos-number-parser numbers_an.py (a lead, no authority): \"cuatre\", \"vinticuatre\", \"cuatrecientos\", \"doce\", \"catorze\", \"deciséis\", \"decisiet\", \"deciueito\", \"cincuanta\", \"sixanta\", \"vintiséis\"; ordinals \"cuatreno\", \"cinqueno\", \"seiseno\", \"seteno\", \"uiteno\", \"noveno\", \"deceno\", \"onceno\", \"venteno\", \"trenteno\", \"centeno\", \"mileno\"; \"meyo\", \"meya\"; no source names the shape of a compound ordinal, so every word may be ordinal, as in es."

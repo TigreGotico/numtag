@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF ca, \"1000: mil[ >>];\", writes a space, not a comma, between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml, saved as knowledge/wiki/audits/numtag/lang-ports/ibero/sources/cldr-rbnf-ca.xml), %spellout-cardinal-masculine: \"1000: mil[ >>];\": no joiner stands before the last group (\"mil dos-cents\")."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\": only the last word of a compound ordinal is ordinal."

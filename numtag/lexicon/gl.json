@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner stands between two groups, the last group too. RAG e ILG, Normas (2003), 16.1 lists no number above \"mil\", so no saved page shows the last group."
+  },
   "ordinal_style": {
    "value": "every_word",
    "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""

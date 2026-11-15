@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF es, \"1000: mil[ >>];\", writes a space, not a comma, between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "CLDR RBNF es (common/rbnf/es.xml, saved as knowledge/wiki/audits/numtag/lang-ports/ibero/sources/cldr-rbnf-es.xml), %spellout-cardinal-masculine: \"1000: mil[ >>];\": no joiner stands before the last group (\"mil doscientos\")."
+  },
   "ordinal_style": {
    "value": "every_word",
    "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; §2b: \"decimotercero, vigesimocuarto, trigésimo noveno, ducentésimo segundo\""

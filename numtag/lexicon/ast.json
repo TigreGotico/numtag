@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "en.wiktionary, Asturian \"mil\": \"mil dos, mil trenta y nueve\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "en.wiktionary, Asturian \"mil\": \"In compound numbers, mil does not inflect or change: mil dos, mil trenta y nueve, tres mil, venti mil\": no joiner stands before the last group."
+  },
   "ordinal_style": {
    "value": "every_word",
    "source": "Omniglot, \"Numbers in Asturian\" (sources: Wiktionary, languagesandnumbers.com): \"21 ventiuno\", \"31 trenta y uno\", \"101 ciento uno\"; ordinals \"primeru\", \"segundu\", \"terceru\", \"cuartu\", \"quintu\", \"sestu\", \"séptimu\", \"octavu\", \"novenu\", \"décimu\", \"ventésimu\", \"ventésimu primeru\", \"trentésimu\", \"cuarentenu\", \"cincuentenu\", \"sesentenu\", \"setentenu\", \"ochentenu\", \"noventenu\", \"centésimu\", \"milésimu\": \"ventésimu primeru\", \"cuarentenu primeru\"."

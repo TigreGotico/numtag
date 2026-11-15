@@ -40,6 +40,14 @@
    "value": false,
    "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
   },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner stands between two groups, the last group too. No saved page shows an Occitan number above \"mil\" with its last group."
+  },
   "ordinal_style": {
    "value": "last_word",
    "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\": \"vint e unena\": only the last word is ordinal."
