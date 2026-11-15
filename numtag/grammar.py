@@ -298,9 +298,16 @@ class Grammar:
             found.append(run)
             if last.exponent == 0 or last.decimal:
                 continue
+            room = _room(last)
             for j in self._after_joiner(last.end, self.lex.joiner_between_groups):
-                for group in self.groups(j, first=False, compound=compound):
-                    if group.order < last.order:
+                following = self.groups(j, first=False, compound=compound)
+                # Where a count of several words starts ("mil e quinhentos"
+                # milhões), its first word is no group of this run.
+                counted = any(g.top for g in following)
+                for group in following:
+                    if counted and not group.top:
+                        continue
+                    if group.order < last.order and len(_whole(group.count.scaled(group.exponent))) <= room:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
@@ -500,6 +507,21 @@ class Grammar:
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run)
         return found
+
+
+def _whole(value: Rational) -> str:
+    return digits.divide_whole(value.numerator, value.denominator)[0]
+
+
+def _room(group: Group) -> int:
+    """How many digits the groups after ``group`` may fill: the place of the
+    group and the trailing zeros of its count. "mil e quinhentos milhões"
+    leaves 8, so "e seiscentos milhões" is a new number; "meio milhão", a
+    count that is not whole, leaves 6, so "e duzentos mil" adds to it."""
+    if not group.count.is_whole():
+        return group.exponent
+    whole = _whole(group.count)
+    return group.exponent + len(whole) - len(whole.rstrip("0"))
 
 
 def _room_for(total: Rational, addend: str) -> bool:

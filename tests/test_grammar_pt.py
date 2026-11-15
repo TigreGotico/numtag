@@ -175,6 +175,34 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("três biliões e quinhentos mil milhões"),
                          [("três biliões e quinhentos mil milhões", "35" + "0" * 11, C)])
 
+    def test_a_group_fits_below_the_digits_of_the_count_before_it(self):
+        # 1001 x 10^6 fills the millions place, so 10^6 is a new number
+        self.assertEqual(pt("mil e um milhões e um milhão"),
+                         [("mil e um milhões", "1001000000", C), ("um milhão", "1000000", C)])
+        # 1500 x 10^6 leaves eight zeros; 600 x 10^6 has nine digits
+        self.assertEqual(pt("mil e quinhentos milhões e seiscentos milhões"),
+                         [("mil e quinhentos milhões", "1500000000", C), ("seiscentos milhões", "600000000", C)])
+        # pt-BR short scale: 1001 x 10^9; 10^9
+        self.assertEqual(read("mil e um bilhões e um bilhão", "pt-BR"),
+                         [("mil e um bilhões", "1001" + "0" * 9, C), ("um bilhão", "1" + "0" * 9, C)])
+        # 2000 x 10^6 leaves nine zeros: 2 x 10^9 + 500 x 10^6 = 2500000000
+        self.assertEqual(pt("dois mil milhões e quinhentos milhões"),
+                         [("dois mil milhões e quinhentos milhões", "2500000000", C)])
+        # a half of 10^6 leaves the place of 10^6: 500000 + 700000 = 1200000
+        self.assertEqual(pt("meio milhão e setecentos mil"), [("meio milhão e setecentos mil", "1200000", C)])
+
+    def test_a_count_of_several_words_after_a_group_starts_a_new_number(self):
+        # 10^9; 1500 x 10^6
+        self.assertEqual(pt("entre mil milhões e mil e quinhentos milhões"),
+                         [("mil milhões", "1" + "0" * 9, C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        # 2 x 10^6; 1500 x 10^6
+        self.assertEqual(pt("entre dois milhões e mil e quinhentos milhões"),
+                         [("dois milhões", "2000000", C), ("mil e quinhentos milhões", "15" + "0" * 8, C)])
+        # 10^12 + 1500 x 10^6 = 1001500000000; 3 x 10^6 + 1000 + 200 = 3001200
+        self.assertEqual(pt("um bilião e mil e quinhentos milhões"),
+                         [("um bilião e mil e quinhentos milhões", "1001500000000", C)])
+        self.assertEqual(pt("três milhões e mil e duzentos"), [("três milhões e mil e duzentos", "3001200", C)])
+
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 10^9; 2 x 10^9
         self.assertEqual(pt("entre mil milhões e dois mil milhões de euros"),
