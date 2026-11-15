@@ -118,6 +118,15 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(read("5-ий", "uk"), [("5-ий", "5", O)])
         self.assertEqual(read("4-ма", "bg"), [("4", "4", C)])
 
+    def test_a_uk_digit_ordinal_takes_the_final_part_of_its_case_form(self):
+        # Український правопис (2019), § 106, п. 2
+        self.assertEqual(read("5-й поверх", "uk"), [("5-й", "5", O)])
+        self.assertEqual(read("на 36-му кілометрі", "uk"), [("36-му", "36", O)])
+        self.assertEqual(read("після 7-ї години", "uk"), [("7-ї", "7", O)])
+        # пʼятого, пʼятих
+        self.assertEqual(read("з 2014-го року", "uk"), [("2014-го", "2014", O)])
+        self.assertEqual(read("у 1990-х роках", "uk"), [("1990-х", "1990", O)])
+
 
 class TestFractionsAndDecimals(unittest.TestCase):
     def test_one_and_a_half_is_one_word(self):
