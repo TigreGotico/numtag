@@ -1,20 +1,108 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
-from dataclasses import dataclass, replace
+import unicodedata
+from dataclasses import dataclass, field, replace
+from functools import cache
 
-# A digit string keeps its group and decimal marks ("1.000.000,5"). A minus
-# sign or a lone mark belongs to it only at the start of a word ("-5" and
-# ".5", not "5-7" or "...5"). The pattern takes digits of every script, so
-# that a run with any digit outside 0-9 ("٣", "１２") is found whole and then
-# dropped.
-# A soft hyphen (U+00AD) inside a word marks where a line may break; it
-# is no break in the word ("huszon\u00adöt").
-SOFT_HYPHEN = "\u00ad"
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])(?:[-−][.,]?|[.,]))?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+(?:\u00ad[^\W\d_]+)*)")
 _ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
+# A soft hyphen (U+00AD) inside a word marks where a line may break; it
+# is no break in the word ("huszon\u00adöt").
+SOFT_HYPHEN = "\u00ad"
+# Directional marks and embedding controls: no letter, so a script that sets
+# them aside reads each as a space ("‏٣" is "٣").
+BIDI_CONTROLS = "؜‎‏‪‫‬‭‮⁦⁧⁨⁩"
+
+
+def _combining_marks() -> str:
+    """A character class body with every combining mark of the Basic Multilingual Plane."""
+    ranges: list[list[int]] = []
+    for code in range(0x300, 0x10000):
+        if unicodedata.category(chr(code)).startswith("M"):
+            if ranges and ranges[-1][1] == code - 1:
+                ranges[-1][1] = code
+            else:
+                ranges.append([code, code])
+    return "".join(f"{chr(a)}-{chr(b)}" if a != b else chr(a) for a, b in ranges)
+
+
+@dataclass(frozen=True)
+class Script:
+    """How a language's script is read. The defaults read text as pt and en do."""
+    # Combining marks (harakat, niqqud, tonos, dots below) belong to the word
+    # they follow and are ignored when a word is looked up. With "unmarked",
+    # only a word written with no mark at all is read without its marks: in
+    # el "εκτός" (except) stays apart from "έκτος" (sixth), while "εικοσι"
+    # typed without accents still reads as "είκοσι".
+    fold_marks: bool | str = False
+    # Marks that are part of a letter and stay when the other marks go: the
+    # hamza of ar "أ", which sets "وأحد" (and eleven) apart from "واحد" (one).
+    kept_marks: str = ""
+    # Letters that read as another letter for lookup ("ي" as "ی" in fa).
+    letter_folds: tuple[tuple[str, str], ...] = ()
+    # Characters that stand inside a word: the zero-width non-joiner of fa.
+    word_chars: str = ""
+    # Bidi controls read as spaces.
+    bidi_controls: bool = False
+    # Native digits and digit marks, each with the ASCII digit or the
+    # locale's own mark it reads as ("٣" as "3", "٫" as ".").
+    native_digits: tuple[tuple[str, str], ...] = ()
+    # A prefix glued to a number word that is the joiner ("و" in "وعشرون").
+    joiner_prefixes: tuple[str, ...] = ()
+    # A prefix glued to a number word that is no part of the number: an
+    # article or a preposition ("ال" in "الثالث", "ב" in "בשלושה").
+    clitic_prefixes: tuple[str, ...] = ()
+    # The fewest letters a word keeps after a clitic prefix comes off.
+    clitic_min_rest: int = 1
+
+    def fold(self, word: str) -> str:
+        """The lookup form of a word in a text."""
+        return self._fold(word, strip=self.fold_marks is True)
+
+    def lexicon_forms(self, word: str) -> set[str]:
+        """The lookup forms of a lexicon word: with "unmarked", the word as
+        written and the word without its marks."""
+        return {self.fold(word), self._fold(word, strip=bool(self.fold_marks))}
+
+    def _fold(self, word: str, strip: bool) -> str:
+        word = word.casefold()
+        if strip:
+            word = "".join(c for c in unicodedata.normalize("NFD", word)
+                           if c in self.kept_marks or not unicodedata.category(c).startswith("M"))
+        if self.fold_marks:
+            word = unicodedata.normalize("NFC", word)
+        for old, new in self.letter_folds:
+            word = word.replace(old, new)
+        for char in self.word_chars:
+            word = word.replace(char, "")
+        return word
+
+    @property
+    def digit_table(self) -> dict[int, str]:
+        return {ord(native): ascii_ for native, ascii_ in self.native_digits}
+
+
+DEFAULT_SCRIPT = Script()
+
+
+@cache
+def _token_pattern(script: Script) -> re.Pattern:
+    """A digit string keeps its group and decimal marks ("1.000.000,5"). A
+    minus sign or a lone mark belongs to it only at the start of a word ("-5",
+    ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
+    so that a run with a digit the language does not read ("٣", "１２") is
+    found whole and then dropped. A soft hyphen between letters stays in
+    the word."""
+    marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
+    word = r"[^\W\d_]"
+    if script.fold_marks or script.word_chars:
+        inner = (_combining_marks() if script.fold_marks else "") + re.escape(script.word_chars)
+        word = rf"{word}(?:[^\W\d_]|[{inner}]|{SOFT_HYPHEN}[^\W\d_])*"
+    else:
+        word = rf"{word}+(?:{SOFT_HYPHEN}[^\W\d_]+)*"
+    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
 
 
 @dataclass(frozen=True)
@@ -27,6 +115,14 @@ class Token:
     gap: str = ""
     # Ordinal suffix glued to a digit string ("º" in "1.º", "st" in "21st").
     suffix: str = ""
+    # The lookup form when it is not the case-folded text: the folded word
+    # without its clitic prefix, or a digit string in ASCII digits.
+    key: str | None = field(default=None, compare=False)
+    # Glued to the previous token: the word after a joiner prefix.
+    attached: bool = False
+    # Read without a clitic prefix: a preposition or an article opens a
+    # number and never stands inside one ("خمسة بالمائة" is two numbers).
+    clitic: bool = False
     # A part of a compound word that goes on from the previous token with
     # no space ("kymmentä" in "kaksikymmentä").
     glued: bool = False
@@ -35,19 +131,32 @@ class Token:
 
     @property
     def norm(self) -> str:
+        if self.key is not None:
+            return self.key
         return self.folded or self.text.casefold()
+
+    @property
+    def latin(self) -> str:
+        """A digit string in ASCII digits and the locale's marks."""
+        return self.text if self.key is None else self.key
 
     @property
     def digits(self) -> str:
         """A digit string without its ordinal suffix and the mark before it."""
-        if not self.suffix or not self.text.endswith(self.suffix):
-            return self.text
-        return _TRAILING_MARK.sub("", self.text[:len(self.text) - len(self.suffix)])
+        latin = self.latin
+        if not self.suffix or not latin.endswith(self.suffix):
+            return latin
+        return _TRAILING_MARK.sub("", latin[:len(latin) - len(self.suffix)])
 
     def links_to_previous(self) -> bool:
         """True when this token can continue a number that the previous
-        token is part of: only a space or a hyphen lies between them."""
-        return self.glued or self.gap == "-" or (self.gap != "" and self.gap.isspace())
+        token is part of: only a space or a hyphen lies between them, or the
+        token is glued to a joiner prefix or to the part of a compound word
+        before it. A word with a clitic prefix and no joiner prefix links to
+        nothing before it."""
+        if self.attached or self.glued:
+            return True
+        return not self.clitic and (self.gap == "-" or (self.gap != "" and self.gap.isspace()))
 
 
 def fold_dotted_i(text: str) -> str:
@@ -71,7 +180,8 @@ def split_compound(word: str, known: frozenset[str]) -> list[str] | None:
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
-             number_words: frozenset[str] | None = None, *,
+             number_words: frozenset[str] | None = None,
+             script: Script = DEFAULT_SCRIPT, *,
              compound_words: frozenset[str] = frozenset(), dotted_i: bool = False,
              digit_suffix_marks: frozenset[str] = frozenset(),
              dot_ordinal: bool = False, date_months: frozenset[str] = frozenset()) -> list[Token]:
@@ -80,13 +190,15 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     A word glued to a digit string is its ordinal suffix when the language
     lists it, after an optional dot ("1.º"). A digit string glued to the end
     of a word ("mp3") is part of a name and is dropped, and so is a digit
-    string with a digit outside 0-9. A digit string keeps a mark before its
-    first digit, also after a sign, only when the language lists the mark as
-    a lone decimal mark and only digits follow it (".5", "-.5"). An abbreviation is a listed word with a
-    period that no sentence end follows ("dez. 2025"); it is dropped, so it
-    breaks the link between the words around it. Given ``number_words``, a
-    hyphenated compound with a word outside them is one noun
-    ("segunda-feira"): its words are dropped in the same way.
+    string with a digit that the script does not read. A digit string keeps a
+    mark before its first digit, also after a sign, only when the language
+    lists the mark as a lone decimal mark and only digits follow it (".5",
+    "-.5"). An abbreviation is a listed word with a period that no sentence
+    end follows ("dez. 2025"); it is dropped, so it breaks the link between
+    the words around it. Given ``number_words``, a hyphenated compound with a
+    word outside them is one noun ("segunda-feira"): its words are dropped in
+    the same way; and a word outside them loses a prefix of the script when
+    the rest is a number word.
 
     A word that is not in ``compound_words`` but splits into a chain of
     them is one token per part, each glued to the one before. A word after
@@ -97,24 +209,31 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     period stays outside the token. Before one of ``date_months`` the
     period follows the year of a date, which is no ordinal ("2008. február").
     """
+    scan = text
+    if script.bidi_controls:
+        scan = text.translate({ord(c): " " for c in BIDI_CONTROLS})
+    table = script.digit_table
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_TOKEN.finditer(text))
+    matches = list(_token_pattern(script).finditer(scan))
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
             continue
         is_digits = match.lastgroup == "digits"
-        if is_digits and not _ASCII_DIGITS.fullmatch(match.group()):
+        latin = match.group().translate(table) if is_digits else ""
+        if is_digits and not (_ASCII_DIGITS.fullmatch(latin) and _one_digit_script(match.group(), table)):
             continue
-        if not is_digits and match.group().casefold() in abbreviations and _abbreviated(text, match.end()):
+        if not is_digits and match.group().casefold() in abbreviations and _abbreviated(scan, match.end()):
             continue
         start = match.start()
-        unsigned = match.group().lstrip("-−")
+        unsigned = latin.lstrip("-−")
         if is_digits and unsigned[0] in ".," and not (
                 unsigned[0] in lone_decimal_marks and _LONE_MARK.fullmatch(unsigned)):
-            start += len(match.group()) - len(unsigned) + 1
-        gap = text[previous_end:start]
+            cut = len(latin) - len(unsigned) + 1
+            start += cut
+            latin = latin[cut:]
+        gap = scan[previous_end:start]
         if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
             previous_end = match.end()
             continue
@@ -124,10 +243,11 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         end, suffix = match.end(), ""
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
-            between = text[match.end():following.start()]
+            between = scan[match.end():following.start()]
             if (following.lastgroup == "word" and (between in ("", ".") or between in digit_suffix_marks)
                     and following.group().casefold() in ordinal_suffixes):
                 end, suffix = following.end(), following.group()
+                latin += text[match.end():end]
                 skip_until = following.end()
         if is_digits and dot_ordinal and not suffix and _dot_ordinal(text, end, date_months):
             suffix = "."  # the period stays outside the span, as punctuation
@@ -135,12 +255,12 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         letters = word.replace(SOFT_HYPHEN, "")
         folded = "" if is_digits else fold_dotted_i(letters) if dotted_i else \
             letters.casefold() if letters != word else ""
-        key = folded or word.casefold()
+        lookup = folded or word.casefold()
         # the offset in the text of each letter of the word
         offsets = [start + k for k, char in enumerate(word) if char != SOFT_HYPHEN]
         parts = None
-        if compound_words and not is_digits and key not in compound_words and len(key) == len(offsets):
-            parts = split_compound(key, compound_words)
+        if compound_words and not is_digits and lookup not in compound_words and len(lookup) == len(offsets):
+            parts = split_compound(lookup, compound_words)
         if parts and len(parts) > 1:
             at = 0
             for k, part in enumerate(parts):
@@ -149,9 +269,68 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                                     glued=k > 0, folded=part))
                 at += len(part)
         else:
-            tokens.append(Token(word, start, end, is_digits, gap, suffix, folded=folded))
+            key = None
+            if script != DEFAULT_SCRIPT:
+                key = latin if is_digits else script.fold(letters)
+            tokens.append(Token(word, start, end, is_digits, gap, suffix, key=key, folded=folded))
         previous_end = end
-    return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
+    if number_words is None:
+        return tokens
+    if script.joiner_prefixes or script.clitic_prefixes:
+        tokens = _split_prefixes(tokens, number_words, script)
+    return _drop_compound_nouns(text, tokens, number_words)
+
+
+def _one_digit_script(run: str, table: dict[int, str]) -> bool:
+    """True when the digits of ``run`` are all ASCII or all native."""
+    digits = [c for c in run if c.isdigit()]
+    return all(c in "0123456789" for c in digits) or all(ord(c) in table for c in digits)
+
+
+def _strip_clitic(key: str, number_words: frozenset[str], script: Script) -> str | None:
+    """The number word left when a clitic prefix comes off ``key``."""
+    for prefix in sorted(script.clitic_prefixes, key=len, reverse=True):
+        rest = key[len(prefix):]
+        if key.startswith(prefix) and len(rest) >= script.clitic_min_rest and rest in number_words:
+            return rest
+    return None
+
+
+def _split_prefixes(tokens: list[Token], number_words: frozenset[str], script: Script) -> list[Token]:
+    """Each word that is no number word but holds one after a prefix: a
+    joiner prefix becomes a joiner token of its own, with the rest of the
+    word glued to it ("وعشرون" is "و" and "عشرون"); a clitic prefix stays in
+    the text of the word and leaves its lookup ("الثالث" reads "ثالث")."""
+    found: list[Token] = []
+    for token in tokens:
+        if token.is_digits or token.norm in number_words:
+            found.append(token)
+            continue
+        split = _joiner_split(token, number_words, script)
+        if split:
+            joiner, rest = split
+            stripped = rest.norm if rest.norm in number_words else _strip_clitic(rest.norm, number_words, script)
+            found += [joiner, replace(rest, key=stripped)]
+            continue
+        stripped = _strip_clitic(token.norm, number_words, script)
+        found.append(token if stripped is None else replace(token, key=stripped, clitic=True))
+    return found
+
+
+def _joiner_split(token: Token, number_words: frozenset[str], script: Script) -> tuple[Token, Token] | None:
+    """The joiner prefix and the rest of ``token`` when the rest is a number
+    word, with or without a clitic prefix. The marks on the prefix letter go
+    with the prefix ("وَ")."""
+    for cut in range(len(token.text) - 1, 0, -1):
+        head, rest = token.text[:cut], token.text[cut:]
+        if script.fold(head) not in script.joiner_prefixes or unicodedata.category(rest[0]).startswith("M"):
+            continue
+        key = script.fold(rest)
+        if key in number_words or _strip_clitic(key, number_words, script):
+            middle = token.start + cut
+            return (replace(token, text=head, end=middle, key=script.fold(head)),
+                    Token(rest, middle, token.end, False, "", key=key, attached=True))
+    return None
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:

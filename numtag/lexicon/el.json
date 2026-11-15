@@ -1,0 +1,3581 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: <%spellout-cardinal-neuter< $(cardinal,one{δισεκατομμύριο}other{δισεκατομμύρια})$[ >>];\", \"1000000000000: <%spellout-cardinal-neuter< $(cardinal,one{τρισεκατομμύριο}other{τρισεκατομμύρια})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"billion , thousand million ( 10 9 )\"; en.wiktionary page τρισεκατομμύριο: \"trillion , million million ( 10 12 )\". Each Greek scale word has one fixed value."
+    },
+    "group_mark": {
+      "value": ".",
+      "source": "CLDR main/el.xml, latn number symbols: \"<group>.</group>\"."
+    },
+    "decimal_mark": {
+      "value": ",",
+      "source": "CLDR main/el.xml, latn number symbols: \"<decimal>,</decimal>\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR main/el.xml groups digits with a dot, not a space: \"<group>.</group>\"."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\"; en.wiktionary page χιλιάδα: \"δύο χιλιάδες ― dýo chiliádes ― two thousand\". The plural χιλιάδες always follows a count."
+    },
+    "scale_noun_agrees": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: <%spellout-cardinal-neuter< $(cardinal,one{εκατομμύριο}other{εκατομμύρια})$[ >>];\": the count one takes the singular, any other count the plural."
+    },
+    "joiner_tens_units": {
+      "value": "never",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: είκοσι[ >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"είκοσι ένα ( eíkosi éna )\": the unit follows the ten after a space."
+    },
+    "joiner_after_hundred": {
+      "value": "never",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"εκατόν ένα ( ekatón éna )\": no και after the hundreds."
+    },
+    "joiner_between_groups": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι[ >>];\" puts no και between groups; el.wikipedia page Χίλιες και μία νύχτες: \"Οι Χίλιες και μία νύχτες\" has και before a last unit."
+    },
+    "joiner_before_round_hundred": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"χίλια ένα ( chília éna )\": no και after a thousand."
+    },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\" writes a space and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\" puts no και before the last group; el.wikipedia page Χίλιες και μία νύχτες: \"Οι Χίλιες και μία νύχτες\" has και before a last unit. So και before the last group is optional."
+    },
+    "ordinal_style": {
+      "value": "every_word",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: εικοστός[ >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"εικοστός πρώτος ( eikostós prótos )\": every word of an ordinal is ordinal."
+    },
+    "fold_marks": {
+      "value": "unmarked",
+      "source": "en.wikipedia page Greek diacritics: \"Monotonic orthography [ note 2 ] is the standard system for Modern Greek\", \"that indicates stress\", \"In uppercase (all-caps), accents and breathings are eliminated\"; en.wiktionary page εκτός: \"except (for), besides\"; en.wiktionary page έκτος: \"έκτος • ( éktos ) m ( feminine έκτη , neuter έκτο ) sixth\". A word with an accent is read as written, so εκτός (except) is not έκτος (sixth); a word with no accent at all, as in capitals, is read without its marks."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "και"
+      ],
+      "source": "en.wiktionary page και: \"plus , and\", \"Δύο και δύο κάνουν τέσσερα.\""
+    },
+    "decimal_marker": {
+      "value": [
+        "κόμμα"
+      ],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\""
+    },
+    "minus": {
+      "value": [
+        "μείον",
+        "πλην"
+      ],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"-x: μείον >>;\"; en.wiktionary page πλην: \"πλην • ( plin ) ( mathematics ) minus ( less )\""
+    },
+    "range_cue": {
+      "value": [
+        "μεταξύ"
+      ],
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry μεταξύ: \"3. όριο, κατά προσέγγιση προσδιορισμό· ανάμεσα:\", \"το διάστημα ~ 1900 και 1920\"; the και joins the two limits."
+    },
+    "article_one": {
+      "value": [
+        "ένας",
+        "μία",
+        "μια",
+        "ένα",
+        "έναν",
+        "ενός",
+        "μιας"
+      ],
+      "source": "en.wiktionary page ένας: \"Article ένας • ( énas ) m ( indefinite ) a , an\", \"nominative ένας ( énas ) μια ( mia ) μία 1 ( mía 1 ) ένα ( éna ) genitive ενός ( enós ) μιας ( mias )\", \"accusative ένα ( éna ) έναν 2 ( énan 2 )\": the indefinite article has the forms of the numeral one."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
+    }
+  },
+  "entries": [
+    {
+      "word": "μηδέν",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"0: μηδέν;\""
+    },
+    {
+      "word": "ένας",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"1: ένας;\""
+    },
+    {
+      "word": "έναν",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"1: έναν;\""
+    },
+    {
+      "word": "μία",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"1: μία;\""
+    },
+    {
+      "word": "μια",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "en.wiktionary page ένας: \"Numeral ένας • ( énas ) m one\", \"μια ( mia )\""
+    },
+    {
+      "word": "μιας",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine-genitive: \"1: μιας;\""
+    },
+    {
+      "word": "ένα",
+      "role": "unit",
+      "value": "1",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"1: ένα;\""
+    },
+    {
+      "word": "ενός",
+      "role": "unit",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1: ενός;\""
+    },
+    {
+      "word": "δύο",
+      "role": "unit",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"2: δύο;\""
+    },
+    {
+      "word": "δυο",
+      "role": "unit",
+      "value": "2",
+      "source": "en.wiktionary page δυο: \"δυο • ( dyo ) ( invariable ) two\""
+    },
+    {
+      "word": "τρεις",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"3: τρεις;\""
+    },
+    {
+      "word": "τριών",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"3: τριών;\""
+    },
+    {
+      "word": "τρία",
+      "role": "unit",
+      "value": "3",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"3: τρία;\""
+    },
+    {
+      "word": "τέσσερις",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"4: τέσσερις;\""
+    },
+    {
+      "word": "τεσσάρων",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"4: τεσσάρων;\""
+    },
+    {
+      "word": "τέσσερα",
+      "role": "unit",
+      "value": "4",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"4: τέσσερα;\""
+    },
+    {
+      "word": "πέντε",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"5: πέντε;\""
+    },
+    {
+      "word": "έξι",
+      "role": "unit",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"6: έξι;\""
+    },
+    {
+      "word": "επτά",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"7: επτά;\""
+    },
+    {
+      "word": "εφτά",
+      "role": "unit",
+      "value": "7",
+      "source": "en.wiktionary page εφτά: \"alternative spelling of επτά ( eptá )\""
+    },
+    {
+      "word": "οκτώ",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"8: οκτώ;\""
+    },
+    {
+      "word": "οχτώ",
+      "role": "unit",
+      "value": "8",
+      "source": "en.wiktionary page οχτώ: \"alternative spelling of οκτώ ( októ ) ( eight , 8 )\""
+    },
+    {
+      "word": "εννέα",
+      "role": "unit",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"9: εννέα;\""
+    },
+    {
+      "word": "εννιά",
+      "role": "unit",
+      "value": "9",
+      "source": "en.wiktionary page εννιά: \"εννιά • ( enniá ) ( invariable ) nine , 9\""
+    },
+    {
+      "word": "δέκα",
+      "role": "ten",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"10: δέκα;\""
+    },
+    {
+      "word": "έντεκα",
+      "role": "ten",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"11: έντεκα;\""
+    },
+    {
+      "word": "ένδεκα",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary page ένδεκα: \"alternative spelling of έντεκα ( énteka )\""
+    },
+    {
+      "word": "δώδεκα",
+      "role": "ten",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"12: δώδεκα;\""
+    },
+    {
+      "word": "δεκατρία",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"3: τρία;\"."
+    },
+    {
+      "word": "δεκατρεις",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"3: τρεις;\"."
+    },
+    {
+      "word": "δεκατριών",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"3: τριών;\"."
+    },
+    {
+      "word": "δεκατέσσερα",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"4: τέσσερα;\"."
+    },
+    {
+      "word": "δεκατέσσερις",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"4: τέσσερις;\"."
+    },
+    {
+      "word": "δεκατεσσάρων",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"4: τεσσάρων;\"."
+    },
+    {
+      "word": "δεκαπέντε",
+      "role": "ten",
+      "value": "15",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"5: πέντε;\"."
+    },
+    {
+      "word": "δεκαέξι",
+      "role": "ten",
+      "value": "16",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"6: έξι;\"."
+    },
+    {
+      "word": "δεκαεπτά",
+      "role": "ten",
+      "value": "17",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"7: επτά;\"."
+    },
+    {
+      "word": "δεκαοκτώ",
+      "role": "ten",
+      "value": "18",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"8: οκτώ;\"."
+    },
+    {
+      "word": "δεκαεννέα",
+      "role": "ten",
+      "value": "19",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα­>>;\" writes the teens as one word with the unit \"9: εννέα;\"."
+    },
+    {
+      "word": "δεκατρείς",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary page δεκατρείς: \"nominative δεκατρείς ( dekatreís ) δεκατρείς ( dekatreís ) δεκατρία ( dekatría )\""
+    },
+    {
+      "word": "δεκάξι",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary page δεκάξι: \"colloquial form of δεκαέξι ( dekaéxi ) : sixteen\""
+    },
+    {
+      "word": "δεκαεφτά",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary page δεκαεφτά: \"alternative form of δεκαεπτά ( dekaeptá )\""
+    },
+    {
+      "word": "δεκαοχτώ",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary page δεκαοχτώ: \"alternative form of δεκαοκτώ ( dekaoktó )\""
+    },
+    {
+      "word": "δεκαεννιά",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary page δεκαεννιά: \"alternative form of δεκαεννέα ( dekaennéa )\""
+    },
+    {
+      "word": "είκοσι",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: είκοσι[ >>];\""
+    },
+    {
+      "word": "τριάντα",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"30: τριάντα[ >>];\""
+    },
+    {
+      "word": "σαράντα",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"40: σαράντα[ >>];\""
+    },
+    {
+      "word": "πενήντα",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"50: πενήντα[ >>];\""
+    },
+    {
+      "word": "εξήντα",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"60: εξήντα[ >>];\""
+    },
+    {
+      "word": "εβδομήντα",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"70: εβδομήντα[ >>];\""
+    },
+    {
+      "word": "ογδόντα",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"80: ογδόντα[ >>];\""
+    },
+    {
+      "word": "ενενήντα",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"90: ενενήντα[ >>];\""
+    },
+    {
+      "word": "εκατό",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>];\": εκατόν only before the rest of the number."
+    },
+    {
+      "word": "εκατόν",
+      "role": "hundred",
+      "value": "100",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>];\": εκατόν only before the rest of the number."
+    },
+    {
+      "word": "διακόσιοι",
+      "role": "hundred",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"2: δια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "διακόσιους",
+      "role": "hundred",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"2: δια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "διακόσιες",
+      "role": "hundred",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"2: δια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "διακόσια",
+      "role": "hundred",
+      "value": "200",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"2: δια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "διακοσίων",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"2: δια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "τριακόσιοι",
+      "role": "hundred",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"3: τρια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "τριακόσιους",
+      "role": "hundred",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"3: τρια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "τριακόσιες",
+      "role": "hundred",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"3: τρια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "τριακόσια",
+      "role": "hundred",
+      "value": "300",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"3: τρια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "τριακοσίων",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"3: τρια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "τετρακόσιοι",
+      "role": "hundred",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"4: τετρα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "τετρακόσιους",
+      "role": "hundred",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"4: τετρα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "τετρακόσιες",
+      "role": "hundred",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"4: τετρα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "τετρακόσια",
+      "role": "hundred",
+      "value": "400",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"4: τετρα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "τετρακοσίων",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"4: τετρα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "πεντακόσιοι",
+      "role": "hundred",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"5: πεντα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "πεντακόσιους",
+      "role": "hundred",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"5: πεντα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "πεντακόσιες",
+      "role": "hundred",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"5: πεντα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "πεντακόσια",
+      "role": "hundred",
+      "value": "500",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"5: πεντα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "πεντακοσίων",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"5: πεντα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "εξακόσιοι",
+      "role": "hundred",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"6: εξα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "εξακόσιους",
+      "role": "hundred",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"6: εξα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "εξακόσιες",
+      "role": "hundred",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"6: εξα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "εξακόσια",
+      "role": "hundred",
+      "value": "600",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"6: εξα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "εξακοσίων",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"6: εξα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "επτακόσιοι",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"7: επτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "επτακόσιους",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"7: επτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "επτακόσιες",
+      "role": "hundred",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"7: επτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "επτακόσια",
+      "role": "hundred",
+      "value": "700",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"7: επτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "επτακοσίων",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"7: επτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "εφτακόσιοι",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "en.wiktionary page εφτακόσια: \"εφτακόσια • ( eftakósia ) alternative form of επτακόσια ( eptakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "εφτακόσιους",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "en.wiktionary page εφτακόσια: \"εφτακόσια • ( eftakósia ) alternative form of επτακόσια ( eptakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "εφτακόσιες",
+      "role": "hundred",
+      "value": "700",
+      "gender": "feminine",
+      "source": "en.wiktionary page εφτακόσια: \"εφτακόσια • ( eftakósia ) alternative form of επτακόσια ( eptakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "εφτακόσια",
+      "role": "hundred",
+      "value": "700",
+      "gender": "neuter",
+      "source": "en.wiktionary page εφτακόσια: \"εφτακόσια • ( eftakósia ) alternative form of επτακόσια ( eptakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "εφτακοσίων",
+      "role": "hundred",
+      "value": "700",
+      "source": "en.wiktionary page εφτακόσια: \"εφτακόσια • ( eftakósia ) alternative form of επτακόσια ( eptakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "οκτακόσιοι",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"8: οκτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "οκτακόσιους",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"8: οκτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "οκτακόσιες",
+      "role": "hundred",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"8: οκτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "οκτακόσια",
+      "role": "hundred",
+      "value": "800",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"8: οκτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "οκτακοσίων",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"8: οκτα;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "οχτακόσιοι",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "en.wiktionary page οχτακόσια: \"οχτακόσια • ( ochtakósia ) alternative form of οκτακόσια ( oktakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "οχτακόσιους",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "en.wiktionary page οχτακόσια: \"οχτακόσια • ( ochtakósia ) alternative form of οκτακόσια ( oktakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "οχτακόσιες",
+      "role": "hundred",
+      "value": "800",
+      "gender": "feminine",
+      "source": "en.wiktionary page οχτακόσια: \"οχτακόσια • ( ochtakósia ) alternative form of οκτακόσια ( oktakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "οχτακόσια",
+      "role": "hundred",
+      "value": "800",
+      "gender": "neuter",
+      "source": "en.wiktionary page οχτακόσια: \"οχτακόσια • ( ochtakósia ) alternative form of οκτακόσια ( oktakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "οχτακοσίων",
+      "role": "hundred",
+      "value": "800",
+      "source": "en.wiktionary page οχτακόσια: \"οχτακόσια • ( ochtakósia ) alternative form of οκτακόσια ( oktakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "εννιακόσιοι",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"9: εννια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "εννιακόσιους",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"9: εννια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "εννιακόσιες",
+      "role": "hundred",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"9: εννια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "εννιακόσια",
+      "role": "hundred",
+      "value": "900",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"9: εννια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "εννιακοσίων",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %%hundreds-prefix: \"9: εννια;\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "εννεακόσιοι",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "en.wiktionary page εννεακόσια: \"εννεακόσια • ( enneakósia ) ( obsolete ) see: ἐννεακόσια ( enneakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."
+    },
+    {
+      "word": "εννεακόσιους",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "en.wiktionary page εννεακόσια: \"εννεακόσια • ( enneakósia ) ( obsolete ) see: ἐννεακόσια ( enneakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"200: <%%hundreds-prefix<κόσιους[ >>];\"."
+    },
+    {
+      "word": "εννεακόσιες",
+      "role": "hundred",
+      "value": "900",
+      "gender": "feminine",
+      "source": "en.wiktionary page εννεακόσια: \"εννεακόσια • ( enneakósia ) ( obsolete ) see: ἐννεακόσια ( enneakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."
+    },
+    {
+      "word": "εννεακόσια",
+      "role": "hundred",
+      "value": "900",
+      "gender": "neuter",
+      "source": "en.wiktionary page εννεακόσια: \"εννεακόσια • ( enneakósia ) ( obsolete ) see: ἐννεακόσια ( enneakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"200: <%%hundreds-prefix<κόσια[ >>];\"."
+    },
+    {
+      "word": "εννεακοσίων",
+      "role": "hundred",
+      "value": "900",
+      "source": "en.wiktionary page εννεακόσια: \"εννεακόσια • ( enneakósia ) ( obsolete ) see: ἐννεακόσια ( enneakósia )\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"200: <%%hundreds-prefix<κοσίων[ >>];\"."
+    },
+    {
+      "word": "χίλιοι",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine: \"1000: χίλιοι[ >>];\": a thousand needs no count."
+    },
+    {
+      "word": "χίλιους",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-accusative: \"1000: χίλιους[ >>];\": a thousand needs no count."
+    },
+    {
+      "word": "χίλιες",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-feminine: \"1000: χίλιες[ >>];\": a thousand needs no count."
+    },
+    {
+      "word": "χίλια",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-neuter: \"1000: χίλια[ >>];\": a thousand needs no count."
+    },
+    {
+      "word": "χιλίων",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000: χιλίων[ >>];\": a thousand needs no count."
+    },
+    {
+      "word": "χιλιάδες",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\": the plural takes a count."
+    },
+    {
+      "word": "χιλιάδων",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"2000: <%spellout-cardinal-feminine-genitive< χιλιάδων[ >>];\": the plural takes a count."
+    },
+    {
+      "word": "χιλιάδα",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "feminine",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry χιλιάδα: \"αριθμτ. περιλ. : 1. σύνολο από χίλιες μονάδες\"; en.wiktionary page χιλιάδα: \"χιλιάδα • ( chiliáda ) f ( plural χιλιάδες ) thousand\"."
+    },
+    {
+      "word": "εκατομμύριο",
+      "role": "scale_noun",
+      "value": 6,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: <%spellout-cardinal-neuter< $(cardinal,one{εκατομμύριο}other{εκατομμύρια})$[ >>];\"; en.wiktionary page εκατομμύριο: \"εκατομμύριο • ( ekatommýrio ) n ( plural εκατομμύρια ) million\". Each takes a count before it."
+    },
+    {
+      "word": "εκατομμυρίου",
+      "role": "scale_noun",
+      "value": 6,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{εκατομμυρίου}other{εκατομμυρίων})$[ >>];\"; en.wiktionary page εκατομμύριο: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"."
+    },
+    {
+      "word": "εκατομμύριου",
+      "role": "scale_noun",
+      "value": 6,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{εκατομμυρίου}other{εκατομμυρίων})$[ >>];\"; en.wiktionary page εκατομμύριο: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"."
+    },
+    {
+      "word": "εκατομμύρια",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: <%spellout-cardinal-neuter< $(cardinal,one{εκατομμύριο}other{εκατομμύρια})$[ >>];\"; en.wiktionary page εκατομμύριο: \"εκατομμύριο • ( ekatommýrio ) n ( plural εκατομμύρια ) million\". Each takes a count before it."
+    },
+    {
+      "word": "εκατομμυρίων",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{εκατομμυρίου}other{εκατομμυρίων})$[ >>];\"; en.wiktionary page εκατομμύριο: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"."
+    },
+    {
+      "word": "εκατομμύριων",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{εκατομμυρίου}other{εκατομμυρίων})$[ >>];\"; en.wiktionary page εκατομμύριο: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"."
+    },
+    {
+      "word": "δισεκατομμύριο",
+      "role": "scale_noun",
+      "value": 9,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: <%spellout-cardinal-neuter< $(cardinal,one{δισεκατομμύριο}other{δισεκατομμύρια})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"δισεκατομμύριο • ( disekatommýrio ) n ( plural δισεκατομμύρια ) billion , thousand million ( 10 9 )\". Each takes a count before it."
+    },
+    {
+      "word": "δισεκατομμυρίου",
+      "role": "scale_noun",
+      "value": 9,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{δισεκατομμυρίου}other{δισεκατομμυρίων})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"genitive δισεκατομμυρίου ( disekatommyríou ) δισεκατομμύριου ( disekatommýriou ) δισεκατομμυρίων ( disekatommyríon ) δισεκατομμύριων ( disekatommýrion )\"."
+    },
+    {
+      "word": "δισεκατομμύριου",
+      "role": "scale_noun",
+      "value": 9,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{δισεκατομμυρίου}other{δισεκατομμυρίων})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"genitive δισεκατομμυρίου ( disekatommyríou ) δισεκατομμύριου ( disekatommýriou ) δισεκατομμυρίων ( disekatommyríon ) δισεκατομμύριων ( disekatommýrion )\"."
+    },
+    {
+      "word": "δισεκατομμύρια",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: <%spellout-cardinal-neuter< $(cardinal,one{δισεκατομμύριο}other{δισεκατομμύρια})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"δισεκατομμύριο • ( disekatommýrio ) n ( plural δισεκατομμύρια ) billion , thousand million ( 10 9 )\". Each takes a count before it."
+    },
+    {
+      "word": "δισεκατομμυρίων",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{δισεκατομμυρίου}other{δισεκατομμυρίων})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"genitive δισεκατομμυρίου ( disekatommyríou ) δισεκατομμύριου ( disekatommýriou ) δισεκατομμυρίων ( disekatommyríon ) δισεκατομμύριων ( disekatommýrion )\"."
+    },
+    {
+      "word": "δισεκατομμύριων",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{δισεκατομμυρίου}other{δισεκατομμυρίων})$[ >>];\"; en.wiktionary page δισεκατομμύριο: \"genitive δισεκατομμυρίου ( disekatommyríou ) δισεκατομμύριου ( disekatommýriou ) δισεκατομμυρίων ( disekatommyríon ) δισεκατομμύριων ( disekatommýrion )\"."
+    },
+    {
+      "word": "τρισεκατομμύριο",
+      "role": "scale_noun",
+      "value": 12,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: <%spellout-cardinal-neuter< $(cardinal,one{τρισεκατομμύριο}other{τρισεκατομμύρια})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"τρισεκατομμύριο • ( trisekatommýrio ) n ( plural τρισεκατομμύρια ) trillion , million million ( 10 12 )\". Each takes a count before it."
+    },
+    {
+      "word": "τρισεκατομμυρίου",
+      "role": "scale_noun",
+      "value": 12,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{τρισεκατομμυρίου}other{τρισεκατομμυρίων})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"genitive τρισεκατομμυρίου ( trisekatommyríou ) τρισεκατομμύριου ( trisekatommýriou ) τρισεκατομμυρίων ( trisekatommyríon ) τρισεκατομμύριων ( trisekatommýrion )\"."
+    },
+    {
+      "word": "τρισεκατομμύριου",
+      "role": "scale_noun",
+      "value": 12,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{τρισεκατομμυρίου}other{τρισεκατομμυρίων})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"genitive τρισεκατομμυρίου ( trisekatommyríou ) τρισεκατομμύριου ( trisekatommýriou ) τρισεκατομμυρίων ( trisekatommyríon ) τρισεκατομμύριων ( trisekatommýrion )\"."
+    },
+    {
+      "word": "τρισεκατομμύρια",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: <%spellout-cardinal-neuter< $(cardinal,one{τρισεκατομμύριο}other{τρισεκατομμύρια})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"τρισεκατομμύριο • ( trisekatommýrio ) n ( plural τρισεκατομμύρια ) trillion , million million ( 10 12 )\". Each takes a count before it."
+    },
+    {
+      "word": "τρισεκατομμυρίων",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{τρισεκατομμυρίου}other{τρισεκατομμυρίων})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"genitive τρισεκατομμυρίου ( trisekatommyríou ) τρισεκατομμύριου ( trisekatommýriou ) τρισεκατομμυρίων ( trisekatommyríon ) τρισεκατομμύριων ( trisekatommýrion )\"."
+    },
+    {
+      "word": "τρισεκατομμύριων",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-cardinal-masculine-genitive: \"1000000000000: <%spellout-cardinal-neuter-genitive< $(cardinal,one{τρισεκατομμυρίου}other{τρισεκατομμυρίων})$[ >>];\"; en.wiktionary page τρισεκατομμύριο: \"genitive τρισεκατομμυρίου ( trisekatommyríou ) τρισεκατομμύριου ( trisekatommýriou ) τρισεκατομμυρίων ( trisekatommyríon ) τρισεκατομμύριων ( trisekatommýrion )\"."
+    },
+    {
+      "word": "δις",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry δις: \"συντετμημένος τύπος της λέξης δισεκατομμύριο\"."
+    },
+    {
+      "word": "τρις",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry τρις: \"συντετμημένος τύπος της λέξης τρισεκατομμύριο\", \"Ο προϋπολογισμός ανέρχεται σε δέκα ~ .\""
+    },
+    {
+      "word": "ντουζίνα",
+      "role": "collective",
+      "value": "12",
+      "source": "en.wiktionary page ντουζίνα: \"ντουζίνα • ( ntouzína ) f ( plural ντουζίνες ) twelve , dozen\""
+    },
+    {
+      "word": "ντουζίνες",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "en.wiktionary page ντουζίνα: \"ντουζίνα • ( ntouzína ) f ( plural ντουζίνες ) twelve , dozen\""
+    },
+    {
+      "word": "δωδεκάδα",
+      "role": "collective",
+      "value": "12",
+      "source": "en.wiktionary page δωδεκάδα: \"δωδεκάδα • ( dodekáda ) f ( plural δωδεκάδες ) dozen\""
+    },
+    {
+      "word": "δωδεκάδες",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "en.wiktionary page δωδεκάδα: \"δωδεκάδα • ( dodekáda ) f ( plural δωδεκάδες ) dozen\""
+    },
+    {
+      "word": "μισό",
+      "role": "half",
+      "source": "en.wiktionary page μισός: \"μισός • ( misós ) m ( feminine μισή , neuter μισό ) half\", \"nominative μισός ( misós ) μισή ( misí ) μισό ( misó )\", \"genitive μισού ( misoú ) μισής ( misís )\""
+    },
+    {
+      "word": "μισός",
+      "role": "half",
+      "source": "en.wiktionary page μισός: \"μισός • ( misós ) m ( feminine μισή , neuter μισό ) half\", \"nominative μισός ( misós ) μισή ( misí ) μισό ( misó )\", \"genitive μισού ( misoú ) μισής ( misís )\""
+    },
+    {
+      "word": "μισή",
+      "role": "half",
+      "ambiguous": true,
+      "source": "en.wiktionary page μισός: \"μισός • ( misós ) m ( feminine μισή , neuter μισό ) half\", \"nominative μισός ( misós ) μισή ( misí ) μισό ( misó )\", \"genitive μισού ( misoú ) μισής ( misís )\""
+    },
+    {
+      "word": "μισού",
+      "role": "half",
+      "source": "en.wiktionary page μισός: \"μισός • ( misós ) m ( feminine μισή , neuter μισό ) half\", \"nominative μισός ( misós ) μισή ( misí ) μισό ( misó )\", \"genitive μισού ( misoú ) μισής ( misís )\""
+    },
+    {
+      "word": "μισής",
+      "role": "half",
+      "source": "en.wiktionary page μισός: \"μισός • ( misós ) m ( feminine μισή , neuter μισό ) half\", \"nominative μισός ( misós ) μισή ( misí ) μισό ( misó )\", \"genitive μισού ( misoú ) μισής ( misís )\""
+    },
+    {
+      "word": "ενάμισης",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry ενάμισης: \"ενάμισης μιάμιση ενάμισι\", \"αριθμτ. επίθ. : ένας και μισός\": one word for a whole number and a half."
+    },
+    {
+      "word": "ενάμισι",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry ενάμισης: \"ενάμισης μιάμιση ενάμισι\", \"αριθμτ. επίθ. : ένας και μισός\": one word for a whole number and a half."
+    },
+    {
+      "word": "μιάμιση",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry ενάμισης: \"ενάμισης μιάμιση ενάμισι\", \"αριθμτ. επίθ. : ένας και μισός\": one word for a whole number and a half."
+    },
+    {
+      "word": "ενάμιση",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry ενάμισης: \"Σε διάστημα ενάμιση χρόνου\": one word for a whole number and a half."
+    },
+    {
+      "word": "δυόμισι",
+      "role": "unit_and_half",
+      "value": "2",
+      "source": "en.wiktionary page δυόμισι: \"δυόμισι • ( dyómisi ) ( invariable ) ( time ) half past two two and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "τρεισήμισι",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "en.wiktionary page τρεισήμισι: \"τρεισήμισι • ( treisímisi ) m or f ( neuter τριάμισι ) three and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "τριάμισι",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "en.wiktionary page τρεισήμισι: \"τρεισήμισι • ( treisímisi ) m or f ( neuter τριάμισι ) three and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "τεσσερισήμισι",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "en.wiktionary page τεσσερισήμισι: \"( neuter τεσσεράμισι ) four and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "τεσσεράμισι",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "en.wiktionary page τεσσερισήμισι: \"( neuter τεσσεράμισι ) four and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "πεντέμισι",
+      "role": "unit_and_half",
+      "value": "5",
+      "source": "en.wiktionary page πεντέμισι: \"πεντέμισι • ( pentémisi ) five and a half\": one word for a whole number and a half."
+    },
+    {
+      "word": "εξήμισι",
+      "role": "unit_and_half",
+      "value": "6",
+      "source": "el.wiktionary page εξήμισι: \"εξήμισι , ουδέτερο έξι και μισό\": one word for a whole number and a half."
+    },
+    {
+      "word": "εφτάμισι",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; εφτά and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "επτάμισι",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; επτά and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "οχτώμισι",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; οχτώ and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "οκτώμισι",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; οκτώ and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "εννιάμισι",
+      "role": "unit_and_half",
+      "value": "9",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; εννιά and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "δεκάμισι",
+      "role": "unit_and_half",
+      "value": "10",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; δέκα and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "εντεκάμισι",
+      "role": "unit_and_half",
+      "value": "11",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; έντεκα and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "δωδεκάμισι",
+      "role": "unit_and_half",
+      "value": "12",
+      "source": "el.wiktionary page -μισι: \"β′ συνθετικό απόλυτων αριθμητικών έως το είκοσι για τη δήλωση μισής μονάδας επιπλέον\", \"δυό μισι , δωδεκά μισι , οκτώ μισι\"; δώδεκα and -μισι: one word for a whole number and a half."
+    },
+    {
+      "word": "τρίτο",
+      "role": "denominator",
+      "value": "3",
+      "source": "en.wiktionary page τρίτο: \"τρίτο • ( tríto ) n ( plural τρίτα ) one third , 1/3\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "τρίτα",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "en.wiktionary page τρίτο: \"τρίτο • ( tríto ) n ( plural τρίτα ) one third , 1/3\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "τέταρτο",
+      "role": "denominator",
+      "value": "4",
+      "ambiguous": true,
+      "source": "en.wiktionary page τέταρτο: \"τέταρτο • ( tétarto ) n ( plural τέταρτα ) quarter , a fourth , one of four equal parts\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "τέταρτα",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "en.wiktionary page τέταρτο: \"τέταρτο • ( tétarto ) n ( plural τέταρτα ) quarter , a fourth , one of four equal parts\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "πέμπτο",
+      "role": "denominator",
+      "value": "5",
+      "source": "el.wiktionary page πέμπτο: \"κάθε ένα από τα πέντε ίσα μέρη ενός συνόλου\", \"το πέμπτ ο τα πέμπτ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "πέμπτα",
+      "role": "denominator",
+      "value": "5",
+      "plural": true,
+      "source": "el.wiktionary page πέμπτο: \"κάθε ένα από τα πέντε ίσα μέρη ενός συνόλου\", \"το πέμπτ ο τα πέμπτ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "έκτο",
+      "role": "denominator",
+      "value": "6",
+      "source": "el.wiktionary page έκτο: \"κάθε ένα από τα έξι ίσα μέρη ενός συνόλου\", \"το έκτ ο τα έκτ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "έκτα",
+      "role": "denominator",
+      "value": "6",
+      "plural": true,
+      "source": "el.wiktionary page έκτο: \"κάθε ένα από τα έξι ίσα μέρη ενός συνόλου\", \"το έκτ ο τα έκτ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "έβδομο",
+      "role": "denominator",
+      "value": "7",
+      "source": "el.wiktionary page έβδομο: \"κάθε ένα από τα εφτά ίσα μέρη ενός συνόλου\", \"το έβδομ ο τα έβδομ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "έβδομα",
+      "role": "denominator",
+      "value": "7",
+      "plural": true,
+      "source": "el.wiktionary page έβδομο: \"κάθε ένα από τα εφτά ίσα μέρη ενός συνόλου\", \"το έβδομ ο τα έβδομ α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "όγδοο",
+      "role": "denominator",
+      "value": "8",
+      "source": "el.wiktionary page όγδοο: \"κάθε ένα από τα οχτώ ίσα μέρη ενός συνόλου\", \"το όγδο ο τα όγδο α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "όγδοα",
+      "role": "denominator",
+      "value": "8",
+      "plural": true,
+      "source": "el.wiktionary page όγδοο: \"κάθε ένα από τα οχτώ ίσα μέρη ενός συνόλου\", \"το όγδο ο τα όγδο α\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "ένατο",
+      "role": "denominator",
+      "value": "9",
+      "source": "en.wiktionary page Appendix:Greek number and measurement: \"εννεαπλάσιος ( enneaplásios ) ένατο ( énato )\"; en.wiktionary page ένατος: \"ένατοι ( énatoi ) ένατες ( énates ) ένατα ( énata )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "ένατα",
+      "role": "denominator",
+      "value": "9",
+      "plural": true,
+      "source": "en.wiktionary page Appendix:Greek number and measurement: \"εννεαπλάσιος ( enneaplásios ) ένατο ( énato )\"; en.wiktionary page ένατος: \"ένατοι ( énatoi ) ένατες ( énates ) ένατα ( énata )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "δέκατο",
+      "role": "denominator",
+      "value": "10",
+      "source": "en.wiktionary page δέκατο: \"δέκατο • ( dékato ) n ( plural δέκατα ) tenth ( part of a whole )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "δέκατα",
+      "role": "denominator",
+      "value": "10",
+      "plural": true,
+      "source": "en.wiktionary page δέκατο: \"δέκατο • ( dékato ) n ( plural δέκατα ) tenth ( part of a whole )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "εκατοστό",
+      "role": "denominator",
+      "value": "100",
+      "ambiguous": true,
+      "source": "en.wiktionary page εκατοστό: \"εκατοστό • ( ekatostó ) n ( plural εκατοστά ) hundredth ( 1/100, one of a hundred parts of a whole ) ( colloquial ) centimetre ( in daily speech )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "εκατοστά",
+      "role": "denominator",
+      "value": "100",
+      "plural": true,
+      "ambiguous": true,
+      "source": "en.wiktionary page εκατοστό: \"εκατοστό • ( ekatostó ) n ( plural εκατοστά ) hundredth ( 1/100, one of a hundred parts of a whole ) ( colloquial ) centimetre ( in daily speech )\"; el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "χιλιοστό",
+      "role": "denominator",
+      "value": "1000",
+      "ambiguous": true,
+      "source": "en.wiktionary page χιλιοστό: \"χιλιοστό • ( chiliostó ) n ( plural χιλιοστά ) thousandth ( 1/1000 )\"; Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry χιλιοστόμετρο: \"μονάδα μήκους ίση με το ένα χιλιοστό του μέτρου· χιλιοστό.\" (the millimetre); el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "χιλιοστά",
+      "role": "denominator",
+      "value": "1000",
+      "plural": true,
+      "ambiguous": true,
+      "source": "en.wiktionary page χιλιοστό: \"χιλιοστό • ( chiliostó ) n ( plural χιλιοστά ) thousandth ( 1/1000 )\"; Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry χιλιοστόμετρο: \"μονάδα μήκους ίση με το ένα χιλιοστό του μέτρου· χιλιοστό.\" (the millimetre); el.wikipedia page Τακτικό αριθμητικό: \"Η ουδέτερη αλφαβητική μορφή των αριθμών χρησιμοποιείται για την ολογράφως έκφραση των παρονομαστών των κλασμάτων, όπως π.χ. ένα τέταρτο (1/4), ένα τρίτο (1/3) κτλ.\"; en.wiktionary page δέκατο: \"τρία δέκατα (three tenths)\": the plural follows a count above one."
+    },
+    {
+      "word": "πρώτος",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτου",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτο",
+      "role": "ordinal",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτοι",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτους",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτη",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτης",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτες",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτα",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "neuter",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πρώτων",
+      "role": "ordinal",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1: πρώτος;\"; en.wiktionary page πρώτος: \"Declension of πρώτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερος",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερου",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερο",
+      "role": "ordinal",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτεροι",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερους",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερη",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερης",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερες",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερα",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δεύτερων",
+      "role": "ordinal",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"2: δεύτερος;\"; en.wiktionary page δεύτερος: \"Declension of δεύτερος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτος",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτου",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτο",
+      "role": "ordinal",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτοι",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτους",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτη",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "τρίτης",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "τρίτες",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτα",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τρίτων",
+      "role": "ordinal",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"3: τρίτος;\"; en.wiktionary page τρίτος: \"Declension of τρίτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτος",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτου",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτο",
+      "role": "ordinal",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτοι",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτους",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτη",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "τέταρτης",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "τέταρτες",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτα",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τέταρτων",
+      "role": "ordinal",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"4: τέταρτος;\"; en.wiktionary page τέταρτος: \"Declension of τέταρτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτος",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτου",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτο",
+      "role": "ordinal",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτοι",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτους",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτη",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "πέμπτης",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form. en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; \"Τετάρτη\": \"Wednesday (day of the week)\"; \"Πέμπτη\": \"Thursday\". The weekday is a date, so the ordinal reading is low confidence."
+    },
+    {
+      "word": "πέμπτες",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτα",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πέμπτων",
+      "role": "ordinal",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"5: πέμπτος;\"; en.wiktionary page πέμπτος: \"Declension of πέμπτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτος",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form. en.wiktionary \"εκτός\": \"except (for), besides\"; en.wikipedia \"Greek diacritics\": \"In uppercase (all-caps), accents and breathings are eliminated\", so a word in capitals reads as either word; the ordinal reading is low confidence."
+    },
+    {
+      "word": "έκτου",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτο",
+      "role": "ordinal",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτοι",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτους",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτη",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτης",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτες",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτα",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έκτων",
+      "role": "ordinal",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"6: έκτος;\"; en.wiktionary page έκτος: \"Declension of έκτος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομος",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομου",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομο",
+      "role": "ordinal",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομοι",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομους",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομη",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομης",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομες",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομα",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "έβδομων",
+      "role": "ordinal",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"7: έβδομος;\"; en.wiktionary page έβδομος: \"Declension of έβδομος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "όγδοος",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοου",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοο",
+      "role": "ordinal",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοοι",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοους",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοη",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοης",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοες",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοα",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "όγδοων",
+      "role": "ordinal",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"8: όγδοος;\"; el.wiktionary page όγδοος: \"ο όγδο ος η όγδο η\", whose declension table gives every form."
+    },
+    {
+      "word": "ένατος",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατου",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατο",
+      "role": "ordinal",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατοι",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατους",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατη",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατης",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατες",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατα",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ένατων",
+      "role": "ordinal",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"9: ένατος;\"; en.wiktionary page ένατος: \"Declension of ένατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατος",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατου",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατο",
+      "role": "ordinal",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατοι",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατους",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατη",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατης",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατες",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατα",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δέκατων",
+      "role": "ordinal",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"10: δέκατος;\"; en.wiktionary page δέκατος: \"Declension of δέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατος",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατου",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατο",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατοι",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατους",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατη",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατης",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατες",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατα",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενδέκατων",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"11: ενδέκατος;\"; en.wiktionary page ενδέκατος: \"Declension of ενδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εντέκατος",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατου",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατο",
+      "role": "ordinal",
+      "value": "11",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατοι",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατους",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατη",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατης",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατες",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατα",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "neuter",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "εντέκατων",
+      "role": "ordinal",
+      "value": "11",
+      "source": "el.wiktionary page εντέκατος: \"( προφορικό ) άλλη μορφή του ενδέκατος\"; el.wiktionary page εντέκατος: \"ο εντέκατ ος η εντέκατ η\", whose declension table gives every form."
+    },
+    {
+      "word": "δωδέκατος",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατου",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατο",
+      "role": "ordinal",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατοι",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατους",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατη",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατης",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατες",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατα",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "δωδέκατων",
+      "role": "ordinal",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"12: δωδέκατος;\"; en.wiktionary page δωδέκατος: \"Declension of δωδέκατος\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστός",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστού",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστό",
+      "role": "ordinal",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστοί",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστούς",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστή",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστής",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστές",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστά",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εικοστών",
+      "role": "ordinal",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"20: εικοστός[ >>];\"; en.wiktionary page εικοστός: \"Declension of εικοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστός",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστού",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστό",
+      "role": "ordinal",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστοί",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστούς",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστή",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστής",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστές",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστά",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τριακοστών",
+      "role": "ordinal",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"30: τριακοστός[ >>];\"; en.wiktionary page τριακοστός: \"Declension of τριακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστός",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστού",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστό",
+      "role": "ordinal",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστοί",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστούς",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστή",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστής",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστές",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστά",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "τεσσαρακοστών",
+      "role": "ordinal",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"40: τεσσαρακοστός[ >>];\"; en.wiktionary page τεσσαρακοστός: \"Declension of τεσσαρακοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστός",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστού",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστό",
+      "role": "ordinal",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστοί",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστούς",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστή",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστής",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστές",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστά",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "πεντηκοστών",
+      "role": "ordinal",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"50: πεντηκοστός[ >>];\"; en.wiktionary page πεντηκοστός: \"Declension of πεντηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστός",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστού",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστό",
+      "role": "ordinal",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστοί",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστούς",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστή",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστής",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστές",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστά",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εξηκοστών",
+      "role": "ordinal",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"60: εξηκοστός[ >>];\"; en.wiktionary page εξηκοστός: \"Declension of εξηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστός",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστού",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστό",
+      "role": "ordinal",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστοί",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστούς",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστή",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστής",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστές",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστά",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εβδομηκοστών",
+      "role": "ordinal",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"70: εβδομηκοστός[ >>];\"; en.wiktionary page εβδομηκοστός: \"Declension of εβδομηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστός",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστού",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστό",
+      "role": "ordinal",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστοί",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστούς",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστή",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστής",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστές",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστά",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ογδοηκοστών",
+      "role": "ordinal",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"80: ογδοηκοστός[ >>];\"; en.wiktionary page ογδοηκοστός: \"Declension of ογδοηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστός",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστού",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστό",
+      "role": "ordinal",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστοί",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστούς",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστή",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστής",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστές",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστά",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "ενενηκοστών",
+      "role": "ordinal",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"90: ενενηκοστός[ >>];\"; en.wiktionary page ενενηκοστός: \"Declension of ενενηκοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστός",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστού",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστό",
+      "role": "ordinal",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστοί",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστούς",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστή",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστής",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστές",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστά",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατοστών",
+      "role": "ordinal",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"100: εκατοστός[ >>];\"; en.wiktionary page εκατοστός: \"Declension of εκατοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "διακοσιοστός",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστού",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστό",
+      "role": "ordinal",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστοί",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστούς",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστή",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστής",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστές",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστά",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "διακοσιοστών",
+      "role": "ordinal",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"200: διακοσιοστός[ >>];\"; el.wiktionary page διακοσιοστός: \"ο διακοσιοστ ός η διακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστός",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστού",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστό",
+      "role": "ordinal",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστοί",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστούς",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστή",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστής",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστές",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστά",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τριακοσιοστών",
+      "role": "ordinal",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"300: τριακοσιοστός[ >>];\"; el.wiktionary page τριακοσιοστός: \"ο τριακοσιοστ ός η τριακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστός",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστού",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστό",
+      "role": "ordinal",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστοί",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστούς",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστή",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστής",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστές",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστά",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "τετρακοσιοστών",
+      "role": "ordinal",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"400: τετρακοσιοστός[ >>];\"; el.wiktionary page τετρακοσιοστός: \"ο τετρακοσιοστ ός η τετρακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστός",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστού",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστό",
+      "role": "ordinal",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστοί",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστούς",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστή",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστής",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστές",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστά",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "πεντακοσιοστών",
+      "role": "ordinal",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"500: πεντακοσιοστός[ >>];\"; el.wiktionary page πεντακοσιοστός: \"ο πεντακοσιοστ ός η πεντακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστός",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστού",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστό",
+      "role": "ordinal",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστοί",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστούς",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστή",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστής",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστές",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστά",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εξακοσιοστών",
+      "role": "ordinal",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"600: εξακοσιοστός[ >>];\"; el.wiktionary page εξακοσιοστός: \"ο εξακοσιοστ ός η εξακοσιοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "επτακοσιοστός",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστού",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστό",
+      "role": "ordinal",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστοί",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστούς",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστή",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστής",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστές",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστά",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "επτακοσιοστών",
+      "role": "ordinal",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"700: επτακοσιοστός[ >>];\"; en.wiktionary page επτακοσιοστός: \"Declension of επτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστός",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστού",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστό",
+      "role": "ordinal",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστοί",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστούς",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστή",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστής",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστές",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστά",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "οκτακοσιοστών",
+      "role": "ordinal",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"800: οκτακοσιοστός[ >>];\"; en.wiktionary page οκτακοσιοστός: \"Declension of οκτακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστός",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστού",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστό",
+      "role": "ordinal",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστοί",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστούς",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστή",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστής",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστές",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστά",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εννεακοσιοστών",
+      "role": "ordinal",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"900: εννεακοσιοστός[ >>];\"; en.wiktionary page εννεακοσιοστός: \"Declension of εννεακοσιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστός",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστού",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστό",
+      "role": "ordinal",
+      "value": "1000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστοί",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστούς",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστή",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστής",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστές",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστά",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "χιλιοστών",
+      "role": "ordinal",
+      "value": "1000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000: χιλιοστός[ >>];\"; en.wiktionary page χιλιοστός: \"Declension of χιλιοστός\", whose Modern Greek table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστός",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστού",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστό",
+      "role": "ordinal",
+      "value": "1000000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστοί",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστούς",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστή",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστής",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστές",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστά",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "εκατομμυριοστών",
+      "role": "ordinal",
+      "value": "1000000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), %spellout-ordinal-masculine: \"1000000: <%spellout-cardinal-neuter< εκατομμυριοστός[ >>];\"; el.wiktionary page εκατομμυριοστός: \"ο εκατομμυριοστ ός η εκατομμυριοστ ή\", whose declension table gives every form."
+    },
+    {
+      "word": "ος",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "η",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "ο",
+      "role": "ordinal_suffix",
+      "gender": "neuter",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "οι",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "ες",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "α",
+      "role": "ordinal_suffix",
+      "gender": "neuter",
+      "source": "el.wikipedia page Τακτικό αριθμητικό: \"(1ος, 1η, 1ο, 1οι, 1ες, 1α)\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "ου",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "el.wikipedia page Χίλιες και μία νύχτες: \"στις αρχές του 8ου αιώνα\": a digit takes the ending of the ordinal word."
+    },
+    {
+      "word": "ης",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "el.wikipedia page 25η Μαρτίου: \"Κατά τον εορτασμό της 25ης Μαρτίου του 1914\": a digit takes the ending of the ordinal word."
+    }
+  ]
+}

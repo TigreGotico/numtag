@@ -19,6 +19,7 @@ from functools import cache
 from pathlib import Path
 
 from numtag.mention import Scale
+from numtag.tokenize import Script
 
 _HERE = Path(__file__).parent
 
@@ -30,10 +31,18 @@ class Joiner(str, Enum):
     NEVER = "never"
 
 
+class TensOrder(str, Enum):
+    """Which of a ten and a unit comes first ("vinte e um", "einundzwanzig")."""
+    TEN_FIRST = "ten_first"
+    UNIT_FIRST = "unit_first"
+
+
 # Roles whose value is a digit string. A "teen" adds ten to the unit before
-# it in the same word ("yksi" "toista"); a "value_word" is a whole number on
-# its own, also one that is not whole ("puolitoista" is 3/2).
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "teen", "value_word")
+# it ("yksi" "toista", "ثلاثة عشر"); a "value_word" is a whole number on its
+# own, also one that is not whole ("puolitoista" is 3/2); a unit-and-half
+# word is its value and a half ("δυόμισι").
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "teen", "value_word",
+               "unit_and_half")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
@@ -55,6 +64,14 @@ class Entry:
     addend: bool = False
     # The form stands only before the rest of the number ("cento e um").
     bound: bool = False
+    # A scale word with its count in the form: the dual "ألفان" is 2 x 10^3.
+    count: str = ""
+    # A plural multiplier that a count takes ("מאות" in "שלוש מאות").
+    counted: bool = False
+    # A denominator that stands alone as this numerator over it ("ربع" is 1/4).
+    numerator: str = ""
+    # A denominator with one form for every numerator ("سوم" in "دو سوم").
+    invariant: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
     # The word names a place in a sequence ("viides", "beşinci"): a number
@@ -139,6 +156,15 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # "wis" in "wis sin": a word that makes the cardinal after it an ordinal.
+    ordinal_particles: frozenset[str] = frozenset()
+    # Values whose ordinal has a bound form for compounds: in ar "الحادي
+    # عشر" is the 11th, so "الأول" (1st) starts no compound.
+    bound_ordinal_values: frozenset[str] = frozenset()
+    tens_order: TensOrder = TensOrder.TEN_FIRST
+    # A half after any scale word is half of that scale ("אלף וחצי" is 1500).
+    half_of_scale: bool = False
+    script: Script = Script()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -187,7 +213,9 @@ def _illion_exponent(rank: int, scale: Scale) -> int:
 def load(lang: str, scale: Scale | None = None) -> Lexicon:
     data = _read(lang)
     settings = {key: item["value"] for key, item in data["settings"].items()}
-    words = {key: item["value"] for key, item in data["words"].items()}
+    script = _script(settings, {key: item["value"] for key, item in data["words"].items()})
+    words = {key: [form for w in item["value"] for form in sorted(script.lexicon_forms(w))]
+             for key, item in data["words"].items()}
     scale = Scale(scale or settings["scale"])
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
@@ -200,9 +228,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
         ambiguous_words.update(ambiguous)
         for word, ordinal, final, fraction_case in _forms(spec, inflection, suffix_ends):
-            readings.setdefault(word, []).append(replace(
-                entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
-                ambiguous=entry.ambiguous or word in ambiguous))
+            reading = replace(entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
+                              ambiguous=entry.ambiguous or word in ambiguous)
+            for form in script.lexicon_forms(word):
+                readings.setdefault(form, []).append(reading)
 
     # Ordinal scale words come last: each takes its power of ten from the
     # cardinal scale word it names.
@@ -214,8 +243,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
-                            ordinal_unit=spec.get("ordinal_unit", False), **facts))
+                            ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
+                            invariant=spec.get("invariant", False), **facts))
         elif role in SCALE_ROLES:
+            facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:
                 put(spec, Entry(role, exponent=spec["value"], **facts))
             else:
@@ -226,7 +257,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         elif role == "half":
             put(spec, Entry(role, "1", bound=spec.get("bound", False), **facts))
         elif role == "ordinal_scale":
-            cardinal = [e for e in readings[spec["value"]] if e.role in SCALE_ROLES]
+            cardinal = [e for e in readings[script.fold(spec["value"])] if e.role in SCALE_ROLES]
             put(spec, Entry(role, exponent=cardinal[0].exponent,
                             scale_dependent=cardinal[0].scale_dependent, **facts))
         elif role == "ordinal_suffix":
@@ -270,4 +301,30 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
         ambiguous_words=frozenset(ambiguous_words),
+        ordinal_particles=frozenset(words.get("ordinal_particle", ())),
+        bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
+                                       if e.role == "ordinal" and e.bound),
+        tens_order=TensOrder(settings.get("tens_order", TensOrder.TEN_FIRST)),
+        half_of_scale=settings.get("half_of_scale", False),
+        script=script,
     )
+
+
+def _script(settings: dict, words: dict) -> Script:
+    """The script settings of a lexicon; a language that sets none reads as pt and en do."""
+    native = settings.get("native_digits")
+    digits: list[tuple[str, str]] = []
+    if native:
+        for run in native["digits"]:
+            digits += [(char, str(n)) for n, char in enumerate(run)]
+        digits += [(native["decimal_mark"], settings["decimal_mark"]), (native["group_mark"], settings["group_mark"])]
+    script = Script(fold_marks=settings.get("fold_marks", False),
+                    kept_marks=settings.get("kept_marks", ""),
+                    letter_folds=tuple(settings.get("letter_folds", {}).items()),
+                    word_chars=settings.get("word_chars", ""),
+                    bidi_controls=settings.get("bidi_controls", False),
+                    native_digits=tuple(digits),
+                    clitic_min_rest=settings.get("clitic_min_rest", 1))
+    return Script(**{**script.__dict__,
+                     "joiner_prefixes": tuple(script.fold(p) for p in words.get("joiner_prefix", ())),
+                     "clitic_prefixes": tuple(script.fold(p) for p in words.get("clitic_prefix", ()))})

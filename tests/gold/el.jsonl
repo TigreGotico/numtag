@@ -1,0 +1,159 @@
+{"text": "Ο κωδικός αρχίζει με μηδέν.", "mentions": [{"start": 21, "end": 26, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF el: \"0: μηδέν\"."}
+{"text": "Έχω ένα αυτοκίνητο.", "mentions": [{"start": 4, "end": 7, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: ένα\"; by hand: the indefinite article has the forms of one."}
+{"text": "Ήρθε ένας φίλος μου.", "mentions": [{"start": 5, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: ένας\"; the indefinite article has the forms of \"one\"."}
+{"text": "Πήρα μία καρέκλα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: μία\"; the indefinite article has the forms of \"one\"."}
+{"text": "Μόνο ένα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF el: \"1: ένα\"; no noun follows, so it is the number."}
+{"text": "Έχω δύο αδέλφια.", "mentions": [{"start": 4, "end": 7, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF el: \"2: δύο\"."}
+{"text": "Ήρθαν δυο παιδιά.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "by hand: δύο: colloquial δυο."}
+{"text": "Είδα τρεις γάτες.", "mentions": [{"start": 5, "end": 10, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF el, feminine: \"3: τρεις\"."}
+{"text": "Αγόρασα τρία βιβλία.", "mentions": [{"start": 8, "end": 12, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF el, neuter: \"3: τρία\"."}
+{"text": "Ήρθαν τέσσερις άντρες.", "mentions": [{"start": 6, "end": 14, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF el, masculine: \"4: τέσσερις\"."}
+{"text": "Έχει τέσσερα πόδια.", "mentions": [{"start": 5, "end": 12, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF el, neuter: \"4: τέσσερα\"."}
+{"text": "Περίμενα πέντε λεπτά.", "mentions": [{"start": 9, "end": 14, "value": "5", "kind": "cardinal"}], "source": "CLDR RBNF el: \"5: πέντε\"."}
+{"text": "Ξυπνάω στις έξι.", "mentions": [{"start": 12, "end": 15, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF el: \"6: έξι\"."}
+{"text": "Η εβδομάδα έχει επτά μέρες.", "mentions": [{"start": 16, "end": 20, "value": "7", "kind": "cardinal"}], "source": "CLDR RBNF el: \"7: επτά\"."}
+{"text": "Έφαγα εφτά μπισκότα.", "mentions": [{"start": 6, "end": 10, "value": "7", "kind": "cardinal"}], "source": "by hand: επτά: spoken εφτά."}
+{"text": "Δουλεύω οκτώ ώρες.", "mentions": [{"start": 8, "end": 12, "value": "8", "kind": "cardinal"}], "source": "CLDR RBNF el: \"8: οκτώ\"."}
+{"text": "Κοιμήθηκα οχτώ ώρες.", "mentions": [{"start": 10, "end": 14, "value": "8", "kind": "cardinal"}], "source": "by hand: οκτώ: spoken οχτώ."}
+{"text": "Έχουμε εννέα πλανήτες.", "mentions": [{"start": 7, "end": 12, "value": "9", "kind": "cardinal"}], "source": "CLDR RBNF el: \"9: εννέα\"."}
+{"text": "Μετράω ως το εννιά.", "mentions": [{"start": 13, "end": 18, "value": "9", "kind": "cardinal"}], "source": "by hand: εννέα: spoken εννιά."}
+{"text": "Έχω δέκα δάχτυλα.", "mentions": [{"start": 4, "end": 8, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF el: \"10: δέκα\"."}
+{"text": "Ήταν έντεκα παίκτες.", "mentions": [{"start": 5, "end": 11, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF el: \"11: έντεκα\"."}
+{"text": "Ο χρόνος έχει δώδεκα μήνες.", "mentions": [{"start": 14, "end": 20, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF el: \"12: δώδεκα\"."}
+{"text": "Είναι δεκατρία χρονών.", "mentions": [{"start": 6, "end": 14, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF el: \"13: δεκα­>>;\", 10 + 3."}
+{"text": "Ήρθαν δεκατρείς μαθητές.", "mentions": [{"start": 6, "end": 15, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF el, masculine: \"13: δεκα­>>;\" with \"τρεις\"."}
+{"text": "Έχω δεκατέσσερα ευρώ.", "mentions": [{"start": 4, "end": 15, "value": "14", "kind": "cardinal"}], "source": "arithmetic: 10 + 4."}
+{"text": "Περίμενα δεκαπέντε μέρες.", "mentions": [{"start": 9, "end": 18, "value": "15", "kind": "cardinal"}], "source": "arithmetic: 10 + 5."}
+{"text": "Είναι δεκαέξι χρονών.", "mentions": [{"start": 6, "end": 13, "value": "16", "kind": "cardinal"}], "source": "arithmetic: 10 + 6."}
+{"text": "Είναι δεκάξι χιλιόμετρα.", "mentions": [{"start": 6, "end": 12, "value": "16", "kind": "cardinal"}], "source": "by hand: δεκαέξι: spoken δεκάξι."}
+{"text": "Η τάξη έχει δεκαεπτά παιδιά.", "mentions": [{"start": 12, "end": 20, "value": "17", "kind": "cardinal"}], "source": "arithmetic: 10 + 7."}
+{"text": "Έγινε δεκαοχτώ χρονών.", "mentions": [{"start": 6, "end": 14, "value": "18", "kind": "cardinal"}], "source": "arithmetic: 10 + 8."}
+{"text": "Έχω δεκαεννέα κάρτες.", "mentions": [{"start": 4, "end": 13, "value": "19", "kind": "cardinal"}], "source": "arithmetic: 10 + 9."}
+{"text": "Πήρα είκοσι ευρώ.", "mentions": [{"start": 5, "end": 11, "value": "20", "kind": "cardinal"}], "source": "CLDR RBNF el: \"20: είκοσι\"."}
+{"text": "Έχει είκοσι ένα χρόνια.", "mentions": [{"start": 5, "end": 15, "value": "21", "kind": "cardinal"}], "source": "CLDR RBNF el: \"20: είκοσι[ >>]\", 20 + 1."}
+{"text": "Ήρθαν είκοσι τρεις επισκέπτες.", "mentions": [{"start": 6, "end": 18, "value": "23", "kind": "cardinal"}], "source": "arithmetic: 20 + 3."}
+{"text": "Είναι τριάντα χρονών.", "mentions": [{"start": 6, "end": 13, "value": "30", "kind": "cardinal"}], "source": "CLDR RBNF el: \"30: τριάντα\"."}
+{"text": "Πλήρωσα τριάντα πέντε ευρώ.", "mentions": [{"start": 8, "end": 21, "value": "35", "kind": "cardinal"}], "source": "arithmetic: 30 + 5."}
+{"text": "Ο παππούς είναι σαράντα δύο ετών; όχι, ογδόντα δύο.", "mentions": [{"start": 16, "end": 27, "value": "42", "kind": "cardinal"}, {"start": 39, "end": 50, "value": "82", "kind": "cardinal"}], "source": "arithmetic: 40 + 2; 80 + 2."}
+{"text": "Η ταχύτητα ήταν πενήντα χιλιόμετρα.", "mentions": [{"start": 16, "end": 23, "value": "50", "kind": "cardinal"}], "source": "CLDR RBNF el: \"50: πενήντα\"."}
+{"text": "Μένω στο εξήντα επτά.", "mentions": [{"start": 9, "end": 20, "value": "67", "kind": "cardinal"}], "source": "arithmetic: 60 + 7."}
+{"text": "Το βιβλίο έχει εβδομήντα οκτώ σελίδες.", "mentions": [{"start": 15, "end": 29, "value": "78", "kind": "cardinal"}], "source": "arithmetic: 70 + 8."}
+{"text": "Έκανε ενενήντα εννέα βαθμούς.", "mentions": [{"start": 6, "end": 20, "value": "99", "kind": "cardinal"}], "source": "arithmetic: 90 + 9."}
+{"text": "Έχω εκατό ευρώ.", "mentions": [{"start": 4, "end": 9, "value": "100", "kind": "cardinal"}], "source": "CLDR RBNF el: \"100: εκατό\"."}
+{"text": "Ήταν εκατόν ένας σκύλοι.", "mentions": [{"start": 5, "end": 16, "value": "101", "kind": "cardinal"}], "source": "CLDR RBNF el: \"100: εκατό[ν >>]\", 100 + 1."}
+{"text": "Κόστισε εκατόν είκοσι ευρώ.", "mentions": [{"start": 8, "end": 21, "value": "120", "kind": "cardinal"}], "source": "arithmetic: 100 + 20."}
+{"text": "Πλήρωσα εκατόν πενήντα τρία ευρώ.", "mentions": [{"start": 8, "end": 27, "value": "153", "kind": "cardinal"}], "source": "arithmetic: 100 + 50 + 3."}
+{"text": "Ήρθαν διακόσιοι άνθρωποι.", "mentions": [{"start": 6, "end": 15, "value": "200", "kind": "cardinal"}], "source": "CLDR RBNF el, masculine: \"2: δια;\", \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."}
+{"text": "Έχουμε διακόσιες θέσεις.", "mentions": [{"start": 7, "end": 16, "value": "200", "kind": "cardinal"}], "source": "CLDR RBNF el, feminine: \"200: <%%hundreds-prefix<κόσιες[ >>];\"."}
+{"text": "Πούλησε διακόσια πενήντα αντίτυπα.", "mentions": [{"start": 8, "end": 24, "value": "250", "kind": "cardinal"}], "source": "arithmetic: 200 + 50."}
+{"text": "Ήρθαν τριακόσιοι στρατιώτες.", "mentions": [{"start": 6, "end": 16, "value": "300", "kind": "cardinal"}], "source": "CLDR RBNF el: \"3: τρια;\", \"200: <%%hundreds-prefix<κόσιοι[ >>];\"."}
+{"text": "Το σπίτι έχει τετρακόσια τετραγωνικά.", "mentions": [{"start": 14, "end": 24, "value": "400", "kind": "cardinal"}], "source": "CLDR RBNF el: \"4: τετρα;\", \"200: <%%hundreds-prefix<κόσια[ >>];\"."}
+{"text": "Πλήρωσα πεντακόσια ευρώ.", "mentions": [{"start": 8, "end": 18, "value": "500", "kind": "cardinal"}], "source": "CLDR RBNF el: \"5: πεντα;\", \"200: <%%hundreds-prefix<κόσια[ >>];\"."}
+{"text": "Έγραψε εξακόσιες εξήντα έξι λέξεις.", "mentions": [{"start": 7, "end": 27, "value": "666", "kind": "cardinal"}], "source": "arithmetic: 600 + 60 + 6."}
+{"text": "Ζυγίζει εφτακόσια γραμμάρια.", "mentions": [{"start": 8, "end": 17, "value": "700", "kind": "cardinal"}], "source": "by hand: επτακόσια: spoken εφτακόσια."}
+{"text": "Διένυσε οκτακόσια μέτρα.", "mentions": [{"start": 8, "end": 17, "value": "800", "kind": "cardinal"}], "source": "CLDR RBNF el: \"8: οκτα;\", \"200: <%%hundreds-prefix<κόσια[ >>];\"."}
+{"text": "Το βουνό έχει εννιακόσια ενενήντα εννέα μέτρα.", "mentions": [{"start": 14, "end": 39, "value": "999", "kind": "cardinal"}], "source": "arithmetic: 900 + 90 + 9."}
+{"text": "Πήρα χίλια ευρώ.", "mentions": [{"start": 5, "end": 10, "value": "1000", "kind": "cardinal"}], "source": "CLDR RBNF el, neuter: \"1000: χίλια\"."}
+{"text": "Ήρθαν χίλιοι θεατές.", "mentions": [{"start": 6, "end": 12, "value": "1000", "kind": "cardinal"}], "source": "CLDR RBNF el, masculine: \"1000: χίλιοι\"."}
+{"text": "Πέρασαν χίλιες μέρες.", "mentions": [{"start": 8, "end": 14, "value": "1000", "kind": "cardinal"}], "source": "CLDR RBNF el, feminine: \"1000: χίλιες\"."}
+{"text": "Γεννήθηκε το χίλια εννιακόσια ογδόντα τέσσερα.", "mentions": [{"start": 13, "end": 45, "value": "1984", "kind": "cardinal"}], "source": "arithmetic: 1000 + 900 + 80 + 4."}
+{"text": "Το χίλια εννιακόσια σαράντα ήταν δύσκολο.", "mentions": [{"start": 3, "end": 27, "value": "1940", "kind": "cardinal"}], "source": "arithmetic: 1000 + 900 + 40."}
+{"text": "Κόστισε χίλια διακόσια ευρώ.", "mentions": [{"start": 8, "end": 22, "value": "1200", "kind": "cardinal"}], "source": "arithmetic: 1000 + 200."}
+{"text": "Είμαστε στο δύο χιλιάδες είκοσι πέντε.", "mentions": [{"start": 12, "end": 37, "value": "2025", "kind": "cardinal"}], "source": "CLDR RBNF el: \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\", 2 x 1000 + 25."}
+{"text": "Έφυγαν τρεις χιλιάδες άνθρωποι.", "mentions": [{"start": 7, "end": 21, "value": "3000", "kind": "cardinal"}], "source": "CLDR RBNF el: \"2000: <%spellout-cardinal-feminine< χιλιάδες\", 3 x 1000."}
+{"text": "Πλήρωσε πέντε χιλιάδες πεντακόσια ευρώ.", "mentions": [{"start": 8, "end": 33, "value": "5500", "kind": "cardinal"}], "source": "arithmetic: 5 x 1000 + 500."}
+{"text": "Ήρθαν δέκα χιλιάδες οπαδοί.", "mentions": [{"start": 6, "end": 19, "value": "10000", "kind": "cardinal"}], "source": "arithmetic: 10 x 1000."}
+{"text": "Έχει είκοσι μία χιλιάδες κατοίκους.", "mentions": [{"start": 5, "end": 24, "value": "21000", "kind": "cardinal"}], "source": "arithmetic: (20 + 1) x 1000."}
+{"text": "Η πόλη έχει εκατό χιλιάδες κατοίκους.", "mentions": [{"start": 12, "end": 26, "value": "100000", "kind": "cardinal"}], "source": "arithmetic: 100 x 1000."}
+{"text": "Πούλησε τριακόσιες πενήντα χιλιάδες δίσκους.", "mentions": [{"start": 8, "end": 35, "value": "350000", "kind": "cardinal"}], "source": "arithmetic: (300 + 50) x 1000."}
+{"text": "Κέρδισε ένα εκατομμύριο ευρώ.", "mentions": [{"start": 8, "end": 23, "value": "1000000", "kind": "cardinal"}], "source": "CLDR RBNF el: \"1000000: <%spellout-cardinal-neuter< $(cardinal,one{εκατομμύριο}other{εκατομμύρια})$[ >>];\"."}
+{"text": "Η χώρα έχει δέκα εκατομμύρια κατοίκους.", "mentions": [{"start": 12, "end": 28, "value": "10000000", "kind": "cardinal"}], "source": "arithmetic: 10 x 10^6."}
+{"text": "Χρωστάει τρία εκατομμύρια διακόσιες χιλιάδες ευρώ.", "mentions": [{"start": 9, "end": 44, "value": "3200000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 200 x 1000."}
+{"text": "Ζουν οκτώ δισεκατομμύρια άνθρωποι στη Γη.", "mentions": [{"start": 5, "end": 24, "value": "8000000000", "kind": "cardinal"}], "source": "CLDR RBNF el: \"1000000000: <%spellout-cardinal-neuter< $(cardinal,one{δισεκατομμύριο}other{δισεκατομμύρια})$[ >>];\", 8 x 10^9."}
+{"text": "Το χρέος είναι ένα τρισεκατομμύριο δολάρια.", "mentions": [{"start": 15, "end": 34, "value": "1000000000000", "kind": "cardinal"}], "source": "CLDR RBNF el: \"1000000000000: <%spellout-cardinal-neuter< $(cardinal,one{τρισεκατομμύριο}other{τρισεκατομμύρια})$[ >>];\"."}
+{"text": "Ο προϋπολογισμός είναι 2 δις ευρώ.", "mentions": [{"start": 23, "end": 28, "value": "2000000000", "kind": "cardinal"}], "source": "by hand: δις: short for δισεκατομμύρια; 2 x 10^9."}
+{"text": "Εκατομμύρια άνθρωποι το είδαν.", "mentions": [], "source": "CLDR RBNF el: a scale word takes a count; \"εκατομμύρια\" alone names no number."}
+{"text": "Χιλιάδες κόσμος ήρθε.", "mentions": [], "source": "CLDR RBNF el: \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\"; the plural alone names no number."}
+{"text": "Ήρθε πρώτος στον αγώνα.", "mentions": [{"start": 5, "end": 11, "value": "1", "kind": "ordinal"}], "source": "CLDR RBNF el: \"1: πρώτος\"."}
+{"text": "Η πρώτη μέρα του μήνα.", "mentions": [{"start": 2, "end": 7, "value": "1", "kind": "ordinal"}], "source": "CLDR RBNF el, ordinal: πρώτος, feminine πρώτη."}
+{"text": "Ο δεύτερος όροφος.", "mentions": [{"start": 2, "end": 10, "value": "2", "kind": "ordinal"}], "source": "CLDR RBNF el: \"2: δεύτερος\"."}
+{"text": "Η τρίτη πόρτα δεξιά.", "mentions": [{"start": 2, "end": 7, "value": "3", "kind": "ordinal"}], "source": "CLDR RBNF el: \"3: τρίτος\", feminine τρίτη."}
+{"text": "Το τέταρτο κεφάλαιο.", "mentions": [{"start": 3, "end": 10, "value": "4", "kind": "ordinal"}], "source": "CLDR RBNF el: \"4: τέταρτος\", neuter τέταρτο."}
+{"text": "Ο πέμπτος παίκτης.", "mentions": [{"start": 2, "end": 9, "value": "5", "kind": "ordinal"}], "source": "CLDR RBNF el: \"5: πέμπτος\"."}
+{"text": "Μένω στον έκτο όροφο.", "mentions": [{"start": 10, "end": 14, "value": "6", "kind": "ordinal"}], "source": "CLDR RBNF el: \"6: έκτος\", accusative έκτο."}
+{"text": "Όλοι εκτός από μένα.", "mentions": [], "source": "by hand: εκτός: the preposition except, stressed on the last syllable, no ordinal."}
+{"text": "Η έβδομη σφραγίδα.", "mentions": [{"start": 2, "end": 8, "value": "7", "kind": "ordinal"}], "source": "CLDR RBNF el: \"7: έβδομος\"."}
+{"text": "Ο όγδοος μήνας.", "mentions": [{"start": 2, "end": 8, "value": "8", "kind": "ordinal"}], "source": "CLDR RBNF el: \"8: όγδοος\"."}
+{"text": "Η ένατη συμφωνία.", "mentions": [{"start": 2, "end": 7, "value": "9", "kind": "ordinal"}], "source": "CLDR RBNF el: \"9: ένατος\"."}
+{"text": "Η δέκατη επέτειος.", "mentions": [{"start": 2, "end": 8, "value": "10", "kind": "ordinal"}], "source": "CLDR RBNF el: \"10: δέκατος\"."}
+{"text": "Ο ενδέκατος παίκτης.", "mentions": [{"start": 2, "end": 11, "value": "11", "kind": "ordinal"}], "source": "CLDR RBNF el: \"11: ενδέκατος\"."}
+{"text": "Η δωδέκατη νύχτα.", "mentions": [{"start": 2, "end": 10, "value": "12", "kind": "ordinal"}], "source": "CLDR RBNF el: \"12: δωδέκατος\"."}
+{"text": "Ο δέκατος τρίτος μισθός.", "mentions": [{"start": 2, "end": 16, "value": "13", "kind": "ordinal"}], "source": "CLDR RBNF el: \"13: δέκατος[ >>]\", 10 + 3."}
+{"text": "Ο εικοστός αιώνας.", "mentions": [{"start": 2, "end": 10, "value": "20", "kind": "ordinal"}], "source": "CLDR RBNF el: \"20: εικοστός\"."}
+{"text": "Ο εικοστός πρώτος αιώνας.", "mentions": [{"start": 2, "end": 17, "value": "21", "kind": "ordinal"}], "source": "CLDR RBNF el: \"20: εικοστός[ >>]\", 20 + 1."}
+{"text": "Η τριακοστή επέτειος.", "mentions": [{"start": 2, "end": 11, "value": "30", "kind": "ordinal"}], "source": "CLDR RBNF el: \"30: τριακοστός\"."}
+{"text": "Η πεντηκοστή μέρα.", "mentions": [{"start": 2, "end": 12, "value": "50", "kind": "ordinal"}], "source": "CLDR RBNF el: \"50: πεντηκοστός\"."}
+{"text": "Η εκατοστή επέτειος.", "mentions": [{"start": 2, "end": 10, "value": "100", "kind": "ordinal"}], "source": "CLDR RBNF el: \"100: εκατοστός\"."}
+{"text": "Ο χιλιοστός επισκέπτης.", "mentions": [{"start": 2, "end": 11, "value": "1000", "kind": "ordinal"}], "source": "CLDR RBNF el: \"1000: χιλιοστός\"."}
+{"text": "Τερμάτισε 1ος.", "mentions": [{"start": 10, "end": 13, "value": "1", "kind": "ordinal"}], "source": "by hand: a digit ordinal takes the ending of the ordinal word."}
+{"text": "Μένω στον 3ο όροφο.", "mentions": [{"start": 10, "end": 12, "value": "3", "kind": "ordinal"}], "source": "by hand: a digit ordinal takes the ending of the ordinal word."}
+{"text": "Η 2η θέση.", "mentions": [{"start": 2, "end": 4, "value": "2", "kind": "ordinal"}], "source": "by hand: a digit ordinal takes the ending of the ordinal word."}
+{"text": "Ο 21ος αιώνας.", "mentions": [{"start": 2, "end": 6, "value": "21", "kind": "ordinal"}], "source": "by hand: a digit ordinal takes the ending of the ordinal word."}
+{"text": "Ήπια μισό ποτήρι.", "mentions": [{"start": 5, "end": 9, "value": "0.5", "kind": "fraction"}], "source": "by hand: μισός: half."}
+{"text": "Περίμενα ένα και μισό λεπτό.", "mentions": [{"start": 9, "end": 21, "value": "1.5", "kind": "fraction"}], "source": "by hand: μισός; 1 + 1/2."}
+{"text": "Πήρα δύο και μισό κιλά.", "mentions": [{"start": 5, "end": 17, "value": "2.5", "kind": "fraction"}], "source": "arithmetic: 2 + 1/2."}
+{"text": "Κράτησε ενάμιση χρόνο.", "mentions": [{"start": 8, "end": 15, "value": "1.5", "kind": "fraction"}], "source": "by hand: ενάμισης: one and a half."}
+{"text": "Θα αργήσω μιάμιση ώρα.", "mentions": [{"start": 10, "end": 17, "value": "1.5", "kind": "fraction"}], "source": "by hand: ενάμισης, feminine μιάμιση."}
+{"text": "Αγόρασα δυόμισι κιλά.", "mentions": [{"start": 8, "end": 15, "value": "2.5", "kind": "fraction"}], "source": "by hand: δυόμισι: two and a half."}
+{"text": "Έτρεξα τρεισήμισι χιλιόμετρα.", "mentions": [{"start": 7, "end": 17, "value": "3.5", "kind": "fraction"}], "source": "by hand: τρεισήμισι: three and a half."}
+{"text": "Κοιμήθηκα εξήμισι ώρες.", "mentions": [{"start": 10, "end": 17, "value": "6.5", "kind": "fraction"}], "source": "arithmetic: 6 + 1/2."}
+{"text": "Κόστισε δυόμισι χιλιάδες ευρώ.", "mentions": [{"start": 8, "end": 24, "value": "2500", "kind": "cardinal"}], "source": "arithmetic: 2.5 x 1000."}
+{"text": "Το ένα τρίτο των ψήφων.", "mentions": [{"start": 3, "end": 12, "value": "1/3", "kind": "fraction"}], "source": "by hand: a fraction is a cardinal and the neuter ordinal, singular after ένα."}
+{"text": "Τα δύο τρίτα της πόλης.", "mentions": [{"start": 3, "end": 12, "value": "2/3", "kind": "fraction"}], "source": "by hand: plural ordinal after a count above one."}
+{"text": "Το ένα τέταρτο του κέικ.", "mentions": [{"start": 3, "end": 14, "value": "0.25", "kind": "fraction"}], "source": "arithmetic: 1/4."}
+{"text": "Τα τρία τέταρτα της διαδρομής.", "mentions": [{"start": 3, "end": 15, "value": "0.75", "kind": "fraction"}], "source": "arithmetic: 3/4."}
+{"text": "Το ένα πέμπτο του μισθού.", "mentions": [{"start": 3, "end": 13, "value": "0.2", "kind": "fraction"}], "source": "arithmetic: 1/5."}
+{"text": "Τα επτά δέκατα του πληθυσμού.", "mentions": [{"start": 3, "end": 14, "value": "0.7", "kind": "fraction"}], "source": "arithmetic: 7/10."}
+{"text": "Η θερμοκρασία είναι δύο κόμμα πέντε βαθμοί.", "mentions": [{"start": 20, "end": 35, "value": "2.5", "kind": "decimal"}], "source": "CLDR RBNF el: \"x.x: << κόμμα >>\"."}
+{"text": "Ο πληθωρισμός είναι τρία κόμμα δύο τοις εκατό.", "mentions": [{"start": 20, "end": 34, "value": "3.2", "kind": "decimal"}, {"start": 40, "end": 45, "value": "100", "kind": "cardinal"}], "source": "CLDR RBNF el: \"x.x: << κόμμα >>\"; \"τοις εκατό\" is per hundred, and the hundred is a number word."}
+{"text": "Έξω κάνει μείον πέντε βαθμούς.", "mentions": [{"start": 10, "end": 21, "value": "-5", "kind": "cardinal"}], "source": "CLDR RBNF el: \"-x: μείον >>\"."}
+{"text": "Η θερμοκρασία έπεσε στους μείον δέκα.", "mentions": [{"start": 26, "end": 36, "value": "-10", "kind": "cardinal"}], "source": "CLDR RBNF el: \"-x: μείον >>\"."}
+{"text": "Πλήρωσα 1.234,50 ευρώ.", "mentions": [{"start": 8, "end": 16, "value": "1234.5", "kind": "decimal"}], "source": "CLDR main/el: group \".\", decimal \",\"."}
+{"text": "Η πόλη έχει 2.500.000 κατοίκους.", "mentions": [{"start": 12, "end": 21, "value": "2500000", "kind": "cardinal"}], "source": "CLDR main/el: group \".\"."}
+{"text": "Ζυγίζει 3,75 κιλά.", "mentions": [{"start": 8, "end": 12, "value": "3.75", "kind": "decimal"}], "source": "CLDR main/el: decimal \",\"."}
+{"text": "Κόστισε 15 ευρώ.", "mentions": [{"start": 8, "end": 10, "value": "15", "kind": "cardinal"}], "source": "digits."}
+{"text": "Έχει 0,5 λίτρα.", "mentions": [{"start": 5, "end": 8, "value": "0.5", "kind": "decimal"}], "source": "CLDR main/el: decimal \",\"."}
+{"text": "Τα 2 εκατομμύρια ήταν δικά του.", "mentions": [{"start": 3, "end": 16, "value": "2000000", "kind": "cardinal"}], "source": "arithmetic: 2 x 10^6."}
+{"text": "Έχω 3 εκατομμύρια ευρώ.", "mentions": [{"start": 4, "end": 17, "value": "3000000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6."}
+{"text": "Ήρθαν δύο και έφυγαν τρεις.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}, {"start": 21, "end": 26, "value": "3", "kind": "cardinal"}], "source": "arithmetic; \"και\" between two counts joins no number."}
+{"text": "Έχω πέντε μήλα και επτά πορτοκάλια.", "mentions": [{"start": 4, "end": 9, "value": "5", "kind": "cardinal"}, {"start": 19, "end": 23, "value": "7", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Από δέκα έως είκοσι άτομα.", "mentions": [{"start": 4, "end": 8, "value": "10", "kind": "cardinal"}, {"start": 13, "end": 19, "value": "20", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Το είκοσι, το τριάντα και το σαράντα.", "mentions": [{"start": 3, "end": 9, "value": "20", "kind": "cardinal"}, {"start": 14, "end": 21, "value": "30", "kind": "cardinal"}, {"start": 29, "end": 36, "value": "40", "kind": "cardinal"}], "source": "arithmetic; punctuation splits the numbers."}
+{"text": "Ζήτησε δεκαπέντε και πήρε δώδεκα.", "mentions": [{"start": 7, "end": 16, "value": "15", "kind": "cardinal"}, {"start": 26, "end": 32, "value": "12", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Μεταξύ χίλια και δύο χιλιάδες ευρώ.", "mentions": [{"start": 7, "end": 12, "value": "1000", "kind": "cardinal"}, {"start": 17, "end": 29, "value": "2000", "kind": "cardinal"}], "source": "arithmetic; \"και\" before a group larger than the last breaks the number."}
+{"text": "Η ομάδα έχει έντεκα παίκτες και πέντε αλλαγές.", "mentions": [{"start": 13, "end": 19, "value": "11", "kind": "cardinal"}, {"start": 32, "end": 37, "value": "5", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Πήρε εβδομήντα στα εκατό.", "mentions": [{"start": 5, "end": 14, "value": "70", "kind": "cardinal"}, {"start": 19, "end": 24, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Ήταν μια ωραία μέρα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "the indefinite article has the forms of \"one\"."}
+{"text": "Πέρασαν σαράντα οκτώ ώρες.", "mentions": [{"start": 8, "end": 20, "value": "48", "kind": "cardinal"}], "source": "arithmetic: 40 + 8."}
+{"text": "Διάβασε τις Χίλιες και μία νύχτες.", "mentions": [{"start": 12, "end": 26, "value": "1001", "kind": "cardinal"}], "source": "the title Χίλιες και μία νύχτες; arithmetic: 1000 + 1."}
+{"text": "Πάρε ένα μήλο.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "the indefinite article has the forms of \"one\"."}
+{"text": "Αγόρασα μια ντουζίνα αυγά.", "mentions": [{"start": 8, "end": 20, "value": "12", "kind": "cardinal"}], "source": "by hand: ντουζίνα: a group of twelve."}
+{"text": "Αγόρασα δύο ντουζίνες αυγά.", "mentions": [{"start": 8, "end": 21, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 2 x 12."}
+{"text": "Ήρθαν δεκαοκτώ και δεκαεννιά χρονών παιδιά.", "mentions": [{"start": 6, "end": 14, "value": "18", "kind": "cardinal"}, {"start": 19, "end": 28, "value": "19", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Στις τρεις και πέντε θα είμαι εκεί.", "mentions": [{"start": 5, "end": 10, "value": "3", "kind": "cardinal"}, {"start": 15, "end": 20, "value": "5", "kind": "cardinal"}], "source": "arithmetic; a clock time is two numbers to the tagger."}
+{"text": "Ο δεύτερος και ο τρίτος νικητής.", "mentions": [{"start": 2, "end": 10, "value": "2", "kind": "ordinal"}, {"start": 17, "end": 23, "value": "3", "kind": "ordinal"}], "source": "CLDR RBNF el ordinals."}
+{"text": "Το 1/3 δεν είναι ακέραιος; γράφεται και ένα τρίτο.", "mentions": [{"start": 3, "end": 6, "value": "1/3", "kind": "fraction"}, {"start": 40, "end": 49, "value": "1/3", "kind": "fraction"}], "source": "the tagger reads no \"/\" as a fraction; see open questions."}
+{"text": "Δεν έχω καθόλου λεφτά.", "mentions": [], "source": "no number."}
+{"text": "Ο Γιάννης είναι ψηλός.", "mentions": [], "source": "no number."}
+{"text": "Έχει διακόσια ευρώ και τριάντα λεπτά.", "mentions": [{"start": 5, "end": 13, "value": "200", "kind": "cardinal"}, {"start": 23, "end": 30, "value": "30", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "Το τηλέφωνό μου είναι 210 5555555.", "mentions": [{"start": 22, "end": 25, "value": "210", "kind": "cardinal"}, {"start": 26, "end": 33, "value": "5555555", "kind": "cardinal"}], "source": "digits; a space between digit strings separates two numbers."}
+{"text": "Μένει τρία χιλιόμετρα μακριά.", "mentions": [{"start": 6, "end": 10, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF el."}
+{"text": "Στον ογδοηκοστό όροφο; όχι, στον ογδοηκοστό πέμπτο.", "mentions": [{"start": 5, "end": 15, "value": "80", "kind": "ordinal"}, {"start": 33, "end": 50, "value": "85", "kind": "ordinal"}], "source": "CLDR RBNF el: \"80: ογδοηκοστός[ >>]\", 80 + 5."}
+{"text": "Το εκατοστό τεύχος κυκλοφόρησε.", "mentions": [{"start": 3, "end": 11, "value": "100", "kind": "ordinal"}], "source": "CLDR RBNF el: \"100: εκατοστός\"."}
+{"text": "Έλειπαν εκατόν δύο βιβλία.", "mentions": [{"start": 8, "end": 18, "value": "102", "kind": "cardinal"}], "source": "arithmetic: 100 + 2."}
+{"text": "Κοστίζει τρία εκατομμύρια πεντακόσιες χιλιάδες ευρώ.", "mentions": [{"start": 9, "end": 46, "value": "3500000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 500 x 1000."}
+{"text": "Πούλησε ενάμισι εκατομμύριο αντίτυπα.", "mentions": [{"start": 8, "end": 27, "value": "1500000", "kind": "cardinal"}], "source": "by hand: ενάμισης; 1.5 x 10^6."}
+{"text": "Δάνειο ύψους δύο εκατομμυρίων ευρώ.", "mentions": [{"start": 13, "end": 29, "value": "2000000", "kind": "cardinal"}], "source": "en.wiktionary \"εκατομμύριο\", Declension: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"; 2 x 10^6."}
+{"text": "Κόστος τριών δισεκατομμυρίων ευρώ.", "mentions": [{"start": 7, "end": 28, "value": "3000000000", "kind": "cardinal"}], "source": "en.wiktionary \"δισεκατομμύριο\", genitive plural \"δισεκατομμυρίων ( disekatommyríon )\"; 3 x 10^9."}
+{"text": "Θα σε δω την Τρίτη το πρωί.", "mentions": [{"start": 13, "end": 18, "value": "3", "kind": "ordinal", "low_confidence": true}], "source": "en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; the ordinal reading is low confidence."}
+{"text": "ΟΛΟΙ ΗΡΘΑΝ ΕΚΤΟΣ ΑΠΟ ΤΗ ΜΑΡΙΑ.", "mentions": [{"start": 11, "end": 16, "value": "6", "kind": "ordinal", "low_confidence": true}], "source": "en.wiktionary \"εκτός\": \"except (for), besides\"; capitals carry no accent, so the ordinal reading is low confidence."}

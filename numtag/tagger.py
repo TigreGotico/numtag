@@ -25,6 +25,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
                       lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
+                      lexicon.script,
                       compound_words=frozenset(lexicon.readings) if lexicon.compound_words else frozenset(),
                       dotted_i=lexicon.dotted_i, digit_suffix_marks=lexicon.digit_suffix_marks,
                       dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months)
@@ -69,7 +70,10 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             continue
         best = max(parses, key=lambda p: p.end)
         value = -best.value if negative else best.value
-        span = (run[i].start, run[best.end - 1].end)
+        # a number glued to a joiner prefix it does not use ("ושבעה") keeps
+        # the whole word: a span never starts inside a word
+        first = i - 1 if run[i].attached else i
+        span = (run[first].start, run[best.end - 1].end)
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(lexicon, run[start:best.end], best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
