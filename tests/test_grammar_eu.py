@@ -42,6 +42,15 @@ class TestOrdinalEnding(unittest.TestCase):
         self.assertEqual(eu("hogeita batgarren"), [("hogeita batgarren", "21", O)])
         self.assertEqual(eu("ehungarren"), [("ehungarren", "100", O)])
 
+    def test_the_article_a_after_an_ordinal(self):
+        # the article joins the ordinal with no space: 1st to 10th
+        expected = ["lehena", "bigarrena", "hirugarrena", "laugarrena", "bosgarrena", "seigarrena",
+                    "zazpigarrena", "zortzigarrena", "bederatzigarrena", "hamargarrena"]
+        for value, word in enumerate(expected, 1):
+            with self.subTest(word=word):
+                self.assertEqual(eu(word), [(word, str(value), O)])
+        self.assertEqual(eu("hogeita batgarrena"), [("hogeita batgarrena", "21", O)])
+
     def test_bost_drops_its_last_letter_before_garren(self):
         self.assertEqual(eu("bosgarren"), [("bosgarren", "5", O)])
         self.assertEqual(eu("hamabosgarren"), [("hamabosgarren", "15", O)])
