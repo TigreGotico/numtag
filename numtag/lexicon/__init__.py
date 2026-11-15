@@ -254,6 +254,9 @@ class Lexicon:
     # Where the joiner may go before a half or a fraction after a whole
     # ("dua setengah", "tiga dua-pertiga", "two and a half").
     joiner_before_half: Joiner = Joiner.REQUIRED
+    # A part word after the joiner takes an article: "six and a quarter",
+    # never "six and quarter" ("forty and eighth" is 40 and 8th).
+    part_after_joiner_needs_article: bool = False
     # Number words of several words, as tuples of their words ("quatre-vingts").
     phrases: frozenset[tuple[str, ...]] = frozenset()
     # "de" in "douăzeci de mii": a word between a count and its scale word.
@@ -485,6 +488,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_after_decimal_marker=Joiner(settings.get("joiner_after_decimal_marker", Joiner.NEVER)),
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
+        part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),
         one_after_noun=frozenset(words.get("one_after_noun", ())),

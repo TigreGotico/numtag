@@ -268,6 +268,13 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(en("one hundred and first"), [("one hundred and first", "101", O)])
         self.assertEqual(en("one hundred twenty-third"), [("one hundred twenty-third", "123", O)])
 
+    def test_a_unit_ordinal_joins_a_ten_as_a_unit_does(self):
+        # "ten" is below 21 and takes no unit; a ten and a unit take no "and"
+        self.assertEqual(en("ten fifth"), [("ten", "10", C), ("fifth", "5", O)])
+        self.assertEqual(en("forty and eighth"), [("forty", "40", C), ("eighth", "8", O)])
+        self.assertEqual(en("forty eighth"), [("forty eighth", "48", O)])
+        self.assertEqual(en("two thousand and fifth"), [("two thousand and fifth", "2005", O)])
+
     def test_an_ordinal_scale_word(self):
         # 2 x 100 = 200
         self.assertEqual(en("hundredth"), [("hundredth", "100", O)])
