@@ -99,6 +99,29 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
     def test_unknown_key(self):
         self.assertRefused(_row("dez", _m(0, 3, "10", gender="masculine")))
 
+    def test_span_that_cuts_a_word(self):
+        self.assertRefused(_row("comprou duas dúzias", _m(8, 18, "24")))
+
+    def test_a_unit_may_touch_the_digits(self):
+        check_gold.check_row(_row("Pesava 3,5kg.", _m(7, 10, "3.5", "decimal")), "pt-PT")
+
+    def test_decimal_kind_without_a_decimal_mark(self):
+        with self.assertRaises(AssertionError):
+            check_gold.check_row(_row("três quartos", _m(0, 12, "0.75", "decimal")), "pt-PT")
+
+    def test_fraction_kind_with_a_decimal_mark(self):
+        with self.assertRaises(AssertionError):
+            check_gold.check_row(_row("dois vírgula cinco", _m(0, 18, "2.5", "fraction")), "pt-PT")
+
+    def test_a_repeated_text_is_reported_by_the_file_check(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "pt-PT.jsonl"
+            line = '{"text": "dez", "mentions": [{"start": 0, "end": 3, "value": "10", "kind": "cardinal"}], "source": "arithmetic"}\n'
+            path.write_text(line * 2, encoding="utf-8")
+            n_in, errors = check_gold.check_file(path)
+        self.assertEqual((n_in, len(errors)), (2, 1))
+        self.assertIn("repeats line 1", errors[0])
+
     def test_invalid_json_line_is_reported(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "xx.jsonl"
