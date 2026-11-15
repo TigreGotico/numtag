@@ -4,7 +4,7 @@ import unicodedata
 from dataclasses import dataclass, field, replace
 from functools import cache
 
-_ASCII_DIGITS = re.compile(r"[-−.,]?[0-9]+(?:[.,][0-9]+)*")
+_ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 # Directional marks and embedding controls: no letter, so a script that sets
 # them aside reads each as a space ("‏٣" is "٣").
@@ -85,8 +85,8 @@ DEFAULT_SCRIPT = Script()
 @cache
 def _token_pattern(script: Script) -> re.Pattern:
     """A digit string keeps its group and decimal marks ("1.000.000,5"). A
-    minus sign or a lone mark belongs to it only at the start of a word ("-5"
-    and ".5", not "5-7" or "...5"). The pattern takes digits of every script,
+    minus sign or a lone mark belongs to it only at the start of a word ("-5",
+    ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
     so that a run with a digit the language does not read ("٣", "１２") is
     found whole and then dropped."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
@@ -96,7 +96,7 @@ def _token_pattern(script: Script) -> re.Pattern:
         word = rf"{word}(?:[^\W\d_]|[{inner}])*"
     else:
         word += "+"
-    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])[-−{marks}])?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
+    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
 
 
 @dataclass(frozen=True)
@@ -154,13 +154,14 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     lists it, after an optional dot ("1.º"). A digit string glued to the end
     of a word ("mp3") is part of a name and is dropped, and so is a digit
     string with a digit that the script does not read. A digit string keeps a
-    mark before its first digit only when the language lists the mark as a
-    lone decimal mark and only digits follow it (".5"). An abbreviation is a
-    listed word with a period that no sentence end follows ("dez. 2025"); it
-    is dropped, so it breaks the link between the words around it. Given
-    ``number_words``, a hyphenated compound with a word outside them is one
-    noun ("segunda-feira"): its words are dropped in the same way; and a word
-    outside them loses a prefix of the script when the rest is a number word.
+    mark before its first digit, also after a sign, only when the language
+    lists the mark as a lone decimal mark and only digits follow it (".5",
+    "-.5"). An abbreviation is a listed word with a period that no sentence
+    end follows ("dez. 2025"); it is dropped, so it breaks the link between
+    the words around it. Given ``number_words``, a hyphenated compound with a
+    word outside them is one noun ("segunda-feira"): its words are dropped in
+    the same way; and a word outside them loses a prefix of the script when
+    the rest is a number word.
     """
     scan = text
     if script.bidi_controls:
@@ -180,10 +181,12 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(scan, match.end()):
             continue
         start = match.start()
-        if is_digits and latin[0] in ".," and not (
-                latin[0] in lone_decimal_marks and _LONE_MARK.fullmatch(latin)):
-            start += 1
-            latin = latin[1:]
+        unsigned = latin.lstrip("-−")
+        if is_digits and unsigned[0] in ".," and not (
+                unsigned[0] in lone_decimal_marks and _LONE_MARK.fullmatch(unsigned)):
+            cut = len(latin) - len(unsigned) + 1
+            start += cut
+            latin = latin[cut:]
         gap = scan[previous_end:start]
         if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
             previous_end = match.end()

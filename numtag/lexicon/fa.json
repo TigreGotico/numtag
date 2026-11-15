@@ -40,6 +40,14 @@
       "value": true,
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\": و goes before any rest after a thousand, a round hundred too."
     },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\" writes و and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\": و goes before any rest after a thousand, so a last group below a hundred or a round hundred with no و starts a new number."
+    },
     "ordinal_style": {
       "value": "last_word",
       "source": "en.wiktionary \"یکم\": \"بیست و یکم ― bist o yekom ― twenty- first\"; en.wiktionary \"ـمین\": \"بیست و یکمین ― bist-o yek -omin ― twenty-fir st\": the ordinal suffix goes on the last word."

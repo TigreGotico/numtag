@@ -40,6 +40,14 @@
       "value": false,
       "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>]\" with \"%%and-feminine: 1: ו=%spellout-numbering=;\" and \"500: חמש מאות;\": ו goes before a unit, not before a hundred."
     },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\" writes a space and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>];\" with the %%and-feminine rules \"1: ו=%spellout-numbering=;\" and \"100: מאה;\": ו comes before a last unit (אלף ואחת) but not before a round hundred (אלף מאה). So ו before the last group is optional."
+    },
     "ordinal_style": {
       "value": "every_word",
       "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"10: עשירי;\" then \"11: =%%spellout-numbering-m=;\": ordinal words exist only for 1-10; above ten the cardinal serves, so no ordinal has more than one word."

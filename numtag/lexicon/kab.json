@@ -40,6 +40,14 @@
       "value": false,
       "source": "No saved page shows a round hundred after \"alef u\". The sentences show only a hundred with a rest after it: Tatoeba sentence 11396338 \"alef u xems mya u tesɛa\", 11376255 \"alef u tesεemya u xemsin\"."
     },
+    "comma_between_classes": {
+      "value": false,
+      "source": "Tatoeba sentence 11376255 \"alef u tesεemya u xemsin\", 11387744 \"zuǧ alaf u rebεa\": these write \"u\" and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "optional",
+      "source": "Tatoeba sentence 11376255 \"alef u tesεemya u xemsin\", 11387744 \"zuǧ alaf u rebεa\": these write \"u\" after the thousands. No saved page shows the last group after the thousands without \"u\", so the reader takes both forms."
+    },
     "tens_order": {
       "value": "unit_first",
       "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"starting with the unit, followed by the conjunction u , then the ten\"."

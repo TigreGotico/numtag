@@ -1,0 +1,41 @@
+# numtag documentation
+
+numtag is a number tagger. It finds every number in a text and returns one mention per number. A mention holds the exact words, their character span and an exact value as a digit string. It also holds the kind, the form, a confidence score and, where it matters, the number scale.
+
+numtag only reads numbers. It does not write numbers as words, and it reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. chronologia, a date library, builds its dates that way.
+
+## Start here
+
+| Guide | Content |
+|---|---|
+| [getting-started.md](getting-started.md) | The first call, then common tasks: filter weak mentions, replace numbers with digits, convert values |
+| [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Scale`, `is_canonical_value` |
+
+## The contract
+
+| Guide | Content |
+|---|---|
+| [values.md](values.md) | The three canonical value strings, conversion with `int`, `Decimal` and `Fraction`, and why a value has no length limit |
+| [number-scale.md](number-scale.md) | Long and short scale, the `scale` argument and the `number_scale` field |
+| [confidence-and-homographs.md](confidence-and-homographs.md) | What a low score means, articles, words with a second meaning, and what a caller does with them |
+
+## The language rules
+
+| Guide | Content |
+|---|---|
+| [rulings.md](rulings.md) | Each reading rule with an example sentence and its source |
+| [languages/pt.md](languages/pt.md) | European and Brazilian Portuguese |
+| [languages/en.md](languages/en.md) | English |
+| [adding-a-language.md](adding-a-language.md) | The lexicon JSON format, the source rule, gold rows and the test gates |
+
+## Inside the library
+
+| Guide | Content |
+|---|---|
+| [design.md](design.md) | Principles, tokenizer, lexicon, grammar, string arithmetic and determinism |
+| [benchmarks.md](benchmarks.md) | Accuracy, memory and time against ovos-number-parser, with the commands |
+| [roadmap.md](roadmap.md) | Planned features and the language ports in progress |
+
+## Terms
+
+A **mention** is one number found in the text. Its **span** is the half-open character range `(start, end)` of its words. Its **value** is a canonical digit string such as `"1200"`, `"2.5"` or `"1/3"`. A **lexicon** is the JSON file that holds the words and settings of one language. A **scale word** is a word such as "mil", "milhão", "thousand" or "billion" that multiplies the count before it.

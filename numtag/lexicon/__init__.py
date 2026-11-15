@@ -80,6 +80,12 @@ class Lexicon:
     joiner_between_groups: Joiner
     # "mil e quinhentos": a round hundred may follow the joiner after a thousand.
     joiner_before_round_hundred: bool
+    # "mil e duzentos": the joiner before a last group below a hundred or a
+    # round hundred; where it is required, "mil duzentos" is two numbers.
+    joiner_before_last_group: Joiner
+    # "dois milhões, duzentos e trinta e seis mil": a comma may follow a
+    # scale word between two classes of one number.
+    comma_between_classes: bool
     # "every_word": "vigésimo primeiro"; "last_word": "twenty-first".
     ordinal_style: str
     readings: dict[str, tuple[Entry, ...]]
@@ -192,6 +198,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_after_hundred=Joiner(settings["joiner_after_hundred"]),
         joiner_between_groups=Joiner(settings["joiner_between_groups"]),
         joiner_before_round_hundred=settings["joiner_before_round_hundred"],
+        joiner_before_last_group=Joiner(settings["joiner_before_last_group"]),
+        comma_between_classes=settings["comma_between_classes"],
         ordinal_style=settings["ordinal_style"],
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),

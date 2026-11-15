@@ -40,6 +40,14 @@
       "value": false,
       "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"χίλια ένα ( chília éna )\": no και after a thousand."
     },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\" writes a space and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>];\" puts no και before the last group; el.wikipedia page Χίλιες και μία νύχτες: \"Οι Χίλιες και μία νύχτες\" has και before a last unit. So και before the last group is optional."
+    },
     "ordinal_style": {
       "value": "every_word",
       "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: εικοστός[ >>];\"; en.wiktionary page Appendix:Greek number and measurement: \"εικοστός πρώτος ( eikostós prótos )\": every word of an ordinal is ordinal."
