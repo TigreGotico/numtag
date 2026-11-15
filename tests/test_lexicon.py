@@ -12,6 +12,7 @@ LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
 #: each language's word for a million
 MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
            "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
+           "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
            "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
 
 
@@ -31,7 +32,7 @@ class TestLexiconFiles(unittest.TestCase):
         for path in LEXICONS:
             data = json.loads(path.read_text(encoding="utf-8"))
             items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
-            items += data.get("entries", [])
+            items += data.get("entries", []) + list(data.get("inflection", {}).values())
             with self.subTest(file=path.name):
                 self.assertGreater(len(items), 0)
                 self.assertEqual([i for i in items if not i.get("source", "").strip()], [])
@@ -66,8 +67,10 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertEqual(load("pt-PT").of("bilião", "scale_noun")[0].exponent, 12)
 
     def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
-        self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in ("en", "pt-BR", "pt-PT")},
-                         {"en": False, "pt-BR": True, "pt-PT": True})
+        langs = ("az", "en", "et", "fi", "hu", "pt-BR", "pt-PT", "tr")
+        self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in langs},
+                         {"az": False, "en": False, "et": False, "fi": False, "hu": False,
+                          "pt-BR": True, "pt-PT": True, "tr": False})
 
     def test_only_portuguese_requires_the_joiner_before_a_last_round_group(self):
         self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},

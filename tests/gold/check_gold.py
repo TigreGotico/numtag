@@ -24,6 +24,8 @@ WHOLE = re.compile(r"-?[0-9]+")
 DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula", "virgula"),
                  "en": (".", "point"), "de": (",", "komma"), "nl": (",", "komma"), "fy": (",", "komma"),
                  "da": (",", "komma"), "sv": (",", "komma"), "nb": (",", "komma"), "nn": (",", "komma"),
+                 "fi": (",", "pilkku"), "et": (",", "koma"), "hu": (",", "egész"),
+                 "tr": (",", "virgül"), "az": (",", "tam", "vergül"),
                  "el": (",", "κόμμα"), "ar": (".", "٫", "فاصلة", "فاصل"), "he": (".", "נקודה"),
                  "fa": (".", "٫", "ممیز"), "kab": (",",)}
 

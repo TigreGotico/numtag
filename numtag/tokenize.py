@@ -6,6 +6,11 @@ from functools import cache
 
 _ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+_TRAILING_MARK = re.compile(r"\D+$")
+_WORD = re.compile(r"[^\W\d_]+")
+# A soft hyphen (U+00AD) inside a word marks where a line may break; it
+# is no break in the word ("huszon\u00adöt").
+SOFT_HYPHEN = "\u00ad"
 _NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
 _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
 
@@ -104,14 +109,15 @@ def _token_pattern(script: Script) -> re.Pattern:
     minus sign or a lone mark belongs to it only at the start of a word ("-5",
     ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
     so that a run with a digit the language does not read ("٣", "１２") is
-    found whole and then dropped."""
+    found whole and then dropped. A soft hyphen between letters stays in
+    the word."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
     word = r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
         inner = (_combining_marks() if script.fold_marks else "") + re.escape(script.word_chars)
-        word = rf"{word}(?:[^\W\d_]|[{inner}])*"
+        word = rf"{word}(?:[^\W\d_]|[{inner}]|{SOFT_HYPHEN}[^\W\d_])*"
     else:
-        word += "+"
+        word = rf"{word}+(?:{SOFT_HYPHEN}[^\W\d_]+)*"
     return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
 
 
@@ -133,14 +139,19 @@ class Token:
     # Read without a clitic prefix: a preposition or an article opens a
     # number and never stands inside one ("خمسة بالمائة" is two numbers).
     clitic: bool = False
+    # A part of a compound word after its first part, with no space before
+    # it ("kymmentä" in "kaksikymmentä", "zwanzig" in "einundzwanzig").
+    glued: bool = False
+    # The lower-case form where the language folds case in its own way.
+    folded: str = ""
     # A digit string that a period makes an ordinal ("3" in "am 3. Mai").
     period_ordinal: bool = False
-    # A part of a compound word after its first part ("zwanzig" in "einundzwanzig").
-    glued: bool = False
 
     @property
     def norm(self) -> str:
-        return self.text.casefold() if self.key is None else self.key
+        if self.key is not None:
+            return self.key
+        return self.folded or self.text.casefold()
 
     @property
     def latin(self) -> str:
@@ -149,9 +160,11 @@ class Token:
 
     @property
     def digits(self) -> str:
-        """A digit string without its ordinal suffix."""
+        """A digit string without its ordinal suffix and the mark before it."""
         latin = self.latin
-        return latin[:len(latin) - len(self.suffix)].rstrip(".:") if self.suffix else latin
+        if not self.suffix or not latin.endswith(self.suffix):
+            return latin
+        return _TRAILING_MARK.sub("", latin[:len(latin) - len(self.suffix)])
 
     def links_to_previous(self) -> bool:
         """True when this token can continue a number that the previous
@@ -164,16 +177,37 @@ class Token:
         return not self.clitic and (self.gap == "-" or (self.gap != "" and self.gap.isspace()))
 
 
+def fold_dotted_i(text: str) -> str:
+    """Lower-case text with the Turkic letters: "I" is "ı" and "İ" is "i"."""
+    return text.replace("I", "ı").replace("İ", "i").casefold()
+
+
+def split_compound(word: str, known: frozenset[str]) -> list[str] | None:
+    """The fewest known words that make up ``word`` with nothing between
+    them, or None when no such chain exists."""
+    best: list[list[str] | None] = [[]] + [None] * len(word)
+    for start in range(len(word)):
+        if best[start] is None:
+            continue
+        for end in range(start + 1, len(word) + 1):
+            if word[start:end] in known and (best[end] is None or len(best[start]) + 1 < len(best[end])):
+                best[end] = best[start] + [word[start:end]]
+    return best[-1]
+
+
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
              number_words: frozenset[str] | None = None,
+             script: Script = DEFAULT_SCRIPT, *,
              compound_words: frozenset[str] = frozenset(),
              compound_inner: frozenset[str] = frozenset(),
              shared_letter: bool = False,
+             dotted_i: bool = False,
              suffix_marks: frozenset[str] = frozenset({"", "."}),
+             digit_suffix_marks: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
-             script: Script = DEFAULT_SCRIPT) -> list[Token]:
+             dot_ordinal: bool = False, date_months: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -190,14 +224,22 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     the rest is a number word.
 
     Given ``compound_words``, a word that is no compound word itself but
-    splits whole into them ("einundzwanzig") becomes one token per part. A
-    word in ``compound_inner`` ("und") is never the first or last part.
-    With ``shared_letter``, two parts may share a doubled letter ("ettusen").
+    splits whole into them ("einundzwanzig", "kaksikymmentä") becomes one
+    token per part, each glued to the one before. A word in
+    ``compound_inner`` ("und") is never the first or last part. With
+    ``shared_letter``, two parts may share a doubled letter ("ettusen").
     ``suffix_marks`` are the marks that may stand between a digit string and
-    its ordinal suffix ("" in "21st", ":" in "3:e"). With ``period_ordinals``,
-    a period between a digit string and the next word makes it an ordinal
-    when one of the cues shows it ("am 3. Mai", not "in 1905. Dann"); the
-    period is not part of the token.
+    its ordinal suffix ("" in "21st", ":" in "3:e"). A word after one of
+    ``digit_suffix_marks`` right after a digit string is its ordinal suffix
+    or else its case ending, which is dropped ("5'inci", "5-öt").
+
+    With ``period_ordinals``, a period between a digit string and the next
+    word makes it an ordinal when one of the cues shows it ("am 3. Mai", not
+    "in 1905. Dann"). With ``dot_ordinal``, a period after a digit string
+    makes it an ordinal when a lower-case word or a digit follows ("2.
+    emelet"); before one of ``date_months`` the period follows the year of a
+    date, which is no ordinal ("2008. február"). In both cases the period is
+    not part of the token.
     """
     scan = text
     if script.bidi_controls:
@@ -227,31 +269,47 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if is_digits and gap == "" and tokens and not tokens[-1].is_digits:
             previous_end = match.end()
             continue
+        if not is_digits and tokens and tokens[-1].is_digits and not tokens[-1].suffix \
+                and gap in digit_suffix_marks and tokens[-1].end == previous_end:
+            continue  # a case ending glued to digits: "5-öt", "5'te"
         end, suffix = match.end(), ""
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
             between = scan[match.end():following.start()]
-            if (following.lastgroup == "word" and between in suffix_marks
+            if (following.lastgroup == "word" and (between in suffix_marks or between in digit_suffix_marks)
                     and following.group().casefold() in ordinal_suffixes):
                 end, suffix = following.end(), following.group()
                 latin += text[match.end():end]
                 skip_until = following.end()
-        if not is_digits and compound_words and match.group().casefold() not in compound_words:
-            parts = _split_compound(match.group(), compound_words, compound_inner, shared_letter)
-            if parts:
-                for n, (a, b) in enumerate(parts):
-                    piece = text[start + a:start + b]
-                    tokens.append(Token(piece, start + a, start + b, False, gap if n == 0 else "",
-                                        key=None if script == DEFAULT_SCRIPT else script.fold(piece),
-                                        glued=n > 0))
-                previous_end = end
-                continue
-        key = None
-        if script != DEFAULT_SCRIPT:
-            key = latin if is_digits else script.fold(text[start:end])
-        period = (period_ordinals is not None and is_digits and not suffix
-                  and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
-        tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix, key=key, period_ordinal=period))
+        if is_digits and dot_ordinal and not suffix and _dot_ordinal(text, end, date_months):
+            suffix = "."  # the period stays outside the span, as punctuation
+        word = text[start:end]
+        letters = word.replace(SOFT_HYPHEN, "")
+        folded = "" if is_digits else fold_dotted_i(letters) if dotted_i else \
+            letters.casefold() if letters != word else ""
+        lookup = folded or word.casefold()
+        # the offset in the text of each letter of the word
+        offsets = [start + k for k, char in enumerate(word) if char != SOFT_HYPHEN]
+        parts = []
+        if compound_words and not is_digits and lookup not in compound_words:
+            source = fold_dotted_i(letters) if dotted_i else letters
+            if len(source) == len(offsets):
+                parts = _split_compound(source, compound_words, compound_inner, shared_letter)
+        if parts:
+            for n, (a, b) in enumerate(parts):
+                first, last = offsets[a], offsets[b - 1] + 1
+                piece = text[first:last]
+                tokens.append(Token(piece, first, last, False, gap if n == 0 else "",
+                                    key=None if script == DEFAULT_SCRIPT else script.fold(piece),
+                                    glued=n > 0, folded=source[a:b].casefold()))
+        else:
+            key = None
+            if script != DEFAULT_SCRIPT:
+                key = latin if is_digits else script.fold(letters)
+            period = (period_ordinals is not None and is_digits and not suffix
+                      and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
+            tokens.append(Token(word, start, end, is_digits, gap, suffix, key=key, folded=folded,
+                                period_ordinal=period))
         previous_end = end
     if number_words is None:
         return tokens
@@ -362,7 +420,7 @@ def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset
     dropped = set()
     start = 0
     for i in range(1, len(tokens) + 1):
-        if i < len(tokens) and tokens[i].gap == "-":
+        if i < len(tokens) and (tokens[i].gap == "-" or tokens[i].glued):
             continue
         compound = tokens[start:i]
         if len(compound) > 1 and any(not t.is_digits and t.norm not in number_words for t in compound):
@@ -376,6 +434,26 @@ def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset
             token = replace(token, gap=text[kept[-1].end if kept else 0:token.start])
         kept.append(token)
     return kept
+
+
+def _dot_ordinal(text: str, end: int, date_months: frozenset[str]) -> bool:
+    """True when a period, a space and a lower-case word or a digit follow
+    the digit string that ends at ``end``, and the word is no month of
+    ``date_months``: a full name, with or without a case ending
+    ("januárban"), or an abbreviation listed with its period ("jan.")."""
+    if not text.startswith(".", end):
+        return False
+    rest = text[end + 1:]
+    stripped = rest.lstrip()
+    if not stripped or len(stripped) == len(rest) or not (stripped[0].islower() or stripped[0].isdigit()):
+        return False
+    word = _WORD.match(stripped)
+    if not word:
+        return True
+    name = word.group().casefold()
+    if stripped.startswith(".", word.end()) and name + "." in date_months:
+        return False  # an abbreviated month ("2008. febr. 3.")
+    return not any(name.startswith(month) for month in date_months if not month.endswith("."))
 
 
 def _abbreviated(text: str, end: int) -> bool:

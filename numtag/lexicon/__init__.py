@@ -5,9 +5,15 @@ shows (gender, plural, ambiguous) and the source of the rule. Each setting
 and word list is an object with its value and its source. A file may name a
 base file in "extends"; its settings and lists then replace those of the
 base, and an entry replaces the base entry with the same word and role.
+
+A language that inflects its numbers lists, in "inflection", classes of
+suffixes, and gives an entry "stems": each stem joins each suffix of its
+classes into one more form of the entry ("kahde" and "lle" make "kahdelle").
+A class may mark its forms as ordinal or as naming the parts of a fraction
+("fraction_case": "üç" and "te" make "üçte", as in "üçte bir").
 """
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from functools import cache
 from pathlib import Path
@@ -34,12 +40,17 @@ class TensOrder(str, Enum):
 
 
 # Roles whose value is a digit string; a "fraction" word has a fraction
-# ("3/2"). A teen word follows a unit and adds ten to it ("عشر" in "ثلاثة
-# عشر"); a unit-and-half word is its value and a half ("δυόμισι").
+# ("3/2"). A "teen" adds ten to the unit before it ("yksi" "toista", "ثلاثة
+# عشر"); a "value_word" is a whole number on its own, also one that is not
+# whole ("puolitoista" is 3/2); a unit-and-half word is its value and a half
+# ("δυόμισι").
 VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen",
-               "unit_and_half")
-# Roles whose value is a power of ten.
-SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun")
+               "value_word", "unit_and_half")
+# Roles whose value is a power of ten. A "ten_multiplier" counts tens
+# ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
+SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
+# Roles of the words a cardinal is made of.
+CARDINAL_ROLES = ("unit", "ten", "hundred", "teen") + SCALE_ROLES
 
 
 @dataclass(frozen=True)
@@ -66,6 +77,21 @@ class Entry:
     invariant: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
+    # The word names a place in a sequence ("viides", "beşinci"): a number
+    # whose last word is ordinal is an ordinal.
+    ordinal: bool = False
+    # A case ending or a suffix closes the number ("beşte", "ötöt"): no
+    # word of the number follows the form.
+    final: bool = False
+    # A ten that takes a unit after it although it is not a round ten from
+    # twenty up ("on beş", "tizenöt").
+    takes_unit: bool = False
+    # A case form that names the parts when a count follows it: Turkish
+    # "üçte bir" is one third.
+    fraction_case: bool = False
+    # A teen that also follows the ordinal form of its unit ("yhdes"
+    # "toista" is 11th; Estonian "teine" "teist" is no number).
+    ordinal_unit: bool = False
     # The cardinal word of an ordinal scale word names a number by itself
     # ("tausend", "honderd"), not only after a count ("thousand").
     alone: bool = False
@@ -111,7 +137,12 @@ class Lexicon:
     # A hundred word after a group of a hundred or more starts the next group
     # ("tusind hundrede" is 1100), as the hundred word names 100 alone.
     bare_hundred_after_scale: bool
-    # Number words written together as one word ("zweihundert"), split by the tokenizer.
+    # A hundred or ten multiplier after a group of thousands starts the next
+    # group and counts no group ("bin yüz" is 1100, not 100000).
+    small_multiplier_starts_group: bool
+    # Number words written together as one word ("zweihundert",
+    # "kaksikymmentäviisi"): the tokenizer splits the word into the chain of
+    # number words it is made of.
     compound_words: bool
     # Two parts of a compound share a doubled letter ("ettusen" is "ett" and "tusen").
     compound_shared_letter: bool
@@ -152,6 +183,25 @@ class Lexicon:
     # clause is no numeral.
     article_needs_noun: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
+    # The letters I and İ are two letters with the lower-case forms ı and i.
+    dotted_i: bool = False
+    # A denominator after a numerator above one takes its plural form
+    # ("dois terços"); False where it keeps one form ("két harmad").
+    fraction_agreement: bool = True
+    # After a decimal marker a numerator and a power-of-ten denominator
+    # give the decimals ("öt egész két tized" is 5.2).
+    decimal_fraction: bool = False
+    # A period right after a digit string makes it an ordinal when a
+    # lower-case word or a digit follows ("a 2. emelet").
+    dot_ordinal: bool = False
+    # Marks that glue a case ending to a digit string ("5-öt", "5'te").
+    digit_suffix_marks: frozenset[str] = frozenset()
+    # Month names before which the period after digits ends the year of a
+    # date, not an ordinal ("2008. február").
+    date_months: frozenset[str] = frozenset()
+    # Every form an entry lists as having a common meaning that is no
+    # number, also a number written as one word ("üksteist", each other).
+    ambiguous_words: frozenset[str] = frozenset()
     # "wis" in "wis sin": a word that makes the cardinal after it an ordinal.
     ordinal_particles: frozenset[str] = frozenset()
     # Values whose ordinal has a bound form for compounds: in ar "الحادي
@@ -178,6 +228,7 @@ DEFAULT_SETTINGS = {
     "ordinal_joiner_by_place": False,
     "ten_joins_unit_ordinal": True,
     "bare_hundred_after_scale": False,
+    "small_multiplier_starts_group": False,
     "compound_words": False,
     "compound_shared_letter": False,
     "period_ordinals": False,
@@ -201,7 +252,26 @@ def _read(lang: str) -> dict:
     entries.update({(e["word"], e["role"]): e for e in data.get("entries", [])})
     return {"settings": {**base["settings"], **data.get("settings", {})},
             "words": {**base["words"], **data.get("words", {})},
+            "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
             "entries": list(entries.values())}
+
+
+def _forms(spec: dict, inflection: dict, suffix_ends: bool) -> list[tuple[str, bool, bool, bool]]:
+    """(word, ordinal, final, fraction_case) of every form of an entry: the
+    word itself, and each stem joined to each suffix of its classes. A
+    suffix closes the number where the language puts case endings only on
+    the last word."""
+    ordinal, final = spec.get("ordinal", False), spec.get("final", False)
+    forms = {spec["word"].casefold(): (ordinal, final, False)}
+    for stem, classes in spec.get("stems", {}).items():
+        for name in classes:
+            suffixes = inflection[name]
+            for suffix in suffixes["value"]:
+                forms.setdefault((stem + suffix).casefold(), (
+                    ordinal or suffixes.get("ordinal", False), final or (suffix_ends and suffix != ""),
+                    suffixes.get("fraction_case", False)))
+    excluded = {w.casefold() for w in spec.get("excluded_forms", [])}
+    return [(word, *flags) for word, flags in forms.items() if word not in excluded]
 
 
 def _illion_exponent(rank: int, scale: Scale) -> int:
@@ -220,10 +290,19 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     scale = Scale(scale or settings["scale"])
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
+    inflection = data.get("inflection", {})
+    suffix_ends = settings.get("inflection_position", "every") == "last"
+
+    ambiguous_words: set[str] = set()
 
     def put(spec: dict, entry: Entry) -> None:
-        for form in script.lexicon_forms(spec["word"]):
-            readings.setdefault(form, []).append(entry)
+        ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
+        ambiguous_words.update(ambiguous)
+        for word, ordinal, final, fraction_case in _forms(spec, inflection, suffix_ends):
+            reading = replace(entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
+                              ambiguous=entry.ambiguous or word in ambiguous)
+            for form in script.lexicon_forms(word):
+                readings.setdefault(form, []).append(reading)
 
     # Ordinal scale words come last: each takes its power of ten from the
     # cardinal scale word it names.
@@ -234,7 +313,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                      ambiguous=spec.get("ambiguous", False))
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
-                            bound=spec.get("bound", False), numerator=spec.get("numerator", ""),
+                            bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
+                            ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             invariant=spec.get("invariant", False), **facts))
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
@@ -246,7 +326,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                 put(spec, Entry(role, exponent=_illion_exponent(rank, scale),
                                 scale_dependent=dependent, **facts))
         elif role == "half":
-            put(spec, Entry(role, "1", **facts))
+            put(spec, Entry(role, "1", bound=spec.get("bound", False), **facts))
         elif role == "ordinal_scale":
             named = readings[script.fold(spec["value"])]
             cardinal = [e for e in named if e.role in SCALE_ROLES]
@@ -278,6 +358,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_joiner_by_place=settings["ordinal_joiner_by_place"],
         ten_joins_unit_ordinal=settings["ten_joins_unit_ordinal"],
         bare_hundred_after_scale=settings["bare_hundred_after_scale"],
+        small_multiplier_starts_group=settings["small_multiplier_starts_group"],
         compound_words=settings["compound_words"],
         compound_shared_letter=settings["compound_shared_letter"],
         period_ordinals=settings["period_ordinals"],
@@ -302,6 +383,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         period_ordinal_before=frozenset(w.casefold() for w in words["period_ordinal_before"]),
         article_needs_noun=frozenset(words["article_needs_noun"]),
         ordinal_suffixes=suffixes,
+        dotted_i=settings.get("dotted_i", False),
+        fraction_agreement=settings.get("fraction_agreement", True),
+        decimal_fraction=settings.get("decimal_fraction", False),
+        dot_ordinal=settings.get("dot_ordinal", False),
+        digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
+        date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        ambiguous_words=frozenset(ambiguous_words),
         ordinal_particles=frozenset(words.get("ordinal_particle", ())),
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
