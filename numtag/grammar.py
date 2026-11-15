@@ -349,6 +349,11 @@ class Grammar:
                 counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
                           and self._well_formed_after(last, Rational(value))}
                 for group in following:
+                    # A count right after a scale numeral with no joiner
+                    # counts the collective after it: "treze mil duas
+                    # centenas" is 13000 and 200 (Miro).
+                    if group.exponent == 0 and j == last.end and self._readings(group.end, "collective"):
+                        continue
                     if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent), group.exponent):
                         continue
                     if compound and group.exponent == 0 and any(end > group.end for end in counts):
@@ -386,10 +391,15 @@ class Grammar:
         if last.noun:
             return []
         split = max((n + 1 for n, g in enumerate(run) if g.noun), default=0)
-        prefix, counted = _sum(run[:split]), _sum(run[split:])
         found = []
         for entry in self._readings(last.end, "collective"):
-            found += self._collective(prefix, counted, entry, last.end, may_take_of=split == 0)
+            # A collective of a place value counts only the group after the
+            # joiner: "treze mil e duas centenas" is 13200 (Miro). Any other
+            # collective counts the whole cardinal: "mil e duas dúzias" is
+            # 12024 (Miro).
+            place = split < len(run) - 1 and entry.value.strip("0") == "1"
+            cut = len(run) - 1 if place else split
+            found += self._collective(_sum(run[:cut]), _sum(run[cut:]), entry, last.end, may_take_of=cut == 0 or place)
         decimal = any(g.decimal for g in run)
         return [replace(p, decimal=decimal) for p in found]
 
