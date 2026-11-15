@@ -589,24 +589,25 @@ class Grammar:
 
     def ordinals(self, i: int) -> list[Parse]:
         """"vigésimo primeiro", "dois milésimo", "twenty-first", "two hundredth"."""
-        prefixes: list[tuple[int, Rational | None]] = [(i, None)]
-        prefixes += [(run[-1].end, _sum(run)) for run in self.cardinals(i)
-                     if not run[-1].decimal]
+        prefixes: list[tuple[int, tuple[Group, ...]]] = [(i, ())]
+        prefixes += [(run[-1].end, run) for run in self.cardinals(i) if not run[-1].decimal]
         found = []
-        for start, prefix in prefixes:
-            positions = [start] if prefix is None or self.lex.ordinal_style == "every_word" \
+        for start, run in prefixes:
+            positions = [start] if not run or self.lex.ordinal_style == "every_word" \
                 else self._after_joiner(start, Joiner.OPTIONAL)
             for j in positions:
-                found += self._ordinal_words(j, prefix)
+                found += self._ordinal_words(j, run)
         return found
 
-    def _ordinal_words(self, j: int, prefix: Rational | None) -> list[Parse]:
+    def _ordinal_words(self, j: int, run: tuple[Group, ...]) -> list[Parse]:
+        prefix = _sum(run) if run else None
         found = []
         for scale in self._readings(j, "ordinal_scale"):
             if scale.plural or (prefix is not None and prefix.canonical() == "1"):
                 continue  # "dois milésimos" and "um milésimo" are fractions
-            value = (prefix or ONE).scaled(scale.exponent)
-            found += self._ordinal_rest(j + 1, value, scale.ambiguous)
+            value = _ordinal_scale_value(run, scale.exponent)
+            if value is not None:
+                found += self._ordinal_rest(j + 1, value, scale.ambiguous)
         for entry in self._readings(j, "ordinal"):
             if prefix is None:
                 found += self._ordinal_rest(j + 1, Rational(entry.value), entry.ambiguous)
@@ -756,6 +757,19 @@ def _significant_digits(value: Rational) -> int:
 def _less(a: Rational, b: Rational) -> bool:
     difference = b + -a
     return not difference.negative and not difference.is_zero()
+
+
+def _ordinal_scale_value(run: tuple[Group, ...], exponent: int) -> Rational | None:
+    """An ordinal scale word multiplies only the last group of its prefix
+    and adds the groups before it: "six thousand two hundredth" is 6200th,
+    and "one million two hundred thousandth" is 1200000th. None when the
+    product does not fit below the group before it."""
+    if not run:
+        return ONE.scaled(exponent)
+    last = run[-1].count.scaled(run[-1].exponent + exponent)
+    if len(run) > 1 and len(_whole(last)) > _room(run[-2]):
+        return None
+    return _sum(run[:-1]) + last
 
 
 def _room(group: Group) -> int:

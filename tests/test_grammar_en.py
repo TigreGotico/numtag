@@ -265,6 +265,26 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(en("hundredth"), [("hundredth", "100", O)])
         self.assertEqual(en("two hundredth"), [("two hundredth", "200", O)])
 
+    def test_an_ordinal_scale_word_multiplies_only_the_last_group(self):
+        # 6000 + 2 x 100 = 6200; 1000 + 2 x 100 = 1200; 156000 + 2 x 100 = 156200
+        self.assertEqual(en("six thousand two hundredth"), [("six thousand two hundredth", "6200", O)])
+        self.assertEqual(en("one thousand two hundredth"), [("one thousand two hundredth", "1200", O)])
+        self.assertEqual(en("one hundred fifty-six thousand two hundredth"),
+                         [("one hundred fifty-six thousand two hundredth", "156200", O)])
+        # 8 x 10^12 + 830 x 10^9 + 874 x 10^6 + 156 x 10^3 + 2 x 100
+        text = "eight trillion eight hundred thirty billion eight hundred seventy-four million one hundred fifty-six thousand two hundredth"
+        self.assertEqual(en(text), [(text, "8830874156200", O)])
+        # 2000000 + 300 x 1000 = 2300000; 10^9 + 5 x 1000 = 1000005000
+        self.assertEqual(en("two million three hundred thousandth"),
+                         [("two million three hundred thousandth", "2300000", O)])
+        self.assertEqual(en("one billion five thousandth"), [("one billion five thousandth", "1000005000", O)])
+        # 10^9 + 200 x 10^6 = 1200000000; 3 x 10^12 + 4 x 10^6 = 3000004000000
+        self.assertEqual(en("one billion two hundred millionth"),
+                         [("one billion two hundred millionth", "1200000000", O)])
+        self.assertEqual(en("three trillion four millionth"), [("three trillion four millionth", "3000004000000", O)])
+        # one group: 200 x 1000 = 200000
+        self.assertEqual(en("two hundred thousandth"), [("two hundred thousandth", "200000", O)])
+
     def test_an_ordinal_cannot_fill_a_place_already_taken(self):
         self.assertEqual(en("twenty-one first"), [("twenty-one", "21", C), ("first", "1", O)])
 

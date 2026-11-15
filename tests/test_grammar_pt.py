@@ -704,6 +704,22 @@ class TestOrdinals(unittest.TestCase):
         self.assertLess(mentions[0].confidence, 0.5)
 
 
+    def test_an_ordinal_scale_word_multiplies_only_the_last_group(self):
+        # 2000000 + 300 x 1000 = 2300000; 1000000 + 200 x 1000 = 1200000
+        self.assertEqual(pt("dois milhões e trezentos milésimo"),
+                         [("dois milhões e trezentos milésimo", "2300000", O)])
+        self.assertEqual(pt("um milhão e duzentos milésimo"), [("um milhão e duzentos milésimo", "1200000", O)])
+        # 3 x 10^90 + 400 x 1000 (long scale: quindecilião = 10^90)
+        self.assertEqual(pt("três quindecilhões e quatrocentos milésimo"),
+                         [("três quindecilhões e quatrocentos milésimo", "3" + "0" * 84 + "400000", O)])
+        # pt-BR: 200 x 10^12 + 17 x 1000 = 200000000017000
+        self.assertEqual(read("duzentos trilhões e dezessete milésimo", "pt-BR"),
+                         [("duzentos trilhões e dezessete milésimo", "200000000017000", O)])
+        # every word ordinal (CLDR): 2 x 1000 + 200 = 2200
+        self.assertEqual(pt("dois milésimo ducentésimo"), [("dois milésimo ducentésimo", "2200", O)])
+        # a plural is a fraction: 2/1000
+        self.assertEqual(pt("duas milésimas"), [("duas milésimas", "0.002", F)])
+
 class TestFractions(unittest.TestCase):
     def test_a_count_and_a_denominator(self):
         self.assertEqual(pt("um terço"), [("um terço", "1/3", F)])
