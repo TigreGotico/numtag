@@ -9,8 +9,10 @@ from numtag.lexicon import Joiner, load
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
-MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "fi": "miljoona", "et": "miljon",
-           "hu": "millió", "tr": "milyon", "az": "milyon",
+#: each language's word for a million
+MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
+           "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
+           "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
            "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun"}
 
 

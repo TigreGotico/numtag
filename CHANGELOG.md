@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.2.0a4](https://github.com/TigreGotico/numtag/tree/0.2.0a4) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a3...0.2.0a4)
+
+**Merged pull requests:**
+
+- docs: fix the claims of the claim audit [\#15](https://github.com/TigreGotico/numtag/pull/15) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.2.0a3](https://github.com/TigreGotico/numtag/tree/0.2.0a3) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a2...0.2.0a3)
+
+**Merged pull requests:**
+
+- test: a round last class before a collective needs the joiner [\#16](https://github.com/TigreGotico/numtag/pull/16) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.2.0a2](https://github.com/TigreGotico/numtag/tree/0.2.0a2) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a1...0.2.0a2)
+
+## [0.2.0a1](https://github.com/TigreGotico/numtag/tree/0.2.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a1)
+
+**Merged pull requests:**
+
+- docs: quote a saved page in every lexicon and gold source field [\#14](https://github.com/TigreGotico/numtag/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: read el, ar, he, fa and kab numbers [\#10](https://github.com/TigreGotico/numtag/pull/10) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.2a1...0.1.0a1)
@@ -11,6 +40,24 @@
 ## [0.0.2a1](https://github.com/TigreGotico/numtag/tree/0.0.2a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.0.2a1)
+
+## [0.0.1](https://github.com/TigreGotico/numtag/tree/0.0.1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1a2...0.0.1)
+
+**Merged pull requests:**
+
+- Configure Renovate [\#1](https://github.com/TigreGotico/numtag/pull/1) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [0.0.1a2](https://github.com/TigreGotico/numtag/tree/0.0.1a2) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/8755566a98e5c6ad921f1edd2a001145180787c6...0.0.1a2)
+
+**Merged pull requests:**
+
+- ci: publish alphas on merge to dev and stable releases from master [\#5](https://github.com/TigreGotico/numtag/pull/5) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- test: the gold checker refuses a cut word, a wrong decimal kind and a repeated text [\#3](https://github.com/TigreGotico/numtag/pull/3) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- test: gold corpus for pt-PT, pt-BR and en [\#2](https://github.com/TigreGotico/numtag/pull/2) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 
 

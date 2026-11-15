@@ -62,7 +62,6 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 | `plural_scale_needs_count` | true | Wiktionary, "million" |
 | `scale_noun_agrees` | false | Wiktionary, "million", usage notes |
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |
-| `range_cue` | "between" | Wiktionary, "between" |
 
 [../rulings.md](../rulings.md) quotes each source and shows each rule at work.
 
@@ -84,7 +83,7 @@ So a plural scale word with no count, as in "millions of people", names no numbe
 | `article_one` | "a", "an" | counts one before a word that takes a count |
 | `fraction_of` | "of" | "one third of a dozen" |
 | `lone_decimal_mark` | "." | ".5" |
-| `range_cue` | "between" | "between forty and fifty dollars" |
+| `range_cue` | "between" | "between forty and fifty dollars" (source: Wiktionary, "between") |
 
 The lists `minus_idioms`, `of`, `denominator_particle`, `class_noun`, `half_unit` and `abbreviation` are empty in English. Each empty list carries its source too.
 

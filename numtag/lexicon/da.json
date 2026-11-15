@@ -1,0 +1,934 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Danish uses the long scale: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000: milliard[ →→]\", \"1000000000000: billion[ →→]\", \"1000000000000000: billiard[ →→]\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR number symbols for Danish (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR number symbols for Danish (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR number symbols for Danish (Babel 2.18.0): decimal ',', group '.'; a space separates two numbers."
+  },
+  "compound_words": {
+   "value": true,
+   "source": "Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "\"millioner\" alone names no number: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2000000: ←← millioner[ →→]\""
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "A count above one takes the plural: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000: million[ →→]\", \"2000000: ←← millioner[ →→]\""
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  "tens_order": {
+   "value": "unit_ten",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"20: [→→og]tyve\""
+  },
+  "joiner_unit_ten": {
+   "value": "required",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"20: [→→og]tyve\", \"50: [→→og]halvtreds\""
+  },
+  "unit_ten_one_word": {
+   "value": true,
+   "source": "So \"to og fyrre\" is two numbers: Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\"; Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  "joiner_between_groups": {
+   "value": "optional",
+   "source": "\"og\" before a last group below 100 (\"tusinde og en\"): CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\""
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "\"og\" after \"tusinde\" goes only before a group below 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\""
+  },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hundrede\" names 100 alone, so after a group of thousands it starts the next group: \"hundrede\" alone is 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettende\", so \"ten\" and a unit ordinal are two numbers: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\" After a hundred (optional): CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\"; Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\" writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\"; %and-small: \"0: og =%spellout-cardinal-common=\", \"100: =%spellout-cardinal-common=\": \"og\" goes before a last group below 100 and not before a round hundred (\"tusinde to hundrede\"), so the joiner before the last group is not required."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  "one_before_ordinal_scale_is_fraction": {
+   "value": false,
+   "source": "A fraction is the ordinal and \"-del\" (\"tusindedel\"), so a count of one before an ordinal scale word makes an ordinal: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1000000 → \"millionte\""
+  },
+  "period_ordinals": {
+   "value": true,
+   "source": "An ordinal in digits takes a period (\"den 3. maj\") (Dansk Sprognævn; rule quoted from memory, not checked against the page). A period also ends a sentence, so only a lower-case word after it (Danish writes month names and nouns in lower case: CLDR month names for da (Babel 2.18.0): \"januar\", \"februar\", \"marts\", \"april\", \"maj\", \"juni\", \"juli\", \"august\", \"september\", \"oktober\", \"november\", \"december\") or \"den\" before the digits makes it an ordinal mark: \"i 1905. Dette\" is the cardinal 1905."
+  },
+  "period_ordinal_lowercase": {
+   "value": true,
+   "source": "Danish writes month names in lower case: CLDR month names for da (Babel 2.18.0): \"januar\", \"februar\", \"marts\", \"april\", \"maj\", \"juni\", \"juli\", \"august\", \"september\", \"oktober\", \"november\", \"december\""
+  }
+ },
+ "words": {
+  "period_ordinal_before": {
+   "value": [
+    "den"
+   ],
+   "source": "\"den 3. maj\": the article before a date ordinal (Dansk Sprognævn; not checked against the page)"
+  },
+  "joiner": {
+   "value": [
+    "og"
+   ],
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"20: [→→og]tyve\", \"100: hundrede[ og →→]\""
+  },
+  "decimal_marker": {
+   "value": [
+    "komma"
+   ],
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"x.x: ←← komma →→\""
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"-x: minus →→\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No Danish idiom puts \"minus\" before a positive number."
+  },
+  "article_one": {
+   "value": [
+    "en",
+    "et"
+   ],
+   "source": "\"en\" and \"et\" are the indefinite article and the numeral 1: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1: en\"; CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-neuter: \"1: et\""
+  },
+  "of": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "Danish has no such word in this lexicon."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR number symbols for Danish (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "range_cue": {
+   "value": [
+    "mellem"
+   ],
+   "source": "\"mellem\" is the preposition \"between\"; \"mellem 20 og 30\" names a range (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  }
+ },
+ "entries": [
+  {
+   "word": "nul",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"0: nul\""
+  },
+  {
+   "word": "en",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1: en\""
+  },
+  {
+   "word": "et",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-neuter: \"1: et\""
+  },
+  {
+   "word": "én",
+   "role": "unit",
+   "value": "1",
+   "source": "\"én\" with an accent marks the numeral (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "ét",
+   "role": "unit",
+   "value": "1",
+   "source": "\"ét\" with an accent marks the numeral (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "to",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tre",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "fire",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "fem",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "seks",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "syv",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "otte",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "ni",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "ti",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "elleve",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tolv",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tretten",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "fjorten",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "femten",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "seksten",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "sytten",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "atten",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "nitten",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tyve",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tredive",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "fyrre",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "halvtreds",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "tres",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "halvfjerds",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "firs",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "halvfems",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"2: to\", \"3: tre\", \"4: fire\", \"5: fem\", \"6: seks\", \"7: syv\", \"8: otte\", \"9: ni\", \"10: ti\", \"11: elleve\", \"12: tolv\", \"13: tretten\", \"14: fjorten\", \"15: femten\", \"16: seksten\", \"17: sytten\", \"18: atten\", \"19: nitten\", \"20: [→→og]tyve\", \"30: [→→og]tredive\", \"40: [→→og]fyrre\", \"50: [→→og]halvtreds\", \"60: [→→og]tres\", \"70: [→→og]halvfjerds\", \"80: [→→og]firs\", \"90: [→→og]halvfems\""
+  },
+  {
+   "word": "fyrretyve",
+   "role": "ten",
+   "value": "40",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "halvtredsindstyve",
+   "role": "ten",
+   "value": "50",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "tresindstyve",
+   "role": "ten",
+   "value": "60",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "halvfjerdsindstyve",
+   "role": "ten",
+   "value": "70",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "firsindstyve",
+   "role": "ten",
+   "value": "80",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "halvfemsindstyve",
+   "role": "ten",
+   "value": "90",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\"; Wiktionary, \"halvtreds\" (Danish): \"Clipping of halvtredsindstyve\""
+  },
+  {
+   "word": "hundrede",
+   "role": "hundred",
+   "value": "100",
+   "source": "\"hundrede\" alone is 100: CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"100: hundrede[ og →→]\""
+  },
+  {
+   "word": "hundred",
+   "role": "hundred",
+   "value": "100",
+   "source": "\"hundred\" beside \"hundrede\": Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  {
+   "word": "hundrede",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"200: ←%spellout-cardinal-neuter←hundrede[ og →→]\""
+  },
+  {
+   "word": "hundred",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "\"to hundred(e)\": Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  {
+   "word": "tusinde",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000: tusinde[ →%%and-small→]\""
+  },
+  {
+   "word": "tusind",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-neuter: 1000 → \"tusind\", 2000 → \"to tusind\""
+  },
+  {
+   "word": "million",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000: million[ →→]\", \"2000000: ←← millioner[ →→]\""
+  },
+  {
+   "word": "millioner",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000: million[ →→]\", \"2000000: ←← millioner[ →→]\""
+  },
+  {
+   "word": "milliard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000: milliard[ →→]\", \"2000000000: ←← milliarder[ →→]\""
+  },
+  {
+   "word": "milliarder",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000: milliard[ →→]\", \"2000000000: ←← milliarder[ →→]\""
+  },
+  {
+   "word": "billion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000000: billion[ →→]\", \"2000000000000: ←← billioner[ →→]\""
+  },
+  {
+   "word": "billioner",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000000: billion[ →→]\", \"2000000000000: ←← billioner[ →→]\""
+  },
+  {
+   "word": "billiard",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000000000: billiard[ →→]\", \"2000000000000000: ←← billiarder[ →→]\""
+  },
+  {
+   "word": "billiarder",
+   "role": "scale_noun",
+   "value": 15,
+   "plural": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"1000000000000000: billiard[ →→]\", \"2000000000000000: ←← billiarder[ →→]\""
+  },
+  {
+   "word": "trillion",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "Long scale: 10^18, a million billions (no dictionary page read)"
+  },
+  {
+   "word": "trillioner",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "Long scale: 10^18, a million billions (no dictionary page read)"
+  },
+  {
+   "word": "dusin",
+   "role": "collective",
+   "value": "12",
+   "source": "\"dusin\": twelve pieces (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halv",
+   "role": "half",
+   "ambiguous": true,
+   "source": "\"halv\": one of two equal parts (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halvt",
+   "role": "half",
+   "ambiguous": true,
+   "source": "\"halv\": one of two equal parts (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halve",
+   "role": "half",
+   "ambiguous": true,
+   "source": "\"halv\": one of two equal parts (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halv",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"en halv\" is 1/2 (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halvanden",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "\"halvanden\": one and a half (Den Danske Ordbog; the site refuses automated reading, so not checked against the page); Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""
+  },
+  {
+   "word": "halvandet",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "neuter of \"halvanden\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "kvart",
+   "role": "denominator",
+   "value": "4",
+   "source": "\"kvart\": a fourth; \"tre kvart\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "kvart",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "\"kvart\": a fourth; \"tre kvart\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halvdel",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"halvdel\": one of two equal parts (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "halvdelen",
+   "role": "half",
+   "ambiguous": true,
+   "source": "definite form of \"halvdel\", the half of something (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tredjedel",
+   "role": "denominator",
+   "value": "3",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tredjedele",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "fjerdedel",
+   "role": "denominator",
+   "value": "4",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "fjerdedele",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "femtedel",
+   "role": "denominator",
+   "value": "5",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "femtedele",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "sjettedel",
+   "role": "denominator",
+   "value": "6",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "sjettedele",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "syvendedel",
+   "role": "denominator",
+   "value": "7",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "syvendedele",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "ottendedel",
+   "role": "denominator",
+   "value": "8",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "ottendedele",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "niendedel",
+   "role": "denominator",
+   "value": "9",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "niendedele",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tiendedel",
+   "role": "denominator",
+   "value": "10",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tiendedele",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "hundrededel",
+   "role": "denominator",
+   "value": "100",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "hundrededele",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tusindedel",
+   "role": "denominator",
+   "value": "1000",
+   "source": "A fraction is the ordinal and \"-del\" (\"part\") (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "tusindedele",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "plural \"-dele\": \"to tredjedele\" (Den Danske Ordbog; the site refuses automated reading, so not checked against the page)"
+  },
+  {
+   "word": "første",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tredje",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "fjerde",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "femte",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "sjette",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "syvende",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "ottende",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "niende",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tiende",
+   "role": "ordinal",
+   "value": "10",
+   "ambiguous": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\"; Danish Wikipedia, \"Tiende\": \"Tiende bruges om den skat på en tiendedel af indkomsten, der oprindeligt betaltes til en kirke eller en lignende religiøs institution.\", so \"tiende\" is also a noun"
+  },
+  {
+   "word": "ellevte",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tolvte",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "trettende",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "fjortende",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "femtende",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "sekstende",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "syttende",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "attende",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "nittende",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tyvende",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tredivte",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "fyrrende",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "halvtredsindstyvende",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "tresindstyvende",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "halvfjerdsindstyvende",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "firsindstyvende",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "halvfemsindstyvende",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"syvende\", 8 → \"ottende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 14 → \"fjortende\", 15 → \"femtende\", 16 → \"sekstende\", 17 → \"syttende\", 18 → \"attende\", 19 → \"nittende\", 20 → \"tyvende\", 30 → \"tredivte\", 40 → \"fyrrende\", 50 → \"halvtredsindstyvende\", 60 → \"tresindstyvende\", 70 → \"halvfjerdsindstyvende\", 80 → \"firsindstyvende\", 90 → \"halvfemsindstyvende\""
+  },
+  {
+   "word": "fyrretyvende",
+   "role": "ordinal",
+   "value": "40",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "halvtredsende",
+   "role": "ordinal",
+   "value": "50",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "tresende",
+   "role": "ordinal",
+   "value": "60",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "halvfjerdsende",
+   "role": "ordinal",
+   "value": "70",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "firsende",
+   "role": "ordinal",
+   "value": "80",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "halvfemsende",
+   "role": "ordinal",
+   "value": "90",
+   "source": "Wikipedia, \"Danish language\", Numerals: \"In the word forms of numbers above 20, the units are stated before the tens, so 21 is rendered enogtyve\"; \"Tres is short for tre-sinds-tyve 'three times twenty' and means 60\"; \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""
+  },
+  {
+   "word": "nulte",
+   "role": "ordinal",
+   "value": "0",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 0 → \"nulte\""
+  },
+  {
+   "word": "anden",
+   "role": "ordinal",
+   "value": "2",
+   "ambiguous": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 2 → \"anden\"; The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
+  },
+  {
+   "word": "andet",
+   "role": "ordinal",
+   "value": "2",
+   "ambiguous": true,
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 2 → \"anden\"; The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
+  },
+  {
+   "word": "hundredede",
+   "role": "ordinal_scale",
+   "value": "hundrede",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 100 → \"hundredede\", 1000000 → \"millionte\", 1000000000 → \"milliardte\", 1000000000000 → \"billionte\", 1000000000000000 → \"billiardte\""
+  },
+  {
+   "word": "millionte",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 100 → \"hundredede\", 1000000 → \"millionte\", 1000000000 → \"milliardte\", 1000000000000 → \"billionte\", 1000000000000000 → \"billiardte\""
+  },
+  {
+   "word": "milliardte",
+   "role": "ordinal_scale",
+   "value": "milliard",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 100 → \"hundredede\", 1000000 → \"millionte\", 1000000000 → \"milliardte\", 1000000000000 → \"billionte\", 1000000000000000 → \"billiardte\""
+  },
+  {
+   "word": "billionte",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 100 → \"hundredede\", 1000000 → \"millionte\", 1000000000 → \"milliardte\", 1000000000000 → \"billionte\", 1000000000000000 → \"billiardte\""
+  },
+  {
+   "word": "billiardte",
+   "role": "ordinal_scale",
+   "value": "billiard",
+   "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-ordinal-common: 100 → \"hundredede\", 1000000 → \"millionte\", 1000000000 → \"milliardte\", 1000000000000 → \"billionte\", 1000000000000000 → \"billiardte\""
+  }
+ ]
+}

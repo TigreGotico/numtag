@@ -2,7 +2,7 @@
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, load
 from numtag.mention import Form, Kind, NumberMention
-from numtag.tokenize import Token, tokenize
+from numtag.tokenize import PeriodCues, Token, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -12,22 +12,28 @@ AMBIGUOUS_CONFIDENCE = 0.4
 
 def lexicon_name(lang: str) -> str:
     """The lexicon file for a language tag: "pt-br" reads pt-BR, every other
-    "pt" tag pt-PT, and every "en" tag en."""
+    "pt" tag pt-PT, "no" (Norwegian) reads Bokmål, nb, and every other tag
+    its primary language ("de-AT" reads de)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
     if primary == "pt":
         return "pt-BR" if region == "BR" else "pt-PT"
-    return primary
+    return "nb" if primary == "no" else primary
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
+    words = lexicon.number_words
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners,
-                      lexicon.script,
-                      compound_words=frozenset(lexicon.readings) if lexicon.compound_words else frozenset(),
-                      dotted_i=lexicon.dotted_i, digit_suffix_marks=lexicon.digit_suffix_marks,
+                      lexicon.abbreviations, words, lexicon.script,
+                      compound_words=words if lexicon.compound_words else frozenset(),
+                      compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
+                      dotted_i=lexicon.dotted_i,
+                      suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
+                      period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
+                                                 lexicon.period_ordinal_free_digits)
+                      if lexicon.period_ordinals else None,
                       dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
@@ -170,6 +176,9 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
                     and parse.end < len(run) and not run[parse.end].is_digits
                     and not grammar.starts_number(parse.end))
     if lone_article:
+        return ARTICLE_CONFIDENCE
+    # "Er lud mich ein.": a lone article that ends the clause is no numeral
+    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
         return ARTICLE_CONFIDENCE
     # one word whose every reading has a common meaning that is no number
     entries = () if run[start].is_digits else lexicon.readings.get(run[start].norm, ())
