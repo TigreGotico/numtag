@@ -78,8 +78,24 @@ class TestHalves(unittest.TestCase):
         self.assertEqual(pt("meia dúzia"), [("meia dúzia", "6", C)])
         self.assertEqual(pt("dúzia e meia"), [("dúzia e meia", "18", C)])
 
-    def test_meia_duzia_is_a_group_of_its_own(self):
-        self.assertEqual(pt("cem e meia dúzia"), [("cem", "100", C), ("meia dúzia", "6", C)])
+    def test_meia_duzia_after_e_joins_the_number(self):
+        # 100 + 6; 1000 + 6; 10^6 + 6; 10^6 / 2 + 6
+        self.assertEqual(pt("cem e meia dúzia"), [("cem e meia dúzia", "106", C)])
+        self.assertEqual(pt("mil e meia dúzia"), [("mil e meia dúzia", "1006", C)])
+        self.assertEqual(pt("um milhão e meia dúzia"), [("um milhão e meia dúzia", "1000006", C)])
+        self.assertEqual(pt("meio milhão e meia dúzia"), [("meio milhão e meia dúzia", "500006", C)])
+        # 10^6 + 6; 2 x 12 = 24
+        self.assertEqual(pt("um milhão e meia dúzia e duas dúzias"),
+                         [("um milhão e meia dúzia", "1000006", C), ("duas dúzias", "24", C)])
+        # a decimal ends its number, as before a half
+        self.assertEqual(pt("dois vírgula cinco e meia dúzia"),
+                         [("dois vírgula cinco", "2.5", D), ("meia dúzia", "6", C)])
+
+    def test_a_half_before_a_unit_noun_is_half_the_unit(self):
+        # "meio quilo" is half a kilo, so the million stays whole
+        self.assertEqual(pt("um milhão e meio quilo"), [("um milhão", "1000000", C), ("meio", "0.5", F)])
+        # 10^6 + 10^6 / 2 = 1500000
+        self.assertEqual(pt("um milhão e meio foram gastos"), [("um milhão e meio", "1500000", C)])
 
     def test_a_half_alone_is_a_fraction_marked_ambiguous(self):
         # "meio" is also "middle", so a lone half gets a weak score
@@ -106,6 +122,47 @@ class TestCollectivesAndScaleNouns(unittest.TestCase):
     def test_a_collective_takes_de_and_a_plural_scale_noun(self):
         # 3 x 100 x 1000000 = 300000000
         self.assertEqual(pt("três centenas de milhões"), [("três centenas de milhões", "300000000", C)])
+
+    def test_de_milhar_after_a_collective_names_the_thousands(self):
+        # Priberam, "milhar", sense 3: the class of the thousands.
+        # 2 x 10 x 1000; 3 x 100 x 1000; 6 x 1000; 2 x 100 x 1000 + 500
+        self.assertEqual(pt("duas dezenas de milhar"), [("duas dezenas de milhar", "20000", C)])
+        self.assertEqual(pt("três centenas de milhar de euros"), [("três centenas de milhar", "300000", C)])
+        self.assertEqual(pt("meia dúzia de milhar"), [("meia dúzia de milhar", "6000", C)])
+        self.assertEqual(pt("duas centenas de milhar e quinhentos"),
+                         [("duas centenas de milhar e quinhentos", "200500", C)])
+        # a count of a scale word starts a new number: 200000; 3 x 10^6
+        self.assertEqual(pt("duas centenas de milhar e três milhões"),
+                         [("duas centenas de milhar", "200000", C), ("três milhões", "3000000", C)])
+
+    def test_dozens_after_de_milhar_count_as_after_a_scale_noun(self):
+        # 2 x 10 x 1000 x 12 = 240000; 2 x 10 x 1000 + 3 x 12 = 20036
+        self.assertEqual(pt("duas dezenas de milhar de dúzias"),
+                         [("duas dezenas de milhar de dúzias", "240000", C)])
+        self.assertEqual(pt("duas dezenas de milhar e três dúzias"),
+                         [("duas dezenas de milhar e três dúzias", "20036", C)])
+
+    def test_de_and_a_plural_collective_multiply_a_collective(self):
+        # 12 x 12 = 144; 3 x 10 x 12 = 360
+        self.assertEqual(pt("uma dúzia de dúzias"), [("uma dúzia de dúzias", "144", C)])
+        self.assertEqual(pt("três dezenas de dúzias"), [("três dezenas de dúzias", "360", C)])
+
+    def test_de_duzias_after_a_smaller_scale_noun_counts_only_its_group(self):
+        # 10^12 + 2 x 10^6 x 12 = 1000024000000
+        self.assertEqual(pt("um bilião e dois milhões de dúzias"),
+                         [("um bilião e dois milhões de dúzias", "1000024000000", C)])
+        # pt-BR short scale: 10^9 + 2 x 10^6 x 12 = 1024000000
+        self.assertEqual(read("um bilhão e dois milhões de dúzias", "pt-BR"),
+                         [("um bilhão e dois milhões de dúzias", "1024000000", C)])
+        # 10^12 + (2 x 10^6 + 10^6 / 2) x 12 = 1000030000000
+        self.assertEqual(pt("um bilião e dois milhões e meio de dúzias"),
+                         [("um bilião e dois milhões e meio de dúzias", "1000030000000", C)])
+
+    def test_a_singular_scale_noun_before_de_counts_one(self):
+        self.assertEqual(pt("milhão de pessoas"), [("milhão", "1000000", C)])
+        # only at the start of a number: 10^12; 10^6
+        self.assertEqual(pt("um bilião e milhão de pessoas"),
+                         [("um bilião", "1" + "0" * 12, C), ("milhão", "1000000", C)])
 
     def test_a_plural_with_no_count_is_no_number(self):
         for text in ("dúzias de ovos", "milhões de pessoas", "milhares de pessoas",
@@ -153,7 +210,6 @@ class TestCardinals(unittest.TestCase):
                          [("mil e quinhentos milhões", "1500000000", C)])
         self.assertEqual(pt("dois mil e quinhentos milhões"),
                          [("dois mil e quinhentos milhões", "2500000000", C)])
-        self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
         # 1500 x 10^6 + 300 x 10^3 + 1 = 1500300001
         self.assertEqual(pt("mil e quinhentos milhões trezentos mil e um"),
                          [("mil e quinhentos milhões trezentos mil e um", "1500300001", C)])
@@ -176,15 +232,15 @@ class TestCardinals(unittest.TestCase):
                          [("três biliões e quinhentos mil milhões", "35" + "0" * 11, C)])
 
     def test_a_group_fits_below_the_digits_of_the_count_before_it(self):
-        # 1001 x 10^6 fills the millions place, so 10^6 is a new number
-        self.assertEqual(pt("mil e um milhões e um milhão"),
-                         [("mil e um milhões", "1001000000", C), ("um milhão", "1000000", C)])
+        # 1100 x 10^6 leaves eight zeros; 100 x 10^6 has nine digits
+        self.assertEqual(pt("mil e cem milhões e cem milhões"),
+                         [("mil e cem milhões", "1100000000", C), ("cem milhões", "100000000", C)])
         # 1500 x 10^6 leaves eight zeros; 600 x 10^6 has nine digits
         self.assertEqual(pt("mil e quinhentos milhões e seiscentos milhões"),
                          [("mil e quinhentos milhões", "1500000000", C), ("seiscentos milhões", "600000000", C)])
-        # pt-BR short scale: 1001 x 10^9; 10^9
-        self.assertEqual(read("mil e um bilhões e um bilhão", "pt-BR"),
-                         [("mil e um bilhões", "1001" + "0" * 9, C), ("um bilhão", "1" + "0" * 9, C)])
+        # pt-BR short scale: 1100 x 10^9 leaves eleven zeros; 100 x 10^9 has twelve digits
+        self.assertEqual(read("mil e cem bilhões e cem bilhões", "pt-BR"),
+                         [("mil e cem bilhões", "11" + "0" * 11, C), ("cem bilhões", "1" + "0" * 11, C)])
         # 2000 x 10^6 leaves nine zeros: 2 x 10^9 + 500 x 10^6 = 2500000000
         self.assertEqual(pt("dois mil milhões e quinhentos milhões"),
                          [("dois mil milhões e quinhentos milhões", "2500000000", C)])
@@ -202,6 +258,50 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("um bilião e mil e quinhentos milhões"),
                          [("um bilião e mil e quinhentos milhões", "1001500000000", C)])
         self.assertEqual(pt("três milhões e mil e duzentos"), [("três milhões e mil e duzentos", "3001200", C)])
+
+    def test_a_count_below_a_thousand_belongs_to_the_scale_word_after_it(self):
+        # 10^6; 25 x 10^6
+        self.assertEqual(pt("entre um milhão e vinte e cinco milhões de euros"),
+                         [("um milhão", "1000000", C), ("vinte e cinco milhões", "25000000", C)])
+        # 20 x 1000; 25 x 1000
+        self.assertEqual(pt("entre vinte mil e vinte e cinco mil euros"),
+                         [("vinte mil", "20000", C), ("vinte e cinco mil", "25000", C)])
+        # pt-BR short scale: 10^9; 23 x 10^9
+        self.assertEqual(read("entre um bilhão e vinte e três bilhões", "pt-BR"),
+                         [("um bilhão", "1" + "0" * 9, C), ("vinte e três bilhões", "23" + "0" * 9, C)])
+        # 2 x 10^6 + 25 x 1000 = 2025000; 10^6 + 25 = 1000025
+        self.assertEqual(pt("dois milhões e vinte e cinco mil"), [("dois milhões e vinte e cinco mil", "2025000", C)])
+        self.assertEqual(pt("um milhão e vinte e cinco"), [("um milhão e vinte e cinco", "1000025", C)])
+
+    def test_mil_e_counts_a_larger_noun_only_before_a_round_hundred(self):
+        # Cunha & Cintra, p. 372: "e" joins the thousands and the hundreds
+        # only before a round hundred, so "mil e quinhentos" milhões is one
+        # count: (2000 + 300) x 10^6 = 2300000000
+        self.assertEqual(pt("dois mil e trezentos milhões"),
+                         [("dois mil e trezentos milhões", "2300000000", C)])
+        # any other "N mil e Y" closes its number: 500000; 3 x 10^6
+        self.assertEqual(pt("quinhentos mil e três milhões"),
+                         [("quinhentos mil", "500000", C), ("três milhões", "3000000", C)])
+        # 100000; 10^6
+        self.assertEqual(pt("entre cem mil e um milhão de euros"),
+                         [("cem mil", "100000", C), ("um milhão", "1000000", C)])
+        self.assertEqual(read("entre cem mil e um milhão de reais", "pt-BR"),
+                         [("cem mil", "100000", C), ("um milhão", "1000000", C)])
+        # 2 x 10^6 + 500 x 1000 = 2500000; 3 x 10^6
+        self.assertEqual(pt("entre dois milhões e quinhentos mil e três milhões"),
+                         [("dois milhões e quinhentos mil", "2500000", C), ("três milhões", "3000000", C)])
+        # 120 is no round hundred: 1000; 120 x 10^6
+        self.assertEqual(pt("mil e cento e vinte milhões"),
+                         [("mil", "1000", C), ("cento e vinte milhões", "120000000", C)])
+        # the whole part 500 is a round hundred: 1500.5 x 10^6 = 1500500000
+        self.assertEqual(pt("mil e quinhentos vírgula cinco milhões"),
+                         [("mil e quinhentos vírgula cinco milhões", "1500500000", C)])
+
+    def test_mil_and_a_count_with_no_e_count_a_larger_noun(self):
+        # (1000 + 500) x 10^6; (2000 + 350) x 10^6
+        self.assertEqual(pt("mil quinhentos milhões"), [("mil quinhentos milhões", "1500000000", C)])
+        self.assertEqual(pt("dois mil trezentos e cinquenta milhões"),
+                         [("dois mil trezentos e cinquenta milhões", "2350000000", C)])
 
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 10^9; 2 x 10^9
@@ -315,6 +415,17 @@ class TestDigits(unittest.TestCase):
     def test_pt_br_does_not_group_digits_with_a_space(self):
         self.assertEqual(read("vivem 1 234 pessoas", "pt-BR"), [("1", "1", C), ("234", "234", C)])
 
+    def test_a_lone_decimal_mark_before_digits(self):
+        # a group mark stands only between digits, so either mark is decimal
+        self.assertEqual(pt("(.5) e 3"), [(".5", "0.5", D), ("3", "3", C)])
+        self.assertEqual(pt(",5 litros e 3 copos"), [(",5", "0.5", D), ("3", "3", C)])
+        self.assertEqual(pt("custa .99 euros"), [(".99", "0.99", D)])
+        self.assertEqual(pt("menos .5 graus"), [("menos .5", "-0.5", D)])
+        # an ellipsis is no decimal mark, and a mark before grouped digits
+        # is no decimal mark either
+        self.assertEqual(pt("...5"), [("5", "5", C)])
+        self.assertEqual(pt("custa .5.000"), [("5.000", "5000", C)])
+
     def test_a_whole_value_is_cardinal_even_with_a_decimal_mark(self):
         self.assertEqual(pt("dois vírgula zero"), [("dois vírgula zero", "2", C)])
         self.assertEqual(pt("3,00 euros"), [("3,00", "3", C)])
@@ -386,6 +497,22 @@ class TestFractions(unittest.TestCase):
         # 12 / 25 = 0.48
         self.assertEqual(pt("doze vinte e cinco avos"), [("doze vinte e cinco avos", "0.48", F)])
 
+    def test_avos_after_a_denominator_above_ten(self):
+        # Priberam, "avo": only a denominator above ten
+        self.assertEqual(pt("doze avos"), [("doze avos", "1/12", F)])
+        self.assertEqual(pt("onze avos"), [("onze avos", "1/11", F)])
+        self.assertEqual(pt("cento e vinte avos"), [("cento e vinte avos", "1/120", F)])
+        self.assertEqual(pt("três dois avos"), [("três", "3", C), ("dois", "2", C)])
+        self.assertEqual(pt("dez avos"), [("dez", "10", C)])
+        self.assertEqual(pt("visitei os meus dois avos"), [("dois", "2", C)])
+
+    def test_a_fraction_word_with_no_count_after_e(self):
+        # 2000 + 1/3 = 6001/3; 2000000 + 1/4 = 2000000.25
+        self.assertEqual(pt("dois mil e terço"), [("dois mil e terço", "6001/3", F)])
+        self.assertEqual(pt("dois milhões e quarto"), [("dois milhões e quarto", "2000000.25", F)])
+        # a plural fraction word needs a count
+        self.assertEqual(pt("dois e terços"), [("dois", "2", C)])
+
     def test_a_whole_and_a_fraction(self):
         # 2 + 1/3 = 7/3
         self.assertEqual(pt("dois e um terço"), [("dois e um terço", "7/3", F)])
@@ -450,3 +577,15 @@ class TestArticleAndGender(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAbbreviations(unittest.TestCase):
+    def test_dez_and_a_period_before_lower_case_or_digits_is_december(self):
+        self.assertEqual(pt("a reunião é a 3 dez. 2025"), [("3", "3", C), ("2025", "2025", C)])
+        self.assertEqual(pt("a reunião é a 3 dez., disse"), [("3", "3", C)])
+        self.assertEqual(pt("no dia vinte e cinco dez. de dois mil"),
+                         [("vinte e cinco", "25", C), ("dois mil", "2000", C)])
+
+    def test_dez_and_a_period_at_a_sentence_end_is_ten(self):
+        self.assertEqual(pt("ganhou dez. Ele ganhou cinco."), [("dez", "10", C), ("cinco", "5", C)])
+        self.assertEqual(pt("ganhou dez."), [("dez", "10", C)])

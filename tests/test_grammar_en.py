@@ -68,6 +68,22 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("between one billion and two thousand five hundred million"),
                          [("one billion", "1000000000", C), ("two thousand five hundred million", "2500000000", C)])
 
+    def test_a_count_below_a_thousand_belongs_to_the_scale_word_after_it(self):
+        # 10^6; 25 x 10^6
+        self.assertEqual(en("between one million and twenty-five million dollars"),
+                         [("one million", "1000000", C), ("twenty-five million", "25000000", C)])
+        # 2 x 10^6; 150 x 10^6
+        self.assertEqual(en("between two million and one hundred and fifty million"),
+                         [("two million", "2000000", C), ("one hundred and fifty million", "150000000", C)])
+
+    def test_thousand_and_counts_a_larger_noun_only_before_a_round_hundred(self):
+        # 500 x 1000; 2 x 10^6
+        self.assertEqual(en("between five hundred thousand and two million"),
+                         [("five hundred thousand", "500000", C), ("two million", "2000000", C)])
+        # 10^6 + 200 x 1000 = 1200000; 2 x 10^6
+        self.assertEqual(en("between one million two hundred thousand and two million"),
+                         [("one million two hundred thousand", "1200000", C), ("two million", "2000000", C)])
+
     def test_a_scale_noun_after_a_group_starts_a_new_number(self):
         # 2000 x 10^6; 3000 x 10^6
         self.assertEqual(en("two thousand million and three thousand million"),
@@ -216,6 +232,11 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("1,000,000.5"), [("1,000,000.5", "1000000.5", D)])
         self.assertEqual(en("1.5"), [("1.5", "1.5", D)])
         self.assertEqual(en("1,5"), [])
+
+    def test_a_lone_decimal_point_before_digits(self):
+        self.assertEqual(en("about .5 percent"), [(".5", "0.5", D)])
+        # the comma only groups digits
+        self.assertEqual(en(",5"), [("5", "5", C)])
 
     def test_a_whole_value_is_cardinal_even_with_a_decimal_point(self):
         self.assertEqual(en("two point zero"), [("two point zero", "2", C)])

@@ -72,6 +72,14 @@ class Lexicon:
     denominator_particles: frozenset[str]
     # "um terço de dúzia": the word between a fraction and a collective.
     fraction_of_words: frozenset[str]
+    # "milhar" in "duas dezenas de milhar": a singular noun that names a class.
+    class_nouns: frozenset[str]
+    # "quilo" in "meio quilo": a unit that a half before it halves.
+    half_units: frozenset[str]
+    # "dez" in "3 dez. 2025": a word that a period makes an abbreviation.
+    abbreviations: frozenset[str]
+    # "." in ".5": a mark that makes the digits after it decimals.
+    lone_decimal_marks: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
@@ -157,5 +165,9 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         of_words=frozenset(words["of"]),
         denominator_particles=frozenset(words["denominator_particle"]),
         fraction_of_words=frozenset(words["fraction_of"]),
+        class_nouns=frozenset(words["class_noun"]),
+        half_units=frozenset(words["half_unit"]),
+        abbreviations=frozenset(words["abbreviation"]),
+        lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         ordinal_suffixes=suffixes,
     )
