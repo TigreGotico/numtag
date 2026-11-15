@@ -38,12 +38,12 @@ class TestLexiconFiles(unittest.TestCase):
             return [q for q in re.findall(r'"([^"]*)"', source) if " " in q.strip() and len(q) >= 4]
 
         sources = []
-        for path in LEXICONS:
-            data = json.loads(path.read_text(encoding="utf-8"))
+        for lang in ("en", "pt-BR", "pt-PT"):
+            data = json.loads((ROOT / "numtag" / "lexicon" / f"{lang}.json").read_text(encoding="utf-8"))
             items = list(data.get("settings", {}).values()) + list(data.get("words", {}).values())
-            sources += [(path.name, i["source"]) for i in items + data.get("entries", [])]
-        for path in sorted((ROOT / "tests" / "gold").glob("*.jsonl")):
-            sources += [(path.name, json.loads(line)["source"]) for line in path.read_text(encoding="utf-8").splitlines()]
+            sources += [(lang, i["source"]) for i in items + data.get("entries", [])]
+            gold = (ROOT / "tests" / "gold" / f"{lang}.jsonl").read_text(encoding="utf-8")
+            sources += [(f"gold {lang}", json.loads(line)["source"]) for line in gold.splitlines()]
         unquoted = sorted({(name, s) for name, s in sources
                            if not quotes(s) and "no external source" not in s.lower()})
         self.assertEqual(unquoted, [])
