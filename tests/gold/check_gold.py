@@ -31,7 +31,10 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "ru": (",", "целых", "целая", "целой", "запятая"), "uk": (",", "цілих", "ціла", "цілої", "кома"),
                  "bg": (",", "цяло", "цели", "запетая"), "pl": (",", "przecinek", "całych", "cała", "całe"),
                  "cs": (",", "celá", "celé", "celých", "čárka"), "sk": (",", "celá", "celé", "celých", "čiarka"),
-                 "sl": (",", "cela", "celi", "cele", "celih", "vejica"), "hr": (",", "zarez", "cijela", "cijelih", "cijele")}
+                 "sl": (",", "cela", "celi", "cele", "celih", "vejica"), "hr": (",", "zarez", "cijela", "cijelih", "cijele"),
+                 "fr-FR": (",", "virgule"), "fr-BE": (",", "virgule"), "fr-CH": (",", "virgule"),
+                 "it": (",", "virgola"), "ro": (",", "virgulă", "virgula"), "eu": (",", "koma"),
+                 "id": (",", "koma", "titik")}
 
 
 def _is_edge_noise(ch: str) -> bool:

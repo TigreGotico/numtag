@@ -4,7 +4,6 @@ import unicodedata
 from dataclasses import dataclass, field, replace
 from functools import cache
 
-_ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
@@ -114,14 +113,17 @@ DEFAULT_SCRIPT = Script()
 
 
 @cache
-def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset()) -> re.Pattern:
+def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), group_mark: str = ".") -> re.Pattern:
     """A digit string keeps its group and decimal marks ("1.000.000,5"). A
     minus sign or a lone mark belongs to it only at the start of a word ("-5",
     ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
     so that a run with a digit the language does not read ("٣", "１２") is
     found whole and then dropped. A soft hyphen between letters stays in
-    the word, and so does one of ``apostrophes`` ("п'ять")."""
+    the word, and so does one of ``apostrophes`` ("п'ять"). A group mark
+    other than "." and "," ("1'234'567" in Switzerland) also stands between
+    digits."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
+    between = marks + (re.escape(group_mark) if group_mark not in ".," else "")
     joins = SOFT_HYPHEN + "".join(re.escape(a) for a in sorted(apostrophes))
     word = r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
@@ -129,7 +131,14 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset()) ->
         word = rf"{word}(?:[^\W\d_]|[{inner}]|[{joins}][^\W\d_])*"
     else:
         word = rf"{word}+(?:[{joins}][^\W\d_]+)*"
-    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{marks}]\d+)*)|(?P<word>{word})")
+    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{between}]\d+)*)|(?P<word>{word})")
+
+
+@cache
+def _ascii_digits(group_mark: str = ".") -> re.Pattern:
+    """A digit string in 0-9 with its marks, and the group mark between digits."""
+    inner = ".," + (re.escape(group_mark) if group_mark not in ".," else "")
+    return re.compile(rf"(?:[-−][.,]?|[.,])?[0-9]+(?:[{inner}][0-9]+)*")
 
 
 @dataclass(frozen=True)
@@ -157,6 +166,9 @@ class Token:
     folded: str = ""
     # A digit string that a period makes an ordinal ("3" in "am 3. Mai").
     period_ordinal: bool = False
+    # A piece of a word that the tokenizer split ("venti" and "tré" in
+    # "ventitré"): a lexicon entry marked as a part reads only here.
+    part: bool = False
 
     @property
     def norm(self) -> str:
@@ -206,7 +218,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              suffix_marks: frozenset[str] = frozenset({"", "."}),
              digit_suffix_marks: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
-             dot_ordinal: bool = False, date_months: frozenset[str] = frozenset()) -> list[Token]:
+             dot_ordinal: bool = False, date_months: frozenset[str] = frozenset(),
+             phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".") -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -241,6 +254,11 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     emelet"); before one of ``date_months`` the period follows the year of a
     date, which is no ordinal ("2008. február"). In both cases the period is
     not part of the token.
+
+    The words of each phrase in ``phrases`` become one token
+    ("quatre-vingts"). ``group_mark`` joins digits as "." and "," do
+    ("1'234"). An ordinal suffix listed with a hyphen ("-lea") follows a
+    hyphen ("2-lea").
     """
     scan = text
     if script.bidi_controls:
@@ -248,14 +266,15 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     table = script.digit_table
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_token_pattern(script, apostrophes).finditer(scan))
+    matches = list(_token_pattern(script, apostrophes, group_mark).finditer(scan))
+    ascii_digits = _ascii_digits(group_mark)
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
             continue
         is_digits = match.lastgroup == "digits"
         latin = match.group().translate(table) if is_digits else ""
-        if is_digits and not (_ASCII_DIGITS.fullmatch(latin) and _one_digit_script(match.group(), table)):
+        if is_digits and not (ascii_digits.fullmatch(latin) and _one_digit_script(match.group(), table)):
             continue
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(scan, match.end()):
             continue
@@ -282,6 +301,12 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 end, suffix = following.end(), following.group()
                 latin += text[match.end():end]
                 skip_until = following.end()
+            elif (following.lastgroup == "word" and between == "-"
+                    and (between + following.group()).casefold() in ordinal_suffixes):
+                # a suffix listed with a hyphen ("-lea") takes one ("2-lea")
+                end, suffix = following.end(), between + following.group()
+                latin += text[match.end():end]
+                skip_until = following.end()
         if is_digits and dot_ordinal and not suffix and _dot_ordinal(text, end, date_months):
             suffix = "."  # the period stays outside the span, as punctuation
         word = text[start:end]
@@ -303,7 +328,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 piece = text[first:last]
                 tokens.append(Token(piece, first, last, False, gap if n == 0 else "",
                                     key=None if script == DEFAULT_SCRIPT else script.fold(piece),
-                                    glued=n > 0, folded=source[a:b].casefold()))
+                                    glued=n > 0, folded=source[a:b].casefold(), part=True))
         else:
             key = None
             if script != DEFAULT_SCRIPT:
@@ -317,7 +342,31 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         return tokens
     if script.joiner_prefixes or script.clitic_prefixes:
         tokens = _split_prefixes(tokens, number_words, script)
+    if phrases:
+        tokens = _merge_phrases(text, tokens, phrases)
     return _drop_compound_nouns(text, tokens, number_words)
+
+
+def _merge_phrases(text: str, tokens: list[Token], phrases: frozenset[tuple[str, ...]]) -> list[Token]:
+    """The tokens with the words of each phrase made one token, longest
+    phrase first, when only spaces or hyphens lie between the words."""
+    longest = max(len(p) for p in phrases)
+    merged: list[Token] = []
+    i = 0
+    while i < len(tokens):
+        for size in range(min(longest, len(tokens) - i), 1, -1):
+            words = tokens[i:i + size]
+            if (tuple(t.norm for t in words) in phrases and not any(t.is_digits or t.part for t in words)
+                    and all(t.links_to_previous() for t in words[1:])):
+                first, last = words[0], words[-1]
+                merged.append(replace(first, text=text[first.start:last.end], end=last.end,
+                                      key="-".join(t.norm for t in words)))
+                i += size
+                break
+        else:
+            merged.append(tokens[i])
+            i += 1
+    return merged
 
 
 def _one_digit_script(run: str, table: dict[int, str]) -> bool:

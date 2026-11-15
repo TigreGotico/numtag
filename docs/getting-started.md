@@ -111,10 +111,10 @@ numtag reads `pt-BR` as Brazilian Portuguese, every other `pt` tag as European P
 ```python
 >>> [m.value for m in tag_numbers("dois", "pt_AO")]
 ['2']
->>> tag_numbers("deux", "fr")
+>>> tag_numbers("二", "ja")
 Traceback (most recent call last):
   ...
-ValueError: no lexicon for language 'fr'
+ValueError: no lexicon for language 'ja'
 ```
 
 ## What numtag does not read

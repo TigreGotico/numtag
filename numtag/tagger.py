@@ -1,6 +1,6 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
 from numtag.grammar import Grammar, Parse
-from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, load
+from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
@@ -10,15 +10,21 @@ ARTICLE_CONFIDENCE = 0.3
 AMBIGUOUS_CONFIDENCE = 0.4
 
 
+# The lexicon of a language tag with no region, or with a region that has no
+# lexicon of its own.
+BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"}
+
+
 def lexicon_name(lang: str) -> str:
-    """The lexicon file for a language tag: "pt-br" reads pt-BR, every other
-    "pt" tag pt-PT, "no" (Norwegian) reads Bokmål, nb, and every other tag
-    its primary language ("de-AT" reads de)."""
+    """The lexicon file for a language tag: the region's file when there is
+    one ("pt-br" reads pt-BR, "fr-be" fr-BE), else the language's base file:
+    every other "pt" tag reads pt-PT, "no" (Norwegian) reads Bokmål, nb, and
+    every other tag its primary language ("de-AT" reads de)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
-    if primary == "pt":
-        return "pt-BR" if region == "BR" else "pt-PT"
-    return "nb" if primary == "no" else primary
+    if region and exists(f"{primary}-{region}"):
+        return f"{primary}-{region}"
+    return BASE_LEXICON.get(primary, primary)
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
@@ -34,7 +40,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                       period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
                                                  lexicon.period_ordinal_free_digits)
                       if lexicon.period_ordinals else None,
-                      dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months)
+                      dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
+                      phrases=lexicon.phrases, group_mark=lexicon.group_mark)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
@@ -172,9 +179,12 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
 
 
 def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> float:
+    # The article stands next to its noun: before it ("um livro"), or after
+    # it where the language puts it there ("liburu bat").
+    noun = start - 1 if lexicon.article_after_noun else parse.end
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles
-                    and parse.end < len(run) and not run[parse.end].is_digits
-                    and not grammar.starts_number(parse.end))
+                    and 0 <= noun < len(run) and not run[noun].is_digits
+                    and not grammar.starts_number(noun))
     if lone_article:
         return ARTICLE_CONFIDENCE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral

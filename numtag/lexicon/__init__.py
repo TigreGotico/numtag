@@ -44,9 +44,10 @@ class TensOrder(str, Enum):
 # عشر"); a "value_word" is a whole number on its own, also one that is not
 # whole ("puolitoista" is 3/2); a unit-and-half word is its value and a half
 # ("δυόμισι"); a "rational" word is a number that is no whole number
-# ("полтора" is 3/2).
+# ("полтора" is 3/2); a "teen_suffix" adds its value to the unit before it
+# ("dua belas" is 12).
 VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen",
-               "value_word", "unit_and_half", "rational")
+               "value_word", "unit_and_half", "rational", "teen_suffix")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
@@ -55,6 +56,11 @@ CARDINAL_ROLES = ("unit", "ten", "hundred", "teen") + SCALE_ROLES
 # Roles of the parts of a compound number word where the lexicon splits by
 # role: a fraction noun or a collective is no part.
 COMPOUND_ROLES = ("unit", "ten", "hundred", "ordinal", "ordinal_scale", "half", "rational") + SCALE_ROLES
+# Roles with no value: a part of a word that makes the cardinal before it an
+# ordinal ("ventitre|esimo", "bi|garren"), a word or part that makes the
+# cardinal after it an ordinal ("ke|dua", "ke-2"), and a part that makes the
+# cardinal after it a denominator ("se|per|enam belas").
+MARK_ROLES = ("ordinal_ending", "ordinal_prefix", "denominator_prefix")
 
 
 @dataclass(frozen=True)
@@ -100,6 +106,18 @@ class Entry:
     # The cardinal word of an ordinal scale word names a number by itself
     # ("tausend", "honderd"), not only after a count ("thousand").
     alone: bool = False
+    # A ten that takes a number from ten to nineteen after it, as well as a
+    # unit: "soixante-dix" is 70, "hogeita hamar" is 30.
+    teens: bool = False
+    # The word is read only as a piece of a longer word that the tokenizer
+    # splits ("vent" in "ventuno", "se" in "seratus").
+    part: bool = False
+    # An ordinal read only after an ordinal article ("a noua", not "noua
+    # clădire").
+    after_article: bool = False
+    # A word with a common meaning that ends a phrase, as an adjective after
+    # its noun ("un manteau neuf"): weak when no word follows it.
+    weak_at_end: bool = False
 
 
 @dataclass(frozen=True)
@@ -233,6 +251,22 @@ class Lexicon:
     joiner_after_decimal_marker: Joiner = Joiner.NEVER
     # Marks that join letters into one word ("п'ять").
     word_apostrophes: frozenset[str] = frozenset()
+    # Where the joiner may go before a half or a fraction after a whole
+    # ("dua setengah", "tiga dua-pertiga", "two and a half").
+    joiner_before_half: Joiner = Joiner.REQUIRED
+    # Number words of several words, as tuples of their words ("quatre-vingts").
+    phrases: frozenset[tuple[str, ...]] = frozenset()
+    # "de" in "douăzeci de mii": a word between a count and its scale word.
+    count_of: frozenset[str] = frozenset()
+    # "bat" in "milioi bat": a word after a noun that counts one of it.
+    one_after_noun: frozenset[str] = frozenset()
+    # "a" in "a noua": the word before an ordinal that needs an article.
+    ordinal_articles: frozenset[str] = frozenset()
+    # The article follows its noun ("etxe bat"), so it is weak after a word.
+    article_after_noun: bool = False
+    # A fraction word after a scale word takes a part of it ("milioi erdi
+    # bat" is 500000, "hiru milioi laurden" 750000).
+    fraction_after_scale: bool = False
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -315,6 +349,10 @@ def _illion_exponent(rank: int, scale: Scale) -> int:
     return 3 * rank + 3 if scale == Scale.SHORT else 6 * rank
 
 
+def exists(lang: str) -> bool:
+    return (_HERE / f"{lang}.json").is_file()
+
+
 @cache
 def load(lang: str, scale: Scale | None = None) -> Lexicon:
     data = _read(lang)
@@ -346,12 +384,14 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     for spec in entries:
         role = spec["role"]
         facts = dict(gender=spec.get("gender"), plural=spec.get("plural", False),
-                     ambiguous=spec.get("ambiguous", False))
+                     ambiguous=spec.get("ambiguous", False), part=spec.get("part", False))
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
-                            invariant=spec.get("invariant", False), **facts))
+                            invariant=spec.get("invariant", False), teens=spec.get("teens", False),
+                            after_article=spec.get("after_article", False),
+                            weak_at_end=spec.get("weak_at_end", False), **facts))
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:
@@ -363,12 +403,15 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                                 scale_dependent=dependent, **facts))
         elif role == "half":
             put(spec, Entry(role, "1", bound=spec.get("bound", False), **facts))
+        elif role in MARK_ROLES:
+            put(spec, Entry(role, **facts))
         elif role == "ordinal_scale":
             named = readings[fold(script.fold(spec["value"]))]
             cardinal = [e for e in named if e.role in SCALE_ROLES]
             alone = any(e.role in ("hundred", "scale_numeral") for e in named)
             put(spec, Entry(role, exponent=cardinal[0].exponent,
-                            scale_dependent=cardinal[0].scale_dependent, alone=alone, **facts))
+                            scale_dependent=cardinal[0].scale_dependent, alone=alone,
+                            after_article=spec.get("after_article", False), **facts))
         elif role == "ordinal_suffix":
             suffixes[fold(spec["word"])] = spec.get("gender")
         else:
@@ -438,6 +481,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         decimal_fractions=settings.get("decimal_fractions", False),
         joiner_after_decimal_marker=Joiner(settings.get("joiner_after_decimal_marker", Joiner.NEVER)),
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
+        joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
+        phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
+        count_of=frozenset(words.get("count_of", ())),
+        one_after_noun=frozenset(words.get("one_after_noun", ())),
+        ordinal_articles=frozenset(words.get("ordinal_article", ())),
+        article_after_noun=settings.get("article_after_noun", False),
+        fraction_after_scale=settings.get("fraction_after_scale", False),
     )
 
 

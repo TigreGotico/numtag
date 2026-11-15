@@ -6,6 +6,7 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 from numtag.lexicon import Joiner, load
+from numtag.tagger import lexicon_name
 
 SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
 
@@ -17,7 +18,8 @@ MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "milli
            "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
            "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun",
            "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
-           "sl": "milijon", "hr": "milijun"}
+           "sl": "milijon", "hr": "milijun", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
+           "fr-FR": "million", "id": "juta", "it": "milione", "ro": "milion"}
 
 
 class TestLexiconFiles(unittest.TestCase):
@@ -84,11 +86,31 @@ class TestLexiconFiles(unittest.TestCase):
         self.assertIn("п'ять", lexicon.readings)
         self.assertEqual(lexicon.word_apostrophes, frozenset({"'", "\u2019"}))
 
-    def test_only_portuguese_takes_a_round_hundred_after_the_thousands_joiner(self):
-        langs = ("az", "en", "et", "fi", "hu", "pt-BR", "pt-PT", "tr")
+    def test_the_round_hundred_after_the_thousands_joiner_is_per_language(self):
+        langs = ("az", "en", "et", "eu", "fi", "fr-FR", "hu", "id", "it", "pt-BR", "pt-PT", "ro", "tr")
         self.assertEqual({lang: load(lang).joiner_before_round_hundred for lang in langs},
-                         {"az": False, "en": False, "et": False, "fi": False, "hu": False,
-                          "pt-BR": True, "pt-PT": True, "tr": False})
+                         {"az": False, "en": False, "et": False, "eu": True, "fi": False, "fr-FR": False,
+                          "hu": False, "id": False, "it": True, "pt-BR": True, "pt-PT": True, "ro": False,
+                          "tr": False})
+    def test_fr_be_extends_fr_fr_with_septante_and_nonante(self):
+        base, belgian = load("fr-FR").readings, load("fr-BE").readings
+        self.assertLessEqual(base.keys(), belgian.keys())
+        self.assertEqual(set(belgian) - set(base),
+                         {"septante", "septantième", "septantièmes", "nonante", "nonantième", "nonantièmes"})
+        self.assertEqual(load("fr-BE").of("septante", "ten")[0].value, "70")
+
+    def test_fr_ch_extends_fr_be_with_huitante(self):
+        belgian, swiss = load("fr-BE").readings, load("fr-CH").readings
+        self.assertEqual(set(swiss) - set(belgian), {"huitante", "huitantième", "huitantièmes"})
+        self.assertEqual(load("fr-CH").of("huitante", "ten")[0].value, "80")
+
+    def test_a_region_without_a_file_reads_with_the_base_lexicon(self):
+        self.assertEqual(lexicon_name("fr"), "fr-FR")
+        self.assertEqual(lexicon_name("fr-CA"), "fr-FR")
+        self.assertEqual(lexicon_name("fr_be"), "fr-BE")
+        self.assertEqual(lexicon_name("fr-CH"), "fr-CH")
+        self.assertEqual(lexicon_name("it-IT"), "it")
+        self.assertEqual(lexicon_name("pt"), "pt-PT")
 
     def test_only_portuguese_requires_the_joiner_before_a_last_round_group(self):
         self.assertEqual({lang: load(lang).joiner_before_last_group for lang in ("en", "pt-BR", "pt-PT")},
