@@ -17,6 +17,18 @@ class TestBindingRulings(unittest.TestCase):
         # (1000 + 2) x 12 = 12024
         self.assertEqual(pt("mil e duas dúzias"), [("mil e duas dúzias", "12024", C)])
 
+    def test_a_collective_after_a_scale_numeral_with_no_joiner_starts_a_number(self):
+        # Miro: 13000 and 2 x 100
+        self.assertEqual(pt("treze mil duas centenas"), [("treze mil", "13000", C), ("duas centenas", "200", C)])
+        self.assertEqual(pt("treze mil duas dúzias"), [("treze mil", "13000", C), ("duas dúzias", "24", C)])
+
+    def test_a_place_collective_after_the_joiner_counts_only_its_group(self):
+        # Miro: 13000 + 2 x 100
+        self.assertEqual(pt("treze mil e duas centenas"), [("treze mil e duas centenas", "13200", C)])
+        # (3000 + 2 x 100) x 10^6
+        self.assertEqual(pt("três mil e duas centenas de milhões"),
+                         [("três mil e duas centenas de milhões", "3200000000", C)])
+
     def test_after_milhao_the_collective_counts_only_the_cardinal_after_it(self):
         # 1000000 + 2 x 12 = 1000024
         self.assertEqual(pt("um milhão e duas dúzias"), [("um milhão e duas dúzias", "1000024", C)])
