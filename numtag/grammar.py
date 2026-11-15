@@ -358,13 +358,6 @@ class Grammar:
                 # 1000002000 and "milhões". Any other plain group joins the
                 # run, so "um milhão e quinhentos mil e dois milhões" is
                 # 1500000 and 2000000.
-                # Nor is the first word of a count below a thousand: "um milhão
-                # e vinte e cinco milhões" is 1000000 and 25000000.
-                # Only a count that may follow the group: in "mil e quinhentos
-                # e dois mil", "e quinhentos e dois" is not well formed after
-                # "mil", so the number is 1500 and "dois mil" starts the next.
-                counts = {end for end, value in self.small(j) if self._takes_multiplier(end)
-                          and self._well_formed_after(last, Rational(value))}
                 for group in following:
                     # A count right after a scale numeral with no joiner
                     # counts the collective after it: "treze mil duas
@@ -372,8 +365,6 @@ class Grammar:
                     if group.exponent == 0 and j == last.end and self._readings(group.end, "collective"):
                         continue
                     if compound and not group.top and self._takes_count(group.end, group.count.scaled(group.exponent), group.exponent):
-                        continue
-                    if compound and group.exponent == 0 and any(end > group.end for end in counts):
                         continue
                     if group.order < last.order and len(_whole(group.count.scaled(group.exponent))) <= room:
                         frontier.append(run + (group,))
