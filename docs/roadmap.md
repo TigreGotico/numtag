@@ -57,20 +57,13 @@ Digits in date and time formats will become separate DIGITS mentions: "3.5.2025"
 [('15', '15'), ('2', '2'), ('3', '3')]
 ```
 
-## More languages (in progress)
+## Native-speaker review (planned)
 
-Ports to these languages are in progress. They are not supported, and `tag_numbers` raises `ValueError` for each of them until its port merges. Each port adds lexicons with sourced entries, a gold corpus, and engine mechanisms that a lexicon setting switches on.
+The lexicons of the languages after English and Portuguese rest on cited sources: CLDR number rules, dictionaries, grammars and spelling norms. No native speaker has checked them. A review can change a reading, and each change comes with a gold row. The pages in [languages/](languages/) list each lexicon and its gold rows.
 
-| Group | Languages |
-|---|---|
-| Germanic | de, nl, fy, da, sv, nb, nn |
-| Slavic | ru, uk, bg, pl, cs, sk, sl, hr |
-| Romance and others | fr, it, ro, eu, id |
-| Iberian | es, gl, ca, ast, an, oc, mwl |
-| Uralic and Turkic | fi, et, hu, tr, az |
-| Greek, Semitic, Iranian and Berber | el, ar, he, fa, kab |
+## One rule for period ordinals (planned)
 
-No native speaker has checked these ports. A shared compound splitter and a shared rule for period ordinals ("5.") will replace the separate versions in the ports.
+Two settings read digits and a period, as in "5.", as an ordinal. The `de`, `da`, `nb` and `nn` lexicons set `period_ordinals`, and the `fi`, `et`, `hu`, `tr` and `az` lexicons set `dot_ordinal`. One rule will replace the two settings, and the gold rows of each lexicon must still pass.
 
 ## Open questions
 

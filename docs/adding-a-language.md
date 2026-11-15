@@ -14,7 +14,7 @@ ovos-number-parser (`numbers_<lang>.py` and its tests) and the number modules of
 
 ## The lexicon file
 
-The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name: `tag_numbers` reads the primary subtag of a language tag ("de" for "de-AT") and loads `<primary>.json`. Portuguese is the one case with a region: `pt-BR` loads `pt-BR.json`, and every other `pt` tag loads `pt-PT.json`. A language with regional files needs the same mapping in `lexicon_name` in `numtag/tagger.py`.
+The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name: `tag_numbers` reads the primary subtag of a language tag ("de" for "de-AT") and loads `<primary>.json`. A region with a file of its own loads that file: `pt-BR` loads `pt-BR.json` and `fr-BE` loads `fr-BE.json`. `BASE_LEXICON` in `numtag/tagger.py` names the file for every other tag of a language with regional files: `pt` loads `pt-PT.json` and `fr` loads `fr-FR.json`. It also maps `no` to `nb.json`. A new language with regional files needs an entry there.
 
 The file is a JSON object with these keys:
 

@@ -71,8 +71,14 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `pt-BR` | Brazilian Portuguese | short: "bilhão" is 10^9 |
 | every other `pt` tag (`pt`, `pt-PT`, `pt-AO`) | European Portuguese | long: "bilião" is 10^12 |
 | every `en` tag (`en`, `en-US`, `en-GB`) | English | short: "billion" is 10^9 |
+| `el`, `ar`, `he`, `fa`, `kab` | Greek, Arabic, Hebrew, Persian, Kabyle | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
+| `de`, `nl`, `fy`, `da`, `sv`, `nb` (and `no`), `nn` | German, Dutch, West Frisian, Danish, Swedish, Norwegian | per lexicon, in [germanic.md](docs/languages/germanic.md) |
+| `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
+| `ru`, `uk`, `bg`, `pl`, `cs`, `sk`, `sl`, `hr` | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian | per lexicon, in [slavic.md](docs/languages/slavic.md) |
+| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id` | French, Italian, Romanian, Basque, Indonesian | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
+| `es`, `gl`, `ca`, `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
 
-Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `ValueError`. Ports to more languages are in progress, and no other language is supported until its port merges. Read [docs/roadmap.md](docs/roadmap.md).
+Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `ValueError`.
 
 Each language is one JSON file in `numtag/lexicon/`. Each word and each setting in the file carries the source of its rule.
 
@@ -87,7 +93,7 @@ Each language is one JSON file in `numtag/lexicon/`. Each word and each setting 
 | [docs/number-scale.md](docs/number-scale.md) | Long and short scale |
 | [docs/confidence-and-homographs.md](docs/confidence-and-homographs.md) | Articles, words with two meanings, low scores |
 | [docs/rulings.md](docs/rulings.md) | The reading rules, each with its source |
-| [docs/languages/pt.md](docs/languages/pt.md), [docs/languages/en.md](docs/languages/en.md) | What each language reads |
+| [docs/languages/](docs/languages/) | What each language reads |
 | [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for a new language |
 | [docs/design.md](docs/design.md) | How the tagger works inside |
 | [docs/benchmarks.md](docs/benchmarks.md) | Accuracy, memory and time against ovos-number-parser |
