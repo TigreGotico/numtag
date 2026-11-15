@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0a1](https://github.com/TigreGotico/numtag/tree/0.5.0a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.4.0a1...0.5.0a1)
+
+**Merged pull requests:**
+
+- feat: read ru, uk, bg, pl, cs, sk, sl and hr numbers [\#7](https://github.com/TigreGotico/numtag/pull/7) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.4.0a1](https://github.com/TigreGotico/numtag/tree/0.4.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a2...0.4.0a1)
