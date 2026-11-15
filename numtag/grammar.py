@@ -290,10 +290,8 @@ class Grammar:
             run = frontier.pop()
             last = run[-1]
             # A count belongs to the scale word after it: "dois milhões e três
-            # milhões" is two numbers, not 2000003 and a stray "milhões", and
-            # "mil milhões e dois mil milhões" is two, not 1000002000 and "milhões".
-            if compound and (last.exponent == 0 and self._takes_multiplier(last.end)
-                             or any(e.exponent > last.order for e in self._readings(last.end, "scale_noun"))):
+            # milhões" is two numbers, not 2000003 and a stray "milhões".
+            if compound and last.exponent == 0 and self._takes_multiplier(last.end):
                 continue
             found.append(run)
             if last.exponent == 0 or last.decimal:
@@ -301,8 +299,9 @@ class Grammar:
             room = _room(last)
             for j in self._after_joiner(last.end, self.lex.joiner_between_groups):
                 following = self.groups(j, first=False, compound=compound)
-                # Where a count of several words starts ("mil e quinhentos"
-                # milhões), its first word is no group of this run.
+                # Where a count starts ("dois mil" milhões, "mil e quinhentos"
+                # milhões), its first word is no group of this run: "mil milhões
+                # e dois mil milhões" is two numbers, not 1000002000 and "milhões".
                 counted = any(g.top for g in following)
                 for group in following:
                     if counted and not group.top:
