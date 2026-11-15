@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1a1](https://github.com/TigreGotico/numtag/tree/0.7.1a1) (2026-11-15)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.0a2...0.7.1a1)
+
+**Merged pull requests:**
+
+- fix: read a digit count after a joiner prefix and after the first group [\#19](https://github.com/TigreGotico/numtag/pull/19) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.0a2](https://github.com/TigreGotico/numtag/tree/0.7.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.0a1...0.7.0a2)
