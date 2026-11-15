@@ -31,9 +31,10 @@ VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal",
 # before it ("dua puluh" is 20).
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
 # Roles with no value: a part of a word that makes the cardinal before it an
-# ordinal ("ventitre|esimo", "bi|garren"), and a word or part that makes the
-# cardinal after it an ordinal ("ke|dua", "ke-2").
-MARK_ROLES = ("ordinal_ending", "ordinal_prefix")
+# ordinal ("ventitre|esimo", "bi|garren"), a word or part that makes the
+# cardinal after it an ordinal ("ke|dua", "ke-2"), and a part that makes the
+# cardinal after it a denominator ("se|per|enam belas").
+MARK_ROLES = ("ordinal_ending", "ordinal_prefix", "denominator_prefix")
 
 
 @dataclass(frozen=True)
@@ -60,6 +61,12 @@ class Entry:
     part: bool = False
     # A denominator with one form for one and for more ("deux tiers").
     invariable: bool = False
+    # An ordinal read only after an ordinal article ("a noua", not "noua
+    # clădire").
+    after_article: bool = False
+    # A word with a common meaning that ends a phrase, as an adjective after
+    # its noun ("un manteau neuf"): weak when no word follows it.
+    weak_at_end: bool = False
 
 
 @dataclass(frozen=True)
@@ -99,7 +106,8 @@ class Lexicon:
     lone_decimal_marks: frozenset[str]
     range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
-    # Where the joiner may go before a half ("dua setengah", "two and a half").
+    # Where the joiner may go before a half or a fraction after a whole
+    # ("dua setengah", "tiga dua-pertiga", "two and a half").
     joiner_before_half: Joiner = Joiner.REQUIRED
     # Split a word that is no number word into number words ("ventitré").
     compound_words: bool = False
@@ -111,6 +119,13 @@ class Lexicon:
     count_of: frozenset[str] = frozenset()
     # "bat" in "milioi bat": a word after a noun that counts one of it.
     one_after_noun: frozenset[str] = frozenset()
+    # "a" in "a noua": the word before an ordinal that needs an article.
+    ordinal_articles: frozenset[str] = frozenset()
+    # The article follows its noun ("etxe bat"), so it is weak after a word.
+    article_after_noun: bool = False
+    # A fraction word after a scale word takes a part of it ("milioi erdi
+    # bat" is 500000, "hiru milioi laurden" 750000).
+    fraction_after_scale: bool = False
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -169,7 +184,9 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), teens=spec.get("teens", False),
-                            invariable=spec.get("invariable", False), **facts))
+                            invariable=spec.get("invariable", False),
+                            after_article=spec.get("after_article", False),
+                            weak_at_end=spec.get("weak_at_end", False), **facts))
         elif role in SCALE_ROLES:
             if "value" in spec:
                 put(spec, Entry(role, exponent=spec["value"], **facts))
@@ -185,7 +202,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         elif role == "ordinal_scale":
             cardinal = [e for e in readings[key(spec["value"])] if e.role in SCALE_ROLES]
             put(spec, Entry(role, exponent=cardinal[0].exponent,
-                            scale_dependent=cardinal[0].scale_dependent, **facts))
+                            scale_dependent=cardinal[0].scale_dependent,
+                            after_article=spec.get("after_article", False), **facts))
         elif role == "ordinal_suffix":
             suffixes[spec["word"].casefold()] = spec.get("gender")
         else:
@@ -223,4 +241,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=listed("count_of"),
         one_after_noun=listed("one_after_noun"),
+        ordinal_articles=listed("ordinal_article"),
+        article_after_noun=settings.get("article_after_noun", False),
+        fraction_after_scale=settings.get("fraction_after_scale", False),
     )

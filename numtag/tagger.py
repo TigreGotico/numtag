@@ -32,7 +32,8 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     words = frozenset(lexicon.readings)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
                       lexicon.abbreviations, words | lexicon.joiners, fold=lexicon.fold,
-                      phrases=lexicon.phrases, split=words if lexicon.compound_words else frozenset())
+                      phrases=lexicon.phrases, split=words if lexicon.compound_words else frozenset(),
+                      group_mark=lexicon.group_mark)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -128,9 +129,12 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
 
 
 def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> float:
+    # The article stands next to its noun: before it ("um livro"), or after
+    # it where the language puts it there ("liburu bat").
+    noun = start - 1 if lexicon.article_after_noun else parse.end
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles
-                    and parse.end < len(run) and not run[parse.end].is_digits
-                    and not grammar.starts_number(parse.end))
+                    and 0 <= noun < len(run) and not run[noun].is_digits
+                    and not grammar.starts_number(noun))
     if lone_article:
         return ARTICLE_CONFIDENCE
     return AMBIGUOUS_CONFIDENCE if parse.ambiguous else 1.0

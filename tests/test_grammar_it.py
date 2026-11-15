@@ -3,12 +3,17 @@ comment beside it; sources are in numtag/lexicon/it.json."""
 import unittest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O = "cardinal", "ordinal"
 
 
 def it(text: str) -> list[tuple[str, str, str]]:
     return read(text, "it")
+
+
+def confidence(text: str, lang: str) -> list[tuple[str, float]]:
+    return [(m.text, m.confidence) for m in tag_numbers(text, lang)]
 
 
 class TestCompoundWords(unittest.TestCase):
@@ -70,6 +75,15 @@ class TestMinus(unittest.TestCase):
 
     def test_piu_o_meno_is_no_minus(self):
         self.assertEqual(it("più o meno tre"), [("tre", "3", C)])
+
+
+class TestHomographs(unittest.TestCase):
+    def test_sei_and_venti_alone_may_be_words(self):
+        # "sei" may be "you are", "venti" "winds"
+        self.assertEqual(confidence("Sei sicuro?", "it"), [("Sei", 0.4)])
+        self.assertEqual(confidence("venti forti", "it"), [("venti", 0.4)])
+        self.assertEqual(confidence("ventisei", "it"), [("ventisei", 1.0)])
+        self.assertEqual(confidence("seimila", "it"), [("seimila", 1.0)])
 
 
 if __name__ == "__main__":

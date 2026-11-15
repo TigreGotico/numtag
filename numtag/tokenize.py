@@ -1,15 +1,24 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
 from dataclasses import dataclass, replace
+from functools import cache
 
 # A digit string keeps its group and decimal marks ("1.000.000,5"). A minus
 # sign or a lone mark belongs to it only at the start of a word ("-5" and
 # ".5", not "5-7" or "...5"). The pattern takes digits of every script, so
 # that a run with any digit outside 0-9 ("٣", "１２") is found whole and then
 # dropped.
-_TOKEN = re.compile(r"(?P<digits>(?:(?<![^\s(\[])(?:[-−][.,]?|[.,]))?\d+(?:[.,]\d+)*)|(?P<word>[^\W\d_]+)")
-_ASCII_DIGITS = re.compile(r"(?:[-−][.,]?|[.,])?[0-9]+(?:[.,][0-9]+)*")
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+
+
+@cache
+def _patterns(group_mark: str) -> tuple[re.Pattern[str], re.Pattern[str]]:
+    """The token pattern and the pattern of a digit string in 0-9. A group
+    mark other than "." and "," ("1'234'567" in Switzerland) also stands
+    between digits."""
+    inner = "[.," + (re.escape(group_mark) if group_mark not in ".," else "") + "]"
+    return (re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][.,]?|[.,]))?\d+(?:{inner}\d+)*)|(?P<word>[^\W\d_]+)"),
+            re.compile(rf"(?:[-−][.,]?|[.,])?[0-9]+(?:{inner}[0-9]+)*"))
 
 
 @dataclass(frozen=True)
@@ -54,7 +63,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              number_words: frozenset[str] | None = None, *,
              fold: dict[str, str] | None = None,
              phrases: frozenset[tuple[str, ...]] = frozenset(),
-             split: frozenset[str] = frozenset()) -> list[Token]:
+             split: frozenset[str] = frozenset(), group_mark: str = ".") -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -73,16 +82,18 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     A word outside ``number_words`` that is a run of the words in ``split``
     is split into them ("ventitré" is "venti" and "tré"). The words of
     each phrase in ``phrases`` become one token ("quatre-vingts").
+    ``group_mark`` joins digits as "." and "," do ("1'234").
     """
+    token_pattern, ascii_digits = _patterns(group_mark)
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_TOKEN.finditer(text))
+    matches = list(token_pattern.finditer(text))
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
             continue
         is_digits = match.lastgroup == "digits"
-        if is_digits and not _ASCII_DIGITS.fullmatch(match.group()):
+        if is_digits and not ascii_digits.fullmatch(match.group()):
             continue
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(text, match.end()):
             continue

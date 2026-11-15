@@ -3,12 +3,17 @@ comment beside it; sources are in numtag/lexicon/ro.json."""
 import unittest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O = "cardinal", "ordinal"
 
 
 def ro(text: str) -> list[tuple[str, str, str]]:
     return read(text, "ro")
+
+
+def confidence(text: str, lang: str) -> list[tuple[str, float]]:
+    return [(m.text, m.confidence) for m in tag_numbers(text, lang)]
 
 
 class TestCountOf(unittest.TestCase):
@@ -48,6 +53,31 @@ class TestOrdinals(unittest.TestCase):
     def test_the_article_stays_outside_the_ordinal(self):
         self.assertEqual(ro("al doilea"), [("doilea", "2", O)])
         self.assertEqual(ro("a doua"), [("doua", "2", O)])
+
+
+
+class TestOrdinalArticle(unittest.TestCase):
+    def test_a_feminine_ordinal_needs_the_article(self):
+        # "noua clădire" is "the new building"; "mia de lei" the 1000-lei note
+        self.assertEqual(ro("noua clădire"), [])
+        self.assertEqual(ro("mia de lei"), [])
+        self.assertEqual(ro("a noua oară"), [("noua", "9", O)])
+        self.assertEqual(ro("a mia oară"), [("mia", "1000", O)])
+        # 20 + 9 = 29
+        self.assertEqual(ro("a douăzeci și noua zi"), [("douăzeci și noua", "29", O)])
+        # "de-a" is one hyphenated word that holds the article
+        self.assertEqual(ro("cea de-a doua zi"), [("doua", "2", O)])
+
+    def test_a_masculine_ordinal_needs_no_article(self):
+        self.assertEqual(ro("doilea"), [("doilea", "2", O)])
+
+
+class TestHomographs(unittest.TestCase):
+    def test_noua_that_no_word_follows_may_be_new(self):
+        self.assertEqual(confidence("tehnologie nouă", "ro"), [("nouă", 0.4)])
+        self.assertEqual(confidence("tehnologie nouă și bună", "ro"), [("nouă", 0.4)])
+        self.assertEqual(confidence("nouă drumuri", "ro"), [("nouă", 1.0)])
+        self.assertEqual(confidence("nouă sute", "ro"), [("nouă sute", 1.0)])
 
 
 if __name__ == "__main__":

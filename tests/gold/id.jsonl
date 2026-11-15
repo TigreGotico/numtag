@@ -169,3 +169,7 @@
 {"text": "Dia satu-satunya orang di sana.", "mentions": [], "source": "a hyphenated compound with a word that is no number word is one word (\"satu-satunya\", the only one)"}
 {"text": "Kesatuan bangsa itu penting.", "mentions": [], "source": "\"kesatuan\" (unity) does not split into number words"}
 {"text": "Selamat pagi, apa kabar?", "mentions": [], "source": "no number word"}
+{"text": "Kami membagi kue itu menjadi seperenam belas bagian.", "mentions": [{"start": 29, "end": 44, "value": "0.0625", "kind": "fraction"}], "source": "EYD V, \"Angka dan Bilangan\", G.8.b: \"seperenam belas (⅟16)\""}
+{"text": "Panjangnya tiga dua-pertiga meter.", "mentions": [{"start": 11, "end": 27, "value": "11/3", "kind": "fraction"}], "source": "EYD V, \"Angka dan Bilangan\", G.8.b: \"tiga dua-pertiga (3⅔)\"; 3 + 2/3 = 11/3"}
+{"text": "Kedua pihak sepakat.", "mentions": [{"start": 0, "end": 5, "value": "2", "kind": "ordinal", "low_confidence": true}], "source": "KBBI VI Daring, \"ke-\": \"prefiks pembentuk numeralia kumpulan: kedua (buku); ketiga (orang)\"; \"kedua\": \"kelompok yang terdiri atas dua (orang dan barang): ~ mobilnya disita kejaksaan\""}
+{"text": "Jalan antara kedua kota itu rusak.", "mentions": [{"start": 13, "end": 18, "value": "2", "kind": "ordinal", "low_confidence": true}], "source": "KBBI VI Daring, \"ke-\": \"prefiks pembentuk numeralia kumpulan: kedua (buku); ketiga (orang)\"; \"kedua\": \"kelompok yang terdiri atas dua (orang dan barang): ~ mobilnya disita kejaksaan\""}

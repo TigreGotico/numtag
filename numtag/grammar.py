@@ -513,12 +513,16 @@ class Grammar:
                 for end, fraction in self.decimal_digits(last.end)]
 
     def fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
-        """"dois e um terço" is 7/3."""
+        """"dois e um terço" is 7/3, and "tiga dua-pertiga" 11/3 where the
+        language puts no joiner before a part. Digits take no part without
+        the joiner."""
         last = run[-1]
         if last.decimal:
             return []
         found = []
-        for j in self._after_joiner(last.end, Joiner.REQUIRED):
+        for j in self._after_joiner(last.end, self.lex.joiner_before_half):
+            if j == last.end and self.tokens[j - 1].is_digits:
+                continue
             found += [replace(f, value=_sum(run) + f.value) for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
             found += [Parse(j + 1, _sum(run) + Rational("1", e.value), ambiguous=e.ambiguous)
@@ -548,7 +552,34 @@ class Grammar:
             for after, denominator in self.small(end, nonzero=True):
                 if _above_ten(denominator) and self._is_word(after, self.lex.denominator_particles):
                     found.append(Parse(after + 1, Rational(numerator, denominator)))
+            # "seperenam belas": the prefix makes the cardinal after it the
+            # denominator, and the cardinal may go on past the word
+            if self._readings(end, "denominator_prefix") and end + 1 < len(self.tokens) \
+                    and self.tokens[end + 1].joined:
+                found += [Parse(run[-1].end, Rational(numerator, _whole(_sum(run))))
+                          for run in self.cardinals(end + 1)
+                          if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"]
         return found
+
+    def scale_fractions(self, i: int) -> list[Parse]:
+        """A fraction word after a scale word takes that part of it: "milioi
+        erdi bat" is 500000 and "hiru milioi laurden" 750000. With no count,
+        the one after the noun ends it."""
+        if not self.lex.fraction_after_scale:
+            return []
+        found = []
+        for end, exponent, _, _, plural in self.multipliers(i):
+            if not plural and self._is_word(end + 1, self.lex.one_after_noun):
+                found += [Parse(end + 2, ONE.scaled(exponent) * part) for part in self._parts(end)]
+        for run in self.cardinals(i):
+            if run[-1].exponent and not run[-1].decimal:
+                found += [Parse(run[-1].end + 1, _sum(run) * part) for part in self._parts(run[-1].end)]
+        return found
+
+    def _parts(self, i: int) -> list[Rational]:
+        """The part that a singular half or denominator at ``i`` names."""
+        return [HALF for _ in self._readings(i, "half")] + [
+            Rational("1", e.value) for e in self._readings(i, "denominator") if not e.plural]
 
     def fraction_of_collective(self, fraction: Parse) -> list[Parse]:
         """"um terço de dúzia", "one third of a dozen": that part of the collective."""
@@ -608,7 +639,13 @@ class Grammar:
             teens = any(t.teens for t in self._readings(start - 1, "ten")) and prefix is not None
             for j in positions:
                 found += self._ordinal_words(j, prefix, teens)
-        return found + self._ordinal_affixes(i)
+        found += self._ordinal_affixes(i)
+        if not self.lex.ordinal_articles or self._after_article(i):
+            return found
+        # "noua clădire" is "the new building": "a noua" is the ordinal
+        return [p for p in found if not any(
+            e.after_article for e in self.lex.readings.get(self.tokens[p.end - 1].norm, ())
+            if e.role in ("ordinal", "ordinal_scale"))]
 
     def _ordinal_affixes(self, i: int) -> list[Parse]:
         """A cardinal with an ordinal ending on its last word ("ventitreesimo",
@@ -617,10 +654,16 @@ class Grammar:
         found = [Parse(run[-1].end + 1, _sum(run), Kind.ORDINAL) for run in self.cardinals(i)
                  if not run[-1].decimal and self._readings(run[-1].end, "ordinal_ending")
                  and self.tokens[run[-1].end].joined]
-        if self._readings(i, "ordinal_prefix") and i + 1 < len(self.tokens) and (
+        prefixes = self._readings(i, "ordinal_prefix")
+        if prefixes and i + 1 < len(self.tokens) and (
                 self.tokens[i + 1].joined or self.tokens[i + 1].gap == "-"):
-            found += [Parse(run[-1].end, _sum(run), Kind.ORDINAL) for run in self.cardinals(i + 1)
-                      if not run[-1].decimal and _sum(run).is_whole()]
+            # "kedua pihak": a prefixed word that starts the phrase, before a
+            # word, may count a group ("both sides"); after a word it is an
+            # ordinal ("anaknya yang kedua", "terbesar kedua di dunia")
+            weak = i == 0 and self.tokens[i + 1].joined and any(p.ambiguous for p in prefixes)
+            found += [Parse(run[-1].end, _sum(run), Kind.ORDINAL,
+                            ambiguous=weak and run[-1].end < len(self.tokens))
+                      for run in self.cardinals(i + 1) if not run[-1].decimal and _sum(run).is_whole()]
         return found
 
     def _ordinal_words(self, j: int, prefix: Rational | None, teens: bool = False) -> list[Parse]:
@@ -741,6 +784,25 @@ class Grammar:
         best = min(splits, key=lambda s: (s[2], s[1], -s[0][0].end), default=None)
         return None if best is None else best[0]
 
+    def _weak_word(self, i: int) -> bool:
+        """A cardinal word alone that may be another word: "sei" ("you
+        are") anywhere, "neuf" ("new") when no word follows it ("un manteau
+        neuf", not "neuf maisons")."""
+        if self.tokens[i].is_digits:
+            return False
+        entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ())
+                   if e.role in ("unit", "ten", "hundred")]
+        at_end = i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners)
+        return any(e.ambiguous or (e.weak_at_end and at_end) for e in entries)
+
+    def _after_article(self, i: int) -> bool:
+        """An ordinal article stands before ``i``, also inside a hyphenated
+        word the tokenizer dropped ("cea de-a doua")."""
+        if i > 0 and self._is_word(i - 1, self.lex.ordinal_articles):
+            return True
+        words = re.findall(r"[^\W\d_]+", self.tokens[i].gap)
+        return bool(words) and words[-1].casefold() in self.lex.ordinal_articles
+
     def _number_word(self, i: int) -> bool:
         token = self.tokens[i]
         return token.is_digits or token.norm in self.lex.readings or token.norm in (
@@ -761,8 +823,10 @@ class Grammar:
             if not entry.plural and self._is_word(i + 1, self.lex.one_after_noun):
                 found += [replace(p, end=p.end + 1) for p in
                           self._collective(Rational("0"), ONE, entry, i, may_take_of=False) if p.end == i + 1]
+        found += self.scale_fractions(i)
         for run in self.cardinals(i):
-            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
+            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run),
+                               ambiguous=run[-1].end == i + 1 and self._weak_word(i)))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
         return found

@@ -4,12 +4,17 @@ fr-CH.json."""
 import unittest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O, F = "cardinal", "ordinal", "fraction"
 
 
 def fr(text: str, lang: str = "fr-FR") -> list[tuple[str, str, str]]:
     return read(text, lang)
+
+
+def confidence(text: str, lang: str) -> list[tuple[str, float]]:
+    return [(m.text, m.confidence) for m in tag_numbers(text, lang)]
 
 
 class TestVigesimalTens(unittest.TestCase):
@@ -77,6 +82,32 @@ class TestMinus(unittest.TestCase):
 
     def test_au_moins_is_no_minus(self):
         self.assertEqual(fr("au moins trois"), [("trois", "3", C)])
+
+
+
+class TestHomographs(unittest.TestCase):
+    def test_neuf_that_no_word_follows_may_be_new(self):
+        self.assertEqual(confidence("un manteau neuf", "fr"), [("un", 0.3), ("neuf", 0.4)])
+        self.assertEqual(confidence("Quoi de neuf ?", "fr"), [("neuf", 0.4)])
+        self.assertEqual(confidence("les neuf Muses", "fr"), [("neuf", 1.0)])
+        self.assertEqual(confidence("dix-neuf", "fr"), [("dix-neuf", 1.0)])
+        self.assertEqual(confidence("neuf cents", "fr"), [("neuf cents", 1.0)])
+
+
+class TestSwissDigits(unittest.TestCase):
+    def test_an_apostrophe_groups_digits_in_switzerland(self):
+        # 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5
+        self.assertEqual(read("1'234'567,5", "fr-CH"), [("1'234'567,5", "1234567.5", "decimal")])
+        self.assertEqual(read("1 234 567,5", "fr-CH"), [("1 234 567,5", "1234567.5", "decimal")])
+        self.assertEqual(read("1'234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
+
+
+class TestBillion(unittest.TestCase):
+    def test_billion_carries_its_scale(self):
+        # long: 10^12; short ("mille millions"): 10^9
+        self.assertEqual(read("un billion", "fr"), [("un billion", "1000000000000", C)])
+        self.assertEqual(read("un billion", "fr", scale="short"), [("un billion", "1000000000", C)])
+        self.assertEqual([m.number_scale.value for m in tag_numbers("un billion", "fr")], ["long"])
 
 
 if __name__ == "__main__":

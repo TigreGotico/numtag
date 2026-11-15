@@ -150,3 +150,8 @@
 {"text": "Am o casă mare.", "mentions": [{"start": 3, "end": 4, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "DOOM 3, \"un\": \"f. o\"; \"o\" is also the indefinite article, so alone before a noun it is weak"}
 {"text": "Am un frate și o soră.", "mentions": [{"start": 3, "end": 5, "value": "1", "kind": "cardinal", "low_confidence": true}, {"start": 15, "end": 16, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "DOOM 3, \"un\": \"Eu am un frate/o soră\"; both are also articles"}
 {"text": "Bună ziua, ce mai faci?", "mentions": [], "source": "no number word"}
+{"text": "Au adus o tehnologie nouă.", "mentions": [{"start": 8, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true}, {"start": 21, "end": 25, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "DEX '09, \"nou\": \"NOU, NOUĂ, noi, adj. [...] Făcut sau creat (relativ) de curând\"; a lone \"nouă\" may be \"new\""}
+{"text": "Noua clădire este mare.", "mentions": [], "source": "DEX '09, \"nou\": \"NOU, NOUĂ, noi, adj. [...] Făcut sau creat (relativ) de curând\"; the feminine ordinal is \"a noua\" (Wikipedia (ro), \"Numeral\")"}
+{"text": "Mi-a dat mia de lei.", "mentions": [], "source": "MDA2, \"mie\": \"10 sf Monedă sau bancnotă de 1000 lei\"; the feminine ordinal is \"a mia\""}
+{"text": "Am încercat a noua oară.", "mentions": [{"start": 14, "end": 18, "value": "9", "kind": "ordinal"}], "source": "Wikipedia (ro), \"Numeral\": \"a doua (încercare)\""}
+{"text": "Turismul este cea de-a doua ramură.", "mentions": [{"start": 23, "end": 27, "value": "2", "kind": "ordinal"}], "source": "Wikipedia (ro), \"Numeral\": \"a doua (încercare)\"; \"de-a\" holds the article \"a\""}

@@ -3,12 +3,17 @@ comment beside it; sources are in numtag/lexicon/eu.json."""
 import unittest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O, F = "cardinal", "ordinal", "fraction"
 
 
 def eu(text: str) -> list[tuple[str, str, str]]:
     return read(text, "eu")
+
+
+def confidence(text: str, lang: str) -> list[tuple[str, float]]:
+    return [(m.text, m.confidence) for m in tag_numbers(text, lang)]
 
 
 class TestVigesimalTens(unittest.TestCase):
@@ -54,6 +59,33 @@ class TestGroups(unittest.TestCase):
 
     def test_a_space_groups_digits(self):
         self.assertEqual(eu("1 000 000"), [("1 000 000", "1000000", C)])
+
+
+
+class TestFractionAfterScale(unittest.TestCase):
+    def test_a_fraction_after_a_scale_word_takes_a_part_of_it(self):
+        # 1000000 / 2 = 500000; 1000000 / 3; 3 x 1000000 / 4 = 750000
+        self.assertEqual(eu("milioi erdi bat"), [("milioi erdi bat", "500000", C)])
+        self.assertEqual(eu("milioi-erdi bat"), [("milioi-erdi bat", "500000", C)])
+        self.assertEqual(eu("milioi heren bat"), [("milioi heren bat", "1000000/3", F)])
+        self.assertEqual(eu("hiru milioi laurden"), [("hiru milioi laurden", "750000", C)])
+
+
+class TestHamazortzi(unittest.TestCase):
+    def test_hamazortzi_is_the_second_form_of_eighteen(self):
+        # 20 + 18 = 38
+        self.assertEqual(eu("hamazortzi"), [("hamazortzi", "18", C)])
+        self.assertEqual(eu("hogeita hamazortzi"), [("hogeita hamazortzi", "38", C)])
+        self.assertEqual(eu("hamazortzigarren"), [("hamazortzigarren", "18", O)])
+
+
+class TestArticleAfterNoun(unittest.TestCase):
+    def test_bat_after_a_word_is_a_weak_number(self):
+        self.assertEqual(confidence("Etxe bat.", "eu"), [("bat", 0.3)])
+        self.assertEqual(confidence("Liburu bat erosi du.", "eu"), [("bat", 0.3)])
+
+    def test_bat_with_no_word_before_it_is_a_number(self):
+        self.assertEqual(confidence("Bat etorri da.", "eu"), [("Bat", 1.0)])
 
 
 if __name__ == "__main__":
