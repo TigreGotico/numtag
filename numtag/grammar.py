@@ -347,7 +347,8 @@ class Grammar:
             # milhões" is two numbers, not 2000003 and a stray "milhões".
             if compound and last.exponent == 0 and self._takes_count(last.end, last.count):
                 continue
-            found.append(run)
+            if not self._lacks_joiner(run):
+                found.append(run)
             if last.exponent == 0 or last.decimal:
                 continue
             room = _room(last)
@@ -370,6 +371,19 @@ class Grammar:
                         frontier.append(run + (group,))
         self._cardinals[key] = found
         return found
+
+    def _lacks_joiner(self, run: tuple[Group, ...]) -> bool:
+        """True for a last group below a hundred or a round hundred with no
+        joiner before it, where the language requires the joiner there:
+        "mil duzentos" is 1000 and 200, "mil e duzentos" is 1200, and "mil
+        duzentos e quatro" is 1204. The run may still go on: "dois milhões
+        quinhentos mil e quatro" is 2500004."""
+        if len(run) < 2 or self.lex.joiner_before_last_group != Joiner.REQUIRED:
+            return False
+        if self._is_word(run[-2].end, self.lex.joiners):
+            return False
+        whole = _whole(run[-1].count)
+        return len(whole) < 3 or (len(whole) == 3 and whole.endswith("00"))
 
     def _well_formed_after(self, group: Group, count: Rational) -> bool:
         """False for a count below a thousand after the joiner after the

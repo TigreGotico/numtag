@@ -191,6 +191,15 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(read("twenty-one", "en-US"), [("twenty-one", "21", C)])
 
 
+    def test_a_last_round_group_joins_with_or_without_and(self):
+        # English "and" before the last group is optional (Cambridge
+        # Dictionary, "Numbers"): 1000 + 200, 1000 + 2, 2000000 + 500000
+        self.assertEqual(en("one thousand two hundred"), [("one thousand two hundred", "1200", C)])
+        self.assertEqual(en("one thousand two"), [("one thousand two", "1002", C)])
+        self.assertEqual(en("one thousand and two"), [("one thousand and two", "1002", C)])
+        self.assertEqual(en("two million five hundred thousand"),
+                         [("two million five hundred thousand", "2500000", C)])
+
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_dozen(self):
         # 12; 2 x 12 = 24
