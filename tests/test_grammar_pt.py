@@ -17,6 +17,21 @@ class TestBindingRulings(unittest.TestCase):
         # (1000 + 2) x 12 = 12024
         self.assertEqual(pt("mil e duas dúzias"), [("mil e duas dúzias", "12024", C)])
 
+    def test_a_collective_after_a_scale_numeral_with_no_joiner_starts_a_number(self):
+        # Miro: 13000 and 2 x 100
+        self.assertEqual(pt("treze mil duas centenas"), [("treze mil", "13000", C), ("duas centenas", "200", C)])
+        self.assertEqual(pt("treze mil duas dúzias"), [("treze mil", "13000", C), ("duas dúzias", "24", C)])
+
+    def test_a_place_collective_after_the_joiner_counts_only_its_group(self):
+        # Miro: 13000 + 2 x 100
+        self.assertEqual(pt("treze mil e duas centenas"), [("treze mil e duas centenas", "13200", C)])
+        # 500 x 100 does not fit below 3000, so the whole cardinal counts
+        # the collective: (3000 + 500) x 100
+        self.assertEqual(pt("três mil e quinhentas centenas"), [("três mil e quinhentas centenas", "350000", C)])
+        # (3000 + 2 x 100) x 10^6
+        self.assertEqual(pt("três mil e duas centenas de milhões"),
+                         [("três mil e duas centenas de milhões", "3200000000", C)])
+
     def test_after_milhao_the_collective_counts_only_the_cardinal_after_it(self):
         # 1000000 + 2 x 12 = 1000024
         self.assertEqual(pt("um milhão e duas dúzias"), [("um milhão e duas dúzias", "1000024", C)])
@@ -399,6 +414,8 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("dois milhões e"), [("dois milhões", "2000000", C)])
         self.assertEqual(pt("entre -1 e"), [("-1", "-1", C)])
         self.assertEqual(pt("entre 5 e"), [("5", "5", C)])
+        # digits glued to a word are dropped, so "e20" leaves a final joiner
+        self.assertEqual(pt("entre 15 e20"), [("15", "15", C)])
 
     def test_with_no_smaller_left_side_a_range_cue_keeps_one_number(self):
         # 1000 is not less than 500: 1500
@@ -501,10 +518,22 @@ class TestDecimals(unittest.TestCase):
     def test_each_word_after_the_marker_gives_its_digits(self):
         self.assertEqual(pt("zero vírgula zero cinco"), [("zero vírgula zero cinco", "0.05", D)])
         self.assertEqual(pt("dois vírgula vinte e cinco"), [("dois vírgula vinte e cinco", "2.25", D)])
+        self.assertEqual(pt("zero vírgula dois cinco"), [("zero vírgula dois cinco", "0.25", D)])
+
+    def test_the_fractional_part_follows_the_grammar_of_the_whole_part(self):
+        # "cem" never follows units in a cardinal, so the decimal ends
+        # before it: 0.25 and 100, not 0.251
+        self.assertEqual(pt("zero vírgula vinte e cinco cem"),
+                         [("zero vírgula vinte e cinco", "0.25", D), ("cem", "100", C)])
+        self.assertEqual(pt("dois vírgula cinco cem"), [("dois vírgula cinco", "2.5", D), ("cem", "100", C)])
+        # a hundreds word may start the fractional part: 1 + 125/1000
+        self.assertEqual(pt("um vírgula cento e vinte e cinco"), [("um vírgula cento e vinte e cinco", "1.125", D)])
 
     def test_a_decimal_counts_the_scale_after_it(self):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(pt("dois vírgula cinco milhões"), [("dois vírgula cinco milhões", "2500000", C)])
+        # 1.2 x 1000
+        self.assertEqual(pt("um vírgula dois mil"), [("um vírgula dois mil", "1200", C)])
 
 
 class TestDigits(unittest.TestCase):

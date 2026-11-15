@@ -14,7 +14,7 @@
   },
   "words": {
     "joiner": {"value": ["and"], "source": "Cambridge Dictionary, \"Numbers\": \"and\"."},
-    "decimal_marker": {"value": ["point"], "source": "\"point\" names the decimal point (\"two point five\")."},
+    "decimal_marker": {"value": ["point"], "source": "\"point\" names the decimal point (\"two point five\"). Wikipedia, \"English numerals\": a decimal is read \"as a cardinal number, followed by \\\"point\\\", and then by the digits of the fractional part\" (\"3.1416 is \\\"three point one four one six\\\"\"), and 1.2 million is \"one point two million\". So a multiplier after the digits multiplies the decimal: \"one point two hundred\" is 120."},
     "minus": {"value": ["minus", "negative"], "source": "\"minus\" and \"negative\" before a number make it negative."},
     "minus_idioms": {"value": [], "source": "No English idiom puts \"minus\" before a positive number."},
     "article_one": {"value": ["a", "an"], "source": "\"a\" and \"an\" count one only before a multiplier (\"a hundred\", \"a dozen\", \"a third\"); alone they are no number."},

@@ -114,6 +114,8 @@ class TestCardinals(unittest.TestCase):
     def test_a_joiner_at_the_end_of_the_words_splits_nothing(self):
         self.assertEqual(en("between two and"), [("two", "2", C)])
         self.assertEqual(en("between -1 and"), [("-1", "-1", C)])
+        # digits glued to a word are dropped, so "and20" leaves a final joiner
+        self.assertEqual(en("between 15 and20"), [("15", "15", C)])
 
     def test_a_scale_word_keeps_the_singular_after_a_count(self):
         self.assertEqual(en("two million"), [("two million", "2000000", C)])
@@ -266,6 +268,14 @@ class TestDecimalsAndDigits(unittest.TestCase):
     def test_point(self):
         self.assertEqual(en("two point five"), [("two point five", "2.5", D)])
         self.assertEqual(en("zero point zero five"), [("zero point zero five", "0.05", D)])
+        self.assertEqual(en("three point one four one six"), [("three point one four one six", "3.1416", D)])
+
+    def test_a_multiplier_after_the_decimals_multiplies_the_decimal(self):
+        # 1.2 x 100, as "one point two million" is 1.2 x 10^6
+        self.assertEqual(en("one point two hundred"), [("one point two hundred", "120", C)])
+        # 1.25 x 100
+        self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
+        self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
 
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205
