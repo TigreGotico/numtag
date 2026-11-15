@@ -1,0 +1,3617 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): δισεκατομμύριο is 10^9 and τρισεκατομμύριο 10^12; each Greek scale word has one fixed value."
+    },
+    "group_mark": {
+      "value": ".",
+      "source": "CLDR main/el.xml, latn number symbols: group \".\"."
+    },
+    "decimal_mark": {
+      "value": ",",
+      "source": "CLDR main/el.xml, latn number symbols: decimal \",\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR main/el.xml groups digits with \".\", not a space."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): 2000 is \"<< χιλιάδες\", a count before the plural; \"χιλιάδες\" alone names no number."
+    },
+    "scale_noun_agrees": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: <%spellout-cardinal-neuter< $(cardinal,one{εκατομμύριο}other{εκατομμύρια})$\": the count one takes the singular, any other count the plural."
+    },
+    "joiner_tens_units": {
+      "value": "never",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: είκοσι[ >>]\", the unit follows the ten after a space."
+    },
+    "joiner_after_hundred": {
+      "value": "never",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\", no \"και\" after the hundreds."
+    },
+    "joiner_between_groups": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι[ >>]\" puts no \"και\" between groups; the title \"Χίλιες και μία νύχτες\" shows the older \"και\" before a last unit."
+    },
+    "joiner_before_round_hundred": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλια[ >>]\": no \"και\" after a thousand; the older \"και\" stands before a last unit only."
+    },
+    "ordinal_style": {
+      "value": "every_word",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"20: εικοστός[ >>]\", every word of an ordinal is ordinal (\"εικοστός πρώτος\")."
+    },
+    "fold_marks": {
+      "value": "unmarked",
+      "source": "Greek marks the stressed syllable with the tonos (Holton et al.), so a word with an accent is read as written: \"εκτός\" (except) is no \"έκτος\" (sixth). A word typed with no accent at all, as in capitals or quick typing (\"εικοσι ενα\"), is read without its marks."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "και"
+      ],
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"και\"; \"ένα και μισό\" is one and a half."
+    },
+    "decimal_marker": {
+      "value": [
+        "κόμμα"
+      ],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>\"."
+    },
+    "minus": {
+      "value": [
+        "μείον",
+        "πλην"
+      ],
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"-x: μείον >>\"; Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"πλην\": minus in arithmetic."
+    },
+    "range_cue": {
+      "value": [
+        "μεταξύ"
+      ],
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μεταξύ\": between; in \"μεταξύ Α και Β\" the \"και\" joins the two limits."
+    },
+    "article_one": {
+      "value": [
+        "ένας",
+        "μία",
+        "μια",
+        "ένα",
+        "έναν",
+        "ενός",
+        "μιας"
+      ],
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: the indefinite article has the forms of the numeral \"one\"."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "of": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "Greek uses no such word in a number."
+    }
+  },
+  "entries": [
+    {
+      "word": "μηδέν",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "ένας",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "έναν",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "μία",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "μια",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "μιας",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "ένα",
+      "role": "unit",
+      "value": "1",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "ενός",
+      "role": "unit",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "δύο",
+      "role": "unit",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"δύο\": colloquial \"δυο\"."
+    },
+    {
+      "word": "δυο",
+      "role": "unit",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"δύο\": colloquial \"δυο\"."
+    },
+    {
+      "word": "τρεις",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "τριών",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "τρία",
+      "role": "unit",
+      "value": "3",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "τέσσερις",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "τεσσάρων",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "τέσσερα",
+      "role": "unit",
+      "value": "4",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "πέντε",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "έξι",
+      "role": "unit",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets."
+    },
+    {
+      "word": "επτά",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "εφτά",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "οκτώ",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "οχτώ",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "εννέα",
+      "role": "unit",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "εννιά",
+      "role": "unit",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal-masculine, -feminine, -neuter and their genitive and accusative rule sets. Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"επτά\", \"οκτώ\", \"εννέα\": the forms εφτά, οχτώ, εννιά are the common spoken variants."
+    },
+    {
+      "word": "δέκα",
+      "role": "ten",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "έντεκα",
+      "role": "ten",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "ένδεκα",
+      "role": "ten",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δώδεκα",
+      "role": "ten",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατρία",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατρείς",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατρεις",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατριών",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατέσσερα",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατέσσερις",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκατεσσάρων",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαπέντε",
+      "role": "ten",
+      "value": "15",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαέξι",
+      "role": "ten",
+      "value": "16",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκάξι",
+      "role": "ten",
+      "value": "16",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαεπτά",
+      "role": "ten",
+      "value": "17",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαεφτά",
+      "role": "ten",
+      "value": "17",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαοκτώ",
+      "role": "ten",
+      "value": "18",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαοχτώ",
+      "role": "ten",
+      "value": "18",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαεννέα",
+      "role": "ten",
+      "value": "19",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "δεκαεννιά",
+      "role": "ten",
+      "value": "19",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "είκοσι",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "τριάντα",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "σαράντα",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "πενήντα",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "εξήντα",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "εβδομήντα",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "ογδόντα",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "ενενήντα",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"13: δεκα>>\" writes the teens as one word; tens 20-90 from the same rule sets."
+    },
+    {
+      "word": "εκατό",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εκατόν",
+      "role": "hundred",
+      "value": "100",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "διακόσιοι",
+      "role": "hundred",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "διακόσιους",
+      "role": "hundred",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "διακόσιες",
+      "role": "hundred",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "διακόσια",
+      "role": "hundred",
+      "value": "200",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "διακοσίων",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τριακόσιοι",
+      "role": "hundred",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τριακόσιους",
+      "role": "hundred",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τριακόσιες",
+      "role": "hundred",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τριακόσια",
+      "role": "hundred",
+      "value": "300",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τριακοσίων",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τετρακόσιοι",
+      "role": "hundred",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τετρακόσιους",
+      "role": "hundred",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τετρακόσιες",
+      "role": "hundred",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τετρακόσια",
+      "role": "hundred",
+      "value": "400",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "τετρακοσίων",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "πεντακόσιοι",
+      "role": "hundred",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "πεντακόσιους",
+      "role": "hundred",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "πεντακόσιες",
+      "role": "hundred",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "πεντακόσια",
+      "role": "hundred",
+      "value": "500",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "πεντακοσίων",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εξακόσιοι",
+      "role": "hundred",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εξακόσιους",
+      "role": "hundred",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εξακόσιες",
+      "role": "hundred",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εξακόσια",
+      "role": "hundred",
+      "value": "600",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εξακοσίων",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "επτακόσιοι",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "επτακόσιους",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "επτακόσιες",
+      "role": "hundred",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "επτακόσια",
+      "role": "hundred",
+      "value": "700",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "επτακοσίων",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εφτακόσιοι",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εφτακόσιους",
+      "role": "hundred",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εφτακόσιες",
+      "role": "hundred",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εφτακόσια",
+      "role": "hundred",
+      "value": "700",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εφτακοσίων",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οκτακόσιοι",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οκτακόσιους",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οκτακόσιες",
+      "role": "hundred",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οκτακόσια",
+      "role": "hundred",
+      "value": "800",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οκτακοσίων",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οχτακόσιοι",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οχτακόσιους",
+      "role": "hundred",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οχτακόσιες",
+      "role": "hundred",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οχτακόσια",
+      "role": "hundred",
+      "value": "800",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "οχτακοσίων",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννιακόσιοι",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννιακόσιους",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννιακόσιες",
+      "role": "hundred",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννιακόσια",
+      "role": "hundred",
+      "value": "900",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννιακοσίων",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννεακόσιοι",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννεακόσιους",
+      "role": "hundred",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννεακόσιες",
+      "role": "hundred",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννεακόσια",
+      "role": "hundred",
+      "value": "900",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "εννεακοσίων",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"100: εκατό[ν >>]\" (εκατόν only before the rest of the number); \"200: <%%hundreds-prefix<κόσιοι\" with -κόσιες, -κόσια, -κοσίων, -κόσιους."
+    },
+    {
+      "word": "χίλιοι",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χίλιους",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χίλιες",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χίλια",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χιλίων",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χιλιάδες",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χιλιάδων",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000: χίλιοι\" (χίλιες, χίλια, χιλίων, χίλιους) needs no count; \"2000: << χιλιάδες\" (χιλιάδων) takes one."
+    },
+    {
+      "word": "χιλιάδα",
+      "role": "scale_numeral",
+      "value": 3,
+      "gender": "feminine",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"χιλιάδα\": a thousand (\"μιάμιση χιλιάδα\")."
+    },
+    {
+      "word": "εκατομμύριο",
+      "role": "scale_noun",
+      "value": 6,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "εκατομμύριου",
+      "role": "scale_noun",
+      "value": 6,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "εκατομμύρια",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "εκατομμύριων",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "δισεκατομμύριο",
+      "role": "scale_noun",
+      "value": 9,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "δισεκατομμύριου",
+      "role": "scale_noun",
+      "value": 9,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "δισεκατομμύρια",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "δισεκατομμύριων",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "τρισεκατομμύριο",
+      "role": "scale_noun",
+      "value": 12,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "τρισεκατομμύριου",
+      "role": "scale_noun",
+      "value": 12,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "τρισεκατομμύρια",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "τρισεκατομμύριων",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << εκατομμύριο/εκατομμύρια\", \"1000000000: << δισεκατομμύριο\", \"1000000000000: << τρισεκατομμύριο\"; each takes a count (\"ένα εκατομμύριο\")."
+    },
+    {
+      "word": "δις",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"δις\" and \"τρις\": the short forms of δισεκατομμύριο and τρισεκατομμύριο (\"2 δις ευρώ\")."
+    },
+    {
+      "word": "τρις",
+      "role": "scale_noun",
+      "value": 12,
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"δις\" and \"τρις\": the short forms of δισεκατομμύριο and τρισεκατομμύριο (\"2 δις ευρώ\")."
+    },
+    {
+      "word": "ντουζίνα",
+      "role": "collective",
+      "value": "12",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ντουζίνα\", \"δωδεκάδα\": a group of twelve; \"δεκάδα\": a group of ten."
+    },
+    {
+      "word": "δωδεκάδα",
+      "role": "collective",
+      "value": "12",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ντουζίνα\", \"δωδεκάδα\": a group of twelve; \"δεκάδα\": a group of ten."
+    },
+    {
+      "word": "ντουζίνες",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ντουζίνα\", \"δωδεκάδα\": a group of twelve; \"δεκάδα\": a group of ten."
+    },
+    {
+      "word": "δωδεκάδες",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ντουζίνα\", \"δωδεκάδα\": a group of twelve; \"δεκάδα\": a group of ten."
+    },
+    {
+      "word": "μισό",
+      "role": "half",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μισός\": half (\"ένα και μισό\", \"μισό κιλό\")."
+    },
+    {
+      "word": "μισός",
+      "role": "half",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μισός\": half (\"ένα και μισό\", \"μισό κιλό\")."
+    },
+    {
+      "word": "μισή",
+      "role": "half",
+      "ambiguous": true,
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μισός\": half (\"ένα και μισό\", \"μισό κιλό\")."
+    },
+    {
+      "word": "μισού",
+      "role": "half",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μισός\": half (\"ένα και μισό\", \"μισό κιλό\")."
+    },
+    {
+      "word": "μισής",
+      "role": "half",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"μισός\": half (\"ένα και μισό\", \"μισό κιλό\")."
+    },
+    {
+      "word": "ενάμισης",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "ενάμιση",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "ενάμισι",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "μιάμιση",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "μιάμισι",
+      "role": "unit_and_half",
+      "value": "1",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δυόμισι",
+      "role": "unit_and_half",
+      "value": "2",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δυόμιση",
+      "role": "unit_and_half",
+      "value": "2",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τρεισήμισι",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τρεισήμιση",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τριάμισι",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τριάμιση",
+      "role": "unit_and_half",
+      "value": "3",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τεσσερισήμισι",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τεσσερισήμιση",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τεσσεράμισι",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τεσσεράμιση",
+      "role": "unit_and_half",
+      "value": "4",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "πεντέμισι",
+      "role": "unit_and_half",
+      "value": "5",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "πεντέμιση",
+      "role": "unit_and_half",
+      "value": "5",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εξήμισι",
+      "role": "unit_and_half",
+      "value": "6",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εξήμιση",
+      "role": "unit_and_half",
+      "value": "6",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εφτάμισι",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εφτάμιση",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "επτάμισι",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "επτάμιση",
+      "role": "unit_and_half",
+      "value": "7",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "οχτώμισι",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "οχτώμιση",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "οκτώμισι",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "οκτώμιση",
+      "role": "unit_and_half",
+      "value": "8",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εννιάμισι",
+      "role": "unit_and_half",
+      "value": "9",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εννιάμιση",
+      "role": "unit_and_half",
+      "value": "9",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δεκάμισι",
+      "role": "unit_and_half",
+      "value": "10",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δεκάμιση",
+      "role": "unit_and_half",
+      "value": "10",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εντεκάμισι",
+      "role": "unit_and_half",
+      "value": "11",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "εντεκάμιση",
+      "role": "unit_and_half",
+      "value": "11",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δωδεκάμισι",
+      "role": "unit_and_half",
+      "value": "12",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "δωδεκάμιση",
+      "role": "unit_and_half",
+      "value": "12",
+      "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"ενάμισης\", \"δυόμισι\", \"τρεισήμισι\": one word for a whole number and a half (ενάμισης 1.5, δυόμισι 2.5, τρεισήμισι 3.5, ...)."
+    },
+    {
+      "word": "τρίτο",
+      "role": "denominator",
+      "value": "3",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "τρίτα",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "τέταρτο",
+      "role": "denominator",
+      "value": "4",
+      "ambiguous": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "τέταρτα",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "πέμπτο",
+      "role": "denominator",
+      "value": "5",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "πέμπτα",
+      "role": "denominator",
+      "value": "5",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "έκτο",
+      "role": "denominator",
+      "value": "6",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "έκτα",
+      "role": "denominator",
+      "value": "6",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "έβδομο",
+      "role": "denominator",
+      "value": "7",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "έβδομα",
+      "role": "denominator",
+      "value": "7",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "όγδοο",
+      "role": "denominator",
+      "value": "8",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "όγδοα",
+      "role": "denominator",
+      "value": "8",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "ένατο",
+      "role": "denominator",
+      "value": "9",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "ένατα",
+      "role": "denominator",
+      "value": "9",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "δέκατο",
+      "role": "denominator",
+      "value": "10",
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "δέκατα",
+      "role": "denominator",
+      "value": "10",
+      "plural": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\")."
+    },
+    {
+      "word": "εκατοστό",
+      "role": "denominator",
+      "value": "100",
+      "ambiguous": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\"). Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"εκατοστό\", \"χιλιοστό\": also the centimetre and the millimetre (\"δύο εκατοστά\")."
+    },
+    {
+      "word": "εκατοστά",
+      "role": "denominator",
+      "value": "100",
+      "plural": true,
+      "ambiguous": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\"). Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"εκατοστό\", \"χιλιοστό\": also the centimetre and the millimetre (\"δύο εκατοστά\")."
+    },
+    {
+      "word": "χιλιοστό",
+      "role": "denominator",
+      "value": "1000",
+      "ambiguous": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\"). Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"εκατοστό\", \"χιλιοστό\": also the centimetre and the millimetre (\"δύο εκατοστά\")."
+    },
+    {
+      "word": "χιλιοστά",
+      "role": "denominator",
+      "value": "1000",
+      "plural": true,
+      "ambiguous": true,
+      "source": "Holton, Mackridge, Philippaki-Warburton, Greek: A Comprehensive Grammar of the Modern Language (Routledge), chapter on numerals: a fraction is a cardinal and the neuter of the ordinal, singular after \"ένα\" (\"ένα τρίτο\") and plural after a larger count (\"δύο τρίτα\"). Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), entry \"εκατοστό\", \"χιλιοστό\": also the centimetre and the millimetre (\"δύο εκατοστά\")."
+    },
+    {
+      "word": "πρώτος",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτου",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτο",
+      "role": "ordinal",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτοι",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτους",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτη",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτης",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτες",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτα",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "neuter",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πρώτων",
+      "role": "ordinal",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερος",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερου",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερο",
+      "role": "ordinal",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτεροι",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερους",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερη",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερης",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερες",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερα",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δεύτερων",
+      "role": "ordinal",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτος",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτου",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτο",
+      "role": "ordinal",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτοι",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτους",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτη",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτης",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτες",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτα",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τρίτων",
+      "role": "ordinal",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτος",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτου",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτο",
+      "role": "ordinal",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτοι",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτους",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτη",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτης",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτες",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτα",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τέταρτων",
+      "role": "ordinal",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτος",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτου",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτο",
+      "role": "ordinal",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτοι",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτους",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτη",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτης",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτες",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτα",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πέμπτων",
+      "role": "ordinal",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτος",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτου",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτο",
+      "role": "ordinal",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτοι",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτους",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτη",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτης",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτες",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτα",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έκτων",
+      "role": "ordinal",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομος",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομου",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομο",
+      "role": "ordinal",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομοι",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομους",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομη",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομης",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομες",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομα",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "έβδομων",
+      "role": "ordinal",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοος",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοου",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοο",
+      "role": "ordinal",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοοι",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοους",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοη",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοης",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοες",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοα",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "όγδοων",
+      "role": "ordinal",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατος",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατου",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατο",
+      "role": "ordinal",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατοι",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατους",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατη",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατης",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατες",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατα",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ένατων",
+      "role": "ordinal",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατος",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατου",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατο",
+      "role": "ordinal",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατοι",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατους",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατη",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατης",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατες",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατα",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δέκατων",
+      "role": "ordinal",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατος",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατου",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατο",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατοι",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατους",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατη",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατης",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατες",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατα",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενδέκατων",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατος",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατου",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατο",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατοι",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατους",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατη",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατης",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατες",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατα",
+      "role": "ordinal",
+      "value": "11",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εντέκατων",
+      "role": "ordinal",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατος",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατου",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατο",
+      "role": "ordinal",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατοι",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατους",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατη",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατης",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατες",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατα",
+      "role": "ordinal",
+      "value": "12",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "δωδέκατων",
+      "role": "ordinal",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστός",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστού",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστό",
+      "role": "ordinal",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστοί",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστούς",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστή",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστής",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστές",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστά",
+      "role": "ordinal",
+      "value": "20",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εικοστών",
+      "role": "ordinal",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστός",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστού",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστό",
+      "role": "ordinal",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστοί",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστούς",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστή",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστής",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστές",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστά",
+      "role": "ordinal",
+      "value": "30",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοστών",
+      "role": "ordinal",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστός",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστού",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστό",
+      "role": "ordinal",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστοί",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστούς",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστή",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστής",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστές",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστά",
+      "role": "ordinal",
+      "value": "40",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τεσσαρακοστών",
+      "role": "ordinal",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστός",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστού",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστό",
+      "role": "ordinal",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστοί",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστούς",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστή",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστής",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστές",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστά",
+      "role": "ordinal",
+      "value": "50",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντηκοστών",
+      "role": "ordinal",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστός",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστού",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστό",
+      "role": "ordinal",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστοί",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστούς",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστή",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστής",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστές",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστά",
+      "role": "ordinal",
+      "value": "60",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξηκοστών",
+      "role": "ordinal",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστός",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστού",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστό",
+      "role": "ordinal",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστοί",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστούς",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστή",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστής",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστές",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστά",
+      "role": "ordinal",
+      "value": "70",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εβδομηκοστών",
+      "role": "ordinal",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστός",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστού",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστό",
+      "role": "ordinal",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστοί",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστούς",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστή",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστής",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστές",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστά",
+      "role": "ordinal",
+      "value": "80",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ογδοηκοστών",
+      "role": "ordinal",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστός",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστού",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστό",
+      "role": "ordinal",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστοί",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστούς",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστή",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστής",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστές",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστά",
+      "role": "ordinal",
+      "value": "90",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ενενηκοστών",
+      "role": "ordinal",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστός",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστού",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστό",
+      "role": "ordinal",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστοί",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστούς",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστή",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστής",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστές",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστά",
+      "role": "ordinal",
+      "value": "100",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατοστών",
+      "role": "ordinal",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστός",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστού",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστό",
+      "role": "ordinal",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστοί",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστούς",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστή",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστής",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστές",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστά",
+      "role": "ordinal",
+      "value": "200",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "διακοσιοστών",
+      "role": "ordinal",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστός",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστού",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστό",
+      "role": "ordinal",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστοί",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστούς",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστή",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστής",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστές",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστά",
+      "role": "ordinal",
+      "value": "300",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τριακοσιοστών",
+      "role": "ordinal",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστός",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστού",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστό",
+      "role": "ordinal",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστοί",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστούς",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστή",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστής",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστές",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστά",
+      "role": "ordinal",
+      "value": "400",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "τετρακοσιοστών",
+      "role": "ordinal",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστός",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστού",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστό",
+      "role": "ordinal",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστοί",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστούς",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστή",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστής",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστές",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστά",
+      "role": "ordinal",
+      "value": "500",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "πεντακοσιοστών",
+      "role": "ordinal",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστός",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστού",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστό",
+      "role": "ordinal",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστοί",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστούς",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστή",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστής",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστές",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστά",
+      "role": "ordinal",
+      "value": "600",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εξακοσιοστών",
+      "role": "ordinal",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστός",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστού",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστό",
+      "role": "ordinal",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστοί",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστούς",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστή",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστής",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστές",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστά",
+      "role": "ordinal",
+      "value": "700",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "επτακοσιοστών",
+      "role": "ordinal",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστός",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστού",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστό",
+      "role": "ordinal",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστοί",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστούς",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστή",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστής",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστές",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστά",
+      "role": "ordinal",
+      "value": "800",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "οκτακοσιοστών",
+      "role": "ordinal",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστός",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστού",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστό",
+      "role": "ordinal",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστοί",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστούς",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστή",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστής",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστές",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστά",
+      "role": "ordinal",
+      "value": "900",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εννεακοσιοστών",
+      "role": "ordinal",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστός",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστού",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστό",
+      "role": "ordinal",
+      "value": "1000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστοί",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστούς",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστή",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστής",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστές",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστά",
+      "role": "ordinal",
+      "value": "1000",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "χιλιοστών",
+      "role": "ordinal",
+      "value": "1000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστός",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστού",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστό",
+      "role": "ordinal",
+      "value": "1000000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστοί",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστούς",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστή",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστής",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστές",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστά",
+      "role": "ordinal",
+      "value": "1000000",
+      "gender": "neuter",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "εκατομμυριοστών",
+      "role": "ordinal",
+      "value": "1000000",
+      "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: πρώτος ... ενενηκοστός, εκατοστός ... εννεακοσιοστός, χιλιοστός; the -ος adjective endings give the other genders, numbers and cases."
+    },
+    {
+      "word": "ος",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "η",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "ο",
+      "role": "ordinal_suffix",
+      "gender": "neuter",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "οι",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "ες",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "α",
+      "role": "ordinal_suffix",
+      "gender": "neuter",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "ου",
+      "role": "ordinal_suffix",
+      "gender": "masculine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    },
+    {
+      "word": "ης",
+      "role": "ordinal_suffix",
+      "gender": "feminine",
+      "source": "Greek writes a digit ordinal with the ending of the ordinal word: 1ος, 1η, 1ο (Holton et al., chapter on numerals)."
+    }
+  ]
+}

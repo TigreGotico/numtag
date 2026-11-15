@@ -1,0 +1,1358 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار\", \"1000000000000: ترليون\": a trillion is a thousand milliards, the short scale."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "CLDR main/ar.xml, latn symbols inherited from root: group \",\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "CLDR main/ar.xml, latn symbols inherited from root: decimal \".\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR main/ar.xml groups digits with a mark, not a space."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"3000: << آلاف\": the plural takes a count from 3 to 10."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2000000: <%%spellout-numbering-m< مليون\": the singular مليون follows a count above two (\"أحد عشر مليونا\", \"مائة مليون\"); the plural ملايين after 3 to 10 is one more form, not a rule that the singular takes only one."
+    },
+    "joiner_tens_units": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>> و]عشرون\": the unit, و, then the ten (\"خمسة وعشرون\")."
+    },
+    "joiner_after_hundred": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>>]\"."
+    },
+    "joiner_between_groups": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>>]\"."
+    },
+    "joiner_before_round_hundred": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>>]\": و goes before any rest after a thousand, a round hundred too (\"ألف وخمسمائة\")."
+    },
+    "tens_order": {
+      "value": "unit_first",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>> و]عشرون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": units precede tens."
+    },
+    "ordinal_style": {
+      "value": "first_word",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"11: الحادي عشر\", \"21: >%%ordinal-ones-masculine> والعشرون\": the ordinal unit, then the cardinal teen word or ten."
+    },
+    "half_of_scale": {
+      "value": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": \"ونصف\" after a number adds half of its last unit; \"ألف ونصف\" is 1500."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": short-vowel marks (harakat), shadda and tanwin are mostly left out in writing; hamza on alif (أ إ آ) is often left out too. None of them changes which number a word names."
+    },
+    "kept_marks": {
+      "value": "ٕٓٔ",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza (ء) is a consonant; on alif it is written with the letter (أ إ آ). A word with its hamza is a different word from a word without it: \"وأحد\" (and + one, in \"مئة وأحد عشر\") is not \"واحد\" (one)."
+    },
+    "letter_folds": {
+      "value": {
+        "ى": "ي",
+        "ة": "ه",
+        "ـ": "",
+        "ٱ": "ا"
+      },
+      "source": "Arabic writing often puts ي for final ى and ه for final ة (\"احدي\", \"ثلاثه\"), and stretches words with tatweel (ـ); these read the same."
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR main/ar.xml writes the latn minus sign as \"\\u200e-\": directional marks stand next to numbers in right-to-left text."
+    },
+    "native_digits": {
+      "value": {
+        "digits": [
+          "٠١٢٣٤٥٦٧٨٩",
+          "۰۱۲۳۴۵۶۷۸۹"
+        ],
+        "decimal_mark": "٫",
+        "group_mark": "٬"
+      },
+      "source": "CLDR common/supplemental/numberingSystems.xml: arab digits ٠-٩ (U+0660-U+0669), the native digits of ar, and arabext ۰-۹; CLDR root arab symbols: decimal \"٫\" (U+066B), group \"٬\" (U+066C)."
+    },
+    "clitic_min_rest": {
+      "value": 3,
+      "source": "A single-letter preposition (ب, ل, ك) comes off only before a word of three letters or more, so that \"لست\" (\"I am not\") stays a word."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "و"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"و\"."
+    },
+    "joiner_prefix": {
+      "value": [
+        "و"
+      ],
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the conjunction wa- is written joined to the next word (\"وعشرون\")."
+    },
+    "clitic_prefix": {
+      "value": [
+        "ال",
+        "بال",
+        "لل",
+        "كال",
+        "ب",
+        "ل",
+        "ك"
+      ],
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the article al- and the prepositions bi-, li-, ka- are written joined to the next word (\"الثالث\", \"بخمسة\")."
+    },
+    "decimal_marker": {
+      "value": [
+        "فاصلة",
+        "فاصل"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << فاصل >>\"; \"فاصلة\" (comma) is the common spoken form."
+    },
+    "minus": {
+      "value": [
+        "ناقص",
+        "سالب"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"-x: ناقص >>\"; \"سالب\" (negative) also marks a negative number."
+    },
+    "range_cue": {
+      "value": [
+        "بين"
+      ],
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": \"بين\", between; in \"بين ألف وألفين\" the joined و links the two limits."
+    },
+    "article_one": {
+      "value": [],
+      "source": "Arabic has no indefinite article."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "of": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "Arabic uses no such word in a number."
+    }
+  },
+  "entries": [
+    {
+      "word": "صفر",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "واحد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "واحدة",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "أحد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals. Alone \"أحد\" means \"someone\" or \"Sunday\"."
+    },
+    {
+      "word": "إحدى",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals."
+    },
+    {
+      "word": "اثنان",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted. \"اثنين\" is the oblique case; \"الاثنين\" is also Monday."
+    },
+    {
+      "word": "اثنين",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted. \"اثنين\" is the oblique case; \"الاثنين\" is also Monday."
+    },
+    {
+      "word": "اثنتان",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "اثنتين",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "اثنا",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals."
+    },
+    {
+      "word": "اثني",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals."
+    },
+    {
+      "word": "اثنتا",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals."
+    },
+    {
+      "word": "اثنتي",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals."
+    },
+    {
+      "word": "ثلاثة",
+      "role": "unit",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثلاث",
+      "role": "unit",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "أربعة",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "أربع",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "خمسة",
+      "role": "unit",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "خمس",
+      "role": "unit",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ستة",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ست",
+      "role": "unit",
+      "value": "6",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "سبعة",
+      "role": "unit",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "سبع",
+      "role": "unit",
+      "value": "7",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثمانية",
+      "role": "unit",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثماني",
+      "role": "unit",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "تسعة",
+      "role": "unit",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "تسع",
+      "role": "unit",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثمان",
+      "role": "unit",
+      "value": "8",
+      "gender": "feminine",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": \"ثمان\" is the feminine 8 without its final ي."
+    },
+    {
+      "word": "عشرة",
+      "role": "ten",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "عشر",
+      "role": "ten",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted."
+    },
+    {
+      "word": "عشر",
+      "role": "teen",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"13: >> عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 11-19 are the unit and عشر (masculine noun) or عشرة (feminine noun)."
+    },
+    {
+      "word": "عشرة",
+      "role": "teen",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"13: >> عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 11-19 are the unit and عشر (masculine noun) or عشرة (feminine noun)."
+    },
+    {
+      "word": "عشرون",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "عشرين",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ثلاثون",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ثلاثين",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "أربعون",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "أربعين",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "خمسون",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "خمسين",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ستون",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ستين",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "سبعون",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "سبعين",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ثمانون",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "ثمانين",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "تسعون",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "تسعين",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases."
+    },
+    {
+      "word": "مائة",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئة",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مية",
+      "role": "hundred",
+      "value": "100",
+      "source": "en.wiktionary.org/wiki/مية: Egyptian, Hijazi, Moroccan and South Levantine Arabic, numeral, \"hundred\"; Egyptian and South Levantine Arabic, noun, \"water\". The spoken form, written as said; read as the number wherever it stands."
+    },
+    {
+      "word": "مائتان",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مائتين",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئتان",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئتين",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مائتا",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئتا",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مائتي",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئتي",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مائة",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "مئة",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثلاثمائة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثلاثمئة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثلثمائة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثلثمئة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "أربعمائة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "أربعمئة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "خمسمائة",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "خمسمئة",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ستمائة",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ستمئة",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "سبعمائة",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "سبعمئة",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثمانمائة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثمانمئة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثمانيمائة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ثمانيمئة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "تسعمائة",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "تسعمئة",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين."
+    },
+    {
+      "word": "ألف",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "ألفا",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "ألفان",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "ألفين",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "ألفي",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "آلاف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "ألوف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين."
+    },
+    {
+      "word": "مليون",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليونا",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": in a construct phrase the dual drops its final nun, so the oblique مليونين before a noun is مليوني (\"مليوني ريال\")."
+    },
+    {
+      "word": "ملايين",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليار",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليارا",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ملياران",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "مليارين",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ملياري",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": in a construct phrase the dual drops its final nun, so the oblique مليونين before a noun is مليوني (\"مليوني ريال\")."
+    },
+    {
+      "word": "مليارات",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "بليون",
+      "role": "scale_numeral",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "بليونا",
+      "role": "scale_numeral",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "بليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "بليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "بليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": in a construct phrase the dual drops its final nun, so the oblique مليونين before a noun is مليوني (\"مليوني ريال\")."
+    },
+    {
+      "word": "بلايين",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ترليون",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ترليونا",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ترليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ترليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "ترليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": in a construct phrase the dual drops its final nun, so the oblique مليونين before a noun is مليوني (\"مليوني ريال\")."
+    },
+    {
+      "word": "ترليونات",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "تريليون",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "تريليونا",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "تريليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "تريليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "تريليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": in a construct phrase the dual drops its final nun, so the oblique مليونين before a noun is مليوني (\"مليوني ريال\")."
+    },
+    {
+      "word": "تريليونات",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون\", \"2000000: << مليون\", \"1000000000: مليار\", \"1000000000000: ترليون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the dual (مليونان) holds its count and the plural (ملايين) takes 3-10."
+    },
+    {
+      "word": "نصف",
+      "role": "half",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": \"نصف\", half (\"ثلاثة ونصف\")."
+    },
+    {
+      "word": "ثلث",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "1",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ثلثان",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ثلثين",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ثلثا",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ثلثي",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "أثلاث",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ربع",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "ambiguous": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals. \"ربع\" is also a quarter of a town."
+    },
+    {
+      "word": "ربعان",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "ربعين",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "2",
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "أرباع",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals."
+    },
+    {
+      "word": "أول",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "أولى",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثاني",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثانية",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word. \"ثانية\" is also a second of time."
+    },
+    {
+      "word": "ثالث",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثالثة",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "رابع",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "رابعة",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "خامس",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "خامسة",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "سادس",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "سادسة",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "سابع",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "سابعة",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثامن",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثامنة",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "تاسع",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "تاسعة",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "عاشر",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "عاشرة",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word."
+    },
+    {
+      "word": "حادي",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word. \"%%ordinal-ones-masculine: 1: الحادي\" stands only before عشر or a ten."
+    },
+    {
+      "word": "حادية",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word. \"%%ordinal-ones-feminine: 1: الحادية\"."
+    },
+    {
+      "word": "إثنان",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنين",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتان",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتين",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنا",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثني",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتا",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتي",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان\", \"12: إثنا عشر\", feminine \"2: إثنتان\", \"12: إثنتا عشر\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "احد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals. Alone \"أحد\" means \"someone\" or \"Sunday\". Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "احدى",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر\", \"12: إثنا عشر\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": أحد, إحدى, اثنا, اثنتا (and the oblique اثني, اثنتي) stand only in compound numerals. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربعة",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربع",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering and spellout-cardinal-feminine; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": 3-10 take the -a (ta marbuta) form with a masculine noun and the bare form with a feminine noun (gender polarity), so the gender below is that of the noun counted. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربعون",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربعين",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: عشرون\" ... \"90: تسعون\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": -ūn in the nominative, -īn in the other cases. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربعمائة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اربعمئة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة\", \"200: مائتان\", \"300: << مائة\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": مئة is the reformed spelling of مائة, the hundreds 300-900 are often one word (\"ثلاثمائة\"), and the dual has the oblique form مائتين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الف",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الفا",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الفان",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الفين",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الفي",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الاف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "الوف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف\", \"2000: ألفين\" (the dual), \"3000: << آلاف\", \"11000: << ألف\"; Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": after 11-99 the singular takes the accusative (\"ألفًا\"), and the dual is ألفان or ألفين. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اثلاث",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "ارباع",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": the fractions 1/3 to 1/10 are nouns of the pattern fuʿl (ثلث, ربع); the dual is two parts (ثلثان) and the plural afʿāl follows a count (ثلاثة أرباع). خمس, سبع, تسع and عشر are left out: without vowels they are the cardinals. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اول",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    },
+    {
+      "word": "اولى",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine and -feminine: الأول/الأولى, الثاني/الثانية ... العاشر/العاشرة; \"11: الحادي عشر\"; the article is written joined to the word. Karin C. Ryding, A Reference Grammar of Modern Standard Arabic (Cambridge, 2005), chapter 15 \"Numerals and numeral constructions\": hamza on alif (أ إ آ) is often left out in writing; written as plain alif."
+    }
+  ]
+}

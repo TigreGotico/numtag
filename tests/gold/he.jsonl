@@ -1,0 +1,156 @@
+{"text": "הקוד מתחיל באפס.", "mentions": [{"start": 11, "end": 15, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF he: \"0: אפס\"; ב is a joined preposition, so the span covers the word."}
+{"text": "יש לי ילד אחד.", "mentions": [{"start": 10, "end": 13, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"1: אחד\"."}
+{"text": "קניתי עוגה אחת.", "mentions": [{"start": 11, "end": 14, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF he, feminine: \"1: אחת\"."}
+{"text": "יש לי שני אחים.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000000: שני מיליון\", the construct form of two."}
+{"text": "יש לה שתי בנות.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "Glinert: \"שתי\" is the construct of \"שתיים\"."}
+{"text": "הם שניים.", "mentions": [{"start": 3, "end": 8, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"2: שניים\"."}
+{"text": "היו שתיים.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2: שתיים\"."}
+{"text": "ראיתי שלושה כלבים.", "mentions": [{"start": 6, "end": 11, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"3: שלושה\"."}
+{"text": "ראיתי שלוש חתולות.", "mentions": [{"start": 6, "end": 10, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF he: \"3: שלוש\"."}
+{"text": "יש ארבעה פרקים.", "mentions": [{"start": 3, "end": 8, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"4: ארבעה\"."}
+{"text": "יש ארבע עונות.", "mentions": [{"start": 3, "end": 7, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF he: \"4: ארבע\"."}
+{"text": "חיכיתי חמש דקות.", "mentions": [{"start": 7, "end": 10, "value": "5", "kind": "cardinal"}], "source": "CLDR RBNF he: \"5: חמש\"."}
+{"text": "קניתי חמישה ספרים.", "mentions": [{"start": 6, "end": 11, "value": "5", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"5: חמישה\"."}
+{"text": "הוא קם בשש.", "mentions": [{"start": 7, "end": 10, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF he: \"6: שש\"; ב is a joined preposition."}
+{"text": "יש שישה שחקנים.", "mentions": [{"start": 3, "end": 7, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"6: שישה\"."}
+{"text": "בשבוע יש שבעה ימים.", "mentions": [{"start": 9, "end": 13, "value": "7", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"7: שבעה\"."}
+{"text": "עבדתי שמונה שעות.", "mentions": [{"start": 6, "end": 11, "value": "8", "kind": "cardinal"}], "source": "CLDR RBNF he: \"8: שמונה\"."}
+{"text": "יש תשעה כוכבי לכת.", "mentions": [{"start": 3, "end": 7, "value": "9", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"9: תשעה\"."}
+{"text": "יש לי עשר אצבעות.", "mentions": [{"start": 6, "end": 9, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF he: \"10: עשר\"."}
+{"text": "היו עשרה אנשים.", "mentions": [{"start": 4, "end": 8, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"10: עשרה\"."}
+{"text": "יש אחד עשר שחקנים בקבוצה.", "mentions": [{"start": 3, "end": 10, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"11: אחד עשר\"."}
+{"text": "היא בת אחת עשרה.", "mentions": [{"start": 7, "end": 15, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF he: \"11: אחת עשרה\"."}
+{"text": "בשנה יש שנים עשר חודשים.", "mentions": [{"start": 8, "end": 16, "value": "12", "kind": "cardinal"}], "source": "Glinert: \"שנים עשר\", the masculine 12."}
+{"text": "השעה שתים עשרה.", "mentions": [{"start": 5, "end": 14, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF he: \"12: שתים עשרה\"."}
+{"text": "הוא בן שלוש עשרה.", "mentions": [{"start": 7, "end": 16, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF he: \"13: >> עשרה\", 3 + 10."}
+{"text": "היו שלושה עשר תלמידים.", "mentions": [{"start": 4, "end": 13, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"13: >> עשר\", 3 + 10."}
+{"text": "חיכינו ארבעה עשר ימים.", "mentions": [{"start": 7, "end": 16, "value": "14", "kind": "cardinal"}], "source": "arithmetic: 4 + 10."}
+{"text": "היא בת חמש עשרה.", "mentions": [{"start": 7, "end": 15, "value": "15", "kind": "cardinal"}], "source": "arithmetic: 5 + 10."}
+{"text": "קיבלתי שש עשרה הודעות.", "mentions": [{"start": 7, "end": 14, "value": "16", "kind": "cardinal"}], "source": "arithmetic: 6 + 10."}
+{"text": "הוא בן שבע עשרה.", "mentions": [{"start": 7, "end": 15, "value": "17", "kind": "cardinal"}], "source": "arithmetic: 7 + 10."}
+{"text": "היא בת שמונה עשרה.", "mentions": [{"start": 7, "end": 17, "value": "18", "kind": "cardinal"}], "source": "arithmetic: 8 + 10."}
+{"text": "היו תשעה עשר משתתפים.", "mentions": [{"start": 4, "end": 12, "value": "19", "kind": "cardinal"}], "source": "arithmetic: 9 + 10."}
+{"text": "שילמתי עשרים שקל.", "mentions": [{"start": 7, "end": 12, "value": "20", "kind": "cardinal"}], "source": "CLDR RBNF he: \"20: עשרים\"."}
+{"text": "הוא בן עשרים ואחת? לא, עשרים ושתיים.", "mentions": [{"start": 7, "end": 17, "value": "21", "kind": "cardinal"}, {"start": 23, "end": 35, "value": "22", "kind": "cardinal"}], "source": "CLDR RBNF he: \"20: עשרים[ >%%and-feminine>]\", 20 + 1; 20 + 2."}
+{"text": "היא בת עשרים ושלוש.", "mentions": [{"start": 7, "end": 18, "value": "23", "kind": "cardinal"}], "source": "arithmetic: 20 + 3."}
+{"text": "יש שלושים ימים בחודש.", "mentions": [{"start": 3, "end": 9, "value": "30", "kind": "cardinal"}], "source": "CLDR RBNF he: \"30: שלושים\"."}
+{"text": "שילמתי שלושים וחמישה שקלים.", "mentions": [{"start": 7, "end": 20, "value": "35", "kind": "cardinal"}], "source": "arithmetic: 30 + 5."}
+{"text": "הוא בן ארבעים ושתיים.", "mentions": [{"start": 7, "end": 20, "value": "42", "kind": "cardinal"}], "source": "arithmetic: 40 + 2."}
+{"text": "נסענו חמישים קילומטר.", "mentions": [{"start": 6, "end": 12, "value": "50", "kind": "cardinal"}], "source": "CLDR RBNF he: \"50: חמישים\"."}
+{"text": "אני גר בשישים ושבע.", "mentions": [{"start": 7, "end": 18, "value": "67", "kind": "cardinal"}], "source": "arithmetic: 60 + 7."}
+{"text": "הספר בן שבעים ושמונה עמודים.", "mentions": [{"start": 8, "end": 20, "value": "78", "kind": "cardinal"}], "source": "arithmetic: 70 + 8."}
+{"text": "סבא בן שמונים.", "mentions": [{"start": 7, "end": 13, "value": "80", "kind": "cardinal"}], "source": "CLDR RBNF he: \"80: שמונים\"."}
+{"text": "הציון היה תשעים ותשע.", "mentions": [{"start": 10, "end": 20, "value": "99", "kind": "cardinal"}], "source": "arithmetic: 90 + 9."}
+{"text": "יש לי מאה שקל.", "mentions": [{"start": 6, "end": 9, "value": "100", "kind": "cardinal"}], "source": "CLDR RBNF he: \"100: מאה\"."}
+{"text": "זה עולה מאה ועשרים שקל.", "mentions": [{"start": 8, "end": 18, "value": "120", "kind": "cardinal"}], "source": "CLDR RBNF he: \"100: מאה[ >%%and-feminine>]\", 100 + 20."}
+{"text": "שילמתי מאה עשרים ושלושה שקלים.", "mentions": [{"start": 7, "end": 23, "value": "123", "kind": "cardinal"}], "source": "arithmetic: 100 + 20 + 3."}
+{"text": "היו מאה וחמישה אורחים.", "mentions": [{"start": 4, "end": 14, "value": "105", "kind": "cardinal"}], "source": "arithmetic: 100 + 5."}
+{"text": "קניתי מאתיים גרם.", "mentions": [{"start": 6, "end": 12, "value": "200", "kind": "cardinal"}], "source": "CLDR RBNF he: \"200: מאתיים\"."}
+{"text": "היו מאתיים וחמישים איש.", "mentions": [{"start": 4, "end": 18, "value": "250", "kind": "cardinal"}], "source": "arithmetic: 200 + 50."}
+{"text": "עלה שלוש מאות שקל.", "mentions": [{"start": 4, "end": 13, "value": "300", "kind": "cardinal"}], "source": "CLDR RBNF he: \"300: << מאות\", 3 x 100."}
+{"text": "הבית ארבע מאות מטר מכאן.", "mentions": [{"start": 5, "end": 14, "value": "400", "kind": "cardinal"}], "source": "arithmetic: 4 x 100."}
+{"text": "הטיסה עלתה חמש מאות דולר.", "mentions": [{"start": 11, "end": 19, "value": "500", "kind": "cardinal"}], "source": "arithmetic: 5 x 100."}
+{"text": "כתבתי שש מאות שישים ושש מילים.", "mentions": [{"start": 6, "end": 23, "value": "666", "kind": "cardinal"}], "source": "arithmetic: 6 x 100 + 60 + 6."}
+{"text": "ההר בגובה שבע מאות מטר.", "mentions": [{"start": 10, "end": 18, "value": "700", "kind": "cardinal"}], "source": "arithmetic: 7 x 100."}
+{"text": "רצתי שמונה מאות מטר.", "mentions": [{"start": 5, "end": 15, "value": "800", "kind": "cardinal"}], "source": "arithmetic: 8 x 100."}
+{"text": "זה עלה תשע מאות תשעים ותשעה שקל.", "mentions": [{"start": 7, "end": 27, "value": "999", "kind": "cardinal"}], "source": "arithmetic: 900 + 90 + 9."}
+{"text": "קיבלתי אלף שקל.", "mentions": [{"start": 7, "end": 10, "value": "1000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"1000: אלף\"."}
+{"text": "נולדתי באלף תשע מאות שמונים וארבע.", "mentions": [{"start": 7, "end": 33, "value": "1984", "kind": "cardinal"}], "source": "arithmetic: 1000 + 900 + 80 + 4."}
+{"text": "זה קרה באלף תשע מאות ארבעים ושמונה.", "mentions": [{"start": 7, "end": 34, "value": "1948", "kind": "cardinal"}], "source": "arithmetic: 1000 + 900 + 40 + 8."}
+{"text": "עלה אלף ומאתיים שקל.", "mentions": [{"start": 4, "end": 15, "value": "1200", "kind": "cardinal"}], "source": "CLDR RBNF he: \"1000: אלף[ >%%and-feminine>]\", 1000 + 200."}
+{"text": "אנחנו בשנת אלפיים עשרים וחמש.", "mentions": [{"start": 11, "end": 28, "value": "2025", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000: אלפיים\", 2000 + 20 + 5."}
+{"text": "זה היה באלפיים.", "mentions": [{"start": 7, "end": 14, "value": "2000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000: אלפיים\", the dual."}
+{"text": "הגיעו שלושת אלפים איש.", "mentions": [{"start": 6, "end": 17, "value": "3000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"3000: <%%thousands< אלפים\", 3 x 1000."}
+{"text": "שילמתי חמשת אלפים וחמש מאות שקל.", "mentions": [{"start": 7, "end": 27, "value": "5500", "kind": "cardinal"}], "source": "arithmetic: 5 x 1000 + 5 x 100."}
+{"text": "באו עשרת אלפים אוהדים.", "mentions": [{"start": 4, "end": 14, "value": "10000", "kind": "cardinal"}], "source": "arithmetic: 10 x 1000."}
+{"text": "בעיר עשרים ואחד אלף תושבים.", "mentions": [{"start": 5, "end": 19, "value": "21000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"11000: << אלף\", (20 + 1) x 1000."}
+{"text": "בעיר מאה אלף תושבים.", "mentions": [{"start": 5, "end": 12, "value": "100000", "kind": "cardinal"}], "source": "arithmetic: 100 x 1000."}
+{"text": "מכרו שלוש מאות וחמישים אלף עותקים.", "mentions": [{"start": 5, "end": 26, "value": "350000", "kind": "cardinal"}], "source": "arithmetic: (300 + 50) x 1000."}
+{"text": "זכיתי במיליון שקל.", "mentions": [{"start": 6, "end": 13, "value": "1000000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"1000000: מיליון\"."}
+{"text": "בארץ עשרה מיליון תושבים.", "mentions": [{"start": 5, "end": 16, "value": "10000000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"3000000: << מיליון\", 10 x 10^6."}
+{"text": "הוא חייב שני מיליון שקל.", "mentions": [{"start": 9, "end": 19, "value": "2000000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000000: שני מיליון\"."}
+{"text": "הוא חייב שלושה מיליון ומאתיים אלף שקל.", "mentions": [{"start": 9, "end": 33, "value": "3200000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 200 x 1000."}
+{"text": "על כדור הארץ שמונה מיליארד בני אדם.", "mentions": [{"start": 13, "end": 26, "value": "8000000000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"3000000000: << מיליארד\", 8 x 10^9."}
+{"text": "החוב הגיע לביליון דולר.", "mentions": [{"start": 10, "end": 17, "value": "1000000000000", "kind": "cardinal", "number_scale": "long"}], "source": "CLDR RBNF he: \"1000000000000: ביליון\"; Israel uses the long scale."}
+{"text": "מיליונים צפו בזה.", "mentions": [], "source": "CLDR RBNF he: the plural alone names no number."}
+{"text": "אלפים הגיעו להפגנה.", "mentions": [], "source": "CLDR RBNF he: \"3000: << אלפים\", the plural takes a count."}
+{"text": "הוא הגיע ראשון.", "mentions": [{"start": 9, "end": 14, "value": "1", "kind": "ordinal", "low_confidence": true}], "source": "Glinert: ordinals 1-10; \"ראשון\" is also Sunday, so the reading is weak."}
+{"text": "זו הפעם הראשונה.", "mentions": [{"start": 8, "end": 15, "value": "1", "kind": "ordinal"}], "source": "Glinert: \"ראשונה\", the feminine of \"ראשון\"."}
+{"text": "זו הפעם השנייה.", "mentions": [{"start": 8, "end": 14, "value": "2", "kind": "ordinal"}], "source": "Glinert: \"שנייה\", the feminine of \"שני\"."}
+{"text": "השלישי בתור.", "mentions": [{"start": 0, "end": 6, "value": "3", "kind": "ordinal", "low_confidence": true}], "source": "Glinert: \"שלישי\"; it is also Tuesday, so the reading is weak."}
+{"text": "הדלת השלישית מימין.", "mentions": [{"start": 5, "end": 12, "value": "3", "kind": "ordinal"}], "source": "Glinert: \"שלישית\", the feminine of \"שלישי\"."}
+{"text": "הפרק הרביעי.", "mentions": [{"start": 5, "end": 11, "value": "4", "kind": "ordinal", "low_confidence": true}], "source": "Glinert: \"רביעי\"; it is also Wednesday."}
+{"text": "הקומה החמישית.", "mentions": [{"start": 6, "end": 13, "value": "5", "kind": "ordinal"}], "source": "Glinert: \"חמישית\", the feminine of \"חמישי\"."}
+{"text": "הסימפוניה התשיעית.", "mentions": [{"start": 10, "end": 17, "value": "9", "kind": "ordinal"}], "source": "Glinert: \"תשיעית\"."}
+{"text": "יום השנה העשירי.", "mentions": [{"start": 9, "end": 15, "value": "10", "kind": "ordinal"}], "source": "Glinert: \"עשירי\"."}
+{"text": "הקומה השביעית.", "mentions": [{"start": 6, "end": 13, "value": "7", "kind": "ordinal"}], "source": "Glinert: \"שביעית\"."}
+{"text": "החודש השמיני.", "mentions": [{"start": 6, "end": 12, "value": "8", "kind": "ordinal"}], "source": "Glinert: \"שמיני\"."}
+{"text": "ניצחתי במקום השישי.", "mentions": [{"start": 13, "end": 18, "value": "6", "kind": "ordinal", "low_confidence": true}], "source": "Glinert: \"שישי\"; it is also Friday."}
+{"text": "אכלתי חצי תפוח.", "mentions": [{"start": 6, "end": 9, "value": "0.5", "kind": "fraction"}], "source": "Glinert: \"חצי\", half."}
+{"text": "חיכיתי שלוש וחצי שעות.", "mentions": [{"start": 7, "end": 16, "value": "3.5", "kind": "fraction"}], "source": "Glinert: \"וחצי\"; 3 + 1/2."}
+{"text": "עלה מיליון וחצי שקל.", "mentions": [{"start": 4, "end": 15, "value": "1500000", "kind": "cardinal"}], "source": "Glinert: \"מיליון וחצי\" is 1,500,000."}
+{"text": "עלה אלף וחצי שקל.", "mentions": [{"start": 4, "end": 12, "value": "1500", "kind": "cardinal"}], "source": "Glinert: \"אלף וחצי\" is 1500."}
+{"text": "רבע שעה.", "mentions": [{"start": 0, "end": 3, "value": "0.25", "kind": "fraction"}], "source": "Glinert: \"רבע\", one quarter."}
+{"text": "שליש מהקולות.", "mentions": [{"start": 0, "end": 4, "value": "1/3", "kind": "fraction"}], "source": "Glinert: \"שליש\", one third."}
+{"text": "שני שלישים מהעיר.", "mentions": [{"start": 0, "end": 10, "value": "2/3", "kind": "fraction"}], "source": "Glinert: plural after a count."}
+{"text": "שלושה רבעים מהדרך.", "mentions": [{"start": 0, "end": 11, "value": "0.75", "kind": "fraction"}], "source": "arithmetic: 3/4."}
+{"text": "שתי חמישיות מהכיתה.", "mentions": [{"start": 0, "end": 11, "value": "0.4", "kind": "fraction"}], "source": "arithmetic: 2/5."}
+{"text": "הטמפרטורה שלוש נקודה חמש מעלות.", "mentions": [{"start": 10, "end": 24, "value": "3.5", "kind": "decimal"}], "source": "CLDR RBNF he: \"x.x: << נקודה >>\"."}
+{"text": "האינפלציה שתיים נקודה שבע אחוז.", "mentions": [{"start": 10, "end": 25, "value": "2.7", "kind": "decimal"}], "source": "CLDR RBNF he: \"x.x: << נקודה >>\"."}
+{"text": "בחוץ מינוס חמש מעלות.", "mentions": [{"start": 5, "end": 14, "value": "-5", "kind": "cardinal"}], "source": "CLDR RBNF he: \"-x: מינוס >>\"."}
+{"text": "ירד למינוס עשר.", "mentions": [{"start": 4, "end": 14, "value": "-10", "kind": "cardinal"}], "source": "CLDR RBNF he: \"-x: מינוס >>\"."}
+{"text": "שילמתי 1,234.50 שקל.", "mentions": [{"start": 7, "end": 15, "value": "1234.5", "kind": "decimal"}], "source": "CLDR main/he: group \",\", decimal \".\"."}
+{"text": "בעיר 2,500,000 תושבים.", "mentions": [{"start": 5, "end": 14, "value": "2500000", "kind": "cardinal"}], "source": "CLDR main/he: group \",\"."}
+{"text": "משקל 3.75 קילו.", "mentions": [{"start": 5, "end": 9, "value": "3.75", "kind": "decimal"}], "source": "CLDR main/he: decimal \".\"."}
+{"text": "עלה 15 שקל.", "mentions": [{"start": 4, "end": 6, "value": "15", "kind": "cardinal"}], "source": "digits."}
+{"text": "הטמפרטורה ‏-5 מעלות.", "mentions": [{"start": 11, "end": 13, "value": "-5", "kind": "cardinal"}], "source": "CLDR main/he writes the minus as \"‎-\"; the directional mark is no part of the number."}
+{"text": "עלה 3 מיליון שקל.", "mentions": [{"start": 4, "end": 12, "value": "3000000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6."}
+{"text": "באו שניים והלכו שלושה.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "cardinal"}, {"start": 16, "end": 21, "value": "3", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "יש לי חמישה תפוחים ושבעה תפוזים.", "mentions": [{"start": 6, "end": 11, "value": "5", "kind": "cardinal"}, {"start": 19, "end": 24, "value": "7", "kind": "cardinal"}], "source": "arithmetic; ו before a new count after a noun joins no number."}
+{"text": "בין עשרה לעשרים איש.", "mentions": [{"start": 4, "end": 8, "value": "10", "kind": "cardinal"}, {"start": 9, "end": 15, "value": "20", "kind": "cardinal"}], "source": "arithmetic; ל is a joined preposition."}
+{"text": "עשרים, שלושים וארבעים.", "mentions": [{"start": 0, "end": 5, "value": "20", "kind": "cardinal"}, {"start": 7, "end": 13, "value": "30", "kind": "cardinal"}, {"start": 14, "end": 21, "value": "40", "kind": "cardinal"}], "source": "arithmetic; punctuation splits the numbers."}
+{"text": "ביקש חמש עשרה וקיבל שתים עשרה.", "mentions": [{"start": 5, "end": 13, "value": "15", "kind": "cardinal"}, {"start": 20, "end": 29, "value": "12", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "בין אלף לאלפיים שקל.", "mentions": [{"start": 4, "end": 7, "value": "1000", "kind": "cardinal"}, {"start": 8, "end": 15, "value": "2000", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "יש אחד עשר שחקנים וחמישה מחליפים.", "mentions": [{"start": 3, "end": 10, "value": "11", "kind": "cardinal"}, {"start": 18, "end": 24, "value": "5", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "לפני שנים רבות.", "mentions": [], "source": "Glinert: \"שנים\" here is \"years\"; as two it stands before עשר."}
+{"text": "קניתי תריסר ביצים.", "mentions": [{"start": 6, "end": 11, "value": "12", "kind": "cardinal"}], "source": "Glinert: \"תריסר\", a dozen."}
+{"text": "קניתי שני תריסר ביצים.", "mentions": [{"start": 6, "end": 15, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 2 x 12."}
+{"text": "בשעה שלוש וחמש דקות.", "mentions": [{"start": 5, "end": 9, "value": "3", "kind": "cardinal"}, {"start": 10, "end": 14, "value": "5", "kind": "cardinal"}], "source": "arithmetic; the tagger gives a clock time as two numbers."}
+{"text": "המקום השני והשלישי.", "mentions": [{"start": 6, "end": 10, "value": "2", "kind": "ordinal", "low_confidence": true}, {"start": 11, "end": 18, "value": "3", "kind": "ordinal", "low_confidence": true}], "source": "Glinert ordinals; both words are also weekdays."}
+{"text": "אין לי כסף.", "mentions": [], "source": "no number."}
+{"text": "דני גבוה.", "mentions": [], "source": "no number."}
+{"text": "יש לו מאתיים שקל ושלושים אגורות.", "mentions": [{"start": 6, "end": 12, "value": "200", "kind": "cardinal"}, {"start": 17, "end": 24, "value": "30", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "הטלפון שלי 03 5555555.", "mentions": [{"start": 11, "end": 13, "value": "3", "kind": "cardinal"}, {"start": 14, "end": 21, "value": "5555555", "kind": "cardinal"}], "source": "digits; a space between digit strings separates two numbers."}
+{"text": "הוא גר שלושה קילומטרים מכאן.", "mentions": [{"start": 7, "end": 12, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF he."}
+{"text": "עברו ארבעים ושמונה שעות.", "mentions": [{"start": 5, "end": 18, "value": "48", "kind": "cardinal"}], "source": "arithmetic: 40 + 8."}
+{"text": "קיבל שבעים מתוך מאה.", "mentions": [{"start": 5, "end": 10, "value": "70", "kind": "cardinal"}, {"start": 16, "end": 19, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "חסרו מאה ושניים ספרים.", "mentions": [{"start": 5, "end": 15, "value": "102", "kind": "cardinal"}], "source": "arithmetic: 100 + 2."}
+{"text": "זה עולה שלושה מיליון וחמש מאות אלף שקל.", "mentions": [{"start": 8, "end": 34, "value": "3500000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 500 x 1000."}
+{"text": "עלה שלושה מיליון וחצי שקל.", "mentions": [{"start": 4, "end": 21, "value": "3500000", "kind": "cardinal"}], "source": "Glinert: \"וחצי\" adds half of the last unit; 3 x 10^6 + 10^6 / 2."}
+{"text": "יש שְׁלוֹשָׁה ילדים.", "mentions": [{"start": 3, "end": 13, "value": "3", "kind": "cardinal"}], "source": "the niqqud does not change the word."}
+{"text": "עֶשְׂרִים וְאַרְבַּע שעות.", "mentions": [{"start": 0, "end": 20, "value": "24", "kind": "cardinal"}], "source": "the niqqud does not change the words; 20 + 4."}
+{"text": "שלושת הבנים.", "mentions": [{"start": 0, "end": 5, "value": "3", "kind": "cardinal"}], "source": "Glinert: the construct form \"שלושת\"."}
+{"text": "ששת הימים.", "mentions": [{"start": 0, "end": 3, "value": "6", "kind": "cardinal"}], "source": "Glinert: the construct form \"ששת\"."}
+{"text": "בארבעה ביולי.", "mentions": [{"start": 0, "end": 6, "value": "4", "kind": "cardinal"}], "source": "arithmetic; ב is a joined preposition."}
+{"text": "לשלושה אנשים.", "mentions": [{"start": 0, "end": 6, "value": "3", "kind": "cardinal"}], "source": "arithmetic; ל is a joined preposition."}
+{"text": "משמונה בבוקר.", "mentions": [{"start": 0, "end": 6, "value": "8", "kind": "cardinal"}], "source": "arithmetic; מ is a joined preposition."}
+{"text": "כחמישים איש.", "mentions": [{"start": 0, "end": 7, "value": "50", "kind": "cardinal"}], "source": "arithmetic; כ is a joined preposition."}
+{"text": "במאה אחוז.", "mentions": [{"start": 0, "end": 4, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "שילם שלוש מאות ועשרים שקל.", "mentions": [{"start": 5, "end": 21, "value": "320", "kind": "cardinal"}], "source": "arithmetic: 3 x 100 + 20."}
+{"text": "תשעה חודשים.", "mentions": [{"start": 0, "end": 4, "value": "9", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "שבעים ושבע מדרגות.", "mentions": [{"start": 0, "end": 10, "value": "77", "kind": "cardinal"}], "source": "arithmetic: 70 + 7."}
+{"text": "שמונים ותשעה אחוז.", "mentions": [{"start": 0, "end": 12, "value": "89", "kind": "cardinal"}], "source": "arithmetic: 80 + 9."}
+{"text": "ארבעה מיליארד דולר.", "mentions": [{"start": 0, "end": 13, "value": "4000000000", "kind": "cardinal"}], "source": "arithmetic: 4 x 10^9."}
+{"text": "שישים דקות בשעה.", "mentions": [{"start": 0, "end": 5, "value": "60", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "שבע עשרה מעלות.", "mentions": [{"start": 0, "end": 8, "value": "17", "kind": "cardinal"}], "source": "arithmetic: 7 + 10."}
+{"text": "תשעים שניות.", "mentions": [{"start": 0, "end": 5, "value": "90", "kind": "cardinal"}], "source": "CLDR RBNF he: \"90: תשעים\"."}
+{"text": "שמונה מאות ושמונים קילומטר.", "mentions": [{"start": 0, "end": 18, "value": "880", "kind": "cardinal"}], "source": "arithmetic: 8 x 100 + 80."}
+{"text": "ארבעת אלפים איש.", "mentions": [{"start": 0, "end": 11, "value": "4000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"3000: <%%thousands< אלפים\", 4 x 1000."}
+{"text": "שבעת אלפים ושבע מאות שקל.", "mentions": [{"start": 0, "end": 20, "value": "7700", "kind": "cardinal"}], "source": "arithmetic: 7 x 1000 + 7 x 100."}
+{"text": "חמישים אלף צופים.", "mentions": [{"start": 0, "end": 10, "value": "50000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"11000: << אלף\", 50 x 1000."}
+{"text": "מאתיים אלף איש.", "mentions": [{"start": 0, "end": 10, "value": "200000", "kind": "cardinal"}], "source": "arithmetic: 200 x 1000."}
+{"text": "שני מיליארד דולר.", "mentions": [{"start": 0, "end": 11, "value": "2000000000", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000000000: שני מיליארד\"."}
+{"text": "שתים עשרה נקודה חמש אחוז.", "mentions": [{"start": 0, "end": 19, "value": "12.5", "kind": "decimal"}], "source": "CLDR RBNF he: \"x.x: << נקודה >>\"; 12 + 0.5."}
+{"text": "מינוס שלושים מעלות בסיביר.", "mentions": [{"start": 0, "end": 12, "value": "-30", "kind": "cardinal"}], "source": "CLDR RBNF he: \"-x: מינוס >>\"."}
+{"text": "השבעה נשארו.", "mentions": [{"start": 0, "end": 5, "value": "7", "kind": "cardinal"}], "source": "Glinert: ה is the joined article."}
+{"text": "ושלושה ילדים.", "mentions": [{"start": 0, "end": 6, "value": "3", "kind": "cardinal"}], "source": "the joined ו starts the word, and the word is the number."}

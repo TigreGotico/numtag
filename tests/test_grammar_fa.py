@@ -1,0 +1,48 @@
+"""Persian grammar rules. Each expected value is worked out by hand in the
+comment beside it; sources are in numtag/lexicon/fa.json."""
+import unittest
+
+from helpers import read
+
+C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
+
+
+def fa(text: str) -> list[tuple[str, str, str]]:
+    return read(text, "fa")
+
+
+class TestPersian(unittest.TestCase):
+    def test_every_part_takes_the_joiner(self):
+        # 20 + 5 = 25; 1000 + 900 + 80 + 4 = 1984
+        self.assertEqual(fa("بیست و پنج"), [("بیست و پنج", "25", C)])
+        self.assertEqual(fa("هزار و نهصد و هشتاد و چهار"), [("هزار و نهصد و هشتاد و چهار", "1984", C)])
+
+    def test_a_thousand_counts_a_milliard(self):
+        # هزار میلیارد = 10^3 x 10^9 = 10^12
+        self.assertEqual(fa("هزار میلیارد"), [("هزار میلیارد", "1000000000000", C)])
+
+    def test_persian_and_arabic_digits(self):
+        # ۱۲٬۳۴۵٫۶۷ = 12345.67
+        self.assertEqual(fa("۱۲٬۳۴۵٫۶۷ تومان"), [("۱۲٬۳۴۵٫۶۷", "12345.67", D)])
+        self.assertEqual(fa("٣٤٥"), [("٣٤٥", "345", C)])
+        self.assertEqual(fa("۳4"), [])
+
+    def test_the_fraction_takes_the_ordinal(self):
+        # دو سوم = 2/3; سه چهارم = 3/4
+        self.assertEqual(fa("دو سوم"), [("دو سوم", "2/3", F)])
+        self.assertEqual(fa("سه چهارم"), [("سه چهارم", "0.75", F)])
+
+    def test_the_ordinal_suffix_goes_on_the_last_word(self):
+        # 20 + 1 = 21; سی‌ام with the zero-width non-joiner is 30
+        self.assertEqual(fa("قرن بیست و یکم"), [("بیست و یکم", "21", O)])
+        self.assertEqual(fa("روز سی‌ام"), [("سی‌ام", "30", O)])
+        # the same word typed without the non-joiner
+        self.assertEqual(fa("روز سیام"), [("سیام", "30", O)])
+
+    def test_arabic_letters_read_as_persian(self):
+        # Arabic yeh in يک reads as Persian ی; یک before a noun is weak
+        self.assertEqual(fa("يک کتاب"), [("يک", "1", C)])
+
+
+if __name__ == "__main__":
+    unittest.main()

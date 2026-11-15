@@ -1,0 +1,673 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\": each word has one fixed value."
+    },
+    "group_mark": {
+      "value": " ",
+      "source": "CLDR main/kab.xml, latn symbols: group U+00A0 (no-break space)."
+    },
+    "decimal_mark": {
+      "value": ",",
+      "source": "CLDR main/kab.xml, latn symbols: decimal \",\"."
+    },
+    "space_groups": {
+      "value": true,
+      "source": "CLDR main/kab.xml groups digits with a no-break space (\"1 000 000\")."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"singular: alef ; plural: alaf\": the plural follows a count (\"telt-alaf\")."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"The word for million is amelyun [1 million]\", \"The word for billion is amelyar [1 billion]\"; the page gives no plural of either. In this lexicon both are numerals, which this setting does not reach."
+    },
+    "joiner_tens_units": {
+      "value": "required",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"starting with the unit, followed by the conjunction u, then the ten (e.g.: setta u εecrin [26], tmanya u xemsin [58])\"."
+    },
+    "joiner_after_hundred": {
+      "value": "optional",
+      "source": "No source shows how a hundred joins the rest of a number; the reader takes it with or without \"u\"."
+    },
+    "joiner_between_groups": {
+      "value": "optional",
+      "source": "No source shows how a thousand joins the rest of a number; the reader takes it with or without \"u\"."
+    },
+    "joiner_before_round_hundred": {
+      "value": false,
+      "source": "No source shows \"u\" after alef; after \"alef u\" only a group below a hundred is read as well formed."
+    },
+    "tens_order": {
+      "value": "unit_first",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"starting with the unit, followed by the conjunction u, then the ten\"."
+    },
+    "ordinal_style": {
+      "value": "last_word",
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: ordinals are wis (feminine tis) and the cardinal (\"wis sin\", \"tis tlata\"); \"amezwaru\" is first."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "Kabyle Latin letters with a dot below or a caron (ḍ ṭ ẓ ṛ ḥ ṣ č ǧ) are often typed without the mark; the number words read the same."
+    },
+    "letter_folds": {
+      "value": {
+        "ε": "ɛ",
+        "γ": "ɣ"
+      },
+      "source": "apprendrelekabyle.com, \"Les nombres en kabyle\", writes \"ṛebεa-mya\" with Greek ε for ɛ; Greek ε and γ are common stand-ins for ɛ and ɣ."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "u"
+      ],
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"the conjunction u\"."
+    },
+    "ordinal_particle": {
+      "value": [
+        "wis",
+        "tis",
+        "wiss",
+        "tiss"
+      ],
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"wis\" (after Kossmann 2013): \"forms ordinal numbers by preceding a cardinal number ... wis xemsa (fifth)\", feminine tis; omniglot.com writes \"wiss sin (m) tiss snat (f)\"."
+    },
+    "decimal_marker": {
+      "value": [],
+      "source": "No source gives a word for the decimal mark."
+    },
+    "minus": {
+      "value": [],
+      "source": "No source gives a word for minus."
+    },
+    "range_cue": {
+      "value": [],
+      "source": "No source gives the Kabyle word for \"between\" before two numbers."
+    },
+    "article_one": {
+      "value": [
+        "yiwen",
+        "yiwet"
+      ],
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: yiwen (f. yiwet) \"one\" also marks a noun indefinite (\"yiwen wergaz\")."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "of": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "No source gives such a word in a Kabyle number."
+    }
+  },
+  "entries": [
+    {
+      "word": "ilem",
+      "role": "unit",
+      "value": "0",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ziṛu or ilem\" (0)."
+    },
+    {
+      "word": "ziṛu",
+      "role": "unit",
+      "value": "0",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ziṛu or ilem\" (0)."
+    },
+    {
+      "word": "yiwen",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"Only the first two numbers are Berber; for higher numbers, Arabic is used. They are yiwen (f. yiwet) \\\"one\\\", sin (f. snat) \\\"two\\\".\""
+    },
+    {
+      "word": "yiwet",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"Only the first two numbers are Berber; for higher numbers, Arabic is used. They are yiwen (f. yiwet) \\\"one\\\", sin (f. snat) \\\"two\\\".\""
+    },
+    {
+      "word": "sin",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"Only the first two numbers are Berber; for higher numbers, Arabic is used. They are yiwen (f. yiwet) \\\"one\\\", sin (f. snat) \\\"two\\\".\""
+    },
+    {
+      "word": "snat",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"Only the first two numbers are Berber; for higher numbers, Arabic is used. They are yiwen (f. yiwet) \\\"one\\\", sin (f. snat) \\\"two\\\".\""
+    },
+    {
+      "word": "kraḍ",
+      "role": "unit",
+      "value": "3",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "kraḍet",
+      "role": "unit",
+      "value": "3",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "kuẓ",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "kuẓet",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "semmus",
+      "role": "unit",
+      "value": "5",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "semmuset",
+      "role": "unit",
+      "value": "5",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "sḍis",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "sḍiset",
+      "role": "unit",
+      "value": "6",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "sa",
+      "role": "unit",
+      "value": "7",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "sat",
+      "role": "unit",
+      "value": "7",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "tam",
+      "role": "unit",
+      "value": "8",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "tamet",
+      "role": "unit",
+      "value": "8",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "tẓa",
+      "role": "unit",
+      "value": "9",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "tẓat",
+      "role": "unit",
+      "value": "9",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "mraw",
+      "role": "ten",
+      "value": "10",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "mrawet",
+      "role": "ten",
+      "value": "10",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"kraḍ\", \"kuẓ\", \"mraw\": neologisms, learned borrowings from other Berber languages (Achab 2013); speech uses the Arabic loans from 3 up."
+    },
+    {
+      "word": "tlata",
+      "role": "unit",
+      "value": "3",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "ṛebɛa",
+      "role": "unit",
+      "value": "4",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "xemsa",
+      "role": "unit",
+      "value": "5",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "setta",
+      "role": "unit",
+      "value": "6",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "sebɛa",
+      "role": "unit",
+      "value": "7",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "tmanya",
+      "role": "unit",
+      "value": "8",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "tesɛa",
+      "role": "unit",
+      "value": "9",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "ɛecṛa",
+      "role": "ten",
+      "value": "10",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"tlata [3], ṛebɛa [4], xemsa [5], setta [6], sebɛa [7], tmanya [8], and tesɛa [9]\", \"ɛecṛa [10]\"; en.wiktionary, Module:number_list/data/kab and the entries \"rebɛa\", \"ɛecra\"."
+    },
+    {
+      "word": "waḥed",
+      "role": "unit",
+      "value": "1",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1] ... tnayn [2] ... waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary, Module:number_list/data/kab and the entries \"tnayen u ɛecrin\" lists tnayn and tnin."
+    },
+    {
+      "word": "tnayn",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1] ... tnayn [2] ... waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary, Module:number_list/data/kab and the entries \"tnayen u ɛecrin\" lists tnayn and tnin."
+    },
+    {
+      "word": "tnayen",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1] ... tnayn [2] ... waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary, Module:number_list/data/kab and the entries \"tnayen u ɛecrin\" lists tnayn and tnin."
+    },
+    {
+      "word": "tnin",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1] ... tnayn [2] ... waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary, Module:number_list/data/kab and the entries \"tnayen u ɛecrin\" lists tnayn and tnin."
+    },
+    {
+      "word": "ḥḍac",
+      "role": "ten",
+      "value": "11",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "tnac",
+      "role": "ten",
+      "value": "12",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "tleṭṭac",
+      "role": "ten",
+      "value": "13",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "telṭac",
+      "role": "ten",
+      "value": "13",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "ṛbeɛṭac",
+      "role": "ten",
+      "value": "14",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "xemseṭṭac",
+      "role": "ten",
+      "value": "15",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "seṭṭac",
+      "role": "ten",
+      "value": "16",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "sebeɛṭac",
+      "role": "ten",
+      "value": "17",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "sbeɛṭac",
+      "role": "ten",
+      "value": "17",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "temmenṭac",
+      "role": "ten",
+      "value": "18",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "tmenṭac",
+      "role": "ten",
+      "value": "18",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "tseɛṭac",
+      "role": "ten",
+      "value": "19",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "tesɛaṭac",
+      "role": "ten",
+      "value": "19",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, Modèle:cardinaux/kab: telṭac, sbeɛṭac, tmenṭac; en.wiktionary, Module:number_list/data/kab and the entries: tesɛaṭac."
+    },
+    {
+      "word": "ɛecrin",
+      "role": "ten",
+      "value": "20",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "tlatin",
+      "role": "ten",
+      "value": "30",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "ṛebɛin",
+      "role": "ten",
+      "value": "40",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "xemsin",
+      "role": "ten",
+      "value": "50",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "settin",
+      "role": "ten",
+      "value": "60",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "sebɛin",
+      "role": "ten",
+      "value": "70",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "tmanyina",
+      "role": "ten",
+      "value": "80",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "tmanyin",
+      "role": "ten",
+      "value": "80",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "tsɛin",
+      "role": "ten",
+      "value": "90",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "tesɛin",
+      "role": "ten",
+      "value": "90",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"ɛecrin [20], tlatin [30], ṛebɛin [40], xemsin [50], settin [60], sebɛin [70], tmanyina [80], and tsɛin [90]\"; fr.wiktionary, Modèle:cardinaux/kab: tmanyin, tesɛin."
+    },
+    {
+      "word": "mya",
+      "role": "hundred",
+      "value": "100",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\"."
+    },
+    {
+      "word": "mitin",
+      "role": "hundred",
+      "value": "200",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\"."
+    },
+    {
+      "word": "myat",
+      "role": "hundred",
+      "value": "100",
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". fr.wiktionary, Modèle:cardinaux/kab: \"myat-alef\" (100,000)."
+    },
+    {
+      "word": "mya",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\"."
+    },
+    {
+      "word": "myat",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\"."
+    },
+    {
+      "word": "telt",
+      "role": "unit",
+      "value": "3",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "tlat",
+      "role": "unit",
+      "value": "3",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "ṛebɛ",
+      "role": "unit",
+      "value": "4",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "xems",
+      "role": "unit",
+      "value": "5",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "sett",
+      "role": "unit",
+      "value": "6",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "sebɛ",
+      "role": "unit",
+      "value": "7",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "temn",
+      "role": "unit",
+      "value": "8",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "tmany",
+      "role": "unit",
+      "value": "8",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "tesɛ",
+      "role": "unit",
+      "value": "9",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "ɛecṛ",
+      "role": "unit",
+      "value": "10",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"mya [100], mitin [200], telt-mya [300], ṛebɛ-mya [400], xems-mya [500], sett-mya [600], sebɛ-mya [700], temn-mya [800], and tesɛ-mya [900]\"; Tatoeba sentence 13097021 \"telt mya\" and 9342858 \"temn-myat alef\". languagesandnumbers.com, \"How to count in Kabyle\": \"tlat-alaf [3,000] ... tmany-alaf [8,000], tesɛ-alaf [9,000], ɛecṛ-alaf [10,000]\": the short form stands only before mya or alaf."
+    },
+    {
+      "word": "alef",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"alef [1,000], juǧ alaf [2,000], tlat-alaf [3,000] ... ɛecrin-alaf [20,000] ... mya-alaf [100,000]\", \"singular: alef ; plural: alaf\"; Tatoeba sentence 12429007 \"tlatin alef\", 8919355 \"xemsin alef\"."
+    },
+    {
+      "word": "alaf",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"alef [1,000], juǧ alaf [2,000], tlat-alaf [3,000] ... ɛecrin-alaf [20,000] ... mya-alaf [100,000]\", \"singular: alef ; plural: alaf\"; Tatoeba sentence 12429007 \"tlatin alef\", 8919355 \"xemsin alef\"."
+    },
+    {
+      "word": "juǧ",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"alef [1,000], juǧ alaf [2,000], tlat-alaf [3,000] ... ɛecrin-alaf [20,000] ... mya-alaf [100,000]\", \"singular: alef ; plural: alaf\"; Tatoeba sentence 12429007 \"tlatin alef\", 8919355 \"xemsin alef\". \"juǧ\" (a pair) counts only the thousands."
+    },
+    {
+      "word": "amelyun",
+      "role": "scale_numeral",
+      "value": 6,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\"; fr.wiktionary, Modèle:cardinaux/kab: amelyaṛ."
+    },
+    {
+      "word": "imelyunen",
+      "role": "scale_numeral",
+      "value": 6,
+      "plural": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\"; fr.wiktionary, Modèle:cardinaux/kab: amelyaṛ."
+    },
+    {
+      "word": "amelyar",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\"; fr.wiktionary, Modèle:cardinaux/kab: amelyaṛ."
+    },
+    {
+      "word": "amelyaṛ",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\"; fr.wiktionary, Modèle:cardinaux/kab: amelyaṛ."
+    },
+    {
+      "word": "imelyaren",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "languagesandnumbers.com, \"How to count in Kabyle\": \"amelyun [1 million]\", \"amelyar [1 billion]\"; fr.wiktionary, Modèle:cardinaux/kab: amelyaṛ."
+    },
+    {
+      "word": "azgen",
+      "role": "half",
+      "source": "fr.wiktionary \"azgen\": \"Moitié\"; Tatoeba sentence 11117577 \"D azgen.\" (It's a half)."
+    },
+    {
+      "word": "amezwaru",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"amezwaru\": first, feminine tamezwarut, plural imezwura; en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"amezwaru\" and \"aneggaru\" are first and last."
+    },
+    {
+      "word": "tamezwarut",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "en.wiktionary, Module:number_list/data/kab and the entries \"amezwaru\": first, feminine tamezwarut, plural imezwura; en.wikipedia \"Kabyle grammar\", Numerotation, after Mettouchi et al. 2015 (CorpAfroAs), pp. 237-238: \"amezwaru\" and \"aneggaru\" are first and last."
+    }
+  ]
+}

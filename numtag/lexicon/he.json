@@ -1,0 +1,860 @@
+{
+  "settings": {
+    "scale": {
+      "value": "long",
+      "source": "Hebrew Wikipedia, \"סולמות ארוך וקצר\": Israel uses the long scale with the milliard, so ביליון is 10^12; CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50) also writes 1000000000000 as ביליון."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "CLDR main/he.xml inherits the root latn symbols: group \",\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "CLDR main/he.xml inherits the root latn symbols: decimal \".\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR main/he.xml groups digits with \",\", not a space."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"3000: <%%thousands< אלפים\", the plural takes a count; \"אלפים\" alone names no number."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"2000000: שני מיליון\", \"3000000: <%%spellout-numbering-m< מיליון\": מיליון keeps the singular after every count."
+    },
+    "joiner_tens_units": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"20: עשרים[ >%%and-feminine>]\" with \"1: ו=%spellout-numbering=\": ו joins the last part (\"עשרים ושלוש\")."
+    },
+    "joiner_after_hundred": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"%%and-feminine\" puts ו only before the last part (\"מאה ועשרים\", \"מאה עשרים ושלוש\")."
+    },
+    "joiner_between_groups": {
+      "value": "optional",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>]\": ו only before the last part (\"אלף ומאה\")."
+    },
+    "joiner_before_round_hundred": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף[ >%%and-feminine>]\" with \"%%and-feminine: 1: ו=%spellout-numbering=;\" and \"500: חמש מאות;\": ו goes before a unit, not before a hundred."
+    },
+    "ordinal_style": {
+      "value": "every_word",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinal adjectives exist only for 1-10; above ten the cardinal serves."
+    },
+    "half_of_scale": {
+      "value": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: \"וחצי\" after a number adds half of its last unit: \"מיליון וחצי\" is 1,500,000 and \"אלף וחצי\" is 1500."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "Hebrew is written with or without niqqud (vowel points); the points never change which number a word names."
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR main/he.xml writes the minus sign as \"\\u200e-\": directional marks stand next to numbers in right-to-left text."
+    },
+    "clitic_min_rest": {
+      "value": 2,
+      "source": "The shortest Hebrew number word, \"שש\", has two letters."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "ו"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"ו=%spellout-numbering=\"."
+    },
+    "joiner_prefix": {
+      "value": [
+        "ו"
+      ],
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the conjunction ו is written joined to the next word (\"ושלוש\")."
+    },
+    "clitic_prefix": {
+      "value": [
+        "ה",
+        "ב",
+        "ל",
+        "מ",
+        "כ",
+        "ש"
+      ],
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the article ה and the prepositions ב, ל, מ, כ and the particle ש are written joined to the next word (\"השלושה\", \"בשש\")."
+    },
+    "decimal_marker": {
+      "value": [
+        "נקודה"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << נקודה >>\"."
+    },
+    "minus": {
+      "value": [
+        "מינוס"
+      ],
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"-x: מינוס >>\"."
+    },
+    "range_cue": {
+      "value": [
+        "בין"
+      ],
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: \"בין\", between; in \"בין א ו-ב\" the joined ו links the two limits (the other form, \"בין א ל-ב\", has no joiner)."
+    },
+    "article_one": {
+      "value": [],
+      "source": "Hebrew has no indefinite article."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "of": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "Hebrew uses no such word in a number."
+    }
+  },
+  "entries": [
+    {
+      "word": "אפס",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "אחד",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "אחת",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שניים",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שנים",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). \"שנים\" alone is \"years\"; as two it stands before עשר (\"שנים עשר\")."
+    },
+    {
+      "word": "שתיים",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שתים",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). \"12: שתים עשרה\"."
+    },
+    {
+      "word": "שני",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"2000000: שני מיליון\", the construct form; also the ordinal \"second\" and \"Monday\"."
+    },
+    {
+      "word": "שתי",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the construct form of שתיים (\"שתי בנות\")."
+    },
+    {
+      "word": "שלושה",
+      "role": "unit",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שלוש",
+      "role": "unit",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שלושת",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שלשה",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שלש",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שלשת",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "ארבעה",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "ארבע",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "ארבעת",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "חמישה",
+      "role": "unit",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "חמש",
+      "role": "unit",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "חמשת",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "חמשה",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שישה",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שש",
+      "role": "unit",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "ששת",
+      "role": "unit",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "ששה",
+      "role": "unit",
+      "value": "6",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\"). Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שבעה",
+      "role": "unit",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שבע",
+      "role": "unit",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שבעת",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שמונה",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "שמונת",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "תשעה",
+      "role": "unit",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "תשע",
+      "role": "unit",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "תשעת",
+      "role": "unit",
+      "value": "9",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50), spellout-numbering (feminine, the counting form) and spellout-numbering-m (masculine); construct forms from %%thousands (\"שלושת\")."
+    },
+    {
+      "word": "עשר",
+      "role": "ten",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "עשרה",
+      "role": "ten",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "עשרת",
+      "role": "ten",
+      "value": "10",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "עשרה",
+      "role": "teen",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"13: >> עשרה\" (feminine) and \"13: >> עשר\" (masculine): the unit, then the teen word."
+    },
+    {
+      "word": "עשר",
+      "role": "teen",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"13: >> עשרה\" (feminine) and \"13: >> עשר\" (masculine): the unit, then the teen word."
+    },
+    {
+      "word": "עשרים",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "שלושים",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שלשים",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "ארבעים",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "חמישים",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "חמשים",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שישים",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "ששים",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90. Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: the older defective spellings (שלשה, ששה) stay in use."
+    },
+    {
+      "word": "שבעים",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "שמונים",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "תשעים",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"10: עשר\" (feminine) and \"10: עשרה\" (masculine); tens 20-90."
+    },
+    {
+      "word": "מאה",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה\", \"200: מאתיים\", \"300: << מאות\"."
+    },
+    {
+      "word": "מאתיים",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה\", \"200: מאתיים\", \"300: << מאות\"."
+    },
+    {
+      "word": "מאתים",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה\", \"200: מאתיים\", \"300: << מאות\"."
+    },
+    {
+      "word": "מאות",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "plural": true,
+      "counted": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"100: מאה\", \"200: מאתיים\", \"300: << מאות\"."
+    },
+    {
+      "word": "אלף",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף\", \"2000: אלפיים\" (the dual), \"3000: <%%thousands< אלפים\", \"11000: << אלף\"."
+    },
+    {
+      "word": "אלפיים",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף\", \"2000: אלפיים\" (the dual), \"3000: <%%thousands< אלפים\", \"11000: << אלף\"."
+    },
+    {
+      "word": "אלפים",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000: אלף\", \"2000: אלפיים\" (the dual), \"3000: <%%thousands< אלפים\", \"11000: << אלף\"."
+    },
+    {
+      "word": "מיליון",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "מיליונים",
+      "role": "scale_numeral",
+      "rank": 1,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "מיליארד",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "מיליארדים",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "ביליון",
+      "role": "scale_numeral",
+      "rank": 2,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "טריליון",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/he.xml (unicode-org/cldr, cldrVersion 50): \"1000000: מיליון\", \"1000000000: מיליארד\", \"1000000000000: ביליון\"; each needs no count (\"מיליון\" alone is a million). Hebrew Wikipedia, \"סולמות ארוך וקצר\": טריליון is a million ביליון in the long scale."
+    },
+    {
+      "word": "תריסר",
+      "role": "collective",
+      "value": "12",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: \"תריסר\", a dozen (twelve)."
+    },
+    {
+      "word": "תריסרים",
+      "role": "collective",
+      "value": "12",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: \"תריסר\", a dozen (twelve)."
+    },
+    {
+      "word": "חצי",
+      "role": "half",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: \"חצי\", half (\"שלוש וחצי\")."
+    },
+    {
+      "word": "שליש",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שלישים",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "רבע",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "רבעים",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "חמישית",
+      "role": "denominator",
+      "value": "5",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "חמישיות",
+      "role": "denominator",
+      "value": "5",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שישית",
+      "role": "denominator",
+      "value": "6",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שישיות",
+      "role": "denominator",
+      "value": "6",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שביעית",
+      "role": "denominator",
+      "value": "7",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שביעיות",
+      "role": "denominator",
+      "value": "7",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שמינית",
+      "role": "denominator",
+      "value": "8",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "שמיניות",
+      "role": "denominator",
+      "value": "8",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "תשיעית",
+      "role": "denominator",
+      "value": "9",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "תשיעיות",
+      "role": "denominator",
+      "value": "9",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "עשירית",
+      "role": "denominator",
+      "value": "10",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "עשיריות",
+      "role": "denominator",
+      "value": "10",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "מאית",
+      "role": "denominator",
+      "value": "100",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "מאיות",
+      "role": "denominator",
+      "value": "100",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "אלפית",
+      "role": "denominator",
+      "value": "1000",
+      "numerator": "1",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "אלפיות",
+      "role": "denominator",
+      "value": "1000",
+      "plural": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: fractions are nouns, singular for one part (\"שליש\", \"רבע\") and plural after a count (\"שני שלישים\", \"שלוש חמישיות\")."
+    },
+    {
+      "word": "ראשון",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "ראשונה",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שנייה",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שלישי",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שלישית",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "רביעי",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "רביעית",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "חמישי",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "חמישית",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שישי",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שישית",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שביעי",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שביעית",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שמיני",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שמינית",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "תשיעי",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "תשיעית",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "עשירי",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "עשירית",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי)."
+    },
+    {
+      "word": "שניה",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "Lewis Glinert, Modern Hebrew: An Essential Grammar (Routledge), chapter on numerals: ordinals 1-10 are adjectives (ראשון, שני ... עשירי, feminine in -ה or -ית); the masculine forms 1-6 also name the weekdays (יום ראשון ... יום שישי). \"שניה\" is the defective spelling of \"שנייה\", also \"a second\" of time."
+    }
+  ]
+}

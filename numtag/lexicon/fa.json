@@ -1,0 +1,1022 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: << میلیارد\" and \"1000000000000: << هزار میلیارد\"; no Persian scale word changes its value between the scales."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "CLDR main/fa.xml, latn symbols inherited from root: group \",\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "CLDR main/fa.xml, latn symbols inherited from root: decimal \".\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "CLDR main/fa.xml groups digits with a mark, not a space."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"هزاران\": thousands of, no number."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون[ و >>]\": میلیون keeps the singular after every count."
+    },
+    "joiner_tens_units": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"20: بیست[ و >>]\"."
+    },
+    "joiner_after_hundred": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد[ و >>]\"."
+    },
+    "joiner_between_groups": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\"."
+    },
+    "joiner_before_round_hundred": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار[ و >>]\": و goes before any rest after a thousand, a round hundred too."
+    },
+    "ordinal_style": {
+      "value": "last_word",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal suffix -م goes on the last word (\"بیست و یکم\")."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "Persian is written with or without short-vowel marks; they never change which number a word names."
+    },
+    "letter_folds": {
+      "value": {
+        "ي": "ی",
+        "ى": "ی",
+        "ك": "ک"
+      },
+      "source": "Persian text typed on an Arabic keyboard has Arabic yeh (U+064A) and kaf (U+0643) for Persian ی (U+06CC) and ک (U+06A9); both read the same."
+    },
+    "word_chars": {
+      "value": "‌",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the zero-width non-joiner stands inside a word (\"سی‌ام\", \"میلیون‌ها\"); a word reads the same with or without it."
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR main/fa.xml writes the minus sign as \"\\u200e−\": directional marks stand next to numbers in right-to-left text."
+    },
+    "native_digits": {
+      "value": {
+        "digits": [
+          "۰۱۲۳۴۵۶۷۸۹",
+          "٠١٢٣٤٥٦٧٨٩"
+        ],
+        "decimal_mark": "٫",
+        "group_mark": "٬"
+      },
+      "source": "CLDR common/supplemental/numberingSystems.xml: arabext digits ۰-۹ (U+06F0-U+06F9), the default of fa, and arab digits ٠-٩; CLDR root arabext symbols: decimal \"٫\" (U+066B), group \"٬\" (U+066C)."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "و"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"[ و >>]\"."
+    },
+    "decimal_marker": {
+      "value": [
+        "ممیز"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << ممیز >>\"."
+    },
+    "minus": {
+      "value": [
+        "منفی"
+      ],
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"-x: منفی >>\"."
+    },
+    "range_cue": {
+      "value": [
+        "بین"
+      ],
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"بین\": between; in \"بین ده و بیست\" the \"و\" links the two limits."
+    },
+    "article_one": {
+      "value": [
+        "یک"
+      ],
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): \"یک\" before a noun also marks it indefinite (\"یک کتاب\")."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "of": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "Persian uses no such word in a number."
+    }
+  },
+  "entries": [
+    {
+      "word": "صفر",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "یک",
+      "role": "unit",
+      "value": "1",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "دو",
+      "role": "unit",
+      "value": "2",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "سه",
+      "role": "unit",
+      "value": "3",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "چهار",
+      "role": "unit",
+      "value": "4",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "پنج",
+      "role": "unit",
+      "value": "5",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "شش",
+      "role": "unit",
+      "value": "6",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "شیش",
+      "role": "unit",
+      "value": "6",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "هفت",
+      "role": "unit",
+      "value": "7",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "هشت",
+      "role": "unit",
+      "value": "8",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "نه",
+      "role": "unit",
+      "value": "9",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "ده",
+      "role": "ten",
+      "value": "10",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "یازده",
+      "role": "ten",
+      "value": "11",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "دوازده",
+      "role": "ten",
+      "value": "12",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "سیزده",
+      "role": "ten",
+      "value": "13",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "چهارده",
+      "role": "ten",
+      "value": "14",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "پانزده",
+      "role": "ten",
+      "value": "15",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "پونزده",
+      "role": "ten",
+      "value": "15",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "شانزده",
+      "role": "ten",
+      "value": "16",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "شونزده",
+      "role": "ten",
+      "value": "16",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "هفده",
+      "role": "ten",
+      "value": "17",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "هیفده",
+      "role": "ten",
+      "value": "17",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "هجده",
+      "role": "ten",
+      "value": "18",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "هیجده",
+      "role": "ten",
+      "value": "18",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "هژده",
+      "role": "ten",
+      "value": "18",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry: the spoken forms پونزده, شونزده, هیفده, هیجده, شیش stand for the written ones."
+    },
+    {
+      "word": "نوزده",
+      "role": "ten",
+      "value": "19",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "بیست",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "سی",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "چهل",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "پنجاه",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "شصت",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "هفتاد",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "هشتاد",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "نود",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50), spellout-cardinal 0-19."
+    },
+    {
+      "word": "صد",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "یکصد",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "دویست",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "سیصد",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "چهارصد",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "پانصد",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "پونصد",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "ششصد",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "هفتصد",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "هشتصد",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "نهصد",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"100: صد\" ... \"900: نهصد\"; Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"یکصد\": one hundred, the formal form."
+    },
+    {
+      "word": "هزار",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000: << هزار\"; Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): \"هزار\" alone is a thousand."
+    },
+    {
+      "word": "هزاران",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"هزاران\": thousands of."
+    },
+    {
+      "word": "میلیون",
+      "role": "scale_noun",
+      "value": 6,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count (\"یک میلیون\"); \"1000000000000: << هزار میلیارد\"."
+    },
+    {
+      "word": "میلیون‌ها",
+      "role": "scale_noun",
+      "value": 6,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count (\"یک میلیون\"); \"1000000000000: << هزار میلیارد\"."
+    },
+    {
+      "word": "میلیارد",
+      "role": "scale_noun",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count (\"یک میلیون\"); \"1000000000000: << هزار میلیارد\"."
+    },
+    {
+      "word": "میلیاردها",
+      "role": "scale_noun",
+      "value": 9,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count (\"یک میلیون\"); \"1000000000000: << هزار میلیارد\"."
+    },
+    {
+      "word": "نیم",
+      "role": "half",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"نیم\" and \"نصف\": half (\"سه و نیم\")."
+    },
+    {
+      "word": "نصف",
+      "role": "half",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"نیم\" and \"نصف\": half (\"سه و نیم\")."
+    },
+    {
+      "word": "نصفه",
+      "role": "half",
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"نیم\" and \"نصف\": half (\"سه و نیم\")."
+    },
+    {
+      "word": "ربع",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "invariant": true,
+      "source": "Dehkhoda, Loghatnameh (لغت‌نامهٔ دهخدا), entry \"ربع\": a quarter (\"یک ربع\")."
+    },
+    {
+      "word": "یکم",
+      "role": "ordinal",
+      "value": "1",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "یکمین",
+      "role": "ordinal",
+      "value": "1",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دوم",
+      "role": "ordinal",
+      "value": "2",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دومین",
+      "role": "ordinal",
+      "value": "2",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دوم",
+      "role": "denominator",
+      "value": "2",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "سوم",
+      "role": "ordinal",
+      "value": "3",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سومین",
+      "role": "ordinal",
+      "value": "3",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سوم",
+      "role": "denominator",
+      "value": "3",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "چهارم",
+      "role": "ordinal",
+      "value": "4",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهارمین",
+      "role": "ordinal",
+      "value": "4",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهارم",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "پنجم",
+      "role": "ordinal",
+      "value": "5",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پنجمین",
+      "role": "ordinal",
+      "value": "5",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پنجم",
+      "role": "denominator",
+      "value": "5",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "ششم",
+      "role": "ordinal",
+      "value": "6",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "ششمین",
+      "role": "ordinal",
+      "value": "6",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "ششم",
+      "role": "denominator",
+      "value": "6",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "هفتم",
+      "role": "ordinal",
+      "value": "7",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتمین",
+      "role": "ordinal",
+      "value": "7",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتم",
+      "role": "denominator",
+      "value": "7",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "هشتم",
+      "role": "ordinal",
+      "value": "8",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتمین",
+      "role": "ordinal",
+      "value": "8",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتم",
+      "role": "denominator",
+      "value": "8",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "نهم",
+      "role": "ordinal",
+      "value": "9",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نهمین",
+      "role": "ordinal",
+      "value": "9",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نهم",
+      "role": "denominator",
+      "value": "9",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "دهم",
+      "role": "ordinal",
+      "value": "10",
+      "ambiguous": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دهمین",
+      "role": "ordinal",
+      "value": "10",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دهم",
+      "role": "denominator",
+      "value": "10",
+      "invariant": true,
+      "ambiguous": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "یازدهم",
+      "role": "ordinal",
+      "value": "11",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "یازدهمین",
+      "role": "ordinal",
+      "value": "11",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دوازدهم",
+      "role": "ordinal",
+      "value": "12",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دوازدهمین",
+      "role": "ordinal",
+      "value": "12",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سیزدهم",
+      "role": "ordinal",
+      "value": "13",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سیزدهمین",
+      "role": "ordinal",
+      "value": "13",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهاردهم",
+      "role": "ordinal",
+      "value": "14",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهاردهمین",
+      "role": "ordinal",
+      "value": "14",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پانزدهم",
+      "role": "ordinal",
+      "value": "15",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پانزدهمین",
+      "role": "ordinal",
+      "value": "15",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "شانزدهم",
+      "role": "ordinal",
+      "value": "16",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "شانزدهمین",
+      "role": "ordinal",
+      "value": "16",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفدهم",
+      "role": "ordinal",
+      "value": "17",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفدهمین",
+      "role": "ordinal",
+      "value": "17",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هجدهم",
+      "role": "ordinal",
+      "value": "18",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هجدهمین",
+      "role": "ordinal",
+      "value": "18",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نوزدهم",
+      "role": "ordinal",
+      "value": "19",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نوزدهمین",
+      "role": "ordinal",
+      "value": "19",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "بیستم",
+      "role": "ordinal",
+      "value": "20",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "بیستمین",
+      "role": "ordinal",
+      "value": "20",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سی‌ام",
+      "role": "ordinal",
+      "value": "30",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سی‌امین",
+      "role": "ordinal",
+      "value": "30",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهلم",
+      "role": "ordinal",
+      "value": "40",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهلمین",
+      "role": "ordinal",
+      "value": "40",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پنجاهم",
+      "role": "ordinal",
+      "value": "50",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پنجاهمین",
+      "role": "ordinal",
+      "value": "50",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "شصتم",
+      "role": "ordinal",
+      "value": "60",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "شصتمین",
+      "role": "ordinal",
+      "value": "60",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتادم",
+      "role": "ordinal",
+      "value": "70",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتادمین",
+      "role": "ordinal",
+      "value": "70",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتادم",
+      "role": "ordinal",
+      "value": "80",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتادمین",
+      "role": "ordinal",
+      "value": "80",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نودم",
+      "role": "ordinal",
+      "value": "90",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نودمین",
+      "role": "ordinal",
+      "value": "90",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "صدم",
+      "role": "ordinal",
+      "value": "100",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "صدمین",
+      "role": "ordinal",
+      "value": "100",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "صدم",
+      "role": "denominator",
+      "value": "100",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "دویستم",
+      "role": "ordinal",
+      "value": "200",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "دویستمین",
+      "role": "ordinal",
+      "value": "200",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سیصدم",
+      "role": "ordinal",
+      "value": "300",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "سیصدمین",
+      "role": "ordinal",
+      "value": "300",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهارصدم",
+      "role": "ordinal",
+      "value": "400",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "چهارصدمین",
+      "role": "ordinal",
+      "value": "400",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پانصدم",
+      "role": "ordinal",
+      "value": "500",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "پانصدمین",
+      "role": "ordinal",
+      "value": "500",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "ششصدم",
+      "role": "ordinal",
+      "value": "600",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "ششصدمین",
+      "role": "ordinal",
+      "value": "600",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتصدم",
+      "role": "ordinal",
+      "value": "700",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هفتصدمین",
+      "role": "ordinal",
+      "value": "700",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتصدم",
+      "role": "ordinal",
+      "value": "800",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هشتصدمین",
+      "role": "ordinal",
+      "value": "800",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نهصدم",
+      "role": "ordinal",
+      "value": "900",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "نهصدمین",
+      "role": "ordinal",
+      "value": "900",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "اول",
+      "role": "ordinal",
+      "value": "1",
+      "ambiguous": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first. \"اول\" is also the beginning."
+    },
+    {
+      "word": "نخستین",
+      "role": "ordinal",
+      "value": "1",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هزارم",
+      "role": "ordinal_scale",
+      "value": "هزار",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هزارمین",
+      "role": "ordinal_scale",
+      "value": "هزار",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    },
+    {
+      "word": "هزارم",
+      "role": "denominator",
+      "value": "1000",
+      "invariant": true,
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): a fraction is a cardinal and the ordinal in -م of the denominator (\"یک سوم\", \"دو سوم\", \"سه چهارم\"); the ordinal does not change with the numerator."
+    },
+    {
+      "word": "میلیونم",
+      "role": "ordinal_scale",
+      "value": "میلیون",
+      "source": "Anvari and Givi, Dastur-e zaban-e farsi (دستور زبان فارسی), chapter on numerals (عدد): the ordinal is the cardinal with -م (\"دوم\", \"بیستم\", \"سی‌ام\"), or with -مین before the noun (\"دومین\"); \"اول\", \"یکم\" and \"نخستین\" are first."
+    }
+  ]
+}
