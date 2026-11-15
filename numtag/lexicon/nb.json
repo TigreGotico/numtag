@@ -1,0 +1,737 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Norwegian Bokmål uses the long scale: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000: én milliard\", \"1000000000000: én billion\""
+  },
+  "group_mark": {
+   "value": " ",
+   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group '\\xa0'"
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group '\\xa0'"
+  },
+  "space_groups": {
+   "value": true,
+   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group '\\xa0': digits are grouped by a space"
+  },
+  "compound_words": {
+   "value": true,
+   "source": "Norwegian Bokmål writes a number below a million as one word: see the RBNF rules quoted on each entry."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "\"millioner\" alone names no number: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2000000: ←← millioner[ →→]\""
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2000000: ←← millioner[ →→]\": a count above one takes the plural"
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"20: tjue[→→]\": \"tjueen\"; Store norske leksikon, \"den nye tellemåten\": \"Stortinget gjorde enstemmig vedtak 22. november 1950 om å innføre den nye tellemåten i norsk talespråk\", in force from 1 July 1951; 23 went from \"tre og tjue\" to \"tjuetre\". The old order stays in use, so both orders are read."
+  },
+  "tens_order": {
+   "value": "both",
+   "source": "Store norske leksikon, \"den nye tellemåten\": \"Stortinget gjorde enstemmig vedtak 22. november 1950 om å innføre den nye tellemåten i norsk talespråk\", in force from 1 July 1951; 23 went from \"tre og tjue\" to \"tjuetre\". The old order stays in use, so both orders are read."
+  },
+  "joiner_unit_ten": {
+   "value": "required",
+   "source": "Store norske leksikon, \"den nye tellemåten\": \"Stortinget gjorde enstemmig vedtak 22. november 1950 om å innføre den nye tellemåten i norsk talespråk\", in force from 1 July 1951; 23 went from \"tre og tjue\" to \"tjuetre\". The old order stays in use, so both orders are read. The old order joins with \"og\" (\"enogtjue\")."
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"100: … hundre[ og →→]\""
+  },
+  "joiner_between_groups": {
+   "value": "optional",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000: tusen[ →%%and-small→]\""
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"tjueførste\""
+  },
+  "period_ordinals": {
+   "value": true,
+   "source": "An ordinal in digits takes a period, as \"17. mai\" (Språkrådet, \"Tal\" — rule quoted from memory; the page refused automated reading)"
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "og"
+   ],
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"100: … hundre[ og →→]\"; Store norske leksikon, \"den nye tellemåten\": \"Stortinget gjorde enstemmig vedtak 22. november 1950 om å innføre den nye tellemåten i norsk talespråk\", in force from 1 July 1951; 23 went from \"tre og tjue\" to \"tjuetre\". The old order stays in use, so both orders are read."
+  },
+  "decimal_marker": {
+   "value": [
+    "komma"
+   ],
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"x.x: ←← komma →→\""
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"-x: minus →→\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No Norwegian idiom puts \"minus\" before a positive number."
+  },
+  "article_one": {
+   "value": [
+    "en",
+    "ei",
+    "et"
+   ],
+   "source": "The indefinite article of Norwegian Bokmål has the forms en, ei, et; the accented numeral (\"én\") and the neuter numeral (\"ett\") are no article"
+  },
+  "of": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "Norwegian Bokmål has no such word in this lexicon."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group '\\xa0'"
+  },
+  "range_cue": {
+   "value": [
+    "mellom"
+   ],
+   "source": "Bokmålsordboka, \"mellom\": preposition \"between\"; \"mellom 20 og 30\" names a range (not checked against the page)"
+  }
+ },
+ "entries": [
+  {
+   "word": "null",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"0: null\""
+  },
+  {
+   "word": "én",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1: én\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-neuter: \"1: ett\""
+  },
+  {
+   "word": "en",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1: én\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-neuter: \"1: ett\"; the article form \"en\" is also the numeral"
+  },
+  {
+   "word": "ei",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1: én\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-neuter: \"1: ett\"; the article form \"ei\" is also the numeral"
+  },
+  {
+   "word": "ett",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1: én\"; CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-cardinal-neuter: \"1: ett\""
+  },
+  {
+   "word": "to",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "tre",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "fire",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "fem",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "seks",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "sju",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "åtte",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "ni",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "ti",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "elleve",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "tolv",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "tretten",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "fjorten",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "femten",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "seksten",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "sytten",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "atten",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "nitten",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "tjue",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "tretti",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "førti",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "femti",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "seksti",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "sytti",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "åtti",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "nitti",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"2: to\" … \"19: nitten\", \"20: tjue\" … \"90: nitti\""
+  },
+  {
+   "word": "syv",
+   "role": "unit",
+   "value": "7",
+   "source": "Bokmålsordboka: \"syv\" beside \"sju\", \"tyve\" beside \"tjue\", \"tredve\" beside \"tretti\" (not checked against the page)"
+  },
+  {
+   "word": "tyve",
+   "role": "ten",
+   "value": "20",
+   "source": "Bokmålsordboka: \"syv\" beside \"sju\", \"tyve\" beside \"tjue\", \"tredve\" beside \"tretti\" (not checked against the page)"
+  },
+  {
+   "word": "tredve",
+   "role": "ten",
+   "value": "30",
+   "source": "Bokmålsordboka: \"syv\" beside \"sju\", \"tyve\" beside \"tjue\", \"tredve\" beside \"tretti\" (not checked against the page)"
+  },
+  {
+   "word": "hundre",
+   "role": "hundred",
+   "value": "100",
+   "source": "\"hundre\" alone is 100: CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"100: … hundre[ og →→]\""
+  },
+  {
+   "word": "hundre",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"100: … hundre[ og →→]\""
+  },
+  {
+   "word": "tusen",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000: … tusen[ …]\""
+  },
+  {
+   "word": "million",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000: million\""
+  },
+  {
+   "word": "millioner",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000: million\", plural \"millioner\""
+  },
+  {
+   "word": "milliard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000: milliard\""
+  },
+  {
+   "word": "milliarder",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000: milliard\", plural \"milliarder\""
+  },
+  {
+   "word": "billion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000000: billion\""
+  },
+  {
+   "word": "billioner",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000000: billion\", plural \"billioner\""
+  },
+  {
+   "word": "billiard",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000000000: billiard\""
+  },
+  {
+   "word": "billiarder",
+   "role": "scale_noun",
+   "value": 15,
+   "plural": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-numbering: \"1000000000000000: billiard\", plural \"billiarder\""
+  },
+  {
+   "word": "dusin",
+   "role": "collective",
+   "value": "12",
+   "source": "Bokmålsordboka, \"dusin\": tolv stykke (not checked against the page)"
+  },
+  {
+   "word": "halv",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Bokmålsordboka, \"halv\" (not checked against the page)"
+  },
+  {
+   "word": "halvt",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Bokmålsordboka, \"halv\" (not checked against the page)"
+  },
+  {
+   "word": "halve",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Bokmålsordboka, \"halv\" (not checked against the page)"
+  },
+  {
+   "word": "halv",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halv\" / \"en halv\" is 1/2"
+  },
+  {
+   "word": "halvannen",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "Bokmålsordboka: \"ein og ein halv\" (not checked against the page)"
+  },
+  {
+   "word": "kvart",
+   "role": "denominator",
+   "value": "4",
+   "source": "\"kvart\": fjerdedel; \"tre kvart\" (not checked against the page)"
+  },
+  {
+   "word": "kvart",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "\"kvart\": fjerdedel; \"tre kvart\" (not checked against the page)"
+  },
+  {
+   "word": "tredjedel",
+   "role": "denominator",
+   "value": "3",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "tredjedeler",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "fjerdedel",
+   "role": "denominator",
+   "value": "4",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "fjerdedeler",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "femtedel",
+   "role": "denominator",
+   "value": "5",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "femtedeler",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "sjettedel",
+   "role": "denominator",
+   "value": "6",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "sjettedeler",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "tiendedel",
+   "role": "denominator",
+   "value": "10",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "tiendedeler",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "hundredel",
+   "role": "denominator",
+   "value": "100",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "hundredeler",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "tusendel",
+   "role": "denominator",
+   "value": "1000",
+   "source": "A fraction is the ordinal and \"-del\" (\"tredjedel\")"
+  },
+  {
+   "word": "tusendeler",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "plural \"-deler\""
+  },
+  {
+   "word": "første",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tredje",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "fjerde",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "femte",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "sjette",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "sjuende",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "syvende",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "åttende",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "niende",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tiende",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "ellevte",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tolvte",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "trettende",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "fjortende",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "femtende",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "sekstende",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "syttende",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "attende",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "nittende",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tjuende",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tyvende",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "trettiende",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "førtiende",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "femtiende",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "sekstiende",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "syttiende",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "åttiende",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "nittiende",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "andre",
+   "role": "ordinal",
+   "value": "2",
+   "ambiguous": true,
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page); The word also means \"other\" (Bokmålsordboka, Den Danske Ordbog, SAOL), so it is ambiguous outside a number."
+  },
+  {
+   "word": "hundrede",
+   "role": "ordinal_scale",
+   "value": "hundre",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "tusende",
+   "role": "ordinal_scale",
+   "value": "tusen",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  },
+  {
+   "word": "millionte",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: \"første\", \"tredje\", \"sjuende\", \"åttende\", \"tjueende\", \"tjueførste\", \"trettiende\"; Bokmålsordboka gives \"tjuende\" (not checked against the page)"
+  }
+ ]
+}

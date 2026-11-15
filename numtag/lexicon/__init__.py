@@ -24,8 +24,16 @@ class Joiner(str, Enum):
     NEVER = "never"
 
 
-# Roles whose value is a digit string.
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal")
+class TensOrder(str, Enum):
+    """The order of a ten and a unit: "twenty-one", "einundzwanzig", or both
+    ("tjueen" and "enogtjue")."""
+    TEN_UNIT = "ten_unit"
+    UNIT_TEN = "unit_ten"
+    BOTH = "both"
+
+
+# Roles whose value is a digit string; a "fraction" word has a fraction ("3/2").
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction")
 # Roles whose value is a power of ten.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun")
 
@@ -63,6 +71,19 @@ class Lexicon:
     joiner_between_groups: Joiner
     # "every_word": "vigésimo primeiro"; "last_word": "twenty-first".
     ordinal_style: str
+    tens_order: TensOrder
+    # The joiner between a unit and the ten after it ("und" in "einundzwanzig").
+    joiner_unit_ten: Joiner
+    # A count of one before an ordinal scale word makes a fraction ("um milésimo").
+    one_before_ordinal_scale_is_fraction: bool
+    # Number words written together as one word ("zweihundert"), split by the tokenizer.
+    compound_words: bool
+    # Two parts of a compound share a doubled letter ("ettusen" is "ett" and "tusen").
+    compound_shared_letter: bool
+    # A period after digits makes an ordinal ("am 3. Mai").
+    period_ordinals: bool
+    # The marks that may stand between digits and an ordinal suffix ("." in "1.º").
+    ordinal_suffix_marks: frozenset[str]
     readings: dict[str, tuple[Entry, ...]]
     joiners: frozenset[str]
     decimal_markers: frozenset[str]
@@ -81,11 +102,31 @@ class Lexicon:
     abbreviations: frozenset[str]
     # "." in ".5": a mark that makes the digits after it decimals.
     lone_decimal_marks: frozenset[str]
+    # "einhalb" in "zweieinhalb": a word that adds a half to the number before it.
+    and_a_half: frozenset[str]
     range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
+
+    @property
+    def number_words(self) -> frozenset[str]:
+        """Every word that may be part of a number."""
+        return frozenset(self.readings) | self.joiners | self.and_a_half
+
+
+# Settings and word lists that a lexicon may leave out: each is off by default.
+DEFAULT_SETTINGS = {
+    "tens_order": TensOrder.TEN_UNIT.value,
+    "joiner_unit_ten": Joiner.REQUIRED.value,
+    "one_before_ordinal_scale_is_fraction": True,
+    "compound_words": False,
+    "compound_shared_letter": False,
+    "period_ordinals": False,
+    "ordinal_suffix_marks": ["", "."],
+}
+DEFAULT_WORDS = {"and_a_half": []}
 
 
 def _read(lang: str) -> dict:
@@ -111,8 +152,8 @@ def _illion_exponent(rank: int, scale: Scale) -> int:
 @cache
 def load(lang: str, scale: Scale | None = None) -> Lexicon:
     data = _read(lang)
-    settings = {key: item["value"] for key, item in data["settings"].items()}
-    words = {key: item["value"] for key, item in data["words"].items()}
+    settings = {**DEFAULT_SETTINGS, **{key: item["value"] for key, item in data["settings"].items()}}
+    words = {**DEFAULT_WORDS, **{key: item["value"] for key, item in data["words"].items()}}
     scale = Scale(scale or settings["scale"])
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
@@ -159,6 +200,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_after_hundred=Joiner(settings["joiner_after_hundred"]),
         joiner_between_groups=Joiner(settings["joiner_between_groups"]),
         ordinal_style=settings["ordinal_style"],
+        tens_order=TensOrder(settings["tens_order"]),
+        joiner_unit_ten=Joiner(settings["joiner_unit_ten"]),
+        one_before_ordinal_scale_is_fraction=settings["one_before_ordinal_scale_is_fraction"],
+        compound_words=settings["compound_words"],
+        compound_shared_letter=settings["compound_shared_letter"],
+        period_ordinals=settings["period_ordinals"],
+        ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]),
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),
         decimal_markers=frozenset(words["decimal_marker"]),
@@ -172,6 +220,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         half_units=frozenset(words["half_unit"]),
         abbreviations=frozenset(words["abbreviation"]),
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
+        and_a_half=frozenset(w.casefold() for w in words["and_a_half"]),
         range_cues=frozenset(words["range_cue"]),
         ordinal_suffixes=suffixes,
     )

@@ -1,0 +1,1690 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde\", \"1000000000000: eine Billion\", \"1000000000000000: eine Billiarde\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "space_groups": {
+   "value": true,
+   "source": "Duden, Rechtschreibregeln, \"Zahlen und Ziffern\": \"Ganze Zahlen mit 5 oder mehr Ziffern werden von der Endziffer aus durch Zwischenräume in dreistellige Gruppen gegliedert.\""
+  },
+  "compound_words": {
+   "value": true,
+   "source": "German writes a number below a million as one word: see the RBNF rules quoted on each entry."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "\"Millionen\" alone names no number; \"zwei Millionen\" does: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2000000: ←%spellout-cardinal-feminine← Millionen\""
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000: eine Million\", \"2000000: ←%spellout-cardinal-feminine← Millionen\": a count above one takes the plural"
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "German puts the unit before the ten, never after it: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"20: [→%spellout-cardinal-masculine→und]zwanzig\""
+  },
+  "tens_order": {
+   "value": "unit_ten",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"20: [→%spellout-cardinal-masculine→und]zwanzig\": einundzwanzig is 1 und 20"
+  },
+  "joiner_unit_ten": {
+   "value": "required",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"20: [→%spellout-cardinal-masculine→und]zwanzig\""
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"100: ←%spellout-cardinal-masculine←hundert[→→]\": no word joins the rest"
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\", \"1000000: eine Million[ →→]\""
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einundzwanzigste\", \"einhunderterste\": only the last word is ordinal"
+  },
+  "one_before_ordinal_scale_is_fraction": {
+   "value": false,
+   "source": "German fractions end in -tel and -stel (\"Hundertstel\"), so \"einhundertste\" is the ordinal 100: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 100 is \"einhundertste\""
+  },
+  "period_ordinals": {
+   "value": true,
+   "source": "Duden, Rechtschreibregeln, \"Zahlen und Ziffern\": \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\" (\"Sonntag, den 15. April\")"
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "und"
+   ],
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"20: [→%spellout-cardinal-masculine→und]zwanzig\""
+  },
+  "decimal_marker": {
+   "value": [
+    "komma"
+   ],
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"x.x: ←← Komma →→\""
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"-x: minus →→\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No German idiom puts \"minus\" before a positive number."
+  },
+  "article_one": {
+   "value": [
+    "ein",
+    "eine",
+    "einen",
+    "einem",
+    "einer",
+    "eines"
+   ],
+   "source": "The indefinite article has the forms of the numeral 1: CLDR RBNF de %spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\""
+  },
+  "of": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "German has no such word in its numbers."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "range_cue": {
+   "value": [
+    "zwischen"
+   ],
+   "source": "Duden, \"zwischen\": preposition \"between\"; \"zwischen 20 und 30 Grad\" names a range (not checked against the page)"
+  },
+  "and_a_half": {
+   "value": [
+    "einhalb"
+   ],
+   "source": "Wiktionary (de), \"zweieinhalb\": \"zwei Ganze und ein Halbes\", Worttrennung \"zwei·ein·halb\""
+  }
+ },
+ "entries": [
+  {
+   "word": "null",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"0: null\""
+  },
+  {
+   "word": "eins",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1: eins\""
+  },
+  {
+   "word": "ein",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "eine",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "einen",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "einem",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "einer",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "eines",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF de: the numeral 1 before a noun takes the case and gender of the noun (%spellout-cardinal-masculine \"1: ein\", -feminine \"1: eine\", -n \"1: einen\", -r \"1: einer\", -s \"1: eines\", -m \"1: einem\")"
+  },
+  {
+   "word": "zwo",
+   "role": "unit",
+   "value": "2",
+   "source": "Duden, \"zwo\": a form of \"zwei\" used to tell it from \"drei\" in speech"
+  },
+  {
+   "word": "zwei",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "drei",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "vier",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "fünf",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "sechs",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "sieben",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "acht",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "neun",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "zehn",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "elf",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "zwölf",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "dreizehn",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "vierzehn",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "fünfzehn",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "sechzehn",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "siebzehn",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "achtzehn",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "neunzehn",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "zwanzig",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "dreißig",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "vierzig",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "fünfzig",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "sechzig",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "siebzig",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "achtzig",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "neunzig",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2: zwei\" … \"19: neunzehn\", \"20: …zwanzig\", \"30: …dreißig\" … \"90: …neunzig\""
+  },
+  {
+   "word": "hundert",
+   "role": "hundred",
+   "value": "100",
+   "source": "\"hundert\" alone is 100: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"100: ←%spellout-cardinal-masculine←hundert[→→]\"; Duden, \"hundert\": \"Kardinalzahl 100\""
+  },
+  {
+   "word": "hundert",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"100: ←%spellout-cardinal-masculine←hundert[→→]\""
+  },
+  {
+   "word": "tausend",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\""
+  },
+  {
+   "word": "million",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000: eine Million\", \"2000000: … Millionen\""
+  },
+  {
+   "word": "millionen",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000: eine Million\", \"2000000: … Millionen\""
+  },
+  {
+   "word": "milliarde",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde\""
+  },
+  {
+   "word": "milliarden",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde\""
+  },
+  {
+   "word": "billiarde",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000000000: eine Billiarde\""
+  },
+  {
+   "word": "billiarden",
+   "role": "scale_noun",
+   "value": 15,
+   "plural": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000000000: eine Billiarde\""
+  },
+  {
+   "word": "billion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000000: eine Billion\""
+  },
+  {
+   "word": "billionen",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"2000000000000: … Billionen\""
+  },
+  {
+   "word": "trillion",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "Duden, \"Trillion\": \"eine Million Billionen\" (10^18), the long scale"
+  },
+  {
+   "word": "trillionen",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "source": "Duden, \"Trillion\": \"eine Million Billionen\" (10^18), the long scale"
+  },
+  {
+   "word": "trilliarde",
+   "role": "scale_noun",
+   "value": 21,
+   "source": "Long scale: a -iarde is a thousand of the -illion before it, 10^21"
+  },
+  {
+   "word": "trilliarden",
+   "role": "scale_noun",
+   "value": 21,
+   "plural": true,
+   "source": "Long scale: a -iarde is a thousand of the -illion before it, 10^21"
+  },
+  {
+   "word": "dutzend",
+   "role": "collective",
+   "value": "12",
+   "source": "Duden, \"Dutzend\": \"Menge von zwölf Stück\"; \"zwei Dutzend Eier\""
+  },
+  {
+   "word": "dutzende",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "Duden, \"Dutzend\": plural \"Dutzende\" (\"Dutzende von Menschen\")"
+  },
+  {
+   "word": "halb",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halbe",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halben",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halber",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halbes",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halbem",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Duden, \"halb\": \"die Hälfte von etwas umfassend\"; the adjective takes case endings"
+  },
+  {
+   "word": "halb",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "halbe",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "halben",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "halber",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "halbes",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "halbem",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"ein halb\", \"ein halbes Brot\" is 1/2: Duden, \"halb\": \"die Hälfte von etwas umfassend\""
+  },
+  {
+   "word": "anderthalb",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "Wiktionary (de), \"anderthalb\": \"einundeinhalb, ein und ein Halbes\""
+  },
+  {
+   "word": "eineinhalb",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "Wiktionary (de), \"anderthalb\": synonym \"eineinhalb\""
+  },
+  {
+   "word": "drittel",
+   "role": "denominator",
+   "value": "3",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "drittel",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "viertel",
+   "role": "denominator",
+   "value": "4",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "viertel",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "fünftel",
+   "role": "denominator",
+   "value": "5",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "fünftel",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "sechstel",
+   "role": "denominator",
+   "value": "6",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "sechstel",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "siebtel",
+   "role": "denominator",
+   "value": "7",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "siebtel",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "achtel",
+   "role": "denominator",
+   "value": "8",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "achtel",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "neuntel",
+   "role": "denominator",
+   "value": "9",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "neuntel",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zehntel",
+   "role": "denominator",
+   "value": "10",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zehntel",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "elftel",
+   "role": "denominator",
+   "value": "11",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "elftel",
+   "role": "denominator",
+   "value": "11",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zwölftel",
+   "role": "denominator",
+   "value": "12",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zwölftel",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zwanzigstel",
+   "role": "denominator",
+   "value": "20",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "zwanzigstel",
+   "role": "denominator",
+   "value": "20",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "hundertstel",
+   "role": "denominator",
+   "value": "100",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "hundertstel",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "tausendstel",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "tausendstel",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "millionstel",
+   "role": "denominator",
+   "value": "1000000",
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "millionstel",
+   "role": "denominator",
+   "value": "1000000",
+   "plural": true,
+   "source": "Duden, \"-tel\": suffix of a fraction noun (\"Drittel\", \"Viertel\"), \"-stel\" from twenty on (\"Zwanzigstel\", \"Hundertstel\"); one form for singular and plural (\"zwei Drittel\")"
+  },
+  {
+   "word": "erste",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "ersten",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "erster",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "erstes",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "erstem",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zweite",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zweiten",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zweiter",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zweites",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zweitem",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dritte",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dritten",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dritter",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "drittes",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "drittem",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierte",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierten",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierter",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "viertes",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "viertem",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfte",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünften",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfter",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünftes",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünftem",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechste",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechsten",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechster",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechstes",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechstem",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebte",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebten",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebter",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebtes",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebtem",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebente",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebenten",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebenter",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebentes",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebentem",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achte",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achten",
+   "role": "ordinal",
+   "value": "8",
+   "ambiguous": true,
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achter",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtes",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtem",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunte",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunten",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunter",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neuntes",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neuntem",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zehnte",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zehnten",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zehnter",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zehntes",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zehntem",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "elfte",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "elften",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "elfter",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "elftes",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "elftem",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwölfte",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwölften",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwölfter",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwölftes",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwölftem",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreizehnte",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreizehnten",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreizehnter",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreizehntes",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreizehntem",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzehnte",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzehnten",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzehnter",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzehntes",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzehntem",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzehnte",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzehnten",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzehnter",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzehntes",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzehntem",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzehnte",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzehnten",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzehnter",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzehntes",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzehntem",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzehnte",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzehnten",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzehnter",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzehntes",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzehntem",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzehnte",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzehnten",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzehnter",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzehntes",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzehntem",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzehnte",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzehnten",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzehnter",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzehntes",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzehntem",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwanzigste",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwanzigsten",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwanzigster",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwanzigstes",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "zwanzigstem",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreißigste",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreißigsten",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreißigster",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreißigstes",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "dreißigstem",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzigste",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzigsten",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzigster",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzigstes",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "vierzigstem",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzigste",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzigsten",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzigster",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzigstes",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "fünfzigstem",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzigste",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzigsten",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzigster",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzigstes",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "sechzigstem",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzigste",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzigsten",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzigster",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzigstes",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "siebzigstem",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzigste",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzigsten",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzigster",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzigstes",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "achtzigstem",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzigste",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzigsten",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzigster",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzigstes",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "neunzigstem",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"erste\", \"dritte\", \"siebte\", \"zwanzigste\", \"einundzwanzigste\"; the ordinal declines as an adjective (-e, -en, -er, -es, -em): %spellout-ordinal-n, -r, -s, -m"
+  },
+  {
+   "word": "hundertste",
+   "role": "ordinal_scale",
+   "value": "hundert",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "hundertsten",
+   "role": "ordinal_scale",
+   "value": "hundert",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "hundertster",
+   "role": "ordinal_scale",
+   "value": "hundert",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "hundertstes",
+   "role": "ordinal_scale",
+   "value": "hundert",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "hundertstem",
+   "role": "ordinal_scale",
+   "value": "hundert",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "tausendste",
+   "role": "ordinal_scale",
+   "value": "tausend",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "tausendsten",
+   "role": "ordinal_scale",
+   "value": "tausend",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "tausendster",
+   "role": "ordinal_scale",
+   "value": "tausend",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "tausendstes",
+   "role": "ordinal_scale",
+   "value": "tausend",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "tausendstem",
+   "role": "ordinal_scale",
+   "value": "tausend",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "millionste",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "millionsten",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "millionster",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "millionstes",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "millionstem",
+   "role": "ordinal_scale",
+   "value": "million",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "milliardste",
+   "role": "ordinal_scale",
+   "value": "milliarde",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "milliardsten",
+   "role": "ordinal_scale",
+   "value": "milliarde",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "milliardster",
+   "role": "ordinal_scale",
+   "value": "milliarde",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "milliardstes",
+   "role": "ordinal_scale",
+   "value": "milliarde",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  },
+  {
+   "word": "milliardstem",
+   "role": "ordinal_scale",
+   "value": "milliarde",
+   "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: \"einhundertste\", \"eintausendste\", \"eine Millionste\""
+  }
+ ]
+}

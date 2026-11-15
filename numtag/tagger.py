@@ -12,19 +12,25 @@ AMBIGUOUS_CONFIDENCE = 0.4
 
 def lexicon_name(lang: str) -> str:
     """The lexicon file for a language tag: "pt-br" reads pt-BR, every other
-    "pt" tag pt-PT, and every "en" tag en."""
+    "pt" tag pt-PT, "no" (Norwegian) reads Bokmål, nb, and every other tag
+    its primary language ("de-AT" reads de)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
     if primary == "pt":
         return "pt-BR" if region == "BR" else "pt-PT"
-    return primary
+    return "nb" if primary == "no" else primary
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
+    words = lexicon.number_words
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners)
+                      lexicon.abbreviations, words,
+                      compound_words=words if lexicon.compound_words else frozenset(),
+                      compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
+                      suffix_marks=lexicon.ordinal_suffix_marks,
+                      period_ordinals=lexicon.period_ordinals)
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -50,7 +56,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = grammar.numbers(start)
+        # A number starts and ends with a whole word, not inside a compound.
+        parses = [] if run[i].glued else [
+            p for p in grammar.numbers(start) if p.end == len(run) or not run[p.end].glued]
         if not parses:
             i += 1
             continue

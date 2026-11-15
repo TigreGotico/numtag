@@ -8,11 +8,14 @@ from numtag.lexicon import load
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
+#: each language's word for a million
+MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
+           "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million"}
 
 
 class TestLexiconFiles(unittest.TestCase):
-    def test_the_three_languages_are_there(self):
-        self.assertEqual([p.stem for p in LEXICONS], ["en", "pt-BR", "pt-PT"])
+    def test_every_language_is_there(self):
+        self.assertEqual([p.stem for p in LEXICONS], sorted(MILLION))
 
     def test_package_data_ships_every_lexicon(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
@@ -37,7 +40,7 @@ class TestLexiconFiles(unittest.TestCase):
                 with self.subTest(file=path.name, scale=scale):
                     lexicon = load(path.stem, scale)
                     self.assertEqual(lexicon.scale.value, scale)
-                    self.assertIn("milhão" if path.stem.startswith("pt") else "million", lexicon.readings)
+                    self.assertIn(MILLION[path.stem], lexicon.readings)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
         self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)

@@ -1,0 +1,779 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "Dutch uses the long scale: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000000: ←← miljard\", \"1000000000000: ←← biljoen\", \"1000000000000000: ←← biljard\""
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR number symbols for Dutch (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR number symbols for Dutch (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR number symbols for Dutch (Babel 2.18.0): decimal ',', group '.'; a space between digit strings separates two numbers."
+  },
+  "compound_words": {
+   "value": true,
+   "source": "Dutch writes a number below a million as one word: see the RBNF rules quoted on each entry."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "\"miljoenen\" alone names no number; a count takes the singular: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000: ←← miljoen[ →→]\" (\"twee miljoen\")"
+  },
+  "scale_noun_agrees": {
+   "value": false,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000: ←← miljoen[ →→]\": \"twee miljoen\" takes the singular"
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "Dutch puts the unit before the ten: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"20: [→%%number-en→]twintig\""
+  },
+  "tens_order": {
+   "value": "unit_ten",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"20: [→%%number-en→]twintig\"; %%number-en: \"1: ←←en\", \"2: ←←ën\""
+  },
+  "joiner_unit_ten": {
+   "value": "required",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: %%number-en: \"1: ←←en\", \"2: ←←ën\", \"3: ←←ën\""
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"100: honderd[→→]\""
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000: duizend[→→]\", \"1000000: ←← miljoen[ →→]\""
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eenentwintigste\", \"honderdeerste\""
+  },
+  "one_before_ordinal_scale_is_fraction": {
+   "value": true,
+   "source": "\"een honderdste\" is 1/100: Dutch writes a fraction with the ordinal word (Wiktionary, \"honderdste\")"
+  },
+  "ordinal_suffix_marks": {
+   "value": [
+    ""
+   ],
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: %digits-ordinal \"0: =#,##0=e\" (\"1e\")"
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "en",
+    "ën"
+   ],
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: %%number-en: \"1: ←←en\", \"2: ←←ën\""
+  },
+  "decimal_marker": {
+   "value": [
+    "komma"
+   ],
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"x.x: ←← komma →→\""
+  },
+  "minus": {
+   "value": [
+    "min",
+    "minus"
+   ],
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"-x: min →→\"; \"minus\" is the same sign word (Van Dale, \"minus\")"
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "\"min of meer\" puts no number after \"min\"."
+  },
+  "article_one": {
+   "value": [
+    "een"
+   ],
+   "source": "\"een\" is the indefinite article and the numeral 1; \"één\" with accents is only the numeral (Taalunie, Woordenlijst, \"één\")"
+  },
+  "of": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "Dutch has no such word in its numbers."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR number symbols for Dutch (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "range_cue": {
+   "value": [
+    "tussen"
+   ],
+   "source": "Van Dale, \"tussen\": preposition \"between\"; \"tussen 20 en 30\" names a range (not checked against the page)"
+  }
+ },
+ "entries": [
+  {
+   "word": "nul",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"0: nul\""
+  },
+  {
+   "word": "een",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1: een\""
+  },
+  {
+   "word": "één",
+   "role": "unit",
+   "value": "1",
+   "source": "Taalunie, Woordenlijst: \"één\" is the numeral 1, written with accents to tell it from the article"
+  },
+  {
+   "word": "twee",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "drie",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "vier",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "vijf",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zes",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zeven",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "acht",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "negen",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "tien",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "elf",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "twaalf",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "dertien",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "veertien",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "vijftien",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zestien",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zeventien",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "achttien",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "negentien",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "twintig",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "dertig",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "veertig",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "vijftig",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zestig",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "zeventig",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "tachtig",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "negentig",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"2: twee\" … \"19: negentien\", \"20: …twintig\" … \"90: …negentig\""
+  },
+  {
+   "word": "honderd",
+   "role": "hundred",
+   "value": "100",
+   "source": "\"honderd\" alone is 100: CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"100: honderd[→→]\""
+  },
+  {
+   "word": "honderd",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"200: ←←honderd[→→]\""
+  },
+  {
+   "word": "duizend",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000: duizend[→→]\", \"2000: ←←duizend[→→]\""
+  },
+  {
+   "word": "miljoen",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000: ←← miljoen[ →→]\""
+  },
+  {
+   "word": "miljoenen",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "Van Dale, \"miljoen\": plural \"miljoenen\""
+  },
+  {
+   "word": "miljard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000000: ←← miljard[ →→]\""
+  },
+  {
+   "word": "miljarden",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "Van Dale, \"miljard\": plural \"miljarden\""
+  },
+  {
+   "word": "biljoen",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000000000: ←← biljoen[ →→]\""
+  },
+  {
+   "word": "biljoenen",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "plural of \"biljoen\""
+  },
+  {
+   "word": "biljard",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-numbering: \"1000000000000000: ←← biljard[ →→]\""
+  },
+  {
+   "word": "triljoen",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "Long scale: \"triljoen\" is 10^18, a million \"biljoen\""
+  },
+  {
+   "word": "dozijn",
+   "role": "collective",
+   "value": "12",
+   "source": "Van Dale, \"dozijn\": \"twaalf stuks\""
+  },
+  {
+   "word": "dozijnen",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "Van Dale, \"dozijn\": plural \"dozijnen\""
+  },
+  {
+   "word": "half",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Van Dale, \"half\": \"de helft van een geheel\""
+  },
+  {
+   "word": "halve",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Van Dale, \"half\": \"de helft van een geheel\""
+  },
+  {
+   "word": "half",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"een half\", \"een halve liter\" is 1/2 (Van Dale, \"half\")"
+  },
+  {
+   "word": "halve",
+   "role": "denominator",
+   "value": "2",
+   "source": "\"een half\", \"een halve liter\" is 1/2 (Van Dale, \"half\")"
+  },
+  {
+   "word": "anderhalf",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "Van Dale, \"anderhalf\": \"een en een half\""
+  },
+  {
+   "word": "kwart",
+   "role": "denominator",
+   "value": "4",
+   "source": "Van Dale, \"kwart\": \"vierde deel\""
+  },
+  {
+   "word": "kwart",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Van Dale, \"kwart\": \"drie kwart\""
+  },
+  {
+   "word": "derde",
+   "role": "denominator",
+   "value": "3",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "derde",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "vierde",
+   "role": "denominator",
+   "value": "4",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "vierde",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "vijfde",
+   "role": "denominator",
+   "value": "5",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "vijfde",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "zesde",
+   "role": "denominator",
+   "value": "6",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "zesde",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "zevende",
+   "role": "denominator",
+   "value": "7",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "zevende",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "achtste",
+   "role": "denominator",
+   "value": "8",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "achtste",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "negende",
+   "role": "denominator",
+   "value": "9",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "negende",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "tiende",
+   "role": "denominator",
+   "value": "10",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "tiende",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "twintigste",
+   "role": "denominator",
+   "value": "20",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "twintigste",
+   "role": "denominator",
+   "value": "20",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "honderdste",
+   "role": "denominator",
+   "value": "100",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "honderdste",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "duizendste",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "duizendste",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "Dutch names a fraction with the ordinal word and no plural ending: \"een derde\", \"twee derde\" (Taalunie, Woordenlijst, \"derde\")"
+  },
+  {
+   "word": "eerste",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "tweede",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "derde",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "vierde",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "vijfde",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zesde",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zevende",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "achtste",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "negende",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "tiende",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "elfde",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "twaalfde",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "dertiende",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "veertiende",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "vijftiende",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zestiende",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zeventiende",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "achttiende",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "negentiende",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "twintigste",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "dertigste",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "veertigste",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "vijftigste",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zestigste",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "zeventigste",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "tachtigste",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "negentigste",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"eerste\", \"tweede\", \"derde\", \"achtste\", \"twintigste\", \"eenentwintigste\""
+  },
+  {
+   "word": "honderdste",
+   "role": "ordinal_scale",
+   "value": "honderd",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"honderdste\", \"duizendste\", \"eenmiljoenste\""
+  },
+  {
+   "word": "duizendste",
+   "role": "ordinal_scale",
+   "value": "duizend",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"honderdste\", \"duizendste\", \"eenmiljoenste\""
+  },
+  {
+   "word": "miljoenste",
+   "role": "ordinal_scale",
+   "value": "miljoen",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"honderdste\", \"duizendste\", \"eenmiljoenste\""
+  },
+  {
+   "word": "miljardste",
+   "role": "ordinal_scale",
+   "value": "miljard",
+   "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: \"honderdste\", \"duizendste\", \"eenmiljoenste\""
+  },
+  {
+   "word": "e",
+   "role": "ordinal_suffix",
+   "source": "Taalunie, Woordenlijst, \"rangtelwoorden in cijfers\": \"1e\", \"1ste\", \"2de\"; CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: %digits-ordinal \"0: =#,##0=e\""
+  },
+  {
+   "word": "ste",
+   "role": "ordinal_suffix",
+   "source": "Taalunie, Woordenlijst, \"rangtelwoorden in cijfers\": \"1e\", \"1ste\", \"2de\"; CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: %digits-ordinal \"0: =#,##0=e\""
+  },
+  {
+   "word": "de",
+   "role": "ordinal_suffix",
+   "source": "Taalunie, Woordenlijst, \"rangtelwoorden in cijfers\": \"1e\", \"1ste\", \"2de\"; CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: %digits-ordinal \"0: =#,##0=e\""
+  }
+ ]
+}
