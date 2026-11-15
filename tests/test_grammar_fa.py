@@ -2,7 +2,7 @@
 comment beside it; sources are in numtag/lexicon/fa.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -42,6 +42,12 @@ class TestPersian(unittest.TestCase):
     def test_arabic_letters_read_as_persian(self):
         # Arabic yeh in يک reads as Persian ی; یک before a noun is weak
         self.assertEqual(fa("يک کتاب"), [("يک", "1", C)])
+
+    def test_nine_alone_is_also_no(self):
+        # 9 alone at low confidence; 9 x 1000
+        self.assertEqual(sure("نه", "fa"), [("نه", "9", 0.4)])
+        self.assertEqual(sure("نه هزار", "fa"), [("نه هزار", "9000", 1.0)])
+        self.assertEqual(sure("هشت", "fa"), [("هشت", "8", 1.0)])
 
 
 if __name__ == "__main__":

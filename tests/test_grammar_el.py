@@ -3,7 +3,7 @@ comment beside it; sources are in numtag/lexicon/el.json."""
 import unicodedata
 import unittest
 
-from helpers import read
+from helpers import read, sure
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -79,6 +79,20 @@ class TestGreek(unittest.TestCase):
         # NFD text: "έ" as "ε" and a combining acute
         text = unicodedata.normalize("NFD", "ο έκτος όροφος")
         self.assertEqual(el(text), [(unicodedata.normalize("NFD", "έκτος"), "6", O)])
+    def test_the_genitive_scale_nouns_shift_the_stress(self):
+        # 2 x 10^6; 3 x 10^9; 1 x 10^6; Wiktionary also lists the unshifted form
+        self.assertEqual(el("ύψους δύο εκατομμυρίων ευρώ"), [("δύο εκατομμυρίων", "2000000", C)])
+        self.assertEqual(el("τριών δισεκατομμυρίων"), [("τριών δισεκατομμυρίων", "3000000000", C)])
+        self.assertEqual(el("ενός εκατομμυρίου"), [("ενός εκατομμυρίου", "1000000", C)])
+        self.assertEqual(el("δύο εκατομμύριων"), [("δύο εκατομμύριων", "2000000", C)])
+
+    def test_weekdays_and_except_are_low_confidence(self):
+        # Τρίτη is Tuesday or the 3rd; ΕΚΤΟΣ is "except" or the 6th; τρίτος is only the 3rd
+        self.assertEqual(sure("την Τρίτη το πρωί", "el"), [("Τρίτη", "3", 0.4)])
+        self.assertEqual(sure("ΕΚΤΟΣ ΑΠΟ ΑΥΤΟ", "el"), [("ΕΚΤΟΣ", "6", 0.4)])
+        self.assertEqual(sure("ο τρίτος όροφος", "el"), [("τρίτος", "3", 1.0)])
+        self.assertEqual(sure("η έκτη θέση", "el"), [("έκτη", "6", 1.0)])
+
 
 if __name__ == "__main__":
     unittest.main()

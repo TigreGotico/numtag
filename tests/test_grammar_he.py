@@ -2,7 +2,7 @@
 comment beside it; sources are in numtag/lexicon/he.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -58,10 +58,22 @@ class TestHebrew(unittest.TestCase):
         self.assertEqual(he("שְׁלוֹשָׁה"), [("שְׁלוֹשָׁה", "3", C)])
         self.assertEqual(he("‏-5"), [("-5", "-5", C)])
 
-    def test_the_long_scale(self):
-        # ביליון = 10^12 in the long scale
+    def test_billion_has_one_value(self):
+        # CLDR "1000000000000: ביליון": 10^12 on either scale, so no scale is reported
         mention, = tag_numbers("ביליון", "he")
-        self.assertEqual((mention.value, mention.number_scale.value), ("1000000000000", "long"))
+        self.assertEqual((mention.value, mention.number_scale), ("1000000000000", None))
+
+    def test_the_trillion_is_a_thousand_milliards(self):
+        # he.wikipedia: 10^12; 3 x 10^12
+        self.assertEqual(he("שלושה טריליון שקלים"), [("שלושה טריליון", "3000000000000", C)])
+        self.assertEqual(he("טריליון"), [("טריליון", "1000000000000", C)])
+        self.assertEqual(he("מיליארד"), [("מיליארד", "1000000000", C)])
+
+    def test_the_century_and_monday_are_low_confidence(self):
+        self.assertEqual(sure("המאה העשרים", "he"), [("המאה", "100", 0.4), ("העשרים", "20", 1.0)])
+        self.assertEqual(sure("יום שני", "he"), [("שני", "2", 0.4)])
+        self.assertEqual(sure("מאה שקלים", "he"), [("מאה", "100", 1.0)])
+        self.assertEqual(sure("שני מיליון", "he"), [("שני מיליון", "2000000", 1.0)])
 
 
 if __name__ == "__main__":

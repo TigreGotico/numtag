@@ -2,7 +2,7 @@
 comment beside it; sources are in numtag/lexicon/kab.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -34,6 +34,12 @@ class TestKabyle(unittest.TestCase):
 
     def test_digits_group_with_a_space(self):
         self.assertEqual(kab("1 000 000"), [("1 000 000", "1000000", C)])
+
+    def test_tesa_alone_is_also_the_verb_to_have(self):
+        # 9 alone at low confidence; 9 + 20 = 29
+        self.assertEqual(sure("tesɛa", "kab"), [("tesɛa", "9", 0.4)])
+        self.assertEqual(sure("tesɛa u ɛecrin", "kab"), [("tesɛa u ɛecrin", "29", 1.0)])
+        self.assertEqual(sure("tmanya", "kab"), [("tmanya", "8", 1.0)])
 
 
 if __name__ == "__main__":

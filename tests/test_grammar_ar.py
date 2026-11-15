@@ -2,7 +2,7 @@
 comment beside it; sources are in numtag/lexicon/ar.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -84,6 +84,13 @@ class TestArabic(unittest.TestCase):
         # "بالمائة" is "per hundred": the hundred is no part of 2.7
         self.assertEqual(ar("اثنان فاصل سبعة بالمائة"),
                          [("اثنان فاصل سبعة", "2.7", D), ("بالمائة", "100", C)])
+
+    def test_the_spoken_hundred_takes_a_count(self):
+        # 5 x 100; 3 x 100; alone it is also water
+        self.assertEqual(ar("خمس مية"), [("خمس مية", "500", C)])
+        self.assertEqual(ar("ثلاث مية ريال"), [("ثلاث مية", "300", C)])
+        self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
+        self.assertEqual(sure("مائة ريال", "ar"), [("مائة", "100", 1.0)])
 
 
 if __name__ == "__main__":

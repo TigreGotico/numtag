@@ -140,6 +140,10 @@ class Grammar:
             return self._takes_multiplier(i)
         return any(self._agrees(noun, plural, count) for *_, noun, _, plural in scale_words)
 
+    def _homograph(self, i: int) -> bool:
+        readings = () if self.tokens[i].is_digits else self.lex.readings.get(self.tokens[i].norm, ())
+        return bool(readings) and all(e.ambiguous for e in readings)
+
     def starts_number(self, i: int) -> bool:
         if i >= len(self.tokens):
             return False
@@ -738,7 +742,9 @@ class Grammar:
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
                               self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True)]
         for run in self.cardinals(i):
-            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run)))
+            # a lone homograph ("نه": nine or "no") is a low-confidence number
+            lone = run[-1].end == i + 1 and self._homograph(i)
+            found.append(Parse(run[-1].end, _sum(run), decimal=any(g.decimal for g in run), ambiguous=lone))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
         return found
