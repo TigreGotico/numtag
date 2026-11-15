@@ -22,10 +22,19 @@ class Token:
     gap: str = ""
     # Ordinal suffix glued to a digit string ("º" in "1.º", "st" in "21st").
     suffix: str = ""
+    # The form the lexicon knows the word by, when it is not the case-folded
+    # text: a folded letter ("şase"), or a number word of several words
+    # ("quatre-vingts" for "quatre vingts").
+    key: str = ""
+    # A piece of a word that the tokenizer split ("venti" and "tré" in
+    # "ventitré"); ``joined`` when the piece goes on the word of the token
+    # before it.
+    part: bool = False
+    joined: bool = False
 
     @property
     def norm(self) -> str:
-        return self.text.casefold()
+        return self.key or self.text.casefold()
 
     @property
     def digits(self) -> str:
@@ -34,18 +43,23 @@ class Token:
 
     def links_to_previous(self) -> bool:
         """True when this token can continue a number that the previous
-        token is part of: only a space or a hyphen lies between them."""
-        return self.gap == "-" or (self.gap != "" and self.gap.isspace())
+        token is part of: only a space or a hyphen lies between them, or the
+        two are pieces of one word."""
+        return self.joined or self.gap == "-" or (self.gap != "" and self.gap.isspace())
 
 
 def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              lone_decimal_marks: frozenset[str] = frozenset(),
              abbreviations: frozenset[str] = frozenset(),
-             number_words: frozenset[str] | None = None) -> list[Token]:
+             number_words: frozenset[str] | None = None, *,
+             fold: dict[str, str] | None = None,
+             phrases: frozenset[tuple[str, ...]] = frozenset(),
+             split: frozenset[str] = frozenset()) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
-    lists it, after an optional dot ("1.º"). A digit string glued to the end
+    lists it, after an optional dot ("1.º"), or after a hyphen when the
+    language lists it with one ("2-lea"). A digit string glued to the end
     of a word ("mp3") is part of a name and is dropped, and so is a digit
     string with a digit outside 0-9. A digit string keeps a mark before its
     first digit only when the language lists the mark as a lone decimal mark
@@ -54,6 +68,11 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     breaks the link between the words around it. Given ``number_words``, a
     hyphenated compound with a word outside them is one noun
     ("segunda-feira"): its words are dropped in the same way.
+
+    ``fold`` maps letters to the letters the lexicon uses ("ş" to "ș").
+    A word outside ``number_words`` that is a run of the words in ``split``
+    is split into them ("ventitré" is "venti" and "tré"). The words of
+    each phrase in ``phrases`` become one token ("quatre-vingts").
     """
     tokens: list[Token] = []
     previous_end = 0
@@ -79,13 +98,71 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
             between = text[match.end():following.start()]
-            if (following.lastgroup == "word" and between in ("", ".")
-                    and following.group().casefold() in ordinal_suffixes):
-                end, suffix = following.end(), following.group()
+            # a suffix listed with a hyphen ("-lea") takes one ("2-lea")
+            word = following.group() if between in ("", ".") else between + following.group()
+            if following.lastgroup == "word" and between in ("", ".", "-") and word.casefold() in ordinal_suffixes:
+                end, suffix = following.end(), word
                 skip_until = following.end()
-        tokens.append(Token(text[start:end], start, end, is_digits, gap, suffix))
+        token = Token(text[start:end], start, end, is_digits, gap, suffix)
+        if fold and not is_digits:
+            token = replace(token, key=token.text.casefold().translate(str.maketrans(fold)))
+        tokens.append(token)
         previous_end = end
-    return tokens if number_words is None else _drop_compound_nouns(text, tokens, number_words)
+    if number_words is None:
+        return tokens
+    if split:
+        tokens = [piece for token in tokens for piece in _split(token, number_words, split)]
+    if phrases:
+        tokens = _merge_phrases(text, tokens, phrases)
+    return _drop_compound_nouns(text, tokens, number_words)
+
+
+def _split(token: Token, number_words: frozenset[str], parts: frozenset[str]) -> list[Token]:
+    """The pieces of a word that is a run of ``parts``, with the fewest
+    pieces; the word itself when it is a number word or no such run."""
+    word = token.norm
+    if token.is_digits or word in number_words or len(word) != len(token.text):
+        return [token]
+    # best[k]: the fewest pieces that spell word[:k], as the piece ends
+    best: dict[int, tuple[int, ...]] = {0: ()}
+    for start in range(len(word)):
+        if start not in best:
+            continue
+        for end in range(start + 1, len(word) + 1):
+            if word[start:end] in parts and (
+                    end not in best or len(best[start]) + 1 < len(best[end])):
+                best[end] = best[start] + (end,)
+    ends = best.get(len(word), ())
+    if len(ends) < 2:
+        return [token]
+    pieces, start = [], 0
+    for n, end in enumerate(ends):
+        pieces.append(Token(token.text[start:end], token.start + start, token.start + end, False,
+                            token.gap if n == 0 else "", key=word[start:end], part=True, joined=n > 0))
+        start = end
+    return pieces
+
+
+def _merge_phrases(text: str, tokens: list[Token], phrases: frozenset[tuple[str, ...]]) -> list[Token]:
+    """The tokens with the words of each phrase made one token, longest
+    phrase first, when only spaces or hyphens lie between the words."""
+    longest = max(len(p) for p in phrases)
+    merged: list[Token] = []
+    i = 0
+    while i < len(tokens):
+        for size in range(min(longest, len(tokens) - i), 1, -1):
+            words = tokens[i:i + size]
+            if (tuple(t.norm for t in words) in phrases and not any(t.is_digits or t.part for t in words)
+                    and all(t.links_to_previous() for t in words[1:])):
+                first, last = words[0], words[-1]
+                merged.append(replace(first, text=text[first.start:last.end], end=last.end,
+                                      key="-".join(t.norm for t in words)))
+                i += size
+                break
+        else:
+            merged.append(tokens[i])
+            i += 1
+    return merged
 
 
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:

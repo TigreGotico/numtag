@@ -1,0 +1,60 @@
+"""Basque grammar rules. Each expected value is worked out by hand in the
+comment beside it; sources are in numtag/lexicon/eu.json."""
+import unittest
+
+from helpers import read
+
+C, O, F = "cardinal", "ordinal", "fraction"
+
+
+def eu(text: str) -> list[tuple[str, str, str]]:
+    return read(text, "eu")
+
+
+class TestVigesimalTens(unittest.TestCase):
+    def test_a_ten_with_ta_takes_the_teens(self):
+        # 20 + 10 = 30; 3 x 20 + 10 = 70; 4 x 20 + 19 = 99
+        self.assertEqual(eu("hogeita hamar"), [("hogeita hamar", "30", C)])
+        self.assertEqual(eu("hirurogeita hamar"), [("hirurogeita hamar", "70", C)])
+        self.assertEqual(eu("laurogeita hemeretzi"), [("laurogeita hemeretzi", "99", C)])
+
+    def test_a_ten_with_ta_is_no_number_alone(self):
+        self.assertEqual(eu("hogeita"), [])
+
+
+class TestOneAfterNoun(unittest.TestCase):
+    def test_bat_after_the_noun_is_the_count_one(self):
+        self.assertEqual(eu("milioi bat"), [("milioi bat", "1000000", C)])
+        self.assertEqual(eu("dozena bat"), [("dozena bat", "12", C)])
+        self.assertEqual(eu("heren bat"), [("heren bat", "1/3", F)])
+        self.assertEqual(eu("erdi bat"), [("erdi bat", "0.5", F)])
+
+
+class TestOrdinalEnding(unittest.TestCase):
+    def test_garren_makes_the_cardinal_before_it_an_ordinal(self):
+        # 20 + 1 = 21
+        self.assertEqual(eu("bigarren"), [("bigarren", "2", O)])
+        self.assertEqual(eu("hogeita batgarren"), [("hogeita batgarren", "21", O)])
+        self.assertEqual(eu("ehungarren"), [("ehungarren", "100", O)])
+
+    def test_bost_drops_its_last_letter_before_garren(self):
+        self.assertEqual(eu("bosgarren"), [("bosgarren", "5", O)])
+        self.assertEqual(eu("hamabosgarren"), [("hamabosgarren", "15", O)])
+
+
+class TestGroups(unittest.TestCase):
+    def test_eta_goes_before_the_last_part(self):
+        # 1000 + 200 = 1200; 1000 + 200 + 1 = 1201
+        self.assertEqual(eu("mila eta berrehun"), [("mila eta berrehun", "1200", C)])
+        self.assertEqual(eu("mila berrehun eta bat"), [("mila berrehun eta bat", "1201", C)])
+
+    def test_a_scale_noun_keeps_one_form_after_every_count(self):
+        # 5 x 1000000 = 5000000
+        self.assertEqual(eu("bost milioi"), [("bost milioi", "5000000", C)])
+
+    def test_a_space_groups_digits(self):
+        self.assertEqual(eu("1 000 000"), [("1 000 000", "1000000", C)])
+
+
+if __name__ == "__main__":
+    unittest.main()

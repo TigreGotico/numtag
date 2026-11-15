@@ -24,10 +24,16 @@ class Joiner(str, Enum):
     NEVER = "never"
 
 
-# Roles whose value is a digit string.
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal")
-# Roles whose value is a power of ten.
-SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun")
+# Roles whose value is a digit string. A "teen_suffix" adds its value to the
+# unit before it ("dua belas" is 12).
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "teen_suffix")
+# Roles whose value is a power of ten. A "ten_multiplier" multiplies the unit
+# before it ("dua puluh" is 20).
+SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
+# Roles with no value: a part of a word that makes the cardinal before it an
+# ordinal ("ventitre|esimo", "bi|garren"), and a word or part that makes the
+# cardinal after it an ordinal ("ke|dua", "ke-2").
+MARK_ROLES = ("ordinal_ending", "ordinal_prefix")
 
 
 @dataclass(frozen=True)
@@ -46,6 +52,14 @@ class Entry:
     bound: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
+    # A ten that takes a number from ten to nineteen after it, as well as a
+    # unit: "soixante-dix" is 70, "hogeita hamar" is 30.
+    teens: bool = False
+    # The word is read only as a piece of a longer word that the tokenizer
+    # splits ("vent" in "ventuno", "se" in "seratus").
+    part: bool = False
+    # A denominator with one form for one and for more ("deux tiers").
+    invariable: bool = False
 
 
 @dataclass(frozen=True)
@@ -85,6 +99,18 @@ class Lexicon:
     lone_decimal_marks: frozenset[str]
     range_cues: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
+    # Where the joiner may go before a half ("dua setengah", "two and a half").
+    joiner_before_half: Joiner = Joiner.REQUIRED
+    # Split a word that is no number word into number words ("ventitré").
+    compound_words: bool = False
+    # Letters that read as other letters ("ş" as "ș").
+    fold: dict[str, str] = field(default_factory=dict)
+    # Number words of several words, as tuples of their words ("quatre-vingts").
+    phrases: frozenset[tuple[str, ...]] = frozenset()
+    # "de" in "douăzeci de mii": a word between a count and its scale word.
+    count_of: frozenset[str] = frozenset()
+    # "bat" in "milioi bat": a word after a noun that counts one of it.
+    one_after_noun: frozenset[str] = frozenset()
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -110,17 +136,28 @@ def _illion_exponent(rank: int, scale: Scale) -> int:
     return 3 * rank + 3 if scale == Scale.SHORT else 6 * rank
 
 
+def exists(lang: str) -> bool:
+    return (_HERE / f"{lang}.json").is_file()
+
+
 @cache
 def load(lang: str, scale: Scale | None = None) -> Lexicon:
     data = _read(lang)
     settings = {key: item["value"] for key, item in data["settings"].items()}
     words = {key: item["value"] for key, item in data["words"].items()}
     scale = Scale(scale or settings["scale"])
+    fold = str.maketrans(settings.get("fold", {}))
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
 
+    def key(word: str) -> str:
+        return word.casefold().translate(fold)
+
+    def listed(name: str) -> frozenset[str]:
+        return frozenset(key(w) for w in words.get(name, ()))
+
     def put(spec: dict, entry: Entry) -> None:
-        readings.setdefault(spec["word"].casefold(), []).append(entry)
+        readings.setdefault(key(spec["word"]), []).append(entry)
 
     # Ordinal scale words come last: each takes its power of ten from the
     # cardinal scale word it names.
@@ -128,10 +165,11 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     for spec in entries:
         role = spec["role"]
         facts = dict(gender=spec.get("gender"), plural=spec.get("plural", False),
-                     ambiguous=spec.get("ambiguous", False))
+                     ambiguous=spec.get("ambiguous", False), part=spec.get("part", False))
         if role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
-                            bound=spec.get("bound", False), **facts))
+                            bound=spec.get("bound", False), teens=spec.get("teens", False),
+                            invariable=spec.get("invariable", False), **facts))
         elif role in SCALE_ROLES:
             if "value" in spec:
                 put(spec, Entry(role, exponent=spec["value"], **facts))
@@ -142,8 +180,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                                 scale_dependent=dependent, **facts))
         elif role == "half":
             put(spec, Entry(role, "1", **facts))
+        elif role in MARK_ROLES:
+            put(spec, Entry(role, **facts))
         elif role == "ordinal_scale":
-            cardinal = [e for e in readings[spec["value"]] if e.role in SCALE_ROLES]
+            cardinal = [e for e in readings[key(spec["value"])] if e.role in SCALE_ROLES]
             put(spec, Entry(role, exponent=cardinal[0].exponent,
                             scale_dependent=cardinal[0].scale_dependent, **facts))
         elif role == "ordinal_suffix":
@@ -163,18 +203,24 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_before_round_hundred=settings["joiner_before_round_hundred"],
         ordinal_style=settings["ordinal_style"],
         readings={w: tuple(e) for w, e in readings.items()},
-        joiners=frozenset(words["joiner"]),
-        decimal_markers=frozenset(words["decimal_marker"]),
-        minus_words=frozenset(words["minus"]),
-        minus_idioms=tuple(tuple(p.split()) for p in words["minus_idioms"]),
-        articles=frozenset(words["article_one"]),
-        of_words=frozenset(words["of"]),
-        denominator_particles=frozenset(words["denominator_particle"]),
-        fraction_of_words=frozenset(words["fraction_of"]),
-        class_nouns=frozenset(words["class_noun"]),
-        half_units=frozenset(words["half_unit"]),
-        abbreviations=frozenset(words["abbreviation"]),
+        joiners=listed("joiner"),
+        decimal_markers=listed("decimal_marker"),
+        minus_words=listed("minus"),
+        minus_idioms=tuple(tuple(key(p).split()) for p in words["minus_idioms"]),
+        articles=listed("article_one"),
+        of_words=listed("of"),
+        denominator_particles=listed("denominator_particle"),
+        fraction_of_words=listed("fraction_of"),
+        class_nouns=listed("class_noun"),
+        half_units=listed("half_unit"),
+        abbreviations=listed("abbreviation"),
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
-        range_cues=frozenset(words["range_cue"]),
+        range_cues=frozenset(key(w) for w in words["range_cue"]),
         ordinal_suffixes=suffixes,
+        joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
+        compound_words=settings.get("compound_words", False),
+        fold=settings.get("fold", {}),
+        phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
+        count_of=listed("count_of"),
+        one_after_noun=listed("one_after_noun"),
     )

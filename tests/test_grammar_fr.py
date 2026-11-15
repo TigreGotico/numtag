@@ -1,0 +1,83 @@
+"""French grammar rules. Each expected value is worked out by hand in the
+comment beside it; sources are in numtag/lexicon/fr-FR.json, fr-BE.json and
+fr-CH.json."""
+import unittest
+
+from helpers import read
+
+C, O, F = "cardinal", "ordinal", "fraction"
+
+
+def fr(text: str, lang: str = "fr-FR") -> list[tuple[str, str, str]]:
+    return read(text, lang)
+
+
+class TestVigesimalTens(unittest.TestCase):
+    def test_soixante_takes_the_teens(self):
+        # 60 + 17 = 77; 60 + 11 = 71
+        self.assertEqual(fr("soixante-dix-sept"), [("soixante-dix-sept", "77", C)])
+        self.assertEqual(fr("soixante et onze"), [("soixante et onze", "71", C)])
+
+    def test_quatre_vingt_takes_the_teens(self):
+        # 4 x 20 + 19 = 99; 4 x 20 + 11 = 91
+        self.assertEqual(fr("quatre-vingt-dix-neuf"), [("quatre-vingt-dix-neuf", "99", C)])
+        self.assertEqual(fr("quatre-vingt-onze"), [("quatre-vingt-onze", "91", C)])
+
+    def test_a_number_word_of_several_words_is_one_word(self):
+        # "quatre-vingts" is 80, with a hyphen or a space; "dix-sept" is 17
+        self.assertEqual(fr("quatre-vingts"), [("quatre-vingts", "80", C)])
+        self.assertEqual(fr("quatre vingt dix"), [("quatre vingt dix", "90", C)])
+        self.assertEqual(fr("dix sept"), [("dix sept", "17", C)])
+
+    def test_an_ordinal_after_a_vigesimal_ten_takes_the_teens(self):
+        # 60 + 10 = 70; 4 x 20 + 19 = 99
+        self.assertEqual(fr("soixante-dixième"), [("soixante-dixième", "70", O)])
+        self.assertEqual(fr("quatre-vingt-dix-neuvième"), [("quatre-vingt-dix-neuvième", "99", O)])
+        self.assertEqual(fr("vingt et unième"), [("vingt et unième", "21", O)])
+
+
+class TestRegionalTens(unittest.TestCase):
+    def test_septante_is_belgian(self):
+        # 70 + 7 = 77
+        self.assertEqual(fr("septante-sept", "fr-BE"), [("septante-sept", "77", C)])
+        self.assertEqual(fr("septante"), [])
+
+    def test_huitante_is_swiss(self):
+        # 80 + 2 = 82
+        self.assertEqual(fr("huitante-deux", "fr-CH"), [("huitante-deux", "82", C)])
+        self.assertEqual(fr("huitante", "fr-BE"), [])
+
+
+class TestScaleNouns(unittest.TestCase):
+    def test_a_singular_scale_noun_takes_only_the_count_one(self):
+        # "deux millions" is 2 x 1000000; "deux million" is no number of millions
+        self.assertEqual(fr("deux millions"), [("deux millions", "2000000", C)])
+        self.assertEqual(fr("deux million"), [("deux", "2", C)])
+
+    def test_et_demi_adds_half_the_scale_noun(self):
+        # 1000000 + 1000000 / 2 = 1500000
+        self.assertEqual(fr("un million et demi"), [("un million et demi", "1500000", C)])
+
+    def test_a_group_of_a_higher_scale_is_no_count_of_cent(self):
+        # 2 x 1000000 + 3 x 1000 + 100 = 2003100; 4000000 + 4000 + 100 + 99 = 4004199
+        self.assertEqual(fr("deux millions trois mille cent"), [("deux millions trois mille cent", "2003100", C)])
+        self.assertEqual(fr("quatre millions quatre mille cent quatre-vingt-dix-neuf"),
+                         [("quatre millions quatre mille cent quatre-vingt-dix-neuf", "4004199", C)])
+
+    def test_un_demi_is_one_half(self):
+        self.assertEqual(fr("un demi"), [("un demi", "0.5", F)])
+
+    def test_tiers_is_the_same_in_the_plural(self):
+        self.assertEqual(fr("deux tiers"), [("deux tiers", "2/3", F)])
+
+
+class TestMinus(unittest.TestCase):
+    def test_moins_after_a_is_a_minus(self):
+        self.assertEqual(fr("descendue à moins cinq degrés"), [("moins cinq", "-5", C)])
+
+    def test_au_moins_is_no_minus(self):
+        self.assertEqual(fr("au moins trois"), [("trois", "3", C)])
+
+
+if __name__ == "__main__":
+    unittest.main()

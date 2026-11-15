@@ -1,6 +1,6 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
 from numtag.grammar import Grammar, Parse
-from numtag.lexicon import Lexicon, Scale, load
+from numtag.lexicon import Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention
 from numtag.tokenize import Token, tokenize
 
@@ -10,21 +10,29 @@ ARTICLE_CONFIDENCE = 0.3
 AMBIGUOUS_CONFIDENCE = 0.4
 
 
+# The lexicon of a language tag with no region, or with a region that has no
+# lexicon of its own.
+BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR"}
+
+
 def lexicon_name(lang: str) -> str:
-    """The lexicon file for a language tag: "pt-br" reads pt-BR, every other
-    "pt" tag pt-PT, and every "en" tag en."""
+    """The lexicon file for a language tag: the region's file when there is
+    one ("pt-br" reads pt-BR, "fr-be" fr-BE), else the language's base file
+    (every other "pt" tag reads pt-PT, every "en" tag en)."""
     parts = lang.replace("_", "-").split("-")
     primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
-    if primary == "pt":
-        return "pt-BR" if region == "BR" else "pt-PT"
-    return primary
+    if region and exists(f"{primary}-{region}"):
+        return f"{primary}-{region}"
+    return BASE_LEXICON.get(primary, primary)
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
+    words = frozenset(lexicon.readings)
     tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, frozenset(lexicon.readings) | lexicon.joiners)
+                      lexicon.abbreviations, words | lexicon.joiners, fold=lexicon.fold,
+                      phrases=lexicon.phrases, split=words if lexicon.compound_words else frozenset())
     mentions: list[NumberMention] = []
     for run in _runs(tokens):
         mentions += _tag_run(text, lexicon, run)
@@ -50,7 +58,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = grammar.numbers(start)
+        # A number starts and ends where a word does: not inside "ventitré".
+        parses = [] if run[i].joined else [
+            p for p in grammar.numbers(start) if p.end == len(run) or not run[p.end].joined]
         if not parses:
             i += 1
             continue

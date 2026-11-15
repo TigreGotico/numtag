@@ -14,4 +14,4 @@ A value is a digit string with no limit on its length: "24", "-2.5" or "1/3". nu
 
 The language rules are data files in `numtag/lexicon/`, one per language, with the source of each rule in the file.
 
-The languages are European Portuguese (`pt-PT`, and every `pt` tag but `pt-BR`), Brazilian Portuguese (`pt-BR`) and English (every `en` tag). Pass `scale="short"` or `scale="long"` to read "billion" and "bilião" in the other scale.
+The languages are European Portuguese (`pt-PT`, and every `pt` tag but `pt-BR`), Brazilian Portuguese (`pt-BR`), English (every `en` tag), French (`fr-FR`, and every `fr` tag but `fr-BE` and `fr-CH`), Belgian French (`fr-BE`), Swiss French (`fr-CH`), Italian (`it`), Romanian (`ro`), Basque (`eu`) and Indonesian (`id`). Pass `scale="short"` or `scale="long"` to read "billion" and "bilião" in the other scale.
