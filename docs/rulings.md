@@ -152,6 +152,17 @@ A collective of a place value ("dezena", "centena") after "mil e" counts only th
 [('mil', '1000'), ('duzentas dúzias', '2400')]
 ```
 
+The joiner rule decides where the number ends before a collective. A round last class such as "duzentos mil" needs "e" after "um milhão". Without the "e", the class and its collective start a new number.
+
+```python
+>>> read("O armazém recebeu um milhão duzentos mil dúzias de ovos.")
+[('um milhão', '1000000'), ('duzentos mil dúzias', '2400000')]
+>>> read("O armazém recebeu um milhão e duzentos mil dúzias de ovos.")
+[('um milhão e duzentos mil dúzias', '3400000')]
+```
+
+The ovos-number-parser pt test suite expects 3400000 for "um milhão duzentos mil dúzias", with no "e". When ovos-number-parser reads Portuguese through numtag, that test row changes to the two numbers above.
+
 Source: maintainer ruling.
 
 "de" and a plural collective or scale noun multiply a collective. A singular class noun after "de" names that class.
