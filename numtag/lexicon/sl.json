@@ -10,6 +10,7 @@
     "joiner_after_hundred": {"value": "never", "source": "CLDR RBNF sl renders 345 as \"tristo petinštirideset\", no conjunction after the hundreds."},
     "joiner_between_groups": {"value": "never", "source": "CLDR RBNF sl renders 1001 as \"tisoč en\", no conjunction between groups."},
     "joiner_before_round_hundred": {"value": false, "source": "CLDR RBNF sl renders 1100 as \"tisoč sto\" and 1500 as \"tisoč petsto\": no joiner stands before a round hundred after the thousands."},
+    "compound_parts_by_role": {"value": true, "source": "compound_words is true, with the source quoted there: the compound number words it cites join cardinal and ordinal words and joiners only, so a fraction noun or a collective is no part of one (\"petin|dvajset\" is no split)."},
     "comma_between_classes": {"value": false, "source": "CLDR RBNF sl writes no comma between two classes (1001, 1100 and 1500 in the joiner settings above). No source opened shows a comma between two classes of one number, so a comma ends a number."},
     "joiner_before_last_group": {"value": "never", "source": "CLDR RBNF sl renders 1001 as \"tisoč en\": no conjunction stands before the last group."},
     "ordinal_style": {"value": "last_word", "source": "CLDR RBNF sl renders 21 in %spellout-ordinal-masculine as \"enegaindvajseti\": only the last part is ordinal."},

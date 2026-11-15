@@ -22,7 +22,7 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | `lang` | A language tag. `pt-BR` reads Brazilian Portuguese, every other `pt` tag reads European Portuguese, and every `en` tag reads English. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
 
-`tag_numbers` raises `ValueError` for a language with no lexicon, and for a `scale` that is not a scale.
+`tag_numbers` raises `ValueError` for a language with no lexicon, and for a `scale` that is not a scale. An empty value reads the default scale.
 
 ```python
 >>> from numtag import tag_numbers, Scale
@@ -30,9 +30,11 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 Traceback (most recent call last):
   ...
 ValueError: 'medium' is not a valid Scale
+>>> tag_numbers("one billion", "en", scale="")[0].number_scale
+<Scale.SHORT: 'short'>
 ```
 
-At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation, with one exception: in Portuguese a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
+At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"), with one exception: in Portuguese a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
 
 numtag loads the lexicon of a language on the first call for that language and scale, and keeps it in memory for later calls.
 

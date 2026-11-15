@@ -1,0 +1,1368 @@
+{
+  "settings": {
+    "scale": {
+      "value": "short",
+      "source": "en.wikipedia \"Long and short scale\": \"Use of the short scale is found in most English -speaking and Arabic -speaking countries\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\", \"1000000000000: ترليون[ و>%spellout-numbering>];\": a trillion is a thousand milliards."
+    },
+    "group_mark": {
+      "value": ",",
+      "source": "ar.wikipedia \"مليار\": \"أي ألف مليون ( 1,000,000,000 - 9 أصفار)\"; en.wikipedia \"Eastern Arabic numerals\": \"e.g. ١٬٠٠٠٬٠٠٠٬٠٠٠ (1,000,000,000)\"."
+    },
+    "decimal_mark": {
+      "value": ".",
+      "source": "en.wikipedia \"Decimal separator\": \"Countries where a dot ( . ) is used as a decimal separator include:\", a list that holds \"Saudi Arabia\", \"Syria\", \"Qatar\" and \"United Arab Emirates\"."
+    },
+    "space_groups": {
+      "value": false,
+      "source": "ar.wikipedia \"مليار\" groups digits with a comma, not a space: \"( 1,000,000,000 - 9 أصفار)\"."
+    },
+    "plural_scale_needs_count": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\": the plural stands after a count; en.wikipedia \"Arabic grammar\", Numerals: the numerals three through ten \"require a following noun in the genitive plural\"."
+    },
+    "scale_noun_agrees": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2000000: <%%spellout-numbering-m< مليون[ و>%spellout-numbering>];\": the singular مليون follows every count from two; en.wiktionary \"ألف\", usage notes: \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\". The plural after 3 to 10 is one more form, not a rule that the singular takes only one."
+    },
+    "joiner_tens_units": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wikipedia \"Arabic grammar\", Numerals: \"21 wāḥidun wa-‘ishrūna\": the unit, و, then the ten."
+    },
+    "joiner_after_hundred": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>%spellout-numbering>];\"."
+    },
+    "joiner_between_groups": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\"."
+    },
+    "joiner_before_round_hundred": {
+      "value": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\": و goes before any rest after a thousand; en.wikipedia \"Arabic grammar\", Numerals: \"Spoken: ألفين وتسعمئة واثنتا عشرة سنة\"."
+    },
+    "comma_between_classes": {
+      "value": false,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\" writes و and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+    },
+    "joiner_before_last_group": {
+      "value": "required",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\": و goes before any rest after a thousand, so a last group below a hundred or a round hundred with no و starts a new number."
+    },
+    "tens_order": {
+      "value": "unit_ten",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wikipedia \"Arabic grammar\", Numerals: \"The numbers 20–99 are expressed with the units preceding the tens.\""
+    },
+    "ordinal_style": {
+      "value": "first_word",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine: \"11: الحادي عشر;\", \"21: >%%ordinal-ones-masculine> والعشرون;\": the ordinal unit, then the cardinal teen word or ten."
+    },
+    "half_of_scale": {
+      "value": true,
+      "source": "ar.wikipedia \"المركز الوطني للقياس والتقويم\": \"ثلاث ساعات بواقع ساعة ونصف لكل اختبار\" and \"ساعتين ونصف، مقسمة على خمسة أقسام، لكل قسم (30) ثلاثون دقيقة\": ونصف adds half of the unit before it; ar.wikipedia \"كليفلاند\": \"مليون ونصف المليون نسمة\"."
+    },
+    "fold_marks": {
+      "value": true,
+      "source": "en.wikipedia \"Arabic diacritics\": \"short vowels and consonant length are not generally indicated in writing. Tashkīl is optional to represent missing vowels and consonant length.\"; \"The bulk of Arabic script is written without ḥarakāt\". Harakat, shadda and tanwin are tashkil."
+    },
+    "kept_marks": {
+      "value": "ٕٓٔ",
+      "source": "en.wikipedia \"Arabic diacritics\": \"the hamza هَمْزة ( hamzah , glottal stop ), often stands as a separate letter in writing, is written in unpointed texts and is not considered a tashkīl . It may appear as a letter by itself or as a diacritic over or under an alif\". A hamza marks a consonant, so a word with it can be a different word: en.wiktionary \"أحد\": \"أَحَدَ عَشَرَ ― ʔaḥada ʕašara ― eleven\" is not en.wiktionary \"واحد\" \"وَاحِد • ( wāḥid )\"."
+    },
+    "letter_folds": {
+      "value": {
+        "ى": "ي",
+        "ة": "ه",
+        "ـ": "",
+        "ٱ": "ا"
+      },
+      "source": "en.wikipedia \"Arabic diacritics\": \"Typically, Egyptians do not use dots under final yā’ ( ي ), which looks exactly like alif maqsurah ( ى ) in handwriting and in print.\"; en.wiktionary page Wiktionary:About Arabic: \"Do not use the Egyptian style where the final ة is replaced with ه .\"; en.wikipedia \"Kashida\": \"also known as tatweel\", \"U+0640 ـ ARABIC TATWEEL\"; en.wikipedia \"Arabic alphabet\": \"Outside of vocalised liturgical texts, the waṣla is usually not written.\""
+    },
+    "bidi_controls": {
+      "value": true,
+      "source": "CLDR common/main/ar.xml (cldrVersion 50), latn symbols: \"<minusSign>‎-</minusSign>\", \"<plusSign>‎+</plusSign>\": a left-to-right mark stands next to the sign in right-to-left text."
+    },
+    "native_digits": {
+      "value": {
+        "digits": [
+          "٠١٢٣٤٥٦٧٨٩",
+          "۰۱۲۳۴۵۶۷۸۹"
+        ],
+        "decimal_mark": "٫",
+        "group_mark": "٬"
+      },
+      "source": "CLDR common/main/ar.xml (cldrVersion 50): \"<native>arab</native>\", and it holds a second symbols set for the arabext numbering system; en.wikipedia \"Decimal separator\": \"Used with Eastern Arabic numerals (٠١٢٣٤٥٦٧٨٩):\", \"Arabic decimal separator (U+066B, rendered: ٫ )\", \"Arabic thousands separator (U+066C, rendered: ٬ )\"; en.wikipedia \"Eastern Arabic numerals\": \"Each numeral in the Persian variant has a different Unicode point even if it looks identical to the Eastern Arabic numeral counterpart.\""
+    },
+    "clitic_min_rest": {
+      "value": 3,
+      "source": "en.wiktionary \"ليس\": \"لَسْتُ عَالِمًا ― lastu ʕāliman ― I am not learned\": لست is a word of its own, not ل and ست (six), so a single-letter preposition (ب, ل, ك) comes off only before a word of three letters or more."
+    }
+  },
+  "words": {
+    "joiner": {
+      "value": [
+        "و"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wiktionary \"و\": \"and , a divider of words or clauses\"."
+    },
+    "joiner_prefix": {
+      "value": [
+        "و"
+      ],
+      "source": "en.wiktionary \"و\", usage notes: \"Arabic conjunctions and prepositions that have only one letter, such as وَ ( wa ) , are written as a prefix.\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"21: >%%ordinal-ones-masculine> والعشرون;\"."
+    },
+    "clitic_prefix": {
+      "value": [
+        "ال",
+        "بال",
+        "لل",
+        "كال",
+        "ب",
+        "ل",
+        "ك"
+      ],
+      "source": "en.wikipedia \"Arabic definite article\": \"Unlike most other Arabic particles, al- is always prefixed to another word and never stands alone.\"; en.wiktionary \"و\": \"Arabic conjunctions and prepositions that have only one letter, such as وَ ( wa ) , are written as a prefix.\"; en.wiktionary \"ل\": \"the alif of the article is dropped from the spelling, resulting in the spelling لِلْ .\"; ar.wikipedia \"ترليون\": \"بالترليونات\"; ar.wikipedia \"مليار\": \"كالبرازيل\"."
+    },
+    "decimal_marker": {
+      "value": [
+        "فاصلة",
+        "فاصل"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << فاصل >>;\"; en.wiktionary \"فاصلة\": \"comma\", \"decimal point\"."
+    },
+    "minus": {
+      "value": [
+        "ناقص",
+        "سالب"
+      ],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"-x: ناقص >>;\"; en.wiktionary \"سالب\": \"سَالِب • ( sālib )\", \"negative\"."
+    },
+    "range_cue": {
+      "value": [
+        "بين"
+      ],
+      "source": "en.wiktionary \"بين\": \"between ( “ in the position or interval that separates two things ” )\"; en.wiktionary \"نصف\": \"بَيْنَ ٥٠٠ وَ٦٠٠ مِلِّيْلِيتْرٍ\" (\"between 500 and 600 milliliters\"): the joined و links the two limits."
+    },
+    "article_one": {
+      "value": [],
+      "source": "en.wikipedia \"Arabic definite article\": \"Arabic has an indefinite article indicated by nunation ( tanwīn )\": a mark, not a word."
+    },
+    "minus_idioms": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "fraction_of": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "denominator_particle": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "class_noun": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "half_unit": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "abbreviation": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    },
+    "lone_decimal_mark": {
+      "value": [],
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): the spellout rules, from \"-x: ناقص >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
+    }
+  },
+  "entries": [
+    {
+      "word": "صفر",
+      "role": "unit",
+      "value": "0",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"0: صفر;\"; en.wikipedia \"Arabic grammar\", Numerals: \"Zero is ṣifr\"."
+    },
+    {
+      "word": "واحد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1: واحد;\", feminine \"1: واحدة;\"; en.wiktionary \"واحد\": \"وَاحِد • ( wāḥid ) m ( feminine وَاحِدَة ( wāḥida ) )\"."
+    },
+    {
+      "word": "واحدة",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1: واحد;\", feminine \"1: واحدة;\"; en.wiktionary \"واحد\": \"وَاحِد • ( wāḥid ) m ( feminine وَاحِدَة ( wāḥida ) )\"."
+    },
+    {
+      "word": "أحد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "en.wiktionary \"أحد\": \"أَحَدَ عَشَرَ ― ʔaḥada ʕašara ― eleven\", \"أَحَدٌ وَعِشْرُونَ ― ʾaḥadun wa-ʿišrūna ― twenty-one\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50) writes 1 alone as \"1: واحد;\". Alone أحد is \"Is there anyone here?\" or the day, \"Sunday\"."
+    },
+    {
+      "word": "إحدى",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر;\"; en.wiktionary \"أحد\": \"إِحْدَى عَشْرَةَ ― ʔiḥdā ʕašrata ― eleven\", \"إِحْدَى وَعِشْرُونَ ― ʾiḥdā wa-ʿišrūna ― twenty-one\"."
+    },
+    {
+      "word": "اثنان",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\"; en.wiktionary \"اثنان\": \"اِثْنَان • ( iṯnān ) m du ( oblique اِثْنَيْن ( iṯnayn ) , feminine اِثْنَتَان ( iṯnatān , oblique اِثْنَتَيْن ( iṯnatayn ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"اِثْنانِ ithnān(i) is changed to اِثْنَيْنِ ithnayn(i) in oblique cases.\" en.wiktionary \"الاثنين\": \"Monday\"."
+    },
+    {
+      "word": "اثنين",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\"; en.wiktionary \"اثنان\": \"اِثْنَان • ( iṯnān ) m du ( oblique اِثْنَيْن ( iṯnayn ) , feminine اِثْنَتَان ( iṯnatān , oblique اِثْنَتَيْن ( iṯnatayn ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"اِثْنانِ ithnān(i) is changed to اِثْنَيْنِ ithnayn(i) in oblique cases.\" en.wiktionary \"الاثنين\": \"Monday\"."
+    },
+    {
+      "word": "اثنتان",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنتان;\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\"; en.wiktionary \"اثنان\": \"اِثْنَان • ( iṯnān ) m du ( oblique اِثْنَيْن ( iṯnayn ) , feminine اِثْنَتَان ( iṯnatān , oblique اِثْنَتَيْن ( iṯnatayn ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"اِثْنانِ ithnān(i) is changed to اِثْنَيْنِ ithnayn(i) in oblique cases.\""
+    },
+    {
+      "word": "اثنتين",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنتان;\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\"; en.wiktionary \"اثنان\": \"اِثْنَان • ( iṯnān ) m du ( oblique اِثْنَيْن ( iṯnayn ) , feminine اِثْنَتَان ( iṯnatān , oblique اِثْنَتَيْن ( iṯnatayn ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"اِثْنانِ ithnān(i) is changed to اِثْنَيْنِ ithnayn(i) in oblique cases.\""
+    },
+    {
+      "word": "اثنا",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"12: إثنا عشر;\", \"12: إثنتا عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"ithnā ‘ashar اِثْنَا عَشَر\", \"ithnay ‘ashara اِثْنَيْ عَشَرَ\", \"ithnatā ‘ashrata اِثْنَتَا عَشْرةَ\", \"ithnatay ‘ashratan اِثْنَتَيْ عَشْرةَ\"; alone 2 is \"2: إثنان;\"."
+    },
+    {
+      "word": "اثني",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"12: إثنا عشر;\", \"12: إثنتا عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"ithnā ‘ashar اِثْنَا عَشَر\", \"ithnay ‘ashara اِثْنَيْ عَشَرَ\", \"ithnatā ‘ashrata اِثْنَتَا عَشْرةَ\", \"ithnatay ‘ashratan اِثْنَتَيْ عَشْرةَ\"; alone 2 is \"2: إثنان;\"."
+    },
+    {
+      "word": "اثنتا",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"12: إثنا عشر;\", \"12: إثنتا عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"ithnā ‘ashar اِثْنَا عَشَر\", \"ithnay ‘ashara اِثْنَيْ عَشَرَ\", \"ithnatā ‘ashrata اِثْنَتَا عَشْرةَ\", \"ithnatay ‘ashratan اِثْنَتَيْ عَشْرةَ\"; alone 2 is \"2: إثنان;\"."
+    },
+    {
+      "word": "اثنتي",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"12: إثنا عشر;\", \"12: إثنتا عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"ithnā ‘ashar اِثْنَا عَشَر\", \"ithnay ‘ashara اِثْنَيْ عَشَرَ\", \"ithnatā ‘ashrata اِثْنَتَا عَشْرةَ\", \"ithnatay ‘ashratan اِثْنَتَيْ عَشْرةَ\"; alone 2 is \"2: إثنان;\"."
+    },
+    {
+      "word": "ثلاثة",
+      "role": "unit",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"3: ثلاثة;\"; en.wiktionary \"ثلاثة\" and en.wiktionary \"ثلاث\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثلاث",
+      "role": "unit",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"3: ثلاثة;\"; en.wiktionary \"ثلاثة\" and en.wiktionary \"ثلاث\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "أربعة",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"4: أربعة;\"; en.wiktionary \"أربعة\" and en.wiktionary \"أربع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "أربع",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"4: أربعة;\"; en.wiktionary \"أربعة\" and en.wiktionary \"أربع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "خمسة",
+      "role": "unit",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"5: خمسة;\"; en.wiktionary \"خمسة\" and en.wiktionary \"خمس\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "خمس",
+      "role": "unit",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"5: خمسة;\"; en.wiktionary \"خمسة\" and en.wiktionary \"خمس\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ستة",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"6: ستة;\"; en.wiktionary \"ستة\" and en.wiktionary \"ست\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ست",
+      "role": "unit",
+      "value": "6",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"6: ستة;\"; en.wiktionary \"ستة\" and en.wiktionary \"ست\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "سبعة",
+      "role": "unit",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"7: سبعة;\"; en.wiktionary \"سبعة\" and en.wiktionary \"سبع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "سبع",
+      "role": "unit",
+      "value": "7",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"7: سبعة;\"; en.wiktionary \"سبعة\" and en.wiktionary \"سبع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثمانية",
+      "role": "unit",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"8: ثمانية;\"; en.wiktionary \"ثمانية\" and en.wiktionary \"ثماني\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثماني",
+      "role": "unit",
+      "value": "8",
+      "gender": "feminine",
+      "source": "en.wiktionary \"ثمانية\": \"ثَمَانِيَة • ( ṯamāniya ) f ( masculine ثَمَانٍ ( ṯamānin , construct state ثَمَانِي ( ṯamānī ) ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"وَثَمَانِي مِئةٍ\"; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "تسعة",
+      "role": "unit",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"9: تسعة;\"; en.wiktionary \"تسعة\" and en.wiktionary \"تسع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "تسع",
+      "role": "unit",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"9: تسعة;\"; en.wiktionary \"تسعة\" and en.wiktionary \"تسع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted."
+    },
+    {
+      "word": "ثمان",
+      "role": "unit",
+      "value": "8",
+      "gender": "feminine",
+      "source": "en.wiktionary \"ثمان\": \"ثَمَانٍ • ( ṯamānin ) m ( construct state ثَمَانِي ( ṯamānī ) , feminine ثَمَانِيَة ( ṯamāniya ) )\", \"masculine of ثَمَانِيَة ( ṯamāniya , “ eight ” )\"; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\"."
+    },
+    {
+      "word": "عشرة",
+      "role": "ten",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"10: عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"(feminine form ‘ashr(un)\", \"the standalone numeral 10 which shows polarity\"; en.wiktionary \"عشرة\": \"عَشَرَة • ( ʕašara ) f ( plural عَشَرَات ( ʕašarāt ) , masculine عَشْر ( ʕašr ) )\"."
+    },
+    {
+      "word": "عشر",
+      "role": "ten",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"10: عشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"(feminine form ‘ashr(un)\", \"the standalone numeral 10 which shows polarity\"; en.wiktionary \"عشرة\": \"عَشَرَة • ( ʕašara ) f ( plural عَشَرَات ( ʕašarāt ) , masculine عَشْر ( ʕašr ) )\"."
+    },
+    {
+      "word": "عشر",
+      "role": "teen",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"13: >%spellout-numbering> عشر;\"; en.wiktionary \"عشر\": \"عَشَرَ • ( ʕašara ) m ( feminine عَشْرَةَ ( ʕašrata ) )\", \"-teen ( in numerals 11–19\"; en.wikipedia \"Arabic grammar\", Numerals: \"The gender of عَشَر in numbers 11–19 agrees with the counted noun\"."
+    },
+    {
+      "word": "عشرة",
+      "role": "teen",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"13: >%spellout-numbering> عشر;\"; en.wiktionary \"عشر\": \"عَشَرَ • ( ʕašara ) m ( feminine عَشْرَةَ ( ʕašrata ) )\", \"-teen ( in numerals 11–19\"; en.wikipedia \"Arabic grammar\", Numerals: \"The gender of عَشَر in numbers 11–19 agrees with the counted noun\"."
+    },
+    {
+      "word": "عشرون",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "عشرين",
+      "role": "ten",
+      "value": "20",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"20: [>%spellout-numbering> و]عشرون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ثلاثون",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"30: [>%spellout-numbering> و]ثلاثون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ثلاثين",
+      "role": "ten",
+      "value": "30",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"30: [>%spellout-numbering> و]ثلاثون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "أربعون",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"40: [>%spellout-numbering> و]أربعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "أربعين",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"40: [>%spellout-numbering> و]أربعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "خمسون",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"50: [>%spellout-numbering> و]خمسون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "خمسين",
+      "role": "ten",
+      "value": "50",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"50: [>%spellout-numbering> و]خمسون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ستون",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"60: [>%spellout-numbering> و]ستون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ستين",
+      "role": "ten",
+      "value": "60",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"60: [>%spellout-numbering> و]ستون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "سبعون",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"70: [>%spellout-numbering> و]سبعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "سبعين",
+      "role": "ten",
+      "value": "70",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"70: [>%spellout-numbering> و]سبعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ثمانون",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"80: [>%spellout-numbering> و]ثمانون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "ثمانين",
+      "role": "ten",
+      "value": "80",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"80: [>%spellout-numbering> و]ثمانون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "تسعون",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"90: [>%spellout-numbering> و]تسعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "تسعين",
+      "role": "ten",
+      "value": "90",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"90: [>%spellout-numbering> و]تسعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\"."
+    },
+    {
+      "word": "مائة",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>%spellout-numbering>];\", \"200: مائتان[ و>%spellout-numbering>];\", \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\": \"Cardinal : مِئَة ( miʔa ) , مِائَة\"."
+    },
+    {
+      "word": "مئة",
+      "role": "hundred",
+      "value": "100",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>%spellout-numbering>];\", \"200: مائتان[ و>%spellout-numbering>];\", \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\": \"Cardinal : مِئَة ( miʔa ) , مِائَة\"."
+    },
+    {
+      "word": "مية",
+      "role": "hundred",
+      "value": "100",
+      "ambiguous": true,
+      "source": "en.wiktionary \"مية\": \"water\" and \"hundred\" (Egyptian, Hijazi, Moroccan and South Levantine Arabic), the spoken form of مائة. Alone it is low confidence."
+    },
+    {
+      "word": "مية",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "ambiguous": true,
+      "source": "en.wiktionary \"مية\": \"water\" and \"hundred\" (Egyptian, Hijazi, Moroccan and South Levantine Arabic), the spoken form of مائة. Alone it is low confidence."
+    },
+    {
+      "word": "مائتان",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مائتين",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مئتان",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مئتين",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مائتا",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مئتا",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مائتي",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مئتي",
+      "role": "hundred",
+      "value": "200",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"200: مائتان[ و>%spellout-numbering>];\"; en.wiktionary page مئتان: \"مِئَتَان • ( miʔatān ) f du ( oblique مِئَتَيْن ( miʔatayn ) or مِا۟ئَتَيْن ( miʔatayn ) )\", construct \"مِئَتَا ; مِا۟ئَتَا\", \"مِئَتَيْ ; مِا۟ئَتَيْ\"."
+    },
+    {
+      "word": "مائة",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>%spellout-numbering>];\", \"200: مائتان[ و>%spellout-numbering>];\", \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\": \"Cardinal : مِئَة ( miʔa ) , مِائَة\"."
+    },
+    {
+      "word": "مئة",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"100: مائة[ و>%spellout-numbering>];\", \"200: مائتان[ و>%spellout-numbering>];\", \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\": \"Cardinal : مِئَة ( miʔa ) , مِائَة\"."
+    },
+    {
+      "word": "ثلاثمائة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"ثَلَاثُمِا۟ئَة , ثَلَاثُمِئَة\"."
+    },
+    {
+      "word": "ثلاثمئة",
+      "role": "hundred",
+      "value": "300",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"ثَلَاثُمِا۟ئَة , ثَلَاثُمِئَة\"."
+    },
+    {
+      "word": "أربعمائة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"أَرْبَعُمِا۟ئَة , أَرْبَعُمِئَة\"."
+    },
+    {
+      "word": "أربعمئة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"أَرْبَعُمِا۟ئَة , أَرْبَعُمِئَة\"."
+    },
+    {
+      "word": "خمسمائة",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"خَمْسُمِا۟ئَة , خَمْسُمِئَة\"."
+    },
+    {
+      "word": "خمسمئة",
+      "role": "hundred",
+      "value": "500",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"خَمْسُمِا۟ئَة , خَمْسُمِئَة\"."
+    },
+    {
+      "word": "ستمائة",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"سِتُّمِا۟ئَة , سِتُّمِئَة\"."
+    },
+    {
+      "word": "ستمئة",
+      "role": "hundred",
+      "value": "600",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"سِتُّمِا۟ئَة , سِتُّمِئَة\"."
+    },
+    {
+      "word": "سبعمائة",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"سَبْعُمِا۟ئَة , سَبْعُمِئَة\"."
+    },
+    {
+      "word": "سبعمئة",
+      "role": "hundred",
+      "value": "700",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"سَبْعُمِا۟ئَة , سَبْعُمِئَة\"."
+    },
+    {
+      "word": "ثمانمائة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"ثَمَانُمِا۟ئَة , ثَمَانُمِئَة\"."
+    },
+    {
+      "word": "ثمانمئة",
+      "role": "hundred",
+      "value": "800",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"ثَمَانُمِا۟ئَة , ثَمَانُمِئَة\"."
+    },
+    {
+      "word": "ثمانيمائة",
+      "role": "hundred",
+      "value": "800",
+      "source": "en.wiktionary page ثمانيمائة: \"ثَمَانِيمِئَة • ( ṯamānīmiʔa ) ? eight hundred\", \"Declension of noun ثَمَانِيمِائَةٍ ( ṯamānīmiʾatin )\"."
+    },
+    {
+      "word": "ثمانيمئة",
+      "role": "hundred",
+      "value": "800",
+      "source": "en.wiktionary page ثمانيمائة: \"ثَمَانِيمِئَة • ( ṯamānīmiʔa ) ? eight hundred\", \"Declension of noun ثَمَانِيمِائَةٍ ( ṯamānīmiʾatin )\"."
+    },
+    {
+      "word": "تسعمائة",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"تِسْعُمِا۟ئَة , تِسْعُمِئَة\"."
+    },
+    {
+      "word": "تسعمئة",
+      "role": "hundred",
+      "value": "900",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"تِسْعُمِا۟ئَة , تِسْعُمِئَة\"."
+    },
+    {
+      "word": "ثلثمائة",
+      "role": "hundred",
+      "value": "300",
+      "source": "en.wiktionary page ثلثمائة: \"ثَلَثُمِائَة • ( ṯalāṯumiʔah ) ? alternative spelling of ثَلَاثُمِئَة ( ṯalāṯumiʔa )\"."
+    },
+    {
+      "word": "ألف",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "ألفا",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "ألفان",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "ألفين",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "ألفي",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "آلاف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "ألوف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\"."
+    },
+    {
+      "word": "مليون",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\"."
+    },
+    {
+      "word": "مليونا",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\"."
+    },
+    {
+      "word": "مليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\"."
+    },
+    {
+      "word": "مليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\"."
+    },
+    {
+      "word": "مليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\". The construct dual ends in ي before a noun."
+    },
+    {
+      "word": "ملايين",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 1,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000: مليون[ و>%spellout-numbering>];\"; en.wiktionary \"مليون\": \"مِلْيُونًا\", \"مِلْيُونَانِ\", \"مِلْيُونَيْنِ\", \"مِلْيُونَيْ\", \"مَلايِين\"."
+    },
+    {
+      "word": "مليار",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\"."
+    },
+    {
+      "word": "مليارا",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\"."
+    },
+    {
+      "word": "ملياران",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\"."
+    },
+    {
+      "word": "مليارين",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\"."
+    },
+    {
+      "word": "ملياري",
+      "role": "scale_numeral",
+      "value": 9,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\". The construct dual ends in ي before a noun."
+    },
+    {
+      "word": "مليارات",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000: مليار[ و>%spellout-numbering>];\"; en.wiktionary \"مليار\": \"مِلْيارًا\", \"مِلْيارَانِ\", \"مِلْيارَيْنِ\", \"مِلْيارَيْ\", \"مِلْيَارَات\"."
+    },
+    {
+      "word": "بليون",
+      "role": "scale_numeral",
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "بليونا",
+      "role": "scale_numeral",
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "بليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "بليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "بليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\". The construct dual ends in ي before a noun."
+    },
+    {
+      "word": "بلايين",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 2,
+      "source": "en.wikipedia \"Long and short scale\": \"except for a few countries like Saudi Arabia and the UAE which use the word بليون billion for 10 9\"; ar.wikipedia \"مليار\": \"البليون يُعَرف حسب المقياس القصير بـ«ألف مليون»\"; ar.wikipedia \"مجرة دولاب الهواء\": \"3 بلايين كتلة شمسية\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "ترليون",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "ترليونا",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "ترليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "ترليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "ترليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\". The construct dual ends in ي before a noun."
+    },
+    {
+      "word": "ترليونات",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000000000000: ترليون[ و>%spellout-numbering>];\"; en.wikipedia \"Long and short scale\": \"10 12 , ترليون trilyon\"; ar.wikipedia \"ترليون\": \"بالترليونات\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "تريليون",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "تريليونا",
+      "role": "scale_numeral",
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "تريليونان",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "تريليونين",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "تريليوني",
+      "role": "scale_numeral",
+      "count": "2",
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\". The construct dual ends in ي before a noun."
+    },
+    {
+      "word": "تريليونات",
+      "role": "scale_numeral",
+      "plural": true,
+      "rank": 3,
+      "source": "ar.wikipedia \"مليار\": \"بلغت قيمتها 2 تريليون دولار أمريكي\", \"ويساوي 2,000,000,000,000 دولار أمريكي\"; ar.wikipedia \"سندات الخزينة الأميركية\": \"نحو 8 تريليونات دولار\". en.wikipedia \"Arabic nouns and adjectives\": \"For the indefinite accusative, the fatḥah + nunation is added to an ʼalif e.g. ـًا\"; \"The dual and regular masculine plural are formed by adding -āni and -ūna respectively\"; \"( -ay and -ī in the construct state, both spelled ـي in Arabic)\"."
+    },
+    {
+      "word": "نصف",
+      "role": "half",
+      "source": "en.wiktionary \"نصف\": \"half , a half , semi- , hemi-\"; en.wikipedia \"Arabic grammar\", Numerals: \"half niṣfun\"."
+    },
+    {
+      "word": "ثلث",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "1",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\", \"one third\"."
+    },
+    {
+      "word": "ثلثان",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\", dual \"ثُلُثَانِ ; ثُلْثَانِ\", \"ثُلُثَيْنِ ; ثُلْثَيْنِ\", \"ثُلُثَا ; ثُلْثَا\", \"ثُلُثَيْ ; ثُلْثَيْ\"."
+    },
+    {
+      "word": "ثلثين",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\", dual \"ثُلُثَانِ ; ثُلْثَانِ\", \"ثُلُثَيْنِ ; ثُلْثَيْنِ\", \"ثُلُثَا ; ثُلْثَا\", \"ثُلُثَيْ ; ثُلْثَيْ\"."
+    },
+    {
+      "word": "ثلثا",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\", dual \"ثُلُثَانِ ; ثُلْثَانِ\", \"ثُلُثَيْنِ ; ثُلْثَيْنِ\", \"ثُلُثَا ; ثُلْثَا\", \"ثُلُثَيْ ; ثُلْثَيْ\"."
+    },
+    {
+      "word": "ثلثي",
+      "role": "denominator",
+      "value": "3",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\", dual \"ثُلُثَانِ ; ثُلْثَانِ\", \"ثُلُثَيْنِ ; ثُلْثَيْنِ\", \"ثُلُثَا ; ثُلْثَا\", \"ثُلُثَيْ ; ثُلْثَيْ\"."
+    },
+    {
+      "word": "أثلاث",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\"."
+    },
+    {
+      "word": "ربع",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "1",
+      "ambiguous": true,
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ربع\": \"رُبُع or رُبْع • ( rubuʕ or rubʕ ) m ( plural أَرْبَاع ( ʔarbāʕ ) )\", \"one fourth ; one quarter\", and also \"quarter ( area or region )\"."
+    },
+    {
+      "word": "ربعان",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ربع\": \"رُبُع or رُبْع • ( rubuʕ or rubʕ ) m ( plural أَرْبَاع ( ʔarbāʕ ) )\", dual \"رُبُعَانِ ; رُبْعَانِ\", \"رُبُعَيْنِ ; رُبْعَيْنِ\"."
+    },
+    {
+      "word": "ربعين",
+      "role": "denominator",
+      "value": "4",
+      "numerator": "2",
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ربع\": \"رُبُع or رُبْع • ( rubuʕ or rubʕ ) m ( plural أَرْبَاع ( ʔarbāʕ ) )\", dual \"رُبُعَانِ ; رُبْعَانِ\", \"رُبُعَيْنِ ; رُبْعَيْنِ\"."
+    },
+    {
+      "word": "أرباع",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ربع\": \"رُبُع or رُبْع • ( rubuʕ or rubʕ ) m ( plural أَرْبَاع ( ʔarbāʕ ) )\"."
+    },
+    {
+      "word": "أول",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"1: الأول;\" and -feminine \"1: الأولى;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "أولى",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"1: الأول;\" and -feminine \"1: الأولى;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثاني",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"2: الثاني;\" and -feminine \"2: الثانية;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثانية",
+      "role": "ordinal",
+      "value": "2",
+      "gender": "feminine",
+      "ambiguous": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"2: الثاني;\" and -feminine \"2: الثانية;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word. en.wiktionary \"ثانية\": \"second ( unit of time )\"."
+    },
+    {
+      "word": "ثالث",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"3: الثالث;\" and -feminine \"3: الثالثة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثالثة",
+      "role": "ordinal",
+      "value": "3",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"3: الثالث;\" and -feminine \"3: الثالثة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "رابع",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"4: الرابع;\" and -feminine \"4: الرابعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "رابعة",
+      "role": "ordinal",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"4: الرابع;\" and -feminine \"4: الرابعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "خامس",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"5: الخامس;\" and -feminine \"5: الخامسة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "خامسة",
+      "role": "ordinal",
+      "value": "5",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"5: الخامس;\" and -feminine \"5: الخامسة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "سادس",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"6: السادس;\" and -feminine \"6: السادسة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "سادسة",
+      "role": "ordinal",
+      "value": "6",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"6: السادس;\" and -feminine \"6: السادسة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "سابع",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"7: السابع;\" and -feminine \"7: السابعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "سابعة",
+      "role": "ordinal",
+      "value": "7",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"7: السابع;\" and -feminine \"7: السابعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثامن",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"8: الثامن;\" and -feminine \"8: الثامنة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "ثامنة",
+      "role": "ordinal",
+      "value": "8",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"8: الثامن;\" and -feminine \"8: الثامنة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "تاسع",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"9: التاسع;\" and -feminine \"9: التاسعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "تاسعة",
+      "role": "ordinal",
+      "value": "9",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"9: التاسع;\" and -feminine \"9: التاسعة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "عاشر",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"10: العاشر;\" and -feminine \"10: العاشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "عاشرة",
+      "role": "ordinal",
+      "value": "10",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"10: العاشر;\" and -feminine \"10: العاشرة;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word."
+    },
+    {
+      "word": "حادي",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"%%ordinal-ones-masculine: 1: الحادي ;\", used only in \"11: الحادي عشر;\" and \"21: >%%ordinal-ones-masculine> والعشرون;\": it stands only before عشر or a ten."
+    },
+    {
+      "word": "حادية",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"%%ordinal-ones-feminine: 1: الحادية ;\", used only in \"11: الحادية عشرة;\" and \"21: >%%ordinal-ones-feminine> والعشرون;\"."
+    },
+    {
+      "word": "إثنان",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنين",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتان",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتين",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنا",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثني",
+      "role": "unit",
+      "value": "2",
+      "gender": "masculine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتا",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "إثنتي",
+      "role": "unit",
+      "value": "2",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"2: إثنان;\", \"12: إثنا عشر;\", feminine \"2: إثنتان;\", \"12: إثنتا عشرة;\": CLDR writes two with hamza under alif."
+    },
+    {
+      "word": "احد",
+      "role": "unit",
+      "value": "1",
+      "gender": "masculine",
+      "bound": true,
+      "source": "en.wiktionary \"أحد\": \"أَحَدَ عَشَرَ ― ʔaḥada ʕašara ― eleven\", \"أَحَدٌ وَعِشْرُونَ ― ʾaḥadun wa-ʿišrūna ― twenty-one\"; CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50) writes 1 alone as \"1: واحد;\". Alone أحد is \"Is there anyone here?\" or the day, \"Sunday\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "احدى",
+      "role": "unit",
+      "value": "1",
+      "gender": "feminine",
+      "bound": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"11: إحدى عشر;\"; en.wiktionary \"أحد\": \"إِحْدَى عَشْرَةَ ― ʔiḥdā ʕašrata ― eleven\", \"إِحْدَى وَعِشْرُونَ ― ʾiḥdā wa-ʿišrūna ― twenty-one\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربعة",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"4: أربعة;\"; en.wiktionary \"أربعة\" and en.wiktionary \"أربع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted. Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربع",
+      "role": "unit",
+      "value": "4",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"4: أربعة;\"; en.wiktionary \"أربعة\" and en.wiktionary \"أربع\" give the two forms; en.wiktionary \"ثلاثة\", usage notes: \"they differ in gender from the modified noun\"; en.wikipedia \"Arabic grammar\", Numerals: \"Numerals 3–10 have a peculiar rule of agreement known as polarity\", so the gender below is that of the noun counted. Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربعون",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"40: [>%spellout-numbering> و]أربعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربعين",
+      "role": "ten",
+      "value": "40",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"40: [>%spellout-numbering> و]أربعون;\"; en.wiktionary \"عشرون\": \"عِشْرُونَ • ( ʕišrūna ) m or f ( oblique عِشْرِينَ ( ʕišrīna ) )\"; en.wikipedia \"Arabic grammar\", Numerals: \"decline as masculine plural nouns\"; en.wikipedia \"Arabic nouns and adjectives\": \"-ayn(i) and -īn(a) respectively (both spelled ـين in Arabic)\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربعمائة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"أَرْبَعُمِا۟ئَة , أَرْبَعُمِئَة\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اربعمئة",
+      "role": "hundred",
+      "value": "400",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"300: <%spellout-numbering< مائة[ و>%spellout-numbering>];\"; en.wiktionary \"مئة\", derived terms: \"أَرْبَعُمِا۟ئَة , أَرْبَعُمِئَة\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الف",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الفا",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الفان",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الفين",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الفي",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الاف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "الوف",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50): \"1000: ألف[ و>%spellout-numbering>];\", \"2000: ألفين[ و>%spellout-numbering>];\", \"3000: <%spellout-numbering< آلاف[ و>%spellout-numbering>];\", \"11000/1000: <%%spellout-numbering-m< ألف[ و>%spellout-numbering>];\"; en.wiktionary \"ألف\": \"أَلْف • ( ʔalf ) m ( plural آلَاف ( ʔālāf ) or أُلُوف ( ʔulūf ) )\", usage notes: \"أَلْفَانِ ( ʔalfāni , “ two thousand ” )\", \"عِشْرُونَ أَلْفًا ( ʕišrūna ʔalfan , “ twenty thousand ” )\", declension \"أَلْفَيْن\", \"أَلْفَيْ\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اثلاث",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ثلث\": \"ثُلُث or ثُلْث • ( ṯuluṯ or ṯulṯ ) m ( plural أَثْلَاث ( ʔaṯlāṯ ) )\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "ارباع",
+      "role": "denominator",
+      "value": "4",
+      "plural": true,
+      "source": "en.wikipedia \"Arabic grammar\", Numerals: \"are expressed by the structure fu‘l ( فُعْل ) in the singular, af‘āl ( أَفْعَال ) in the plural.\", \"three-quarters thalāthatu arbā‘in ( ثَلَاثَةُ أَرْبَاعٍ )\"; en.wiktionary \"خمس\": \"خَمْس • ( ḵams ) m\" and \"خُمُس or خُمْس • ( ḵumus or ḵums ) m\": without vowels the fractions خمس, سبع, تسع and عشر are the cardinals, so they are left out. en.wiktionary \"ربع\": \"رُبُع or رُبْع • ( rubuʕ or rubʕ ) m ( plural أَرْبَاع ( ʔarbāʕ ) )\". Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اول",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "masculine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"1: الأول;\" and -feminine \"1: الأولى;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word. Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "اولى",
+      "role": "ordinal",
+      "value": "1",
+      "gender": "feminine",
+      "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"1: الأول;\" and -feminine \"1: الأولى;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word. Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    }
+  ]
+}

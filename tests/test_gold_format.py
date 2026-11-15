@@ -11,8 +11,10 @@ _spec = importlib.util.spec_from_file_location("check_gold", GOLD_DIR / "check_g
 check_gold = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(check_gold)
 
-LANGUAGES = ("pt-PT", "pt-BR", "en")
-MIN_ROWS = 400
+#: the fewest rows each language's gold file holds
+MIN_ROWS = {"pt-PT": 400, "pt-BR": 400, "en": 400,
+            "de": 150, "nl": 150, "fy": 150, "da": 150, "sv": 150, "nb": 150, "nn": 150}
+LANGUAGES = tuple(MIN_ROWS)
 
 
 def _row(text, *mentions, source="arithmetic"):
@@ -29,7 +31,7 @@ class TestGoldFiles(unittest.TestCase):
             with self.subTest(lang=lang):
                 n_in, errors = check_gold.check_file(GOLD_DIR / f"{lang}.jsonl")
                 self.assertEqual(errors, [])
-                self.assertGreaterEqual(n_in, MIN_ROWS)
+                self.assertGreaterEqual(n_in, MIN_ROWS[lang])
 
     def test_no_text_is_repeated_in_a_file(self):
         for lang in LANGUAGES:

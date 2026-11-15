@@ -19,7 +19,7 @@ for m in tag_numbers("Comprou duas dúzias de ovos e ganhou um milhão de euros.
 numtag needs Python 3.11 or later and has no dependencies.
 
 ```bash
-uv pip install numtag
+uv pip install --prerelease=allow numtag
 ```
 
 To work on the library, install it from a clone with its test extra and run the tests:

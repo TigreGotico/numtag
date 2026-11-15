@@ -73,7 +73,12 @@ The score does not tell which meaning is right. In "Chegou em segundo lugar" the
 
 ## Readings that a low score marks
 
-The gold corpus holds sentences where the word is not a number. numtag tags the word in each of them. The score 0.4 marks the doubt. A threshold of 0.5 drops these mentions.
+The gold corpus holds sentences where the word is not a number. numtag tags the word in most of them at 0.4, and a threshold of 0.5 drops these mentions. A collective with no count, as "score" in "The final score was seven.", gives no mention.
+
+```python
+>>> read("The final score was seven.", "en")
+[('seven', '7', 1.0)]
+```
 
 ```python
 >>> read("Segundo o jornal, choveu muito.", "pt-PT")

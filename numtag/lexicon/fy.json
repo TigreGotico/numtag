@@ -1,0 +1,684 @@
+{
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "West Frisian uses the long scale: \"miljard\" is 10^9 and \"biljoen\" 10^12 (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR number symbols for West Frisian (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR number symbols for West Frisian (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR number symbols for West Frisian (Babel 2.18.0): decimal ',', group '.'; a space separates two numbers."
+  },
+  "compound_words": {
+   "value": true,
+   "source": "Wiktionary, \"ienentweintich\": 21 is one word"
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "A plural scale word alone names no number (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "scale_noun_agrees": {
+   "value": false,
+   "source": "No Frisian source on this was read: the value follows Dutch, CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-cardinal: \"1000000: ←← miljoen[ →→]\". A native speaker must confirm it."
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "Wiktionary, \"ienentweintich\": the unit comes before the ten"
+  },
+  "tens_order": {
+   "value": "unit_ten",
+   "source": "Wiktionary, \"ienentweintich\" (21): ien + en + tweintich"
+  },
+  "joiner_unit_ten": {
+   "value": "required",
+   "source": "Wiktionary, \"ienentweintich\" (21): ien + en + tweintich"
+  },
+  "unit_ten_one_word": {
+   "value": true,
+   "source": "Wiktionary writes \"ienentweintich\" (21) as one word. No Frisian spelling rule was read; the value follows Dutch, where the rule is written (Team Taaladvies (Vlaamse overheid), \"Aaneenschrijven - 07. Getallen, telwoorden en breuken\", regel 1: \"Schrijf getallen in woorden aaneen tot aan het woord duizend. Schrijf achter het woord duizend een spatie.\" (\"32: tweeëndertig\", \"101: honderdeen of honderdeneen\", \"1001: duizend en een of duizend een\", \"3254: drieduizend tweehonderdvierenvijftig\"))."
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "No source read: the value follows the parser (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "No source read (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "No source read: no joiner follows \"tûzen\" in this lexicon (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "bare_hundred_after_scale": {
+   "value": true,
+   "source": "\"hûndert\" names 100 alone, so after a group of thousands it starts the next group: Wiktionary, \"hûndert\": \"Unlike English, the word hûndert means 'one hundred' by itself\""
+  },
+  "ten_joins_unit_ordinal": {
+   "value": false,
+   "source": "The ordinal 13th is one word, \"trettjinde\", so \"ten\" and a unit ordinal are two numbers: ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  "ordinal_joiner_by_place": {
+   "value": true,
+   "source": "An ordinal takes the joiner that the cardinal word in its place takes. Between a ten and a unit (never): Wiktionary, \"ienentweintich\": the unit comes before the ten After a hundred (never): No source read: the value follows the parser (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "No source read (ovos-number-parser numbers_fy.py, a lead) writes no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "No source read: no joiner follows \"tûzen\" in this lexicon (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers (\"twadde\", \"tredde\" …); ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "en"
+   ],
+   "source": "Wiktionary, \"ienentweintich\": ien + en + tweintich"
+  },
+  "decimal_marker": {
+   "value": [
+    "komma"
+   ],
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  "minus": {
+   "value": [
+    "min",
+    "minus"
+   ],
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "No idiom is known."
+  },
+  "article_one": {
+   "value": [
+    "in"
+   ],
+   "source": "\"in\" is the West Frisian indefinite article (Wiktionary, \"in\", article); it is no numeral, as \"ien\" is, so it counts one only before a number noun"
+  },
+  "of": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "West Frisian has no such word in this lexicon."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR number symbols for West Frisian (Babel 2.18.0): decimal ',', group '.'"
+  },
+  "range_cue": {
+   "value": [
+    "tusken"
+   ],
+   "source": "Wiktionary, \"tusken\" (West Frisian): \"between\"; \"tusken 20 en 30\" names a range (not checked against the page)"
+  }
+ },
+ "entries": [
+  {
+   "word": "nul",
+   "role": "unit",
+   "value": "0",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "ien",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "twa",
+   "role": "unit",
+   "value": "2",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "trije",
+   "role": "unit",
+   "value": "3",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fjouwer",
+   "role": "unit",
+   "value": "4",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fiif",
+   "role": "unit",
+   "value": "5",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "seis",
+   "role": "unit",
+   "value": "6",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "sân",
+   "role": "unit",
+   "value": "7",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "acht",
+   "role": "unit",
+   "value": "8",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "njoggen",
+   "role": "unit",
+   "value": "9",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "tsien",
+   "role": "ten",
+   "value": "10",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "alve",
+   "role": "ten",
+   "value": "11",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "alf",
+   "role": "ten",
+   "value": "11",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "tolve",
+   "role": "ten",
+   "value": "12",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "trettjin",
+   "role": "ten",
+   "value": "13",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fjirtjin",
+   "role": "ten",
+   "value": "14",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fyftjin",
+   "role": "ten",
+   "value": "15",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "sechstjin",
+   "role": "ten",
+   "value": "16",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "santjin",
+   "role": "ten",
+   "value": "17",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "achttjin",
+   "role": "ten",
+   "value": "18",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "njoggentjin",
+   "role": "ten",
+   "value": "19",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "tweintich",
+   "role": "ten",
+   "value": "20",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "tritich",
+   "role": "ten",
+   "value": "30",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fjirtich",
+   "role": "ten",
+   "value": "40",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "fyftich",
+   "role": "ten",
+   "value": "50",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "sechstich",
+   "role": "ten",
+   "value": "60",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "santich",
+   "role": "ten",
+   "value": "70",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "tachtich",
+   "role": "ten",
+   "value": "80",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "njoggentich",
+   "role": "ten",
+   "value": "90",
+   "source": "Wiktionary, Category:West Frisian cardinal numbers (\"ien\" … \"njoggentich\", \"hûndert\")"
+  },
+  {
+   "word": "hûndert",
+   "role": "hundred",
+   "value": "100",
+   "source": "Wiktionary, \"hûndert\": \"Unlike English, the word hûndert means 'one hundred' by itself\""
+  },
+  {
+   "word": "hûndert",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "Wiktionary, \"hûndert\": hundred"
+  },
+  {
+   "word": "hundert",
+   "role": "hundred",
+   "value": "100",
+   "source": "plain-ASCII spelling of \"hûndert\", for text typed without the circumflex"
+  },
+  {
+   "word": "hundert",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "plain-ASCII spelling of \"hûndert\", for text typed without the circumflex"
+  },
+  {
+   "word": "san",
+   "role": "unit",
+   "value": "7",
+   "source": "plain-ASCII spelling of \"sân\", for text typed without the circumflex"
+  },
+  {
+   "word": "tuzen",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "plain-ASCII spelling of \"tûzen\", for text typed without the circumflex"
+  },
+  {
+   "word": "tûzen",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "miljoen",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "miljoenen",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "miljard",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "biljoen",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "heal",
+   "role": "half",
+   "ambiguous": true,
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "heal",
+   "role": "denominator",
+   "value": "2",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tredde",
+   "role": "denominator",
+   "value": "3",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "tredde",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "fjirde",
+   "role": "denominator",
+   "value": "4",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "fjirde",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "fyfte",
+   "role": "denominator",
+   "value": "5",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "fyfte",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "sechste",
+   "role": "denominator",
+   "value": "6",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "sechste",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "sânde",
+   "role": "denominator",
+   "value": "7",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "sânde",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "achtste",
+   "role": "denominator",
+   "value": "8",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "achtste",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "njoggende",
+   "role": "denominator",
+   "value": "9",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "njoggende",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "tsiende",
+   "role": "denominator",
+   "value": "10",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "tsiende",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "source": "Wiktionary, Category:West Frisian ordinal numbers; a fraction uses the ordinal word, as in Dutch (ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word))"
+  },
+  {
+   "word": "earste",
+   "role": "ordinal",
+   "value": "1",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "twadde",
+   "role": "ordinal",
+   "value": "2",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "tredde",
+   "role": "ordinal",
+   "value": "3",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "fjirde",
+   "role": "ordinal",
+   "value": "4",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "fyfte",
+   "role": "ordinal",
+   "value": "5",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "sechste",
+   "role": "ordinal",
+   "value": "6",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "sânde",
+   "role": "ordinal",
+   "value": "7",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "achtste",
+   "role": "ordinal",
+   "value": "8",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "njoggende",
+   "role": "ordinal",
+   "value": "9",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "tsiende",
+   "role": "ordinal",
+   "value": "10",
+   "source": "Wiktionary, Category:West Frisian ordinal numbers"
+  },
+  {
+   "word": "alfde",
+   "role": "ordinal",
+   "value": "11",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tolfde",
+   "role": "ordinal",
+   "value": "12",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "trettjinde",
+   "role": "ordinal",
+   "value": "13",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "fjirtjinde",
+   "role": "ordinal",
+   "value": "14",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "fyftjinde",
+   "role": "ordinal",
+   "value": "15",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "sechstjinde",
+   "role": "ordinal",
+   "value": "16",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "santjinde",
+   "role": "ordinal",
+   "value": "17",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "achttjinde",
+   "role": "ordinal",
+   "value": "18",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "njoggentjinde",
+   "role": "ordinal",
+   "value": "19",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tweintichste",
+   "role": "ordinal",
+   "value": "20",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tritichste",
+   "role": "ordinal",
+   "value": "30",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "fjirtichste",
+   "role": "ordinal",
+   "value": "40",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "fyftichste",
+   "role": "ordinal",
+   "value": "50",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "sechstichste",
+   "role": "ordinal",
+   "value": "60",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "santichste",
+   "role": "ordinal",
+   "value": "70",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tachtichste",
+   "role": "ordinal",
+   "value": "80",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "njoggentichste",
+   "role": "ordinal",
+   "value": "90",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "hûndertste",
+   "role": "ordinal_scale",
+   "value": "hûndert",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "tûzenste",
+   "role": "ordinal_scale",
+   "value": "tûzen",
+   "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  }
+ ]
+}
