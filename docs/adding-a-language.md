@@ -27,7 +27,7 @@ The file is a JSON object with these keys:
 
 A file with `extends` takes every setting, word list and entry of its base. Its own settings and word lists replace those of the base. Its own entry replaces the base entry with the same word and role. `pt-BR.json` is a full example: it extends `pt-PT` and changes two settings.
 
-The loader reads every setting and every word list below. A file that leaves one out does not load: the loader raises `KeyError`. An empty list is a valid value, and it needs a source too.
+The loader reads every setting and every word list below. A file that leaves one out raises `KeyError` when it loads. The `scale` setting is read only when the call passes no `scale`, so load a new file with no `scale` argument as well as in both scales. An empty list is a valid value, and it needs a source too.
 
 ### Settings
 
@@ -115,17 +115,17 @@ Every `source` field quotes, word for word, a page that you opened and read. Nam
 
 A quote written from memory is not a source. A paraphrase is not a quote. When no outside source decides a rule, the field says so with the words "structural, no external source", and states the reason. A decision by the project maintainer is a "maintainer ruling", and the field quotes the ruling.
 
-Before a lexicon merges, a quote check runs on every source field. It saves a copy of each cited page. It looks for each quoted piece of four characters or more on the saved copy. Before it compares, it normalises case, white space and quote marks. A field passes when every quote is on its page. The check reports the count of fields in and the count held.
+Before a lexicon merges, the reviewer checks every source field against the cited pages. The repository holds no tool for this check: a language port runs it from its own audit tooling. The reviewer saves a copy of each page and looks for each quoted piece of four characters or more on it, after normalising case, white space and quote marks. A field passes when every quote is on its page. The review reports the count of fields in and the count held.
 
 ## Gold rows
 
 The gold corpus is `tests/gold/<lang>.jsonl`, one JSON object per line. [tests/gold/README.md](../tests/gold/README.md) gives the full format.
 
 ```json
-{"text": "comprou duas dúzias de ovos", "mentions": [{"start": 8, "end": 19, "value": "24", "kind": "cardinal"}], "source": "Priberam, dúzia: Conjunto de doze."}
+{"text": "comprou duas dúzias de ovos", "mentions": [{"start": 8, "end": 19, "value": "24", "kind": "cardinal"}], "source": "Priberam, \"dúzia\", sense 1: \"Conjunto de doze.\""}
 ```
 
-A gold row is a real, natural sentence of the language, with a source. Each value comes from hand arithmetic or a quoted source, never from a run of numtag or ovos-number-parser. Each rule of the language has gold rows that show it in real sentences. A bare phrase in a unit test does not count as the test of a rule.
+This row is line 191 of `tests/gold/pt-PT.jsonl`. A gold row is a real, natural sentence of the language, with a source. Each value comes from hand arithmetic or a quoted source, never from a run of numtag or ovos-number-parser. Each rule of the language has gold rows that show it in real sentences. A bare phrase in a unit test does not count as the test of a rule.
 
 A new language needs at least 150 rows. Cover the cardinals 0 to 20, the tens, the hundreds, the thousands, the millions and the scale of the language. Also cover the ordinals, and the fractions and decimals that the language writes in words. Add digits with the marks of the language and two numbers in one sentence. Add a number word that is also an article or a noun.
 
@@ -154,7 +154,7 @@ A new language passes these gates before it merges.
 | Other languages | The gold scores and grammar tests of every other language do not change. |
 | Grammar tests | Each hard rule of the language has a test. Each test fails before the change and passes after it. |
 | Mutation | For each new engine mechanism, one mutation of the engine makes the tests fail. Run it with `PYTHONDONTWRITEBYTECODE=1`, and run a control without the mutation. |
-| Quote check | Every source field holds its quotes on a saved copy of the cited page. |
+| Quote check | The reviewer finds every quote of every source field on a saved copy of the cited page. |
 | Docs | `tests/test_docs.py` passes. |
 
 ## Engine features

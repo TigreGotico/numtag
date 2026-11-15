@@ -1,6 +1,6 @@
 # Rulings
 
-A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. The lexicon files carry the same sources, word for word.
+A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. Each quote in a block quote on this page is also in a source field of a lexicon file or a gold row, word for word.
 
 All examples on this page use this helper:
 
@@ -42,7 +42,7 @@ The same rule holds after every scale word.
 
 > Cunha & Cintra, Nova Gramática do Português Contemporâneo (1984), p. 372, quoted in Ciberdúvidas 34389: "Não se emprega a conjunção entre os milhares e as centenas, salvo quando o número terminar numa centena com dois zeros: 1892 = mil oitocentos e noventa e dois 1800 = mil e oitocentos".
 
-> Teyssier, Manual de Língua Portuguesa (1989), pp. 181-182, quoted in Ciberdúvidas 31900: "E não figura entre os milhares e as centenas, excepto quando a mil se segue um algarismo simples, p. ex.: 4.226: Quatro mil duzentos e vinte e seis 1.400: mil e quatrocentos 1.030: mil e trinta".
+> Teyssier, Manual de Língua Portuguesa (1989), pp. 181-182, quoted in [Ciberdúvidas 31900](https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/a-conjuncao-e-nos-numerais/31900): "E não figura entre os milhares e as centenas, excepto quando a mil se segue um algarismo simples, p. ex.: 4.226: Quatro mil duzentos e vinte e seis 1.400: mil e quatrocentos 1.030: mil e trinta".
 
 > Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
 
@@ -301,7 +301,7 @@ A decimal marker ("vírgula", "ponto", "point") or a decimal mark in digits ("2,
 
 > CLDR 49 RBNF pt_PT and pt %spellout-cardinal-masculine: "x.x: << vírgula >>;"; Priberam, "vírgula", sense 2: "[Matemática] Sinal gráfico (,) que serve para separar os números inteiros das fracções decimais."
 
-> Wiktionary, "point", noun sense 4: "A decimal point".
+> Wiktionary, "point", noun sense 1.3: "A decimal point".
 
 The fraction part follows the grammar of the whole part. A hundreds word never follows another part, as "cem" never follows units in a cardinal. So the decimal ends before it. This rule is structural, with no outside source.
 
@@ -362,7 +362,7 @@ In Portuguese every word of an ordinal is ordinal, and a cardinal count before "
 [('twenty-first', '21')]
 ```
 
-> Teyssier, p. 183: 2000.º is "dois milésimo"; the ordinal scale word takes the power of the cardinal it names.
+Source: CLDR 49 RBNF pt and pt_PT, %spellout-ordinal-masculine, rule `2000: <%spellout-cardinal-masculine< milésimo[ >>];`. A cardinal count before "milésimo" multiplies it.
 
 ## Fractions
 
