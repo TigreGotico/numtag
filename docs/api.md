@@ -1,11 +1,11 @@
 # API reference
 
-The package `numtag` exports six names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Scale` and `is_canonical_value`. This page describes each of them. Every other module is internal.
+The package `numtag` exports seven names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Scale`, `is_canonical_value` and `ARTICLE_CONFIDENCE`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['Form', 'Kind', 'NumberMention', 'Scale', 'is_canonical_value', 'tag_numbers']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Scale', 'is_canonical_value', 'tag_numbers']
 ```
 
 ## tag_numbers
@@ -138,6 +138,18 @@ A minus word before digits does not change the form.
 >>> [is_canonical_value(v) for v in ("1200", "-2.5", "1/3", "007", "2.50", "-0")]
 [True, True, True, False, False, False]
 ```
+
+## ARTICLE_CONFIDENCE
+
+`ARTICLE_CONFIDENCE` is the float score that a mention gets when its word is an article and not a number: 0.3. Compare a mention's `confidence` with it to find the articles, instead of writing the number in your code.
+
+```python
+>>> from numtag import ARTICLE_CONFIDENCE
+>>> [m.confidence == ARTICLE_CONFIDENCE for m in tag_numbers("Comprei uma casa e dois carros.", "pt-PT")]
+[True, False]
+```
+
+Read [confidence-and-homographs.md](confidence-and-homographs.md).
 
 ---
 [← Getting started](getting-started.md) · [Home](index.md) · [Values →](values.md)
