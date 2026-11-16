@@ -1037,11 +1037,23 @@
       "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry δις: \"συντετμημένος τύπος της λέξης δισεκατομμύριο\"."
     },
     {
+      "word": "δις",
+      "role": "scale_noun",
+      "value": 9,
+      "source": "The abbreviation is indeclinable, so it is also the singular: \"ένα δις\" is one. el.wiktionary page δις (knowledge/wiki/audits/numtag/follow-up-prs/pt-agree/sources/el-wikt-δις.raw), the abbreviation: \"{{ο}} {{ακλ}} {{συντ}}\", \"σύντμηση της λέξης [[δισεκατομμύριο]]\"."
+    },
+    {
       "word": "τρις",
       "role": "scale_noun",
       "value": 12,
       "plural": true,
       "source": "Λεξικό της κοινής νεοελληνικής (Ίδρυμα Μανόλη Τριανταφυλλίδη), online entry τρις: \"συντετμημένος τύπος της λέξης τρισεκατομμύριο\", \"Ο προϋπολογισμός ανέρχεται σε δέκα ~ .\""
+    },
+    {
+      "word": "τρις",
+      "role": "scale_noun",
+      "value": 12,
+      "source": "The abbreviation is indeclinable, so it is also the singular: \"ένα τρις\" is one. el.wiktionary page δις (knowledge/wiki/audits/numtag/follow-up-prs/pt-agree/sources/el-wikt-δις.raw), the abbreviation: \"{{ο}} {{ακλ}} {{συντ}}\", \"σύντμηση της λέξης [[δισεκατομμύριο]]\"; τρις is the abbreviation of τρισεκατομμύριο in the same way (Λεξικό της κοινής νεοελληνικής, entry τρις: \"συντετμημένος τύπος της λέξης τρισεκατομμύριο\")."
     },
     {
       "word": "ντουζίνα",
