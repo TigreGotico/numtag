@@ -213,6 +213,18 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("five million, three million"), [("five million", "5000000", C), ("three million", "3000000", C)])
 
 class TestCollectivesAndHalves(unittest.TestCase):
+    def test_a_dozen_after_thousand_counts_the_whole_cardinal(self):
+        # 1024 x 12 = 12288; 1002 x 12 = 12024; 3000 x 12 = 36000
+        self.assertEqual(en("one thousand twenty-four dozen"), [("one thousand twenty-four dozen", "12288", C)])
+        self.assertEqual(en("one thousand and two dozen"), [("one thousand and two dozen", "12024", C)])
+        self.assertEqual(en("three thousand dozen"), [("three thousand dozen", "36000", C)])
+
+    def test_a_dozen_after_million_counts_only_the_class_after_it(self):
+        # 10^6 + 300000 x 12 = 4600000; 10^6 + 2 x 12 = 1000024
+        self.assertEqual(en("one million three hundred thousand dozen"),
+                         [("one million three hundred thousand dozen", "4600000", C)])
+        self.assertEqual(en("one million and two dozen"), [("one million and two dozen", "1000024", C)])
+
     def test_dozen(self):
         # 12; 2 x 12 = 24
         self.assertEqual(en("a dozen eggs"), [("a dozen", "12", C)])

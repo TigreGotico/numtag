@@ -537,7 +537,8 @@ class Grammar:
                     # A count right after a scale numeral with no joiner
                     # counts the collective after it: "treze mil duas
                     # centenas" is 13000 and 200 (Miro).
-                    if group.exponent == 0 and j == last.end and self._readings(group.end, "collective"):
+                    if group.exponent == 0 and j == last.end and self._readings(group.end, "collective") \
+                            and self.lex.joiner_before_last_group == Joiner.REQUIRED:
                         continue
                     count = group.count.scaled(group.exponent)
                     if compound and not group.top and self._takes_count(group.end, count, group.exponent, whole_group=True):
@@ -599,10 +600,13 @@ class Grammar:
         return None
 
     def collective_tail(self, run: tuple[Group, ...]) -> list[Parse]:
-        last = run[-1]
-        if last.noun:
+        # a noun above the thousand closes its group ("um milhão e duas
+        # dúzias"); the thousand counts with the cardinal, as "mil" does
+        closes = [g.noun and g.exponent > THOUSAND for g in run]
+        if closes[-1]:
             return []
-        split = max((n + 1 for n, g in enumerate(run) if g.noun), default=0)
+        split = max((n + 1 for n, c in enumerate(closes) if c), default=0)
+        last = run[-1]
         found = []
         for entry in self._readings(last.end, "collective"):
             # A collective of a place value counts only the group after the
