@@ -174,6 +174,11 @@ class TestPointDecimals(unittest.TestCase):
                            ("17.5. er nasjonaldagen", "nb"), ("den 24.12.", "da"), ("den 31.12.", "nn")):
             with self.subTest(text=text):
                 self.assertEqual(tag_numbers(text, lang), [])
+        # no day above 31 and no month above 12: 32.12 and 24.15 are decimals
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("am 32.12.", "de")], [("32.12", "32.12")])
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("am 24.15.", "de")], [("24.15", "24.15")])
+        # where the point marks decimals, a period after them ends the sentence
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("The rate is 2.5.", "en")], [("2.5", "2.5")])
         # three digits after the point are a group, also before a period
         self.assertEqual([(m.text, m.value) for m in tag_numbers("Es kostet 1.500.", "de")], [("1.500", "1500")])
 

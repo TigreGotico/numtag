@@ -209,6 +209,44 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("három egész tizenöt század", "hu"), [("három egész tizenöt század", "3.15", D)])
         self.assertEqual(read("egy egész öt ezred", "hu"), [("egy egész öt ezred", "1.005", D)])
 
+    def test_a_count_glued_to_a_denominator_multiplies_it(self):
+        # Wiktionary Module:number list/data/hu: "tízezred" for 10000,
+        # "kétszázad" for 200, "milliomod" for 10^6.
+        # 3 + 1/10^4 = 3.0001; 0 + 2500/10^6 = 0.0025; 3 + 7/10^7 = 3.0000007
+        self.assertEqual(read("három egész egy tízezred", "hu"), [("három egész egy tízezred", "3.0001", D)])
+        self.assertEqual(read("nulla egész kétezer-ötszáz milliomod", "hu"),
+                         [("nulla egész kétezer-ötszáz milliomod", "0.0025", D)])
+        self.assertEqual(read("három egész hét tízmilliomod", "hu"), [("három egész hét tízmilliomod", "3.0000007", D)])
+        # 99999/10^5 = 0.99999: the "száz" of "százezred" counts nothing before it
+        self.assertEqual(read("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "hu"),
+                         [("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "0.99999", D)])
+        # 0 + 1/10^5 = 0.00001 and 1/10^5: "egy" counts "százezred", not the "száz" in it
+        self.assertEqual(read("nulla egész egy százezred", "hu"), [("nulla egész egy százezred", "0.00001", D)])
+        self.assertEqual(read("egy százezred", "hu"), [("egy százezred", "0.00001", F)])
+        # 7/10^5; 1/200 = 0.005; 1/10^6
+        self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
+        self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
+        self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
+        # a glued part word of a hundred or more alone is no number: AkH 12
+        # §293 reads "háromszázad másodperc" as 3/100, while hu.wikipedia
+        # uses "háromszázad része" as about 1/300; "kétharmad" is 2/3
+        self.assertEqual(read("tízezred", "hu"), [])
+        self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
+
+    def test_a_count_after_a_range_hyphen_is_no_glued_multiplier(self):
+        # hu.wikipedia, "Volfrám": a filament one or two hundredths of a
+        # millimetre thick; AkH 12 §293 glues the count to the part word
+        # before a noun ("háromnegyed óra"), so "kétszázad" is 2/100 = 0.02
+        sentence = "Az izzólámpákban használt spirált egy-kétszázad milliméter vastagságú szálból készítik."
+        self.assertEqual(read(sentence, "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+        self.assertEqual(read("egy–kétszázad milliméter", "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+
+    def test_a_whole_numerator_stays_out_of_parts_in_a_case(self):
+        # after "tam" the part word comes in the locative and its count after
+        # it ("iki tam onda beş (2,5)"); here the count is "iki min beş yüz",
+        # 2500, so 2000/10^6 = 0.002 drops the 500
+        self.assertNotIn("0.002", [m.value for m in tag_numbers("sıfır tam milyonda iki min beş yüz", "az")])
+
     def test_a_part_word_after_a_count_stays_singular(self):
         # 2/3; 3/4 = 0.75
         self.assertEqual(read("két harmad", "hu"), [("két harmad", "2/3", F)])
