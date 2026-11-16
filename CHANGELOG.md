@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.3a1](https://github.com/TigreGotico/numtag/tree/0.8.3a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.2a1...0.8.3a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): the word after "um quinto" decides fraction or ordinal [\#31](https://github.com/TigreGotico/numtag/pull/31) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.8.2a1](https://github.com/TigreGotico/numtag/tree/0.8.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.1a1...0.8.2a1)
