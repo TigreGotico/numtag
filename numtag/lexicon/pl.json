@@ -25,6 +25,7 @@
     "minus": {"value": ["minus"], "source": "CLDR RBNF pl: \"-x: minus >>;\"."},
     "minus_idioms": {"value": [], "source": "This lexicon lists no Polish idiom that puts \"minus\" before a positive number."},
     "negative_particle": {"value": ["ani"], "source": "Wiktionary, \"ani\", Polish particle: \"nary, not a, not even one\", \"Nie było ani jednego ciasteczka.\" (There wasn't even a single cookie.) After \"ani\" the word for one counts nothing."},
+    "number_name": {"value": ["jeden i ten sam", "jedna i ta sama", "jedno i to samo", "jednego i tego samego", "jednemu i temu samemu", "jednym i tym samym", "jednej i tej samej", "jedną i tę samą", "jedną i tą samą", "jedni i ci sami", "jedne i te same", "jednych i tych samych", "jednymi i tymi samymi"], "source": "Słownik synonimów PWN, \"jeden i ten sam\": \"ten sam\", \"jedno i to samo\"; Korpus języka polskiego: \"był to często jeden i ten sam człowiek\". The set phrase means \"the same\" and counts nothing. The list holds its case forms in each gender and the plural."},
     "article_one": {"value": [], "source": "Polish has no article; \"jeden\" is a numeral."},
     "of": {"value": [], "source": "Polish marks the counted noun by case, with no \"of\" word."},
     "fraction_of": {"value": [], "source": "Polish marks the counted noun by case, with no \"of\" word."},
