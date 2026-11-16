@@ -725,6 +725,17 @@ class TestDigits(unittest.TestCase):
 
 
 class TestOrdinals(unittest.TestCase):
+    def test_an_article_before_a_hyphenated_noun_is_weak(self):
+        # "guarda-chuva" and "quinta-feira" are one noun each, so "um" and
+        # "uma" are the article
+        self.assertEqual(sure("Devo levar um guarda-chuva comigo?", "pt-PT"), [("um", "1", 0.3)])
+        self.assertEqual(sure("O dia 1 de janeiro calha a uma quinta-feira.", "pt-PT"),
+                         [("1", "1", 1.0), ("uma", "1", 0.3)])
+        self.assertEqual(sure("Preciso de um guarda-chuva e de dois casacos.", "pt-BR"),
+                         [("um", "1", 0.3), ("dois", "2", 1.0)])
+        # a number word joined to a number word by a hyphen keeps its value
+        self.assertEqual(sure("Tenho um-dois.", "pt-PT"), [("um", "1", 1.0), ("dois", "2", 1.0)])
+
     def test_every_word_of_an_ordinal_is_ordinal(self):
         # 20 + 1 = 21; 100 + 20 + 3 = 123
         self.assertEqual(pt("vigésimo primeiro"), [("vigésimo primeiro", "21", O)])

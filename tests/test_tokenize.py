@@ -8,6 +8,17 @@ def words(text: str, suffixes=frozenset()) -> list[tuple[str, int, int]]:
 
 
 class TestTokenize(unittest.TestCase):
+    def test_a_word_next_to_a_dropped_compound_notes_the_noun(self):
+        number_words = frozenset({"um", "dois", "bat"})
+        tokens = tokenize("levar um guarda-chuva e dois", number_words=number_words)
+        self.assertEqual([(t.text, t.noun_after, t.noun_before) for t in tokens],
+                         [("levar", False, False), ("um", True, False), ("e", False, True), ("dois", False, False)])
+        tokens = tokenize("liburu-denda bat", number_words=number_words)
+        self.assertEqual([(t.text, t.noun_after, t.noun_before) for t in tokens], [("bat", False, True)])
+        # punctuation between the word and the compound is no noun phrase
+        tokens = tokenize("um, guarda-chuva", number_words=number_words)
+        self.assertEqual([(t.text, t.noun_after) for t in tokens], [("um", False)])
+
     def test_offsets_slice_the_text(self):
         text = "Comprou duas dúzias, e mais 1.000,5!"
         tokens = tokenize(text)

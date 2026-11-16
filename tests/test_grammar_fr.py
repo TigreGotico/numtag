@@ -86,6 +86,10 @@ class TestMinus(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_an_article_before_a_hyphenated_noun_is_weak(self):
+        self.assertEqual([(m.text, m.confidence) for m in tag_numbers("Prends un rendez-vous.", "fr-FR")],
+                         [("un", 0.3)])
+
     def test_cent_after_pour_and_a_number_is_the_percent_sign(self):
         # six percent, not 6 and 100; "cent pour cent" is 100 once
         for lang in ("fr-FR", "fr-BE", "fr-CH"):
