@@ -133,6 +133,18 @@ class TestCatalan(unittest.TestCase):
         self.assertEqual(read("Ho he venut per cent.", "ca"), [("cent", "100", C)])
         self.assertEqual(read("per cent vint euros", "ca"), [("cent vint", "120", C)])
 
+    def test_per_cent_with_no_number_before_is_weak(self):
+        # "per cent" alone is the price "for a hundred" or the percent sign
+        # with its number missing: "atenua la llum al per cent", "Tant per cent"
+        self.assertEqual(sure("atenua la llum al per cent", "ca"), [("cent", "100", 0.4)])
+        self.assertEqual(sure("Tant per cent.", "ca"), [("cent", "100", 0.4)])
+        self.assertEqual(sure("Ho he venut per cent.", "ca"), [("cent", "100", 0.4)])
+        # before a noun it is the price
+        self.assertEqual(sure("Ho he venut per cent euros.", "ca"), [("cent", "100", 1.0)])
+        # a number before the phrase or after "cent" makes the reading clear
+        self.assertEqual(sure("El deu per cent dels guanys.", "ca"), [("deu", "10", 1.0)])
+        self.assertEqual(sure("per cent vint euros", "ca"), [("cent vint", "120", 1.0)])
+
     def test_nou_and_u_alone_are_weak(self):
         # "nou" is also "new" and "u" the name of a letter
         self.assertEqual(sure("crea un esdeveniment nou", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])

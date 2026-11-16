@@ -457,7 +457,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" means "for", and the hundred counts.
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")
@@ -468,6 +468,11 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 [('six', '6')]
 ```
 
+```python
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Calcula el tant per cent de descompte.", "ca")]
+[('cent', '100', 0.4)]
+```
+
 The word for one before a percent phrase counts the hundredths, so it is never the article. "un pour cent" is 1 %, and the mention has no reason.
 
 ```python
@@ -476,6 +481,10 @@ The word for one before a percent phrase counts the hundredths, so it is never t
 ```
 
 > DIEC2, "per" 2, prep.: "Indica: [...] b) Proporció. El deu per cent dels guanys."
+
+> DIEC2 "per" 2 1 f): "Allò en lloc de què, en comptes de què, en bescanvi de què, al preu de què, en nom de què."
+
+> DIEC2 "percentatge": "Tant per cent."
 
 > TLFi, "cent": "Pour cent unités. Abrév. % (cf. pourcentage). Augmentation de six pour cent; taux d'intérêt de trois pour cent par an."
 
