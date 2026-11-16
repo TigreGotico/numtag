@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.7a1](https://github.com/TigreGotico/numtag/tree/0.12.7a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.6a1...0.12.7a1)
+
+**Merged pull requests:**
+
+- fix: a point that cannot group digits marks decimals [\#66](https://github.com/TigreGotico/numtag/pull/66) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.6a1](https://github.com/TigreGotico/numtag/tree/0.12.6a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.5a1...0.12.6a1)
