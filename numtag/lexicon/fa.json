@@ -119,6 +119,10 @@
       "value": [],
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
     },
+    "number_name": {
+      "value": ["یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه"],
+      "source": "Wiktionary, \"سه‌شنبه\": \"Tuesday\", from سه and شنبه, \"lit. three (days after) Saturday\"; \"پنج‌شنبه\": from پنج \"five\" and شنبه \"Saturday\", \"lit. five (days after) Saturday\"; \"دوشنبه\": \"Monday\"; \"یک‌شنبه\": Sunday, alternative form \"یکشنبه\" \"without a ZWNJ\". The weekday names are one word made of a number word and شنبه; written with a space, they still name a day and no number."
+    },
     "of": {
       "value": [],
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): the spellout-cardinal rules, from \"-x: منفی >>;\" to \"1000000000000000000: =#,##0=;\", hold no such word."
