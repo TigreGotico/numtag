@@ -99,6 +99,18 @@ class TestReasons(unittest.TestCase):
         self.assertEqual([m.reasons for m in tag_numbers("Comprei um número.", "pt-PT")],
                          [frozenset({Reason.ARTICLE})])
 
+    def test_one_before_a_percent_phrase_is_the_number(self):
+        # "un pour cent" is 1 %: the word counts the hundredths, so it is no article
+        for text, lang, word in (("volume à un pour cent", "fr-FR", "un"), ("volum al un per cent", "ca", "un"),
+                                 ("volum a un per cent", "oc", "un"), ("volume al uno per cento", "it", "uno"),
+                                 ("άλλαξε στο ένα τοις εκατό την φωτεινότητα", "el", "ένα")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, lang)],
+                                 [(word, "1", frozenset())])
+        # an article before "pour" with no "cent" after it stays an article
+        self.assertEqual([(m.value, m.reasons) for m in tag_numbers("un livre pour cent euros", "fr-FR")],
+                         [("1", frozenset({Reason.ARTICLE})), ("100", frozenset())])
+
     def test_an_article_that_is_the_whole_text_is_weak(self):
         # a line of a vocabulary file: the word has no noun to decide it
         for text, lang in (("um", "pt-PT"), ("uma", "pt-BR"), ("un", "gl"), ("unha", "gl"), ("egy", "hu"),

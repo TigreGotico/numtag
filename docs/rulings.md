@@ -468,6 +468,13 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 [('six', '6')]
 ```
 
+The word for one before a percent phrase counts the hundredths, so it is never the article. "un pour cent" is 1 %, and the mention has no reason.
+
+```python
+>>> [(m.text, m.value, m.reasons) for m in tag_numbers("Mets le volume à un pour cent.", "fr-FR")]
+[('un', '1', frozenset())]
+```
+
 > DIEC2, "per" 2, prep.: "Indica: [...] b) Proporció. El deu per cent dels guanys."
 
 > TLFi, "cent": "Pour cent unités. Abrév. % (cf. pourcentage). Augmentation de six pour cent; taux d'intérêt de trois pour cent par an."
