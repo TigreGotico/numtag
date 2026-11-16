@@ -1,11 +1,11 @@
 # API reference
 
-The package `numtag` exports eight names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value` and `ARTICLE_CONFIDENCE`. This page describes each of them. Every other module is internal.
+The package `numtag` exports nine names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` and `UnsupportedLanguageError`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Reason', 'Scale', 'is_canonical_value', 'tag_numbers']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Reason', 'Scale', 'UnsupportedLanguageError', 'is_canonical_value', 'tag_numbers']
 ```
 
 ## tag_numbers
@@ -22,10 +22,15 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons, every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
 
-`tag_numbers` raises `ValueError` for a language with no lexicon, and for a `scale` that is not a scale. An empty value reads the default scale.
+`tag_numbers` raises `UnsupportedLanguageError` for a language with no lexicon. It is a subclass of `ValueError`, so a caller can catch it alone and skip the text, or catch `ValueError` for every bad argument. A `scale` that is not a scale raises a plain `ValueError`. An empty value reads the default scale.
 
 ```python
->>> from numtag import tag_numbers, Scale
+>>> from numtag import UnsupportedLanguageError, tag_numbers, Scale
+>>> try:
+...     tag_numbers("दो", "hi")
+... except UnsupportedLanguageError as error:
+...     print(error)
+no lexicon for language 'hi'
 >>> tag_numbers("one", "en", scale="medium")
 Traceback (most recent call last):
   ...

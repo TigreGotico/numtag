@@ -106,7 +106,7 @@ Read [number-scale.md](number-scale.md).
 
 ## Language tags
 
-numtag reads `pt-BR` as Brazilian Portuguese and every other `pt` tag as European Portuguese. Every other tag reads the lexicon of its primary subtag. `fr-BE` and `fr-CH` have their own lexicons, and `no` reads Norwegian Bokmål. The README lists the lexicons. A tag may use `-` or `_`, in any case. A language with no lexicon raises `ValueError`.
+numtag reads `pt-BR` as Brazilian Portuguese and every other `pt` tag as European Portuguese. Every other tag reads the lexicon of its primary subtag. `fr-BE` and `fr-CH` have their own lexicons, and `no` reads Norwegian Bokmål. The README lists the lexicons. A tag may use `-` or `_`, in any case. A language with no lexicon raises `UnsupportedLanguageError`, a subclass of `ValueError`.
 
 ```python
 >>> [m.value for m in tag_numbers("dois", "pt_AO")]
@@ -114,7 +114,7 @@ numtag reads `pt-BR` as Brazilian Portuguese and every other `pt` tag as Europea
 >>> tag_numbers("二", "ja")
 Traceback (most recent call last):
   ...
-ValueError: no lexicon for language 'ja'
+numtag.lexicon.UnsupportedLanguageError: no lexicon for language 'ja'
 ```
 
 ## What numtag does not read
