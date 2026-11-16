@@ -148,9 +148,10 @@
   },
   "article_needs_noun": {
    "value": [
-    "ein"
+    "ein",
+    "eines"
    ],
-   "source": "The counting form of 1 is \"eins\"; \"ein\" stands before a noun, so a lone \"ein\" at the end of a clause is the verb particle (\"Er lud mich ein.\"): CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1: eins\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-masculine: \"1: ein\""
+   "source": "The counting form of 1 is \"eins\"; \"ein\" stands before a noun, so a lone \"ein\" at the end of a clause is the verb particle (\"Er lud mich ein.\"): CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1: eins\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-masculine: \"1: ein\". A lone \"eines\" is the genitive article with no noun or the pronoun: en.wiktionary, \"eines\": \"genitive masculine / neuter singular of ein : a , an\"; Pronoun: \"inflection of einer : strong nominative / accusative neuter singular\""
   },
   "of": {
    "value": [],

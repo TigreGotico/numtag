@@ -103,6 +103,13 @@
    ],
    "source": "DPD \"fraccionarios\" §3: \"van normalmente seguidos de un complemento con de [...] Dos tercios de los presentes\"."
   },
+  "article_needs_noun": {
+   "value": [
+    "un",
+    "una"
+   ],
+   "source": "DPD \"uno, una\" 1.1: \"El indefinido un(o) , un(a) ( pl. unos , unas ) puede funcionar como determinante, caso en que se denomina más específicamente artículo indeterminado o indefinido: Me ha mordido una serpiente ; o como pronombre: Una de tus amigas me llamó ayer\"; 2.2: \"Es incorrecta la apócope de uno y sus compuestos cuando no van antepuestos a un sustantivo\". A lone \"un\" or \"una\" at the end of a clause is the article or the indefinite pronoun; the counting form is \"uno\"."
+  },
   "denominator_particle": {
    "value": [
     "avos"

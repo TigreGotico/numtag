@@ -52,6 +52,19 @@ English "a" and "an" count one only before a word that takes a count: a multipli
 [('a dozen', '12', 1.0), ('a third', '1/3', 1.0)]
 ```
 
+German and Spanish count with a form that is not the article: "eins" and "uno". A lone article at the end of a clause is the article or a pronoun, so "ein", "eines", "un" and "una" get the low score there. The counting form keeps the full score.
+
+```python
+>>> read("Muéstrame una.", "es")
+[('una', '1', 0.3)]
+>>> read("Quedó uno.", "es")
+[('uno', '1', 1.0)]
+>>> read("Er lud mich ein.", "de")
+[('ein', '1', 0.3)]
+```
+
+> DPD "uno, una" 2.2: "Es incorrecta la apócope de uno y sus compuestos cuando no van antepuestos a un sustantivo"
+
 ## Words with a second meaning
 
 A lexicon entry can carry `"ambiguous": true`. In Portuguese these are "meio", "meia", and "quarto" and "quartos" as a fraction. The ordinals "segundo", "quarto", "quinto" and "sexto" are ambiguous in every gender and number. In English they are "half", "second" and "score".

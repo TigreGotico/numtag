@@ -15,6 +15,12 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(sure("baja el brillo a un 20 por ciento", "es"), [("un", "1", 0.3), ("20", "20", 1.0)])
         self.assertEqual(sure("hay un 29 de febrero este año", "es"), [("un", "1", 0.3), ("29", "29", 1.0)])
 
+    def test_a_lone_un_or_una_at_the_clause_end_is_weak(self):
+        self.assertEqual(sure("muéstrame una", "es"), [("una", "1", 0.3)])
+        self.assertEqual(sure("un", "es"), [("un", "1", 0.3)])
+        # the counting form "uno" is a numeral there
+        self.assertEqual(sure("quedó uno", "es"), [("uno", "1", 1.0)])
+
     def test_veintiuno_is_one_word_in_its_three_forms(self):
         for text in ("veintiuno", "veintiún", "veintiuna"):
             with self.subTest(text=text):
