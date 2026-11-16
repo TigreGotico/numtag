@@ -106,6 +106,7 @@
    "value": [],
    "source": "No Swedish idiom puts \"minus\" before a positive number."
   },
+  "number_noun": {"value": ["nummer"], "source": "Wiktionary, \"nummer\", Swedish noun: \"a number\", \"an item on a numbered list\". The word after \"nummer\" names the number, so \"nummer ett\" is one, not the article."},
   "article_one": {
    "value": [
     "en",

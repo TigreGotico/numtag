@@ -57,6 +57,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
+| `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `article_one` | Articles that also mean one | "um", "uma" | "a", "an" |
 | `of` | The word after which a plural noun multiplies a scale noun | "de" | empty |
 | `fraction_of` | The word between a fraction and a collective | "de" | "of" |

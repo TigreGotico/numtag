@@ -87,6 +87,18 @@ class TestArticleConfidence(unittest.TestCase):
 
 
 class TestReasons(unittest.TestCase):
+    def test_one_after_a_number_noun_is_the_number(self):
+        # "o número um": the word names the number, so it is no article
+        for text, lang, word in (("o número um por favor", "pt-PT", "um"), ("O número um", "pt-BR", "um"),
+                                 ("le numéro un s'il te plaît", "fr-FR", "un"),
+                                 ("nummer een alsjeblieft", "nl", "een"), ("nummer ett tack", "sv", "ett")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, lang)],
+                                 [(word, "1", frozenset())])
+        # the article before "número" stays an article
+        self.assertEqual([m.reasons for m in tag_numbers("Comprei um número.", "pt-PT")],
+                         [frozenset({Reason.ARTICLE})])
+
     def test_an_article_that_is_the_whole_text_is_weak(self):
         # a line of a vocabulary file: the word has no noun to decide it
         for text, lang in (("um", "pt-PT"), ("uma", "pt-BR"), ("un", "gl"), ("unha", "gl"), ("egy", "hu"),
