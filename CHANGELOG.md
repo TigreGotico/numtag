@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.13a4](https://github.com/TigreGotico/numtag/tree/0.10.13a4) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a3...0.10.13a4)
+
+**Merged pull requests:**
+
+- test: the readings ovos-typed-slots-transformer depends on [\#57](https://github.com/TigreGotico/numtag/pull/57) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.13a3](https://github.com/TigreGotico/numtag/tree/0.10.13a3) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a2...0.10.13a3)
