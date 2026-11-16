@@ -173,14 +173,17 @@ def _run_parts(run: tuple[Group, ...]) -> Pieces:
 
 
 class Grammar:
-    def __init__(self, lexicon: Lexicon, tokens: list[Token]):
+    def __init__(self, lexicon: Lexicon, tokens: list[Token], unsigned: int | None = None):
+        """``unsigned``: the index of a signed digit string that starts a
+        number, read without its sign. The tagger negates that number."""
         self.lex = lexicon
         self.tokens = tokens
+        self.unsigned = unsigned
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
-            rf"-?(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
+            rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
 
     # Token access -----------------------------------------------------
 
@@ -272,12 +275,17 @@ class Grammar:
         token = self.tokens[i] if i < len(self.tokens) else None
         if token is None or not token.is_digits or token.suffix or token.period_ordinal:
             return None
-        end, text = i + 1, self.tokens[i].latin.replace("\u2212", "-")
-        if text.lstrip("-")[0] in ".,":
-            # a lone decimal mark (".5", "-.5"): the tokenizer keeps only a listed one
-            value = Rational.from_decimal("0", text.lstrip("-")[1:])
-            return end, (-value if text.startswith("-") else value), True
-        if self.lex.space_groups and re.fullmatch(r"-?[1-9][0-9]{0,2}", text):
+        end, text = i + 1, self.tokens[i].latin
+        if text[0] in "-\u2212":
+            # a sign starts a number and never stands inside one: the tagger
+            # reads a signed number without its sign and negates it
+            if i != self.unsigned:
+                return None
+            text = text[1:]
+        if text[0] in ".,":
+            # a lone decimal mark (".5"): the tokenizer keeps only a listed one
+            return end, Rational.from_decimal("0", text[1:]), True
+        if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
                 text += self.lex.group_mark + self.tokens[end].latin
                 end += 1
@@ -285,9 +293,8 @@ class Grammar:
         if not match:
             return None
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
-        whole = whole_text.lstrip("-").replace(self.lex.group_mark, "")
-        value = Rational.from_decimal(whole, match.group(1) or "")
-        return end, (-value if text.startswith("-") else value), bool(match.group(1))
+        whole = whole_text.replace(self.lex.group_mark, "")
+        return end, Rational.from_decimal(whole, match.group(1) or ""), bool(match.group(1))
 
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
@@ -1187,9 +1194,16 @@ class Grammar:
         smaller: "entre cem mil e um milhão" is 100000 and 1000000."""
         if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
             return None
-        return self._fewest_digits(
-            (left, inner, digits) for left, right, inner, digits in self._splits(i)
-            if _less(left[0].value, right.value))
+        signed = i == self.unsigned
+        splits = [(left, right, inner, digits) for left, right, inner, digits in self._splits(i)
+                  if _less(-left[0].value if signed else left[0].value, right.value)]
+        if signed and splits:
+            # a negative first limit is below any right side, so only the
+            # right limit that reaches furthest leaves two numbers: "entre -2
+            # milhões e meio e 3 milhões" does not split at the first "e"
+            furthest = max(right.end for _, right, _, _ in splits)
+            splits = [split for split in splits if split[1].end == furthest]
+        return self._fewest_digits((left, inner, digits) for left, _, inner, digits in splits)
 
     def _split_left(self, i: int) -> list[Parse] | None:
         """With no range cue, where the longest number from ``i`` and the
@@ -1235,7 +1249,7 @@ class Grammar:
             inner = self._inner(i, k)
             if inner and k != default:
                 continue
-            left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]
+            left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned)._numbers(i) if p.end == k]
             right = self._numbers(k + 1)
             if not (left and right):
                 continue

@@ -101,7 +101,11 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             continue
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
-        parses = [p for p in grammar.numbers(start) if _whole_words(grammar, run, start, p)]
+        # "-2 milhões e meio" is minus two and a half million: the sign of a
+        # digit string that starts a number applies to the whole number
+        signed = _signed(run[start])
+        number_grammar = Grammar(lexicon, run, unsigned=start) if signed else grammar
+        parses = [p for p in number_grammar.numbers(start) if _whole_words(number_grammar, run, start, p)]
         # a number starts and ends at the edges of a word, never inside one
         if not parses or run[i].glued:
             i += 1
@@ -115,14 +119,19 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
                              and run[start].norm in lexicon.nouns_after_count):
             i += 1
             continue
-        value = -best.value if negative else best.value
+        value = -best.value if negative != signed else best.value
         # a number glued to a joiner prefix it does not use ("ושבעה") keeps
         # the whole word: a span never starts inside a word
         first = i - 1 if run[i].attached else i
         span = (run[first].start, run[best.end - 1].end)
-        reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text, signed=negative)
+        reason = _reason(number_grammar, lexicon, run, start, best, alone=text.strip() == run[start].text,
+                         signed=negative)
         kind = _kind(lexicon, run[start:best.end], best)
         pieces = best.parts
+        if signed:
+            # the digit string is one part with its sign: "-2" is -2
+            role, first_index, end, part_value = pieces[0]
+            pieces = ((role, first_index, end, -part_value),) + pieces[1:]
         if negative:
             pieces = ((Role.MINUS, i, start, None),) + pieces
         if first < pieces[0][1]:
@@ -147,6 +156,10 @@ def _parts(text: str, run: list[Token], pieces: Pieces) -> tuple[Part, ...]:
         span = (run[start].start, run[end - 1].end)
         parts.append(Part(role, span, text[span[0]:span[1]], None if value is None else value.canonical()))
     return tuple(parts)
+
+
+def _signed(token: Token) -> bool:
+    return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in "-\u2212"
 
 
 def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:
