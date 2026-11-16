@@ -922,6 +922,15 @@ class TestMinus(unittest.TestCase):
     def test_minus_idioms_are_no_sign(self):
         self.assertEqual(pt("pelo menos dois"), [("dois", "2", C)])
         self.assertEqual(pt("mais ou menos cinco"), [("cinco", "5", C)])
+        self.assertEqual(pt("ao menos um"), [("um", "1", C)])
+
+    def test_a_menos_before_a_number_compares(self):
+        # CETEMPúblico: 33 of 60 "a menos" + number hits compare, 16 are the sign
+        self.assertEqual(pt("o que corresponde a menos 2243 empresas"), [("2243", "2243", C)])
+        self.assertEqual(pt("a menos que venhas"), [])
+        self.assertEqual(pt("ficou a menos de três metros"), [("três", "3", C)])
+        # the cost: the sign after "a menos" is lost
+        self.assertEqual(pt("o termómetro desceu já a menos 15 graus"), [("15", "15", C)])
 
     def test_minus_between_numbers_is_no_sign(self):
         self.assertEqual(pt("cinco menos dois"), [("cinco", "5", C), ("dois", "2", C)])

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.3a1](https://github.com/TigreGotico/numtag/tree/0.12.3a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.2a1...0.12.3a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): cite the corpus for the "a menos" idiom [\#62](https://github.com/TigreGotico/numtag/pull/62) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.2a1](https://github.com/TigreGotico/numtag/tree/0.12.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.1a1...0.12.2a1)
