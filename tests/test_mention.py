@@ -91,6 +91,7 @@ class TestReasons(unittest.TestCase):
         # "o número um": the word names the number, so it is no article
         for text, lang, word in (("o número um por favor", "pt-PT", "um"), ("O número um", "pt-BR", "um"),
                                  ("le numéro un s'il te plaît", "fr-FR", "un"),
+                                 ("le nombre un est-il pair ?", "fr-FR", "un"),
                                  ("nummer een alsjeblieft", "nl", "een"), ("nummer ett tack", "sv", "ett")):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, lang)],
