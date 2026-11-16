@@ -488,6 +488,17 @@ class Grammar:
                       if not e.plural and len(e.value) > 2 and e.value == digits.shift("1", len(e.value) - 1)]
         return found
 
+    def _inside_glued_denominator(self, start: int, i: int) -> bool:
+        """True when the denominator at ``i`` ends a glued one that starts
+        after ``start``: a count from ``start`` multiplies the whole word, so
+        "egy százezred" is 1/100000, not "egy száz" over "ezred"."""
+        if i >= len(self.tokens) or not self.tokens[i].glued:
+            return False
+        word = i
+        while word > 0 and self.tokens[word].glued:
+            word -= 1
+        return start < word and any(end == i + 1 for end, _, _ in self._glued_denominators(word))
+
     def _decimal_fraction(self, i: int) -> list[tuple[int, str]]:
         """"пять десятых", "двадцать пять сотых" after a decimal marker: the
         numerator written in as many digits as the denominator has zeros."""
@@ -511,7 +522,8 @@ class Grammar:
             (run[-1].end, _whole(_sum(run))) for run in self.cardinals(i)
             if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"}
         for end, numerator in sorted(numerators):
-            denominators = [(end + 1, e.value) for e in self._readings(end, "denominator")] \
+            readings = () if self._inside_glued_denominator(i, end) else self._readings(end, "denominator")
+            denominators = [(end + 1, e.value) for e in readings] \
                 + [(stop, value) for stop, value, _ in self._glued_denominators(end)]
             for stop, value in denominators:
                 places = len(value) - 1

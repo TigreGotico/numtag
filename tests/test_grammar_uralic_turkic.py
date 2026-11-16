@@ -211,6 +211,9 @@ class TestFractionsAndDecimals(unittest.TestCase):
         # 99999/10^5 = 0.99999: the "száz" of "százezred" counts nothing before it
         self.assertEqual(read("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "hu"),
                          [("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "0.99999", D)])
+        # 0 + 1/10^5 = 0.00001: "egy" counts "százezred", not the "száz" in it
+        self.assertEqual(read("nulla egész egy százezred", "hu"), [("nulla egész egy százezred", "0.00001", D)])
+        self.assertEqual(read("egy százezred", "hu"), [("egy százezred", "0.00001", F)])
         # 7/10^5; 1/200 = 0.005; 1/10^6
         self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
         self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
@@ -221,6 +224,8 @@ class TestFractionsAndDecimals(unittest.TestCase):
         mentions = tag_numbers("háromszázad másodperccel nyert", "hu")
         self.assertEqual([(m.text, m.value) for m in mentions], [("háromszázad", "0.03")])
         self.assertLess(mentions[0].confidence, 1.0)
+        # the same after "egész": 5 + 2/100 = 5.02
+        self.assertEqual(read("öt egész kétszázad másodperc", "hu"), [("öt egész kétszázad", "5.02", D)])
         # "kétharmad" is 2/3
         self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
 
