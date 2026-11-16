@@ -1,12 +1,19 @@
 # Changelog
 
+## [0.12.9a1](https://github.com/TigreGotico/numtag/tree/0.12.9a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.8a1...0.12.9a1)
+
+**Merged pull requests:**
+
+- fix: only a real space group before a point decimal keeps it unread [\#71](https://github.com/TigreGotico/numtag/pull/71) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.8a1](https://github.com/TigreGotico/numtag/tree/0.12.8a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a2...0.12.8a1)
 
 **Merged pull requests:**
 
-- fix: only a real space group before a point decimal keeps it unread [\#71](https://github.com/TigreGotico/numtag/pull/71) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(hu\): a count glued to a part word of a hundred or more multiplies it [\#69](https://github.com/TigreGotico/numtag/pull/69) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.7a2](https://github.com/TigreGotico/numtag/tree/0.12.7a2) (2026-11-16)
