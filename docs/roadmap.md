@@ -49,8 +49,8 @@ Some numbers have a name of their own. A named number with a finite value will b
 Digits in date and time formats will become separate DIGITS mentions: "3.5.2025" will give 3, 5 and 2025, and "15h30" will give 15 and 30. numtag reads these forms as follows:
 
 ```python
->>> [(m.text, m.value) for m in tag_numbers("Em 3.5.2025, às 15h30, 2/3 da turma saiu.", "pt-PT")]
-[('15', '15'), ('2/3', '2/3')]
+>>> [(m.text, m.value) for m in tag_numbers("Em 3.5.2025, às 15h30 a turma saiu.", "pt-PT")]
+[('15', '15')]
 ```
 
 ## Native-speaker review (planned)
