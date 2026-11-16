@@ -228,7 +228,7 @@ class Grammar:
         """Where a noun agrees with its count, a singular noun takes only a
         count below two: "um milhão", "meio milhão", "mil e um milhões". A
         plural noun takes no count of one or a half written in words: "meio
-        milhões" and "um milhões" are no number."""
+        milhões" and "um milhões" are no one number."""
         if not (noun and self.lex.scale_noun_agrees):
             return True
         if plural:
