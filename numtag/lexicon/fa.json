@@ -453,6 +453,12 @@
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\". en.wiktionary \"میلیون\": \"( plural میلیون‌ها ( milyun-hâ, melyun-hâ ) )\"; fa.wikipedia \"دستور زبان فارسی\": \"همه اسم‌ها در فارسی با پسوند -ها جمع می‌شوند\"; fa.wiktionary \"میلیارد\" names it a noun: \"ملیارد: هزار میلیون.\""
     },
     {
+      "word": "تریلیون",
+      "role": "scale_noun",
+      "value": 12,
+      "source": "CLDR RBNF fa: knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/cldr-rbnf-fa.xml: \"1000000000000: << هزار میلیارد[ و >>];\"; fa.wikipedia, \"تریلیون\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wp-trilyun.wikitext: \"۱٬۰۰۰٬۰۰۰٬۰۰۰٬۰۰۰، یعنی یک میلیون میلیون یا 10¹² (ده تا توان دوازدهم)، همان‌طور که در مقیاس کوتاه تعریف شده‌است\""
+    },
+    {
       "word": "نیم",
       "role": "half",
       "source": "en.wiktionary \"نیم\": \"نیم • ( nim ) half\"."

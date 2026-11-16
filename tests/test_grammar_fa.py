@@ -31,6 +31,12 @@ class TestPersian(unittest.TestCase):
         # هزار میلیارد = 10^3 x 10^9 = 10^12
         self.assertEqual(fa("هزار میلیارد"), [("هزار میلیارد", "1000000000000", C)])
 
+    def test_a_trillion_is_a_thousand_milliards(self):
+        # تریلیون = هزار میلیارد = 10^3 x 10^9 = 10^12, written as 1 and 12 zeros
+        self.assertEqual(fa("یک تریلیون"), [("یک تریلیون", "1000000000000", C)])
+        # 2 x 10^12
+        self.assertEqual(fa("دو تریلیون"), [("دو تریلیون", "2000000000000", C)])
+
     def test_persian_and_arabic_digits(self):
         # ۱۲٬۳۴۵٫۶۷ = 12345.67
         self.assertEqual(fa("۱۲٬۳۴۵٫۶۷ تومان"), [("۱۲٬۳۴۵٫۶۷", "12345.67", D)])
