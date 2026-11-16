@@ -450,14 +450,16 @@ A verb after "um quinto" also makes the ordinal, so an ordinal read this way has
 
 ## A joiner prefix before a number
 
-In Hebrew and Arabic, the conjunction "and" is one letter, ו, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. The articles and prepositions that are one letter (he ה, ב, ל) stay in the span of the word they join.
+In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.
 
 ```python
 >>> read("עשרים ושלוש", "he")
 [('עשרים ושלוש', '23')]
 >>> read("קניתי ספר ועשרה עטים", "he")
 [('עשרה', '10')]
->>> read("קניתי ספר ובשלושה עטים", "he")
+>>> read("בשלושה ימים", "he")
+[('בשלושה', '3')]
+>>> read("ובשלושה ימים", "he")
 [('בשלושה', '3')]
 >>> read("بين 15 و20 درجة", "ar")
 [('15', '15'), ('20', '20')]

@@ -153,7 +153,7 @@
 {"text": "שתים עשרה נקודה חמש אחוז.", "mentions": [{"start": 0, "end": 19, "value": "12.5", "kind": "decimal"}], "source": "CLDR RBNF he: \"x.x: << נקודה >>\"; 12 + 0.5."}
 {"text": "מינוס שלושים מעלות בסיביר.", "mentions": [{"start": 0, "end": 12, "value": "-30", "kind": "cardinal"}], "source": "CLDR RBNF he: \"-x: מינוס >>\"."}
 {"text": "השבעה נשארו.", "mentions": [{"start": 0, "end": 5, "value": "7", "kind": "cardinal"}], "source": "by hand: ה is the joined article."}
-{"text": "ושלושה ילדים.", "mentions": [{"start": 1, "end": 6, "value": "3", "kind": "cardinal"}], "source": "the joined ו is the conjunction \"and\", written as a prefix, so the span starts after it (CLDR RBNF he: \"1: ו=%spellout-numbering=;\", ו is written joined to the next word)."}
+{"text": "ושלושה ילדים.", "mentions": [{"start": 1, "end": 6, "value": "3", "kind": "cardinal"}], "source": "the joined ו is the conjunction \"and\" and the word is the number (CLDR RBNF he: \"1: ו=%spellout-numbering=;\", ו is written joined to the next word)."}
 {"text": "הוא חייב שלושה טריליון שקלים.", "mentions": [{"start": 9, "end": 22, "value": "3000000000000", "kind": "cardinal"}], "source": "he.wikipedia \"טריליון\": \"טריליון (1,000,000,000,000) הוא מספר טבעי השווה לאלף מיליארדים\"; 3 x 10^12."}
 {"text": "החוב עומד על טריליון דולר.", "mentions": [{"start": 13, "end": 20, "value": "1000000000000", "kind": "cardinal"}], "source": "he.wikipedia \"טריליון\": \"טריליון (1,000,000,000,000) הוא מספר טבעי השווה לאלף מיליארדים\"."}
 {"text": "המאה הקודמת הייתה סוערת.", "mentions": [{"start": 0, "end": 4, "value": "100", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "en.wiktionary \"מאה\": \"century\"; the century reading is low confidence."}
