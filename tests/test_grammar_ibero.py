@@ -150,6 +150,13 @@ class TestCatalan(unittest.TestCase):
         # "el nou" is also "the new one"
         self.assertEqual(sure("Ha arribat el nou.", "ca"), [("nou", "9", 0.4)])
 
+    def test_un_before_nou_is_the_article(self):
+        # "un nou" is no number: "un" is the article of "nou" ("new") and its noun
+        self.assertEqual(sure("inicia un nou enregistrament d'àudio", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])
+        self.assertEqual(sure("Ja hem fet un nou prosèlit.", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])
+        # "un" before a whole number keeps its reading
+        self.assertEqual(sure("un milió", "ca"), [("un milió", "1000000", 1.0)])
+
     def test_the_twenties_take_i_and_the_rest_a_hyphen(self):
         for text, value in (("vint-i-u", "21"), ("vint-i-una", "21"), ("trenta-dos", "32"),
                             ("quaranta-un", "41")):

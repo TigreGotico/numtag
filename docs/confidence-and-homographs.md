@@ -10,7 +10,7 @@ The confidence is a fixed score in (0, 1]. It is not a probability. The same tex
 |---|---|
 | 1.0 | The words are a number for certain. |
 | 0.4 | The number rests on a word with a common meaning that is not a number ("segundo", "quarto", "meio", "second", "half", "score"). |
-| 0.3 | An article stands alone before its noun phrase: a word that starts no number, a number in digits or an ordinal. Portuguese "um" or "uma" in "comprei uma casa". |
+| 0.3 | An article stands alone before its noun phrase: a word that starts no number, a number in digits, an ordinal or a lone word with a second meaning. Portuguese "um" or "uma" in "comprei uma casa". |
 
 The gold corpus and its tests use 0.5 as the line between a weak mention and a clear number. A caller that wants only clear numbers keeps the mentions at 0.5 or above.
 
@@ -50,6 +50,13 @@ The low score needs a word after the article. An article before punctuation or a
 ```
 
 > DPD "uno, una" 1.1: "Como determinante, toma la forma un ante sustantivos masculinos, los preceda inmediatamente o no"; 2.2: "Es incorrecta la apócope de uno y sus compuestos cuando no van antepuestos a un sustantivo"
+
+Before a lone word with a second meaning, the article also gets the low score. Catalan "nou" is nine and "new", and "un nou enregistrament" is "a new recording". The word keeps its own score 0.4.
+
+```python
+>>> read("Inicia un nou enregistrament.", "ca")
+[('un', '1', 0.3), ('nou', '9', 0.4)]
+```
 
 English "a" and "an" count one only before a word that takes a count: a multiplier, a collective, a fraction word or a half. Examples are "a hundred", "a dozen", "a third" and "a half". Alone, they are not a number, so numtag gives no mention.
 
