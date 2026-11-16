@@ -17,7 +17,8 @@ GOLD_DIR = Path(__file__).parent
 KINDS = {"cardinal", "ordinal", "fraction", "decimal"}
 ROW_KEYS = {"text", "mentions", "source"}
 MENTION_KEYS = {"start", "end", "value", "kind"}
-OPTIONAL_MENTION_KEYS = {"low_confidence", "number_scale"}
+OPTIONAL_MENTION_KEYS = {"low_confidence", "number_scale", "reasons"}
+REASONS = {"article", "homograph"}
 SCALES = {"long", "short"}
 WHOLE = re.compile(r"-?[0-9]+")
 #: the marks that make a value a decimal, per gold file: a digit mark or a word
@@ -110,6 +111,10 @@ def check_row(row, lang: str = "") -> None:
                 f"span {span!r} is {m['kind']}, but a decimal is exactly the kind with a decimal mark"
         if "low_confidence" in m:
             assert m["low_confidence"] is True, "low_confidence is present only as true"
+        if "reasons" in m or "low_confidence" in m:
+            assert m.get("low_confidence") is True and "reasons" in m, "low_confidence and reasons go together"
+            assert isinstance(m["reasons"], list) and m["reasons"] and set(m["reasons"]) <= REASONS, \
+                f"reasons {m['reasons']!r} is not a non-empty list from {sorted(REASONS)}"
         if "number_scale" in m:
             assert m["number_scale"] in SCALES, f"number_scale {m['number_scale']!r} is not one of {sorted(SCALES)}"
 

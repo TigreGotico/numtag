@@ -118,8 +118,8 @@
 {"text": "Vi har købt niogtres æbler.", "mentions": [{"start": 12, "end": 20, "value": "69", "kind": "cardinal"}], "source": "CLDR RBNF da spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "I salen sidder hundrede og tretten gæster.", "mentions": [{"start": 15, "end": 34, "value": "113", "kind": "cardinal"}], "source": "CLDR RBNF da spellout rules (unicode-rbnf 2.4.1 data); the words are the unicode-rbnf rendering of the value"}
 {"text": "Det er mellem to og fyrre grader.", "mentions": [{"start": 14, "end": 16, "value": "2", "kind": "cardinal"}, {"start": 20, "end": 25, "value": "40", "kind": "cardinal"}], "source": "Dansk Sprognævn: a number below 100 is one word, so the spaced words are two numbers"}
-{"text": "Unionen blev opløst i 1905. Det var en stor dag.", "mentions": [{"start": 22, "end": 26, "value": "1905", "kind": "cardinal"}, {"start": 36, "end": 38, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "A period before a capital ends the sentence: the year is a cardinal"}
-{"text": "Bonden betalte tiende til kirken.", "mentions": [{"start": 15, "end": 21, "value": "10", "kind": "ordinal", "low_confidence": true}], "source": "Danish Wikipedia, \"Tiende\": the word is also the tithe"}
+{"text": "Unionen blev opløst i 1905. Det var en stor dag.", "mentions": [{"start": 22, "end": 26, "value": "1905", "kind": "cardinal"}, {"start": 36, "end": 38, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "A period before a capital ends the sentence: the year is a cardinal"}
+{"text": "Bonden betalte tiende til kirken.", "mentions": [{"start": 15, "end": 21, "value": "10", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "Danish Wikipedia, \"Tiende\": the word is also the tithe"}
 {"text": "Han kom på den fyrrende plads.", "mentions": [{"start": 15, "end": 23, "value": "40", "kind": "ordinal"}], "source": "CLDR RBNF da renders 40 as the ordinal \"fyrrende\""}
 {"text": "Det er den millionte gæst.", "mentions": [{"start": 11, "end": 20, "value": "1000000", "kind": "ordinal"}], "source": "CLDR RBNF da renders 1000000 as the ordinal \"millionte\""}
 {"text": "Det er det første forsøg.", "mentions": [{"start": 11, "end": 17, "value": "1", "kind": "ordinal"}], "source": "arithmetic"}
@@ -132,7 +132,7 @@
 {"text": "I det nittende århundrede voksede byen.", "mentions": [{"start": 6, "end": 14, "value": "19", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Den syvende symfoni er lang.", "mentions": [{"start": 4, "end": 11, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det er det toogfyrretyvende forsøg.", "mentions": [{"start": 11, "end": 27, "value": "42", "kind": "ordinal"}], "source": "arithmetic"}
-{"text": "Den 3. maj er en fridag.", "mentions": [{"start": 4, "end": 5, "value": "3", "kind": "ordinal"}, {"start": 14, "end": 16, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Den 3. maj er en fridag.", "mentions": [{"start": 4, "end": 5, "value": "3", "kind": "ordinal"}, {"start": 14, "end": 16, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Hun vandt 1. præmie.", "mentions": [{"start": 10, "end": 11, "value": "1", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Han endte som femte.", "mentions": [{"start": 14, "end": 19, "value": "5", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Jeg tager to tredjedele af det.", "mentions": [{"start": 10, "end": 23, "value": "2/3", "kind": "fraction"}], "source": "arithmetic"}
@@ -159,9 +159,9 @@
 {"text": "Fra 1990 til 2005 boede han her.", "mentions": [{"start": 4, "end": 8, "value": "1990", "kind": "cardinal"}, {"start": 13, "end": 17, "value": "2005", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Fem børn og to hunde leger.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 12, "end": 14, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Hun valgte syv og ni.", "mentions": [{"start": 11, "end": 14, "value": "7", "kind": "cardinal"}, {"start": 18, "end": 20, "value": "9", "kind": "cardinal"}], "source": "arithmetic"}
-{"text": "Jeg har en bil.", "mentions": [{"start": 8, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Hun købte en avis.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Det er et godt hus.", "mentions": [{"start": 7, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Jeg har en bil.", "mentions": [{"start": 8, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Hun købte en avis.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Det er et godt hus.", "mentions": [{"start": 7, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Projektet koster en million kroner.", "mentions": [{"start": 17, "end": 27, "value": "1000000", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Et dusin æg ligger i kurven.", "mentions": [{"start": 0, "end": 8, "value": "12", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Hun købte to dusin roser.", "mentions": [{"start": 10, "end": 18, "value": "24", "kind": "cardinal"}], "source": "arithmetic"}

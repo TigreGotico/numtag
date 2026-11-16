@@ -51,7 +51,7 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
     def test_a_good_row_passes(self):
         check_gold.check_row(_row("comprou duas dúzias de ovos", _m(8, 19, "24")))
         check_gold.check_row(_row("Estão -5 graus.", _m(6, 8, "-5")))
-        check_gold.check_row(_row("Comprei uma casa.", _m(8, 11, "1", low_confidence=True)))
+        check_gold.check_row(_row("Comprei uma casa.", _m(8, 11, "1", low_confidence=True, reasons=["article"])))
         check_gold.check_row(_row("Comeu um terço.", _m(6, 14, "1/3", "fraction")))
         check_gold.check_row(_row("Nada aqui."))
 
@@ -99,6 +99,12 @@ class TestCheckerRefusesBadRows(unittest.TestCase):
 
     def test_low_confidence_false(self):
         self.assertRefused(_row("uma casa", _m(0, 3, "1", low_confidence=False)))
+
+    def test_low_confidence_needs_a_known_reason(self):
+        self.assertRefused(_row("uma casa", _m(0, 3, "1", low_confidence=True)))
+        self.assertRefused(_row("uma casa", _m(0, 3, "1", reasons=["article"])))
+        self.assertRefused(_row("uma casa", _m(0, 3, "1", low_confidence=True, reasons=[])))
+        self.assertRefused(_row("uma casa", _m(0, 3, "1", low_confidence=True, reasons=["noun"])))
 
     def test_number_scale_is_long_or_short(self):
         check_gold.check_row(_row("um bilião", _m(0, 9, "1" + "0" * 12, number_scale="long")))

@@ -25,8 +25,8 @@
 {"text": "Ad d-awiɣ ɛecṛa.", "mentions": [{"start": 10, "end": 15, "value": "10", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"ɛecṛa\" is 10."}
 {"text": "Ad d-awiɣ yiwen.", "mentions": [{"start": 10, "end": 15, "value": "1", "kind": "cardinal"}], "source": "en.wikipedia Kabyle grammar (by hand: yiwen one; no noun follows."}
 {"text": "Ad d-awiɣ yiwet.", "mentions": [{"start": 10, "end": 15, "value": "1", "kind": "cardinal"}], "source": "en.wikipedia Kabyle grammar (by hand: yiwet, feminine one; no noun follows."}
-{"text": "yiwen wergaz", "mentions": [{"start": 0, "end": 5, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "en.wikipedia \"Kabyle grammar\": yiwen also marks a noun indefinite (\"a man\")."}
-{"text": "yiwet tmeṭṭut", "mentions": [{"start": 0, "end": 5, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "en.wikipedia \"Kabyle grammar\": yiwet also marks a noun indefinite (\"a woman\")."}
+{"text": "yiwen wergaz", "mentions": [{"start": 0, "end": 5, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "en.wikipedia \"Kabyle grammar\": yiwen also marks a noun indefinite (\"a man\")."}
+{"text": "yiwet tmeṭṭut", "mentions": [{"start": 0, "end": 5, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "en.wikipedia \"Kabyle grammar\": yiwet also marks a noun indefinite (\"a woman\")."}
 {"text": "Amḍan kraḍ.", "mentions": [{"start": 6, "end": 10, "value": "3", "kind": "cardinal"}], "source": "en.wiktionary \"kraḍ\": a learned (neologism) numeral, 3."}
 {"text": "Amḍan kraḍet.", "mentions": [{"start": 6, "end": 12, "value": "3", "kind": "cardinal"}], "source": "en.wiktionary \"kraḍet\": a learned (neologism) numeral, 3."}
 {"text": "Amḍan kuẓ.", "mentions": [{"start": 6, "end": 9, "value": "4", "kind": "cardinal"}], "source": "en.wiktionary \"kuẓ\": a learned (neologism) numeral, 4."}
@@ -159,5 +159,5 @@
 {"text": "setta u tesɛin n yimdanen", "mentions": [{"start": 0, "end": 14, "value": "96", "kind": "cardinal"}], "source": "arithmetic: 6 + 90."}
 {"text": "ṛebɛa u ɛecrin n tsaɛtin", "mentions": [{"start": 0, "end": 14, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 4 + 20."}
 {"text": "tesɛa u ṛebɛin n yidularen", "mentions": [{"start": 0, "end": 14, "value": "49", "kind": "cardinal"}], "source": "arithmetic: 9 + 40."}
-{"text": "Tafriqt, tesɛa tamurt n Lezzayer.", "mentions": [{"start": 9, "end": 14, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "kab.wikipedia sentence; en.wiktionary \"sɛu\": \"to have , to possess , to own\"; alone tesɛa reads as nine at low confidence."}
+{"text": "Tafriqt, tesɛa tamurt n Lezzayer.", "mentions": [{"start": 9, "end": 14, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "kab.wikipedia sentence; en.wiktionary \"sɛu\": \"to have , to possess , to own\"; alone tesɛa reads as nine at low confidence."}
 {"text": "Ɣur-i tesɛa u ɛecrin n yiseggasen.", "mentions": [{"start": 6, "end": 20, "value": "29", "kind": "cardinal"}], "source": "languagesandnumbers.com: \"tesɛa [9]\", \"ɛecrin [20]\"; 9 + 20 = 29."}

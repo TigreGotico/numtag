@@ -140,8 +140,8 @@
 {"text": "Vi treng tre bord og tolv stolar.", "mentions": [{"start": 9, "end": 12, "value": "3", "kind": "cardinal"}, {"start": 21, "end": 25, "value": "12", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Frå 1990 til 2005 budde han her.", "mentions": [{"start": 4, "end": 8, "value": "1990", "kind": "cardinal"}, {"start": 13, "end": 17, "value": "2005", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Fem born og to hundar leikar.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 12, "end": 14, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
-{"text": "Eg har ein bil.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Ho kjøpte ei avis.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Eg har ein bil.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Ho kjøpte ei avis.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Det er eit fint hus.", "mentions": [], "source": "\"eit\" is the neuter article; the numeral is \"eitt\""}
 {"text": "Prosjektet kostar éin million kroner.", "mentions": [{"start": 18, "end": 29, "value": "1000000", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Ho kjøpte to dusin roser.", "mentions": [{"start": 10, "end": 18, "value": "24", "kind": "cardinal"}], "source": "arithmetic"}

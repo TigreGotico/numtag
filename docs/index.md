@@ -9,7 +9,7 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | Guide | Content |
 |---|---|
 | [getting-started.md](getting-started.md) | The first call, then common tasks: filter weak mentions, replace numbers with digits, convert values |
-| [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` |
+| [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` |
 
 ## The contract
 

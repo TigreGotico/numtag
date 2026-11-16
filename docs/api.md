@@ -1,11 +1,11 @@
 # API reference
 
-The package `numtag` exports seven names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Scale`, `is_canonical_value` and `ARTICLE_CONFIDENCE`. This page describes each of them. Every other module is internal.
+The package `numtag` exports eight names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value` and `ARTICLE_CONFIDENCE`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Scale', 'is_canonical_value', 'tag_numbers']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Reason', 'Scale', 'is_canonical_value', 'tag_numbers']
 ```
 
 ## tag_numbers
@@ -52,6 +52,7 @@ A `NumberMention` is a frozen dataclass. It describes one number in the text.
 | `gender` | `str` or `None` | `"masculine"` or `"feminine"` when the words show it, else `None` |
 | `confidence` | `float` | A fixed score in (0, 1] that the words are a number. Read [confidence-and-homographs.md](confidence-and-homographs.md). |
 | `number_scale` | `Scale` or `None` | Keyword only. The scale that gave the value, set only when the value depends on the scale |
+| `reasons` | `frozenset[Reason]` | Keyword only. Why the confidence is low. Empty for a sure number |
 
 ```python
 >>> m = tag_numbers("Recebeu 2,5 milhões de euros.", "pt-PT")[0]
@@ -66,7 +67,7 @@ The gender comes from the last word of the number that shows one. Portuguese wor
 [('duas dúzias', 'feminine'), ('2.º', 'masculine')]
 ```
 
-A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, or when `number_scale` is not a `Scale` or `None`.
+A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, or when `reasons` is not a frozenset of `Reason`.
 
 ```python
 >>> from numtag import NumberMention, Kind, Form
@@ -76,7 +77,7 @@ Traceback (most recent call last):
 ValueError: value '2.0' is not a canonical digit string
 ```
 
-Two mentions are equal when all their fields are equal, except `confidence`. Equality ignores the confidence, so a test can compare readings without fixing a score. `number_scale` is part of equality.
+Two mentions are equal when all their fields are equal, except `confidence` and `reasons`. Equality ignores them, so a test can compare readings without fixing a score. `number_scale` is part of equality.
 
 ```python
 >>> a = NumberMention((0, 3), "two", "2", Kind.CARDINAL, Form.WORDS, confidence=1.0)
@@ -120,6 +121,23 @@ A minus word before digits does not change the form.
 [('menos 5', '-5', 'digits'), ('2 milhões', '2000000', 'mixed')]
 ```
 
+## Reason
+
+`Reason` is a string enum. It says why a mention is not sure. Filter on the reason, and rank by the confidence: the scores can change in any release, and the reasons keep their meaning.
+
+| Member | Value | When |
+|---|---|---|
+| `Reason.ARTICLE` | `"article"` | The word is also an article or an indefinite pronoun, and no number reading needs it: "comprei uma casa", "muéstrame una" |
+| `Reason.HOMOGRAPH` | `"homograph"` | The word has a common sense that is no number, and the words around it do not decide: "segunda", "second", "nou" |
+
+```python
+>>> from numtag import Reason
+>>> [(m.text, sorted(m.reasons)) for m in tag_numbers("Dá-me um segundo facto.", "pt-PT")]
+[('um', [<Reason.ARTICLE: 'article'>]), ('segundo', [<Reason.HOMOGRAPH: 'homograph'>])]
+>>> [m.value for m in tag_numbers("Comprei uma casa e dois carros.", "pt-PT") if Reason.ARTICLE not in m.reasons]
+['2']
+```
+
 ## Scale
 
 `Scale` is a string enum with two members.
@@ -141,7 +159,7 @@ A minus word before digits does not change the form.
 
 ## ARTICLE_CONFIDENCE
 
-`ARTICLE_CONFIDENCE` is the float score that a mention gets when its word is an article and not a number: 0.3. Compare a mention's `confidence` with it to find the articles, instead of writing the number in your code.
+`ARTICLE_CONFIDENCE` is the float score that a mention gets when its word is an article and not a number: 0.3. Test `Reason.ARTICLE in mention.reasons` instead. `ARTICLE_CONFIDENCE` stays for one stable release.
 
 ```python
 >>> from numtag import ARTICLE_CONFIDENCE

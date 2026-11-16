@@ -121,7 +121,7 @@
 {"text": "Er las Kapitel eins und zwanzig.", "mentions": [{"start": 15, "end": 19, "value": "1", "kind": "cardinal"}, {"start": 24, "end": 31, "value": "20", "kind": "cardinal"}], "source": "Duden D 65: a number below a million is one word"}
 {"text": "Die Stadt wuchs bis 1905. Danach schrumpfte sie.", "mentions": [{"start": 20, "end": 24, "value": "1905", "kind": "cardinal"}], "source": "A year before a period with no article before it or month after it ends the sentence"}
 {"text": "Er belegte den 3. Platz.", "mentions": [{"start": 15, "end": 16, "value": "3", "kind": "ordinal"}], "source": "Duden: \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\""}
-{"text": "Er lud mich ein.", "mentions": [{"start": 12, "end": 15, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "\"ein\" alone at the clause end is the verb particle; the counting form is \"eins\""}
+{"text": "Er lud mich ein.", "mentions": [{"start": 12, "end": 15, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "\"ein\" alone at the clause end is the verb particle; the counting form is \"eins\""}
 {"text": "Sie wurde zwei Millionen tausendste Besucherin.", "mentions": [{"start": 10, "end": 35, "value": "2001000", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Das ist der tausendhundertste Versuch.", "mentions": [{"start": 12, "end": 29, "value": "1100", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Das ist der erste Versuch.", "mentions": [{"start": 12, "end": 17, "value": "1", "kind": "ordinal"}], "source": "arithmetic"}
@@ -134,7 +134,7 @@
 {"text": "Im neunzehnten Jahrhundert wuchs die Stadt.", "mentions": [{"start": 3, "end": 14, "value": "19", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Die siebte Sinfonie ist lang.", "mentions": [{"start": 4, "end": 10, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Das ist der zweiundvierzigste Versuch.", "mentions": [{"start": 12, "end": 29, "value": "42", "kind": "ordinal"}], "source": "arithmetic"}
-{"text": "Der einhundertste Kunde bekommt ein Geschenk.", "mentions": [{"start": 4, "end": 17, "value": "100", "kind": "ordinal"}, {"start": 32, "end": 35, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Der einhundertste Kunde bekommt ein Geschenk.", "mentions": [{"start": 4, "end": 17, "value": "100", "kind": "ordinal"}, {"start": 32, "end": 35, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Am 3. Oktober ist Feiertag.", "mentions": [{"start": 3, "end": 4, "value": "3", "kind": "ordinal"}], "source": "Duden: \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\""}
 {"text": "Sie gewann den 1. Preis.", "mentions": [{"start": 15, "end": 16, "value": "1", "kind": "ordinal"}], "source": "Duden: \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\""}
 {"text": "Ich nehme zwei Drittel davon.", "mentions": [{"start": 10, "end": 22, "value": "2/3", "kind": "fraction"}], "source": "arithmetic"}
@@ -165,9 +165,9 @@
 {"text": "Von 1990 bis 2005 lebte er hier.", "mentions": [{"start": 4, "end": 8, "value": "1990", "kind": "cardinal"}, {"start": 13, "end": 17, "value": "2005", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Das Spiel endete zwei zu eins.", "mentions": [{"start": 17, "end": 21, "value": "2", "kind": "cardinal"}, {"start": 25, "end": 29, "value": "1", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Fünf Kinder und zwei Hunde spielen.", "mentions": [{"start": 0, "end": 4, "value": "5", "kind": "cardinal"}, {"start": 16, "end": 20, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
-{"text": "Ich habe ein Auto.", "mentions": [{"start": 9, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Sie kaufte eine Zeitung.", "mentions": [{"start": 11, "end": 15, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Er sprach mit einem Freund.", "mentions": [{"start": 14, "end": 19, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Ich habe ein Auto.", "mentions": [{"start": 9, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Sie kaufte eine Zeitung.", "mentions": [{"start": 11, "end": 15, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Er sprach mit einem Freund.", "mentions": [{"start": 14, "end": 19, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Ich habe eins gewählt.", "mentions": [{"start": 9, "end": 13, "value": "1", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Das Projekt kostet eine Million Euro.", "mentions": [{"start": 19, "end": 31, "value": "1000000", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Ein Dutzend Eier liegen im Korb.", "mentions": [{"start": 0, "end": 11, "value": "12", "kind": "cardinal"}], "source": "Duden, \"Dutzend\": \"Menge von zwölf Stück\""}

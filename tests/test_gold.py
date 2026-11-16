@@ -3,7 +3,7 @@
 A row scores when the tagger returns exactly its mentions, compared on
 (start, end, value, kind, number_scale), where a missing "number_scale"
 means None, and gives a confidence below 0.5 to each gold
-mention marked "low_confidence". Each language's score must reach its floor
+mention marked "low_confidence", with the "reasons" the row names. Each language's score must reach its floor
 in tests/gold_floor.json. The rows each language misses are written to
 tests/.gold-report/<lang>.txt, the work queue for the next fix.
 """
@@ -41,7 +41,8 @@ def row_matches(row: dict, lang: str) -> tuple[bool, list]:
                 for g in row["mentions"]]
     if got != expected:
         return False, got
-    weak = all(m.confidence < 0.5 for m, g in zip(mentions, row["mentions"]) if g.get("low_confidence"))
+    weak = all(m.confidence < 0.5 and sorted(r.value for r in m.reasons) == sorted(g.get("reasons", ()))
+               for m, g in zip(mentions, row["mentions"]) if g.get("low_confidence"))
     return weak, got
 
 
@@ -127,11 +128,16 @@ class TestScoring(unittest.TestCase):
         self.assertTrue(row_matches({"text": "olá", "mentions": []}, "pt-PT")[0])
 
     def test_low_confidence_is_checked(self):
-        weak = {"start": 8, "end": 11, "value": "1", "kind": "cardinal", "low_confidence": True}
+        weak = {"start": 8, "end": 11, "value": "1", "kind": "cardinal", "low_confidence": True, "reasons": ["article"]}
         self.assertTrue(row_matches({"text": "comprei uma casa", "mentions": [weak]}, "pt-PT")[0])
         strong_row = {"text": "comprei uma dúzia", "mentions": [
-            {"start": 8, "end": 17, "value": "12", "kind": "cardinal", "low_confidence": True}]}
+            {"start": 8, "end": 17, "value": "12", "kind": "cardinal", "low_confidence": True, "reasons": ["article"]}]}
         self.assertFalse(row_matches(strong_row, "pt-PT")[0])
+
+    def test_the_reason_is_checked(self):
+        homograph = {"start": 8, "end": 11, "value": "1", "kind": "cardinal", "low_confidence": True,
+                     "reasons": ["homograph"]}
+        self.assertFalse(row_matches({"text": "comprei uma casa", "mentions": [homograph]}, "pt-PT")[0])
 
     def test_a_file_is_scored_row_by_row(self):
         rows = [{"text": "comprou duas dúzias", "mentions": [
