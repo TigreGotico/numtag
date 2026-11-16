@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.1a1](https://github.com/TigreGotico/numtag/tree/0.9.1a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.0a1...0.9.1a1)
+
+**Merged pull requests:**
+
+- fix: the hundred of a percent phrase is the percent sign [\#34](https://github.com/TigreGotico/numtag/pull/34) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.9.0a1](https://github.com/TigreGotico/numtag/tree/0.9.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.4a1...0.9.0a1)
