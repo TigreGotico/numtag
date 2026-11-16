@@ -1,0 +1,63 @@
+{"text": "fifty", "lang": "en-US", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cinquenta", "lang": "pt-PT", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cinquenta", "lang": "pt-BR", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cinquanta", "lang": "ca-ES", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "halvtreds", "lang": "da-DK", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "fünfzig", "lang": "de-DE", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "πενήντα", "lang": "el-GR", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cincuenta", "lang": "es-ES", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cincuenta", "lang": "es-CO", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "berrogeita hamar", "lang": "eu-ES", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "پنجاه", "lang": "fa-IR", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cinquante", "lang": "fr-FR", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cincuenta", "lang": "gl-ES", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "cinquanta", "lang": "it-IT", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "vijftig", "lang": "nl-NL", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "pięćdziesiąt", "lang": "pl-PL", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "пятьдесят", "lang": "ru-RU", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "femtio", "lang": "sv-SE", "reading": "50", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 15: 50 % of 30 levels"}
+{"text": "seventy five", "lang": "en-US", "reading": "75", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 22: 75 % of 30 levels"}
+{"text": "setenta e cinco", "lang": "pt-PT", "reading": "75", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 22: 75 % of 30 levels"}
+{"text": "twenty", "lang": "en-US", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 19: 20 is a level, 66 %"}
+{"text": "ten per cent", "lang": "en-US", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "deu per cent", "lang": "ca-ES", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 per cent", "lang": "ca-ES", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "ti procent", "lang": "da-DK", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 procent", "lang": "da-DK", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "zehn Prozent", "lang": "de-DE", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 Prozent", "lang": "de-DE", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "δέκα τοις εκατό", "lang": "el-GR", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 τοις εκατό", "lang": "el-GR", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "diez por ciento", "lang": "es-CO", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 por ciento", "lang": "es-CO", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "diez por ciento", "lang": "es-ES", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 por ciento", "lang": "es-ES", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "hamar ehuneko", "lang": "eu-ES", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "ehuneko 20", "lang": "eu-ES", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "ده درصد", "lang": "fa-IR", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 درصد", "lang": "fa-IR", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dix pour cent", "lang": "fr-FR", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 pour cent", "lang": "fr-FR", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dez por cento", "lang": "gl-ES", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 por cento", "lang": "gl-ES", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dieci per cento", "lang": "it-IT", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 per cento", "lang": "it-IT", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "20 n umeya", "lang": "kab", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "tien procent", "lang": "nl-NL", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 procent", "lang": "nl-NL", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dètz per cent", "lang": "oc-FR", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 per cent", "lang": "oc-FR", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dziesięć proc.", "lang": "pl-PL", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 proc.", "lang": "pl-PL", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dez por cento", "lang": "pt-BR", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 por cento", "lang": "pt-BR", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "dez por cento", "lang": "pt-PT", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 por cento", "lang": "pt-PT", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "десять процентов", "lang": "ru-RU", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 процентов", "lang": "ru-RU", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "tio procent", "lang": "sv-SE", "reading": "10", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 3: 10 %"}
+{"text": "20 procent", "lang": "sv-SE", "reading": "20", "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py asserts level 6: 20 %"}
+{"text": "half", "lang": "en-US", "reading": null, "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py test_a_fraction_is_no_brightness_level: no level"}
+{"text": "meio", "lang": "pt-PT", "reading": null, "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py test_a_fraction_is_no_brightness_level: no level"}
+{"text": "halb", "lang": "de-DE", "reading": null, "source": "ovos-skill-mark1-ctrl test/unittests/test_brightness_reads_number_words.py test_a_fraction_is_no_brightness_level: no level"}
+{"text": "ένα τοις εκατό", "lang": "el-GR", "reading": "1", "source": "numtag adoption review, \"Reason switch re-bind\" (knowledge/wiki/audits/numtag/adoption/review-queue.md): the user said 1 %"}
