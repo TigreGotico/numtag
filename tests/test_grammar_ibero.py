@@ -117,6 +117,22 @@ class TestGalician(unittest.TestCase):
 
 
 class TestCatalan(unittest.TestCase):
+    def test_cent_after_per_and_a_number_is_the_percent_sign(self):
+        # "per cent" is the percent sign: 50, not 50 and 100
+        self.assertEqual(read("posa el volum al cinquanta per cent", "ca"), [("cinquanta", "50", C)])
+        self.assertEqual(read("20 per cent", "ca"), [("20", "20", C)])
+        self.assertEqual(read("el cent per cent", "ca"), [("cent", "100", C)])
+        # a slot holds the number, and a vocabulary line holds the phrase alone
+        self.assertEqual(read("baixa la brillantor al {brightness} per cent", "ca"), [])
+        self.assertEqual(read("canvia els ulls al {brightness} per cent de brillantor", "ca"), [])
+        self.assertEqual(read("per cent", "ca"), [])
+
+    def test_cent_after_per_with_no_number_before_is_a_hundred(self):
+        # "per" is "for": for a hundred euros, for 100 + 20 = 120
+        self.assertEqual(read("Ho he venut per cent euros.", "ca"), [("cent", "100", C)])
+        self.assertEqual(read("Ho he venut per cent.", "ca"), [("cent", "100", C)])
+        self.assertEqual(read("per cent vint euros", "ca"), [("cent vint", "120", C)])
+
     def test_nou_and_u_alone_are_weak(self):
         # "nou" is also "new" and "u" the name of a letter
         self.assertEqual(sure("crea un esdeveniment nou", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])
@@ -254,6 +270,9 @@ class TestAragonese(unittest.TestCase):
 
 
 class TestOccitan(unittest.TestCase):
+    def test_cent_after_per_and_a_number_is_the_percent_sign(self):
+        self.assertEqual(read("vint per cent", "oc"), [("vint", "20", C)])
+
     def test_detz_e_set_reads_with_hyphens_or_spaces(self):
         for text, value in (("dètz-e-sèt", "17"), ("dètz e sèt", "17"), ("dètz-e-uèch", "18"),
                             ("dètz e nòu", "19")):

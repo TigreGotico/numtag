@@ -86,6 +86,14 @@ class TestMinus(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_cent_after_pour_and_a_number_is_the_percent_sign(self):
+        # six percent, not 6 and 100; "cent pour cent" is 100 once
+        for lang in ("fr-FR", "fr-BE", "fr-CH"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("Augmentation de six pour cent.", lang), [("six", "6", "cardinal")])
+                self.assertEqual(read("Il est cent pour cent pour Volange.", lang), [("cent", "100", "cardinal")])
+        self.assertEqual(read("Il l'a vendu pour cent euros.", "fr-FR"), [("cent", "100", "cardinal")])
+
     def test_neuf_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("un manteau neuf", "fr"), [("un", 0.3), ("neuf", 0.4)])
         self.assertEqual(confidence("Quoi de neuf ?", "fr"), [("neuf", 0.4)])

@@ -78,6 +78,12 @@ class TestMinus(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_cento_after_per_and_a_number_is_the_percent_sign(self):
+        self.assertEqual(read("il cinquanta per cento", "it"), [("cinquanta", "50", "cardinal")])
+        self.assertEqual(read("20 per cento", "it"), [("20", "20", "cardinal")])
+        # "per cento euro" is for a hundred euros
+        self.assertEqual(read("l'ho venduto per cento euro", "it"), [("cento", "100", "cardinal")])
+
     def test_sei_and_venti_alone_may_be_words(self):
         # "sei" may be "you are", "venti" "winds"
         self.assertEqual(confidence("Sei sicuro?", "it"), [("Sei", 0.4)])
