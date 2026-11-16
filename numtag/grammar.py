@@ -173,15 +173,12 @@ def _run_parts(run: tuple[Group, ...]) -> Pieces:
 
 
 class Grammar:
-    def __init__(self, lexicon: Lexicon, tokens: list[Token], unsigned: int | None = None,
-                 negated: int | None = None):
-        """``unsigned``: the index of a signed digit string that starts the
-        number, read without its sign. ``negated``: the index where a number
-        starts that the tagger negates, for the order of range limits."""
+    def __init__(self, lexicon: Lexicon, tokens: list[Token], unsigned: int | None = None):
+        """``unsigned``: the index of a signed digit string that starts a
+        number, read without its sign. The tagger negates that number."""
         self.lex = lexicon
         self.tokens = tokens
         self.unsigned = unsigned
-        self.negated = negated
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
@@ -1197,9 +1194,16 @@ class Grammar:
         smaller: "entre cem mil e um milhão" is 100000 and 1000000."""
         if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
             return None
-        return self._fewest_digits(
-            (left, inner, digits) for left, right, inner, digits in self._splits(i)
-            if _less(-left[0].value if i == self.negated else left[0].value, right.value))
+        signed = i == self.unsigned
+        splits = [(left, right, inner, digits) for left, right, inner, digits in self._splits(i)
+                  if _less(-left[0].value if signed else left[0].value, right.value)]
+        if signed and splits:
+            # a negative first limit is below any right side, so only the
+            # right limit that reaches furthest leaves two numbers: "entre -2
+            # milhões e meio e 3 milhões" does not split at the first "e"
+            furthest = max(right.end for _, right, _, _ in splits)
+            splits = [split for split in splits if split[1].end == furthest]
+        return self._fewest_digits((left, inner, digits) for left, _, inner, digits in splits)
 
     def _split_left(self, i: int) -> list[Parse] | None:
         """With no range cue, where the longest number from ``i`` and the
@@ -1245,8 +1249,7 @@ class Grammar:
             inner = self._inner(i, k)
             if inner and k != default:
                 continue
-            left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned, self.negated)._numbers(i)
-                    if p.end == k]
+            left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned)._numbers(i) if p.end == k]
             right = self._numbers(k + 1)
             if not (left and right):
                 continue

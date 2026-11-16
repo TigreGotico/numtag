@@ -753,6 +753,12 @@ class TestDigits(unittest.TestCase):
                          [("-1 million", "-1000000", C), ("500 thousand", "500000", C)])
         self.assertEqual(read("entre -1 million et cinq cent mille", "fr-FR"),
                          [("-1 million", "-1000000", C), ("cinq cent mille", "500000", C)])
+        # a joiner inside the signed first limit does not split the range:
+        # -2500000 and 3000000, -2500 and 3000
+        self.assertEqual([m.value for m in tag_numbers("entre -2 milhões e meio e 3 milhões", "pt-PT")],
+                         ["-2500000", "3000000"])
+        self.assertEqual([m.value for m in tag_numbers("between -2 thousand and five hundred and 3 thousand", "en")],
+                         ["-2500", "3000"])
         self.assertEqual(read("o 3.º e o -3.º", "pt-PT"), [("3.º", "3", O)])
 
     def test_digits_inside_a_name_are_no_number(self):

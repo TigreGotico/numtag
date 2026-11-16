@@ -104,9 +104,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         # "-2 milhões e meio" is minus two and a half million: the sign of a
         # digit string that starts a number applies to the whole number
         signed = _signed(run[start])
-        number_grammar = Grammar(lexicon, run, unsigned=start if signed else None,
-                                 negated=start if negative != signed else None) \
-            if negative or signed else grammar
+        number_grammar = Grammar(lexicon, run, unsigned=start) if signed else grammar
         parses = [p for p in number_grammar.numbers(start) if _whole_words(number_grammar, run, start, p)]
         # a number starts and ends at the edges of a word, never inside one
         if not parses or run[i].glued:
