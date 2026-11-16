@@ -241,16 +241,24 @@ class TestConfidence(unittest.TestCase):
     def test_hat_is_also_the_verb_to_take_effect(self):
         # Wiktionary "hat", Verb: "to take effect", "to affect (on something
         # -ra)": weak at the end of a clause, after "nem" and before a -ra pronoun
+        # The cues do not look further: "Tulajdonképpen hat, a hegyekben" counts six
+        # places, "nem hat perc" six minutes and "hat és hét" is a list; the value
+        # stays and the caller decides
         for text in ("A gyógyszer nem hat.", "a gyógyszer nem hat", "Nem hat azonnal.", "Ez a zene hat rám.",
-                     "A hír mélyen hat ránk.", "Hogyan hat rájuk?", "Tulajdonképpen hat, a hegyekben"):
+                     "A hír mélyen hat ránk.", "Hogyan hat rájuk?", "Tulajdonképpen hat, a hegyekben",
+                     "nem hat perc", "Nem hat órára kértem."):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, "hu")],
                                  [("hat", "6", frozenset({Reason.HOMOGRAPH}))])
         # before a noun it counts, and a case form is no verb form
         for text, word in (("hat óra", "hat"), ("Hat perc múlva indulunk.", "Hat"), ("hatkor kelek", "hatkor"),
+                           ("Nem. Hat ember jött.", "Hat"),
                            ("hat ITF-tornán győzött", "hat"), ("Láttam hatot.", "hatot"), ("hattal", "hattal")):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
+
+    def test_hat_inside_a_number_is_no_verb(self):
+        self.assertEqual(read("nem huszonhat", "hu"), [("huszonhat", "26", C)])
 
     def test_an_idiom_with_number_words_holds_no_number(self):
         # hu.wiktionary "one and all": "mindenki kivétel nélkül, egytől egyig"

@@ -99,7 +99,7 @@ These optional keys hold facts that the word form shows:
 | `plural` | `true` for a plural form ("dúzias", "milhões") |
 | `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. |
 | `weak_at_end` | `true` when the word has another meaning at the end of a clause, or before a joiner: fr "neuf" ("un manteau neuf"). The word gets the confidence 0.4 there. |
-| `weak_after`, `weak_before` | the words after and before which the word has another meaning: hu "hat" lists "nem" after it and "rám", "rá", "rájuk" before it. |
+| `weak_after`, `weak_before` | `weak_after` lists the words that come right before the word when it has another meaning, and `weak_before` the words that come right after it. hu "hat" has "nem" in `weak_after` ("nem hat") and "rám", "rá", "rájuk" in `weak_before` ("hat rám"). |
 | `weak_forms` | the inflected forms that the three keys above apply to. Without it, they apply to every form. hu "hat" lists only "hat", so "hatkor" stays sure. |
 | `number_after` | the words after which an `ambiguous` word has only its number reading. Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
