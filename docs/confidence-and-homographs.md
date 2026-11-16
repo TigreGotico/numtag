@@ -18,7 +18,7 @@ A weak mention also says why it is weak. Its `reasons` field holds `Reason.ARTIC
 
 ## Articles
 
-In Portuguese, "um" and "uma" are both the number one and the indefinite article. Alone before a noun, the word gets 0.3. Inside a number, it is part of the number and the number gets the full score.
+In Portuguese, "um" and "uma" are both the number one and the indefinite article. Alone before a noun, the word gets 0.3. A hyphenated noun ("guarda-chuva") counts as a noun. Inside a number, it is part of the number and the number gets the full score.
 
 ```python
 >>> from numtag import tag_numbers
@@ -26,6 +26,8 @@ In Portuguese, "um" and "uma" are both the number one and the indefinite article
 ...     return [(m.text, m.value, m.confidence) for m in tag_numbers(text, lang)]
 >>> read("Comprei uma casa.", "pt-PT")
 [('uma', '1', 0.3)]
+>>> read("Devo levar um guarda-chuva.", "pt-PT")
+[('um', '1', 0.3)]
 >>> read("Comprei uma dúzia de ovos.", "pt-PT")
 [('uma dúzia', '12', 1.0)]
 >>> read("Recebeu um milhão de euros.", "pt-PT")

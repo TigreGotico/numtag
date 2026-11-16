@@ -215,12 +215,16 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # The article stands next to its noun: before it ("um livro"), or after
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
-    # segunda curiosidad".
+    # segunda curiosidad". A hyphenated noun gives no token, and the word
+    # beside it notes it: "um guarda-chuva", "liburu-denda bat".
     noun = start - 1 if lexicon.article_after_noun else parse.end
+    hyphenated_noun = run[start].noun_before if lexicon.article_after_noun else run[start].noun_after
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles
-                    and 0 <= noun < len(run)
-                    and (run[noun].is_digits or not grammar.starts_number(noun)
-                         or all(_kind(lexicon, run[noun:p.end], p) == Kind.ORDINAL for p in grammar.numbers(noun))))
+                    and (hyphenated_noun
+                         or 0 <= noun < len(run)
+                         and (run[noun].is_digits or not grammar.starts_number(noun)
+                              or all(_kind(lexicon, run[noun:p.end], p) == Kind.ORDINAL
+                                     for p in grammar.numbers(noun)))))
     if lone_article:
         return Reason.ARTICLE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral

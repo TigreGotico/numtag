@@ -225,6 +225,13 @@ class TestScales(unittest.TestCase):
 
 
 class TestArticles(unittest.TestCase):
+    def test_an_article_before_a_hyphenated_noun_is_weak(self):
+        for text, lang, word in (("Mache eine Bildschirm-Aufnahme.", "de", "eine"),
+                                 ("Starte einen Internet-Geschwindigkeitstest.", "de", "einen"),
+                                 ("Maak een audio-opname.", "nl", "een")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.confidence) for m in tag_numbers(text, lang)], [(word, 0.3)])
+
     def test_an_article_alone_is_a_weak_one(self):
         for text, lang in (("ein Haus", "de"), ("een huis", "nl"), ("en bil", "da"), ("ett hus", "sv"),
                            ("ei avis", "nb"), ("ein bil", "nn")):

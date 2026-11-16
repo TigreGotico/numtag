@@ -172,6 +172,10 @@ class Token:
     # A piece of a word that the tokenizer split ("venti" and "tré" in
     # "ventitré"): a lexicon entry marked as a part reads only here.
     part: bool = False
+    # A hyphenated noun, which gives no token, stands next to this token
+    # with only a space between: "guarda-chuva" after "um".
+    noun_before: bool = False
+    noun_after: bool = False
 
     @property
     def norm(self) -> str:
@@ -535,7 +539,9 @@ def _join_compounds(text: str, tokens: list[Token], compounds: frozenset[str]) -
 def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset[str]) -> list[Token]:
     """The tokens without the words of each compound joined by hyphens or
     dot signs that holds a word outside ``number_words``. The token after a dropped word gets the
-    text since the last kept token as its gap, so it links to nothing."""
+    text since the last kept token as its gap, so it links to nothing. A
+    kept word with only a space between it and the compound notes the noun
+    beside it, for an article ("um guarda-chuva", "liburu-denda bat")."""
     dropped = set()
     start = 0
     for i in range(1, len(tokens) + 1):
@@ -546,12 +552,18 @@ def _drop_compound_nouns(text: str, tokens: list[Token], number_words: frozenset
             dropped.update(k for k in range(start, i) if not tokens[k].is_digits)
         start = i
     kept: list[Token] = []
+    origins: list[int] = []
     for i, token in enumerate(tokens):
         if i in dropped:
+            # the first word of a compound, a space after a kept word
+            if origins and origins[-1] == i - 1 and token.gap.isspace():
+                kept[-1] = replace(kept[-1], noun_after=True)
             continue
         if i and i - 1 in dropped:
-            token = replace(token, gap=text[kept[-1].end if kept else 0:token.start])
+            token = replace(token, gap=text[kept[-1].end if kept else 0:token.start],
+                            noun_before=token.gap.isspace())
         kept.append(token)
+        origins.append(i)
     return kept
 
 

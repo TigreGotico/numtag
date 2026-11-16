@@ -93,6 +93,9 @@ class TestArticleAfterNoun(unittest.TestCase):
         self.assertEqual(confidence("Etxe bat.", "eu"), [("bat", 0.3)])
         self.assertEqual(confidence("Liburu bat erosi du.", "eu"), [("bat", 0.3)])
 
+    def test_bat_after_a_hyphenated_noun_is_a_weak_number(self):
+        self.assertEqual(confidence("Liburu-denda bat ireki dute.", "eu"), [("bat", 0.3)])
+
     def test_bat_with_no_word_before_it_is_a_number(self):
         self.assertEqual(confidence("Bat etorri da.", "eu"), [("Bat", 1.0)])
 
