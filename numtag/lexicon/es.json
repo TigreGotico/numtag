@@ -161,6 +161,60 @@
     "entre"
    ],
    "source": "en.wiktionary, Spanish \"entre\", preposition sense 1: \"between\", \"La frutería se encuentra entre el restaurante chileno y la panadería\". In \"entre A y B\" the \"y\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  },
+  "roman_series_noun": {
+   "value": [
+    "siglo",
+    "siglos",
+    "capítulo",
+    "capítulos",
+    "volumen",
+    "volúmenes",
+    "tomo",
+    "tomos",
+    "parte",
+    "partes",
+    "acto",
+    "actos",
+    "escena",
+    "escenas",
+    "concilio",
+    "guerra",
+    "dinastía"
+   ],
+   "source": "A noun that marks a place in a series makes the Roman numeral beside it an ordinal (Wikipedia, \"Roman numerals\": \"Capital or small capital Roman numerals are widely used in Romance languages to denote centuries.\"; \"Book volume and chapter numbers, as well as the several acts within a play.\"; \"World War I and World War II\"). Each noun, from en.wiktionary.org: Spanish \"siglo\": \"century\"; Spanish \"capítulo\": \"chapter\"; Spanish \"volumen\": \"volume (a bound book)\"; Spanish \"tomo\": \"tome, volume\"; Spanish \"parte\": \"part; section; portion; share; piece; bit; cut; proportion\"; Spanish \"acto\": \"(theater) act\"; Spanish \"escena\": \"scene\"; Spanish \"concilio\": \"an assembly or coterie that deals in something and its bylaws, especially a religious body\"; Spanish \"guerra\": \"war, warfare\"; Spanish \"dinastía\": \"dynasty\"."
+  },
+  "roman_title": {
+   "value": [
+    "rey",
+    "reina",
+    "papa",
+    "emperador",
+    "emperatriz",
+    "don",
+    "doña"
+   ],
+   "source": "A regnal title before a name makes the Roman numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: Spanish \"rey\": \"king\"; Spanish \"reina\": \"queen\"; Spanish \"papa\": \"pope (an honorary title of the Roman Catholic bishop of Rome)\"; Spanish \"emperador\": \"emperor\"; Spanish \"emperatriz\": \"female equivalent of emperador: empress\"; Spanish \"don\": \"a title of respect to a man, prefixed to first names\"; Spanish \"doña\": \"title of respect for a woman comparable to Mrs.\"."
+  },
+  "roman_word": {
+   "value": [
+    "cd",
+    "cv",
+    "cc",
+    "cm",
+    "xl",
+    "mm",
+    "ml",
+    "di",
+    "mi"
+   ],
+   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: Spanish \"CD\": \"CD (compact disc)\"; Spanish \"CV\": \"initialism of caballo de vapor (“hp (horsepower)”)\"; Spanish \"CC\": \"initialism of corriente continua\"; Spanish \"CM\": \"abbreviation of Campeche: a state of Mexico\"; Translingual \"XL\": \"(chiefly clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; Spanish \"di\": \"first-person singular preterite indicative of dar\"; Spanish \"mi\": \"(before the noun) apocopic form of mío, my\"."
+  },
+  "roman_lower_word": {
+   "value": [
+    "vi"
+   ],
+   "source": "A Roman numeral that is also a word in lower case only: the lower-case word reads only after a strong cue, and the upper-case numeral reads like any other (\"Felipe VI\"). Each word, from en.wiktionary.org: Spanish \"vi\": \"first-person singular preterite indicative of ver\"."
   }
  },
  "entries": [

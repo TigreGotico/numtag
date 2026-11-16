@@ -2,6 +2,7 @@
 from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
+from numtag.roman import roman_numerals
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
@@ -54,8 +55,15 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     no_value = [(tokens[k - 1].start, t.end) for k, t in enumerate(tokens)
                 if after_slash[k] and tokens[k - 1].is_digits and t.is_digits and not t.norm.strip("0")
                 and not after_slash[k - 1] and not after_slash[k + 1]]
-    return [m for m in mentions
-            if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
+    mentions = [m for m in mentions
+                if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
+    for token, value, kind, reason in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
+        span = (token.start, token.end)
+        mentions.append(NumberMention(
+            span, token.text, value, kind, Form.ROMAN, None, CONFIDENCE[reason],
+            reasons=frozenset() if reason is None else frozenset({reason}),
+            parts=(Part(Role.COUNT, span, token.text, value),)))
+    return sorted(mentions, key=lambda m: m.char_span)
 
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:

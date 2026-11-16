@@ -47,6 +47,8 @@ The loader reads every setting and every word list below. A file that leaves one
 | `comma_between_classes` | bool | A comma after a scale word may link two classes of one number |
 | `ordinal_style` | `"every_word"` or `"last_word"` | Every word of an ordinal is ordinal ("vigésimo primeiro"), or only the last ("twenty-first") |
 
+Two optional settings tune Roman numerals. `roman_pronoun_letters` (default false) is true where "I" is a pronoun: a series noun before a single letter then counts only in title case ("Part I", not "the part I like"). `roman_title_case_cue` (default true) is false where every noun is in title case, as in German: a title-case word before a numeral is then no cue.
+
 ### Word lists
 
 | List | Content | pt | en |
@@ -68,6 +70,10 @@ The loader reads every setting and every word list below. A file that leaves one
 | `abbreviation` | Number words that a period makes an abbreviation | "dez" | empty |
 | `lone_decimal_mark` | Marks that make the digits after them decimals at the start of a number | ",", "." | "." |
 | `range_cue` | The word that opens a range | "entre" | "between" |
+| `roman_series_noun` | Nouns that mark a place in a series, so a Roman numeral beside them is an ordinal | "século", "capítulo" | "century", "war" |
+| `roman_title` | Regnal titles, before the name that a numeral follows | "rei", "d" | "king", "pope" |
+| `roman_word` | Roman numerals that are also a word or a common abbreviation | "cd", "cv" | "cd", "mix" |
+| `roman_lower_word` | Roman numerals that are a word only in lower case, so the upper-case numeral reads as usual | "vi" | empty |
 
 ### Entries
 

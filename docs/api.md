@@ -188,6 +188,7 @@ The kind follows the words, and the form of the value follows the arithmetic. So
 | `Form.WORDS` | `"words"` | "dois milhões" |
 | `Form.DIGITS` | `"digits"` | "2000000", "1.000.000", "21st" |
 | `Form.MIXED` | `"mixed"` | "2 milhões" |
+| `Form.ROMAN` | `"roman"` | "XIV", "Ⅻ" |
 
 A minus word before digits does not change the form.
 
@@ -195,6 +196,52 @@ A minus word before digits does not change the form.
 >>> [(m.text, m.value, m.form.value) for m in tag_numbers("menos 5 e 2 milhões", "pt-PT")]
 [('menos 5', '-5', 'digits'), ('2 milhões', '2000000', 'mixed')]
 ```
+
+## Roman numerals
+
+A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention, and the numeral is one count part. numtag reads a numeral only where no number word or digit string stands, so pt "MIL" and fr "DIX" keep their word reading.
+
+```python
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Luís XIV morreu em 1715.", "pt-PT")]
+[('XIV', '14', 'ordinal'), ('1715', '1715', 'cardinal')]
+>>> [(m.text, m.value, m.kind.value, m.confidence) for m in tag_numbers("see page XXI", "en")]
+[('XXI', '21', 'cardinal', 0.4)]
+>>> tag_numbers("Can I play the CD?", "en")
+[]
+```
+
+The numeral must be well formed: 1 to 3999 in the standard subtractive form, all in upper case or all in lower case. "IIII", "IC" and "Xiv" are no numeral. The Unicode Roman numeral characters U+2160 to U+2188 are always numerals, and their value comes from the Unicode Standard.
+
+A cue makes the numeral a sure ordinal:
+
+| Cue | Example |
+|---|---|
+| A series noun before the numeral (`roman_series_noun`) | "século XIX", "World War II", "capítulo xii" |
+| A series noun after a numeral that is no word | "the XXI century" |
+| A title-case word before an upper-case numeral that is no word | "Luís XIV", "Edition XIV" |
+| A regnal title (`roman_title`), then a name | "King Henry I", "D. João I", "Papst Benedikt XVI" |
+| A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no word | "séculos XI, XII e XIII" |
+
+German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages, so "In MMXXIV we moved" reads a sure 2024.
+
+A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
+
+With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
+
+A single letter is a numeral only as I, V or X. L, C, D and M alone are labels ("Part D", "Vitamin C"), and give no mention.
+
+A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
+
+- a series noun before it: "World War I", "Part I";
+- a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
+
+A name alone, two names and a list are no cue. So "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give no mention for the pronoun. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+
+A word in the `roman_lower_word` list is a word only in lower case: pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
+
+In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
+
+numtag gives the value and the kind. How a numeral is said, "Luís XIV" as "catorze" or "D. João VI" as "sexto", is a rule of the speaking language and belongs to text2spoken.
 
 ## Reason
 
