@@ -123,6 +123,10 @@ class Entry:
     # A word with a common meaning that ends a phrase, as an adjective after
     # its noun ("un manteau neuf"): weak when no word follows it.
     weak_at_end: bool = False
+    # Words before and after which the word is weak: Hungarian "hat" is
+    # also the verb "to take effect", as in "nem hat" and "hat rám".
+    weak_after: frozenset[str] = frozenset()
+    weak_before: frozenset[str] = frozenset()
     # An ordinal that is never the last word of a longer ordinal: French
     # "premier" and "second" ("vingt et unième", "vingt-deuxième").
     standalone: bool = False
@@ -435,9 +439,13 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     def put(spec: dict, entry: Entry) -> None:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
         ambiguous_words.update(ambiguous)
+        weak = {w.casefold() for w in spec.get("weak_forms", [])}
         for word, ordinal, final, fraction_case in _forms(spec, inflection, suffix_ends):
             reading = replace(entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
                               ambiguous=entry.ambiguous or word in ambiguous)
+            if weak and word not in weak:
+                # "hatkor" (at six) is no verb form: the weak cues hold for "hat" only
+                reading = replace(reading, weak_at_end=False, weak_after=frozenset(), weak_before=frozenset())
             for form in script.lexicon_forms(word):
                 readings.setdefault(fold(form), []).append(reading)
 
@@ -455,6 +463,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             invariant=spec.get("invariant", False), teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False),
+                            weak_after=frozenset(fold(w) for w in spec.get("weak_after", ())),
+                            weak_before=frozenset(fold(w) for w in spec.get("weak_before", ())),
                             standalone=spec.get("standalone", False),
                             number_after=frozenset(fold(w) for w in spec.get("number_after", ())), **facts))
         elif role in SCALE_ROLES:

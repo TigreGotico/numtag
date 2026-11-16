@@ -1276,13 +1276,18 @@ class Grammar:
     def _weak_word(self, i: int) -> bool:
         """A cardinal word alone that may be another word: "sei" ("you
         are") anywhere, "neuf" ("new") when no word follows it ("un manteau
-        neuf", not "neuf maisons")."""
+        neuf", not "neuf maisons"), hu "hat" ("takes effect") after "nem"
+        and before "rám"."""
         if self.tokens[i].is_digits:
             return False
         entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ())
                    if e.role in ("unit", "ten", "hundred")]
-        at_end = i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners)
-        return any(e.ambiguous or (e.weak_at_end and at_end) for e in entries)
+        # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán")
+        at_end = (i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners)) and not self.tokens[i].noun_after
+        before = self.tokens[i - 1].norm if i > 0 else None
+        after = self.tokens[i + 1].norm if i + 1 < len(self.tokens) else None
+        return any(e.ambiguous or (e.weak_at_end and at_end) or before in e.weak_after or after in e.weak_before
+                   for e in entries)
 
     def _after_article(self, i: int) -> bool:
         """An ordinal article stands before ``i``, also inside a hyphenated

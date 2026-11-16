@@ -62,9 +62,16 @@ def simple_ner(text: str, lang: str) -> list[list[str]]:
             if m.form is not Form.DIGITS and Reason.ARTICLE not in m.reasons]
 
 
+def utterance_normalizer(text: str, lang: str) -> list[list[str]]:
+    # ovos-utterance-normalizer normalizer.py numbers_to_digits: cardinals in words, no article or homograph
+    return [[m.text, m.value] for m in tag_numbers(text, lang)
+            if m.kind is Kind.CARDINAL and m.form is not Form.DIGITS
+            and not m.reasons & {Reason.ARTICLE, Reason.HOMOGRAPH}]
+
+
 READERS = {"ovos-skill-count": count, "ovos-skill-volume": volume, "ovos-skill-number-facts": number_facts,
            "ovos-skill-days-in-history": days_in_history, "ovos-skill-mark1-ctrl": mark1, "simple_NER": simple_ner,
-           "ovos-typed-slots-transformer": typed_slots}
+           "ovos-typed-slots-transformer": typed_slots, "ovos-utterance-normalizer": utterance_normalizer}
 
 
 class TestConsumerReadings(unittest.TestCase):

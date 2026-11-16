@@ -112,6 +112,17 @@ A word before the homograph can also make the reading clear when it agrees only 
 [('nou', '9', 0.4)]
 ```
 
+A word next to the homograph can also make the other meaning likely. Hungarian "hat" is six and the verb "to take effect". The verb ends a clause ("A gyógyszer nem hat."), follows "nem" ("not"), and stands before the -ra pronoun of what it acts on ("hat rám"). There "hat" gives 0.4. Before a noun, "hat" counts the noun. The case form "hatkor" ("at six") is no verb form.
+
+```python
+>>> read("A gyógyszer nem hat.", "hu")
+[('hat', '6', 0.4)]
+>>> read("Ez a zene hat rám.", "hu")
+[('hat', '6', 0.4)]
+>>> read("Hat perc múlva indulunk.", "hu")
+[('Hat', '6', 1.0)]
+```
+
 A whole number before the joiner and a minus word also make the reading clear.
 
 ```python
