@@ -910,15 +910,13 @@ class TestMinus(unittest.TestCase):
         self.assertEqual(pt("mais ou menos cinco"), [("cinco", "5", C)])
         self.assertEqual(pt("ao menos um"), [("um", "1", C)])
 
-    def test_a_before_a_minus_word_is_the_preposition(self):
-        # Priberam "menos": "a menos" follows what it counts ("com um jogo a
-        # menos") and "a menos que" is "a não ser que"; before a number "a" is
-        # "to" and "menos" the sign
-        self.assertEqual(pt("A temperatura desceu a menos três graus."), [("menos três", "-3", C)])
-        self.assertEqual(read("A temperatura caiu a menos 5 graus.", "pt-BR"), [("menos 5", "-5", C)])
-        self.assertEqual(pt("variou de cinco a menos dois graus"), [("cinco", "5", C), ("menos dois", "-2", C)])
+    def test_a_menos_before_a_number_compares(self):
+        # CETEMPúblico: 33 of 60 "a menos" + number hits compare, 16 are the sign
+        self.assertEqual(pt("o que corresponde a menos 2243 empresas"), [("2243", "2243", C)])
         self.assertEqual(pt("a menos que venhas"), [])
         self.assertEqual(pt("ficou a menos de três metros"), [("três", "3", C)])
+        # the cost: the sign after "a menos" is lost
+        self.assertEqual(pt("o termómetro desceu já a menos 15 graus"), [("15", "15", C)])
 
     def test_minus_between_numbers_is_no_sign(self):
         self.assertEqual(pt("cinco menos dois"), [("cinco", "5", C), ("dois", "2", C)])
