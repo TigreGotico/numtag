@@ -107,6 +107,14 @@ class TestHomographs(unittest.TestCase):
         # a hyphenated noun gives no token, but a word follows "neuf" all the same
         self.assertEqual(confidence("mes neuf arrière-petits-enfants", "fr"), [("neuf", 1.0)])
 
+    def test_neuf_as_the_whole_text_is_nine(self):
+        # a one-word text with no punctuation is a spoken answer
+        for text in ("neuf", "Neuf", " neuf "):
+            with self.subTest(text=text):
+                self.assertEqual(confidence(text, "fr"), [(text.strip(), 1.0)])
+        self.assertEqual(confidence("Neuf.", "fr"), [("Neuf", 0.4)])
+        self.assertEqual(confidence("C'est neuf", "fr"), [("neuf", 0.4)])
+
 
 class TestStandaloneOrdinals(unittest.TestCase):
     def test_premier_and_second_end_no_longer_ordinal(self):

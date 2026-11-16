@@ -335,6 +335,10 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     bare_percent = parse.end == start + 1 and not run[start].is_digits \
         and (parse.end == len(run) or run[parse.end].norm in lexicon.of_words) and any(
             tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p for p in lexicon.percent_phrases)
+    # a word that is weak only at the end of a clause is the number when it
+    # is the whole text with no punctuation: a spoken answer ("hat" answers "hány?")
+    whole = alone and parse.end == start + 1 and bool(entries) \
+        and all(e.weak_at_end and not e.ambiguous for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal or bare_percent
+    homograph = (parse.ambiguous and not whole) or lone_ambiguous or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
