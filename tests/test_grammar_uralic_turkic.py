@@ -257,6 +257,17 @@ class TestConfidence(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
 
+    def test_hat_after_a_request_verb_or_alone_is_six(self):
+        # Wiktionary "kér", "állít", "tesz" are transitive and "legyen" is a
+        # form of "van": the word after them is their object or predicate
+        for text in ("kérek hat", "Kérem hat", "legyen hat", "Legyen hat!", "állítsd hat", "tedd hat", "hat", "Hat"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "hu")], [("6", 1.0)])
+        # with a full stop, or inside a clause, the end-of-clause cue holds
+        for text in ("Hat.", "A válasz hat.", "a gyógyszer nem hat", "Nem kérek, hat."):
+            with self.subTest(text=text):
+                self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "hu")][-1], ("6", 0.4))
+
     def test_hat_before_a_joiner_and_a_number_is_sure(self):
         # a joiner ends the clause unless a number follows it
         for text in ("hat és hét ember jött", "hat és 7 ember", "hat vagy hét", "hat meg hét", "hat-hét"):
