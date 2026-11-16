@@ -774,6 +774,18 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(pt("duas milésimas"), [("duas milésimas", "0.002", F)])
 
 class TestFractions(unittest.TestCase):
+    def test_the_word_after_um_quinto_decides_fraction_or_ordinal(self):
+        # 1/5 of the inheritance; the fifth floor; 10 + 2 = 12th
+        self.assertEqual(pt("recebeu um quinto da herança"), [("um quinto", "0.2", F)])
+        self.assertEqual(pt("comeu um quinto"), [("um quinto", "0.2", F)])
+        self.assertEqual(pt("comprou um quinto andar"), [("um", "1", C), ("quinto", "5", O)])
+        self.assertEqual(pt("um décimo segundo lugar"), [("um", "1", C), ("décimo segundo", "12", O)])
+
+    def test_an_ordinal_before_parte_names_the_part(self):
+        # 1/10; 1/5
+        self.assertEqual(pt("a décima parte do valor"), [("décima parte", "0.1", F)])
+        self.assertEqual(pt("uma quinta parte"), [("uma quinta parte", "0.2", F)])
+
     def test_a_count_and_a_denominator(self):
         self.assertEqual(pt("um terço"), [("um terço", "1/3", F)])
         self.assertEqual(pt("dois terços"), [("dois terços", "2/3", F)])

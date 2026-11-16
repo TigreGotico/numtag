@@ -208,6 +208,14 @@ class Lexicon:
     # "ein" in "Er lud mich ein.": an article that alone at the end of a
     # clause is no numeral.
     article_needs_noun: frozenset[str]
+    # "do" in "um quinto do bolo": a word after an article and a word that is
+    # both a denominator and an ordinal that keeps the fraction. Any other
+    # word there makes the ordinal ("um quinto andar"). Empty: always the
+    # fraction.
+    partitives: frozenset[str]
+    # "parte" in "a décima parte": a noun that makes the ordinal before it a
+    # fraction.
+    part_nouns: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
     # The letters I and İ are two letters with the lower-case forms ı and i.
     dotted_i: bool = False
@@ -313,7 +321,8 @@ DEFAULT_SETTINGS = {
     "unit_ten_one_word": False,
     "ordinal_suffix_marks": ["", "."],
 }
-DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": []}
+DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
+                 "part_noun": []}
 
 
 def _read(lang: str) -> dict:
@@ -468,6 +477,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         range_cues=frozenset(words["range_cue"]),
         period_ordinal_before=frozenset(w.casefold() for w in words["period_ordinal_before"]),
         article_needs_noun=frozenset(words["article_needs_noun"]),
+        partitives=frozenset(words["partitive"]),
+        part_nouns=frozenset(words["part_noun"]),
         ordinal_suffixes=suffixes,
         dotted_i=settings.get("dotted_i", False),
         fraction_agreement=settings.get("fraction_agreement", True),
