@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.13a1](https://github.com/TigreGotico/numtag/tree/0.10.13a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.12a1...0.10.13a1)
+
+**Merged pull requests:**
+
+- fix\(ca, oc, fr, it\): "of" joined to the article is an of-word [\#52](https://github.com/TigreGotico/numtag/pull/52) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.12a1](https://github.com/TigreGotico/numtag/tree/0.10.12a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.11a1...0.10.12a1)
