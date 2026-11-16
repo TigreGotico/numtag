@@ -215,8 +215,13 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
         self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
         self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
-        # a part word alone is no number, glued or not; "kétharmad" is 2/3
-        self.assertEqual(read("tízezred", "hu"), [])
+        # AkH 12 §293 glues the count to the part word before a noun: with no
+        # count before it, "háromszázad másodperc" keeps 3/100 = 0.03, at the
+        # low score of a word with two readings
+        mentions = tag_numbers("háromszázad másodperccel nyert", "hu")
+        self.assertEqual([(m.text, m.value) for m in mentions], [("háromszázad", "0.03")])
+        self.assertLess(mentions[0].confidence, 1.0)
+        # "kétharmad" is 2/3
         self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
 
     def test_a_count_after_a_range_hyphen_is_no_glued_multiplier(self):
