@@ -373,6 +373,17 @@ In Portuguese every word of an ordinal is ordinal, and a cardinal count before "
 
 Source: CLDR 49 RBNF pt and pt_PT, %spellout-ordinal-masculine, rule `2000: <%spellout-cardinal-masculine< milésimo[ >>];`. A cardinal count before "milésimo" multiplies it.
 
+In English "one hundredth" is a fraction or an ordinal. After "the" it is the ordinal. With no article it is the fraction.
+
+```python
+>>> read("We celebrated the one hundredth anniversary.", "en")
+[('one hundredth', '100')]
+>>> read("Each coin is worth one hundredth of a dollar.", "en")
+[('one hundredth', '0.01')]
+```
+
+> Wikipedia, "English numerals": "In spoken English, ordinal numerals and partitive numerals are identical with a few exceptions. Thus 'fifth' can mean the element between fourth and sixth, or the fraction created by dividing the unit into five pieces".
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.

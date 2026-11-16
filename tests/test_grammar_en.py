@@ -279,6 +279,12 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(en("forty eighth"), [("forty eighth", "48", O)])
         self.assertEqual(en("two thousand and fifth"), [("two thousand and fifth", "2005", O)])
 
+    def test_the_makes_one_hundredth_an_ordinal(self):
+        # after "the": 100th and 1000th; with no article: 1/100
+        self.assertEqual(en("the one hundredth anniversary"), [("one hundredth", "100", O)])
+        self.assertEqual(en("the one thousandth visitor"), [("one thousandth", "1000", O)])
+        self.assertEqual(en("one hundredth of a dollar"), [("one hundredth", "0.01", F)])
+
     def test_an_ordinal_scale_word(self):
         # 2 x 100 = 200
         self.assertEqual(en("hundredth"), [("hundredth", "100", O)])
