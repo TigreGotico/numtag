@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.2a1](https://github.com/TigreGotico/numtag/tree/0.9.2a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.1a1...0.9.2a1)
+
+**Merged pull requests:**
+
+- fix: an article before a hyphenated noun gets the article score [\#35](https://github.com/TigreGotico/numtag/pull/35) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.9.1a1](https://github.com/TigreGotico/numtag/tree/0.9.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.0a1...0.9.1a1)
