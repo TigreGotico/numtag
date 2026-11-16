@@ -254,6 +254,18 @@ class TestCollectivesAndHalves(unittest.TestCase):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(en("two and a half million"), [("two and a half million", "2500000", C)])
 
+    def test_a_googol_is_ten_to_the_hundredth(self):
+        # 1 followed by 100 zeros; 2 followed by 100 zeros; 300 x 10^100
+        self.assertEqual(en("one googol"), [("one googol", "1" + "0" * 100, C)])
+        self.assertEqual(en("a googol"), [("a googol", "1" + "0" * 100, C)])
+        self.assertEqual(en("two googols"), [("two googols", "2" + "0" * 100, C)])
+        self.assertEqual(en("three hundred googol"), [("three hundred googol", "3" + "0" * 102, C)])
+
+    def test_a_googol_alone_names_no_number(self):
+        # as "million" alone names none
+        self.assertEqual(en("googol"), [])
+        self.assertEqual(en("googols"), [])
+
     def test_a_whole_and_a_half(self):
         self.assertEqual(en("two and a half"), [("two and a half", "2.5", F)])
 
