@@ -93,7 +93,8 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         best = max(parses, key=lambda p: p.end)
-        if not negative and _percent_word(lexicon, run, start, best, number_end):
+        if not negative and (_percent_word(lexicon, run, start, best, number_end)
+                             or _not_a_single(lexicon, run, start, best)):
             i += 1
             continue
         value = -best.value if negative else best.value
@@ -109,6 +110,13 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             reasons=frozenset() if reason is None else frozenset({reason})))
         i = number_end = best.end
     return mentions
+
+
+def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:
+    """True when the word for one follows a negative particle: ru "ни
+    одного", pl "ani jednego" mean "not a single", no count."""
+    return (parse.end == start + 1 and start > 0 and not run[start].is_digits
+            and run[start - 1].norm in lexicon.negative_particles and parse.value.canonical() == "1")
 
 
 def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, number_end: int) -> bool:
