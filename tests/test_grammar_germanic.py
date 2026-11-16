@@ -158,9 +158,24 @@ class TestPointDecimals(unittest.TestCase):
     def test_a_time_of_day_with_a_point_reads_no_number(self):
         # de.wikipedia "Uhrzeit": the Swiss Federal Chancellery writes "ein
         # Punkt und kein Doppelpunkt" between hours and minutes
-        for text, lang in (("Gegen 11.29 Uhr zog der Protest los.", "de"), ("om 14.30 uur", "nl"), ("kl. 23.59", "da")):
+        for text, lang in (("Gegen 11.29 Uhr zog der Protest los.", "de"), ("om 14.30 uur", "nl"), ("kl. 23.59", "da"),
+                           ("um 24.00 Uhr", "de")):
             with self.subTest(text=text):
                 self.assertEqual(tag_numbers(text, lang), [])
+        # past the hours and minutes of a day the point marks decimals again
+        for text, value in (("24.30", "24.3"), ("1.60", "1.6"), ("0.60", "0.6")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value) for m in tag_numbers(text, "de")], [(text, value)])
+
+    def test_a_day_and_month_with_a_period_after_them_read_no_number(self):
+        # en.wikipedia "Date and time notation in Finland": "When the year is
+        # not specified, a trailing full stop is used, such as 31.5. for 31 May"
+        for text, lang in (("am 24.12.", "de"), ("am 1.5. ist Feiertag", "de"), ("vom 24.12. bis 26.12.", "de"),
+                           ("17.5. er nasjonaldagen", "nb"), ("den 24.12.", "da"), ("den 31.12.", "nn")):
+            with self.subTest(text=text):
+                self.assertEqual(tag_numbers(text, lang), [])
+        # three digits after the point are a group, also before a period
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("Es kostet 1.500.", "de")], [("1.500", "1500")])
 
 
 class TestDigitOrdinals(unittest.TestCase):

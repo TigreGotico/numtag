@@ -670,8 +670,8 @@ class TestDigits(unittest.TestCase):
 
     def test_a_point_that_cannot_group_digits_marks_decimals(self):
         # SI Brochure 5.4.4: the decimal marker "shall be either the point on
-        # the line or the comma on the line"; a group has three digits, and a
-        # number between -1 and 1 starts with "0"
+        # the line or the comma on the line", and a number between -1 and 1
+        # starts with "0"; a group has three digits (the group_mark source)
         for text, value in (("1.5", "1.5"), ("3.14159", "3.14159"), ("0.500", "0.5"), ("-0.500", "-0.5"),
                             ("0.050", "0.05"), ("1234.567", "1234.567")):
             with self.subTest(text=text):
@@ -681,6 +681,8 @@ class TestDigits(unittest.TestCase):
         # three digits after a first group of one to three digits are a group
         self.assertEqual(pt("1.500"), [("1.500", "1500", C)])
         self.assertEqual(pt("1.5.2"), [])
+        # three digits after a space group are no decimal: "1 234.5" stays 1
+        self.assertEqual(pt("1 234.5"), [("1", "1", C)])
 
     def test_pt_pt_also_groups_digits_with_a_space(self):
         # 1 x 10^6 + 234 x 10^3 + 567 = 1234567

@@ -102,6 +102,8 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(fr("3.5"), [("3.5", "3.5", "decimal")])
         # fr groups with a space, so "1.500" is 1.5 or 1500: no number
         self.assertEqual(fr("1.500"), [])
+        # a day and a month with a period after them are a date
+        self.assertEqual(fr("le 24.12."), [])
 
     def test_neuf_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("un manteau neuf", "fr"), [("un", 0.3), ("neuf", 0.4)])
