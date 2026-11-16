@@ -430,7 +430,11 @@ class Grammar:
             if position not in best:
                 continue
             parts, written, origin = best[position]
-            for end, chunk in self.small(position, multiplied=False):
+            # "2 point 5": digits after the marker
+            token = self.tokens[position] if position < len(self.tokens) else None
+            digits_after = [(position + 1, token.latin)] if not parts and token and token.is_digits and not token.suffix \
+                and not token.period_ordinal and token.latin.isdigit() else []
+            for end, chunk in self.small(position, multiplied=False) + digits_after:
                 if parts and len(chunk) == 3:
                     continue
                 if end not in best or parts + 1 < best[end][0]:
@@ -524,6 +528,11 @@ class Grammar:
             # milhões e 500 mil" is one number, "2 milhões e 500" two
             end, value, decimal = read
             found.append(count(end, value, needs_multiplier=not first, decimal=decimal))
+            if not decimal:
+                whole = _piece(Role.COUNT, i, end, value)
+                for start, e, fraction in self.decimal_digits(end):
+                    found.append(Count(e, Rational.from_decimal(value.numerator, fraction), decimal=True,
+                                       parts=whole + self._decimal_parts(end, start, e, fraction)))
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:

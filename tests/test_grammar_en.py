@@ -358,6 +358,19 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
         self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
 
+    def test_digits_around_a_spoken_point_are_one_decimal(self):
+        # 2 + 5/10; 2.5 x 10^6; -(2 + 5/10)
+        self.assertEqual(en("2 point 5"), [("2 point 5", "2.5", D)])
+        self.assertEqual(en("two point 5"), [("two point 5", "2.5", D)])
+        self.assertEqual(en("2 point five"), [("2 point five", "2.5", D)])
+        self.assertEqual(en("2 point 5 million"), [("2 point 5 million", "2500000", C)])
+        self.assertEqual(en("-2 point 5"), [("-2 point 5", "-2.5", D)])
+
+    def test_a_point_with_no_digit_after_it_ends_the_number(self):
+        self.assertEqual(en("2 point"), [("2", "2", C)])
+        self.assertEqual(en("point 5"), [("5", "5", C)])
+        self.assertEqual(en("2 point 5 5"), [("2 point 5", "2.5", D), ("5", "5", C)])
+
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205
         self.assertEqual(en("three point twenty five"), [("three point twenty five", "3.25", D)])
