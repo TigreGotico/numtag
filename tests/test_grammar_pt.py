@@ -711,7 +711,7 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("em 2024 123.45 euros"), [("2024", "2024", C), ("123.45", "123.45", D)])
         # a sign before the first group keeps the group: "-1 234.5" stays -1
         self.assertEqual(pt("-1 234.5"), [("-1", "-1", C)])
-        # a signed number starts no group: 12, -123.5 and 4
+        # a signed number continues no group: 12, -123.5 and 4
         self.assertEqual(pt("valores 12 -123.5 e 4"), [("12", "12", C), ("-123.5", "-123.5", D), ("4", "4", C)])
         # a hyphen joins no group: 10 and 123, as FLORES de "120-160 Kubikmeter" is 120 and 160
         self.assertEqual(pt("entre 10-123 kg"), [("10", "10", C), ("123", "123", C)])
