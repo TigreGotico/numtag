@@ -78,7 +78,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id` | French, Italian, Romanian, Basque, Indonesian | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
 | `es`, `gl`, `ca`, `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
 
-Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `ValueError`.
+Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
 
 Each language is one JSON file in `numtag/lexicon/`. Each word and each setting in the file carries the source of its rule.
 

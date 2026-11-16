@@ -24,6 +24,11 @@ from numtag.tokenize import COMPOUND_MARK, Script, fold
 _HERE = Path(__file__).parent
 
 
+class UnsupportedLanguageError(ValueError):
+    """No lexicon reads the language. A caller can tell it apart from a bad
+    ``scale``, which raises a plain ``ValueError``."""
+
+
 class Joiner(str, Enum):
     """Where the joiner word ("e", "and") may go between two parts."""
     REQUIRED = "required"
@@ -335,7 +340,7 @@ DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_n
 def _read(lang: str) -> dict:
     path = _HERE / f"{lang}.json"
     if not path.is_file():
-        raise ValueError(f"no lexicon for language {lang!r}")
+        raise UnsupportedLanguageError(f"no lexicon for language {lang!r}")
     data = json.loads(path.read_text(encoding="utf-8"))
     if "extends" not in data:
         return data
