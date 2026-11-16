@@ -483,5 +483,18 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 [('dois', '2')]
 ```
 
+Some number words are also a noun that a count takes. Right after a sure cardinal, such a word is that noun: Hungarian "öt hét" is five weeks, and French "dix secondes" is ten seconds. The language lists these words. French "premier" and "second" are never the last word of a longer ordinal, so "dix premiers" is 10 and 1st, not 11th.
+
+```python
+>>> read("Öt hét múlva jövök vissza.", "hu")
+[('Öt', '5')]
+>>> read("Attendez dix secondes avant de recommencer.", "fr")
+[('dix', '10')]
+>>> read("Les dix premiers arrivés gagnent un prix.", "fr")
+[('dix', '10'), ('premiers', '1'), ('un', '1')]
+```
+
+> Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
+
 ---
 [← Confidence and homographs](confidence-and-homographs.md) · [Home](index.md) · [Portuguese →](languages/pt.md)

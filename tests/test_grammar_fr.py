@@ -106,6 +106,26 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("neuf cents", "fr"), [("neuf cents", 1.0)])
 
 
+class TestStandaloneOrdinals(unittest.TestCase):
+    def test_premier_and_second_end_no_longer_ordinal(self):
+        # 10 and the noun "secondes"; 10 and 1st; 21st and 22nd take
+        # "unième" and "deuxième"
+        self.assertEqual(fr("dix secondes"), [("dix", "10", C)])
+        self.assertEqual(fr("les dix premiers"), [("dix", "10", C), ("premiers", "1", O)])
+        self.assertEqual(fr("vingt et unième"), [("vingt et unième", "21", O)])
+        self.assertEqual(fr("vingt-deuxième"), [("vingt-deuxième", "22", O)])
+
+    def test_premier_and_second_alone_stay_ordinals(self):
+        self.assertEqual(fr("le premier"), [("premier", "1", O)])
+        self.assertEqual(confidence("Il est arrivé second.", "fr"), [("second", 0.4)])
+
+    def test_seconde_after_an_article_stays_an_ordinal(self):
+        # only a sure cardinal counts the noun: "une" may be the article, so
+        # "une seconde fois" keeps its ordinal
+        self.assertEqual(read("Essaie une seconde fois.", "fr-FR"),
+                         [("une", "1", "cardinal"), ("seconde", "2", O)])
+
+
 class TestSwissDigits(unittest.TestCase):
     def test_an_apostrophe_groups_digits_in_switzerland(self):
         # 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5

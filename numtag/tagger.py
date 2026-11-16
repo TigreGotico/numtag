@@ -83,6 +83,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     grammar = Grammar(lexicon, run)
     mentions = []
     number_end = -1  # the run index after the last number
+    count_end = -1  # the run index after the last sure cardinal
     i = 0
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
@@ -94,7 +95,11 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             continue
         best = max(parses, key=lambda p: p.end)
         if not negative and (_percent_word(lexicon, run, start, best, number_end)
-                             or _not_a_single(lexicon, run, start, best)):
+                             or _not_a_single(lexicon, run, start, best)
+                             # "öt hét" is five weeks: right after a sure cardinal, a word
+                             # that is also a noun is the noun that the cardinal counts
+                             or i == count_end and best.end == start + 1
+                             and run[start].norm in lexicon.nouns_after_count):
             i += 1
             continue
         value = -best.value if negative else best.value
@@ -103,11 +108,13 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         first = i - 1 if run[i].attached else i
         span = (run[first].start, run[best.end - 1].end)
         reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text)
+        kind = _kind(lexicon, run[start:best.end], best)
         mentions.append(NumberMention(
-            span, text[span[0]:span[1]], value.canonical(), _kind(lexicon, run[start:best.end], best),
+            span, text[span[0]:span[1]], value.canonical(), kind,
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
             number_scale=_number_scale(lexicon, run[start:best.end]),
             reasons=frozenset() if reason is None else frozenset({reason})))
+        count_end = best.end if kind == Kind.CARDINAL and reason is None else -1
         i = number_end = best.end
     return mentions
 
