@@ -115,13 +115,17 @@ A scale noun closes its group, so "milhão" counts no larger noun.
 
 ## A scale noun agrees with its count
 
-In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words: "meio milhões" and "um milhões" are no number. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
+In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words, so "meio milhões" and "um milhões" are not one number. A lone "meio" keeps its own reading, a fraction with `Reason.HOMOGRAPH`, as in "no meio da sala". "um milhões" gives no mention. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
 
 ```python
 >>> read("Doaram cem mil e um milhão de euros.")
 [('cem mil', '100000'), ('um milhão', '1000000')]
 >>> read("Contaram mil e um milhões de estrelas.")
 [('mil e um milhões', '1001000000')]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("meio milhões de pessoas", "pt-PT")]
+[('meio', '0.5', 0.4)]
+>>> read("um milhões de pessoas")
+[]
 >>> read("The town got two million dollars.", "en")
 [('two million', '2000000')]
 ```

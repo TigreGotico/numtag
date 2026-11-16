@@ -199,6 +199,10 @@ class TestCollectivesAndScaleNouns(unittest.TestCase):
     def test_a_plural_scale_noun_takes_no_count_of_one_or_a_half(self):
         # Squarisi: "O numeral ou o adjetivo que o modifica deve concordar com ele"
         self.assertEqual(pt("meio milhões de pessoas"), [("meio", "0.5", F)])
+        # the lone "meio" keeps its own reading, as in "no meio da sala"
+        self.assertEqual([m.confidence for m in tag_numbers("meio milhões de pessoas", "pt-PT")],
+                         [m.confidence for m in tag_numbers("no meio da sala", "pt-PT")])
+        self.assertEqual([m.confidence for m in tag_numbers("meio milhões de pessoas", "pt-PT")], [0.4])
         self.assertEqual(pt("um milhões de pessoas"), [])
         self.assertEqual(pt("meio milhão de pessoas"), [("meio milhão", "500000", C)])
         self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
