@@ -305,3 +305,9 @@
 {"text": "o vigésimo primeiro andar", "lang": "pt-PT", "reading": [[2, 19, "vigésimo primeiro", 21]], "source": "ovos-typed-slots-transformer tests/test_plug.py"}
 {"text": "abre o segundo e o quinto separador", "lang": "pt-PT", "reading": [[7, 14, "segundo", 2], [19, 25, "quinto", 5]], "source": "ovos-typed-slots-transformer tests/test_plug.py"}
 {"text": "turn the volume up to fifty two", "lang": "en-US", "reading": [[22, 31, "fifty two", 52]], "source": "ovos-typed-slots-transformer tests/test_plug.py"}
+{"text": "Can I get a math fact", "lang": "en-US", "reading": [], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}
+{"text": "Play CD", "lang": "en-US", "reading": [], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}
+{"text": "Tell me about King Henry I", "lang": "en-US", "reading": [[25, 26, "I", 1]], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}
+{"text": "When did World War I end", "lang": "en-US", "reading": [[19, 20, "I", 1]], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}
+{"text": "Can you tell John I am late", "lang": "en-US", "reading": [], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}
+{"text": "Luís XIV morreu em 1715.", "lang": "pt-PT", "reading": [[5, 8, "XIV", 14], [19, 23, "1715", 1715]], "source": "numtag Roman numeral rules (docs/api.md, \"Roman numerals\"): a typed line with capitals; a lone letter reads only after a strong cue"}

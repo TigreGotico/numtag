@@ -30,6 +30,7 @@ class Form(str, Enum):
     WORDS = "words"         # "dois milhões"
     DIGITS = "digits"       # "2000000"
     MIXED = "mixed"         # "2 milhões"
+    ROMAN = "roman"         # "XIV", "Ⅻ"
 
 
 _WHOLE = r"-?(?:0|[1-9][0-9]*)"

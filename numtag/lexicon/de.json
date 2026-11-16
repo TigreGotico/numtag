@@ -194,6 +194,36 @@
     "einhalb"
    ],
    "source": "Wiktionary (de), \"zweieinhalb\": \"zwei Ganze und ein Halbes\", Worttrennung \"zwei·ein·halb\""
+  },
+  "roman_series_noun": {
+   "value": [
+    "jahrhundert",
+    "jahrhunderts",
+    "kapitel",
+    "teil",
+    "akt",
+    "szene",
+    "konzil",
+    "krieg",
+    "dynastie"
+   ],
+   "source": "A noun that marks a place in a series makes the Roman numeral beside it an ordinal (Wikipedia, \"Roman numerals\": \"Capital or small capital Roman numerals are widely used in Romance languages to denote centuries.\"; \"Book volume and chapter numbers, as well as the several acts within a play.\"; \"World War I and World War II\"). Each noun, from en.wiktionary.org: German \"Jahrhundert\": \"a century (period of 100 years)\"; German \"Kapitel\": \"chapter (section of a text)\"; German \"Teil\": \"part, piece (of a whole, often in relation to living things or an abstract concept)\"; German \"Akt\": \"(theater, literature, film) act\"; German \"Szene\": \"(theater) scene; tableau\"; German \"Konzil\": \"(Christianity) church council, synod (congress of bishops called to decide bindingly on important issues)\"; German \"Krieg\": \"war, warfare\"; German \"Dynastie\": \"dynasty\"."
+  },
+  "roman_title": {
+   "value": [
+    "könig",
+    "königin",
+    "papst",
+    "kaiser",
+    "kaiserin"
+   ],
+   "source": "A regnal title before a name makes a single-letter numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: German \"König\": \"king (monarch, chess, card games)\"; German \"Königin\": \"queen\"; German \"Papst\": \"pope (head of the Roman Catholic Church; title of other religious leaders such as the Coptic Pope)\"; German \"Kaiser\": \"emperor (ruler of certain monarchies; highest monarch)\"; German \"Kaiserin\": \"empress (wife or widow of an emperor)\"."
+  },
+  "roman_word": {
+   "value": [
+    "cd"
+   ],
+   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org: German \"CD\": \"CD (compact disc)\"."
   }
  },
  "entries": [

@@ -68,6 +68,9 @@ The loader reads every setting and every word list below. A file that leaves one
 | `abbreviation` | Number words that a period makes an abbreviation | "dez" | empty |
 | `lone_decimal_mark` | Marks that make the digits after them decimals at the start of a number | ",", "." | "." |
 | `range_cue` | The word that opens a range | "entre" | "between" |
+| `roman_series_noun` | Nouns that mark a place in a series, so a Roman numeral beside them is an ordinal | "século", "capítulo" | "century", "war" |
+| `roman_title` | Regnal titles, before the name that a single-letter numeral follows | "rei", "d" | "king", "pope" |
+| `roman_word` | Roman numerals that are also a word or a common abbreviation | "cd", "cv" | "cd", "mix" |
 
 ### Entries
 
