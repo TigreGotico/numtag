@@ -156,9 +156,9 @@
 {"text": "Från 1990 till 2005 bodde han här.", "mentions": [{"start": 5, "end": 9, "value": "1990", "kind": "cardinal"}, {"start": 15, "end": 19, "value": "2005", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Fem barn och två hundar leker.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 13, "end": 16, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Hon valde sju och nio.", "mentions": [{"start": 10, "end": 13, "value": "7", "kind": "cardinal"}, {"start": 18, "end": 21, "value": "9", "kind": "cardinal"}], "source": "arithmetic"}
-{"text": "Jag har en bil.", "mentions": [{"start": 8, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Hon köpte en tidning.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Det är ett fint hus.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Jag har en bil.", "mentions": [{"start": 8, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Hon köpte en tidning.", "mentions": [{"start": 10, "end": 12, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Det är ett fint hus.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Projektet kostar en miljon kronor.", "mentions": [{"start": 17, "end": 26, "value": "1000000", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Ett dussin ägg ligger i korgen.", "mentions": [{"start": 0, "end": 10, "value": "12", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Hon köpte två dussin rosor.", "mentions": [{"start": 10, "end": 20, "value": "24", "kind": "cardinal"}], "source": "arithmetic"}

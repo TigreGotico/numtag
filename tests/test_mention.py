@@ -2,7 +2,8 @@ import unittest
 from decimal import Decimal
 from fractions import Fraction
 
-from numtag import ARTICLE_CONFIDENCE, Form, Kind, NumberMention, Scale, is_canonical_value, tag_numbers
+import numtag
+from numtag import ARTICLE_CONFIDENCE, Form, Kind, NumberMention, Reason, Scale, is_canonical_value, tag_numbers
 from numtag import tagger
 from numtag import lexicon
 
@@ -83,6 +84,37 @@ class TestArticleConfidence(unittest.TestCase):
     def test_an_article_gets_the_exported_score(self):
         found = tag_numbers("Comprei uma casa e dois carros.", "pt-PT")
         self.assertEqual([m.confidence == ARTICLE_CONFIDENCE for m in found], [True, False])
+
+
+class TestReasons(unittest.TestCase):
+    def test_the_package_exports_the_reason(self):
+        self.assertIn("Reason", numtag.__all__)
+        self.assertEqual({r.value for r in Reason}, {"article", "homograph"})
+
+    def test_an_article_and_a_homograph_say_why_they_are_weak(self):
+        found = tag_numbers("Dá-me um segundo facto e dois livros.", "pt-PT")
+        self.assertEqual([(m.text, m.reasons) for m in found],
+                         [("um", frozenset({Reason.ARTICLE})), ("segundo", frozenset({Reason.HOMOGRAPH})),
+                          ("dois", frozenset())])
+
+    def test_the_reason_matches_the_score(self):
+        for text, lang in (("Comprei uma casa.", "pt-PT"), ("Wait a second.", "en"),
+                           ("Er lud mich ein.", "de"), ("liburu bat", "eu")):
+            for m in tag_numbers(text, lang):
+                with self.subTest(text=text, mention=m.text):
+                    expected = {0.3: {Reason.ARTICLE}, 0.4: {Reason.HOMOGRAPH}, 1.0: set()}[m.confidence]
+                    self.assertEqual(m.reasons, expected)
+
+    def test_reasons_must_be_a_frozenset_of_reasons(self):
+        for bad in ({Reason.ARTICLE}, frozenset({"article"}), [Reason.ARTICLE]):
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS, confidence=0.3, reasons=bad)
+
+    def test_reasons_are_keyword_only_and_not_part_of_equality(self):
+        a = NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS, confidence=0.3,
+                          reasons=frozenset({Reason.ARTICLE}))
+        self.assertEqual(a, NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS))
+        self.assertEqual(NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS).reasons, frozenset())
 
 
 class TestZeroDenominator(unittest.TestCase):

@@ -1,13 +1,15 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
 from numtag.grammar import Grammar, Parse
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
-from numtag.mention import Form, Kind, NumberMention
+from numtag.mention import Form, Kind, NumberMention, Reason
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
 ARTICLE_CONFIDENCE = 0.3
 AMBIGUOUS_CONFIDENCE = 0.4
+# The score of a mention, by the reason it is not sure.
+CONFIDENCE = {None: 1.0, Reason.ARTICLE: ARTICLE_CONFIDENCE, Reason.HOMOGRAPH: AMBIGUOUS_CONFIDENCE}
 
 
 # The lexicon of a language tag with no region, or with a region that has no
@@ -95,11 +97,12 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         # the whole word: a span never starts inside a word
         first = i - 1 if run[i].attached else i
         span = (run[first].start, run[best.end - 1].end)
+        reason = _reason(grammar, lexicon, run, start, best)
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(lexicon, run[start:best.end], best),
-            _form(run[start:best.end]), _gender(lexicon, run[start:best.end]),
-            _confidence(grammar, lexicon, run, start, best),
-            number_scale=_number_scale(lexicon, run[start:best.end])))
+            _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
+            number_scale=_number_scale(lexicon, run[start:best.end]),
+            reasons=frozenset() if reason is None else frozenset({reason})))
         i = best.end
     return mentions
 
@@ -186,7 +189,8 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
     return lexicon.scale if dependent else None
 
 
-def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> float:
+def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> Reason | None:
+    """Why the number is not sure, or None for a sure number."""
     # The article stands next to its noun: before it ("um livro"), or after
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
@@ -197,10 +201,10 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
                     and (run[noun].is_digits or not grammar.starts_number(noun)
                          or all(_kind(lexicon, run[noun:p.end], p) == Kind.ORDINAL for p in grammar.numbers(noun))))
     if lone_article:
-        return ARTICLE_CONFIDENCE
+        return Reason.ARTICLE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral
     if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
-        return ARTICLE_CONFIDENCE
+        return Reason.ARTICLE
     # one word whose every reading has a common meaning that is no number
     entries = () if run[start].is_digits else lexicon.readings.get(run[start].norm, ())
     lone_ambiguous = parse.end == start + 1 and bool(entries) and all(e.ambiguous for e in entries)
@@ -216,4 +220,4 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
         and run[start - 1].norm in lexicon.articles \
         and any(not e.plural for e in lexicon.of(run[start].norm, "denominator")) \
         and _kind(lexicon, word, parse) == Kind.ORDINAL
-    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous or listed or weak_ordinal else 1.0
+    return Reason.HOMOGRAPH if parse.ambiguous or lone_ambiguous or listed or weak_ordinal else None

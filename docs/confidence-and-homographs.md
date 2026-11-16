@@ -14,6 +14,8 @@ The confidence is a fixed score in (0, 1]. It is not a probability. The same tex
 
 The gold corpus and its tests use 0.5 as the line between a weak mention and a clear number. A caller that wants only clear numbers keeps the mentions at 0.5 or above.
 
+A weak mention also says why it is weak. Its `reasons` field holds `Reason.ARTICLE` for an article and `Reason.HOMOGRAPH` for a word with a second meaning. A sure number has no reasons. The scores can change in a release, and the reasons keep their meaning, so filter on the reason.
+
 ## Articles
 
 In Portuguese, "um" and "uma" are both the number one and the indefinite article. Alone before a noun, the word gets 0.3. Inside a number, it is part of the number and the number gets the full score.
@@ -122,6 +124,7 @@ A threshold also drops a real number when the weak word joins it. In "O apartame
 | Need | Action |
 |---|---|
 | Clear numbers only, for example to write digits | Keep the mentions with a confidence of 0.5 or above. |
+| Every number except the articles | Drop the mentions with `Reason.ARTICLE` in their `reasons`. |
 | Every possible number, for example for a grammar that checks position | Keep all mentions, and let the grammar decide. A date grammar takes "uma" in "daqui a uma semana" as a count, because a count goes there. |
 | A count after a known noun or verb | Keep the low mention when the slot needs a number, and drop it in other places. |
 

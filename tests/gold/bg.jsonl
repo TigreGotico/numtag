@@ -125,7 +125,7 @@
 {"text": "В склада има двеста и петдесет кутии.", "mentions": [{"start": 13, "end": 30, "value": "250", "kind": "cardinal"}], "source": "CLDR RBNF bg joins the last part with \"и\"; 200 + 50"}
 {"text": "Роден е през хиляда деветстотин осемдесет и пета година.", "mentions": [{"start": 13, "end": 48, "value": "1985", "kind": "ordinal"}], "source": "the last word is ordinal; 1000 + 900 + 80 + 5"}
 {"text": "Това е стотната годишнина.", "mentions": [{"start": 7, "end": 15, "value": "100", "kind": "ordinal"}], "source": "CLDR RBNF bg %spellout-ordinal-feminine writes \"стотна\" for 100; the definite ending -та follows the inflection of \"първи\" (Wiktionary (en), \"първи\": \"Първата парна машина\")"}
-{"text": "Купих един хляб.", "mentions": [{"start": 6, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "Wiktionary (en), \"един\": also the indefinite article; alone before a noun it is a weak number"}
+{"text": "Купих един хляб.", "mentions": [{"start": 6, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "Wiktionary (en), \"един\": also the indefinite article; alone before a noun it is a weak number"}
 {"text": "Сто години самота.", "mentions": [{"start": 0, "end": 3, "value": "100", "kind": "cardinal"}], "source": "CLDR RBNF bg: \"сто\""}
 {"text": "Той отговори на петдесет и два въпроса от шейсет.", "mentions": [{"start": 16, "end": 30, "value": "52", "kind": "cardinal"}, {"start": 42, "end": 48, "value": "60", "kind": "cardinal"}], "source": "arithmetic: 50 + 2; two numbers"}
 {"text": "Заплатата е четиридесет и пет хиляди лева.", "mentions": [{"start": 12, "end": 36, "value": "45000", "kind": "cardinal"}], "source": "arithmetic: (40 + 5) x 1000"}

@@ -132,7 +132,7 @@
 {"text": "In de negentiende eeuw groeide de stad.", "mentions": [{"start": 6, "end": 17, "value": "19", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "De zevende symfonie is lang.", "mentions": [{"start": 3, "end": 10, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Dit is de tweeënveertigste poging.", "mentions": [{"start": 10, "end": 26, "value": "42", "kind": "ordinal"}], "source": "arithmetic"}
-{"text": "De honderdeerste klant krijgt een cadeau.", "mentions": [{"start": 3, "end": 16, "value": "101", "kind": "ordinal"}, {"start": 30, "end": 33, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "De honderdeerste klant krijgt een cadeau.", "mentions": [{"start": 3, "end": 16, "value": "101", "kind": "ordinal"}, {"start": 30, "end": 33, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Zij werd 1e in de race.", "mentions": [{"start": 9, "end": 11, "value": "1", "kind": "ordinal"}], "source": "Taalunie: \"1e\""}
 {"text": "Hij eindigde als 2de.", "mentions": [{"start": 17, "end": 20, "value": "2", "kind": "ordinal"}], "source": "Taalunie: \"2de\""}
 {"text": "Het is de 8ste keer.", "mentions": [{"start": 10, "end": 14, "value": "8", "kind": "ordinal"}], "source": "Taalunie: \"8ste\""}
@@ -162,8 +162,8 @@
 {"text": "De wedstrijd eindigde twee tegen een.", "mentions": [{"start": 22, "end": 26, "value": "2", "kind": "cardinal"}, {"start": 33, "end": 36, "value": "1", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Vijf kinderen en twee honden spelen.", "mentions": [{"start": 0, "end": 4, "value": "5", "kind": "cardinal"}, {"start": 17, "end": 21, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Hij koos zeven en negen.", "mentions": [{"start": 9, "end": 14, "value": "7", "kind": "cardinal"}, {"start": 18, "end": 23, "value": "9", "kind": "cardinal"}], "source": "arithmetic"}
-{"text": "Ik heb een auto.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
-{"text": "Zij kocht een krant.", "mentions": [{"start": 10, "end": 13, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic"}
+{"text": "Ik heb een auto.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
+{"text": "Zij kocht een krant.", "mentions": [{"start": 10, "end": 13, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "arithmetic"}
 {"text": "Ik heb één auto, niet twee.", "mentions": [{"start": 7, "end": 10, "value": "1", "kind": "cardinal"}, {"start": 22, "end": 26, "value": "2", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Het project kost een miljoen euro.", "mentions": [{"start": 17, "end": 28, "value": "1000000", "kind": "cardinal"}], "source": "arithmetic"}
 {"text": "Een dozijn eieren ligt in de mand.", "mentions": [{"start": 0, "end": 10, "value": "12", "kind": "cardinal"}], "source": "Van Dale, \"dozijn\": \"twaalf stuks\""}

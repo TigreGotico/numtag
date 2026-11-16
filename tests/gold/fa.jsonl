@@ -1,5 +1,5 @@
 {"text": "رمز با صفر شروع می‌شود.", "mentions": [{"start": 7, "end": 10, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"0: صفر\"."}
-{"text": "یک کتاب خریدم.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF fa: \"1: یک\"; \"یک\" before a noun also marks it indefinite."}
+{"text": "یک کتاب خریدم.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "CLDR RBNF fa: \"1: یک\"; \"یک\" before a noun also marks it indefinite."}
 {"text": "فقط یک.", "mentions": [{"start": 4, "end": 6, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"1: یک\"; no noun follows."}
 {"text": "دو برادر دارم.", "mentions": [{"start": 0, "end": 2, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"2: دو\"."}
 {"text": "سه گربه دیدم.", "mentions": [{"start": 0, "end": 2, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"3: سه\"."}
@@ -9,7 +9,7 @@
 {"text": "هفته هفت روز دارد.", "mentions": [{"start": 5, "end": 8, "value": "7", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"7: هفت\"."}
 {"text": "هشت ساعت کار کردم.", "mentions": [{"start": 0, "end": 3, "value": "8", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"8: هشت\"."}
 {"text": "نه سیاره.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"9: نه\"."}
-{"text": "نه، نمی‌خواهم.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "\"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "نه، نمی‌خواهم.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "\"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
 {"text": "ده انگشت دارم.", "mentions": [{"start": 0, "end": 2, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"10: ده\"."}
 {"text": "یازده بازیکن.", "mentions": [{"start": 0, "end": 5, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"11: یازده\"."}
 {"text": "سال دوازده ماه دارد.", "mentions": [{"start": 4, "end": 10, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"12: دوازده\"."}
@@ -22,11 +22,11 @@
 {"text": "هجده سالش شد.", "mentions": [{"start": 0, "end": 4, "value": "18", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"18: هجده\"."}
 {"text": "هیجده سالگی.", "mentions": [{"start": 0, "end": 5, "value": "18", "kind": "cardinal"}], "source": "by hand: the variant هیجده."}
 {"text": "نوزده کارت.", "mentions": [{"start": 0, "end": 5, "value": "19", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"19: نوزده\"."}
-{"text": "بیست هزار؟ نه، فقط بیست تومان.", "mentions": [{"start": 0, "end": 9, "value": "20000", "kind": "cardinal"}, {"start": 11, "end": 13, "value": "9", "kind": "cardinal", "low_confidence": true}, {"start": 19, "end": 23, "value": "20", "kind": "cardinal"}], "source": "arithmetic: 20 x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "بیست هزار؟ نه، فقط بیست تومان.", "mentions": [{"start": 0, "end": 9, "value": "20000", "kind": "cardinal"}, {"start": 11, "end": 13, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}, {"start": 19, "end": 23, "value": "20", "kind": "cardinal"}], "source": "arithmetic: 20 x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
 {"text": "بیست و یک سال دارد.", "mentions": [{"start": 0, "end": 9, "value": "21", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"20: بیست[ و >>]\", 20 + 1."}
 {"text": "بیست و پنج نفر آمدند.", "mentions": [{"start": 0, "end": 10, "value": "25", "kind": "cardinal"}], "source": "arithmetic: 20 + 5."}
 {"text": "سی روز.", "mentions": [{"start": 0, "end": 2, "value": "30", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"30: سی\"."}
-{"text": "سی و پنج هزار؟ نه.", "mentions": [{"start": 0, "end": 13, "value": "35000", "kind": "cardinal"}, {"start": 15, "end": 17, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "arithmetic: (30 + 5) x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
+{"text": "سی و پنج هزار؟ نه.", "mentions": [{"start": 0, "end": 13, "value": "35000", "kind": "cardinal"}, {"start": 15, "end": 17, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic: (30 + 5) x 1000; \"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
 {"text": "چهل و دو سال دارد.", "mentions": [{"start": 0, "end": 8, "value": "42", "kind": "cardinal"}], "source": "arithmetic: 40 + 2."}
 {"text": "پنجاه کیلومتر.", "mentions": [{"start": 0, "end": 5, "value": "50", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"50: پنجاه\"."}
 {"text": "پلاک شصت و هفت.", "mentions": [{"start": 5, "end": 14, "value": "67", "kind": "cardinal"}], "source": "arithmetic: 60 + 7."}
@@ -65,7 +65,7 @@
 {"text": "یک میلیون و هزار و هفتصد و ده نفر.", "mentions": [{"start": 0, "end": 29, "value": "1001710", "kind": "cardinal"}], "source": "arithmetic: 10^6 + 1000 + 700 + 10."}
 {"text": "میلیون‌ها نفر دیدند.", "mentions": [], "source": "the plural alone names no number."}
 {"text": "هزاران نفر آمدند.", "mentions": [], "source": "by hand: هزاران: thousands of, no number."}
-{"text": "اول شد.", "mentions": [{"start": 0, "end": 3, "value": "1", "kind": "ordinal", "low_confidence": true}], "source": "by hand: اول is first; it is also beginning, so the reading is weak."}
+{"text": "اول شد.", "mentions": [{"start": 0, "end": 3, "value": "1", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "by hand: اول is first; it is also beginning, so the reading is weak."}
 {"text": "روز یکم ماه.", "mentions": [{"start": 4, "end": 7, "value": "1", "kind": "ordinal"}], "source": "by hand: یکم, first."}
 {"text": "نخستین بار.", "mentions": [{"start": 0, "end": 6, "value": "1", "kind": "ordinal"}], "source": "by hand: نخستین, first."}
 {"text": "طبقه دوم.", "mentions": [{"start": 5, "end": 8, "value": "2", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
@@ -76,7 +76,7 @@
 {"text": "روز هفتم.", "mentions": [{"start": 4, "end": 8, "value": "7", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
 {"text": "ماه هشتم.", "mentions": [{"start": 4, "end": 8, "value": "8", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
 {"text": "سمفونی نهم.", "mentions": [{"start": 7, "end": 10, "value": "9", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
-{"text": "سالگرد دهم.", "mentions": [{"start": 7, "end": 10, "value": "10", "kind": "ordinal", "low_confidence": true}], "source": "by hand: دهم; it is also the verb I give, so the reading is weak."}
+{"text": "سالگرد دهم.", "mentions": [{"start": 7, "end": 10, "value": "10", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "by hand: دهم; it is also the verb I give, so the reading is weak."}
 {"text": "قرن بیستم.", "mentions": [{"start": 4, "end": 9, "value": "20", "kind": "ordinal"}], "source": "by hand: the cardinal with -م."}
 {"text": "قرن بیست و یکم.", "mentions": [{"start": 4, "end": 14, "value": "21", "kind": "ordinal"}], "source": "by hand: -م on the last word, 20 + 1."}
 {"text": "روز سی‌ام.", "mentions": [{"start": 4, "end": 9, "value": "30", "kind": "ordinal"}], "source": "by hand: سی‌ام, 30th."}
@@ -145,7 +145,7 @@
 {"text": "سیصد و شصت و پنج روز.", "mentions": [{"start": 0, "end": 16, "value": "365", "kind": "cardinal"}], "source": "arithmetic: 300 + 60 + 5."}
 {"text": "بیست و چهار ساعت.", "mentions": [{"start": 0, "end": 11, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 20 + 4."}
 {"text": "هزار و یک شب.", "mentions": [{"start": 0, "end": 9, "value": "1001", "kind": "cardinal"}], "source": "arithmetic: 1000 + 1."}
-{"text": "یک روز خوب.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "\"یک\" before a noun also marks it indefinite."}
+{"text": "یک روز خوب.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "\"یک\" before a noun also marks it indefinite."}
 {"text": "شش ماه.", "mentions": [{"start": 0, "end": 2, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"6: شش\"."}
 {"text": "ششصد تومان.", "mentions": [{"start": 0, "end": 4, "value": "600", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"600: ششصد\"."}
-{"text": "او گفت نه و رفت.", "mentions": [{"start": 7, "end": 9, "value": "9", "kind": "cardinal", "low_confidence": true}], "source": "\"نه\" here is \"no\"; alone it reads as nine at low confidence."}
+{"text": "او گفت نه و رفت.", "mentions": [{"start": 7, "end": 9, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "\"نه\" here is \"no\"; alone it reads as nine at low confidence."}

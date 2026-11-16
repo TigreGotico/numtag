@@ -1,7 +1,7 @@
 {"text": "Ο κωδικός αρχίζει με μηδέν.", "mentions": [{"start": 21, "end": 26, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF el: \"0: μηδέν\"."}
-{"text": "Έχω ένα αυτοκίνητο.", "mentions": [{"start": 4, "end": 7, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: ένα\"; by hand: the indefinite article has the forms of one."}
-{"text": "Ήρθε ένας φίλος μου.", "mentions": [{"start": 5, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: ένας\"; the indefinite article has the forms of \"one\"."}
-{"text": "Πήρα μία καρέκλα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "CLDR RBNF el: \"1: μία\"; the indefinite article has the forms of \"one\"."}
+{"text": "Έχω ένα αυτοκίνητο.", "mentions": [{"start": 4, "end": 7, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "CLDR RBNF el: \"1: ένα\"; by hand: the indefinite article has the forms of one."}
+{"text": "Ήρθε ένας φίλος μου.", "mentions": [{"start": 5, "end": 9, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "CLDR RBNF el: \"1: ένας\"; the indefinite article has the forms of \"one\"."}
+{"text": "Πήρα μία καρέκλα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "CLDR RBNF el: \"1: μία\"; the indefinite article has the forms of \"one\"."}
 {"text": "Μόνο ένα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF el: \"1: ένα\"; no noun follows, so it is the number."}
 {"text": "Έχω δύο αδέλφια.", "mentions": [{"start": 4, "end": 7, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF el: \"2: δύο\"."}
 {"text": "Ήρθαν δυο παιδιά.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "by hand: δύο: colloquial δυο."}
@@ -133,10 +133,10 @@
 {"text": "Μεταξύ χίλια και δύο χιλιάδες ευρώ.", "mentions": [{"start": 7, "end": 12, "value": "1000", "kind": "cardinal"}, {"start": 17, "end": 29, "value": "2000", "kind": "cardinal"}], "source": "arithmetic; \"και\" before a group larger than the last breaks the number."}
 {"text": "Η ομάδα έχει έντεκα παίκτες και πέντε αλλαγές.", "mentions": [{"start": 13, "end": 19, "value": "11", "kind": "cardinal"}, {"start": 32, "end": 37, "value": "5", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "Πήρε εβδομήντα στα εκατό.", "mentions": [{"start": 5, "end": 14, "value": "70", "kind": "cardinal"}, {"start": 19, "end": 24, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
-{"text": "Ήταν μια ωραία μέρα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "the indefinite article has the forms of \"one\"."}
+{"text": "Ήταν μια ωραία μέρα.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "the indefinite article has the forms of \"one\"."}
 {"text": "Πέρασαν σαράντα οκτώ ώρες.", "mentions": [{"start": 8, "end": 20, "value": "48", "kind": "cardinal"}], "source": "arithmetic: 40 + 8."}
 {"text": "Διάβασε τις Χίλιες και μία νύχτες.", "mentions": [{"start": 12, "end": 26, "value": "1001", "kind": "cardinal"}], "source": "the title Χίλιες και μία νύχτες; arithmetic: 1000 + 1."}
-{"text": "Πάρε ένα μήλο.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true}], "source": "the indefinite article has the forms of \"one\"."}
+{"text": "Πάρε ένα μήλο.", "mentions": [{"start": 5, "end": 8, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "the indefinite article has the forms of \"one\"."}
 {"text": "Αγόρασα μια ντουζίνα αυγά.", "mentions": [{"start": 8, "end": 20, "value": "12", "kind": "cardinal"}], "source": "by hand: ντουζίνα: a group of twelve."}
 {"text": "Αγόρασα δύο ντουζίνες αυγά.", "mentions": [{"start": 8, "end": 21, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 2 x 12."}
 {"text": "Ήρθαν δεκαοκτώ και δεκαεννιά χρονών παιδιά.", "mentions": [{"start": 6, "end": 14, "value": "18", "kind": "cardinal"}, {"start": 19, "end": 28, "value": "19", "kind": "cardinal"}], "source": "arithmetic."}
@@ -155,5 +155,5 @@
 {"text": "Πούλησε ενάμισι εκατομμύριο αντίτυπα.", "mentions": [{"start": 8, "end": 27, "value": "1500000", "kind": "cardinal"}], "source": "by hand: ενάμισης; 1.5 x 10^6."}
 {"text": "Δάνειο ύψους δύο εκατομμυρίων ευρώ.", "mentions": [{"start": 13, "end": 29, "value": "2000000", "kind": "cardinal"}], "source": "en.wiktionary \"εκατομμύριο\", Declension: \"genitive εκατομμυρίου ( ekatommyríou ) εκατομμύριου ( ekatommýriou ) εκατομμυρίων ( ekatommyríon ) εκατομμύριων ( ekatommýrion )\"; 2 x 10^6."}
 {"text": "Κόστος τριών δισεκατομμυρίων ευρώ.", "mentions": [{"start": 7, "end": 28, "value": "3000000000", "kind": "cardinal"}], "source": "en.wiktionary \"δισεκατομμύριο\", genitive plural \"δισεκατομμυρίων ( disekatommyríon )\"; 3 x 10^9."}
-{"text": "Θα σε δω την Τρίτη το πρωί.", "mentions": [{"start": 13, "end": 18, "value": "3", "kind": "ordinal", "low_confidence": true}], "source": "en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; the ordinal reading is low confidence."}
-{"text": "ΟΛΟΙ ΗΡΘΑΝ ΕΚΤΟΣ ΑΠΟ ΤΗ ΜΑΡΙΑ.", "mentions": [{"start": 11, "end": 16, "value": "6", "kind": "ordinal", "low_confidence": true}], "source": "en.wiktionary \"εκτός\": \"except (for), besides\"; capitals carry no accent, so the ordinal reading is low confidence."}
+{"text": "Θα σε δω την Τρίτη το πρωί.", "mentions": [{"start": 13, "end": 18, "value": "3", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "en.wiktionary \"Τρίτη\": \"Tuesday (day of the week)\"; the ordinal reading is low confidence."}
+{"text": "ΟΛΟΙ ΗΡΘΑΝ ΕΚΤΟΣ ΑΠΟ ΤΗ ΜΑΡΙΑ.", "mentions": [{"start": 11, "end": 16, "value": "6", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "en.wiktionary \"εκτός\": \"except (for), besides\"; capitals carry no accent, so the ordinal reading is low confidence."}

@@ -19,6 +19,12 @@ class Scale(str, Enum):
     LONG = "long"
 
 
+class Reason(str, Enum):
+    """Why a mention has a low confidence."""
+    ARTICLE = "article"      # also an article or an indefinite pronoun: "comprei uma casa"
+    HOMOGRAPH = "homograph"  # also a common word that is no number: "segunda", "second"
+
+
 class Form(str, Enum):
     """How the number is written."""
     WORDS = "words"         # "dois milhões"
@@ -60,7 +66,9 @@ class NumberMention:
     scale that gave the value, set only when the value depends on it: the
     words hold a scale word whose value differs between the long and the
     short scale ("bilião", "billion" and up). It is None for "mil", "milhão",
-    "million", digits alone and every smaller number.
+    "million", digits alone and every smaller number. ``reasons``, a
+    keyword-only field left out of equality, says why the confidence is low:
+    empty for a sure number.
     """
     char_span: Tuple[int, int]
     text: str
@@ -70,6 +78,7 @@ class NumberMention:
     gender: Optional[str] = None
     confidence: float = field(default=1.0, compare=False)
     number_scale: Optional[Scale] = field(default=None, kw_only=True)
+    reasons: frozenset[Reason] = field(default=frozenset(), compare=False, kw_only=True)
 
     def __post_init__(self):
         start, end = self.char_span
@@ -79,3 +88,5 @@ class NumberMention:
             raise ValueError(f"value {self.value!r} is not a canonical digit string")
         if self.number_scale is not None and not isinstance(self.number_scale, Scale):
             raise ValueError(f"number_scale {self.number_scale!r} is not a Scale")
+        if not isinstance(self.reasons, frozenset) or not all(isinstance(r, Reason) for r in self.reasons):
+            raise ValueError(f"reasons {self.reasons!r} is not a frozenset of Reason")
