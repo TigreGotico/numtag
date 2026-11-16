@@ -69,9 +69,15 @@ def utterance_normalizer(text: str, lang: str) -> list[list[str]]:
             and not m.reasons & {Reason.ARTICLE, Reason.HOMOGRAPH}]
 
 
+def number_parser(text: str, lang: str) -> list[list[str]]:
+    # ovos-number-parser feat/route-numtag numtag_readers.py mentions(): every number but the ordinals
+    return [[m.text, m.value] for m in tag_numbers(text, lang) if m.kind is not Kind.ORDINAL]
+
+
 READERS = {"ovos-skill-count": count, "ovos-skill-volume": volume, "ovos-skill-number-facts": number_facts,
            "ovos-skill-days-in-history": days_in_history, "ovos-skill-mark1-ctrl": mark1, "simple_NER": simple_ner,
-           "ovos-typed-slots-transformer": typed_slots, "ovos-utterance-normalizer": utterance_normalizer}
+           "ovos-typed-slots-transformer": typed_slots, "ovos-utterance-normalizer": utterance_normalizer,
+           "ovos-number-parser": number_parser}
 
 
 class TestConsumerReadings(unittest.TestCase):

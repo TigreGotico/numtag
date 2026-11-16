@@ -81,10 +81,17 @@ def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
 
 
 def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:
-    return (lexicon.comma_between_classes and token.gap.startswith(",") and token.gap[1:].isspace()
-            and not previous.is_digits and not token.is_digits
-            and any(e.role in ("scale_numeral", "scale_noun") for e in lexicon.readings.get(previous.norm, ()))
-            and any(e.role != "half" for e in lexicon.readings.get(token.norm, ())))
+    """The classes go from the largest down, so the class after the comma
+    is smaller: "dois milhões, mil e quinhentos" is one number, and "dois
+    mil, milhões de pessoas" is two thousand and then a noun phrase."""
+    if not (lexicon.comma_between_classes and token.gap.startswith(",") and token.gap[1:].isspace()
+            and not previous.is_digits and not token.is_digits):
+        return False
+    classes = ("scale_numeral", "scale_noun")
+    scales = [e.exponent for e in lexicon.readings.get(previous.norm, ()) if e.role in classes]
+    after = lexicon.readings.get(token.norm, ())
+    return bool(scales) and any(e.role != "half" for e in after) \
+        and all(e.exponent < max(scales) for e in after if e.role in classes)
 
 
 def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMention]:

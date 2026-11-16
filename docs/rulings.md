@@ -63,7 +63,7 @@ In English, "and" is optional between groups and after "hundred". Both forms rea
 
 ## A comma between classes
 
-In Portuguese, a comma after a scale word and before a number word links two classes of one number. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
+In Portuguese, a comma after a scale word and before a number word links two classes of one number. The classes go from the largest down, so the class after the comma is smaller: "2 mil, milhões de pessoas" is 2000 and then a noun phrase. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
 
 ```python
 >>> read("O cheque era de dois milhões, duzentos e trinta e seis mil trezentos e vinte e um euros.")
