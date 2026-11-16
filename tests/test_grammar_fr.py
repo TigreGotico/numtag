@@ -98,6 +98,11 @@ class TestHomographs(unittest.TestCase):
                 self.assertEqual(read("Il est cent pour cent pour Volange.", lang), [("cent", "100", "cardinal")])
         self.assertEqual(read("Il l'a vendu pour cent euros.", "fr-FR"), [("cent", "100", "cardinal")])
 
+    def test_a_point_marks_decimals_but_three_digits_stay_unread(self):
+        self.assertEqual(fr("3.5"), [("3.5", "3.5", "decimal")])
+        # fr groups with a space, so "1.500" is 1.5 or 1500: no number
+        self.assertEqual(fr("1.500"), [])
+
     def test_neuf_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("un manteau neuf", "fr"), [("un", 0.3), ("neuf", 0.4)])
         self.assertEqual(confidence("Quoi de neuf ?", "fr"), [("neuf", 0.4)])

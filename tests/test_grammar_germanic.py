@@ -149,6 +149,20 @@ class TestNorwegianCountingOrders(unittest.TestCase):
         self.assertEqual(read("zehn dritte", "de"), [("zehn", "10", C), ("dritte", "3", O)])
 
 
+class TestPointDecimals(unittest.TestCase):
+    def test_a_point_that_cannot_group_digits_marks_decimals(self):
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("Das kostet 1.5 Millionen.", "de")],
+                         [("1.5 Millionen", "1500000")])
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("0.500", "nl")], [("0.500", "0.5")])
+
+    def test_a_time_of_day_with_a_point_reads_no_number(self):
+        # de.wikipedia "Uhrzeit": the Swiss Federal Chancellery writes "ein
+        # Punkt und kein Doppelpunkt" between hours and minutes
+        for text, lang in (("Gegen 11.29 Uhr zog der Protest los.", "de"), ("om 14.30 uur", "nl"), ("kl. 23.59", "da")):
+            with self.subTest(text=text):
+                self.assertEqual(tag_numbers(text, lang), [])
+
+
 class TestDigitOrdinals(unittest.TestCase):
     def test_a_period_after_digits_makes_an_ordinal(self):
         self.assertEqual(read("am 3. Mai", "de"), [("3", "3", O)])
