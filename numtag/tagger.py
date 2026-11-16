@@ -238,7 +238,9 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
     # segunda curiosidad". A hyphenated noun gives no token, and the word
-    # beside it notes it: "um guarda-chuva", "liburu-denda bat".
+    # beside it notes it: "um guarda-chuva", "liburu-denda bat". A homograph
+    # alone is the adjective or noun of the phrase ("un nou enregistrament"),
+    # unless it is a noun that a count takes ("egy hét" is one week).
     noun = start - 1 if lexicon.article_after_noun else parse.end
     # The word is the number after a noun that names a number ("o número
     # um"), and before a percent phrase, where it counts the hundredths ("un
@@ -251,6 +253,8 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
                          or 0 <= noun < len(run)
                          and (run[noun].is_digits or not grammar.starts_number(noun)
                               or all(_kind(lexicon, run[noun:p.end], p) == Kind.ORDINAL
+                                     or p.end == noun + 1 and p.ambiguous
+                                     and run[noun].norm not in lexicon.nouns_after_count
                                      for p in grammar.numbers(noun)))))
     if lone_article:
         return Reason.ARTICLE
