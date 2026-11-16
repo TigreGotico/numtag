@@ -68,16 +68,22 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
     """Stretches of tokens with only spaces or hyphens between them: a
-    number never crosses punctuation. Where the lexicon allows it, a comma
+    number never crosses punctuation, but a slash between digits. Where the lexicon allows it, a comma
     after a scale word links a number word: "dois milhões, duzentos e
     trinta e seis mil" is one number."""
     runs: list[list[Token]] = []
     for token in tokens:
-        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)):
+        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)
+                     or _slash_fraction(runs[-1][-1], token)):
             runs[-1].append(token)
         else:
             runs.append([token])
     return runs
+
+
+def _slash_fraction(previous: Token, token: Token) -> bool:
+    """A numerator, a slash and a denominator: "1/2"."""
+    return previous.is_digits and token.is_digits and token.gap == "/"
 
 
 def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:

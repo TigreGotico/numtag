@@ -31,6 +31,15 @@ The `text` of a mention keeps the digits as written. Only the `value` is canonic
 
 A fraction with a zero denominator has no value: `Fraction("1/0")` raises `ZeroDivisionError`. So "1/0" gives no mention, and its digits are not read as the two numbers 1 and 0. A chain of slashes, as in a date "3/5/2025", is no fraction and keeps its digits.
 
+A slash fraction is one FRACTION mention, and a whole number before it makes one mixed number. A signed whole number negates the sum:
+
+```python
+>>> [(m.text, m.value) for m in tag_numbers("Add 5 1/2 cups and 2/3 of a cup.", "en")]
+[('5 1/2', '5.5'), ('2/3', '2/3')]
+>>> [(m.text, m.value) for m in tag_numbers("-0 1/2", "en")]
+[('-0 1/2', '-0.5')]
+```
+
 ```python
 >>> [(m.text, m.value) for m in tag_numbers("Many proof assistants, such as Rocq and Lean, define 1/0 = 0.", "en")]
 [('0', '0')]

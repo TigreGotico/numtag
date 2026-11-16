@@ -188,7 +188,7 @@ class TestZeroDenominator(unittest.TestCase):
                 self.assertEqual(tag_numbers(text, lang), [])
 
     def test_other_slashes_keep_their_digits(self):
-        self.assertEqual([m.value for m in tag_numbers("1/3", "en")], ["1", "3"])
+        self.assertEqual([m.value for m in tag_numbers("1/3/5", "en")], ["1", "3", "5"])
         self.assertEqual([m.value for m in tag_numbers("3/0/2025", "en")], ["3", "0", "2025"])
         self.assertEqual([m.value for m in tag_numbers("twenty 1/0 five", "en")], ["20", "5"])
 

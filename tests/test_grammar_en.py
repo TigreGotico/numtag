@@ -267,6 +267,38 @@ class TestCollectivesAndHalves(unittest.TestCase):
         self.assertEqual(en("a half"), [("a half", "0.5", F)])
 
 
+class TestSlashFractions(unittest.TestCase):
+    def test_digits_over_digits_are_one_fraction(self):
+        # 1 / 2; 2 / 3; 5 / 2; the fraction of a digit string, signed
+        self.assertEqual(en("1/2"), [("1/2", "0.5", F)])
+        self.assertEqual(en("2/3 of the vote"), [("2/3", "2/3", F)])
+        self.assertEqual(en("5/2"), [("5/2", "2.5", F)])
+        self.assertEqual(en("-1/2"), [("-1/2", "-0.5", F)])
+
+    def test_a_whole_number_before_a_slash_fraction_is_one_mixed_number(self):
+        # 5 + 1/2; 20 + 1/2; 120 + 1/2; (5 x 3 + 1) / 3; -(0 + 1/2)
+        self.assertEqual(en("5 1/2"), [("5 1/2", "5.5", F)])
+        self.assertEqual(en("x 3 1/2 y"), [("3 1/2", "3.5", F)])
+        self.assertEqual(en("120 1/2"), [("120 1/2", "120.5", F)])
+        self.assertEqual(en("5 1/3"), [("5 1/3", "16/3", F)])
+        self.assertEqual(en("-0 1/2"), [("-0 1/2", "-0.5", F)])
+        self.assertEqual(en("4503599627370495 1/2"), [("4503599627370495 1/2", "4503599627370495.5", F)])
+        # 20 + 1/2
+        self.assertEqual(en("twenty 1/2"), [("twenty 1/2", "20.5", F)])
+
+    def test_a_decimal_before_a_slash_fraction_is_its_own_number(self):
+        self.assertEqual(en("x 3.5 1/2 y"), [("3.5", "3.5", D), ("1/2", "0.5", F)])
+        self.assertEqual(en("-1/2 1/2"), [("-1/2", "-0.5", F), ("1/2", "0.5", F)])
+
+    def test_a_zero_denominator_or_a_chain_of_slashes_is_no_fraction(self):
+        self.assertEqual(en("1/0"), [])
+        self.assertEqual(en("5 1/0"), [("5", "5", C)])
+        self.assertEqual(en("3/5/2025"), [("3", "3", C), ("5", "5", C), ("2025", "2025", C)])
+
+    def test_the_fraction_reads_the_same_in_portuguese(self):
+        self.assertEqual(read("5 1/2", "pt-PT"), [("5 1/2", "5.5", F)])
+
+
 class TestFractions(unittest.TestCase):
     def test_numerator_and_denominator(self):
         self.assertEqual(en("a third"), [("a third", "1/3", F)])

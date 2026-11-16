@@ -143,7 +143,7 @@ class TestEveryGoldMention(unittest.TestCase):
                 twice = [mention.text[k] for k, n in enumerate(cover) if n > 1]
                 with self.subTest(lang=lang, text=mention.text):
                     self.assertTrue(mention.parts)
-                    self.assertTrue(all(c.isspace() or c in "-­," for c in uncovered), uncovered)
+                    self.assertTrue(all(c.isspace() or c in "-­,/" for c in uncovered), uncovered)
                     # two parts share at most the one letter of a compound ("ettusen")
                     self.assertTrue(all(c.isalpha() for c in twice) and len(twice) <= 1, twice)
                 checked += 1

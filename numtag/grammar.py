@@ -856,6 +856,40 @@ class Grammar:
                           for e in self._readings(j, "denominator") if not e.plural]
         return found
 
+    def slash_fractions(self, i: int) -> list[Parse]:
+        """"1/2": digits, a slash and digits make one fraction."""
+        if (pair := self._slash_at(i)) is None:
+            return []
+        numerator, denominator = (Rational(digits.normalise(text)) for text in pair)
+        return [Parse(i + 2, Rational(numerator.numerator, denominator.numerator),
+                      parts=_piece(Role.COUNT, i, i + 1, numerator)
+                      + _piece(Role.DENOMINATOR, i + 1, i + 2, denominator))]
+
+    def slash_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"5 1/2" is 11/2 and "twenty 1/2" is 41/2: a whole number before a
+        slash fraction."""
+        last = run[-1]
+        if last.decimal or self._slash_at(last.end) is None or not self.tokens[last.end].gap.isspace():
+            return []
+        return [replace(f, value=_sum(run) + f.value, parts=_run_parts(run) + f.parts)
+                for f in self.slash_fractions(last.end)]
+
+    def _slash_at(self, i: int) -> tuple[str, str] | None:
+        """The numerator and the denominator when the digits at ``i`` and
+        ``i + 1`` are a slash fraction. A zero denominator names no number,
+        and a chain of slashes ("3/5/2025") is no fraction."""
+        pair = self.tokens[i:i + 2]
+        if len(pair) < 2 or pair[1].gap != "/" or (i > 0 and pair[0].gap == "/") \
+                or (i + 2 < len(self.tokens) and self.tokens[i + 2].gap == "/"):
+            return None
+        texts = [t.latin for t in pair]
+        if i == self.unsigned:
+            texts[0] = texts[0][1:]
+        if not all(t.is_digits and not t.suffix and not t.period_ordinal for t in pair) \
+                or not all(text.isdigit() for text in texts) or not texts[1].strip("0"):
+            return None
+        return texts[0], texts[1]
+
     def case_fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
         """"üçte bir" is 1/3: a cardinal whose last word is a case form that
         names the parts, and after it a count of parts below that number, so
@@ -1319,7 +1353,7 @@ class Grammar:
 
     def _numbers(self, i: int) -> list[Parse]:
         fractions = self.fractions(i)
-        found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions
+        found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions + self.slash_fractions(i)
         # "wis sin", "tis tlata": a particle makes the cardinal after it an ordinal
         if self._is_word(i, self.lex.ordinal_particles):
             found += [Parse(run[-1].end, _sum(run), Kind.ORDINAL, parts=_from(_run_parts(run), i))
@@ -1357,7 +1391,7 @@ class Grammar:
                                parts=_run_parts(run)))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
-            found += self.case_fraction_tail(run)
+            found += self.case_fraction_tail(run) + self.slash_tail(run)
         return found
 
 
