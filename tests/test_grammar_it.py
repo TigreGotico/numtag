@@ -78,6 +78,15 @@ class TestMinus(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_the_elided_article_un_is_weak(self):
+        # "un'ora" is "una ora": the noun follows the apostrophe
+        for text in ("un timer di un'ora", "un’altra volta", "fammi vedere un' altra foto"):
+            with self.subTest(text=text):
+                self.assertTrue(all(m.confidence == 0.3 for m in tag_numbers(text, "it")))
+        # the elided "ventun" stays a number, and a digit after the apostrophe is no noun
+        self.assertEqual([(m.text, m.confidence) for m in tag_numbers("ventun'ore", "it")], [("ventun", 1.0)])
+        self.assertEqual([(m.text, m.confidence) for m in tag_numbers("un' 3", "it")], [("un", 1.0), ("3", 1.0)])
+
     def test_cento_after_per_and_a_number_is_the_percent_sign(self):
         self.assertEqual(read("il cinquanta per cento", "it"), [("cinquanta", "50", "cardinal")])
         self.assertEqual(read("20 per cento", "it"), [("20", "20", "cardinal")])

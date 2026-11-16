@@ -361,7 +361,17 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         tokens = _split_prefixes(tokens, number_words, script)
     if phrases:
         tokens = _merge_phrases(text, tokens, phrases)
-    return _drop_compound_nouns(text, tokens, number_words)
+    return _note_elisions(_drop_compound_nouns(text, tokens, number_words))
+
+
+def _note_elisions(tokens: list[Token]) -> list[Token]:
+    """A word with an apostrophe and a word right after it is elided before
+    that word, its noun: it "un'ora" is "una ora". A space may follow the
+    apostrophe ("un' altra")."""
+    return [replace(token, noun_after=True)
+            if k + 1 < len(tokens) and tokens[k + 1].gap.translate(_APOSTROPHES).rstrip() == "'"
+            and not tokens[k + 1].is_digits else token
+            for k, token in enumerate(tokens)]
 
 
 def _merge_phrases(text: str, tokens: list[Token], phrases: frozenset[tuple[str, ...]]) -> list[Token]:
