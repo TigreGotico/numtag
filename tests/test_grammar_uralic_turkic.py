@@ -262,7 +262,11 @@ class TestConfidence(unittest.TestCase):
         for text in ("hat és hét ember jött", "hat és 7 ember", "hat vagy hét", "hat meg hét", "hat-hét"):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.confidence) for m in tag_numbers(text, "hu")][0], ("hat", 1.0))
-        self.assertEqual(self.confidence("hat és működik", "hu"), [("hat", True)])
+        # an article, an ordinal or a form with another meaning is no number after the joiner
+        for text in ("hat és működik", "A szer hat és egyben gyógyít.", "A gyógyszer hat és egy kicsit segít.",
+                     "A gyógyszer gyorsan hat és első alkalommal is."):
+            with self.subTest(text=text):
+                self.assertEqual(self.confidence(text, "hu")[0], ("hat", True))
 
     def test_hat_inside_a_number_is_no_verb(self):
         self.assertEqual(read("nem huszonhat", "hu"), [("huszonhat", "26", C)])

@@ -123,6 +123,10 @@ class Entry:
     # A word with a common meaning that ends a phrase, as an adjective after
     # its noun ("un manteau neuf"): weak when no word follows it.
     weak_at_end: bool = False
+    # With weak_at_end: a joiner that a number follows does not end the
+    # clause ("hat és hét" lists two numbers). An adjective goes before
+    # "et deux chapeaux", so fr "neuf" leaves it out.
+    joined_count: bool = False
     # Words before and after which the word is weak: Hungarian "hat" is
     # also the verb "to take effect", as in "nem hat" and "hat rám".
     weak_after: frozenset[str] = frozenset()
@@ -445,7 +449,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                               ambiguous=entry.ambiguous or word in ambiguous)
             if weak and word not in weak:
                 # "hatkor" (at six) is no verb form: the weak cues hold for "hat" only
-                reading = replace(reading, weak_at_end=False, weak_after=frozenset(), weak_before=frozenset())
+                reading = replace(reading, weak_at_end=False, joined_count=False,
+                                  weak_after=frozenset(), weak_before=frozenset())
             for form in script.lexicon_forms(word):
                 readings.setdefault(fold(form), []).append(reading)
 
@@ -462,7 +467,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             invariant=spec.get("invariant", False), teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
-                            weak_at_end=spec.get("weak_at_end", False),
+                            weak_at_end=spec.get("weak_at_end", False), joined_count=spec.get("joined_count", False),
                             weak_after=frozenset(fold(w) for w in spec.get("weak_after", ())),
                             weak_before=frozenset(fold(w) for w in spec.get("weak_before", ())),
                             standalone=spec.get("standalone", False),

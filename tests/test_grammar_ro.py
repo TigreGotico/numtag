@@ -76,6 +76,9 @@ class TestHomographs(unittest.TestCase):
     def test_noua_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("tehnologie nouă", "ro"), [("nouă", 0.4)])
         self.assertEqual(confidence("tehnologie nouă și bună", "ro"), [("nouă", 0.4)])
+        # an adjective goes before a joiner and a count as well
+        self.assertEqual(confidence("o casă nouă și două mașini", "ro")[1], ("nouă", 0.4))
+        self.assertEqual(confidence("o casă nouă și o mașină", "ro")[1], ("nouă", 0.4))
         self.assertEqual(confidence("nouă drumuri", "ro"), [("nouă", 1.0)])
         self.assertEqual(confidence("nouă sute", "ro"), [("nouă sute", 1.0)])
 

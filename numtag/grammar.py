@@ -1282,18 +1282,22 @@ class Grammar:
             return False
         entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ())
                    if e.role in ("unit", "ten", "hundred")]
-        # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán"),
-        # and a joiner ends the clause unless a number follows it ("hat és hét")
-        at_end = not self.tokens[i].noun_after and (
-            i + 1 == len(self.tokens)
-            or self._is_word(i + 1, self.lex.joiners) and not self._number_at(i + 2))
+        # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán")
+        at_end = not self.tokens[i].noun_after and (i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners))
+        joined = at_end and i + 1 < len(self.tokens) and self._number_at(i + 2)
         before = self.tokens[i - 1].norm if i > 0 else None
         after = self.tokens[i + 1].norm if i + 1 < len(self.tokens) else None
-        return any(e.ambiguous or (e.weak_at_end and at_end) or before in e.weak_after or after in e.weak_before
-                   for e in entries)
+        return any(e.ambiguous or (e.weak_at_end and at_end and not (e.joined_count and joined))
+                   or before in e.weak_after or after in e.weak_before for e in entries)
 
     def _number_at(self, i: int) -> bool:
-        return i < len(self.tokens) and (self.tokens[i].is_digits or self.tokens[i].norm in self.lex.readings)
+        """Digits or a cardinal word, not an article, an ordinal or a form
+        with another meaning ("egy", "első", "egyben")."""
+        if i >= len(self.tokens):
+            return False
+        token = self.tokens[i]
+        return token.is_digits or (token.norm not in self.lex.articles and token.norm not in self.lex.ambiguous_words
+                                   and any(not e.ordinal for e in self.lex.readings.get(token.norm, ())))
 
     def _after_article(self, i: int) -> bool:
         """An ordinal article stands before ``i``, also inside a hyphenated

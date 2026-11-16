@@ -114,7 +114,7 @@ A word before the homograph can also make the reading clear when it agrees only 
 
 A word next to the homograph can also make the other meaning likely. Hungarian "hat" is six and the verb "to take effect". The verb ends a clause ("A gyógyszer nem hat."), follows "nem" ("not"), and stands before the -ra pronoun of what it acts on ("hat rám"). There "hat" gives 0.4. Before a noun, "hat" counts the noun. The case form "hatkor" ("at six") is no verb form.
 
-The cues look only at the next word. After "nem", "hat" gives 0.4 also before a noun: "nem hat perc" ("not six minutes"). A joiner after "hat" ends the clause when no number follows it: "hat és működik" gives 0.4, and "hat és hét" stays sure. The value stays 6, and the caller decides.
+The cues look only at the words next to "hat". After "nem", "hat" gives 0.4 also before a noun: "nem hat perc" ("not six minutes"). A joiner after "hat" ends the clause when no number follows it: "hat és működik" gives 0.4, and "hat és hét" stays sure. The value stays 6, and the caller decides.
 
 ```python
 >>> read("A gyógyszer nem hat.", "hu")
