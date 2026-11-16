@@ -257,6 +257,13 @@ class TestConfidence(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
 
+    def test_hat_before_a_joiner_and_a_number_is_sure(self):
+        # a joiner ends the clause unless a number follows it
+        for text in ("hat és hét ember jött", "hat és 7 ember", "hat vagy hét", "hat meg hét", "hat-hét"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.confidence) for m in tag_numbers(text, "hu")][0], ("hat", 1.0))
+        self.assertEqual(self.confidence("hat és működik", "hu"), [("hat", True)])
+
     def test_hat_inside_a_number_is_no_verb(self):
         self.assertEqual(read("nem huszonhat", "hu"), [("huszonhat", "26", C)])
 

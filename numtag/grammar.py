@@ -1282,12 +1282,18 @@ class Grammar:
             return False
         entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ())
                    if e.role in ("unit", "ten", "hundred")]
-        # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán")
-        at_end = (i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners)) and not self.tokens[i].noun_after
+        # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán"),
+        # and a joiner ends the clause unless a number follows it ("hat és hét")
+        at_end = not self.tokens[i].noun_after and (
+            i + 1 == len(self.tokens)
+            or self._is_word(i + 1, self.lex.joiners) and not self._number_at(i + 2))
         before = self.tokens[i - 1].norm if i > 0 else None
         after = self.tokens[i + 1].norm if i + 1 < len(self.tokens) else None
         return any(e.ambiguous or (e.weak_at_end and at_end) or before in e.weak_after or after in e.weak_before
                    for e in entries)
+
+    def _number_at(self, i: int) -> bool:
+        return i < len(self.tokens) and (self.tokens[i].is_digits or self.tokens[i].norm in self.lex.readings)
 
     def _after_article(self, i: int) -> bool:
         """An ordinal article stands before ``i``, also inside a hyphenated
