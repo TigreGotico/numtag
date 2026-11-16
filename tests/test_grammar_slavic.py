@@ -194,6 +194,23 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(read("ни двух", "ru"), [("двух", "2", "cardinal")])
         self.assertEqual(read("один будильник", "ru"), [("один", "1", "cardinal")])
 
+    def test_one_and_the_same_counts_nothing(self):
+        # "один и тот же" is "the same", in every gender, number and case
+        self.assertEqual(read("Всегда одно и то же.", "ru"), [])
+        self.assertEqual(read("Мы учились в одном и том же классе.", "ru"), [])
+        self.assertEqual(read("Она поёт одну и ту же песню.", "ru"), [])
+        self.assertEqual(read("одни и те же люди", "ru"), [])
+        # uk "один і той самий", pl "jeden i ten sam", cs "jeden a tentýž"
+        self.assertEqual(read("всю зиму йому снився один і той же сон", "uk"), [])
+        self.assertEqual(read("за одне й те саме", "uk"), [])
+        self.assertEqual(read("Однієї й тієї самої ночі.", "uk"), [])
+        self.assertEqual(read("był to często jeden i ten sam człowiek", "pl"), [])
+        self.assertEqual(read("To jedno i to samo.", "pl"), [])
+        self.assertEqual(read("Jsou to stále jedni a titíž!", "cs"), [])
+        self.assertEqual(read("Položila mi jednu a tutéž otázku.", "cs"), [])
+        # one and another number still count
+        self.assertEqual(read("один и два", "ru"), [("один", "1", "cardinal"), ("два", "2", "cardinal")])
+
     def confidences(self, text: str, lang: str) -> list[tuple[str, str, float]]:
         return [(m.text, m.value, m.confidence) for m in tag_numbers(text, lang)]
 

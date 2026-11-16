@@ -26,6 +26,7 @@
     "minus": {"value": ["минус"], "source": "CLDR RBNF ru: \"-x: минус >>;\"."},
     "minus_idioms": {"value": [], "source": "This lexicon lists no Russian idiom that puts \"минус\" before a positive number."},
     "negative_particle": {"value": ["ни"], "source": "Wiktionary, \"ни\", Russian particle: \"not a\", \"ни один из ста\" (not one in a hundred). After \"ни\" the word for one is a negative pronoun, \"not a single\", and counts nothing."},
+    "number_name": {"value": ["один и тот же", "одно и то же", "одного и того же", "одному и тому же", "одним и тем же", "одном и том же", "одна и та же", "одной и той же", "одну и ту же", "одною и тою же", "одни и те же", "одних и тех же", "одними и теми же"], "source": "Wiktionary (ru), \"один и тот же\": \"Устойчивое сочетание\", \"тот же самый\", \"В школе мы с Антоном учились в одном и том же классе.\"; Wiktionary (ru), \"одно и то же\": \"Устойчивое сочетание (местоимение)\", \"о чём-либо повторяющемся, похожем, сходном с чем-либо\", \"Всегда одно и то же.\" The set phrase means \"the same\" in every gender, number and case, and counts nothing."},
     "article_one": {"value": [], "source": "Russian has no article; \"один\" is a numeral."},
     "of": {"value": [], "source": "Russian marks the counted noun by case, with no \"of\" word."},
     "fraction_of": {"value": [], "source": "Russian marks the counted noun by case, with no \"of\" word."},
