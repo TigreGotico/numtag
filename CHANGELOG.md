@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0a1](https://github.com/TigreGotico/numtag/tree/0.9.0a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.4a1...0.9.0a1)
+
+**Merged pull requests:**
+
+- feat: a weak mention says why it is weak [\#33](https://github.com/TigreGotico/numtag/pull/33) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.8.4a1](https://github.com/TigreGotico/numtag/tree/0.8.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.3a1...0.8.4a1)
