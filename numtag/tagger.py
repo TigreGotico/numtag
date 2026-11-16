@@ -276,6 +276,9 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
         and run[start - 1].norm in lexicon.articles \
         and any(not e.plural for e in lexicon.of(run[start].norm, "denominator")) \
         and _kind(lexicon, word, parse) == Kind.ORDINAL
+    # "a les nou": the word before it agrees only with the number reading
+    agrees = parse.end == start + 1 and start > 0 and bool(entries) \
+        and all(run[start - 1].norm in e.number_after for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
     homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal
-    return Reason.HOMOGRAPH if homograph and not signed else None
+    return Reason.HOMOGRAPH if homograph and not signed and not agrees else None

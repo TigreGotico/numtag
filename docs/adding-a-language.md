@@ -92,6 +92,7 @@ These optional keys hold facts that the word form shows:
 | `gender` | `"masculine"` or `"feminine"` |
 | `plural` | `true` for a plural form ("dúzias", "milhões") |
 | `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. |
+| `number_after` | the words after which an `ambiguous` word has only its number reading. Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
 | `bound` | `true` for a form that stands only before the rest of the number ("cento" in "cento e um") |
 

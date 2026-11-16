@@ -96,6 +96,15 @@ Such a word gives 0.4 when the number rests on it: the word alone, a fraction wi
 [('Three score and ten', '70', 1.0)]
 ```
 
+A word before the homograph can also make the reading clear when it agrees only with the number. In Catalan, the adjective "nou" ("new") is "noves" after "les" and "nous" after "els", so "a les nou" is nine o'clock. After "el", "nou" can also be "the new one".
+
+```python
+>>> read("Avisa'm a les nou del matí.", "ca")
+[('nou', '9', 1.0)]
+>>> read("Ha arribat el nou.", "ca")
+[('nou', '9', 0.4)]
+```
+
 A whole number before the joiner and a minus word also make the reading clear.
 
 ```python

@@ -233,7 +233,8 @@
    "role": "unit",
    "value": "9",
    "ambiguous": true,
-   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\"; DIEC2 \"nou\" 2 1: \"Vuit més un. Aviat farà nou anys.\"; DIEC2 \"nou\" 3 1 1: \"Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou.\" \"nou\" is also \"new\", so it is ambiguous"
+   "number_after": ["els", "les"],
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\"; DIEC2 \"nou\" 2 1: \"Vuit més un. Aviat farà nou anys.\"; DIEC2 \"nou\" 3 1 1: \"Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou.\" \"nou\" is also \"new\", so it is ambiguous. DIEC2 \"nou\" 2 4: \"f. pl. les nou La novena hora després del migdia o de la mitjanit.\" DIEC2 \"nou\" 3: \"nou nova adj. [...] Una moda nova. [...] Introduir mots nous en una llengua.\" DIEC2 \"nou\" 1 1 1: \"f. [...] Trencar, esclafar, nous.\" After \"els\" and \"les\" the adjective is \"nous\" or \"noves\" and the fruit is \"nous\", so \"nou\" there is the number"
   },
   {
    "word": "huit",
