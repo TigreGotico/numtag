@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.8a1](https://github.com/TigreGotico/numtag/tree/0.10.8a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.7a1...0.10.8a1)
+
+**Merged pull requests:**
+
+- fix\(fr, it\): "premier", "primo" and "prima" are homographs [\#47](https://github.com/TigreGotico/numtag/pull/47) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.7a1](https://github.com/TigreGotico/numtag/tree/0.10.7a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.6a2...0.10.7a1)
