@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.12.7a2](https://github.com/TigreGotico/numtag/tree/0.12.7a2) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a1...0.12.7a2)
+
+**Merged pull requests:**
+
+- docs: a lone "meio" before a plural scale noun keeps its own reading [\#68](https://github.com/TigreGotico/numtag/pull/68) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.7a1](https://github.com/TigreGotico/numtag/tree/0.12.7a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.6a1...0.12.7a1)
+
+**Merged pull requests:**
+
+- fix: a point that cannot group digits marks decimals [\#66](https://github.com/TigreGotico/numtag/pull/66) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.6a1](https://github.com/TigreGotico/numtag/tree/0.12.6a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.5a1...0.12.6a1)
+
+**Merged pull requests:**
+
+- fix\(hu\): "hat" after a request verb or alone is six [\#63](https://github.com/TigreGotico/numtag/pull/63) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.5a1](https://github.com/TigreGotico/numtag/tree/0.12.5a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.4a1...0.12.5a1)
+
+**Merged pull requests:**
+
+- fix: a plural scale noun takes no count of one or a half in words [\#65](https://github.com/TigreGotico/numtag/pull/65) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.4a1](https://github.com/TigreGotico/numtag/tree/0.12.4a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.3a1...0.12.4a1)
+
+**Merged pull requests:**
+
+- fix\(pt\): a comma links only a smaller class [\#64](https://github.com/TigreGotico/numtag/pull/64) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.3a1](https://github.com/TigreGotico/numtag/tree/0.12.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.2a1...0.12.3a1)

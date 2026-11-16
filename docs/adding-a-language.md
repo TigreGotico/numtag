@@ -98,11 +98,11 @@ These optional keys hold facts that the word form shows:
 | `gender` | `"masculine"` or `"feminine"` |
 | `plural` | `true` for a plural form ("dúzias", "milhões") |
 | `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. |
-| `weak_at_end` | `true` when the word has another meaning at the end of a clause, or before a joiner: fr "neuf" ("un manteau neuf"). The word gets the confidence 0.4 there. |
+| `weak_at_end` | `true` when the word has another meaning at the end of a clause, or before a joiner: fr "neuf" ("un manteau neuf"). The word gets the confidence 0.4 there. When the word is the whole text, it gets the full score. |
 | `joined_count` | with `weak_at_end`: `true` when a joiner that digits or a cardinal word follow does not end the clause. hu "hat és hét" lists two numbers. fr "neuf" leaves it out, because an adjective also goes before "et deux chapeaux". An article, an ordinal or a word in `ambiguous_forms` after the joiner is no number here. |
 | `weak_after`, `weak_before` | `weak_after` lists the words that come right before the word when it has another meaning, and `weak_before` the words that come right after it. hu "hat" has "nem" in `weak_after` ("nem hat") and "rám", "rá", "rájuk" in `weak_before` ("hat rám"). |
 | `weak_forms` | the inflected forms that the three keys above apply to. Without it, they apply to every form. hu "hat" lists only "hat", so "hatkor" stays sure. |
-| `number_after` | the words after which an `ambiguous` word has only its number reading. Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
+| `number_after` | the words after which an `ambiguous` or weak word has only its number reading. hu "hat" lists request verbs ("kérek hat", "legyen hat"). Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
 | `bound` | `true` for a form that stands only before the rest of the number ("cento" in "cento e um") |
 

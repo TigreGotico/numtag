@@ -63,7 +63,7 @@ In English, "and" is optional between groups and after "hundred". Both forms rea
 
 ## A comma between classes
 
-In Portuguese, a comma after a scale word and before a number word links two classes of one number. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
+In Portuguese, a comma after a scale word and before a number word links two classes of one number. The classes go from the largest down, so the class after the comma is smaller: "2 mil, milhões de pessoas" is 2000 and then a noun phrase. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
 
 ```python
 >>> read("O cheque era de dois milhões, duzentos e trinta e seis mil trezentos e vinte e um euros.")
@@ -115,13 +115,17 @@ A scale noun closes its group, so "milhão" counts no larger noun.
 
 ## A scale noun agrees with its count
 
-In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. English keeps the singular after any count.
+In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words, so "meio milhões" and "um milhões" are not one number. A lone "meio" keeps its own reading, a fraction with `Reason.HOMOGRAPH`, as in "no meio da sala". "um milhões" gives no mention. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
 
 ```python
 >>> read("Doaram cem mil e um milhão de euros.")
 [('cem mil', '100000'), ('um milhão', '1000000')]
 >>> read("Contaram mil e um milhões de estrelas.")
 [('mil e um milhões', '1001000000')]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("meio milhões de pessoas", "pt-PT")]
+[('meio', '0.5', 0.4)]
+>>> read("um milhões de pessoas")
+[]
 >>> read("The town got two million dollars.", "en")
 [('two million', '2000000')]
 ```
@@ -322,6 +326,23 @@ A decimal marker ("vírgula", "ponto", "point") or a decimal mark in digits ("2,
 > CLDR 49 RBNF pt_PT and pt %spellout-cardinal-masculine: "x.x: << vírgula >>;"; Priberam, "vírgula", sense 2: "[Matemática] Sinal gráfico (,) que serve para separar os números inteiros das fracções decimais."
 
 > Wiktionary, "point", noun sense 1.3: "A decimal point".
+
+Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. Three digits after a space group are no decimal: "1 234.5" reads only 1.
+
+```python
+>>> read("Custa 1.5 milhões, e pi é 3.14159.")
+[('1.5 milhões', '1500000'), ('3.14159', '3.14159')]
+>>> read("Pesa 0.500 kg e custa 1.500 euros.")
+[('0.500', '0.5'), ('1.500', '1500')]
+>>> read("Gegen 11.29 Uhr zog der Protest los.", "de")
+[]
+>>> read("Am 24.12. ist Heiligabend.", "de")
+[]
+```
+
+> BIPM, SI Brochure, 9th edition, 5.4.4: the decimal marker "shall be either the point on the line or the comma on the line." "The decimal marker chosen should be that which is customary in the language and context concerned." "If the number is between +1 and −1, then the decimal marker is always preceded by a zero."
+
+> Wikipedia, "Date and time representation by country": "In Finland and Indonesia, the common separator between hours and minutes is a dot (18.45, for example)." de.wikipedia, "Uhrzeit": the Swiss Federal Chancellery says "zwischen den Stunden und den Minuten ein Punkt und kein Doppelpunkt verwendet werden". en.wikipedia, "Date and time notation in Finland": "When the year is not specified, a trailing full stop is used", "20.10 represents 8:10 pm and 20.10. represents 20 October."
 
 The fraction part follows the grammar of the whole part. A hundreds word never follows another part, as "cem" never follows units in a cardinal. So the decimal ends before it. This rule is structural, with no outside source.
 

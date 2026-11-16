@@ -11,6 +11,9 @@ _WORD = re.compile(r"[^\W\d_]+")
 # is no break in the word ("huszon\u00adöt").
 SOFT_HYPHEN = "\u00ad"
 _NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
+# a day and a month ("31.5"), and the period after them with no digit next
+_DAY_MONTH = re.compile(r"(?:0?[1-9]|[12][0-9]|3[01])\.(?:0?[1-9]|1[0-2])")
+_DAY_MONTH_END = re.compile(r"\.(?!\d)")
 _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
 
 
@@ -227,7 +230,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
              dot_ordinal: bool = False, date_months: frozenset[str] = frozenset(),
              phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".",
-             compounds: frozenset[str] = frozenset()) -> list[Token]:
+             compounds: frozenset[str] = frozenset(), day_month: bool = False) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -261,7 +264,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     makes it an ordinal when a lower-case word or a digit follows ("2.
     emelet"); before one of ``date_months`` the period follows the year of a
     date, which is no ordinal ("2008. február"). In both cases the period is
-    not part of the token.
+    not part of the token. With ``day_month``, a day and a month with a period
+    after them and no digit next are a date ("31.5.", "24.12. ist"): both
+    numbers are ordinals, and the digit string reads no number.
 
     The words of each phrase in ``phrases`` become one token
     ("quatre-vingts"). ``group_mark`` joins digits as "." and "," do
@@ -349,7 +354,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             if script != DEFAULT_SCRIPT:
                 key = latin if is_digits else script.fold(letters)
             period = (period_ordinals is not None and is_digits and not suffix
-                      and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals))
+                      and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals)) \
+                or (day_month and is_digits and not suffix and _DAY_MONTH.fullmatch(latin) is not None
+                    and _DAY_MONTH_END.match(text, end) is not None)
             tokens.append(Token(word, start, end, is_digits, gap, suffix, key=key, folded=folded,
                                 attached=bool(after_joiner), period_ordinal=period))
         previous_end = end

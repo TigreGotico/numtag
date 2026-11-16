@@ -196,6 +196,20 @@ class TestCollectivesAndScaleNouns(unittest.TestCase):
         self.assertEqual(pt("2,5 dúzias"), [("2,5 dúzias", "30", C)])
 
 
+    def test_a_plural_scale_noun_takes_no_count_of_one_or_a_half(self):
+        # Squarisi: "O numeral ou o adjetivo que o modifica deve concordar com ele"
+        self.assertEqual(pt("meio milhões de pessoas"), [("meio", "0.5", F)])
+        # the lone "meio" keeps its own reading, as in "no meio da sala"
+        self.assertEqual([m.confidence for m in tag_numbers("meio milhões de pessoas", "pt-PT")],
+                         [m.confidence for m in tag_numbers("no meio da sala", "pt-PT")])
+        self.assertEqual([m.confidence for m in tag_numbers("meio milhões de pessoas", "pt-PT")], [0.4])
+        self.assertEqual(pt("um milhões de pessoas"), [])
+        self.assertEqual(pt("meio milhão de pessoas"), [("meio milhão", "500000", C)])
+        self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
+        # digits do not agree in number
+        self.assertEqual(pt("1 milhões"), [("1 milhões", "1000000", C)])
+
+
 class TestCardinals(unittest.TestCase):
     def test_tens_and_units_need_the_conjunction(self):
         self.assertEqual(pt("vinte e um"), [("vinte e um", "21", C)])
@@ -525,6 +539,14 @@ class TestJoinerBeforeTheLastGroup(unittest.TestCase):
                 self.assertEqual(read("um milhão e duzentos mil e trezentos", lang),
                                  [("um milhão e duzentos mil e trezentos", "1200300", C)])
 
+    def test_a_comma_links_only_a_smaller_class(self):
+        # Ciberdúvidas 8981: every example puts the larger class before the
+        # comma ("noventa e dois milhões, quinhentos e vinte e um mil")
+        self.assertEqual(pt("2 mil, milhões de pessoas"), [("2 mil", "2000", C)])
+        self.assertEqual(pt("dois mil, milhões de pessoas"), [("dois mil", "2000", C)])
+        self.assertEqual(pt("três mil, mil e quinhentos"), [("três mil", "3000", C), ("mil e quinhentos", "1500", C)])
+        self.assertEqual(pt("dois milhões, mil e quinhentos"), [("dois milhões, mil e quinhentos", "2001500", C)])
+
     def test_a_comma_after_a_scale_word_stands_between_two_classes(self):
         # Gulbenkian, pp. 932-933: "2 236 321 – dois milhões, duzentos e
         # trinta e seis mil trezentos e vinte e um"
@@ -668,6 +690,22 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("2,5"), [("2,5", "2.5", D)])
         self.assertEqual(pt("1.234,50 euros"), [("1.234,50", "1234.5", D)])
 
+    def test_a_point_that_cannot_group_digits_marks_decimals(self):
+        # SI Brochure 5.4.4: the decimal marker "shall be either the point on
+        # the line or the comma on the line", and a number between -1 and 1
+        # starts with "0"; a group has three digits (the group_mark source)
+        for text, value in (("1.5", "1.5"), ("3.14159", "3.14159"), ("0.500", "0.5"), ("-0.500", "-0.5"),
+                            ("0.050", "0.05"), ("1234.567", "1234.567")):
+            with self.subTest(text=text):
+                self.assertEqual(pt(text), [(text, value, D)])
+                self.assertEqual(read(text, "pt-BR"), [(text, value, D)])
+        self.assertEqual(pt("custa 3.5 milhões"), [("3.5 milhões", "3500000", C)])
+        # three digits after a first group of one to three digits are a group
+        self.assertEqual(pt("1.500"), [("1.500", "1500", C)])
+        self.assertEqual(pt("1.5.2"), [])
+        # three digits after a space group are no decimal: "1 234.5" stays 1
+        self.assertEqual(pt("1 234.5"), [("1", "1", C)])
+
     def test_pt_pt_also_groups_digits_with_a_space(self):
         # 1 x 10^6 + 234 x 10^3 + 567 = 1234567
         self.assertEqual(pt("vivem 1 234 567 pessoas"), [("1 234 567", "1234567", C)])
@@ -694,10 +732,10 @@ class TestDigits(unittest.TestCase):
 
     def test_no_digit_group_follows_a_leading_zero(self):
         # "." groups digits in pt, and a group never follows a leading zero:
-        # "0.500" and "01.500" are no number
-        self.assertEqual(pt("pesa 0.500 kg"), [])
+        # in "0.500" the point marks decimals, and "01.500" is no number
+        self.assertEqual(pt("pesa 0.500 kg"), [("0.500", "0.5", D)])
         self.assertEqual(pt("pesa 01.500 kg"), [])
-        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [])
+        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [("0.500", "0.5", D)])
         self.assertEqual(pt("os números 0 500"), [("0", "0", C), ("500", "500", C)])
         self.assertEqual(pt("pesa 1.500 kg"), [("1.500", "1500", C)])
 
