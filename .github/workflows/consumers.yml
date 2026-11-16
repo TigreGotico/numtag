@@ -1,0 +1,70 @@
+name: Consumer suites
+
+# Each consumer takes the latest numtag alpha, so a numtag change reaches
+# its users at once. This job runs each consumer's own suite against
+# numtag dev. A failure shows on the run and blocks nothing.
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches: [dev]
+    paths:
+      - '.github/workflows/consumers.yml'
+
+jobs:
+  consumer:
+    name: ${{ matrix.repo }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - repo: OpenVoiceOS/ovos-skill-volume
+            test_path: test
+            system_deps: ''
+          - repo: OpenVoiceOS/ovos-skill-number-facts
+            test_path: test/unittests
+            system_deps: swig libfann-dev
+          - repo: OpenVoiceOS/ovos-skill-count
+            test_path: test/unittests
+            system_deps: ''
+          - repo: OpenVoiceOS/ovos-skill-days-in-history
+            test_path: test
+            system_deps: swig libfann-dev
+          - repo: OpenVoiceOS/ovos-skill-mark1-ctrl
+            test_path: test/unittests
+            system_deps: swig libfann-dev
+          - repo: TigreGotico/simple_NER
+            test_path: test
+            system_deps: ''
+          - repo: OpenVoiceOS/ovos-typed-slots-transformer
+            test_path: tests
+            system_deps: ''
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: numtag
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repo }}
+          ref: dev
+          path: consumer
+      - name: Install system packages
+        if: matrix.system_deps != ''
+        run: sudo apt-get update && sudo apt-get install -y ${{ matrix.system_deps }}
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - name: Install the consumer, then numtag from this checkout
+        run: |
+          uv venv
+          uv pip install --prerelease=allow "./consumer[test]"
+          uv pip install --no-deps ./numtag
+          uv pip show numtag
+      - name: Run the consumer suite
+        working-directory: consumer
+        run: ../.venv/bin/python -m pytest ${{ matrix.test_path }}
