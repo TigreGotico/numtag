@@ -112,7 +112,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         # the whole word: a span never starts inside a word
         first = i - 1 if run[i].attached else i
         span = (run[first].start, run[best.end - 1].end)
-        reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text)
+        reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text, signed=negative)
         kind = _kind(lexicon, run[start:best.end], best)
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), kind,
@@ -231,9 +231,9 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
 
 
 def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse,
-            *, alone: bool = False) -> Reason | None:
+            *, alone: bool = False, signed: bool = False) -> Reason | None:
     """Why the number is not sure, or None for a sure number. ``alone``: the
-    word is the whole text."""
+    word is the whole text. ``signed``: a minus word starts the number."""
     # The article stands next to its noun: before it ("um livro"), or after
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
@@ -276,4 +276,6 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
         and run[start - 1].norm in lexicon.articles \
         and any(not e.plural for e in lexicon.of(run[start].norm, "denominator")) \
         and _kind(lexicon, word, parse) == Kind.ORDINAL
-    return Reason.HOMOGRAPH if parse.ambiguous or lone_ambiguous or listed or weak_ordinal else None
+    # "miinus viis": a minus word starts only a number, so it makes the reading clear
+    homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal
+    return Reason.HOMOGRAPH if homograph and not signed else None

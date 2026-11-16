@@ -112,6 +112,20 @@ class TestReasons(unittest.TestCase):
         self.assertEqual([(m.value, m.reasons) for m in tag_numbers("un livre pour cent euros", "fr-FR")],
                          [("1", frozenset({Reason.ARTICLE})), ("100", frozenset())])
 
+    def test_number_words_beside_a_homograph_make_it_sure(self):
+        # a whole number before the joiner, or a minus word, leaves no reading but the number
+        for text, lang, words, value in (("Faltam três e um quarto.", "pt-PT", "três e um quarto", "3.25"),
+                                         ("Faltam três e um quarto.", "pt-BR", "três e um quarto", "3.25"),
+                                         ("Temperatuur oli miinus viis kraadi.", "et", "miinus viis", "-5"),
+                                         ("دما به منفی ده رسید.", "fa", "منفی ده", "-10")):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, lang)],
+                                 [(words, value, frozenset())])
+        # the homograph alone, or a fraction on it alone, stays weak
+        for text, lang in (("Bebeu um quarto da garrafa.", "pt-PT"), ("Õige arv on viis.", "et")):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual([m.reasons for m in tag_numbers(text, lang)], [frozenset({Reason.HOMOGRAPH})])
+
     def test_an_article_that_is_the_whole_text_is_weak(self):
         # a line of a vocabulary file: the word has no noun to decide it
         for text, lang in (("um", "pt-PT"), ("uma", "pt-BR"), ("un", "gl"), ("unha", "gl"), ("egy", "hu"),
