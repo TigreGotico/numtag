@@ -88,7 +88,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `joiner` | "e" | joins the parts of a number |
 | `decimal_marker` | "vírgula", "virgula", "ponto" | starts the fraction part |
 | `minus` | "menos" | makes the number negative |
-| `minus_idioms` | "pelo menos", "ao menos", "mais ou menos", "a menos" | "menos" in these is no sign |
+| `minus_idioms` | "pelo menos", "ao menos", "mais ou menos" | "menos" in these is no sign. "a menos" is no idiom before a number: "desceu a menos três graus" is -3 |
 | `article_one` | "um", "uma" | the article that is also the number one |
 | `of` | "de" | "dois milhões de dúzias" |
 | `fraction_of` | "de" | "um terço de dúzia" |
