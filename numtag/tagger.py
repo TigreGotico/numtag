@@ -209,4 +209,11 @@ def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int
     word = run[start:parse.end]
     listed = len(word) > 1 and all(t.glued for t in word[1:]) \
         and "".join(t.norm for t in word) in lexicon.ambiguous_words
-    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous or listed else 1.0
+    # "Um décimo sobreviveu.": after an article, a word that is also a
+    # singular denominator reads as the ordinal because no partitive follows
+    # it, and a verb there gives the same reading as a noun
+    weak_ordinal = parse.end == start + 1 and start > 0 and bool(lexicon.partitives) \
+        and run[start - 1].norm in lexicon.articles \
+        and any(not e.plural for e in lexicon.of(run[start].norm, "denominator")) \
+        and _kind(lexicon, word, parse) == Kind.ORDINAL
+    return AMBIGUOUS_CONFIDENCE if parse.ambiguous or lone_ambiguous or listed or weak_ordinal else 1.0

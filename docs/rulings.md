@@ -401,6 +401,21 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 > Priberam, "avo", [Matemática]: "Palavra que se junta a um denominador maior que dez para indicar a divisão da unidade no número de partes iguais indicado por esse denominador (ex.: doze vinte e cinco avos = 12/25)."
 
+"quinto", "sexto" and "décimo" are both a denominator and an ordinal. After "um" or "uma", the word after them decides. As a fraction the word is a noun, and "de" or a contraction of "de" joins its complement, so the fraction stays. Any other word is the noun that the ordinal adjective orders: "um quinto andar" is the fifth floor. At the end of the text, or before punctuation or a joiner, the fraction stays. An ordinal before "parte" qualifies the part, so "a décima parte" is a tenth.
+
+```python
+>>> read("Recebeu um quinto da herança.")
+[('um quinto', '0.2')]
+>>> read("Comprou um quinto andar em Lisboa.")
+[('um', '1'), ('quinto', '5')]
+>>> read("Recebeu a décima parte do valor.")
+[('décima parte', '0.1')]
+```
+
+> Priberam, "quinto": "adjectivo numeral e nome masculino 1. Que ou o que numa série vem logo depois do quarto. nome masculino 2. Quinta parte."; "de": "Une ao nome o seu complemento (ex.: folha de papel)". Ciberdúvidas 33764: "No primeiro caso, estamos em presença de um adjetivo numeral que qualifica parte; no segundo caso, em presença de um nome."
+
+A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
+
 ## Words that are no number
 
 A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.
