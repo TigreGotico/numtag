@@ -108,7 +108,7 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("mes neuf arrière-petits-enfants", "fr"), [("neuf", 1.0)])
 
     def test_neuf_as_the_whole_text_is_nine(self):
-        # a spoken answer: no clause ends after it
+        # a one-word text with no punctuation is a spoken answer
         for text in ("neuf", "Neuf", " neuf "):
             with self.subTest(text=text):
                 self.assertEqual(confidence(text, "fr"), [(text.strip(), 1.0)])

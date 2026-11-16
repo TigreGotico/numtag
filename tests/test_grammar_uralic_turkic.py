@@ -258,8 +258,8 @@ class TestConfidence(unittest.TestCase):
                 self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
 
     def test_hat_after_a_request_verb_or_alone_is_six(self):
-        # Wiktionary "kér", "állít", "tesz" are transitive and "legyen" is a
-        # form of "van": the word after them is their object or predicate
+        # right after a request verb "hat" is no verb: a finite verb does not
+        # follow another finite verb in one clause
         for text in ("kérek hat", "Kérem hat", "legyen hat", "Legyen hat!", "állítsd hat", "tedd hat", "hat", "Hat"):
             with self.subTest(text=text):
                 self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "hu")], [("6", 1.0)])

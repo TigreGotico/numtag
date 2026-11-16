@@ -74,7 +74,7 @@ class TestOrdinalArticle(unittest.TestCase):
 
 class TestHomographs(unittest.TestCase):
     def test_noua_as_the_whole_text_is_nine(self):
-        # a spoken answer: no clause ends after it
+        # a one-word text with no punctuation is a spoken answer
         self.assertEqual(confidence("nouă", "ro"), [("nouă", 1.0)])
         self.assertEqual(confidence("Nouă.", "ro"), [("Nouă", 0.4)])
         self.assertEqual(confidence("e nouă", "ro"), [("nouă", 0.4)])
