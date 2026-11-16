@@ -753,6 +753,10 @@ class Grammar:
         # "ربع" alone is a quarter, "ثلثان" two thirds
         found += [Parse(i + 1, Rational(e.numerator, e.value), ambiguous=e.ambiguous)
                   for e in self._readings(i, "denominator") if e.numerator]
+        # "a décima parte", "uma quinta parte": an ordinal before a part noun
+        # names the part
+        if self._is_word(i + 1, self.lex.part_nouns):
+            found += [Parse(i + 2, Rational("1", e.value)) for e in self._readings(i, "ordinal")]
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
@@ -760,9 +764,18 @@ class Grammar:
                   for e in self._readings(i, "denominator")
                   if not e.plural and self._is_word(i + 1, self.lex.one_after_noun)]
         for end, numerator in numerators:
+            if self._is_word(end + 1, self.lex.part_nouns):
+                found += [Parse(end + 2, Rational(numerator, e.value)) for e in self._readings(end, "ordinal")]
+            # "um quinto andar" is the fifth floor, "um quinto do bolo" a fifth
+            ordinal_after_article = end == i + 1 and self._is_word(i, self.lex.articles) \
+                and bool(self._readings(end, "ordinal")) and bool(self.lex.partitives) \
+                and end + 1 < len(self.tokens) \
+                and not self._is_word(end + 1, self.lex.partitives | self.lex.joiners)
             for entry in self._readings(end, "denominator"):
                 # "um terço", "dois terços"; "dois milésimo" is the ordinal 2000.º
                 if self.lex.fraction_agreement and not entry.invariant and entry.plural == (numerator == "1"):
+                    continue
+                if ordinal_after_article:
                     continue
                 found.append(Parse(end + 1, Rational(numerator, entry.value), ambiguous=entry.ambiguous))
             for after, denominator in self.small(end, nonzero=True):
