@@ -181,11 +181,12 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
 
 def _confidence(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> float:
     # The article stands next to its noun: before it ("um livro"), or after
-    # it where the language puts it there ("liburu bat").
+    # it where the language puts it there ("liburu bat"). A number in digits
+    # is a noun to the article: "un 20 por ciento".
     noun = start - 1 if lexicon.article_after_noun else parse.end
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles
-                    and 0 <= noun < len(run) and not run[noun].is_digits
-                    and not grammar.starts_number(noun))
+                    and 0 <= noun < len(run)
+                    and (run[noun].is_digits or not grammar.starts_number(noun)))
     if lone_article:
         return ARTICLE_CONFIDENCE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral
