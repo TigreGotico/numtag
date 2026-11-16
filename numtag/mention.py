@@ -138,7 +138,7 @@ class NumberMention:
             raise ValueError(f"number_scale {self.number_scale!r} is not a Scale")
         if not isinstance(self.reasons, frozenset) or not all(isinstance(r, Reason) for r in self.reasons):
             raise ValueError(f"reasons {self.reasons!r} is not a frozenset of Reason")
-        previous = None
+        reached = start  # the end of the parts so far
         for part in self.parts:
             if not isinstance(part, Part):
                 raise ValueError(f"part {part!r} is not a Part")
@@ -146,7 +146,8 @@ class NumberMention:
             if not start <= part_start < part_end <= end \
                     or self.text[part_start - start:part_end - start] != part.text:
                 raise ValueError(f"part {part!r} is not inside {self.text!r} at {self.char_span}")
-            # two parts overlap only by the letter that two words of a compound share
-            if previous is not None and part_start < previous.char_span[1] - 1:
-                raise ValueError(f"part {part!r} is out of reading order after {previous!r}")
-            previous = part
+            # two parts overlap only by the letter that two words of a compound share ("ettusen")
+            shared = self.text[part_start - start:reached - start]
+            if part_end <= reached or len(shared) > 1 or (shared and not shared.isalpha()):
+                raise ValueError(f"part {part!r} is out of reading order")
+            reached = part_end

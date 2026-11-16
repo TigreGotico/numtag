@@ -51,6 +51,20 @@ WORKED = [
         (COUNT, "two", "2"), (JOINER, "and", None), (COUNT, "a", "1"), (DENOMINATOR, "third", "3")])]),
     ("six thousand two hundredth", "en", [("six thousand two hundredth", "6200", [
         (COUNT, "six", "6"), (SCALE, "thousand", "1000"), (COUNT, "two hundredth", "200")])]),
+    ("one and a half", "en", [("one and a half", "1.5", [(COUNT, "one", "1"), (JOINER, "and", None),
+                                                          (HALF, "a half", "0.5")])]),
+    ("a half", "en", [("a half", "0.5", [(COUNT, "a", "1"), (DENOMINATOR, "half", "2")])]),
+    ("a third of a dozen", "en", [("a third of a dozen", "4", [
+        (COUNT, "a", "1"), (DENOMINATOR, "third", "3"), (OF, "of", None), (COLLECTIVE, "a dozen", "12")])]),
+    ("zweieinhalb Millionen", "de", [("zweieinhalb Millionen", "2500000", [
+        (COUNT, "zwei", "2"), (HALF, "einhalb", "0.5"), (SCALE, "Millionen", "1000000")])]),
+    # a case form that names the parts, then the count of parts
+    ("üçte bir", "tr", [("üçte bir", "1/3", [(DENOMINATOR, "üçte", "3"), (COUNT, "bir", "1")])]),
+    # the count of one after the noun
+    ("heren bat", "eu", [("heren bat", "1/3", [(DENOMINATOR, "heren", "3"), (COUNT, "bat", "1")])]),
+    ("три целых и двадцать пять сотых", "ru", [("три целых и двадцать пять сотых", "3.25", [
+        (COUNT, "три", "3"), (DECIMAL_MARK, "целых", None), (JOINER, "и", None),
+        (DECIMALS, "двадцать пять сотых", "0.25")])]),
     # a compound word follows its sub-words; Swedish "ett" and "tusen" share the t
     ("dreihunderttausend", "de", [("dreihunderttausend", "300000", [
         (COUNT, "dreihundert", "300"), (SCALE, "tausend", "1000")])]),
@@ -178,6 +192,17 @@ class TestPartChecks(unittest.TestCase):
         self.assertEqual(mention.parts, (two, hundred))
         with self.assertRaisesRegex(ValueError, "reading order"):
             NumberMention((0, 11), "two hundred", "200", Kind.CARDINAL, Form.WORDS, parts=(hundred, two))
+
+    def test_parts_share_at_most_one_letter_and_never_nest(self):
+        dois = Part(COUNT, (0, 4), "dois", "2")
+        for parts in [(dois, Part(COUNT, (3, 4), "s", "7")),
+                      (Part(COUNT, (0, 3), "two", "2"), Part(JOINER, (2, 3), "o"), Part(COUNT, (2, 7), "o ten", "10"))]:
+            text = "dois" if parts[0] is dois else "two ten"
+            with self.subTest(parts=parts), self.assertRaisesRegex(ValueError, "reading order"):
+                NumberMention((0, len(text)), text, "2", Kind.CARDINAL, Form.WORDS, parts=parts)
+        ett, tusen = Part(COUNT, (0, 3), "ett", "1"), Part(SCALE, (2, 7), "tusen", "1000")
+        self.assertEqual(NumberMention((0, 7), "ettusen", "1000", Kind.CARDINAL, Form.WORDS,
+                                       parts=(ett, tusen)).parts, (ett, tusen))
 
     def test_parts_stay_out_of_equality(self):
         two = Part(COUNT, (0, 3), "two", "2")

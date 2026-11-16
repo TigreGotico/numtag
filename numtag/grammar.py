@@ -54,10 +54,6 @@ def _joined(end: int, start: int) -> Pieces:
     return _piece(Role.JOINER, end, start) if start > end else ()
 
 
-def _power(exponent: int) -> Rational:
-    return ONE.scaled(exponent)
-
-
 def _add_count(parts: Pieces, start: int, end: int, value: Rational) -> Pieces:
     """``parts`` and the words from ``start`` to ``end``, which add ``value``.
     A count below the next scale word is one part, with its joiners: the
@@ -74,7 +70,7 @@ def _times_power(parts: Pieces, at: int, exponent: int) -> Pieces:
     """``parts`` and the scale ordinal at ``at``, which multiplies the count
     right before it: "two hundredth" is one count, as "two hundred" is, and
     "six thousandth" is a count and a scale, as "six thousand" is."""
-    word = _power(exponent)
+    word = ONE.scaled(exponent)
     if exponent >= THOUSAND:
         return parts + _piece(Role.SCALE, at, at + 1, word)
     if parts and parts[-1][0] == Role.COUNT and parts[-1][2] == at:
@@ -507,7 +503,7 @@ class Grammar:
                 found.append(Count(e, decimal, decimal=True, parts=parts))
                 # "one point two hundred": a multiplier after the decimals
                 found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True,
-                                parts=parts + _piece(Role.SCALE, e, e + 1, _power(m.exponent)))
+                                parts=parts + _piece(Role.SCALE, e, e + 1, ONE.scaled(m.exponent)))
                           for m in self._readings(e, "hundred_multiplier") if not m.plural]
             # "two and a half million", "zweieinhalb Millionen", "iki buçuk milyon"
             if value != "0":
@@ -584,7 +580,7 @@ class Grammar:
                     if count.top and exponent <= count.top:
                         continue
                     # a dual holds its count ("ألفان"): its one part is the scale
-                    scale = _piece(Role.SCALE, scale_from, end, _power(exponent))
+                    scale = _piece(Role.SCALE, scale_from, end, ONE.scaled(exponent))
                     if needs_count and not count.explicit:
                         # "milioi bat": the count of one comes after the noun
                         if self._is_word(end, self.lex.one_after_noun):
@@ -762,7 +758,7 @@ class Grammar:
             if not (noun.plural or class_noun):
                 continue
             scaled = value.scaled(noun.exponent)
-            scale = parts + _piece(Role.SCALE, at, at + 1, _power(noun.exponent))
+            scale = parts + _piece(Role.SCALE, at, at + 1, ONE.scaled(noun.exponent))
             found += [Parse(at + 1, scaled, parts=scale)] + self._of(scaled, at + 1, parts=scale)
             for j in self._after_joiner(at + 1, Joiner.REQUIRED):
                 for e, v in self.small(j, nonzero=True):
@@ -795,7 +791,7 @@ class Grammar:
                        parts=parts + _piece(Role.COLLECTIVE, at, at + 1, Rational(e.value)))
                  for e in self._readings(at, "collective") if e.plural]
         found += [Parse(at + 1, prefix + total.scaled(e.exponent),
-                        parts=parts + _piece(Role.SCALE, at, at + 1, _power(e.exponent)))
+                        parts=parts + _piece(Role.SCALE, at, at + 1, ONE.scaled(e.exponent)))
                   for e in self._readings(at, "scale_noun") if e.plural]
         return found
 
@@ -862,13 +858,13 @@ class Grammar:
         if last.decimal or self.tokens[at].is_digits or not any(
                 e.fraction_case for e in self.lex.readings.get(self.tokens[at].norm, ())):
             return []
-        parts = _sum(run)
-        if _whole(parts) in ("0", "1"):
+        shares = _sum(run)
+        if _whole(shares) in ("0", "1"):
             return []
-        denominator = _piece(Role.DENOMINATOR, run[0].start, last.end, parts)
-        return [Parse(end, Rational(numerator, parts.canonical()), parts_at=at,
+        denominator = _piece(Role.DENOMINATOR, run[0].start, last.end, shares)
+        return [Parse(end, Rational(numerator, shares.canonical()), parts_at=at,
                       parts=denominator + _piece(Role.COUNT, last.end, end, Rational(numerator)))
-                for end, numerator in self.small(last.end, nonzero=True) if _less(Rational(numerator), parts)]
+                for end, numerator in self.small(last.end, nonzero=True) if _less(Rational(numerator), shares)]
 
     # Other numbers ----------------------------------------------------
 
@@ -940,7 +936,7 @@ class Grammar:
         found = []
         for end, exponent, _, _, _, plural in self.multipliers(i):
             if not plural and self._is_word(end + 1, self.lex.one_after_noun):
-                scale = _piece(Role.SCALE, i, end, _power(exponent))
+                scale = _piece(Role.SCALE, i, end, ONE.scaled(exponent))
                 found += [Parse(end + 2, ONE.scaled(exponent) * share,
                                 parts=scale + piece + _piece(Role.COUNT, end + 1, end + 2, ONE))
                           for share, piece in self._parts(end)]
@@ -1106,7 +1102,7 @@ class Grammar:
             if prefix is not None and scale.exponent < top and scale.alone and self.lex.ordinal_style == "last_word":
                 value = prefix + ONE.scaled(scale.exponent)
                 parts = before + _piece(Role.SCALE if scale.exponent >= THOUSAND else Role.COUNT, j, j + 1,
-                                        _power(scale.exponent))
+                                        ONE.scaled(scale.exponent))
             else:
                 value = _ordinal_scale_value(run, scale.exponent)
                 if value is None:

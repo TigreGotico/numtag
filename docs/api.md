@@ -121,7 +121,7 @@ These rules decide the parts:
 1. Every word of a mention is in exactly one part. Spaces, hyphens and the comma between classes are in no part.
 2. A count below the next scale word is one count part, with the joiners inside it: "sessenta e seis", "two hundred", "vigésimo primeiro".
 3. A digit string is one part, with its group marks, its decimal mark and its sign: "1.234,5", "-5", "21st".
-4. An article that the grammar reads as one is a count with the value 1: "a" in "a quarter". Any other article, ordinal prefix, ending or particle is in the part that it introduces or ends: "a half", "a dozen" after "half", "doze avos".
+4. An article that the grammar reads as one is a count with the value 1: "a" in "a quarter", and in "a half" alone, which is the count "a" and the denominator "half". Any other article, ordinal prefix, ending or particle is in the part that it introduces or ends: "a half" in "one and a half", "a dozen" after "half", "doze avos".
 5. An ordinal has no role of its own, because the mention kind says ORDINAL. "six thousand two hundredth" is the count "six", the scale "thousand" and the count "two hundredth" (200).
 6. A word that holds two parts is one part. The dual "ألفين" (two thousand) is one scale part with the value 1000, and "ثلثان" (two thirds) is one denominator part with the value 3.
 7. Inside a compound word, the parts follow its sub-words: "dreihunderttausend" is the count "dreihundert" and the scale "tausend". Where two sub-words share a letter (Swedish "ettusen"), the two parts overlap by that letter.
@@ -154,7 +154,7 @@ ValueError: a joiner part takes no value
 | `Role.COLLECTIVE` | `"collective"` | "dúzias", "dezena", "a dozen" after "half" | Its size: 12, 10 |
 | `Role.OF` | `"of"` | "de" in "duas dúzias de milhar" | None |
 | `Role.JOINER` | `"joiner"` | "e", "and" between two parts | None |
-| `Role.HALF` | `"half"` | "meia", "meio", "half", "a half" | 0.5 |
+| `Role.HALF` | `"half"` | "meia", "meio", "einhalb", "a half" in "one and a half" | 0.5 |
 | `Role.DENOMINATOR` | `"denominator"` | "terços", "quarter", "doze avos" | The whole number below the line: 3, 4, 12 |
 | `Role.MINUS` | `"minus"` | "menos", "minus" | None |
 | `Role.DECIMAL_MARK` | `"decimal_mark"` | "vírgula", "point" | None |
