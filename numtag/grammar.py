@@ -224,10 +224,16 @@ class Grammar:
             if i < len(self.tokens) and not self.tokens[i].is_digits else []
         return bool(entries) and all(e.ordinal for e in entries)
 
-    def _agrees(self, noun: bool, plural: bool, count: Rational) -> bool:
+    def _agrees(self, noun: bool, plural: bool, count: Rational, words: bool = False) -> bool:
         """Where a noun agrees with its count, a singular noun takes only a
-        count below two: "um milhão", "meio milhão", "mil e um milhões"."""
-        return not (noun and not plural and self.lex.scale_noun_agrees and _whole(count) not in ("0", "1"))
+        count below two: "um milhão", "meio milhão", "mil e um milhões". A
+        plural noun takes no count of one or a half written in words: "meio
+        milhões" and "um milhões" are no number."""
+        if not (noun and self.lex.scale_noun_agrees):
+            return True
+        if plural:
+            return not (words and count in (ONE, HALF))
+        return _whole(count) in ("0", "1")
 
     def _takes_count(self, i: int, count: Rational, count_exponent: int = 0, whole_group: bool = False) -> bool:
         """True when a multiplier at ``i`` takes ``count``, whose own scale
@@ -597,7 +603,7 @@ class Grammar:
                     if dual and count.explicit:
                         continue
                     value = Rational(dual) if dual else count.value
-                    if not self._agrees(noun, plural, value):
+                    if not self._agrees(noun, plural, value, words=not self.tokens[i].is_digits):
                         continue
                     found.append(Group(end, value, exponent, noun, count.decimal,
                                        count.top, count.half_top, parts=before + scale))
