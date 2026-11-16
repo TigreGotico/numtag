@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.4a1](https://github.com/TigreGotico/numtag/tree/0.9.4a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.3a1...0.9.4a1)
+
+**Merged pull requests:**
+
+- fix: an article that is the whole text gets the article score [\#37](https://github.com/TigreGotico/numtag/pull/37) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.9.3a1](https://github.com/TigreGotico/numtag/tree/0.9.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.2a1...0.9.3a1)
