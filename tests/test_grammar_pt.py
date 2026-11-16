@@ -686,6 +686,22 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("2,5"), [("2,5", "2.5", D)])
         self.assertEqual(pt("1.234,50 euros"), [("1.234,50", "1234.5", D)])
 
+    def test_a_point_that_cannot_group_digits_marks_decimals(self):
+        # SI Brochure 5.4.4: the decimal marker "shall be either the point on
+        # the line or the comma on the line", and a number between -1 and 1
+        # starts with "0"; a group has three digits (the group_mark source)
+        for text, value in (("1.5", "1.5"), ("3.14159", "3.14159"), ("0.500", "0.5"), ("-0.500", "-0.5"),
+                            ("0.050", "0.05"), ("1234.567", "1234.567")):
+            with self.subTest(text=text):
+                self.assertEqual(pt(text), [(text, value, D)])
+                self.assertEqual(read(text, "pt-BR"), [(text, value, D)])
+        self.assertEqual(pt("custa 3.5 milhões"), [("3.5 milhões", "3500000", C)])
+        # three digits after a first group of one to three digits are a group
+        self.assertEqual(pt("1.500"), [("1.500", "1500", C)])
+        self.assertEqual(pt("1.5.2"), [])
+        # three digits after a space group are no decimal: "1 234.5" stays 1
+        self.assertEqual(pt("1 234.5"), [("1", "1", C)])
+
     def test_pt_pt_also_groups_digits_with_a_space(self):
         # 1 x 10^6 + 234 x 10^3 + 567 = 1234567
         self.assertEqual(pt("vivem 1 234 567 pessoas"), [("1 234 567", "1234567", C)])
@@ -712,10 +728,10 @@ class TestDigits(unittest.TestCase):
 
     def test_no_digit_group_follows_a_leading_zero(self):
         # "." groups digits in pt, and a group never follows a leading zero:
-        # "0.500" and "01.500" are no number
-        self.assertEqual(pt("pesa 0.500 kg"), [])
+        # in "0.500" the point marks decimals, and "01.500" is no number
+        self.assertEqual(pt("pesa 0.500 kg"), [("0.500", "0.5", D)])
         self.assertEqual(pt("pesa 01.500 kg"), [])
-        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [])
+        self.assertEqual(read("pesa 0.500 kg", "pt-BR"), [("0.500", "0.5", D)])
         self.assertEqual(pt("os números 0 500"), [("0", "0", C), ("500", "500", C)])
         self.assertEqual(pt("pesa 1.500 kg"), [("1.500", "1500", C)])
 
