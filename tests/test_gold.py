@@ -2,8 +2,9 @@
 
 A row scores when the tagger returns exactly its mentions, compared on
 (start, end, value, kind, number_scale), where a missing "number_scale"
-means None, and gives a confidence below 0.5 to each gold
-mention marked "low_confidence", with the "reasons" the row names. Each language's score must reach its floor
+means None. Each gold mention marked "low_confidence" must have a
+confidence below 0.5 and the "reasons" the row names; every other mention
+must have 0.5 or above. Each language's score must reach its floor
 in tests/gold_floor.json. The rows each language misses are written to
 tests/.gold-report/<lang>.txt, the work queue for the next fix.
 """
@@ -41,9 +42,10 @@ def row_matches(row: dict, lang: str) -> tuple[bool, list]:
                 for g in row["mentions"]]
     if got != expected:
         return False, got
-    weak = all(m.confidence < 0.5 and sorted(r.value for r in m.reasons) == sorted(g.get("reasons", ()))
-               for m, g in zip(mentions, row["mentions"]) if g.get("low_confidence"))
-    return weak, got
+    confident = all(m.confidence < 0.5 and sorted(r.value for r in m.reasons) == sorted(g.get("reasons", ()))
+                    if g.get("low_confidence") else m.confidence >= 0.5
+                    for m, g in zip(mentions, row["mentions"]))
+    return confident, got
 
 
 def score_file(path: Path) -> Score:
@@ -133,6 +135,13 @@ class TestScoring(unittest.TestCase):
         strong_row = {"text": "comprei uma dúzia", "mentions": [
             {"start": 8, "end": 17, "value": "12", "kind": "cardinal", "low_confidence": True, "reasons": ["article"]}]}
         self.assertFalse(row_matches(strong_row, "pt-PT")[0])
+
+    def test_an_unmarked_mention_must_be_sure(self):
+        # "uma" before "casa" is an article at 0.3: a row that does not mark it fails
+        sure = {"start": 8, "end": 11, "value": "1", "kind": "cardinal"}
+        self.assertFalse(row_matches({"text": "comprei uma casa", "mentions": [sure]}, "pt-PT")[0])
+        self.assertTrue(row_matches({"text": "comprei uma dúzia", "mentions": [
+            {"start": 8, "end": 17, "value": "12", "kind": "cardinal"}]}, "pt-PT")[0])
 
     def test_the_reason_is_checked(self):
         homograph = {"start": 8, "end": 11, "value": "1", "kind": "cardinal", "low_confidence": True,

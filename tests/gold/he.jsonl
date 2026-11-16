@@ -1,7 +1,7 @@
 {"text": "הקוד מתחיל באפס.", "mentions": [{"start": 11, "end": 15, "value": "0", "kind": "cardinal"}], "source": "CLDR RBNF he: \"0: אפס\"; ב is a joined preposition, so the span covers the word."}
 {"text": "יש לי ילד אחד.", "mentions": [{"start": 10, "end": 13, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"1: אחד\"."}
 {"text": "קניתי עוגה אחת.", "mentions": [{"start": 11, "end": 14, "value": "1", "kind": "cardinal"}], "source": "CLDR RBNF he, feminine: \"1: אחת\"."}
-{"text": "יש לי שני אחים.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2000000: שני מיליון\", the construct form of two."}
+{"text": "יש לי שני אחים.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "CLDR RBNF he: \"2000000: שני מיליון\", the construct form of two. Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "יש לה שתי בנות.", "mentions": [{"start": 6, "end": 9, "value": "2", "kind": "cardinal"}], "source": "by hand: שתי is the construct of שתיים."}
 {"text": "הם שניים.", "mentions": [{"start": 3, "end": 8, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he, masculine: \"2: שניים\"."}
 {"text": "היו שתיים.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "cardinal"}], "source": "CLDR RBNF he: \"2: שתיים\"."}
@@ -135,7 +135,7 @@
 {"text": "לשלושה אנשים.", "mentions": [{"start": 0, "end": 6, "value": "3", "kind": "cardinal"}], "source": "arithmetic; ל is a joined preposition."}
 {"text": "משמונה בבוקר.", "mentions": [{"start": 0, "end": 6, "value": "8", "kind": "cardinal"}], "source": "arithmetic; מ is a joined preposition."}
 {"text": "כחמישים איש.", "mentions": [{"start": 0, "end": 7, "value": "50", "kind": "cardinal"}], "source": "arithmetic; כ is a joined preposition."}
-{"text": "במאה אחוז.", "mentions": [{"start": 0, "end": 4, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
+{"text": "במאה אחוז.", "mentions": [{"start": 0, "end": 4, "value": "100", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic. Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "שילם שלוש מאות ועשרים שקל.", "mentions": [{"start": 5, "end": 21, "value": "320", "kind": "cardinal"}], "source": "arithmetic: 3 x 100 + 20."}
 {"text": "תשעה חודשים.", "mentions": [{"start": 0, "end": 4, "value": "9", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "שבעים ושבע מדרגות.", "mentions": [{"start": 0, "end": 10, "value": "77", "kind": "cardinal"}], "source": "arithmetic: 70 + 7."}
