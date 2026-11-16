@@ -126,6 +126,19 @@ class TestReasons(unittest.TestCase):
             with self.subTest(text=text, lang=lang):
                 self.assertEqual([m.reasons for m in tag_numbers(text, lang)], [frozenset({Reason.HOMOGRAPH})])
 
+    def test_an_ordinal_one_with_a_second_meaning_is_weak(self):
+        # fr "premier" is also "prime" and "original", it "primo" "prime", it "prima" "before"
+        for text, lang, word in (("Le nombre sept est-il premier ?", "fr-FR", "premier"),
+                                 ("Ces nombres sont premiers.", "fr-FR", "premiers"),
+                                 ("Le premier jour.", "fr-FR", "premier"),
+                                 ("Il sette è un numero primo.", "it", "primo"),
+                                 ("Chiamami prima di cena.", "it", "prima")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, lang) if m.text == word],
+                                 [(word, "1", frozenset({Reason.HOMOGRAPH}))])
+        # a compound ordinal is clear
+        self.assertEqual([m.reasons for m in tag_numbers("le vingt et unième jour", "fr-FR")], [frozenset()])
+
     def test_an_article_that_is_the_whole_text_is_weak(self):
         # a line of a vocabulary file: the word has no noun to decide it
         for text, lang in (("um", "pt-PT"), ("uma", "pt-BR"), ("un", "gl"), ("unha", "gl"), ("egy", "hu"),
