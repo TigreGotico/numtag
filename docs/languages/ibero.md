@@ -6,7 +6,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 |---|---|---|---|---|---|
 | Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 221 | 218 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 182 | 181 |
-| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 211 | 208 |
+| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
 | Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 173 | 173 |
@@ -62,6 +62,20 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 >>> read('Chegou nono.', 'mwl')
 [('nono', '9')]
 ```
+
+## Catalan words with a second meaning
+
+Catalan "nou" is nine and also "new", and "u" is one and also the name of a letter. Alone, each gets the low score 0.4 for a word with a second meaning. Inside a longer number the reading is clear, so "vint-i-nou" and "cent u" keep the full score.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('Crea un esdeveniment nou.', 'ca')]
+[('un', '1', 0.3), ('nou', '9', 0.4)]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('Té vint-i-nou anys.', 'ca')]
+[('vint-i-nou', '29', 1.0)]
+```
+
+> DIEC2 "nou" 2 1: "Vuit més un. Aviat farà nou anys."; DIEC2 "nou" 3 1 1: "Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou."
 
 ## The scale
 
