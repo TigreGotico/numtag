@@ -10,7 +10,7 @@ The confidence is a fixed score in (0, 1]. It is not a probability. The same tex
 |---|---|
 | 1.0 | The words are a number for certain. |
 | 0.4 | The number rests on a word with a common meaning that is not a number ("segundo", "quarto", "meio", "second", "half", "score"). |
-| 0.3 | An article stands alone before a word that starts no number: Portuguese "um" or "uma" in "comprei uma casa". |
+| 0.3 | An article stands alone before its noun phrase: a word that starts no number, a number in digits or an ordinal. Portuguese "um" or "uma" in "comprei uma casa". |
 
 The gold corpus and its tests use 0.5 as the line between a weak mention and a clear number. A caller that wants only clear numbers keeps the mentions at 0.5 or above.
 
@@ -30,7 +30,7 @@ In Portuguese, "um" and "uma" are both the number one and the indefinite article
 [('um milhão', '1000000', 1.0)]
 ```
 
-The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. Before a word such as "ou", the article gets the low score, also when a number comes next. Before a number in digits, the article also gets the low score: the number is part of its noun, as in "un 20 por ciento".
+The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. Before a word such as "ou", the article gets the low score, also when a number comes next. Before a number in digits or an ordinal, the article also gets the low score: the number is part of its noun phrase, as in "un 20 por ciento" and "um segundo facto".
 
 ```python
 >>> read("Quantos filhos tens? Tenho um.", "pt-PT")
@@ -39,6 +39,8 @@ The low score needs a word after the article. An article before punctuation or a
 [('uma', '1', 0.3), ('duas', '2', 1.0)]
 >>> read("Baja el brillo a un 20 por ciento.", "es")
 [('un', '1', 0.3), ('20', '20', 1.0)]
+>>> read("Dá-me um segundo facto.", "pt-PT")
+[('um', '1', 0.3), ('segundo', '2', 0.4)]
 ```
 
 > DPD "uno, una" 1.1: "Como determinante, toma la forma un ante sustantivos masculinos, los preceda inmediatamente o no"; 2.2: "Es incorrecta la apócope de uno y sus compuestos cuando no van antepuestos a un sustantivo"

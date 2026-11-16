@@ -850,6 +850,21 @@ class TestArticleAndGender(unittest.TestCase):
         self.assertEqual([m.value for m in mentions], ["1"])
         self.assertLess(mentions[0].confidence, 0.5)
 
+    def test_an_article_before_an_ordinal_is_weak(self):
+        # the ordinal is part of the noun phrase: "um segundo facto"
+        for text, lang in (("dá-me um segundo facto", "pt-PT"), ("me dá um segundo fato", "pt-BR"),
+                           ("dime una segunda curiosidad", "es"), ("dammi una seconda curiosità", "it"),
+                           ("donne-moi un deuxième fait", "fr"), ("dime un segundo dato", "gl"),
+                           ("digues-me un segon fet", "ca"), ("nenn mir eine zweite Tatsache", "de")):
+            with self.subTest(lang=lang):
+                article, ordinal = tag_numbers(text, lang)
+                self.assertEqual((article.value, ordinal.value, ordinal.kind.value), ("1", "2", "ordinal"))
+                self.assertLess(article.confidence, 0.5)
+
+    def test_an_article_that_starts_a_fraction_is_part_of_it(self):
+        mentions = tag_numbers("comeu um terço do bolo", "pt-PT")
+        self.assertEqual([(m.text, m.value, m.confidence) for m in mentions], [("um terço", "1/3", 1.0)])
+
     def test_an_article_inside_a_number_is_part_of_it(self):
         mentions = tag_numbers("comprei uma dúzia", "pt-PT")
         self.assertEqual([(m.value, m.confidence) for m in mentions], [("12", 1.0)])
