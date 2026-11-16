@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.8a1](https://github.com/TigreGotico/numtag/tree/0.7.8a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.7a1...0.7.8a1)
+
+**Merged pull requests:**
+
+- fix\(ca\): "nou" and "u" alone are words with a second meaning [\#26](https://github.com/TigreGotico/numtag/pull/26) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.7a1](https://github.com/TigreGotico/numtag/tree/0.7.7a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.6a1...0.7.7a1)
