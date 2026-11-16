@@ -1,0 +1,9 @@
+{"text": "the twenty first floor", "lang": "en-us", "reading": [["twenty first", "21"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "a third of the cake", "lang": "en-us", "reading": [["a third", "1/3"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "vinte e um e vinte", "lang": "pt-pt", "reading": [["vinte e um", "21"], ["vinte", "20"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "comprei uma casa e duas bicicletas", "lang": "pt-pt", "reading": [["duas", "2"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "dá-me um segundo facto", "lang": "pt-pt", "reading": [["segundo", "2"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "o vigésimo primeiro andar", "lang": "pt-pt", "reading": [["vigésimo primeiro", "21"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "veintiuno y veinte", "lang": "es-es", "reading": [["veintiuno", "21"], ["veinte", "20"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "vingt et un et vingt", "lang": "fr-fr", "reading": [["vingt et un", "21"], ["vingt", "20"]], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
+{"text": "the cat sat on the mat", "lang": "en-us", "reading": [], "source": "simple_NER test/test_numbers_ner.py TestEachNumberIsOneEntity"}
