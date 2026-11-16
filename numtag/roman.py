@@ -15,21 +15,21 @@ from numtag.tokenize import Token
 # The standard subtractive form from 1 to 3999 ("IIII", "IC" and "VX" are
 # no numeral). It is positional: each group writes one decimal digit.
 _STANDARD = re.compile(r"(M{0,3})(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})")
-_UNITS = ("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX")
-# The digit each group writes, thousands first: the letters for one, five
-# and ten of each place stand where the units have I, V and X.
-_PLACES = tuple(dict(zip((u.translate(str.maketrans("IVX", letters)) for u in _UNITS), "0123456789"))
-                for letters in ("M\0\0", "CDM", "XLC", "IVX"))
+# The digit each group writes, thousands first.
+_PLACES = tuple(dict(zip(groups, "0123456789")) for groups in (
+    ("", "M", "MM", "MMM"),
+    ("", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"),
+    ("", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"),
+    ("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX")))
 # The Unicode Roman numeral characters (The Unicode Standard, chapter 22,
 # "Number Forms"): U+2160 to U+217F stand for the letters, U+2180 to U+2188
 # (except U+2183 and U+2184) are numerals with no letter form.
 _NUMBER_FORMS = range(0x2160, 0x2189)
 _NO_LETTER_FORM = {"\u2180": "1000", "\u2181": "5000", "\u2182": "10000", "\u2185": "6",
                    "\u2186": "50", "\u2187": "50000", "\u2188": "100000"}
-_SENTENCE_END = re.compile(r"[.!?…]")
-# A period after a word of one or two letters ends an abbreviation, not a
-# sentence: "D. João", "Dr. Silva".
-_ABBREVIATION_LENGTH = 2
+# A single letter is a numeral only as I, V or X: L, C, D and M alone are
+# labels ("Part D", "Vitamin C").
+_SINGLE_LETTERS = frozenset("IVX")
 
 
 def roman_value(word: str) -> str | None:
@@ -50,15 +50,6 @@ def _title_case(token: Token) -> bool:
     return token.text[:1].isupper() and any(c.islower() for c in token.text[1:])
 
 
-def _first_in_sentence(tokens: list[Token], k: int) -> bool:
-    if k == 0 or "\n" in tokens[k].gap:
-        return True
-    if not _SENTENCE_END.search(tokens[k].gap):
-        return False
-    before = tokens[k - 1].text
-    return not ("." in tokens[k].gap and before[:1].isupper() and len(before) <= _ABBREVIATION_LENGTH)
-
-
 def _spaced(tokens: list[Token], k: int) -> bool:
     """Only white space stands between token k and the one before it."""
     return k > 0 and tokens[k].gap.isspace()
@@ -66,7 +57,8 @@ def _spaced(tokens: list[Token], k: int) -> bool:
 
 def _list_item(tokens: list[Token], k: int, text: str) -> bool:
     """The numeral opens a line and a ")" or a "." closes it: "ii) …", "(iv) …", "iii. …"."""
-    opens_line = (k == 0 or "\n" in tokens[k].gap) and tokens[k].gap.strip(" \t\n(") == ""
+    gap = tokens[k].gap
+    opens_line = (k == 0 or "\n" in gap) and gap.rpartition("\n")[2].strip(" \t(") == ""
     after = text[tokens[k].end:tokens[k].end + 1]
     return opens_line and after in (")", ".")
 
@@ -75,39 +67,50 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
     """True when the words around the numeral mark a place in a series.
 
     A series noun before it ("século XIX", "World War I") or, for a numeral
-    that is no word, after it ("the XXI century"). A numeral that is no word
-    also takes any title-case word before it ("Luís XIV", "Edition XIV").
-    A single letter or a numeral that is also a word needs more: a regnal
-    title before the name ("King Henry I", "D. João I"), or a name with a
-    title-case word before it, neither of them first in the sentence
-    ("Queen Elizabeth I"). "tell John I am late" gives no cue. A title-case
-    word is no cue for a lower-case numeral: "Pokaż mi" holds no 1001."""
+    that is no word, after it ("the XXI century"). Where a single letter
+    may be a pronoun, the series noun before a word must be in title case:
+    "Part I" reads, "the part I like" does not. A numeral that is no word
+    also takes any title-case word before it ("Luís XIV", "Edition XIV"),
+    in a language that does not write every noun in title case. Any
+    numeral takes a regnal title before the name ("King Henry I", "D. João
+    I", "Papst Benedikt XVI"); a single letter or a numeral that is also a
+    word takes nothing else: "tell John I am late" and "I told Mary Jane I
+    would come" give no cue. A title-case word is no cue for a lower-case
+    numeral: "Pokaż mi" holds no 1001."""
     before = tokens[k - 1] if _spaced(tokens, k) else None
     if before is not None and before.norm in lexicon.roman_series_nouns:
-        return True
+        return not (word and lexicon.roman_pronoun_letters) or _title_case(before)
     if not word:
-        after = tokens[k + 1] if k + 1 < len(tokens) and tokens[k + 1].gap.isspace() else None
+        # a German ordinal period may stand between: "im XIX. Jahrhundert"
+        gaps = {"", "."} if lexicon.period_ordinals else {""}
+        after = tokens[k + 1] if k + 1 < len(tokens) and tokens[k + 1].gap.strip() in gaps \
+            and tokens[k + 1].gap[-1:].isspace() else None
         if after is not None and after.norm in lexicon.roman_series_nouns:
             return True
-        return upper and before is not None and _title_case(before)
-    if before is None or not _title_case(before) or k < 2 or _first_in_sentence(tokens, k - 1) \
-            or _initial(tokens, k):
-        return False
-    title = tokens[k - 2]
-    if title.norm in lexicon.roman_titles:
-        return True
-    return _title_case(title) and not _first_in_sentence(tokens, k - 2)
+        if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before):
+            return True
+    return before is not None and _title_case(before) and k >= 2 and tokens[k - 2].norm in lexicon.roman_titles \
+        and not (word and _initial(tokens, k))
 
 
 def _initial(tokens: list[Token], k: int) -> bool:
-    """A capital letter before a name is an initial: "General D K Arya"."""
-    after = tokens[k + 1] if k + 1 < len(tokens) and tokens[k + 1].gap.strip(". ") == "" else None
-    return after is not None and (_title_case(after) or len(after.text) == 1 and after.text.isupper())
+    """A capital letter before a name or another capital is an initial:
+    "General D K Arya", "D. K. Arya". A period before a title-case word
+    ends the sentence: "Queen Elizabeth I. Then"."""
+    if k + 1 == len(tokens):
+        return False
+    after, gap = tokens[k + 1], tokens[k + 1].gap
+    if len(after.text) == 1 and after.text.isupper():
+        return gap.strip(". ") == ""
+    return gap.isspace() and _title_case(after)
 
 
 def _in_word(text: str, token: Token) -> bool:
-    """An apostrophe and a letter after the numeral make it part of a word
-    ("Xi'an"), unless they are the possessive "'s" ("Henry VIII's")."""
+    """A digit beside the numeral, or an apostrophe and a letter after it,
+    make it part of a code or a word ("CX5", "2XL", "Xi'an"), unless they
+    are the possessive "'s" ("Henry VIII's")."""
+    if text[token.start - 1:token.start].isdigit() or text[token.end:token.end + 1].isdigit():
+        return True
     after = text[token.end:token.end + 3]
     return after[:1] in "'’" and after[1:2].isalpha() and not (after[1:2] == "s" and not after[2:3].isalpha())
 
@@ -139,11 +142,14 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if not value:
             continue
         sure_form = all(ord(c) in _NUMBER_FORMS for c in token.text)
+        if not sure_form and len(token.text) == 1 and token.text.upper() not in _SINGLE_LETTERS:
+            continue
         word = not sure_form and (len(token.text) == 1 or token.norm in lexicon.roman_words)
         if word and not token.text.isupper():
             continue
+        # a word in a list is no numeral by its place: "World War I, I moved"
         cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form) \
-            or _listed_after(lexicon, tokens, k, cued)
+            or not word and _listed_after(lexicon, tokens, k, cued)
         if cue:
             cued.add(k)
         if word and not cue:

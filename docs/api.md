@@ -219,17 +219,25 @@ A cue makes the numeral a sure ordinal:
 | A series noun before the numeral (`roman_series_noun`) | "século XIX", "World War II", "capítulo xii" |
 | A series noun after a numeral that is no word | "the XXI century" |
 | A title-case word before an upper-case numeral that is no word | "Luís XIV", "Edition XIV" |
-| A cued numeral before it in a list, after a comma or a joiner | "séculos XI, XII e XIII" |
+| A regnal title (`roman_title`), then a name | "King Henry I", "D. João I", "Papst Benedikt XVI" |
+| A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no word | "séculos XI, XII e XIII" |
+
+German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages, so "In MMXXIV we moved" reads a sure 2024.
+
+A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
 
 With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line ("ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
 
-A single letter or a numeral in the language's `roman_word` list ("CD", "MIX") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after a strong cue:
+A single letter is a numeral only as I, V or X. L, C, D and M alone are labels ("Part D", "Vitamin C"), and give no mention.
+
+A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
 
 - a series noun before it: "World War I", "Part I";
-- a regnal title (`roman_title`), then a name: "King Henry I", "D. João I", "Papa Pio X";
-- a name with a title-case word before it, neither of them first in the sentence: "the reign of Queen Elizabeth I".
+- a regnal title, then a name: "King Henry I", "Queen Elizabeth I", "D. João I", "Papa Pio X".
 
-So "Can I get a math fact", "Play CD", "Henry I died" and "tell John I am late" give no mention. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+A name alone, two names and a list are no cue. So "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give no mention for the pronoun. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+
+In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
 
 numtag gives the value and the kind. How a numeral is said, "Luís XIV" as "catorze" or "D. João VI" as "sexto", is a rule of the speaking language and belongs to text2spoken.
 

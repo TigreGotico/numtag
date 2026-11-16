@@ -91,6 +91,10 @@
   "period_ordinal_free_digits": {
    "value": 3,
    "source": "A number of up to three digits before a period and a word reads as an ordinal (\"3. Platz\", \"20. Jahrhundert\"). A longer one, most often a year at a sentence end (\"im Jahr 1905. Danach\"), needs an article or contracted preposition before it (\"zum 1000. Mal\"). This limit is a reading choice measured on German Wikipedia text, not a spelling rule: Duden, Rechtschreibregeln, \"Zahlen und Ziffern\": \"In Ziffern geschriebene Ordnungszahlen erhalten einen Punkt.\" (\"Sonntag, den 15. April\", \"Wir treffen uns am 15.\")"
+  },
+  "roman_title_case_cue": {
+   "value": false,
+   "source": "German writes every noun in title case, so a title-case word before a numeral is no sign of a name (\"Größe XIV\"): Duden, Rechtschreibregeln, Groß- und Kleinschreibung, D 67: \"Substantive schreibt man groß ‹§ 55›.\""
   }
  },
  "words": {
@@ -200,6 +204,7 @@
     "jahrhundert",
     "jahrhunderts",
     "kapitel",
+    "band",
     "teil",
     "akt",
     "szene",
@@ -207,7 +212,7 @@
     "krieg",
     "dynastie"
    ],
-   "source": "A noun that marks a place in a series makes the Roman numeral beside it an ordinal (Wikipedia, \"Roman numerals\": \"Capital or small capital Roman numerals are widely used in Romance languages to denote centuries.\"; \"Book volume and chapter numbers, as well as the several acts within a play.\"; \"World War I and World War II\"). Each noun, from en.wiktionary.org: German \"Jahrhundert\": \"a century (period of 100 years)\"; German \"Kapitel\": \"chapter (section of a text)\"; German \"Teil\": \"part, piece (of a whole, often in relation to living things or an abstract concept)\"; German \"Akt\": \"(theater, literature, film) act\"; German \"Szene\": \"(theater) scene; tableau\"; German \"Konzil\": \"(Christianity) church council, synod (congress of bishops called to decide bindingly on important issues)\"; German \"Krieg\": \"war, warfare\"; German \"Dynastie\": \"dynasty\"."
+   "source": "A noun that marks a place in a series makes the Roman numeral beside it an ordinal (Wikipedia, \"Roman numerals\": \"Capital or small capital Roman numerals are widely used in Romance languages to denote centuries.\"; \"Book volume and chapter numbers, as well as the several acts within a play.\"; \"World War I and World War II\"). Each noun, from en.wiktionary.org: German \"Jahrhundert\": \"a century (period of 100 years)\"; German \"Kapitel\": \"chapter (section of a text)\"; German \"Band\": \"volume, a single book, chiefly when part of a larger set\"; German \"Teil\": \"part, piece (of a whole, often in relation to living things or an abstract concept)\"; German \"Akt\": \"(theater, literature, film) act\"; German \"Szene\": \"(theater) scene; tableau\"; German \"Konzil\": \"(Christianity) church council, synod (congress of bishops called to decide bindingly on important issues)\"; German \"Krieg\": \"war, warfare\"; German \"Dynastie\": \"dynasty\"."
   },
   "roman_title": {
    "value": [
@@ -217,13 +222,18 @@
     "kaiser",
     "kaiserin"
    ],
-   "source": "A regnal title before a name makes a single-letter numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: German \"König\": \"king (monarch, chess, card games)\"; German \"Königin\": \"queen\"; German \"Papst\": \"pope (head of the Roman Catholic Church; title of other religious leaders such as the Coptic Pope)\"; German \"Kaiser\": \"emperor (ruler of certain monarchies; highest monarch)\"; German \"Kaiserin\": \"empress (wife or widow of an emperor)\"."
+   "source": "A regnal title before a name makes the Roman numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: German \"König\": \"king (monarch, chess, card games)\"; German \"Königin\": \"queen\"; German \"Papst\": \"pope (head of the Roman Catholic Church; title of other religious leaders such as the Coptic Pope)\"; German \"Kaiser\": \"emperor (ruler of certain monarchies; highest monarch)\"; German \"Kaiserin\": \"empress (wife or widow of an emperor)\"."
   },
   "roman_word": {
    "value": [
-    "cd"
+    "cd",
+    "xl",
+    "mm",
+    "cm",
+    "ml",
+    "mix"
    ],
-   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org: German \"CD\": \"CD (compact disc)\"."
+   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: German \"CD\": \"CD (compact disc)\"; Translingual \"XL\": \"(chiefly, clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"cm\": \"(metrology) Symbol for centimeter (centimetre), an SI unit of length equal to 10−2 meters (metres).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; German \"mix\": \"singular imperative of mixen\"."
   }
  },
  "entries": [

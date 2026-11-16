@@ -110,6 +110,9 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("O rei D. Carlos I foi morto em Lisboa.", "pt-PT", "I", "1"),
             ("D. João I venceu em Aljubarrota.", "pt-PT", "I", "1"),
             ("O Papa Pio X morreu em 1914.", "pt-PT", "X", "10"),
+            ("Queen Elizabeth I. Then James I.", "en", "I", "1"),
+            ("no século I", "pt-PT", "I", "1"),
+            ("en el siglo V", "es", "V", "5"),
         ]
         for text, lang, numeral, value in rows:
             with self.subTest(text=text):
@@ -126,13 +129,82 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("turn it up, i can't hear", "en"),
             ("the war i fought", "en"),
             ("Pokaż mi swoją myślalkę", "pl"),
+            ("I told Mary Jane I would come", "en"),
+            ("We went to New York I think", "en"),
+            ("Hi. Tell John I am late.", "en"),
+            ("It was Tom. Henry I died.", "en"),
+            ("Give IV fluids", "en"),
+            ("Henry IV of France was king.", "en"),
         ]
         for text, lang in rows:
             with self.subTest(text=text):
                 self.assertEqual(_read(text, lang), [])
 
 
+class TestEnglishSeriesNouns(unittest.TestCase):
+    """In English "I" is a pronoun, so a series noun before a single letter
+    or a listed word counts only in title case."""
+
+    def test_lower_case_series_noun_gives_no_mention(self):
+        for text in ("the part I like", "Turn up the volume I can't hear it", "Which chapter I should read next?",
+                     "What century I was born in", "THE BEST PART I THINK IS THIS"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "en"), [])
+
+    def test_a_numeral_that_is_no_word_keeps_the_lower_case_noun(self):
+        self.assertEqual(_read("in the XXI century", "en"), [("XXI", "21", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("read chapter XII", "en"), [("XII", "12", Kind.ORDINAL, SURE)])
+
+
+class TestSingleLetters(unittest.TestCase):
+    """A single letter is a numeral only as I, V or X."""
+
+    def test_labels_give_no_mention(self):
+        for text, lang in (("Medicare Part D covers drugs.", "en"), ("Fill in Part C of the form.", "en"),
+                           ("Take Vitamin C", "en"), ("o Dia D", "pt-PT"), ("o século L", "pt-PT")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [])
+
+    def test_a_list_does_not_lend_its_cue_to_a_letter(self):
+        self.assertEqual(_read("D. João V e D. Maria I", "pt-PT"),
+                         [("V", "5", Kind.ORDINAL, SURE), ("I", "1", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("After World War I, I moved to Paris.", "en"), [("I", "1", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("Henry VIII and I went to the shops.", "en"), [("VIII", "8", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("World War I, II and III", "en"),
+                         [(n, v, Kind.ORDINAL, SURE) for n, v in (("I", "1"), ("II", "2"), ("III", "3"))])
+
+
+class TestGerman(unittest.TestCase):
+    """German writes every noun in title case, so only series nouns and
+    regnal titles are cues."""
+
+    def test_a_noun_is_no_cue(self):
+        self.assertEqual(_read("Ich brauche Größe XIV.", "de"), [("XIV", "14", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("Ludwig XIV", "de"), [("XIV", "14", Kind.CARDINAL, HOMOGRAPH)])
+
+    def test_series_nouns_and_titles(self):
+        self.assertEqual(_read("im XIX. Jahrhundert", "de"), [("XIX", "19", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("das XIX Jahrhundert", "de"), [("XIX", "19", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("Papst Benedikt XVI", "de"), [("XVI", "16", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("im Zweiten Weltkrieg Teil II", "de"), [("II", "2", Kind.ORDINAL, SURE)])
+
+
 class TestCueRules(unittest.TestCase):
+
+    def test_the_cue_word_stands_right_before_the_numeral(self):
+        self.assertEqual(_read("(Louis) XIV", "en"), [("XIV", "14", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("Henry, VIII", "en"), [("VIII", "8", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("THE BEST XIV", "en"), [("XIV", "14", Kind.CARDINAL, HOMOGRAPH)])
+
+    def test_a_list_item_opens_a_line(self):
+        self.assertEqual(_read("Notas:\nii) a segunda", "pt-PT"), [("ii", "2", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("veja a nota ii) abaixo", "pt-PT"), [])
+
+    def test_a_numeral_beside_digits_is_a_code(self):
+        for text, lang in (("My Mazda CX5 is red", "en"), ("a Yamaha DX7 synth", "en"), ("Quero tamanho 3XL", "pt-PT"),
+                           ("Ich brauche 2XL", "de")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [])
 
     def test_lower_case_needs_a_series_noun_or_a_list_item(self):
         self.assertEqual(_read("no século xix", "pt-PT"), [("xix", "19", Kind.ORDINAL, SURE)])

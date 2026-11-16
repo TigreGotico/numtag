@@ -192,16 +192,22 @@
     "don",
     "doña"
    ],
-   "source": "A regnal title before a name makes a single-letter numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: Spanish \"rey\": \"king\"; Spanish \"reina\": \"queen\"; Spanish \"papa\": \"pope (an honorary title of the Roman Catholic bishop of Rome)\"; Spanish \"emperador\": \"emperor\"; Spanish \"emperatriz\": \"female equivalent of emperador: empress\"; Spanish \"don\": \"a title of respect to a man, prefixed to first names\"."
+   "source": "A regnal title before a name makes the Roman numeral after the name a regnal number (Wikipedia, \"Regnal number\": \"Regnal numbers are ordinal numbers—often written as Roman numerals—used to distinguish among persons with the same regnal name who held the same office, notably kings, queens regnant, popes\"). Each title, from en.wiktionary.org: Spanish \"rey\": \"king\"; Spanish \"reina\": \"queen\"; Spanish \"papa\": \"pope (an honorary title of the Roman Catholic bishop of Rome)\"; Spanish \"emperador\": \"emperor\"; Spanish \"emperatriz\": \"female equivalent of emperador: empress\"; Spanish \"don\": \"a title of respect to a man, prefixed to first names\"; Spanish \"doña\": \"title of respect for a woman comparable to Mrs.\"."
   },
   "roman_word": {
    "value": [
     "cd",
     "cv",
     "cc",
-    "cm"
+    "cm",
+    "xl",
+    "mm",
+    "ml",
+    "vi",
+    "di",
+    "mi"
    ],
-   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org: Spanish \"CD\": \"Borrowed from English CD.\"; Spanish \"CV\": \"initialism of caballo de vapor (“hp (horsepower)”)\"; Spanish \"CC\": \"initialism of corriente continua\"; Spanish \"CM\": \"abbreviation of Campeche: a state of Mexico\"."
+   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: Spanish \"CD\": \"CD (compact disc)\"; Spanish \"CV\": \"initialism of caballo de vapor (“hp (horsepower)”)\"; Spanish \"CC\": \"initialism of corriente continua\"; Spanish \"CM\": \"abbreviation of Campeche: a state of Mexico\"; Translingual \"XL\": \"(chiefly, clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; Spanish \"vi\": \"first-person singular preterite indicative of ver\"; Spanish \"di\": \"first-person singular preterite indicative of dar\"; Spanish \"mi\": \"(before the noun) apocopic form of mío, my\"."
   }
  },
  "entries": [

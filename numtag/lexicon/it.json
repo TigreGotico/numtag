@@ -30,7 +30,8 @@
     "half_unit": {"value": [], "source": "\"e mezzo\" follows the noun in Italian (\"un chilo e mezzo\")."},
     "abbreviation": {"value": [], "source": "No Italian abbreviation is read."},
     "lone_decimal_mark": {"value": [","], "source": "CLDR 48 it number symbols: decimal \",\", so \",5\" is 0.5."},
-    "range_cue": {"value": ["tra"], "source": "Treccani, \"tra\": \"ci incontreremo tra le sei e le otto, o nell’intervallo tra il primo e il secondo atto\"."}
+    "range_cue": {"value": ["tra"], "source": "Treccani, \"tra\": \"ci incontreremo tra le sei e le otto, o nell’intervallo tra il primo e il secondo atto\"."},
+    "roman_word": {"value": ["xl", "mm", "cm", "ml", "di", "ci", "vi", "li", "mi"], "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: Translingual \"XL\": \"(chiefly, clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"cm\": \"(metrology) Symbol for centimeter (centimetre), an SI unit of length equal to 10−2 meters (metres).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; Italian \"di\": \"used to indicate possession, after the thing owned and before the owner; of; ’s\"; Italian \"ci\": \"us\"; Italian \"vi\": \"second-person personal plural object pronoun: you, to you\"; Italian \"li\": \"(accusative) them (masculine)\"; Italian \"mi\": \"clitic accusative of io. me\"."}
   },
   "entries": [
     {"word": "zero", "role": "unit", "value": "0", "source": "CLDR 48 RBNF (ICU 78) it %spellout-numbering: \"0: zero;\", \"1: uno;\", \"2: due;\", \"3: tre;\", \"10: dieci;\", \"11: undici;\", \"17: diciassette;\", \"19: diciannove;\""},

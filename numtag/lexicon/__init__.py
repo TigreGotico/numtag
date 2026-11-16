@@ -316,6 +316,13 @@ class Lexicon:
     # "CD", "MIX": a Roman numeral that is also a word or a common
     # abbreviation, which reads only after a strong cue.
     roman_words: frozenset[str] = frozenset()
+    # "I" is a pronoun: a series noun before a single letter or a numeral
+    # that is also a word counts only in title case ("Part I", not "the
+    # part I like").
+    roman_pronoun_letters: bool = False
+    # A title-case word before a numeral is a cue ("Luís XIV"), unless the
+    # language writes every noun in title case ("Größe XIV").
+    roman_title_case_cue: bool = True
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -355,6 +362,8 @@ DEFAULT_SETTINGS = {
     "period_ordinal_free_digits": 0,
     "unit_ten_one_word": False,
     "ordinal_suffix_marks": ["", "."],
+    "roman_pronoun_letters": False,
+    "roman_title_case_cue": True,
 }
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
@@ -554,6 +563,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         roman_series_nouns=frozenset(words.get("roman_series_noun", ())),
         roman_titles=frozenset(words.get("roman_title", ())),
         roman_words=frozenset(words.get("roman_word", ())),
+        roman_pronoun_letters=settings["roman_pronoun_letters"],
+        roman_title_case_cue=settings["roman_title_case_cue"],
     )
 
 
