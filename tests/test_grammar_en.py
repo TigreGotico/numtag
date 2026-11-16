@@ -254,6 +254,19 @@ class TestCollectivesAndHalves(unittest.TestCase):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(en("two and a half million"), [("two and a half million", "2500000", C)])
 
+    def test_the_conway_guy_names_below_a_centillion_are_scale_words(self):
+        # (rank, short-scale zeros 3 x rank + 3, long-scale zeros 6 x rank)
+        for text, rank in (("quadragintillion", 40), ("unquadragintillion", 41), ("novenquadragintillion", 49),
+                           ("quinquagintillion", 50), ("novenonagintillion", 99), ("uncentillion", 101),
+                           ("trestrigintillion", 33), ("sexagintillion", 60)):
+            with self.subTest(text=text):
+                self.assertEqual(en(f"one {text}"), [(f"one {text}", "1" + "0" * (3 * rank + 3), C)])
+                self.assertEqual(en(f"one {text}", scale=Scale.LONG), [(f"one {text}", "1" + "0" * (6 * rank), C)])
+
+    def test_a_plural_conway_guy_name_takes_a_count(self):
+        # 2 x 10^183
+        self.assertEqual(en("two sexagintillions"), [("two sexagintillions", "2" + "0" * 183, C)])
+
     def test_a_whole_and_a_half(self):
         self.assertEqual(en("two and a half"), [("two and a half", "2.5", F)])
 

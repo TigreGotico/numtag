@@ -23,7 +23,7 @@ Pass `scale="long"` to read an older British text in the long scale. Read [../nu
 | unit | 10 | "zero" to "nine" |
 | ten | 18 | "ten" to "nineteen", "twenty" to "ninety" |
 | hundred multiplier | 2 | "hundred", "hundreds" |
-| scale noun | 46 | "thousand", "million", "billion", up to "centillion" |
+| scale noun | 206 | "thousand", "million", "billion", "vigintillion", "unvigintillion" to "novenonagintillion", "centillion", "uncentillion" |
 | collective | 4 | "dozen", "score" and their plurals |
 | half | 1 | "half" |
 | denominator | 46 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
