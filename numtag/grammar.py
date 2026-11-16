@@ -725,10 +725,11 @@ class Grammar:
             # digits take no part without the joiner ("tiga dua-pertiga" is 11/3)
             if j == last.end and self.tokens[j - 1].is_digits:
                 continue
-            found += [replace(f, value=_sum(run) + f.value) for f in self.fractions(j)]
+            # the whole part before the joiner makes the fraction clear: "três e um quarto"
+            found += [replace(f, value=_sum(run) + f.value, ambiguous=False) for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
             if not self.lex.part_after_joiner_needs_article:
-                found += [Parse(j + 1, _sum(run) + Rational("1", e.value), ambiguous=e.ambiguous)
+                found += [Parse(j + 1, _sum(run) + Rational("1", e.value))
                           for e in self._readings(j, "denominator") if not e.plural]
         return found
 

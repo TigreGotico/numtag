@@ -94,6 +94,15 @@ Such a word gives 0.4 when the number rests on it: the word alone, a fraction wi
 [('Three score and ten', '70', 1.0)]
 ```
 
+A whole number before the joiner and a minus word also make the reading clear.
+
+```python
+>>> read("Faltam três e um quarto.", "pt-PT")
+[('três e um quarto', '3.25', 1.0)]
+>>> read("Temperatuur oli miinus viis kraadi.", "et")
+[('miinus viis', '-5', 1.0)]
+```
+
 The score does not tell which meaning is right. In "Chegou em segundo lugar" the word is the ordinal. In "Segundo o jornal" it means "according to". Both get 0.4, and the caller decides from the context.
 
 ## Readings that a low score marks
