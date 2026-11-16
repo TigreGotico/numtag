@@ -2,7 +2,8 @@ import unittest
 from decimal import Decimal
 from fractions import Fraction
 
-from numtag import Form, Kind, NumberMention, Scale, is_canonical_value
+from numtag import ARTICLE_CONFIDENCE, Form, Kind, NumberMention, Scale, is_canonical_value, tag_numbers
+from numtag import tagger
 from numtag import lexicon
 
 
@@ -72,3 +73,13 @@ class TestNumberMention(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestArticleConfidence(unittest.TestCase):
+    def test_the_package_exports_the_article_score(self):
+        self.assertIs(ARTICLE_CONFIDENCE, tagger.ARTICLE_CONFIDENCE)
+        self.assertEqual(ARTICLE_CONFIDENCE, 0.3)
+
+    def test_an_article_gets_the_exported_score(self):
+        found = tag_numbers("Comprei uma casa e dois carros.", "pt-PT")
+        self.assertEqual([m.confidence == ARTICLE_CONFIDENCE for m in found], [True, False])
