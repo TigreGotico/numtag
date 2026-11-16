@@ -230,6 +230,14 @@ class TestConfidence(unittest.TestCase):
         self.assertEqual(self.confidence("Teimme sen yhdessä.", "fi"), [("yhdessä", True)])
         self.assertEqual(self.confidence("Ona söyledim.", "tr"), [("Ona", True)])
 
+    def test_a_word_with_another_meaning_after_a_sure_count_is_its_noun(self):
+        # "öt hét" is five weeks; in "Egy hét hét napból áll." the second
+        # "hét" follows a noun, so it stays a weak 7
+        self.assertEqual(read("Öt hét múlva jövök vissza.", "hu"), [("Öt", "5", C)])
+        self.assertEqual(read("5 hét", "hu"), [("5", "5", C)])
+        self.assertEqual(self.confidence("Egy hét hét napból áll.", "hu"), [("Egy", False), ("hét", True)])
+        self.assertEqual(self.confidence("öt, hét", "hu"), [("öt", False), ("hét", True)])
+
     def test_the_same_word_inside_a_number_is_sure(self):
         # 100 x 1000 = 100000 in the partitive
         self.assertEqual(self.confidence("sataatuhatta", "fi"), [("sataatuhatta", False)])

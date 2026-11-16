@@ -25,6 +25,7 @@
     "decimal_marker": {"value": ["egész"], "source": "CLDR 48 RBNF hu %spellout-cardinal, ICU 78 rendering of 2.5: \"kettő egész öt\"; Wiktionary, \"egész\" (knowledge/wiki/audits/numtag/lang-ports/uralic-turkic/sources/wikt-hu-egész.wikitext): \"Names the integer part of a decimal fraction, when it is spoken out loud.\""},
     "minus": {"value": ["mínusz", "minusz"], "source": "CLDR 48 RBNF hu %spellout-cardinal, ICU 78 rendering of -5: \"mínusz öt\"; 'minusz' is the spelling without the accent."},
     "minus_idioms": {"value": [], "source": "No Hungarian idiom puts 'mínusz' before a positive number."},
+    "noun_after_count": {"value": ["hét"], "source": "Wiktionary, \"hét\", Hungarian: Numeral \"seven\", Noun \"week\", with the example \"Egy hét hét napból áll.\" (\"One week consists of seven days.\"). Wikipedia, \"Hungarian noun phrase\": \"Therefore, the plural is not used with numerals or quantity expressions.\" A count before \"hét\" counts the singular noun: \"öt hét\" is five weeks, and no Hungarian number puts \"hét\" after another count."},
     "article_one": {"value": ["egy"], "source": "Wiktionary, \"egy\" (knowledge/wiki/audits/numtag/lang-ports/uralic-turkic/sources/wikt-hu-egy.wikitext): \"{{senseid|hu|a}} [[a]], [[an]] {{gloss|indefinite article}}\"; \"egy csepp a tengerben|a drop in the ocean\""},
     "of": {"value": [], "source": "Hungarian has no word that multiplies a scale word."},
     "fraction_of": {"value": [], "source": "Hungarian puts no word between a fraction and a collective."},

@@ -123,6 +123,9 @@ class Entry:
     # A word with a common meaning that ends a phrase, as an adjective after
     # its noun ("un manteau neuf"): weak when no word follows it.
     weak_at_end: bool = False
+    # An ordinal that is never the last word of a longer ordinal: French
+    # "premier" and "second" ("vingt et unième", "vingt-deuxième").
+    standalone: bool = False
 
 
 @dataclass(frozen=True)
@@ -227,6 +230,9 @@ class Lexicon:
     # "parte" in "a décima parte": a noun that makes the ordinal before it a
     # fraction.
     part_nouns: frozenset[str]
+    # "hét" in "öt hét" (five weeks): a number word that, right after a sure
+    # cardinal, is the noun that the cardinal counts.
+    nouns_after_count: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
     # The letters I and İ are two letters with the lower-case forms ı and i.
     dotted_i: bool = False
@@ -334,7 +340,7 @@ DEFAULT_SETTINGS = {
 }
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
-                 "negative_particle": []}
+                 "negative_particle": [], "noun_after_count": []}
 
 
 def _read(lang: str) -> dict:
@@ -418,7 +424,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             invariant=spec.get("invariant", False), teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
-                            weak_at_end=spec.get("weak_at_end", False), **facts))
+                            weak_at_end=spec.get("weak_at_end", False),
+                            standalone=spec.get("standalone", False), **facts))
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:
@@ -493,6 +500,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         article_needs_noun=frozenset(words["article_needs_noun"]),
         partitives=frozenset(words["partitive"]),
         part_nouns=frozenset(words["part_noun"]),
+        nouns_after_count=frozenset(words["noun_after_count"]),
         ordinal_suffixes=suffixes,
         dotted_i=settings.get("dotted_i", False),
         fraction_agreement=settings.get("fraction_agreement", True),
