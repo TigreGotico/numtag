@@ -524,6 +524,11 @@ class Grammar:
             # milhões e 500 mil" is one number, "2 milhões e 500" two
             end, value, decimal = read
             found.append(count(end, value, needs_multiplier=not first, decimal=decimal))
+            # "2 and a half million": digits before the half, as words are
+            if not decimal and not value.is_zero():
+                whole = _piece(Role.COUNT, i, end, value)
+                found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
+                          for half, e in self._halves_after(end)]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
