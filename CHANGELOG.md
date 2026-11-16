@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.7a1](https://github.com/TigreGotico/numtag/tree/0.10.7a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.6a2...0.10.7a1)
+
+**Merged pull requests:**
+
+- fix: number words beside a homograph make it sure [\#46](https://github.com/TigreGotico/numtag/pull/46) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.6a2](https://github.com/TigreGotico/numtag/tree/0.10.6a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.6a1...0.10.6a2)
