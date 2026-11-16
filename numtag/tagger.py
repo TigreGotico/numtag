@@ -102,7 +102,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         # the whole word: a span never starts inside a word
         first = i - 1 if run[i].attached else i
         span = (run[first].start, run[best.end - 1].end)
-        reason = _reason(grammar, lexicon, run, start, best)
+        reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text)
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), _kind(lexicon, run[start:best.end], best),
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
@@ -218,8 +218,10 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
     return lexicon.scale if dependent else None
 
 
-def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> Reason | None:
-    """Why the number is not sure, or None for a sure number."""
+def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse,
+            *, alone: bool = False) -> Reason | None:
+    """Why the number is not sure, or None for a sure number. ``alone``: the
+    word is the whole text."""
     # The article stands next to its noun: before it ("um livro"), or after
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
@@ -237,6 +239,10 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
         return Reason.ARTICLE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral
     if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
+        return Reason.ARTICLE
+    # an article that is the whole text, as a line of a vocabulary file
+    # ("un", "eine"), has the same two readings and no noun to decide them
+    if alone and parse.end == start + 1 and run[start].norm in lexicon.articles:
         return Reason.ARTICLE
     # one word whose every reading has a common meaning that is no number
     entries = () if run[start].is_digits else lexicon.readings.get(run[start].norm, ())
