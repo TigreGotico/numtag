@@ -4,6 +4,8 @@ Each reader does what the consumer does with the mentions. The comment
 names the consumer code it follows.
 """
 import json
+import re
+import sys
 import unittest
 from fractions import Fraction
 from pathlib import Path
@@ -69,9 +71,21 @@ def utterance_normalizer(text: str, lang: str) -> list[list[str]]:
             and not m.reasons & {Reason.ARTICLE, Reason.HOMOGRAPH}]
 
 
+_WESTERN_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹", "0123456789" * 2)
+_UNDERSCORE = re.compile(r"(?<=[^\W\d_])_(?=[^\W\d_])")
+_ALIASES = {"no": "nb", "azj": "az", "ekk": "et", "pes": "fa"}
+
+
 def number_parser(text: str, lang: str) -> list[list[str]]:
-    # ovos-number-parser feat/route-numtag numtag_readers.py mentions(): every number but the ordinals
-    return [[m.text, m.value] for m in tag_numbers(text, lang) if m.kind is not Kind.ORDINAL]
+    # ovos-number-parser feat/route-numtag numtag_readers.py mentions(): the text with other
+    # digits and an underscore between letters replaced, the language alias resolved, every
+    # number but the ordinals, and no whole part longer than str() writes
+    prepared = _UNDERSCORE.sub(" ", text.translate(_WESTERN_DIGITS))
+    base = lang.lower().replace("_", "-").split("-")[0]
+    found = tag_numbers(prepared, _ALIASES.get(base, lang))
+    limit = sys.get_int_max_str_digits()
+    return [[m.text, m.value] for m in found if m.kind is not Kind.ORDINAL
+            and not 0 < limit < len(m.value.lstrip("-").split(".")[0].split("/")[0])]
 
 
 READERS = {"ovos-skill-count": count, "ovos-skill-volume": volume, "ovos-skill-number-facts": number_facts,

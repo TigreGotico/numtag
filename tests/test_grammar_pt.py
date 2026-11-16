@@ -526,8 +526,8 @@ class TestJoinerBeforeTheLastGroup(unittest.TestCase):
                                  [("um milhão e duzentos mil e trezentos", "1200300", C)])
 
     def test_a_comma_links_only_a_smaller_class(self):
-        # Gulbenkian, in Ciberdúvidas 8981: "os milhões e os milhares" are
-        # separated by a comma, the larger class first
+        # Ciberdúvidas 8981: every example puts the larger class before the
+        # comma ("noventa e dois milhões, quinhentos e vinte e um mil")
         self.assertEqual(pt("2 mil, milhões de pessoas"), [("2 mil", "2000", C)])
         self.assertEqual(pt("dois mil, milhões de pessoas"), [("dois mil", "2000", C)])
         self.assertEqual(pt("três mil, mil e quinhentos"), [("três mil", "3000", C), ("mil e quinhentos", "1500", C)])
