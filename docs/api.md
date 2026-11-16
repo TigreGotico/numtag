@@ -188,6 +188,7 @@ The kind follows the words, and the form of the value follows the arithmetic. So
 | `Form.WORDS` | `"words"` | "dois milhões" |
 | `Form.DIGITS` | `"digits"` | "2000000", "1.000.000", "21st" |
 | `Form.MIXED` | `"mixed"` | "2 milhões" |
+| `Form.ROMAN` | `"roman"` | "XIV", "Ⅻ" |
 
 A minus word before digits does not change the form.
 
@@ -195,6 +196,42 @@ A minus word before digits does not change the form.
 >>> [(m.text, m.value, m.form.value) for m in tag_numbers("menos 5 e 2 milhões", "pt-PT")]
 [('menos 5', '-5', 'digits'), ('2 milhões', '2000000', 'mixed')]
 ```
+
+## Roman numerals
+
+A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention, and the numeral is one count part. numtag reads a numeral only where no number word or digit string stands, so pt "MIL" and fr "DIX" keep their word reading.
+
+```python
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Luís XIV morreu em 1715.", "pt-PT")]
+[('XIV', '14', 'ordinal'), ('1715', '1715', 'cardinal')]
+>>> [(m.text, m.value, m.kind.value, m.confidence) for m in tag_numbers("see page XXI", "en")]
+[('XXI', '21', 'cardinal', 0.4)]
+>>> tag_numbers("Can I play the CD?", "en")
+[]
+```
+
+The numeral must be well formed: 1 to 3999 in the standard subtractive form, all in upper case or all in lower case. "IIII", "IC" and "Xiv" are no numeral. The Unicode Roman numeral characters U+2160 to U+2188 are always numerals, and their value comes from the Unicode Standard.
+
+A cue makes the numeral a sure ordinal:
+
+| Cue | Example |
+|---|---|
+| A series noun before the numeral (`roman_series_noun`) | "século XIX", "World War II", "capítulo xii" |
+| A series noun after a numeral that is no word | "the XXI century" |
+| A title-case word before an upper-case numeral that is no word | "Luís XIV", "Edition XIV" |
+| A cued numeral before it in a list, after a comma or a joiner | "séculos XI, XII e XIII" |
+
+With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line ("ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
+
+A single letter or a numeral in the language's `roman_word` list ("CD", "MIX") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after a strong cue:
+
+- a series noun before it: "World War I", "Part I";
+- a regnal title (`roman_title`), then a name: "King Henry I", "D. João I", "Papa Pio X";
+- a name with a title-case word before it, neither of them first in the sentence: "the reign of Queen Elizabeth I".
+
+So "Can I get a math fact", "Play CD", "Henry I died" and "tell John I am late" give no mention. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+
+numtag gives the value and the kind. How a numeral is said, "Luís XIV" as "catorze" or "D. João VI" as "sexto", is a rule of the speaking language and belongs to text2spoken.
 
 ## Reason
 
