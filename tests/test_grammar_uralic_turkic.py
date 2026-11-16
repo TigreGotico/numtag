@@ -219,6 +219,20 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("tízezred", "hu"), [])
         self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
 
+    def test_a_count_after_a_range_hyphen_is_no_glued_multiplier(self):
+        # hu.wikipedia, "Volfrám": a filament one or two hundredths of a
+        # millimetre thick; AkH 12 §293 glues the count to the part word
+        # before a noun ("háromnegyed óra"), so "kétszázad" is 2/100 = 0.02
+        sentence = "Az izzólámpákban használt spirált egy-kétszázad milliméter vastagságú szálból készítik."
+        self.assertEqual(read(sentence, "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+        self.assertEqual(read("egy–kétszázad milliméter", "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+
+    def test_a_whole_numerator_stays_out_of_parts_in_a_case(self):
+        # after "tam" the part word comes in the locative and its count after
+        # it ("iki tam onda beş (2,5)"); here the count is "iki min beş yüz",
+        # 2500, so 2000/10^6 = 0.002 drops the 500
+        self.assertNotIn("0.002", [m.value for m in tag_numbers("sıfır tam milyonda iki min beş yüz", "az")])
+
     def test_a_part_word_after_a_count_stays_singular(self):
         # 2/3; 3/4 = 0.75
         self.assertEqual(read("két harmad", "hu"), [("két harmad", "2/3", F)])

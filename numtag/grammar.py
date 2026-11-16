@@ -464,8 +464,11 @@ class Grammar:
         """(end, value, ambiguous) of a denominator of a hundred or more glued
         to the count before it in one word: the count multiplies it, as it
         multiplies the scale word ("tízezred" is a ten-thousandth, as
-        "tízezer" is ten thousand; "kétszázad" is a two-hundredth)."""
-        if i >= len(self.tokens) or self.tokens[i].glued:
+        "tízezer" is ten thousand; "kétszázad" is a two-hundredth). After a
+        hyphen the count is the second member of a range: "egy-kétszázad" is
+        one or two hundredths."""
+        if not self.lex.glued_denominators or i >= len(self.tokens) or self.tokens[i].glued \
+                or self.tokens[i].gap.strip() in ("-", "–", "—"):
             return []
         found = []
         for end, count in self.small(i, nonzero=True):
@@ -502,8 +505,9 @@ class Grammar:
         in a case that names them, the parts come first: "onda beş" after
         "tam" is .5."""
         found = []
+        small = set(self.small(i, nonzero=True))
         # a numerator of a thousand or more is a whole cardinal: "kétezer-ötszáz tízezred" is .2500
-        numerators = set(self.small(i, nonzero=True)) | {
+        numerators = small | {
             (run[-1].end, _whole(_sum(run))) for run in self.cardinals(i)
             if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"}
         for end, numerator in sorted(numerators):
@@ -516,8 +520,8 @@ class Grammar:
                     found.append((stop, numerator.rjust(places, "0")))
             places = len(numerator) - 1
             last = self.tokens[end - 1]
-            if places and numerator == digits.shift("1", places) and not last.is_digits and any(
-                    e.fraction_case for e in self.lex.readings.get(last.norm, ())):
+            if places and (end, numerator) in small and numerator == digits.shift("1", places) and not last.is_digits \
+                    and any(e.fraction_case for e in self.lex.readings.get(last.norm, ())):
                 found += [(stop, count.rjust(places, "0")) for stop, count in self.small(end, nonzero=True)
                           if len(count) <= places]
         return found
