@@ -235,8 +235,10 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # segunda curiosidad". A hyphenated noun gives no token, and the word
     # beside it notes it: "um guarda-chuva", "liburu-denda bat".
     noun = start - 1 if lexicon.article_after_noun else parse.end
+    # "o número um": after a noun that names a number, the word is the number
+    named = start > 0 and run[start - 1].norm in lexicon.number_nouns
     hyphenated_noun = run[start].noun_before if lexicon.article_after_noun else run[start].noun_after
-    lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles
+    lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles and not named
                     and (hyphenated_noun
                          or 0 <= noun < len(run)
                          and (run[noun].is_digits or not grammar.starts_number(noun)
@@ -245,7 +247,7 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     if lone_article:
         return Reason.ARTICLE
     # "Er lud mich ein.": a lone article that ends the clause is no numeral
-    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun:
+    if parse.end == start + 1 == len(run) and run[start].norm in lexicon.article_needs_noun and not named:
         return Reason.ARTICLE
     # an article that is the whole text, as a line of a vocabulary file
     # ("un", "eine"), has the same two readings and no noun to decide them

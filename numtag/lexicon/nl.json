@@ -116,6 +116,7 @@
    "value": [],
    "source": "\"min of meer\" puts no number after \"min\"."
   },
+  "number_noun": {"value": ["nummer"], "source": "Wiktionary, \"nummer\", Dutch noun: \"number used as a means of identification\", \"number (used to show the rank of something in a list or sequence)\". The word after \"nummer\" names the number, so \"nummer een\" is one, not the article."},
   "article_one": {
    "value": [
     "een"

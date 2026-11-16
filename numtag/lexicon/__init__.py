@@ -201,6 +201,9 @@ class Lexicon:
     # "ни" in "ни одного": a particle that makes the word for one after it
     # a negative pronoun, "not a single".
     negative_particles: frozenset[str]
+    # "número" in "o número um": a noun that names a number, so the article
+    # word after it is the number.
+    number_nouns: frozenset[str]
     articles: frozenset[str]
     of_words: frozenset[str]
     denominator_particles: frozenset[str]
@@ -340,7 +343,8 @@ DEFAULT_SETTINGS = {
 }
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
-                 "negative_particle": [], "noun_after_count": []}
+                 "negative_particle": [], "noun_after_count": [],
+                 "number_noun": []}
 
 
 def _read(lang: str) -> dict:
@@ -485,6 +489,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         minus_words=frozenset(words["minus"]),
         minus_idioms=tuple(tuple(p.split()) for p in words["minus_idioms"]),
         negative_particles=frozenset(words["negative_particle"]),
+        number_nouns=frozenset(words["number_noun"]),
         percent_phrases=tuple(tuple(fold(w) for w in p.split()) for p in words["percent_phrase"]),
         articles=frozenset(words["article_one"]),
         of_words=frozenset(words["of"]),
