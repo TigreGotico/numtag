@@ -20,6 +20,7 @@
     "decimal_marker": {"value": ["virgule"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgule >%spellout-cardinal-masculine>;\"; TLFi, VIRGULE: \"[Dans la lecture d'un nombre; indique la présence de ce signe] [...] 494 virgule 39 par jour\"."},
     "minus": {"value": ["moins"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"-x: moins >%spellout-cardinal-masculine>;\""},
     "minus_idioms": {"value": ["au moins", "du moins", "pour le moins", "plus ou moins", "en moins"], "source": "\"au moins deux\" is \"at least two\", not -2: in these idioms \"moins\" is an adverb."},
+    "percent_phrase": {"value": ["pour cent"], "source": "TLFi, \"cent\": \"Pour cent unités. Abrév. % (cf. pourcentage). Augmentation de six pour cent; taux d'intérêt de trois pour cent par an.\" So \"cent\" after \"pour\" names the percent sign, not the number 100."},
     "article_one": {"value": ["un", "une"], "source": "\"un\" and \"une\" are also the indefinite article; alone before a noun they are a weak number (\"j'ai acheté une maison\")."},
     "of": {"value": ["de", "d"], "source": "\"un million de personnes\", \"deux milliards d'euros\": \"de\" after a scale noun; a plural collective after it multiplies the count (\"deux millions de douzaines\")."},
     "fraction_of": {"value": ["de", "d"], "source": "\"un tiers de douzaine\": a fraction of a collective noun multiplies it, as in pt-PT \"um terço de dúzia\"."},

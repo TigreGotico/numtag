@@ -21,6 +21,7 @@
     "decimal_marker": {"value": ["virgola"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgola >%spellout-cardinal-masculine>;\""},
     "minus": {"value": ["meno"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"-x: meno >%spellout-cardinal-masculine>;\""},
     "minus_idioms": {"value": ["più o meno", "per lo meno", "in meno"], "source": "\"più o meno due\" is \"about two\", not -2: in these idioms \"meno\" is an adverb."},
+    "percent_phrase": {"value": ["per cento"], "source": "Treccani, \"cento\" 3: \"espressioni come il tre per cento, il cinquanta per cento, ecc. (scritto 3%, 50%, ecc.) indicano frazioni il cui denominatore è 100, cioè valori percentuali\". So \"cento\" after \"per\" names the percent sign, not the number 100."},
     "article_one": {"value": ["un", "uno", "una"], "source": "\"un\", \"uno\" and \"una\" are also the indefinite article; alone before a noun they are a weak number."},
     "of": {"value": ["di"], "source": "\"un milione di persone\": \"di\" after a scale noun; a plural collective after it multiplies the count."},
     "fraction_of": {"value": ["di"], "source": "\"un terzo di dozzina\": a fraction of a collective noun multiplies it."},

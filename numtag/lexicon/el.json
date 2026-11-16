@@ -99,6 +99,7 @@
       "value": [],
       "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."
     },
+    "percent_phrase": {"value": ["τοις εκατό", "τοις εκατόν", "τα εκατό"], "source": "Wiktionary, \"τοις εκατό\", Greek noun: \"percent, per cent\", \"δύο τοις εκατό (two percent)\"; alternative forms \"τοις εκατόν\" and \"τα εκατό\". So \"εκατό\" after \"τοις\" names the percent sign, not the number 100."},
     "of": {
       "value": [],
       "source": "CLDR RBNF, common/rbnf/el.xml (unicode-org/cldr, cldrVersion 50): \"x.x: << κόμμα >>;\", \"-x: μείον >>;\", \"2000: <%spellout-cardinal-feminine< χιλιάδες[ >>];\". No rule in the CLDR file uses such a word."

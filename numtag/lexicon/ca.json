@@ -84,6 +84,7 @@
    ],
    "source": "DIEC2 \"menys\": \"[LC] més o menys V. més\", \"[LC] ni més ni menys V. més\", \"a menys que loc. conj. Llevat que\"; DIEC2 \"almenys\" adv.: \"Eren almenys quinze\". The split spelling \"al menys\" comes from ovos-number-parser numbers_ca.py NEGATIVE_IDIOMS (a lead: \"al menys\", \"a menys que\", \"més o menys\", \"ni més ni menys\")."
   },
+  "percent_phrase": {"value": ["per cent"], "source": "DIEC2, \"per\" 2, prep.: \"Indica: [...] b) Proporció. El deu per cent dels guanys.\" DIEC2, \"percentatge\": \"Tant per cent.\" So \"cent\" after \"per\" names the percent sign, not the number 100."},
   "article_one": {
    "value": [
     "un",

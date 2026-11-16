@@ -82,6 +82,7 @@
    ],
    "source": "en.wiktionary, Occitan \"mens\", Derived terms: \"almens\", \"mai o mens\", \"pasmens\"; \"almens\" and \"pasmens\" are one word, so only \"mai o mens\" ends at \"mens\"."
   },
+  "percent_phrase": {"value": ["per cent"], "source": "Wiktionary (oc), \"per cent\": \"Partida sus cent, simbòl : %.\" So \"cent\" after \"per\" names the percent sign, not the number 100."},
   "article_one": {
    "value": [
     "un",

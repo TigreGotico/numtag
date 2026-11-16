@@ -187,6 +187,9 @@ class Lexicon:
     decimal_markers: frozenset[str]
     minus_words: frozenset[str]
     minus_idioms: tuple[tuple[str, ...], ...]
+    # "per cent" in "vint per cent": a phrase whose last word is a number
+    # word but names the percent sign after a number.
+    percent_phrases: tuple[tuple[str, ...], ...]
     articles: frozenset[str]
     of_words: frozenset[str]
     denominator_particles: frozenset[str]
@@ -322,7 +325,7 @@ DEFAULT_SETTINGS = {
     "ordinal_suffix_marks": ["", "."],
 }
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
-                 "part_noun": []}
+                 "part_noun": [], "percent_phrase": []}
 
 
 def _read(lang: str) -> dict:
@@ -465,6 +468,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         decimal_markers=frozenset(words["decimal_marker"]),
         minus_words=frozenset(words["minus"]),
         minus_idioms=tuple(tuple(p.split()) for p in words["minus_idioms"]),
+        percent_phrases=tuple(tuple(fold(w) for w in p.split()) for p in words["percent_phrase"]),
         articles=frozenset(words["article_one"]),
         of_words=frozenset(words["of"]),
         denominator_particles=frozenset(words["denominator_particle"]),

@@ -457,6 +457,21 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" means "for", and the hundred counts.
+
+```python
+>>> read("Posa el volum al cinquanta per cent.", "ca")
+[('cinquanta', '50')]
+>>> read("Ho he venut per cent euros.", "ca")
+[('cent', '100')]
+>>> read("Augmentation de six pour cent.", "fr-FR")
+[('six', '6')]
+```
+
+> DIEC2, "per" 2, prep.: "Indica: [...] b) Proporció. El deu per cent dels guanys."
+
+> TLFi, "cent": "Pour cent unités. Abrév. % (cf. pourcentage). Augmentation de six pour cent; taux d'intérêt de trois pour cent par an."
+
 "menos" before a number makes it negative, except in idioms such as "pelo menos" and "mais ou menos". "meios" is a noun in "meios de pagamento", so it gives no fraction.
 
 ```python

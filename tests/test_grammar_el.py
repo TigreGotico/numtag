@@ -13,6 +13,11 @@ def el(text: str) -> list[tuple[str, str, str]]:
 
 
 class TestGreek(unittest.TestCase):
+    def test_ekato_after_tois_and_a_number_is_the_percent_sign(self):
+        for text in ("δύο τοις εκατό", "δύο τοις εκατόν", "δύο τα εκατό", "ΔΥΟ ΤΟΙΣ ΕΚΑΤΟ"):
+            with self.subTest(text=text):
+                self.assertEqual([v for _, v, _ in read(text, "el")], ["2"])
+
     def test_tens_and_units_take_no_joiner(self):
         # 20 + 3 = 23; 1000 + 900 + 80 + 4 = 1984
         self.assertEqual(el("είκοσι τρία"), [("είκοσι τρία", "23", C)])

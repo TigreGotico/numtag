@@ -82,6 +82,7 @@ def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> b
 def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMention]:
     grammar = Grammar(lexicon, run)
     mentions = []
+    number_end = -1  # the run index after the last number
     i = 0
     while i < len(run):
         negative = _is_minus(grammar, lexicon, run, i)
@@ -92,6 +93,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         best = max(parses, key=lambda p: p.end)
+        if not negative and _percent_word(lexicon, run, start, best, number_end):
+            i += 1
+            continue
         value = -best.value if negative else best.value
         # a number glued to a joiner prefix it does not use ("ושבעה") keeps
         # the whole word: a span never starts inside a word
@@ -103,8 +107,25 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
             number_scale=_number_scale(lexicon, run[start:best.end]),
             reasons=frozenset() if reason is None else frozenset({reason})))
-        i = best.end
+        i = number_end = best.end
     return mentions
+
+
+def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, number_end: int) -> bool:
+    """True when the one word at ``start`` ends a percent phrase after a
+    number ("vint per cent", "20 per cent"), after a slot that holds a
+    number ("{brightness} per cent de brillantor"), or alone ("per cent", a
+    line of a vocabulary file). "Ho he venut per cent." (for a hundred) and
+    "per cent vint" (for 120) keep their number."""
+    if parse.end != start + 1 or run[start].is_digits:
+        return False
+    for phrase in lexicon.percent_phrases:
+        head = start - len(phrase) + 1
+        if head >= 0 and tuple(t.norm for t in run[head:start + 1]) == phrase \
+                and (number_end == head
+                     or head == 0 and (run[0].gap.rstrip().endswith("}") or parse.end == len(run))):
+            return True
+    return False
 
 
 def _is_minus(grammar: Grammar, lexicon: Lexicon, run: list[Token], i: int) -> bool:

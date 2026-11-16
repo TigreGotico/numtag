@@ -55,6 +55,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | `decimal_marker` | The words that start the fraction part | "vírgula", "ponto" | "point" |
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
+| `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
 | `article_one` | Articles that also mean one | "um", "uma" | "a", "an" |
 | `of` | The word after which a plural noun multiplies a scale noun | "de" | empty |
 | `fraction_of` | The word between a fraction and a collective | "de" | "of" |
