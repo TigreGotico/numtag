@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.13a3](https://github.com/TigreGotico/numtag/tree/0.10.13a3) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a2...0.10.13a3)
+
+**Merged pull requests:**
+
+- ci: run each consumer's own suite against numtag dev [\#54](https://github.com/TigreGotico/numtag/pull/54) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.13a2](https://github.com/TigreGotico/numtag/tree/0.10.13a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a1...0.10.13a2)
