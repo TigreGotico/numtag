@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.11a1](https://github.com/TigreGotico/numtag/tree/0.10.11a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.10a1...0.10.11a1)
+
+**Merged pull requests:**
+
+- fix: a percent phrase with no number before it is weak [\#50](https://github.com/TigreGotico/numtag/pull/50) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.10a1](https://github.com/TigreGotico/numtag/tree/0.10.10a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.9a1...0.10.10a1)
