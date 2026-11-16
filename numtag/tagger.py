@@ -240,8 +240,11 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # segunda curiosidad". A hyphenated noun gives no token, and the word
     # beside it notes it: "um guarda-chuva", "liburu-denda bat".
     noun = start - 1 if lexicon.article_after_noun else parse.end
-    # "o número um": after a noun that names a number, the word is the number
-    named = start > 0 and run[start - 1].norm in lexicon.number_nouns
+    # The word is the number after a noun that names a number ("o número
+    # um"), and before a percent phrase, where it counts the hundredths ("un
+    # pour cent")
+    named = (start > 0 and run[start - 1].norm in lexicon.number_nouns
+             or any(tuple(t.norm for t in run[parse.end:parse.end + len(p)]) == p for p in lexicon.percent_phrases))
     hyphenated_noun = run[start].noun_before if lexicon.article_after_noun else run[start].noun_after
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles and not named
                     and (hyphenated_noun
