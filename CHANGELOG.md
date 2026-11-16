@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.5a1](https://github.com/TigreGotico/numtag/tree/0.12.5a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.4a1...0.12.5a1)
+
+**Merged pull requests:**
+
+- fix: a plural scale noun takes no count of one or a half in words [\#65](https://github.com/TigreGotico/numtag/pull/65) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.4a1](https://github.com/TigreGotico/numtag/tree/0.12.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.3a1...0.12.4a1)
