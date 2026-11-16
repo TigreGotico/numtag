@@ -46,6 +46,16 @@ def mark1(text: str, lang: str) -> str | None:
     return mentions[0].value if mentions else None
 
 
+def _json_number(value: str) -> int | float:
+    number = Fraction(value)
+    return int(number) if number.denominator == 1 else float(number)
+
+
+def typed_slots(text: str, lang: str) -> list[list]:
+    # ovos-typed-slots-transformer __init__.py _numbers: every number, its span, surface and JSON number
+    return [[*m.char_span, m.text, _json_number(m.value)] for m in _kept(text, lang)]
+
+
 def simple_ner(text: str, lang: str) -> list[list[str]]:
     # simple_NER simple_NER/annotators/numbers_ner.py NumberNER: lower case, short scale, written numbers only
     return [[m.text, m.value] for m in tag_numbers(text.lower(), lang, scale=Scale.SHORT)
@@ -53,7 +63,8 @@ def simple_ner(text: str, lang: str) -> list[list[str]]:
 
 
 READERS = {"ovos-skill-count": count, "ovos-skill-volume": volume, "ovos-skill-number-facts": number_facts,
-           "ovos-skill-days-in-history": days_in_history, "ovos-skill-mark1-ctrl": mark1, "simple_NER": simple_ner}
+           "ovos-skill-days-in-history": days_in_history, "ovos-skill-mark1-ctrl": mark1, "simple_NER": simple_ner,
+           "ovos-typed-slots-transformer": typed_slots}
 
 
 class TestConsumerReadings(unittest.TestCase):
