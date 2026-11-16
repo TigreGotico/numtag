@@ -9,7 +9,7 @@ numtag reads French, Italian, Romanian, Basque and Indonesian. French has three 
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
 | Italian | every `it` tag | `numtag/lexicon/it.json` | long | 187 | 185 |
 | Romanian | every `ro` tag | `numtag/lexicon/ro.json` | long | 157 | 157 |
-| Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 159 | 159 |
+| Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 162 | 162 |
 | Indonesian | every `id` tag | `numtag/lexicon/id.json` | short | 175 | 174 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -63,10 +63,25 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('mila', '1000')]
 >>> read('Prezioa 3,5 eurokoa da.', 'eu')
 [('3,5', '3.5')]
+>>> read('Seigarrena hartu du.', 'eu')
+[('Seigarrena', '6')]
 >>> read('Harga tiket seribu rupiah.', 'id')
 [('seribu', '1000')]
 >>> read('Panjangnya 12,5 m.', 'id')
 [('12,5', '12.5')]
+```
+
+## Basque ordinals with the article
+
+A Basque ordinal takes the article -a with no space, as any other word does. numtag reads "lehena" as 1 and "hirugarrena" as 3. Euskaltzaindia rule 203 gives the form as a pronoun:
+
+> Izenordain ere izan daitezke: seigarrena hartu du.
+
+```python
+>>> read('Lasterketan hirugarrena izan zen.', 'eu')
+[('hirugarrena', '3')]
+>>> read('Maiatzaren Lehena kalean bizi da.', 'eu')
+[('Lehena', '1')]
 ```
 
 ## The scale
