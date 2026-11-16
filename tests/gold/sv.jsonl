@@ -126,7 +126,7 @@
 {"text": "I dag är den tjugoförsta dagen.", "mentions": [{"start": 13, "end": 24, "value": "21", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det var den hundrade matchen.", "mentions": [{"start": 12, "end": 20, "value": "100", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "För tusende gången säger jag det.", "mentions": [{"start": 4, "end": 11, "value": "1000", "kind": "ordinal"}], "source": "arithmetic"}
-{"text": "Den andra platsen gick till Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal"}], "source": "arithmetic"}
+{"text": "Den andra platsen gick till Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "Under artonde århundradet växte staden.", "mentions": [{"start": 6, "end": 13, "value": "18", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Den sjunde symfonin är lång.", "mentions": [{"start": 4, "end": 10, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det är det fyrtioandra försöket.", "mentions": [{"start": 11, "end": 22, "value": "42", "kind": "ordinal"}], "source": "arithmetic"}

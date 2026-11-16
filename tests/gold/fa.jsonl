@@ -5,12 +5,12 @@
 {"text": "سه گربه دیدم.", "mentions": [{"start": 0, "end": 2, "value": "3", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"3: سه\"."}
 {"text": "چهار فصل داریم.", "mentions": [{"start": 0, "end": 4, "value": "4", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"4: چهار\"."}
 {"text": "پنج دقیقه صبر کردم.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"5: پنج\"."}
-{"text": "ساعت شش بیدار شدم.", "mentions": [{"start": 5, "end": 7, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"6: شش\"."}
+{"text": "ساعت شش بیدار شدم.", "mentions": [{"start": 5, "end": 7, "value": "6", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "CLDR RBNF fa: \"6: شش\". Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "هفته هفت روز دارد.", "mentions": [{"start": 5, "end": 8, "value": "7", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"7: هفت\"."}
 {"text": "هشت ساعت کار کردم.", "mentions": [{"start": 0, "end": 3, "value": "8", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"8: هشت\"."}
-{"text": "نه سیاره.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"9: نه\"."}
+{"text": "نه سیاره.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "CLDR RBNF fa: \"9: نه\". Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "نه، نمی‌خواهم.", "mentions": [{"start": 0, "end": 2, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "\"نه\" here is \"no\"; the word is also nine (CLDR RBNF fa: \"9: نه;\"), so a lone نه is a low-confidence mention."}
-{"text": "ده انگشت دارم.", "mentions": [{"start": 0, "end": 2, "value": "10", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"10: ده\"."}
+{"text": "ده انگشت دارم.", "mentions": [{"start": 0, "end": 2, "value": "10", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "CLDR RBNF fa: \"10: ده\". Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "یازده بازیکن.", "mentions": [{"start": 0, "end": 5, "value": "11", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"11: یازده\"."}
 {"text": "سال دوازده ماه دارد.", "mentions": [{"start": 4, "end": 10, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"12: دوازده\"."}
 {"text": "سیزده ساله است.", "mentions": [{"start": 0, "end": 5, "value": "13", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"13: سیزده\"."}
@@ -97,7 +97,7 @@
 {"text": "دو سوم شهر.", "mentions": [{"start": 0, "end": 6, "value": "2/3", "kind": "fraction"}], "source": "by hand: the ordinal does not change with the numerator."}
 {"text": "سه چهارم راه.", "mentions": [{"start": 0, "end": 8, "value": "0.75", "kind": "fraction"}], "source": "arithmetic: 3/4."}
 {"text": "یک پنجم حقوق.", "mentions": [{"start": 0, "end": 7, "value": "0.2", "kind": "fraction"}], "source": "arithmetic: 1/5."}
-{"text": "هفت دهم جمعیت.", "mentions": [{"start": 0, "end": 7, "value": "0.7", "kind": "fraction"}], "source": "arithmetic: 7/10."}
+{"text": "هفت دهم جمعیت.", "mentions": [{"start": 0, "end": 7, "value": "0.7", "kind": "fraction", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic: 7/10. Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "سه ممیز پنج درجه.", "mentions": [{"start": 0, "end": 11, "value": "3.5", "kind": "decimal"}], "source": "CLDR RBNF fa: \"x.x: << ممیز >>\"."}
 {"text": "دو ممیز هفت درصد.", "mentions": [{"start": 0, "end": 11, "value": "2.7", "kind": "decimal"}], "source": "CLDR RBNF fa: \"x.x: << ممیز >>\"."}
 {"text": "منفی پنج درجه.", "mentions": [{"start": 0, "end": 8, "value": "-5", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"-x: منفی >>\"."}
@@ -113,7 +113,7 @@
 {"text": "۳ میلیون تومان.", "mentions": [{"start": 0, "end": 8, "value": "3000000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6."}
 {"text": "دو آمدند و سه رفتند.", "mentions": [{"start": 0, "end": 2, "value": "2", "kind": "cardinal"}, {"start": 11, "end": 13, "value": "3", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "پنج سیب و هفت پرتقال.", "mentions": [{"start": 0, "end": 3, "value": "5", "kind": "cardinal"}, {"start": 10, "end": 13, "value": "7", "kind": "cardinal"}], "source": "arithmetic."}
-{"text": "بین ده و بیست نفر.", "mentions": [{"start": 4, "end": 6, "value": "10", "kind": "cardinal"}, {"start": 9, "end": 13, "value": "20", "kind": "cardinal"}], "source": "arithmetic; \"بین\" opens a range."}
+{"text": "بین ده و بیست نفر.", "mentions": [{"start": 4, "end": 6, "value": "10", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}, {"start": 9, "end": 13, "value": "20", "kind": "cardinal"}], "source": "arithmetic; \"بین\" opens a range. Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "بیست، سی و چهل.", "mentions": [{"start": 0, "end": 4, "value": "20", "kind": "cardinal"}, {"start": 6, "end": 8, "value": "30", "kind": "cardinal"}, {"start": 11, "end": 14, "value": "40", "kind": "cardinal"}], "source": "arithmetic; the comma splits the numbers."}
 {"text": "پانزده خواست و دوازده گرفت.", "mentions": [{"start": 0, "end": 6, "value": "15", "kind": "cardinal"}, {"start": 15, "end": 21, "value": "12", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "بین هزار و دو هزار تومان.", "mentions": [{"start": 4, "end": 8, "value": "1000", "kind": "cardinal"}, {"start": 11, "end": 18, "value": "2000", "kind": "cardinal"}], "source": "arithmetic; \"بین\" opens a range."}
@@ -127,7 +127,7 @@
 {"text": "هفتاد از صد.", "mentions": [{"start": 0, "end": 5, "value": "70", "kind": "cardinal"}, {"start": 9, "end": 11, "value": "100", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "صد و دو کتاب.", "mentions": [{"start": 0, "end": 7, "value": "102", "kind": "cardinal"}], "source": "arithmetic: 100 + 2."}
 {"text": "سه میلیون و پانصد هزار تومان.", "mentions": [{"start": 0, "end": 22, "value": "3500000", "kind": "cardinal"}], "source": "arithmetic: 3 x 10^6 + 500 x 1000."}
-{"text": "يک و دو.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal"}, {"start": 5, "end": 7, "value": "2", "kind": "cardinal"}], "source": "Arabic yeh in \"يک\" reads as Persian ی."}
+{"text": "يک و دو.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}, {"start": 5, "end": 7, "value": "2", "kind": "cardinal"}], "source": "Arabic yeh in \"يک\" reads as Persian ی. Confidence: numtag docs/confidence-and-homographs.md, \"Before a word such as \\\"ou\\\", the article gets the low score, also when a number comes next.\""}
 {"text": "دوازده ماه.", "mentions": [{"start": 0, "end": 6, "value": "12", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"12: دوازده\"."}
 {"text": "شصت دقیقه.", "mentions": [{"start": 0, "end": 3, "value": "60", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"60: شصت\"."}
 {"text": "نود ثانیه.", "mentions": [{"start": 0, "end": 3, "value": "90", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"90: نود\"."}
@@ -146,7 +146,7 @@
 {"text": "بیست و چهار ساعت.", "mentions": [{"start": 0, "end": 11, "value": "24", "kind": "cardinal"}], "source": "arithmetic: 20 + 4."}
 {"text": "هزار و یک شب.", "mentions": [{"start": 0, "end": 9, "value": "1001", "kind": "cardinal"}], "source": "arithmetic: 1000 + 1."}
 {"text": "یک روز خوب.", "mentions": [{"start": 0, "end": 2, "value": "1", "kind": "cardinal", "low_confidence": true, "reasons": ["article"]}], "source": "\"یک\" before a noun also marks it indefinite."}
-{"text": "شش ماه.", "mentions": [{"start": 0, "end": 2, "value": "6", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"6: شش\"."}
+{"text": "شش ماه.", "mentions": [{"start": 0, "end": 2, "value": "6", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "CLDR RBNF fa: \"6: شش\". Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "ششصد تومان.", "mentions": [{"start": 0, "end": 4, "value": "600", "kind": "cardinal"}], "source": "CLDR RBNF fa: \"600: ششصد\"."}
 {"text": "او گفت نه و رفت.", "mentions": [{"start": 7, "end": 9, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "\"نه\" here is \"no\"; alone it reads as nine at low confidence."}
 {"text": "به من یادآوری کنید که اجاره را هر سه شنبه در ساعت 10 30 پرداخت کنید.", "mentions": [{"start": 50, "end": 52, "value": "10", "kind": "cardinal"}, {"start": 53, "end": 55, "value": "30", "kind": "cardinal"}], "source": "ovos-skill-alerts locale/fa-IR/intent/create_reminder.intent. Wiktionary, \"سه‌شنبه\": \"Tuesday\", from سه and شنبه, \"lit. three (days after) Saturday\". \"هر سه شنبه\" is every Tuesday, so سه is no number."}

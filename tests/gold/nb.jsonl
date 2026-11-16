@@ -125,7 +125,7 @@
 {"text": "I dag er den tjueførste dagen.", "mentions": [{"start": 13, "end": 23, "value": "21", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det var den hundrede kampen.", "mentions": [{"start": 12, "end": 20, "value": "100", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "For tusende gang sier jeg det.", "mentions": [{"start": 4, "end": 11, "value": "1000", "kind": "ordinal"}], "source": "arithmetic"}
-{"text": "Den andre plassen gikk til Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal"}], "source": "arithmetic"}
+{"text": "Den andre plassen gikk til Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "I det nittende århundre vokste byen.", "mentions": [{"start": 6, "end": 14, "value": "19", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Den sjuende symfonien er lang.", "mentions": [{"start": 4, "end": 11, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det er det toogførtiende forsøket.", "mentions": [{"start": 11, "end": 24, "value": "42", "kind": "ordinal"}], "source": "Store norske leksikon, \"den nye tellemåten\": 23 went from \"tre og tjue\" to \"tjuetre\"; both orders are in use"}

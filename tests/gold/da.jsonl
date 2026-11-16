@@ -128,7 +128,7 @@
 {"text": "I dag er den enogtyvende dag.", "mentions": [{"start": 13, "end": 24, "value": "21", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det er hans halvtredsindstyvende fødselsdag.", "mentions": [{"start": 12, "end": 32, "value": "50", "kind": "ordinal"}], "source": "Wikipedia, \"Danish language\", Numerals"}
 {"text": "Det er den tooghalvtredsende udgave.", "mentions": [{"start": 11, "end": 28, "value": "52", "kind": "ordinal"}], "source": "Wikipedia, \"Danish language\", Numerals: \"52nd is either tooghalvtredsende or tooghalvtredsindstyvende\""}
-{"text": "Den anden plads gik til Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal"}], "source": "arithmetic"}
+{"text": "Den anden plads gik til Anna.", "mentions": [{"start": 4, "end": 9, "value": "2", "kind": "ordinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "arithmetic Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "I det nittende århundrede voksede byen.", "mentions": [{"start": 6, "end": 14, "value": "19", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Den syvende symfoni er lang.", "mentions": [{"start": 4, "end": 11, "value": "7", "kind": "ordinal"}], "source": "arithmetic"}
 {"text": "Det er det toogfyrretyvende forsøg.", "mentions": [{"start": 11, "end": 27, "value": "42", "kind": "ordinal"}], "source": "arithmetic"}

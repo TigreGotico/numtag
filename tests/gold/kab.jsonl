@@ -21,7 +21,7 @@
 {"text": "Ad d-awiɣ setta.", "mentions": [{"start": 10, "end": 15, "value": "6", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"setta\" is 6."}
 {"text": "Ad d-awiɣ sebɛa.", "mentions": [{"start": 10, "end": 15, "value": "7", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"sebɛa\" is 7."}
 {"text": "Ad d-awiɣ tmanya.", "mentions": [{"start": 10, "end": 16, "value": "8", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"tmanya\" is 8."}
-{"text": "Ad d-awiɣ tesɛa.", "mentions": [{"start": 10, "end": 15, "value": "9", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"tesɛa\" is 9."}
+{"text": "Ad d-awiɣ tesɛa.", "mentions": [{"start": 10, "end": 15, "value": "9", "kind": "cardinal", "low_confidence": true, "reasons": ["homograph"]}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"tesɛa\" is 9. Confidence: numtag docs/confidence-and-homographs.md, \"Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective.\" The lexicon marks the word as ambiguous."}
 {"text": "Ad d-awiɣ ɛecṛa.", "mentions": [{"start": 10, "end": 15, "value": "10", "kind": "cardinal"}], "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"ɛecṛa\" is 10."}
 {"text": "Ad d-awiɣ yiwen.", "mentions": [{"start": 10, "end": 15, "value": "1", "kind": "cardinal"}], "source": "en.wikipedia Kabyle grammar (by hand: yiwen one; no noun follows."}
 {"text": "Ad d-awiɣ yiwet.", "mentions": [{"start": 10, "end": 15, "value": "1", "kind": "cardinal"}], "source": "en.wikipedia Kabyle grammar (by hand: yiwet, feminine one; no noun follows."}
