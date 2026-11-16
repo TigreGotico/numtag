@@ -6,6 +6,7 @@ A numeral reads only where no number word or digit string does, so pt
 """
 import re
 import unicodedata
+from bisect import bisect_left
 
 from numtag.lexicon import Lexicon
 from numtag.mention import Kind, Reason
@@ -121,13 +122,18 @@ def _listed_after(lexicon: Lexicon, tokens: list[Token], k: int, cued: set[int])
 
 def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
                    taken: list[tuple[int, int]]) -> list[tuple[Token, str, Kind, Reason | None]]:
-    """The Roman numerals among ``tokens`` outside the spans in ``taken``:
-    each token with its value, its kind and why it is not sure."""
+    """The Roman numerals among ``tokens`` outside the spans in ``taken``,
+    which are in reading order and do not overlap: each token with its
+    value, its kind and why it is not sure."""
+    ends = [end for _, end in taken]
     numerals = []
     cued: set[int] = set()
     for k, token in enumerate(tokens):
-        if token.is_digits or token.glued or k + 1 < len(tokens) and tokens[k + 1].glued or _in_word(text, token) \
-                or any(start < token.end and token.start < end for start, end in taken):
+        if token.is_digits or token.glued or k + 1 < len(tokens) and tokens[k + 1].glued or _in_word(text, token):
+            continue
+        # the first span that ends after the token starts is the only one that may cover it
+        first = bisect_left(ends, token.start + 1)
+        if first < len(taken) and taken[first][0] < token.end:
             continue
         value = roman_value(token.text)
         if not value:
