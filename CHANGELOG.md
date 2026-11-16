@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.2a1](https://github.com/TigreGotico/numtag/tree/0.12.2a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.1a1...0.12.2a1)
+
+**Merged pull requests:**
+
+- fix\(hu\): "hat" as a verb, "egybe" and "egytől egyig" are no sure number [\#61](https://github.com/TigreGotico/numtag/pull/61) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.1a1](https://github.com/TigreGotico/numtag/tree/0.12.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.0a1...0.12.1a1)
