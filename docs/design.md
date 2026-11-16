@@ -20,7 +20,7 @@ numtag has one reader. It turns a text into tokens, splits the tokens into runs,
 
 The tokenizer (`numtag/tokenize.py`) splits the text into words and digit strings. Each token keeps its character offsets and the text between it and the token before it. Punctuation is never a token. It shows only in these gaps.
 
-A digit string keeps its group and decimal marks ("1.000.000,5"). A minus sign belongs to it only at the start of a word, so "-5" is negative and "5-7" is two numbers. These tokens are dropped:
+A digit string keeps its group and decimal marks ("1.000.000,5"). A minus sign belongs to it only at the start of a word, so "-5" is negative and "5-7" is two numbers. The sign negates the whole number that the digit string starts, as a minus word does: "-2 milhões e meio" is -2500000. A signed digit string never stands inside a number, so "2 milhões e -500 mil" is two numbers. These tokens are dropped:
 
 | Case | Example | Reason |
 |---|---|---|
