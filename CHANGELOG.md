@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.6a1](https://github.com/TigreGotico/numtag/tree/0.7.6a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.5a1...0.7.6a1)
+
+**Merged pull requests:**
+
+- fix: an article before a number in digits gets the article score [\#24](https://github.com/TigreGotico/numtag/pull/24) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.7.5a1](https://github.com/TigreGotico/numtag/tree/0.7.5a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.4a1...0.7.5a1)
