@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.4a1](https://github.com/TigreGotico/numtag/tree/0.8.4a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.3a1...0.8.4a1)
+
+**Merged pull requests:**
+
+- fix\(en\): a collective after "thousand" counts the whole cardinal [\#32](https://github.com/TigreGotico/numtag/pull/32) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.8.3a1](https://github.com/TigreGotico/numtag/tree/0.8.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.2a1...0.8.3a1)
