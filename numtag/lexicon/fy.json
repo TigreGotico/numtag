@@ -682,9 +682,16 @@
   },
   {
    "word": "kwart",
-   "role": "value_word",
-   "value": "1/4",
-   "source": "Wikipedia (fy), \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"It beslacht ûngefear in kwart fan it totale oerflak fan Sweden\"; Wiktionary (fy), \"fjouwer\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wiktionary-fy-fjouwer.wikitext): \"{{relat|kwart|fearn}}\", \"[[getal]] grutter as [[trije]] en lytser as [[fiif]]; 4.\""
+   "role": "denominator",
+   "value": "4",
+   "source": "Wikipedia (fy), \"Alarik II\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Alarik_II.wikitext): \"trije kwart fan [[Spanje]] (útsein de noardwesthoeke)\"; \"Maastricht\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Maastricht.wikitext): \"trije kwart fan de befolking\"; \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"ûngefear in kwart fan it totale oerflak fan Sweden\""
+  },
+  {
+   "word": "kwart",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Wikipedia (fy), \"Alarik II\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Alarik_II.wikitext): \"trije kwart fan [[Spanje]] (útsein de noardwesthoeke)\"; \"Maastricht\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Maastricht.wikitext): \"trije kwart fan de befolking\"; \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"ûngefear in kwart fan it totale oerflak fan Sweden\""
   }
  ]
 }

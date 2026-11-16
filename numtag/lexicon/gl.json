@@ -1725,14 +1725,14 @@
    "role": "ordinal",
    "value": "60",
    "gender": "masculine",
-   "source": "Wikipedia (gl), \"Kosmos 611\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_611.wikitext): \"Kosmos 611 foi o sexaxésimo sétimo membro da serie de satélites DS-P1-Yu\"; \"Kosmos 633\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_633.wikitext): \"Kosmos 633 foi o sexaxésimo oitavo membro\", titled \"DS-P1-Yu Nº 68\": the ordinal is 60 and the unit ordinal adds 7 and 8; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\""
   },
   {
    "word": "sexaxésima",
    "role": "ordinal",
    "value": "60",
    "gender": "feminine",
-   "source": "Wikipedia (gl), \"Kosmos 611\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_611.wikitext): \"Kosmos 611 foi o sexaxésimo sétimo membro da serie de satélites DS-P1-Yu\"; \"Kosmos 633\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_633.wikitext): \"Kosmos 633 foi o sexaxésimo oitavo membro\", titled \"DS-P1-Yu Nº 68\": the ordinal is 60 and the unit ordinal adds 7 and 8; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\""
   },
   {
    "word": "sexaxésimos",
@@ -1740,7 +1740,7 @@
    "value": "60",
    "gender": "masculine",
    "plural": true,
-   "source": "Wikipedia (gl), \"Kosmos 611\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_611.wikitext): \"Kosmos 611 foi o sexaxésimo sétimo membro da serie de satélites DS-P1-Yu\"; \"Kosmos 633\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_633.wikitext): \"Kosmos 633 foi o sexaxésimo oitavo membro\", titled \"DS-P1-Yu Nº 68\": the ordinal is 60 and the unit ordinal adds 7 and 8; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\"; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
   },
   {
    "word": "sexaxésimas",
@@ -1748,7 +1748,7 @@
    "value": "60",
    "gender": "feminine",
    "plural": true,
-   "source": "Wikipedia (gl), \"Kosmos 611\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_611.wikitext): \"Kosmos 611 foi o sexaxésimo sétimo membro da serie de satélites DS-P1-Yu\"; \"Kosmos 633\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-gl-Kosmos_633.wikitext): \"Kosmos 633 foi o sexaxésimo oitavo membro\", titled \"DS-P1-Yu Nº 68\": the ordinal is 60 and the unit ordinal adds 7 and 8; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\"; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
   },
   {
    "word": "septuaxésimo",

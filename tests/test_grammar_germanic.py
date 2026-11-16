@@ -227,8 +227,16 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         self.assertEqual(read("trekvart", "sv"), [("trekvart", "0.75", F)])
 
     def test_kwart_is_a_quarter(self):
-        # 1 / 4 = 0.25; the article "in" is no part of the fraction
-        self.assertEqual(read("in kwart", "fy"), [("kwart", "0.25", F)])
+        # 1 / 4 = 0.25, the article is in the span as in "in fjirde"
+        self.assertEqual(read("in kwart", "fy"), [("in kwart", "0.25", F)])
+        # 3 / 4 = 0.75; 2 + 1 / 4 = 2.25
+        self.assertEqual(read("trije kwart fan de befolking", "fy"), [("trije kwart", "0.75", F)])
+        self.assertEqual(read("twa en in kwart", "fy"), [("twa en in kwart", "2.25", F)])
+
+    def test_kwart_alone_is_no_sure_number(self):
+        # a quarter past the hour holds the hour 3 only; "kwart" of "kwart finales" is no number
+        self.assertEqual(read("kwart oer trije", "fy"), [("trije", "3", C)])
+        self.assertEqual(read("de kwart finales", "fy"), [])
 
 
 class TestScales(unittest.TestCase):

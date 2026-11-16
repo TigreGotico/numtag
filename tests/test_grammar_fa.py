@@ -59,8 +59,9 @@ class TestPersian(unittest.TestCase):
         self.assertEqual(sure("نه هزار", "fa"), [("نه هزار", "9000", 1.0)])
         self.assertEqual(sure("هشت", "fa"), [("هشت", "8", 1.0)])
 
-    def test_the_colloquial_seventeen(self):
-        # "هیفده" is the colloquial "هفده": 17
+    def test_hifdah_is_seventeen(self):
+        # "هیفده" is "هفده": 17; 100 + 17 = 117
+        self.assertEqual(read("صد و هیفده", "fa"), [("صد و هیفده", "117", "cardinal")])
         self.assertEqual(read("هیفده", "fa"), [("هیفده", "17", "cardinal")])
 
 
