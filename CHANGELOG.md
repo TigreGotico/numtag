@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.6a1](https://github.com/TigreGotico/numtag/tree/0.10.6a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.5a1...0.10.6a1)
+
+**Merged pull requests:**
+
+- fix\(fr\): one after "le nombre" is the number [\#44](https://github.com/TigreGotico/numtag/pull/44) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.5a1](https://github.com/TigreGotico/numtag/tree/0.10.5a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.4a1...0.10.5a1)
