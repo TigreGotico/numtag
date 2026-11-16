@@ -101,7 +101,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 
 ## Known misreadings
 
-The European Portuguese gold corpus has 462 rows, and numtag reads 456 of them right. The Brazilian corpus has 460 rows, and numtag reads 454 right. The same six sentences fail in both.
+The European Portuguese gold corpus has 474 rows, and numtag reads 468 of them right. The Brazilian corpus has 466 rows, and numtag reads 460 right. The same six sentences fail in both.
 
 | Sentence | Gold | numtag |
 |---|---|---|
@@ -118,6 +118,15 @@ The European Portuguese gold corpus has 462 rows, and numtag reads 456 of them r
 ```
 
 Five of the six get the low score 0.4, so a caller that drops weak mentions loses the wrong reading. Read [../confidence-and-homographs.md](../confidence-and-homographs.md).
+
+"a menos" before a number is read as the comparing idiom, so a minus sign after it is lost. In CETEMPúblico, 33 of 60 hits of "a menos" and a number compare ("o que corresponde a menos 2243 empresas") and 16 have the sign. A temperature unit after the number marks only 2 of the 16 sign hits.
+
+```python
+>>> read("o que corresponde a menos 2243 empresas")
+[('2243', '2243')]
+>>> read("o termómetro desceu já a menos 15 graus")
+[('15', '15')]
+```
 
 ---
 [← Rulings](../rulings.md) · [Home](../index.md) · [English →](en.md)
