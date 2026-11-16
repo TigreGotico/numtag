@@ -8,6 +8,12 @@ def words(text: str, suffixes=frozenset()) -> list[tuple[str, int, int]]:
 
 
 class TestTokenize(unittest.TestCase):
+    def test_a_word_before_an_apostrophe_and_a_word_notes_the_noun(self):
+        tokens = tokenize("di un'ora", number_words=frozenset({"un"}))
+        self.assertEqual([(t.text, t.noun_after) for t in tokens], [("di", False), ("un", True), ("ora", False)])
+        tokens = tokenize("un' 3", number_words=frozenset({"un"}))
+        self.assertEqual([(t.text, t.noun_after) for t in tokens], [("un", False), ("3", False)])
+
     def test_a_word_next_to_a_dropped_compound_notes_the_noun(self):
         number_words = frozenset({"um", "dois", "bat"})
         tokens = tokenize("levar um guarda-chuva e dois", number_words=number_words)
