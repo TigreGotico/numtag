@@ -86,6 +86,11 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     count_end = -1  # the run index after the last sure cardinal
     i = 0
     while i < len(run):
+        name = next((n for n in lexicon.number_names if tuple(t.norm for t in run[i:i + len(n)]) == n), None)
+        if name:
+            # "سه شنبه" is Tuesday: a name holds no number
+            i += len(name)
+            continue
         negative = _is_minus(grammar, lexicon, run, i)
         start = i + 1 if negative else i
         parses = [p for p in grammar.numbers(start) if _whole_words(grammar, run, start, p)]

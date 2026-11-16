@@ -12,6 +12,16 @@ def fa(text: str) -> list[tuple[str, str, str]]:
 
 
 class TestPersian(unittest.TestCase):
+    def test_a_weekday_name_written_with_a_space_holds_no_number(self):
+        # "سه شنبه" is Tuesday, "پنج شنبه" Thursday: no 3 or 5
+        for name in ("یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه"):
+            with self.subTest(name=name):
+                self.assertEqual(fa(name), [])
+        self.assertEqual(fa("هر سه شنبه در ساعت 10 30"), [("10", "10", C), ("30", "30", C)])
+        self.assertEqual(fa("سه شنبه ساعت پنج"), [("پنج", "5", C)])
+        # a number before another noun keeps its value
+        self.assertEqual(fa("سه کتاب"), [("سه", "3", C)])
+
     def test_every_part_takes_the_joiner(self):
         # 20 + 5 = 25; 1000 + 900 + 80 + 4 = 1984
         self.assertEqual(fa("بیست و پنج"), [("بیست و پنج", "25", C)])
