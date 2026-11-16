@@ -36,6 +36,15 @@ class TestCompoundWords(unittest.TestCase):
         self.assertEqual(read("kaksi \u00ad viisi", "fi"), [("kaksi", "2", C), ("viisi", "5", C)])
 
 
+class TestColloquialUnits(unittest.TestCase):
+    def test_the_colloquial_six_and_seven(self):
+        # "kuus" is "kuusi" (6) and "seittemän" is "seitsemän" (7)
+        self.assertEqual(read("kuus", "fi"), [("kuus", "6", C)])
+        self.assertEqual(read("seittemän", "fi"), [("seittemän", "7", C)])
+        # 6 + 7 as two numbers
+        self.assertEqual(read("kuus ja seittemän", "fi"), [("kuus", "6", C), ("seittemän", "7", C)])
+
+
 class TestGroupsAfterAScale(unittest.TestCase):
     def test_a_bare_hundred_or_ten_after_thousands_joins_the_number(self):
         # 10^6 + 2 x 1000 + 100 + 40 + 5 = 1002145

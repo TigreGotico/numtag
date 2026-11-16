@@ -283,6 +283,12 @@
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"17: هفده;\"."
     },
     {
+      "word": "هیفده",
+      "role": "ten",
+      "value": "17",
+      "source": "fa.wikipedia, \"قلعه بیت الردیده\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fa-dezh_bayt_alradidah.wikitext): \"تاریخ بنای «قلعه بیت الردیده» به قرن هیفده هم میلادی بر می‌گردد\"; the same text gives the builder's dates \"(۱۶۴۹م -۱۶۷۹م)\", the 17th century CE, so \"هیفده\" reads 17."
+    },
+    {
       "word": "هجده",
       "role": "ten",
       "value": "18",

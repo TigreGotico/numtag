@@ -226,6 +226,10 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         self.assertEqual(read("dreiviertel", "de"), [("dreiviertel", "0.75", F)])
         self.assertEqual(read("trekvart", "sv"), [("trekvart", "0.75", F)])
 
+    def test_kwart_is_a_quarter(self):
+        # 1 / 4 = 0.25; the article "in" is no part of the fraction
+        self.assertEqual(read("in kwart", "fy"), [("kwart", "0.25", F)])
+
 
 class TestScales(unittest.TestCase):
     def test_milliarde_is_ten_to_the_ninth_in_both_scales(self):

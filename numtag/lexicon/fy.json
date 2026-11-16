@@ -679,6 +679,12 @@
    "role": "ordinal_scale",
    "value": "tûzen",
    "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "kwart",
+   "role": "value_word",
+   "value": "1/4",
+   "source": "Wikipedia (fy), \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"It beslacht ûngefear in kwart fan it totale oerflak fan Sweden\"; Wiktionary (fy), \"fjouwer\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wiktionary-fy-fjouwer.wikitext): \"{{relat|kwart|fearn}}\", \"[[getal]] grutter as [[trije]] en lytser as [[fiif]]; 4.\""
   }
  ]
 }
