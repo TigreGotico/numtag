@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.12a1](https://github.com/TigreGotico/numtag/tree/0.10.12a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.11a1...0.10.12a1)
+
+**Merged pull requests:**
+
+- fix\(ru, uk, pl, cs\): "one and the same" holds no number [\#51](https://github.com/TigreGotico/numtag/pull/51) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.11a1](https://github.com/TigreGotico/numtag/tree/0.10.11a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.10a1...0.10.11a1)
