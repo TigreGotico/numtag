@@ -159,3 +159,4 @@
 {"text": "Zajął drugie miejsce.", "mentions": [{"start": 6, "end": 12, "value": "2", "kind": "ordinal"}], "source": "CLDR RBNF pl %spellout-ordinal-neuter: \"drugie\""}
 {"text": "Połowa uczniów zdała egzamin.", "mentions": [{"start": 0, "end": 6, "value": "0.5", "kind": "fraction"}], "source": "Wiktionary (en), \"połowa\": half, one of two roughly equal parts"}
 {"text": "Miasto ma połowę miliona mieszkańców.", "mentions": [{"start": 10, "end": 24, "value": "500000", "kind": "cardinal"}], "source": "Wiktionary (en), \"połowa\": half; arithmetic: 1/2 x 10^6"}
+{"text": "Nie było ani jednego ciasteczka.", "mentions": [], "source": "Wiktionary, \"ani\", Polish particle: \"nary, not a, not even one\", \"Nie było ani jednego ciasteczka.\" (There wasn't even a single cookie.) After \"ani\" the word for one counts nothing."}

@@ -183,6 +183,17 @@ class TestCompoundEdges(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_one_after_a_negative_particle_counts_nothing(self):
+        # ru "ни одного", pl "ani jednego": not a single, no count of one
+        self.assertEqual(read("я не пропустил ни одного таймера", "ru"), [])
+        self.assertEqual(read("ни один будильник", "ru"), [])
+        self.assertEqual(read("Nie było ani jednego ciasteczka.", "pl"), [])
+        self.assertEqual(read("ani jedna", "pl"), [])
+        # the number after it still counts, and so does one with no particle
+        self.assertEqual(read("ни один из ста", "ru"), [("ста", "100", "cardinal")])
+        self.assertEqual(read("ни двух", "ru"), [("двух", "2", "cardinal")])
+        self.assertEqual(read("один будильник", "ru"), [("один", "1", "cardinal")])
+
     def confidences(self, text: str, lang: str) -> list[tuple[str, str, float]]:
         return [(m.text, m.value, m.confidence) for m in tag_numbers(text, lang)]
 

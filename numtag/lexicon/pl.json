@@ -24,6 +24,7 @@
     "decimal_marker": {"value": ["przecinek"], "source": "CLDR RBNF pl: \"x.x: <%spellout-cardinal-masculine< przecinek >%%spellout-fraction>;\"."},
     "minus": {"value": ["minus"], "source": "CLDR RBNF pl: \"-x: minus >>;\"."},
     "minus_idioms": {"value": [], "source": "This lexicon lists no Polish idiom that puts \"minus\" before a positive number."},
+    "negative_particle": {"value": ["ani"], "source": "Wiktionary, \"ani\", Polish particle: \"nary, not a, not even one\", \"Nie było ani jednego ciasteczka.\" (There wasn't even a single cookie.) After \"ani\" the word for one counts nothing."},
     "article_one": {"value": [], "source": "Polish has no article; \"jeden\" is a numeral."},
     "of": {"value": [], "source": "Polish marks the counted noun by case, with no \"of\" word."},
     "fraction_of": {"value": [], "source": "Polish marks the counted noun by case, with no \"of\" word."},

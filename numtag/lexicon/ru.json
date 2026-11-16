@@ -25,6 +25,7 @@
     "decimal_marker": {"value": ["целых", "целая", "целой", "запятая"], "source": "CLDR RBNF ru: \"x.x: [<< $(cardinal,one{целая}other{целых})$ ]>%%fractions-feminine>;\" and the genitive \"целой\". Wiktionary (en), \"запятая\": \"decimal point\"."},
     "minus": {"value": ["минус"], "source": "CLDR RBNF ru: \"-x: минус >>;\"."},
     "minus_idioms": {"value": [], "source": "This lexicon lists no Russian idiom that puts \"минус\" before a positive number."},
+    "negative_particle": {"value": ["ни"], "source": "Wiktionary, \"ни\", Russian particle: \"not a\", \"ни один из ста\" (not one in a hundred). After \"ни\" the word for one is a negative pronoun, \"not a single\", and counts nothing."},
     "article_one": {"value": [], "source": "Russian has no article; \"один\" is a numeral."},
     "of": {"value": [], "source": "Russian marks the counted noun by case, with no \"of\" word."},
     "fraction_of": {"value": [], "source": "Russian marks the counted noun by case, with no \"of\" word."},
