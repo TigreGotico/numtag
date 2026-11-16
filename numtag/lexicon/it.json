@@ -23,7 +23,7 @@
     "minus_idioms": {"value": ["più o meno", "per lo meno", "in meno"], "source": "\"più o meno due\" is \"about two\", not -2: in these idioms \"meno\" is an adverb."},
     "percent_phrase": {"value": ["per cento"], "source": "Treccani, \"cento\" 3: \"espressioni come il tre per cento, il cinquanta per cento, ecc. (scritto 3%, 50%, ecc.) indicano frazioni il cui denominatore è 100, cioè valori percentuali\". So \"cento\" after \"per\" names the percent sign, not the number 100."},
     "article_one": {"value": ["un", "uno", "una"], "source": "\"un\", \"uno\" and \"una\" are also the indefinite article; alone before a noun they are a weak number."},
-    "of": {"value": ["di"], "source": "\"un milione di persone\": \"di\" after a scale noun; a plural collective after it multiplies the count."},
+    "of": {"value": ["di", "del", "dello", "della", "dell", "dei", "degli", "delle"], "source": "\"un milione di persone\": \"di\" after a scale noun; a plural collective after it multiplies the count. en.wiktionary (Italian) \"del\": \"contraction of di + il\"; \"dello\": \"di lo\"; \"della\": \"di la\"; \"dei\": \"di i\"; \"degli\": \"di gli\"; \"delle\": \"di le\"; \"dell'\" before a vowel."},
     "fraction_of": {"value": ["di"], "source": "\"un terzo di dozzina\": a fraction of a collective noun multiplies it."},
     "denominator_particle": {"value": [], "source": "Italian has no particle like pt \"avos\"."},
     "class_noun": {"value": [], "source": "No Italian class noun is read."},

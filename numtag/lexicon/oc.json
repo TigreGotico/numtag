@@ -93,9 +93,11 @@
   "of": {
    "value": [
     "de",
-    "d"
+    "d",
+    "del",
+    "dels"
    ],
-   "source": "fr.wiktionary (Occitan) \"cent\": \"De cent parts una\"; \"de\" elides to \"d'\"."
+   "source": "fr.wiktionary (Occitan) \"cent\": \"De cent parts una\"; \"de\" elides to \"d'\". en.wiktionary (Occitan) \"del\": \"contraction of de + lo\"; \"dels\": \"contraction of de + los\"."
   },
   "fraction_of": {
    "value": [

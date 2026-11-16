@@ -95,9 +95,11 @@
   "of": {
    "value": [
     "de",
-    "d"
+    "d",
+    "del",
+    "dels"
    ],
-   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; \"un milió de persones\"; \"de\" elides to \"d'\" before a vowel."
+   "source": "en.wiktionary (Catalan; refs IEC DIEC2, GDLC): \"milió: million 10^6\", \"miliard: billion 10^9\", \"bilió: trillion 10^12\", \"trilió (10^18)\"; \"un milió de persones\"; \"de\" elides to \"d'\" before a vowel. DIEC2 \"del\": \"[pl. dels] Contracció de la preposició de i l'article el.\""
   },
   "fraction_of": {
    "value": [
