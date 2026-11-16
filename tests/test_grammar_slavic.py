@@ -43,6 +43,14 @@ class TestScales(unittest.TestCase):
                          [("dvanaest trilijuna tristo četrdeset pet", "12000000000000000345", C)])
         self.assertEqual(read("jedan trilijun", "hr"), [("jedan trilijun", "1000000000000000000", C)])
 
+    def test_croatian_trilijuna_without_a_count_is_no_number(self):
+        # the genitive "trilijuna" also follows "nekoliko", so alone it names no number
+        self.assertEqual(read("nekoliko trilijuna kuna", "hr"), [])
+        self.assertEqual(read("trilijuna", "hr"), [])
+        # 2 x 10^18 + 3 and 5 x 10^18
+        self.assertEqual(read("dva trilijuna tri", "hr"), [("dva trilijuna tri", "2000000000000000003", C)])
+        self.assertEqual(read("pet trilijuna", "hr"), [("pet trilijuna", "5000000000000000000", C)])
+
     def test_slovak_triliarda_and_kvadrilion_in_the_long_scale(self):
         # triliarda = 10^3 x 10^18 = 10^21: 5 x 10^21 and 2 x 10^21
         self.assertEqual(read("päť triliárd", "sk"), [("päť triliárd", "5000000000000000000000", C)])

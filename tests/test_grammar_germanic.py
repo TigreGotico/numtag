@@ -273,6 +273,9 @@ class TestScaleNamesAboveABillion(unittest.TestCase):
     def test_triljard_is_ten_to_the_twenty_first_in_dutch(self):
         # 10^3 x 10^18 = 10^21, written as 1 and 21 zeros
         self.assertEqual(read("een triljard", "nl"), [("een triljard", "1000000000000000000000", C)])
+        # nl.wiktionary "triljard": 602 x 10^21 + 214 x 10^18 = 602214 x 10^18
+        self.assertEqual(read("bij benadering zeshonderdtwee triljard tweehonderdveertien triljoen moleculen", "nl"),
+                         [("zeshonderdtwee triljard tweehonderdveertien triljoen", "602214000000000000000000", C)])
         self.assertEqual(read("triljardste", "nl"), [("triljardste", "1000000000000000000000", "ordinal")])
 
 
