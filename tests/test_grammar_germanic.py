@@ -245,6 +245,11 @@ class TestArticles(unittest.TestCase):
         # the counting form "eins" is a numeral there
         self.assertEqual([m.confidence for m in tag_numbers("Er nahm eins.", "de")], [1.0])
 
+    def test_a_lone_genitive_article_is_weak(self):
+        found = tag_numbers("eines", "de")
+        self.assertEqual([m.value for m in found], ["1"])
+        self.assertLess(found[0].confidence, 0.5)
+
     def test_tiende_is_also_the_tithe(self):
         for lang in ("da", "nb"):
             with self.subTest(lang=lang):
