@@ -87,6 +87,17 @@ class TestArticleConfidence(unittest.TestCase):
 
 
 class TestReasons(unittest.TestCase):
+    def test_an_article_that_is_the_whole_text_is_weak(self):
+        # a line of a vocabulary file: the word has no noun to decide it
+        for text, lang in (("um", "pt-PT"), ("uma", "pt-BR"), ("un", "gl"), ("unha", "gl"), ("egy", "hu"),
+                           ("un", "ca"), ("una", "ca"), ("eine", "de"), ("einer", "de"), ("o", "ro")):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual([(m.text, m.reasons) for m in tag_numbers(text, lang)],
+                                 [(text, frozenset({Reason.ARTICLE}))])
+        # a number word that is no article, and an article inside a clause, stay sure
+        self.assertEqual([m.reasons for m in tag_numbers("dois", "pt-PT")], [frozenset()])
+        self.assertEqual([m.reasons for m in tag_numbers("Quero um.", "pt-PT")], [frozenset()])
+
     def test_the_package_exports_the_reason(self):
         self.assertIn("Reason", numtag.__all__)
         self.assertEqual({r.value for r in Reason}, {"article", "homograph"})
