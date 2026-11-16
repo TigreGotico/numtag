@@ -41,6 +41,9 @@ jobs:
           - repo: TigreGotico/simple_NER
             test_path: test
             system_deps: ''
+          - repo: OpenVoiceOS/ovos-typed-slots-transformer
+            test_path: tests
+            system_deps: ''
     steps:
       - uses: actions/checkout@v4
         with:
