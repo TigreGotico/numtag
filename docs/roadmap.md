@@ -7,8 +7,8 @@ This page lists planned features. None of them is built. The API names on this p
 >>> from numtag import NumberMention, Kind, tag_numbers
 >>> [hasattr(numtag, name) for name in ("Reading", "Ambiguity")]
 [False, False]
->>> [name in NumberMention.__dataclass_fields__ for name in ("alternatives", "parts")]
-[False, False]
+>>> [name in NumberMention.__dataclass_fields__ for name in ("alternatives",)]
+[False]
 >>> [kind.name for kind in Kind]
 ['CARDINAL', 'ORDINAL', 'FRACTION', 'DECIMAL']
 ```
@@ -43,10 +43,6 @@ Some numbers have a name of their own. A named number with a finite value will b
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers("um googol", "pt-PT")]
 [('um', '1', 0.3)]
 ```
-
-## Parts of a mention (planned)
-
-`NumberMention.parts` will give the sub-spans of a mention, each with a role (count, scale, collective, joiner, half, fraction, minus, decimal mark) and a value. A clock reader needs the hour 3 and the half in "às três e meia". A date reader needs the quarter in "a quarter past four". The design decides whether parts nest.
 
 ## Digit groups and slash fractions (planned)
 

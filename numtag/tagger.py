@@ -1,7 +1,7 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
-from numtag.grammar import Grammar, Parse
+from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
-from numtag.mention import Form, Kind, NumberMention, Reason
+from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
 
 # A weak number: an article alone before a noun, or a word with a common
@@ -114,14 +114,31 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         span = (run[first].start, run[best.end - 1].end)
         reason = _reason(grammar, lexicon, run, start, best, alone=text.strip() == run[start].text, signed=negative)
         kind = _kind(lexicon, run[start:best.end], best)
+        pieces = best.parts
+        if negative:
+            pieces = ((Role.MINUS, i, start, None),) + pieces
+        if first < pieces[0][1]:
+            # the joiner prefix is in the first part, as in the span
+            role, _, end, part_value = pieces[0]
+            pieces = ((role, first, end, part_value),) + pieces[1:]
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), kind,
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
             number_scale=_number_scale(lexicon, run[start:best.end]),
-            reasons=frozenset() if reason is None else frozenset({reason})))
+            reasons=frozenset() if reason is None else frozenset({reason}),
+            parts=_parts(text, run, pieces)))
         count_end = best.end if kind == Kind.CARDINAL and reason is None else -1
         i = number_end = best.end
     return mentions
+
+
+def _parts(text: str, run: list[Token], pieces: Pieces) -> tuple[Part, ...]:
+    """The parts of a parse, with their character spans in ``text``."""
+    parts = []
+    for role, start, end, value in pieces:
+        span = (run[start].start, run[end - 1].end)
+        parts.append(Part(role, span, text[span[0]:span[1]], None if value is None else value.canonical()))
+    return tuple(parts)
 
 
 def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:

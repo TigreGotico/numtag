@@ -1,11 +1,11 @@
 # API reference
 
-The package `numtag` exports nine names: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` and `UnsupportedLanguageError`. This page describes each of them. Every other module is internal.
+The package `numtag` exports eleven names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` and `UnsupportedLanguageError`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Reason', 'Scale', 'UnsupportedLanguageError', 'is_canonical_value', 'tag_numbers']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'is_canonical_value', 'tag_numbers']
 ```
 
 ## tag_numbers
@@ -58,6 +58,7 @@ A `NumberMention` is a frozen dataclass. It describes one number in the text.
 | `confidence` | `float` | A fixed score in (0, 1] that the words are a number. Read [confidence-and-homographs.md](confidence-and-homographs.md). |
 | `number_scale` | `Scale` or `None` | Keyword only. The scale that gave the value, set only when the value depends on the scale |
 | `reasons` | `frozenset[Reason]` | Keyword only. Why the confidence is low. Empty for a sure number |
+| `parts` | `tuple[Part, ...]` | Keyword only. The pieces of the mention in reading order. Read [Part](#part). |
 
 ```python
 >>> m = tag_numbers("Recebeu 2,5 milhões de euros.", "pt-PT")[0]
@@ -72,7 +73,7 @@ The gender comes from the last word of the number that shows one. Portuguese wor
 [('duas dúzias', 'feminine'), ('2.º', 'masculine')]
 ```
 
-A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, or when `reasons` is not a frozenset of `Reason`.
+A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, when `reasons` is not a frozenset of `Reason`, or when a part is not inside the mention or not in reading order.
 
 ```python
 >>> from numtag import NumberMention, Kind, Form
@@ -82,7 +83,7 @@ Traceback (most recent call last):
 ValueError: value '2.0' is not a canonical digit string
 ```
 
-Two mentions are equal when all their fields are equal, except `confidence` and `reasons`. Equality ignores them, so a test can compare readings without fixing a score. `number_scale` is part of equality.
+Two mentions are equal when all their fields are equal, except `confidence`, `reasons` and `parts`. Equality ignores them, so a test can compare readings without fixing a score. `number_scale` is part of equality.
 
 ```python
 >>> a = NumberMention((0, 3), "two", "2", Kind.CARDINAL, Form.WORDS, confidence=1.0)
@@ -90,6 +91,75 @@ Two mentions are equal when all their fields are equal, except `confidence` and 
 >>> a == b
 True
 ```
+
+## Part
+
+A `Part` is a frozen dataclass. It is one piece of a mention: a word or a phrase with one role. `tag_numbers` always fills `NumberMention.parts`, in reading order. A clock reads the hour and the half of "às três e meia" from them:
+
+```python
+>>> tag_numbers("às três e meia", "pt-PT")[0].parts
+(Part(role=<Role.COUNT: 'count'>, char_span=(3, 7), text='três', value='3'), Part(role=<Role.JOINER: 'joiner'>, char_span=(8, 9), text='e', value=None), Part(role=<Role.HALF: 'half'>, char_span=(10, 14), text='meia', value='0.5'))
+```
+
+| Field | Type | Meaning |
+|---|---|---|
+| `role` | `Role` | What the piece does in the number |
+| `char_span` | `tuple[int, int]` | The character range in the original text, as the mention's `char_span` |
+| `text` | `str` | The exact words: `text[start:end]` of the original text |
+| `value` | `str` or `None` | The canonical value of the words of the part alone. `None` for a joiner, "of", a minus word or a decimal mark |
+
+The mention value is the one exact answer. A caller does not add up the parts. A part value is the number that its words name alone: the half of "um milhão e meio" has the value 0.5, and the mention has 1500000. Deep time divides the mention value by the value of the last scale part:
+
+```python
+>>> m = tag_numbers("Há sessenta e seis milhões de anos.", "pt-PT")[0]
+>>> [(p.role.value, p.text, p.value) for p in m.parts]
+[('count', 'sessenta e seis', '66'), ('scale', 'milhões', '1000000')]
+```
+
+These rules decide the parts:
+
+1. Every word of a mention is in exactly one part. Spaces, hyphens and the comma between classes are in no part.
+2. A count below the next scale word is one count part, with the joiners inside it: "sessenta e seis", "two hundred", "vigésimo primeiro".
+3. A digit string is one part, with its group marks, its decimal mark and its sign: "1.234,5", "-5", "21st".
+4. An article that the grammar reads as one is a count with the value 1: "a" in "a quarter". Any other article, ordinal prefix, ending or particle is in the part that it introduces or ends: "a half", "a dozen" after "half", "doze avos".
+5. An ordinal has no role of its own, because the mention kind says ORDINAL. "six thousand two hundredth" is the count "six", the scale "thousand" and the count "two hundredth" (200).
+6. A word that holds two parts is one part. The dual "ألفين" (two thousand) is one scale part with the value 1000, and "ثلثان" (two thirds) is one denominator part with the value 3.
+7. Inside a compound word, the parts follow its sub-words: "dreihunderttausend" is the count "dreihundert" and the scale "tausend". Where two sub-words share a letter (Swedish "ettusen"), the two parts overlap by that letter.
+
+The parts are flat, and they do not show the scope of a collective: "dois mil e duas dúzias" and "dois mil e duas centenas" have the same roles. Two parts compare equal when all their fields are equal.
+
+```python
+>>> [(p.role.value, p.text, p.value) for p in tag_numbers("one point two million", "en")[0].parts]
+[('count', 'one', '1'), ('decimal_mark', 'point', None), ('decimals', 'two', '0.2'), ('scale', 'million', '1000000')]
+```
+
+A part checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, or when a role that names no number has a value.
+
+```python
+>>> from numtag import Part, Role
+>>> Part(Role.JOINER, (0, 1), "e", "1")
+Traceback (most recent call last):
+  ...
+ValueError: a joiner part takes no value
+```
+
+## Role
+
+`Role` is a string enum. It says what a part does in the number.
+
+| Member | Value | Example | Part value |
+|---|---|---|---|
+| `Role.COUNT` | `"count"` | "três", "sessenta e seis", "2,5", "a" in "a dozen" | Its number |
+| `Role.SCALE` | `"scale"` | "mil", "milhões", "million", "thousandth" | Its power of ten, in the scale that `number_scale` states |
+| `Role.COLLECTIVE` | `"collective"` | "dúzias", "dezena", "a dozen" after "half" | Its size: 12, 10 |
+| `Role.OF` | `"of"` | "de" in "duas dúzias de milhar" | None |
+| `Role.JOINER` | `"joiner"` | "e", "and" between two parts | None |
+| `Role.HALF` | `"half"` | "meia", "meio", "half", "a half" | 0.5 |
+| `Role.DENOMINATOR` | `"denominator"` | "terços", "quarter", "doze avos" | The whole number below the line: 3, 4, 12 |
+| `Role.MINUS` | `"minus"` | "menos", "minus" | None |
+| `Role.DECIMAL_MARK` | `"decimal_mark"` | "vírgula", "point" | None |
+| `Role.DECIMALS` | `"decimals"` | "zero cinco" after "vírgula" | The fraction it adds: 0.05 |
+| `Role.MANTISSA`, `Role.TIMES`, `Role.BASE`, `Role.EXPONENT` | | Scientific notation ("6.02e-23") | Reserved. numtag gives no part with these roles |
 
 ## Kind
 
