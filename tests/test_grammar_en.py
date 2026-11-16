@@ -285,6 +285,12 @@ class TestFractions(unittest.TestCase):
         # a millionth is 10^-6 in both scales
         self.assertEqual(en("a millionth", scale=Scale.LONG), [("a millionth", "0.000001", F)])
 
+    def test_a_billionth_states_the_scale_it_used(self):
+        self.assertEqual(tag_numbers("three billionths", "en")[0].number_scale, Scale.SHORT)
+        self.assertEqual(tag_numbers("three billionths", "en", scale=Scale.LONG)[0].number_scale, Scale.LONG)
+        # a millionth is the same in both scales
+        self.assertIsNone(tag_numbers("three millionths", "en")[0].number_scale)
+
     def test_the_billionth_is_an_ordinal(self):
         # the 10^9-th and the 10^12-th place
         self.assertEqual(en("the billionth customer"), [("billionth", "1000000000", O)])
