@@ -89,7 +89,8 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
             return True
         if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before):
             return True
-    return before is not None and _regnal(lexicon, tokens, k) and not (word and _initial(tokens, k))
+    return before is not None and "\n" not in tokens[k].gap and _regnal(lexicon, tokens, k) \
+        and not (word and _initial(tokens, k))
 
 
 def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:

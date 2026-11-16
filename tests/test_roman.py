@@ -115,6 +115,8 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("el rey Juan Carlos I abdicó", "es", "I", "1"),
             ("Dom Pedro I proclamou a independência.", "pt-BR", "I", "1"),
             ("Papa Giovanni Paolo I", "it", "I", "1"),
+            ("il re Umberto I fu ucciso", "it", "I", "1"),
+            ("Dona Maria I morreu no Rio.", "pt-PT", "I", "1"),
             ("no século I", "pt-PT", "I", "1"),
             ("en el siglo V", "es", "V", "5"),
         ]
@@ -146,6 +148,8 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("Ask the king if I can go", "en"),
             ("Pope john Paul I", "en"),
             ("King Henry I K Smith", "en"),
+            ("I met King Charles. Then I left.", "en"),
+            ("Dear Queen Elizabeth\nI am writing to you", "en"),
         ]
         for text, lang in rows:
             with self.subTest(text=text):
@@ -177,7 +181,9 @@ class TestWordLists(unittest.TestCase):
                 self.assertEqual(_read(text, lang), [("VI", "6", Kind.CARDINAL, HOMOGRAPH)])
 
     def test_plural_series_nouns(self):
-        for text, lang in (("les actes II et III", "fr"), ("os atos II e III", "pt-PT"), ("as cenas II e III", "pt-PT")):
+        for text, lang in (("les actes II et III", "fr"), ("les parties II et III", "fr"), ("les scènes II et III", "fr"),
+                           ("os atos II e III", "pt-PT"), ("as cenas II e III", "pt-PT"),
+                           ("los actos II y III", "es"), ("las escenas II y III", "es")):
             with self.subTest(text=text):
                 self.assertEqual(_read(text, lang), [("II", "2", Kind.ORDINAL, SURE), ("III", "3", Kind.ORDINAL, SURE)])
 
