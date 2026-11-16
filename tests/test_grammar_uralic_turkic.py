@@ -4,7 +4,7 @@ numtag/lexicon/<lang>.json."""
 import unittest
 
 from helpers import read
-from numtag import tag_numbers
+from numtag import Reason, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -238,6 +238,44 @@ class TestConfidence(unittest.TestCase):
         self.assertEqual(self.confidence("Egy hét hét napból áll.", "hu"), [("Egy", False), ("hét", True)])
         self.assertEqual(self.confidence("öt, hét", "hu"), [("öt", False), ("hét", True)])
 
+    def test_hat_is_also_the_verb_to_take_effect(self):
+        # Wiktionary "hat", Verb: "to take effect", "to affect (on something
+        # -ra)": weak at the end of a clause, after "nem" and before a -ra pronoun
+        # The cues do not look further: "Tulajdonképpen hat, a hegyekben" counts six
+        # places, "nem hat perc" six minutes and "hat és hét" is a list; the value
+        # stays and the caller decides
+        for text in ("A gyógyszer nem hat.", "a gyógyszer nem hat", "Nem hat azonnal.", "Ez a zene hat rám.",
+                     "A hír mélyen hat ránk.", "Hogyan hat rájuk?", "Tulajdonképpen hat, a hegyekben",
+                     "nem hat perc", "Nem hat órára kértem."):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.reasons) for m in tag_numbers(text, "hu")],
+                                 [("hat", "6", frozenset({Reason.HOMOGRAPH}))])
+        # before a noun it counts, and a case form is no verb form
+        for text, word in (("hat óra", "hat"), ("Hat perc múlva indulunk.", "Hat"), ("hatkor kelek", "hatkor"),
+                           ("Nem. Hat ember jött.", "Hat"),
+                           ("hat ITF-tornán győzött", "hat"), ("Láttam hatot.", "hatot"), ("hattal", "hattal")):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
+
+    def test_hat_before_a_joiner_and_a_number_is_sure(self):
+        # a joiner ends the clause unless a number follows it
+        for text in ("hat és hét ember jött", "hat és 7 ember", "hat vagy hét", "hat meg hét", "hat-hét"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.confidence) for m in tag_numbers(text, "hu")][0], ("hat", 1.0))
+        # an article, an ordinal or a form with another meaning is no number after the joiner
+        for text in ("hat és működik", "A szer hat és egyben gyógyít.", "A gyógyszer hat és egy kicsit segít.",
+                     "A gyógyszer gyorsan hat és első alkalommal is."):
+            with self.subTest(text=text):
+                self.assertEqual(self.confidence(text, "hu")[0], ("hat", True))
+
+    def test_hat_inside_a_number_is_no_verb(self):
+        self.assertEqual(read("nem huszonhat", "hu"), [("huszonhat", "26", C)])
+
+    def test_an_idiom_with_number_words_holds_no_number(self):
+        # hu.wiktionary "one and all": "mindenki kivétel nélkül, egytől egyig"
+        self.assertEqual(read("Egytől egyig mind ott voltak.", "hu"), [])
+        self.assertEqual(read("egytől tízig", "hu"), [("egytől", "1", C), ("tízig", "10", C)])
+
     def test_the_same_word_inside_a_number_is_sure(self):
         # 100 x 1000 = 100000 in the partitive
         self.assertEqual(self.confidence("sataatuhatta", "fi"), [("sataatuhatta", False)])
@@ -260,6 +298,8 @@ class TestConfidence(unittest.TestCase):
         # "increasingly", "also", "formerly", "at once", "at first"
         for word in ("Egyre", "Egyben", "Egykor", "Egyből", "Elsőre"):
             self.assertEqual(self.confidence(f"{word} jobb.", "hu"), [(word, True)])
+        # Wiktionary "egybe", ÉrtSz: "into one, as one"
+        self.assertEqual(self.confidence("Összeraktuk egybe a darabokat.", "hu"), [("egybe", True)])
         # "together", "equally", "spruce", "I don't care"
         self.assertEqual(self.confidence("Laske yhteen.", "fi"), [("yhteen", True)])
         self.assertEqual(self.confidence("yhtä hyvä", "fi"), [("yhtä", True)])

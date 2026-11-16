@@ -104,6 +104,8 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("les neuf Muses", "fr"), [("neuf", 1.0)])
         self.assertEqual(confidence("dix-neuf", "fr"), [("dix-neuf", 1.0)])
         self.assertEqual(confidence("neuf cents", "fr"), [("neuf cents", 1.0)])
+        # a hyphenated noun gives no token, but a word follows "neuf" all the same
+        self.assertEqual(confidence("mes neuf arrière-petits-enfants", "fr"), [("neuf", 1.0)])
 
 
 class TestStandaloneOrdinals(unittest.TestCase):
