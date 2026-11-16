@@ -245,7 +245,11 @@ class Grammar:
         a hundred word: "yüz yüze" is 100 and 100. Where a bare hundred word
         follows a scale word, a ``whole_group`` count of a hundred or more is
         no count of "hundred": in "tusind hundrede" the thousand ends its
-        group and "hundrede" is the next one."""
+        group and "hundrede" is the next one. A multiplier that starts a
+        glued denominator takes no count: in "hét százezred" it is the
+        "száz" of "százezred"."""
+        if self._glued_denominators(i):
+            return False
         scale_words = self.multipliers(i)
         if not scale_words:
             small = self._readings(i, "hundred_multiplier") + self._readings(i, "ten_multiplier")
@@ -456,6 +460,31 @@ class Grammar:
         return _piece(Role.DECIMAL_MARK, i, i + 1) + _joined(i + 1, start) \
             + _piece(Role.DECIMALS, start, end, Rational.from_decimal("0", fraction))
 
+    def _glued_denominators(self, i: int) -> list[tuple[int, str, bool]]:
+        """(end, value, ambiguous) of a denominator of a hundred or more glued
+        to the count before it in one word: the count multiplies it, as it
+        multiplies the scale word ("tízezred" is a ten-thousandth, as
+        "tízezer" is ten thousand; "kétszázad" is a two-hundredth)."""
+        if i >= len(self.tokens) or self.tokens[i].glued:
+            return []
+        found = []
+        for end, count in self.small(i, nonzero=True):
+            if not all(t.glued for t in self.tokens[i + 1:end + 1]):
+                continue
+            found += [(end + 1, digits.multiply(count, e.value), e.ambiguous) for e in self._readings(end, "denominator")
+                      if not e.plural and len(e.value) > 2 and e.value == digits.shift("1", len(e.value) - 1)]
+        return found
+
+    def _inside_glued_denominator(self, i: int) -> bool:
+        """True when the denominator at ``i`` ends a glued one ("ezred" in
+        "tízezred"): it is no denominator of its own."""
+        if i >= len(self.tokens) or not self.tokens[i].glued:
+            return False
+        start = i
+        while start > 0 and self.tokens[start].glued:
+            start -= 1
+        return any(end == i + 1 for end, _, _ in self._glued_denominators(start))
+
     def _decimal_fraction(self, i: int) -> list[tuple[int, str]]:
         """"пять десятых", "двадцать пять сотых" after a decimal marker: the
         numerator written in as many digits as the denominator has zeros."""
@@ -473,11 +502,18 @@ class Grammar:
         in a case that names them, the parts come first: "onda beş" after
         "tam" is .5."""
         found = []
-        for end, numerator in self.small(i, nonzero=True):
-            for entry in self._readings(end, "denominator"):
-                places = len(entry.value) - 1
-                if entry.value == digits.shift("1", places) and len(numerator) <= places:
-                    found.append((end + 1, numerator.rjust(places, "0")))
+        # a numerator of a thousand or more is a whole cardinal: "kétezer-ötszáz tízezred" is .2500
+        numerators = set(self.small(i, nonzero=True)) | {
+            (run[-1].end, _whole(_sum(run))) for run in self.cardinals(i)
+            if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"}
+        for end, numerator in sorted(numerators):
+            readings = () if self._inside_glued_denominator(end) else self._readings(end, "denominator")
+            denominators = [(end + 1, e.value) for e in readings] \
+                + [(stop, value) for stop, value, _ in self._glued_denominators(end)]
+            for stop, value in denominators:
+                places = len(value) - 1
+                if value == digits.shift("1", places) and len(numerator) <= places:
+                    found.append((stop, numerator.rjust(places, "0")))
             places = len(numerator) - 1
             last = self.tokens[end - 1]
             if places and numerator == digits.shift("1", places) and not last.is_digits and any(
@@ -918,7 +954,11 @@ class Grammar:
                 and bool(self._readings(end, "ordinal")) and bool(self.lex.partitives) \
                 and end + 1 < len(self.tokens) \
                 and not self._is_word(end + 1, self.lex.partitives | self.lex.joiners)
-            for entry in self._readings(end, "denominator"):
+            # "egy tízezred": the count before a glued denominator
+            found += [Parse(stop, Rational(numerator, value), ambiguous=ambiguous, parts=count + below(end, stop, value))
+                      for stop, value, ambiguous in self._glued_denominators(end)]
+            glued = self._inside_glued_denominator(end)
+            for entry in () if glued else self._readings(end, "denominator"):
                 # "um terço", "dois terços"; "dois milésimo" is the ordinal 2000.º
                 if self.lex.fraction_agreement and not entry.invariant and entry.plural == (numerator == "1"):
                     continue

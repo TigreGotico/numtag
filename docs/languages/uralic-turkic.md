@@ -79,4 +79,17 @@ Azerbaijani, short scale:
 
 > CLDR 48 RBNF az %spellout-cardinal, ICU 78 rendering of 1000000000: "bir milyard"; CLDR 48 RBNF az %spellout-cardinal, ICU 78 rendering of 1000000000000: "bir trilyon": the word for 10^12 is the short-scale 'trilyon', and 10^9 has its own word.
 
+## Hungarian parts
+
+Hungarian writes a decimal as a whole, "egész", and a count of parts: "három egész két tized" is 3.2. A count glued to the word for a hundredth or a thousandth multiplies it, as it multiplies the scale word: "tízezred" is a ten-thousandth, as "tízezer" is ten thousand. The parts go up to "kvadrilliárdod", 10^27.
+
+```python
+>>> read('három egész egy tízezred', 'hu')
+[('három egész egy tízezred', '3.0001')]
+>>> read('nulla egész kétezer-ötszáz milliomod', 'hu')
+[('nulla egész kétezer-ötszáz milliomod', '0.0025')]
+```
+
+> Wiktionary, "milliomod" (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/milliomod.raw): "[[millionth]] {{gloss|one of a million equal parts of a whole}}"
+
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.

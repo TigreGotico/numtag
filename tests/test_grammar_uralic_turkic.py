@@ -200,6 +200,25 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("három egész tizenöt század", "hu"), [("három egész tizenöt század", "3.15", D)])
         self.assertEqual(read("egy egész öt ezred", "hu"), [("egy egész öt ezred", "1.005", D)])
 
+    def test_a_count_glued_to_a_denominator_multiplies_it(self):
+        # Wiktionary Module:number list/data/hu: "tízezred" for 10000,
+        # "kétszázad" for 200, "milliomod" for 10^6.
+        # 3 + 1/10^4 = 3.0001; 0 + 2500/10^6 = 0.0025; 3 + 7/10^7 = 3.0000007
+        self.assertEqual(read("három egész egy tízezred", "hu"), [("három egész egy tízezred", "3.0001", D)])
+        self.assertEqual(read("nulla egész kétezer-ötszáz milliomod", "hu"),
+                         [("nulla egész kétezer-ötszáz milliomod", "0.0025", D)])
+        self.assertEqual(read("három egész hét tízmilliomod", "hu"), [("három egész hét tízmilliomod", "3.0000007", D)])
+        # 99999/10^5 = 0.99999: the "száz" of "százezred" counts nothing before it
+        self.assertEqual(read("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "hu"),
+                         [("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "0.99999", D)])
+        # 7/10^5; 1/200 = 0.005; 1/10^6
+        self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
+        self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
+        self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
+        # a part word alone is no number, glued or not; "kétharmad" is 2/3
+        self.assertEqual(read("tízezred", "hu"), [])
+        self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
+
     def test_a_part_word_after_a_count_stays_singular(self):
         # 2/3; 3/4 = 0.75
         self.assertEqual(read("két harmad", "hu"), [("két harmad", "2/3", F)])
