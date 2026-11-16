@@ -283,6 +283,13 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # "a les nou": the word before it agrees only with the number reading
     agrees = parse.end == start + 1 and start > 0 and bool(entries) \
         and all(run[start - 1].norm in e.number_after for e in entries)
+    # "al per cent": a percent phrase with no number before it, at the end or
+    # before "of", is the price ("Ho he venut per cent.") or the percent sign
+    # with its number missing ("el tant per cent de descompte"). Before a
+    # noun it is the price: "per cent euros".
+    bare_percent = parse.end == start + 1 and not run[start].is_digits \
+        and (parse.end == len(run) or run[parse.end].norm in lexicon.of_words) and any(
+            tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p for p in lexicon.percent_phrases)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal
+    homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
