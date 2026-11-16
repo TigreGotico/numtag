@@ -173,9 +173,15 @@ def _run_parts(run: tuple[Group, ...]) -> Pieces:
 
 
 class Grammar:
-    def __init__(self, lexicon: Lexicon, tokens: list[Token]):
+    def __init__(self, lexicon: Lexicon, tokens: list[Token], unsigned: int | None = None,
+                 negated: int | None = None):
+        """``unsigned``: the index of a signed digit string that starts the
+        number, read without its sign. ``negated``: the index where a number
+        starts that the tagger negates, for the order of range limits."""
         self.lex = lexicon
         self.tokens = tokens
+        self.unsigned = unsigned
+        self.negated = negated
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
@@ -276,7 +282,9 @@ class Grammar:
         if text[0] in "-\u2212":
             # a sign starts a number and never stands inside one: the tagger
             # reads a signed number without its sign and negates it
-            return None
+            if i != self.unsigned:
+                return None
+            text = text[1:]
         if text[0] in ".,":
             # a lone decimal mark (".5"): the tokenizer keeps only a listed one
             return end, Rational.from_decimal("0", text[1:]), True
@@ -1191,7 +1199,7 @@ class Grammar:
             return None
         return self._fewest_digits(
             (left, inner, digits) for left, right, inner, digits in self._splits(i)
-            if _less(left[0].value, right.value))
+            if _less(-left[0].value if i == self.negated else left[0].value, right.value))
 
     def _split_left(self, i: int) -> list[Parse] | None:
         """With no range cue, where the longest number from ``i`` and the
@@ -1237,7 +1245,8 @@ class Grammar:
             inner = self._inner(i, k)
             if inner and k != default:
                 continue
-            left = [p for p in Grammar(self.lex, self.tokens[:k])._numbers(i) if p.end == k]
+            left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned, self.negated)._numbers(i)
+                    if p.end == k]
             right = self._numbers(k + 1)
             if not (left and right):
                 continue

@@ -30,7 +30,8 @@ class TestGrowth(unittest.TestCase):
         self.assertEqual(len(tag_numbers("um " * 50, "pt-PT")), 50)
         self.assertEqual(len(tag_numbers("one " * 50, "en")), 50)
         self.assertEqual(len(tag_numbers("dois três " * 25, "pt-BR")), 50)
-        for unit, lang in (("um ", "pt-PT"), ("one ", "en")):
+        self.assertEqual(len(tag_numbers("-5 " * 50, "pt-PT")), 50)
+        for unit, lang in (("um ", "pt-PT"), ("one ", "en"), ("-5 ", "pt-PT")):
             with self.subTest(unit=unit, lang=lang):
                 self.assert_linear(unit, lang, 250)
 

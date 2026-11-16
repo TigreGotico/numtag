@@ -1,6 +1,4 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
-from dataclasses import replace
-
 from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
@@ -106,8 +104,9 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         # "-2 milhões e meio" is minus two and a half million: the sign of a
         # digit string that starts a number applies to the whole number
         signed = _signed(run[start])
-        number_grammar = Grammar(lexicon, run[:start] + [_unsigned(run[start])] + run[start + 1:]) \
-            if signed else grammar
+        number_grammar = Grammar(lexicon, run, unsigned=start if signed else None,
+                                 negated=start if negative != signed else None) \
+            if negative or signed else grammar
         parses = [p for p in number_grammar.numbers(start) if _whole_words(number_grammar, run, start, p)]
         # a number starts and ends at the edges of a word, never inside one
         if not parses or run[i].glued:
@@ -163,12 +162,6 @@ def _parts(text: str, run: list[Token], pieces: Pieces) -> tuple[Part, ...]:
 
 def _signed(token: Token) -> bool:
     return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in "-\u2212"
-
-
-def _unsigned(token: Token) -> Token:
-    """The digit string without its sign."""
-    return replace(token, text=token.text[1:], start=token.start + 1,
-                   key=None if token.key is None else token.key[1:])
 
 
 def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:

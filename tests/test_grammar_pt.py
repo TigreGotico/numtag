@@ -744,6 +744,15 @@ class TestDigits(unittest.TestCase):
         # a sign never stands inside a number: "2 milhões e -500 mil" is two
         self.assertEqual(pt("2 milhões e -500 mil"), [("2 milhões", "2000000", C), ("-500 mil", "-500000", C)])
         self.assertEqual(pt("menos -5"), [("menos -5", "5", C)])
+
+    def test_a_signed_lower_limit_splits_a_range(self):
+        # after a range cue the first limit is the smaller one: -1000000 < 500000
+        self.assertEqual(pt("entre -1 milhão e quinhentos mil"),
+                         [("-1 milhão", "-1000000", C), ("quinhentos mil", "500000", C)])
+        self.assertEqual(read("between -1 million and 500 thousand dollars", "en"),
+                         [("-1 million", "-1000000", C), ("500 thousand", "500000", C)])
+        self.assertEqual(read("entre -1 million et cinq cent mille", "fr-FR"),
+                         [("-1 million", "-1000000", C), ("cinq cent mille", "500000", C)])
         self.assertEqual(read("o 3.º e o -3.º", "pt-PT"), [("3.º", "3", O)])
 
     def test_digits_inside_a_name_are_no_number(self):
