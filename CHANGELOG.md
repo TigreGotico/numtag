@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0a1](https://github.com/TigreGotico/numtag/tree/0.10.0a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.4a1...0.10.0a1)
+
+**Merged pull requests:**
+
+- feat: raise UnsupportedLanguageError for a language with no lexicon [\#38](https://github.com/TigreGotico/numtag/pull/38) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.9.4a1](https://github.com/TigreGotico/numtag/tree/0.9.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.3a1...0.9.4a1)
