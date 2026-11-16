@@ -8,7 +8,7 @@ numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene and C
 | Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 178 | 178 |
 | Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 156 | 156 |
 | Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 161 | 161 |
-| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 173 | 172 |
+| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 175 | 174 |
 | Slovak | every `sk` tag | `numtag/lexicon/sk.json` | long | 154 | 154 |
 | Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 162 | 162 |
 | Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 169 | 168 |
@@ -69,6 +69,18 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 >>> read('To je prvi dan.', 'hr')
 [('prvi', '1')]
 ```
+
+## Czech "jednou"
+
+Czech "jednou" is the instrumental of "jedna" and also the adverb "once". Alone, it gets the low score 0.4 for a word with a second meaning.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('Ahoj ještě jednou.', 'cs')]
+[('jednou', '1', 0.4)]
+```
+
+> SSJČ, "jednou": "jednou čísl. nás. příslovečná 1. k jeden; jedenkrát: j. dvě jsou dvě; j. za den"; "4. kdysi; někdy: byl j. jeden král"
 
 ## The scale
 
