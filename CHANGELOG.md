@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0a1](https://github.com/TigreGotico/numtag/tree/0.11.0a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a4...0.11.0a1)
+
+**Merged pull requests:**
+
+- feat: NumberMention.parts, the pieces of a number [\#58](https://github.com/TigreGotico/numtag/pull/58) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.10.13a4](https://github.com/TigreGotico/numtag/tree/0.10.13a4) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a3...0.10.13a4)
