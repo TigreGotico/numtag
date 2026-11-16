@@ -228,7 +228,7 @@ class Grammar:
         """Where a noun agrees with its count, a singular noun takes only a
         count below two: "um milhão", "meio milhão", "mil e um milhões". A
         plural noun takes no count of one or a half written in words: "meio
-        milhões" and "um milhões" are no number."""
+        milhões" and "um milhões" are not one number."""
         if not (noun and self.lex.scale_noun_agrees):
             return True
         if plural:
@@ -301,7 +301,17 @@ class Grammar:
                 end += 1
         match = self._digit_pattern.fullmatch(text)
         if not match:
-            return None
+            # where the comma marks decimals, a point that cannot group digits
+            # marks them: "1.5", "3.14159", "0.500". A time of day also
+            # takes the point ("14.30", "24.00"), so that shape reads no
+            # number, and so do three digits after a space group ("1 234.5").
+            point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
+            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
+                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text) \
+                    or (self.lex.space_groups and i > 0 and self.tokens[i - 1].is_digits
+                        and len(token.gap) == 1 and len(point[1]) == 3):
+                return None
+            return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
         whole = whole_text.replace(self.lex.group_mark, "")
         return end, Rational.from_decimal(whole, match.group(1) or ""), bool(match.group(1))

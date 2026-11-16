@@ -246,6 +246,16 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("iki tam yüzdə on beş", "az"), [("iki tam yüzdə on beş", "2.15", D)])
 
 
+class TestDayAndMonth(unittest.TestCase):
+    def test_a_day_and_month_with_a_period_after_them_read_no_number(self):
+        # en.wikipedia "Date and time notation in Finland": "20.10 represents
+        # 8:10 pm and 20.10. represents 20 October"
+        for text, lang in (("Se oli 24.12.", "fi"), ("3.5. Maanantaina", "fi"), ("20.10.", "fi"), ("klo 20.10", "fi"),
+                           ("24.12. Pazartesi", "tr"), ("24.12. Esmaspäeval", "et")):
+            with self.subTest(text=text):
+                self.assertEqual(tag_numbers(text, lang), [])
+
+
 class TestCaseFolding(unittest.TestCase):
     def test_a_dotted_capital_i(self):
         # Turkish İ folds to i, I to ı
