@@ -145,6 +145,19 @@ class TestCatalan(unittest.TestCase):
         self.assertEqual(sure("El deu per cent dels guanys.", "ca"), [("deu", "10", 1.0)])
         self.assertEqual(sure("per cent vint euros", "ca"), [("cent vint", "120", 1.0)])
 
+    def test_per_cent_before_de_and_the_article_is_weak(self):
+        # "del" and "dels" are "de" and the article, so they read like "de"
+        for text, lang, word in (("Calcula el tant per cent dels guanys.", "ca", "cent"),
+                                 ("el tant per cent del total", "ca", "cent"),
+                                 ("lo tant per cent dels vots", "oc", "cent"),
+                                 ("Calcule le pour cent des voix.", "fr-FR", "cent"),
+                                 ("Le pour cent du total.", "fr-FR", "cent"),
+                                 ("calcola il per cento degli utenti", "it", "cento"),
+                                 ("il per cento delle vendite", "it", "cento"),
+                                 ("il per cento dell'anno", "it", "cento")):
+            with self.subTest(text=text):
+                self.assertEqual(sure(text, lang), [(word, "100", 0.4)])
+
     def test_nou_and_u_alone_are_weak(self):
         # "nou" is also "new" and "u" the name of a letter
         self.assertEqual(sure("crea un esdeveniment nou", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])

@@ -24,7 +24,7 @@
     "percent_phrase": {"value": ["pour cent"], "source": "TLFi, \"cent\": \"Pour cent unités. Abrév. % (cf. pourcentage). Augmentation de six pour cent; taux d'intérêt de trois pour cent par an.\" So \"cent\" after \"pour\" names the percent sign, not the number 100."},
     "noun_after_count": {"value": ["seconde", "secondes"], "source": "TLFi (CNRTL), \"second\": \"Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)\". After a count, \"secondes\" is the unit of time: \"dix secondes\" is 10 and the noun."},
     "article_one": {"value": ["un", "une"], "source": "\"un\" and \"une\" are also the indefinite article; alone before a noun they are a weak number (\"j'ai acheté une maison\")."},
-    "of": {"value": ["de", "d"], "source": "\"un million de personnes\", \"deux milliards d'euros\": \"de\" after a scale noun; a plural collective after it multiplies the count (\"deux millions de douzaines\")."},
+    "of": {"value": ["de", "d", "du", "des"], "source": "\"un million de personnes\", \"deux milliards d'euros\": \"de\" after a scale noun; a plural collective after it multiplies the count (\"deux millions de douzaines\"). fr.wiktionary \"du\": \"Article contracté, formé de la préposition de et de l'article le.\"; \"des\": \"Contraction de l'article défini du pluriel les avec la préposition de.\""},
     "fraction_of": {"value": ["de", "d"], "source": "\"un tiers de douzaine\": a fraction of a collective noun multiplies it, as in pt-PT \"um terço de dúzia\"."},
     "denominator_particle": {"value": [], "source": "French has no particle like pt \"avos\"."},
     "class_noun": {"value": [], "source": "No French class noun is read."},
