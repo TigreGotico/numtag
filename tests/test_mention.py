@@ -180,6 +180,150 @@ class TestReasons(unittest.TestCase):
         self.assertEqual(NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS).reasons, frozenset())
 
 
+def read(text: str, lang: str = "en") -> list[tuple[str, str, str]]:
+    return [(m.text, m.value, m.kind.value) for m in tag_numbers(text, lang)]
+
+
+class TestSlashFraction(unittest.TestCase):
+    LANGUAGES = "bg da de en fr fy hr id nb nl nn pl ru sk sv".split()
+
+    def test_a_proper_fraction_is_one_fraction_in_lowest_terms(self):
+        for text, value in (("3/4", "0.75"),  # 3 / 4 = 0.75
+                            ("1/3", "1/3"),  # no finite decimal form
+                            ("2/4", "0.5"),  # 2/4 = 1/2
+                            ("6/8", "0.75"),  # 6/8 = 3/4
+                            ("7/12", "7/12"),  # gcd(7, 12) = 1
+                            ("5/8", "0.625"),  # 625 / 1000
+                            ("1/1000000", "0.000001")):
+            for lang in self.LANGUAGES:
+                with self.subTest(text=text, lang=lang):
+                    self.assertEqual(read(text, lang), [(text, value, "fraction")])
+
+    def test_a_fraction_in_a_sentence_keeps_the_text_around_it(self):
+        self.assertEqual(read("Add 3/4 cup of milk, then 1/3 of the flour.", "en"),
+                         [("3/4", "0.75", "fraction"), ("1/3", "1/3", "fraction")])
+        self.assertEqual(read("(3/4)", "en"), [("3/4", "0.75", "fraction")])
+        self.assertEqual(read("Das sind 2/3.", "de"), [("2/3", "2/3", "fraction")])
+
+    def test_a_whole_number_before_the_fraction_makes_a_mixed_number(self):
+        for text, value in (("5 1/2", "5.5"),  # 5 + 1/2
+                            ("5 1/3", "16/3"),  # 5 + 1/3 = 16/3
+                            ("20 1/2", "20.5"),
+                            ("300 1/2", "300.5"),
+                            ("-5 1/2", "-5.5"),  # the sign covers 5 + 1/2
+                            ("-0 1/2", "-0.5"),
+                            ("2 3/4", "2.75"),  # 2 + 3/4
+                            ("4503599627370495 1/2", "4503599627370495.5"),  # no float: 2^52 - 1 + 1/2
+                            ("5  1/2", "5.5")):
+            for lang in self.LANGUAGES:
+                with self.subTest(text=text, lang=lang):
+                    self.assertEqual(read(text, lang), [(text, value, "fraction")])
+
+    def test_a_whole_number_in_words_or_with_a_minus_word_makes_a_mixed_number(self):
+        self.assertEqual(read("twenty 1/2"), [("twenty 1/2", "20.5", "fraction")])  # 20 + 1/2
+        self.assertEqual(read("minus 5 1/2"), [("minus 5 1/2", "-5.5", "fraction")])
+        self.assertEqual(read("minus 0 1/2"), [("minus 0 1/2", "-0.5", "fraction")])
+        self.assertEqual(read("dwadzieścia 1/2", "pl"), [("dwadzieścia 1/2", "20.5", "fraction")])
+        mention, = tag_numbers("x 3 1/2 y", "en")
+        self.assertEqual((mention.char_span, mention.form), ((2, 7), Form.DIGITS))
+        self.assertEqual(tag_numbers("twenty 1/2", "en")[0].form, Form.MIXED)
+
+    def test_space_groups_do_not_swallow_the_numerator(self):
+        for lang in ("nb", "nn", "sv", "fi"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("12 345 1/2", lang), [("12 345 1/2", "12345.5", "fraction")])
+                self.assertEqual(read("5 1/2 og 3/4", lang),
+                                 [("5 1/2", "5.5", "fraction"), ("3/4", "0.75", "fraction")])
+
+    def test_a_group_of_three_digits_before_a_slash_stays_a_group(self):
+        # "5 123/456": the space groups 5 123, so the fraction is 5123/456, above one
+        self.assertEqual(read("5 123/456", "sv"), [("5 123", "5123", "cardinal"), ("456", "456", "cardinal")])
+
+    def test_the_parts_name_the_terms(self):
+        mention, = tag_numbers("-5 1/2", "en")
+        self.assertEqual([(p.role.value, p.text, p.value) for p in mention.parts],
+                         [("count", "-5", "-5"), ("count", "1", "1"), ("denominator", "2", "2")])
+        mention, = tag_numbers("-3/4", "en")
+        self.assertEqual([(p.role.value, p.text, p.value) for p in mention.parts],
+                         [("count", "-3", "-3"), ("denominator", "4", "4")])
+        self.assertEqual(mention.value, "-0.75")
+
+    def test_a_signed_fraction_is_never_added_to_a_whole_number(self):
+        self.assertEqual(read("5 -1/2"), [("5", "5", "cardinal"), ("-1/2", "-0.5", "fraction")])
+
+    def test_a_signed_fraction_is_negative(self):
+        self.assertEqual(read("-1/2"), [("-1/2", "-0.5", "fraction")])
+        self.assertEqual(read("-2/3"), [("-2/3", "-2/3", "fraction")])
+
+    def test_arabic_indic_digits_give_the_same_fraction(self):
+        self.assertEqual(read("٣/٤", "ar"), [("٣/٤", "0.75", "fraction")])
+
+    def test_a_fraction_that_is_not_below_one_keeps_its_two_numbers(self):
+        # a ratio, a score or an idiom: 24/7 is "always", 50/50 is even odds, 16/9 is a screen
+        for text in ("24/7", "50/50", "16/9", "3/2", "1/1", "6/3", "0/5"):
+            with self.subTest(text=text):
+                self.assertEqual([m.kind.value for m in tag_numbers(text, "en")], ["cardinal", "cardinal"])
+        self.assertEqual(read("24/7"), [("24", "24", "cardinal"), ("7", "7", "cardinal")])
+        self.assertEqual(read("x 5 3/2 y"), [("5", "5", "cardinal"), ("3", "3", "cardinal"), ("2", "2", "cardinal")])
+
+    def test_a_chain_of_slashes_is_no_fraction(self):
+        self.assertEqual(read("1/2/3"), [("1", "1", "cardinal"), ("2", "2", "cardinal"), ("3", "3", "cardinal")])
+        self.assertEqual(read("12/05/2024"), [("12", "12", "cardinal"), ("05", "5", "cardinal"),
+                                              ("2024", "2024", "cardinal")])
+        self.assertEqual(read("1/2/3 1/2")[-1], ("1/2", "0.5", "fraction"))
+
+    def test_a_term_with_a_leading_zero_is_no_fraction(self):
+        # a day and a month: 03/04 is the third of April or the fourth of March
+        for text in ("03/04", "1/02", "01/05", "0/1"):
+            with self.subTest(text=text):
+                self.assertEqual([m.kind.value for m in tag_numbers(text, "en")], ["cardinal", "cardinal"])
+
+    def test_a_numerator_after_a_sign_is_no_fraction(self):
+        self.assertEqual(read("5-1/2"), [("5", "5", "cardinal"), ("1", "1", "cardinal"), ("2", "2", "cardinal")])
+        self.assertEqual(read("--3/2"), [("3", "3", "cardinal"), ("2", "2", "cardinal")])
+        self.assertEqual(read("--1/2")[0][2], "cardinal")
+
+    def test_a_space_around_the_slash_is_no_fraction(self):
+        for text in ("3 / 4", "3/ 4", "3 /4"):
+            with self.subTest(text=text):
+                self.assertEqual([m.value for m in tag_numbers(text, "en")], ["3", "4"])
+
+    def test_a_term_with_a_suffix_or_a_mark_is_no_fraction(self):
+        self.assertEqual(read("1/2nd"), [("1", "1", "cardinal"), ("2nd", "2", "ordinal")])
+        self.assertEqual(read("am 1/3. Mai", "de"), [("1", "1", "cardinal"), ("3", "3", "ordinal")])
+        self.assertEqual(read("1/2. emelet", "hu"), [("1", "1", "cardinal"), ("2", "2", "ordinal")])
+        self.assertEqual([m.value for m in tag_numbers("1.5/4", "en")], ["1.5", "4"])
+        self.assertEqual([m.value for m in tag_numbers("1/2.5", "en")], ["1", "2.5"])
+
+    def test_only_a_cardinal_before_the_fraction_makes_it_mixed(self):
+        self.assertEqual(read("x 3.5 1/2 y"), [("3.5", "3.5", "decimal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("-3.5 1/2"), [("-3.5", "-3.5", "decimal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("-1/2 1/2"), [("-1/2", "-0.5", "fraction"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("1/2 1/2"), [("1/2", "0.5", "fraction"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("2nd 1/2"), [("2nd", "2", "ordinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("5 and a half 1/2")[-1], ("1/2", "0.5", "fraction"))
+
+    def test_a_whole_number_that_is_a_term_of_another_slash_is_not_a_whole_part(self):
+        self.assertEqual(read("24/7 1/2"), [("24", "24", "cardinal"), ("7", "7", "cardinal"),
+                                            ("1/2", "0.5", "fraction")])
+
+    def test_a_line_break_or_other_text_between_ends_the_mixed_number(self):
+        self.assertEqual(read("5\n1/2"), [("5", "5", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("5, 1/2"), [("5", "5", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("5 of 1/2"), [("5", "5", "cardinal"), ("1/2", "0.5", "fraction")])
+
+    def test_two_mixed_numbers_in_a_row_stay_two(self):
+        self.assertEqual(read("1 1/2 2 1/3"), [("1 1/2", "1.5", "fraction"), ("2 1/3", "7/3", "fraction")])
+        self.assertEqual(read("7 1/2 1/2"), [("7 1/2", "7.5", "fraction"), ("1/2", "0.5", "fraction")])
+
+    def test_a_weak_whole_number_is_not_a_whole_part(self):
+        self.assertEqual(read("una 1/2", "es"), [("una", "1", "cardinal"), ("1/2", "0.5", "fraction")])
+
+    def test_a_zero_denominator_still_gives_no_mention(self):
+        self.assertEqual(read("5 1/0"), [("5", "5", "cardinal")])
+        self.assertEqual(read("1/0 and 1/2"), [("1/2", "0.5", "fraction")])
+
+
 class TestZeroDenominator(unittest.TestCase):
     def test_a_slash_fraction_over_zero_gives_no_mention(self):
         for text, lang in (("1/0", "en"), ("5/0 apples", "en"), ("0/00", "en"), ("1/0", "el"), ("1/0", "et"),
@@ -188,7 +332,6 @@ class TestZeroDenominator(unittest.TestCase):
                 self.assertEqual(tag_numbers(text, lang), [])
 
     def test_other_slashes_keep_their_digits(self):
-        self.assertEqual([m.value for m in tag_numbers("1/3", "en")], ["1", "3"])
         self.assertEqual([m.value for m in tag_numbers("3/0/2025", "en")], ["3", "0", "2025"])
         self.assertEqual([m.value for m in tag_numbers("twenty 1/0 five", "en")], ["20", "5"])
 

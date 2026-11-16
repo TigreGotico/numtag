@@ -38,6 +38,32 @@ A fraction with a zero denominator has no value: `Fraction("1/0")` raises `ZeroD
 
 > Wikipedia, "Division by zero": "Many proof assistants, such as Rocq and Lean, define 1/0 = 0."
 
+## Fractions in digits
+
+A fraction in digits with a slash is one FRACTION mention. Its value follows the same rules as a fraction in words: lowest terms, and a decimal where the fraction has a finite decimal form. A whole number right before it makes a mixed number, and a sign covers both.
+
+```python
+>>> [(m.text, m.value) for m in tag_numbers("Add 3/4 cup, 1/3 of the flour, 6/8 of the milk, 2 1/2 eggs and -5 1/3 more.", "en")]
+[('3/4', '0.75'), ('1/3', '1/3'), ('6/8', '0.75'), ('2 1/2', '2.5'), ('-5 1/3', '-16/3')]
+```
+
+Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers.
+
+| Text | Result | Reason |
+|---|---|---|
+| "24/7", "50/50", "16/9" | two numbers | not below one: an idiom, a score, a ratio |
+| "03/04", "1/02" | two numbers | a leading zero: a day and a month |
+| "12/05/2024", "1/2/3" | three numbers | a chain of slashes |
+| "5-1/2", "3 / 4" | no fraction | a sign or a space at the slash |
+| "3.5 1/2" | 3.5 and 0.5 | a decimal is no whole part |
+
+```python
+>>> [(m.text, m.value) for m in tag_numbers("A 24/7 shop, a 50/50 chance, due 03/04, and 3.5 1/2 more.", "en")]
+[('24', '24'), ('7', '7'), ('50', '50'), ('50', '50'), ('03', '3'), ('04', '4'), ('3.5', '3.5'), ('1/2', '0.5')]
+```
+
+Where a language groups digits with a space, as Norwegian and Swedish do, a group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.
+
 ## Convert a value
 
 Convert a value at the point where your code needs a number. Python reads the three forms with these types:
