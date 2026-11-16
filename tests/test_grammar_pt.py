@@ -705,6 +705,10 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("1.5.2"), [])
         # three digits after a space group are no decimal: "1 234.5" stays 1
         self.assertEqual(pt("1 234.5"), [("1", "1", C)])
+        # no space group: two digits, a hyphen, or four digits before the space
+        self.assertEqual(pt("1 23.5"), [("1", "1", C), ("23.5", "23.5", D)])
+        self.assertEqual(pt("entre 10-123.5 kg"), [("10", "10", C), ("123.5", "123.5", D)])
+        self.assertEqual(pt("em 2024 123.45 euros"), [("2024", "2024", C), ("123.45", "123.45", D)])
 
     def test_pt_pt_also_groups_digits_with_a_space(self):
         # 1 x 10^6 + 234 x 10^3 + 567 = 1234567

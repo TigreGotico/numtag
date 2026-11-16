@@ -304,8 +304,8 @@ class Grammar:
             point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
             if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
                     or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text) \
-                    or (self.lex.space_groups and i > 0 and self.tokens[i - 1].is_digits
-                        and len(token.gap) == 1 and len(point[1]) == 3):
+                    or (self.lex.space_groups and i > 0 and token.gap.isspace() and len(token.gap) == 1
+                        and re.fullmatch(r"[0-9]{1,3}", self.tokens[i - 1].latin) is not None and len(point[1]) == 3):
                 return None
             return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
