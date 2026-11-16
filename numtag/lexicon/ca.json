@@ -160,7 +160,8 @@
    "word": "u",
    "role": "unit",
    "value": "1",
-   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\"; \"u\" is the counting form"
+   "ambiguous": true,
+   "source": "CLDR RBNF ca (common/rbnf/ca.xml) %spellout-cardinal-masculine/-feminine, ICU 78 rendering: \"un\", \"una\", \"dues\", \"setze\", \"disset\", \"vint-i-un\", \"vint-i-una\", \"trenta-un\", \"cent\", \"cent un\", \"dos-cents\", \"dues-centes\", \"mil\", \"un milió\", \"dos milions\", \"mil milions\", \"un bilió\"; %spellout-numbering: \"u\", \"vint-i-u\"; \"u\" is the counting form; DIEC2 \"u\" 2 1 1: \"Nombre del qual, en la sèrie de nombres naturals, tots els altres són agregats, un, 1. Comptar de l’u al cent.\"; DIEC2 \"u\" 1: \"Lletra u U . Una vall en forma de U.\" \"u\" is also the name of the letter, so it is ambiguous"
   },
   {
    "word": "un",
@@ -230,7 +231,8 @@
    "word": "nou",
    "role": "unit",
    "value": "9",
-   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\""
+   "ambiguous": true,
+   "source": "CLDR RBNF ca: \"3: tres; 4: quatre; 5: cinc; 6: sis; 7: set; 8: vuit; 9: nou;\"; DIEC2 \"nou\" 2 1: \"Vuit més un. Aviat farà nou anys.\"; DIEC2 \"nou\" 3 1 1: \"Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou.\" \"nou\" is also \"new\", so it is ambiguous"
   },
   {
    "word": "huit",

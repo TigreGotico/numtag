@@ -117,6 +117,15 @@ class TestGalician(unittest.TestCase):
 
 
 class TestCatalan(unittest.TestCase):
+    def test_nou_and_u_alone_are_weak(self):
+        # "nou" is also "new" and "u" the name of a letter
+        self.assertEqual(sure("crea un esdeveniment nou", "ca"), [("un", "1", 0.3), ("nou", "9", 0.4)])
+        self.assertEqual(sure("tens ge pe u", "ca"), [("u", "1", 0.4)])
+        # inside a longer number the reading is clear
+        self.assertEqual(sure("vint-i-nou", "ca"), [("vint-i-nou", "29", 1.0)])
+        self.assertEqual(sure("nou mil", "ca"), [("nou mil", "9000", 1.0)])
+        self.assertEqual(sure("cent u", "ca"), [("cent u", "101", 1.0)])
+
     def test_the_twenties_take_i_and_the_rest_a_hyphen(self):
         for text, value in (("vint-i-u", "21"), ("vint-i-una", "21"), ("trenta-dos", "32"),
                             ("quaranta-un", "41")):
