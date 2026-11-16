@@ -190,7 +190,8 @@ class TestHomographs(unittest.TestCase):
         for text, lang, value in (("семью", "ru", "7"), ("сорока", "ru", "40"), ("nič", "sl", "0"),
                                   ("друга", "uk", "2"), ("četvrti", "hr", "4"), ("druga", "sl", "2"),
                                   ("drugi", "hr", "2"), ("druhý", "cs", "2"), ("druhý", "sk", "2"),
-                                  ("drugi", "pl", "2"), ("žádná", "cs", "0"), ("stotina", "hr", "100")):
+                                  ("drugi", "pl", "2"), ("žádná", "cs", "0"), ("stotina", "hr", "100"),
+                                  ("jednou", "cs", "1")):
             with self.subTest(text=text, lang=lang):
                 (word, read_value, confidence), = self.confidences(text, lang)
                 self.assertEqual((word, read_value), (text, value))
