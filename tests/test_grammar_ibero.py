@@ -142,6 +142,14 @@ class TestCatalan(unittest.TestCase):
         self.assertEqual(sure("nou mil", "ca"), [("nou mil", "9000", 1.0)])
         self.assertEqual(sure("cent u", "ca"), [("cent u", "101", 1.0)])
 
+    def test_nou_after_els_or_les_is_the_number(self):
+        # the adjective after "les" is "noves" and after "els" "nous", so
+        # "nou" there is nine: "les nou" is nine o'clock
+        self.assertEqual(sure("avisa'm a les nou del matí", "ca"), [("nou", "9", 1.0)])
+        self.assertEqual(sure("Els nou anys de la guerra.", "ca"), [("nou", "9", 1.0)])
+        # "el nou" is also "the new one"
+        self.assertEqual(sure("Ha arribat el nou.", "ca"), [("nou", "9", 0.4)])
+
     def test_the_twenties_take_i_and_the_rest_a_hyphen(self):
         for text, value in (("vint-i-u", "21"), ("vint-i-una", "21"), ("trenta-dos", "32"),
                             ("quaranta-un", "41")):

@@ -126,6 +126,10 @@ class Entry:
     # An ordinal that is never the last word of a longer ordinal: French
     # "premier" and "second" ("vingt et unième", "vingt-deuxième").
     standalone: bool = False
+    # Words after which the word has only its number reading: after "les"
+    # the Catalan adjective "nou" ("new") is "noves", so "a les nou" is
+    # nine o'clock.
+    number_after: frozenset[str] = frozenset()
 
 
 @dataclass(frozen=True)
@@ -432,7 +436,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             invariant=spec.get("invariant", False), teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False),
-                            standalone=spec.get("standalone", False), **facts))
+                            standalone=spec.get("standalone", False),
+                            number_after=frozenset(fold(w) for w in spec.get("number_after", ())), **facts))
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:
