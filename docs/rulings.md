@@ -189,6 +189,17 @@ Source: maintainer ruling.
 
 > Priberam, "dúzia", sense 1: "Conjunto de doze."
 
+English joins classes with no "and", so a count and a collective after "thousand" belong to the number: the collective counts the whole cardinal. After "million" and larger the collective counts only the class after the noun, as after "milhão".
+
+```python
+>>> read("They packed one thousand twenty-four dozen eggs.", "en")
+[('one thousand twenty-four dozen', '12288')]
+>>> read("They packed one million three hundred thousand dozen eggs.", "en")
+[('one million three hundred thousand dozen', '4600000')]
+```
+
+> CLDR 49 RBNF en %spellout-cardinal: "1000: << thousand[ >>];", "1000000: << million[ >>];"
+
 In English, "score" takes a cardinal after "and".
 
 ```python
