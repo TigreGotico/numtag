@@ -110,7 +110,11 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("O rei D. Carlos I foi morto em Lisboa.", "pt-PT", "I", "1"),
             ("D. João I venceu em Aljubarrota.", "pt-PT", "I", "1"),
             ("O Papa Pio X morreu em 1914.", "pt-PT", "X", "10"),
-            ("Queen Elizabeth I. Then James I.", "en", "I", "1"),
+            ("Queen Elizabeth I. Then she died.", "en", "I", "1"),
+            ("Pope John Paul I", "en", "I", "1"),
+            ("el rey Juan Carlos I abdicó", "es", "I", "1"),
+            ("Dom Pedro I proclamou a independência.", "pt-BR", "I", "1"),
+            ("Papa Giovanni Paolo I", "it", "I", "1"),
             ("no século I", "pt-PT", "I", "1"),
             ("en el siglo V", "es", "V", "5"),
         ]
@@ -135,10 +139,47 @@ class TestLettersThatAreWords(unittest.TestCase):
             ("It was Tom. Henry I died.", "en"),
             ("Give IV fluids", "en"),
             ("Henry IV of France was king.", "en"),
+            ("I met the King. Then I left.", "en"),
+            ("God save the Queen. Now I can sleep.", "en"),
+            ("the king\nMary I am late", "en"),
+            ("The king, John I think, was weak.", "en"),
+            ("Ask the king if I can go", "en"),
+            ("Pope john Paul I", "en"),
+            ("King Henry I K Smith", "en"),
         ]
         for text, lang in rows:
             with self.subTest(text=text):
                 self.assertEqual(_read(text, lang), [])
+
+
+class TestWordLists(unittest.TestCase):
+    """Units, sizes, pronouns and verb forms on a language's word list give
+    no mention without a strong cue, in any case."""
+
+    def test_listed_words_give_no_mention(self):
+        rows = [("Tamanho XL", "pt-PT"), ("FILME DE 35 MM", "pt-PT"), ("O capítulo li ontem.", "pt-PT"),
+                ("A parte di ao João.", "pt-PT"), ("Talla XL", "es"), ("Pon MI canción", "es"),
+                ("el capítulo di ayer", "es"), ("Je veux la taille XL", "fr"), ("Il est MI temps", "fr"),
+                ("Ich brauche Größe XL.", "de"), ("MIX", "de"), ("NELLA GIORNATA DI LUNEDÌ", "it"),
+                ("CI SONO", "it"), ("Taglia XL", "it"), ("Essa parte vi ontem.", "pt-PT"),
+                ("Esa parte vi ayer.", "es")]
+        for text, lang in rows:
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [])
+
+    def test_a_lower_case_word_leaves_the_upper_case_numeral(self):
+        for text, lang in (("Felipe VI", "es"), ("Alfonso VI conquistó Toledo.", "es"), ("Paolo VI", "it"),
+                           ("Papa Paolo VI", "it"), ("D. João VI", "pt-PT")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("VI", "6", Kind.ORDINAL, SURE)])
+        for text, lang in (("EU VI UMA CENA", "pt-PT"), ("VI ASSICURIAMO", "it")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("VI", "6", Kind.CARDINAL, HOMOGRAPH)])
+
+    def test_plural_series_nouns(self):
+        for text, lang in (("les actes II et III", "fr"), ("os atos II e III", "pt-PT"), ("as cenas II e III", "pt-PT")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("II", "2", Kind.ORDINAL, SURE), ("III", "3", Kind.ORDINAL, SURE)])
 
 
 class TestEnglishSeriesNouns(unittest.TestCase):

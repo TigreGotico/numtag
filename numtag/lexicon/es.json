@@ -175,7 +175,9 @@
     "parte",
     "partes",
     "acto",
+    "actos",
     "escena",
+    "escenas",
     "concilio",
     "guerra",
     "dinastía"
@@ -203,11 +205,16 @@
     "xl",
     "mm",
     "ml",
-    "vi",
     "di",
     "mi"
    ],
-   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: Spanish \"CD\": \"CD (compact disc)\"; Spanish \"CV\": \"initialism of caballo de vapor (“hp (horsepower)”)\"; Spanish \"CC\": \"initialism of corriente continua\"; Spanish \"CM\": \"abbreviation of Campeche: a state of Mexico\"; Translingual \"XL\": \"(chiefly, clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; Spanish \"vi\": \"first-person singular preterite indicative of ver\"; Spanish \"di\": \"first-person singular preterite indicative of dar\"; Spanish \"mi\": \"(before the noun) apocopic form of mío, my\"."
+   "source": "A Roman numeral that is also a word or a common abbreviation reads only after a strong cue (\"Play CD\" holds no 400). Each word, from en.wiktionary.org unless another dictionary is named: Spanish \"CD\": \"CD (compact disc)\"; Spanish \"CV\": \"initialism of caballo de vapor (“hp (horsepower)”)\"; Spanish \"CC\": \"initialism of corriente continua\"; Spanish \"CM\": \"abbreviation of Campeche: a state of Mexico\"; Translingual \"XL\": \"(chiefly clothing) extra large (the manufactured size)\"; Translingual \"mm\": \"(metrology) Symbol for millimetre (millimeter), an SI unit of length equal to 10−3 metres (meters).\"; Translingual \"ml\": \"(metrology) Symbol for millilitre, an SI unit of fluid measure equal to 10−3 litres.\"; Spanish \"di\": \"first-person singular preterite indicative of dar\"; Spanish \"mi\": \"(before the noun) apocopic form of mío, my\"."
+  },
+  "roman_lower_word": {
+   "value": [
+    "vi"
+   ],
+   "source": "A Roman numeral that is also a word in lower case only: the lower-case word reads only after a strong cue, and the upper-case numeral reads like any other (\"Felipe VI\"). Each word, from en.wiktionary.org: Spanish \"vi\": \"first-person singular preterite indicative of ver\"."
   }
  },
  "entries": [

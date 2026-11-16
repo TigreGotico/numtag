@@ -226,16 +226,18 @@ German writes every noun in title case, so in German a title-case word is no cue
 
 A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
 
-With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line ("ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
+With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
 
 A single letter is a numeral only as I, V or X. L, C, D and M alone are labels ("Part D", "Vitamin C"), and give no mention.
 
 A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
 
 - a series noun before it: "World War I", "Part I";
-- a regnal title, then a name: "King Henry I", "Queen Elizabeth I", "D. João I", "Papa Pio X".
+- a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
 
 A name alone, two names and a list are no cue. So "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give no mention for the pronoun. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+
+A word in the `roman_lower_word` list is a word only in lower case: pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
 
 In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
 

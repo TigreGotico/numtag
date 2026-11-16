@@ -316,6 +316,8 @@ class Lexicon:
     # "CD", "MIX": a Roman numeral that is also a word or a common
     # abbreviation, which reads only after a strong cue.
     roman_words: frozenset[str] = frozenset()
+    # pt "vi": a word only in lower case, so "Felipe VI" reads like any numeral.
+    roman_lower_words: frozenset[str] = frozenset()
     # "I" is a pronoun: a series noun before a single letter or a numeral
     # that is also a word counts only in title case ("Part I", not "the
     # part I like").
@@ -563,6 +565,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         roman_series_nouns=frozenset(words.get("roman_series_noun", ())),
         roman_titles=frozenset(words.get("roman_title", ())),
         roman_words=frozenset(words.get("roman_word", ())),
+        roman_lower_words=frozenset(words.get("roman_lower_word", ())),
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
     )

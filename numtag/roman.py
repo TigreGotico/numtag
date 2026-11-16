@@ -89,8 +89,25 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
             return True
         if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before):
             return True
-    return before is not None and _title_case(before) and k >= 2 and tokens[k - 2].norm in lexicon.roman_titles \
-        and not (word and _initial(tokens, k))
+    return before is not None and _regnal(lexicon, tokens, k) and not (word and _initial(tokens, k))
+
+
+def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
+    """A regnal title, then a name of one or two title-case words, before
+    token k on one line: "King Henry I", "Pope John Paul I", "D. João I".
+    Only a one-letter title ends in a period ("D."); "the King. Then I"
+    is two sentences."""
+    for words in (1, 2):
+        first = k - words
+        name = tokens[first:k]
+        if first < 1 or not all(_title_case(t) for t in name):
+            return False
+        title, title_gap = tokens[first - 1], name[0].gap
+        joined = title_gap.isspace() or title_gap.strip() == "." and len(title.text) == 1
+        if title.norm in lexicon.roman_titles and joined and "\n" not in title_gap \
+                and all(t.gap.isspace() and "\n" not in t.gap for t in name[1:]):
+            return True
+    return False
 
 
 def _initial(tokens: list[Token], k: int) -> bool:
@@ -144,7 +161,8 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         sure_form = all(ord(c) in _NUMBER_FORMS for c in token.text)
         if not sure_form and len(token.text) == 1 and token.text.upper() not in _SINGLE_LETTERS:
             continue
-        word = not sure_form and (len(token.text) == 1 or token.norm in lexicon.roman_words)
+        word = not sure_form and (len(token.text) == 1 or token.norm in lexicon.roman_words
+                                  or token.text.islower() and token.norm in lexicon.roman_lower_words)
         if word and not token.text.isupper():
             continue
         # a word in a list is no numeral by its place: "World War I, I moved"

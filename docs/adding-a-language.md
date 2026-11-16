@@ -73,6 +73,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `roman_series_noun` | Nouns that mark a place in a series, so a Roman numeral beside them is an ordinal | "século", "capítulo" | "century", "war" |
 | `roman_title` | Regnal titles, before the name that a numeral follows | "rei", "d" | "king", "pope" |
 | `roman_word` | Roman numerals that are also a word or a common abbreviation | "cd", "cv" | "cd", "mix" |
+| `roman_lower_word` | Roman numerals that are a word only in lower case, so the upper-case numeral reads as usual | "vi" | empty |
 
 ### Entries
 
