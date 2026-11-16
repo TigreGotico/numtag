@@ -30,14 +30,18 @@ In Portuguese, "um" and "uma" are both the number one and the indefinite article
 [('um milhão', '1000000', 1.0)]
 ```
 
-The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. The same holds before digits. Before a word such as "ou", the article gets the low score, also when a number comes next.
+The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. Before a word such as "ou", the article gets the low score, also when a number comes next. Before a number in digits, the article also gets the low score: the number is part of its noun, as in "un 20 por ciento".
 
 ```python
 >>> read("Quantos filhos tens? Tenho um.", "pt-PT")
 [('um', '1', 1.0)]
 >>> read("Faltam uma ou duas semanas.", "pt-PT")
 [('uma', '1', 0.3), ('duas', '2', 1.0)]
+>>> read("Baja el brillo a un 20 por ciento.", "es")
+[('un', '1', 0.3), ('20', '20', 1.0)]
 ```
+
+> DPD "uno, una" 1.1: "Como determinante, toma la forma un ante sustantivos masculinos, los preceda inmediatamente o no"; 2.2: "Es incorrecta la apócope de uno y sus compuestos cuando no van antepuestos a un sustantivo"
 
 English "a" and "an" count one only before a word that takes a count: a multiplier, a collective, a fraction word or a half. Examples are "a hundred", "a dozen", "a third" and "a half". Alone, they are not a number, so numtag gives no mention.
 

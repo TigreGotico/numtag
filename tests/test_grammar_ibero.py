@@ -3,13 +3,18 @@ and Mirandese. Each expected value is worked out by hand in the comment
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
 
 class TestSpanish(unittest.TestCase):
+    def test_an_article_before_a_number_in_digits_is_weak(self):
+        # the number in digits is the article's noun
+        self.assertEqual(sure("baja el brillo a un 20 por ciento", "es"), [("un", "1", 0.3), ("20", "20", 1.0)])
+        self.assertEqual(sure("hay un 29 de febrero este año", "es"), [("un", "1", 0.3), ("29", "29", 1.0)])
+
     def test_veintiuno_is_one_word_in_its_three_forms(self):
         for text in ("veintiuno", "veintiún", "veintiuna"):
             with self.subTest(text=text):
