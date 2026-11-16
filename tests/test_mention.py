@@ -83,3 +83,17 @@ class TestArticleConfidence(unittest.TestCase):
     def test_an_article_gets_the_exported_score(self):
         found = tag_numbers("Comprei uma casa e dois carros.", "pt-PT")
         self.assertEqual([m.confidence == ARTICLE_CONFIDENCE for m in found], [True, False])
+
+
+class TestZeroDenominator(unittest.TestCase):
+    def test_a_slash_fraction_over_zero_gives_no_mention(self):
+        for text, lang in (("1/0", "en"), ("5/0 apples", "en"), ("0/00", "en"), ("1/0", "el"), ("1/0", "et"),
+                           ("1/0", "sl"), ("١/٠", "ar")):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual(tag_numbers(text, lang), [])
+
+    def test_other_slashes_keep_their_digits(self):
+        self.assertEqual([m.value for m in tag_numbers("1/3", "en")], ["1", "3"])
+        self.assertEqual([m.value for m in tag_numbers("3/0/2025", "en")], ["3", "0", "2025"])
+        self.assertEqual([m.value for m in tag_numbers("twenty 1/0 five", "en")], ["20", "5"])
+
