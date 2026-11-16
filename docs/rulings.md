@@ -115,7 +115,7 @@ A scale noun closes its group, so "milhão" counts no larger noun.
 
 ## A scale noun agrees with its count
 
-In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. English keeps the singular after any count.
+In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words: "meio milhões" and "um milhões" are no number. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
 
 ```python
 >>> read("Doaram cem mil e um milhão de euros.")

@@ -196,6 +196,16 @@ class TestCollectivesAndScaleNouns(unittest.TestCase):
         self.assertEqual(pt("2,5 dúzias"), [("2,5 dúzias", "30", C)])
 
 
+    def test_a_plural_scale_noun_takes_no_count_of_one_or_a_half(self):
+        # Squarisi: "O numeral ou o adjetivo que o modifica deve concordar com ele"
+        self.assertEqual(pt("meio milhões de pessoas"), [("meio", "0.5", F)])
+        self.assertEqual(pt("um milhões de pessoas"), [])
+        self.assertEqual(pt("meio milhão de pessoas"), [("meio milhão", "500000", C)])
+        self.assertEqual(pt("mil e um milhões"), [("mil e um milhões", "1001000000", C)])
+        # digits do not agree in number
+        self.assertEqual(pt("1 milhões"), [("1 milhões", "1000000", C)])
+
+
 class TestCardinals(unittest.TestCase):
     def test_tens_and_units_need_the_conjunction(self):
         self.assertEqual(pt("vinte e um"), [("vinte e um", "21", C)])
