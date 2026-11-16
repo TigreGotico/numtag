@@ -46,7 +46,14 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
-    return mentions
+    # "1/0" is a fraction with a zero denominator: it has no value, so its
+    # digits give no mention. A chain of slashes ("3/5/2025") is no fraction.
+    after_slash = [k > 0 and t.gap == "/" for k, t in enumerate(tokens)] + [False]
+    no_value = [(tokens[k - 1].start, t.end) for k, t in enumerate(tokens)
+                if after_slash[k] and tokens[k - 1].is_digits and t.is_digits and not t.norm.strip("0")
+                and not after_slash[k - 1] and not after_slash[k + 1]]
+    return [m for m in mentions
+            if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
 
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:

@@ -29,6 +29,15 @@ Each value obeys these rules:
 
 The `text` of a mention keeps the digits as written. Only the `value` is canonical.
 
+A fraction with a zero denominator has no value: `Fraction("1/0")` raises `ZeroDivisionError`. So "1/0" gives no mention, and its digits are not read as the two numbers 1 and 0. A chain of slashes, as in a date "3/5/2025", is no fraction and keeps its digits.
+
+```python
+>>> [(m.text, m.value) for m in tag_numbers("Many proof assistants, such as Rocq and Lean, define 1/0 = 0.", "en")]
+[('0', '0')]
+```
+
+> Wikipedia, "Division by zero": "Many proof assistants, such as Rocq and Lean, define 1/0 = 0."
+
 ## Convert a value
 
 Convert a value at the point where your code needs a number. Python reads the three forms with these types:
