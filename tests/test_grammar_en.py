@@ -274,6 +274,24 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("three quarters"), [("three quarters", "0.75", F)])
         self.assertEqual(en("one hundredth"), [("one hundredth", "0.01", F)])
 
+    def test_digits_count_the_parts_of_a_denominator(self):
+        # 1/6; 3/4; 2/3; 1/2
+        self.assertEqual(en("1 sixth"), [("1 sixth", "1/6", F)])
+        self.assertEqual(en("3 quarters"), [("3 quarters", "0.75", F)])
+        self.assertEqual(en("2 thirds of the cake"), [("2 thirds", "2/3", F)])
+        self.assertEqual(en("1 half"), [("1 half", "0.5", F)])
+        self.assertEqual(en("-1 sixth"), [("-1 sixth", "-1/6", F)])
+
+    def test_digits_before_an_ordinal_word_stay_two_numbers(self):
+        self.assertEqual(en("1 second"), [("1", "1", C), ("second", "2", O)])
+        self.assertEqual(en("1.5 sixth"), [("1.5", "1.5", D), ("sixth", "6", O)])
+        self.assertEqual(en("0 sixths"), [("0", "0", C)])
+
+    def test_digits_count_the_parts_in_portuguese_and_german(self):
+        # 1/3; 2/6 = 1/3
+        self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])
+        self.assertEqual(read("2 Sechstel", "de"), [("2 Sechstel", "1/3", F)])
+
     def test_a_fraction_of_a_collective_is_that_part_of_it(self):
         # 12 / 3 = 4; 3 x 12 / 4 = 9
         self.assertEqual(en("one third of a dozen"), [("one third of a dozen", "4", C)])
