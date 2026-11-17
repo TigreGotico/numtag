@@ -1046,7 +1046,8 @@ class Grammar:
         # места", "the 4 quarters"), and a digit after a slash is a term of
         # a slash fraction ("5 1/2 quarters").
         if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
-                and self.tokens[i].gap != "/"
+                and self.tokens[i].gap.strip() != "/"
+                and not self._is_word(i - 1, self.lex.decimal_markers)
                 and not any(e.ambiguous or e.value == read[1].numerator
                             for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))

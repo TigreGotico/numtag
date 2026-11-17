@@ -373,6 +373,18 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("5 1/2 quarters")[0], ("5 1/2", "5.5", F))
         self.assertEqual(en("1 1/2 thirds")[0], ("1 1/2", "1.5", F))
 
+    def test_a_spaced_slash_feeds_no_count(self):
+        # no slash fraction forms with spaces, so the digit after it is a plain number
+        self.assertEqual(en("1 / 2 quarters"), [("1", "1", C), ("2", "2", C)])
+        self.assertEqual(en("5 1 / 2 quarters"), [("5", "5", C), ("1", "1", C), ("2", "2", C)])
+
+    def test_a_digit_after_a_decimal_marker_counts_no_parts(self):
+        # the 5 of "2 point 5" is a decimal digit, as in "2.5 sixths"
+        self.assertEqual(en("2 point 5 quarters"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 vírgula 5 terços", "pt-PT"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 vírgula 5 terços", "pt-BR"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 coma 5 tercios", "es"), [("2", "2", C), ("5", "5", C)])
+
     def test_digits_count_the_parts_in_portuguese_and_german(self):
         # 1/3; 2/6 = 1/3
         self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])

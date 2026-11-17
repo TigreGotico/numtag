@@ -270,11 +270,11 @@ class TestGluedPartWords(unittest.TestCase):
         self.assertEqual(read("ein Hundertstel", "de"), [("ein Hundertstel", "0.01", F)])
         self.assertEqual(read("Hundertstel", "de"), [])
 
-    def test_a_number_that_no_reading_folds_in_leaves_the_glued_word_unread(self):
-        # DWDS, Aktuelles Lexikon: the 164 stays; the word after it has no reading
+    def test_digits_before_a_glued_part_word_are_its_numerator(self):
+        # DWDS, Aktuelles Lexikon: 164 hundred-thousandths of a second
         self.assertEqual(read("Der Tag wird damit in einem Jahrhundert um 164 Hunderttausendstel Sekunden länger.", "de"),
-                         [("einem", "1", C), ("164", "164", C)])
-        self.assertEqual(read("3 Zweihundertstel", "de"), [("3", "3", C)])
+                         [("einem", "1", C), ("164 Hunderttausendstel", "0.00164", F)])
+        self.assertEqual(read("3 Zweihundertstel", "de"), [("3 Zweihundertstel", "0.015", F)])
 
     def test_an_ordinal_is_no_part_word(self):
         self.assertEqual(read("der zweihundertste Tag", "de"), [("zweihundertste", "200", O)])
