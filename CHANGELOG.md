@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.8a1](https://github.com/TigreGotico/numtag/tree/0.14.8a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.7a1...0.14.8a1)
+
+**Merged pull requests:**
+
+- fix: a hundred after a vague scale word starts its own number [\#122](https://github.com/TigreGotico/numtag/pull/122) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.7a1](https://github.com/TigreGotico/numtag/tree/0.14.7a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a2...0.14.7a1)
