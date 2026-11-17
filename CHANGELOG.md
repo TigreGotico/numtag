@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.12.12a1](https://github.com/TigreGotico/numtag/tree/0.12.12a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.11a1...0.12.12a1)
+
+**Merged pull requests:**
+
+- fix: add the large scale names that ten lexicons lacked [\#77](https://github.com/TigreGotico/numtag/pull/77) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.11a1](https://github.com/TigreGotico/numtag/tree/0.12.11a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.10a1...0.12.11a1)
+
+**Merged pull requests:**
+
+- fix\(an,fi,gl,fa,fy\): add six attested word forms [\#74](https://github.com/TigreGotico/numtag/pull/74) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.10a1](https://github.com/TigreGotico/numtag/tree/0.12.10a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.9a1...0.12.10a1)
