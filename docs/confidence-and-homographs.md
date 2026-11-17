@@ -174,6 +174,13 @@ Digits before a denominator count its parts: "3 quarters" is 0.75 and "2 terços
 [('2 terços', '2/3', 1.0)]
 ```
 
+A digit count equal to its denominator gives a fraction of one, and in digits that is a count of things: "2 вторых места" are two second places, and "the 4 quarters of the game" are four quarters.
+
+```python
+>>> read("Команда заняла 2 вторых места.", "ru")
+[('2', '2', 1.0), ('вторых', '2', 1.0)]
+```
+
 ## What a caller does with a low score
 
 | Need | Action |

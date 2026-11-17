@@ -99,9 +99,10 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
             continue
         spaced = top.gap != "" and not top.gap.strip(" \u00a0\u202f")
         whole = by_end.get(tokens[k - 2].end) if k > 1 and spaced and not (signed or after_slash[k - 2]) else None
-        # Four digits with no group mark are mostly a year: "In 2023 1/3 of adults".
-        if whole and (whole.kind != Kind.CARDINAL or whole.reasons
-                      or (len(whole.text.lstrip(SIGNS)) == 4 and whole.text.lstrip(SIGNS).isdigit())):
+        # Four digits with no group mark are mostly a year: "In 2023 1/3 of
+        # adults", "minus 2023 1/2".
+        year = tokens[k - 2].latin.lstrip(SIGNS)
+        if whole and (whole.kind != Kind.CARDINAL or whole.reasons or (len(year) == 4 and year.isdigit())):
             whole = None
         value = Rational(*terms, signed)
         parts = (Part(Role.COUNT, (top.start, top.end), top.text, Rational(terms[0], negative=signed).canonical()),

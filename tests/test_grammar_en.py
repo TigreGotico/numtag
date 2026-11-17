@@ -354,6 +354,25 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(read("Un piso de 3 cuartos", "es")[1], ("3", "3", C))
         self.assertEqual(read("2 quarti", "it")[0], ("2", "2", C))
 
+    def test_a_count_equal_to_its_denominator_is_a_count_of_things(self):
+        # 2/2 and 4/4 are one: in digits that is a count of places or parts
+        self.assertEqual(read("Команда заняла 2 вторых места и 3 третьих места.", "ru"),
+                         [("2", "2", C), ("вторых", "2", O), ("3", "3", C), ("третьих", "3", O)])
+        self.assertEqual(read("Команда посіла 2 других місця.", "uk"), [("2", "2", C), ("других", "2", O)])
+        self.assertEqual(read("2 drugie miejsca", "pl"), [("2", "2", C), ("drugie", "2", O)])
+        self.assertEqual(en("the 4 quarters of the game"), [("4", "4", C)])
+        self.assertEqual(en("2 halves"), [("2", "2", C)])
+        # 3/2; 10/3; 2/3; 3/6 = 1/2
+        self.assertEqual(en("3 halves"), [("3 halves", "1.5", F)])
+        self.assertEqual(en("10 thirds"), [("10 thirds", "10/3", F)])
+        self.assertEqual(read("2 terços", "pt-PT"), [("2 terços", "2/3", F)])
+        self.assertEqual(read("3 sextos", "pt-PT"), [("3 sextos", "0.5", F)])
+
+    def test_a_digit_after_a_slash_counts_no_parts(self):
+        # 5 + 1/2 and 1 + 1/2: the slash fraction keeps its terms
+        self.assertEqual(en("5 1/2 quarters")[0], ("5 1/2", "5.5", F))
+        self.assertEqual(en("1 1/2 thirds")[0], ("1 1/2", "1.5", F))
+
     def test_digits_count_the_parts_in_portuguese_and_german(self):
         # 1/3; 2/6 = 1/3
         self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])
