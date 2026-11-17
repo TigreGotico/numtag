@@ -702,8 +702,7 @@ class Grammar:
             if count.value.is_zero():
                 continue
             # "nekoliko milijuna": a vague quantity stands where the count would
-            if not count.explicit and self._after_vague(i):
-                continue
+            vague = not count.explicit and self._after_vague(i)
             # "douăzeci de mii": a word may stand between a count and its scale word
             starts = [count.end] + ([count.end + 1] if count.explicit and self._is_word(
                 count.end, self.lex.count_of) else [])
@@ -714,6 +713,9 @@ class Grammar:
                 for end, exponent, dual, noun, needs_count, plural in self.multipliers(
                         start, first and not count.explicit):
                     if count.top and exponent <= count.top:
+                        continue
+                    # "alguns mil e duzentos" is still 1200: a group joined after the scale word goes on the number
+                    if vague and not (self._is_word(end, self.lex.joiners) and self.starts_number(end + 1)):
                         continue
                     # a dual holds its count ("ألفان"): its one part is the scale
                     scale = _piece(Role.SCALE, scale_from, end, ONE.scaled(exponent))

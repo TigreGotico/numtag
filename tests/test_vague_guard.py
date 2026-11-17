@@ -1,7 +1,8 @@
 """A word of the vague_quantifier list right before a scale word takes the place
 of its count, so the scale word reads no number. Each row is a sentence of a
-pt.wikipedia or en.wikipedia article, named in the comment beside it; the
-values of the numbers that stay are worked out by hand there."""
+pt.wikipedia or en.wikipedia article, named in the comment beside it, or a
+short phrase where the comment says so; the values of the numbers that stay
+are worked out by hand there."""
 import unittest
 
 from numtag import tag_numbers
@@ -44,6 +45,18 @@ class TestScaleWordAfterVagueWord(unittest.TestCase):
         text = ("The comet might come to perihelion in late November 2028, but the uncertainty in the comet's "
                 "position is a few million km.")
         self.assertEqual(numbers(text, "en"), [("2028", "2028")])
+
+    def test_a_joined_group_after_mil_keeps_the_whole_number(self):
+        # short phrases: "e" joins a last group to "mil", so the scale word counts one and the number goes on
+        # 1000 + 500 = 1500
+        self.assertEqual(numbers("algumas mil e quinhentas pessoas", "pt-PT"), [("mil e quinhentas", "1500")])
+        # 1000 + 200 = 1200
+        self.assertEqual(numbers("alguns mil e duzentos euros", "pt-BR"), [("mil e duzentos", "1200")])
+        self.assertEqual(numbers("muitos mil e duzentos", "pt-PT"), [("mil e duzentos", "1200")])
+        # "umas" is no vague_quantifier entry: 1000 + 500 = 1500, as before the list
+        self.assertEqual(numbers("umas mil e quinhentas pessoas", "pt-PT"), [("mil e quinhentas", "1500")])
+        # English reads no "thousand" with no count; "five" alone is 5
+        self.assertEqual(numbers("a few thousand and five", "en"), [("five", "5")])
 
 
 if __name__ == "__main__":
