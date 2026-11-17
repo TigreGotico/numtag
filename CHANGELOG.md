@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.6a2](https://github.com/TigreGotico/numtag/tree/0.14.6a2) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a1...0.14.6a2)
+
+**Merged pull requests:**
+
+- docs\(tr\): the percent word comes before the number [\#91](https://github.com/TigreGotico/numtag/pull/91) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.6a1](https://github.com/TigreGotico/numtag/tree/0.14.6a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.5a1...0.14.6a1)
