@@ -58,6 +58,52 @@ class TestScaleWordAfterVagueWord(unittest.TestCase):
         # English reads no "thousand" with no count; "five" alone is 5
         self.assertEqual(numbers("a few thousand and five", "en"), [("five", "5")])
 
+    def test_a_joined_group_after_a_chain_of_scale_words_keeps_the_number(self):
+        # short phrases: 1000 x 1000000 + 200 x 1000 = 1000200000
+        self.assertEqual(numbers("muitos mil milhões e duzentos mil euros", "pt-PT"),
+                         [("mil milhões e duzentos mil", "1000200000")])
+        # 1000 x 1000000 + 500 x 1000000 = 1500000000
+        self.assertEqual(numbers("alguns mil milhões e quinhentos milhões", "pt-PT"),
+                         [("mil milhões e quinhentos milhões", "1500000000")])
+        # pt-BR "bilhão" is 10^9: 1000 x 10^9 + 3 = 1000000000003
+        self.assertEqual(numbers("alguns mil bilhões e três", "pt-BR"), [("mil bilhões e três", "1000000000003")])
+
+    def test_no_number_after_the_joiner_keeps_the_guard(self):
+        # short phrases: "e" with no number after it joins no group
+        self.assertEqual(numbers("alguns mil e pessoas", "pt-PT"), [])
+        self.assertEqual(numbers("alguns mil e", "pt-PT"), [])
+
+
+class TestHundredWordAfterVagueWord(unittest.TestCase):
+    """A Portuguese hundred word takes no count ("dois cem" is no number), so a
+    vague word never stands for its count, and the hundred word reads as without
+    the list. Short phrases; values by hand."""
+
+    def test_cento_and_cem_after_a_vague_word(self):
+        # 100 + 50 = 150; 150 x 1000 = 150000
+        self.assertEqual(numbers("alguns cento e cinquenta mil euros", "pt-PT"),
+                         [("cento e cinquenta mil", "150000")])
+        # 100 + 20 = 120
+        self.assertEqual(numbers("alguns cento e vinte reais", "pt-BR"), [("cento e vinte", "120")])
+        # 100 x 1000 = 100000
+        self.assertEqual(numbers("algumas cem mil pessoas", "pt-PT"), [("cem mil", "100000")])
+
+    def test_a_hundred_word_after_a_count_and_a_plural_scale_word(self):
+        # 3 x 1000000 + (100 + 20) x 1000 = 3120000
+        self.assertEqual(numbers("3 milhões cento e vinte mil euros", "pt-PT"),
+                         [("3 milhões cento e vinte mil", "3120000")])
+        # 2 x 1000000 + (100 + 50) x 1000 = 2150000
+        self.assertEqual(numbers("2 milhões cento e cinquenta mil reais", "pt-BR"),
+                         [("2 milhões cento e cinquenta mil", "2150000")])
+        # 1.5 x 1000000 = 1500000, then 100 x 1000 = 100000
+        self.assertEqual(numbers("1,5 milhões cem mil", "pt-BR"), [("1,5 milhões", "1500000"), ("cem mil", "100000")])
+
+
+class TestCountBeforeAPluralScaleWord(unittest.TestCase):
+    def test_a_count_makes_the_plural_scale_word_a_number(self):
+        # short phrase: "3 milhões" is 3 x 1000000 = 3000000, no vague word, so "mil" reads 1000
+        self.assertEqual(numbers("3 milhões mil euros", "pt-PT"), [("3 milhões", "3000000"), ("mil", "1000")])
+
 
 if __name__ == "__main__":
     unittest.main()
