@@ -2,10 +2,11 @@
 comment beside it; sources are in numtag/lexicon/eu.json."""
 import unittest
 
+import pytest
 from helpers import read
 from numtag import tag_numbers
 
-C, O, F = "cardinal", "ordinal", "fraction"
+C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
 
 def eu(text: str) -> list[tuple[str, str, str]]:
@@ -138,6 +139,143 @@ class TestArticleAfterNoun(unittest.TestCase):
 
     def test_bat_with_no_word_before_it_is_a_number(self):
         self.assertEqual(confidence("Bat etorri da.", "eu"), [("Bat", 1.0)])
+
+
+def reasons(text: str) -> list[tuple[str, str, float, list[str]]]:
+    return [(m.text, m.value, m.confidence, [r.value for r in m.reasons]) for m in tag_numbers(text, "eu")]
+
+
+class TestLoneFractionWord(unittest.TestCase):
+    def test_a_lone_laurden_is_a_quarter_as_weak_as_a_lone_erdi(self):
+        # 1/4 = 0.25 and 1/2 = 0.5, each with the homograph score
+        self.assertEqual(reasons("erdi"), [("erdi", "0.5", 0.4, ["homograph"])])
+        self.assertEqual(reasons("laurden"), [("laurden", "0.25", 0.4, ["homograph"])])
+
+    def test_the_noun_before_the_quarter_is_no_part_of_the_number(self):
+        # "ordu erdi" reads "erdi"; "ordu laurden" reads "laurden" the same way
+        self.assertEqual(reasons("ordu erdi"), [("erdi", "0.5", 0.4, ["homograph"])])
+        self.assertEqual(reasons("ordu laurden"), [("laurden", "0.25", 0.4, ["homograph"])])
+        self.assertEqual(reasons("final laurden"), [("laurden", "0.25", 0.4, ["homograph"])])
+
+    def test_a_lone_heren_is_a_weak_third(self):
+        # "heren" is also the old ordinal "third": 1/3 with the homograph score
+        self.assertEqual(reasons("heren"), [("heren", "1/3", 0.4, ["homograph"])])
+
+    def test_a_count_or_bat_keeps_the_fraction_sure(self):
+        self.assertEqual(reasons("laurden bat"), [("laurden bat", "0.25", 1.0, [])])
+        self.assertEqual(reasons("hiru laurden"), [("hiru laurden", "0.75", 1.0, [])])
+        self.assertEqual(reasons("bi heren"), [("bi heren", "2/3", 1.0, [])])
+        # 1 + 1/4 = 1.25; 2 + 1/4 = 2.25
+        self.assertEqual(reasons("bat eta laurdena"), [("bat eta laurdena", "1.25", 1.0, [])])
+        self.assertEqual(reasons("bi eta laurden"), [("bi eta laurden", "2.25", 1.0, [])])
+
+    def test_a_joiner_at_the_end_of_the_text_ends_the_number(self):
+        # no word follows "eta", so no part adds to the 2
+        self.assertEqual(eu("bi eta"), [("bi", "2", C)])
+
+    def test_a_quarter_after_an_hour_of_the_clock_is_no_number(self):
+        # Araua 35: "hirurak eta laurden" is a time; the hour word is no number word
+        for text in ("bostak eta laurden", "hirurak eta laurden", "ordu bata eta laurden", "eta laurden"):
+            with self.subTest(text=text):
+                self.assertEqual(eu(text), [])
+
+
+class TestAraua203Fractions(unittest.TestCase):
+    # Euskaltzaindia, 203. araua, section 6: the table on p. 27, the
+    # examples on p. 28, footnote 22 and note 28. The value is the fraction
+    # the norm writes beside each phrase, worked out by hand.
+    ROWS = [
+        ("erdi bat", "0.5", F),  # 1/2
+        ("heren bat", "1/3", F),
+        ("laurden bat", "0.25", F),  # 1/4
+        ("bosten bat", "0.2", F),  # 1/5
+        ("seiren bat", "1/6", F),
+        ("zazpiren bat", "1/7", F),
+        ("zortziren bat", "0.125", F),  # 1/8
+        ("bederatziren bat", "1/9", F),
+        ("hamarren bat", "0.1", F),  # 1/10
+        ("hamaikaren bat", "1/11", F),
+        ("hamabiren bat", "1/12", F),
+        ("hogeiren bat", "0.05", F),  # 1/20
+        ("ehunen bat", "0.01", F),  # 1/100
+        ("milaren bat", "0.001", F),  # 1/1000
+        ("milioiren bat", "0.000001", F),  # 1/1000000
+        ("bi heren", "2/3", F),
+        ("hiru laurden", "0.75", F),  # 3/4
+        ("zazpi zortziren", "0.875", F),  # 7/8
+        ("zortzi hamarren", "0.8", F),  # 8/10
+        ("hiru milioi laurden", "750000", C),  # 3000000/4
+        ("hiru erdi", "1.5", F),  # 3/2, footnote 22
+        ("bost heren", "5/3", F),  # footnote 23
+        ("zazpi laurden", "1.75", F),  # 7/4, footnote 24
+        ("bost hogeiren", "0.25", F),  # 5/20
+        ("zazpi hirurogeiren", "7/60", F),
+        ("bi ehunen", "0.02", F),  # 2/100
+        ("sei milaren", "0.006", F),  # 6/1000
+        ("bederatzi milioiren", "0.000009", F),  # 9/1000000
+        ("hiru zati lau", "0.75", F),  # 3/4
+        ("hamahiru zati berrogeita zazpi", "13/47", F),
+        ("bat zati hiru", "1/3", F),
+        ("bi milioi zati ehun eta bi", "1000000/51", F),  # 2000000/102
+        ("milioi erdi bat", "500000", C),  # 1000000/2, note 28
+        ("milioi heren bat", "1000000/3", F),
+        ("milioi laurden bat", "250000", C),  # 1000000/4
+        ("milioi bosten bat", "200000", C),  # 1000000/5
+        ("milioi-erdi bat", "500000", C),
+        ("milioi erdi", "500000", C),  # note 28: one compound noun, as "ordu laurden"
+        ("zazpi hamarren", "0.7", F),  # 7/10
+        ("bi bosten", "0.4", F),  # 2/5
+        ("hogeita zazpi ehunen", "0.27", F),  # 27/100
+        ("berrogeita hiru milaren", "0.043", F),  # 43/1000
+    ]
+
+    def test_each_fraction_of_the_norm(self):
+        for text, value, kind in self.ROWS:
+            with self.subTest(text=text):
+                self.assertEqual(eu(text), [(text, value, kind)])
+
+    def test_a_noun_after_the_compound(self):
+        self.assertEqual(eu("milioi erdi euro"), [("milioi erdi", "500000", C)])
+
+    def test_the_genitive_ren_alone_is_no_number(self):
+        # "bosten artean" is "among five": the -(r)en word reads only with a count or "bat"
+        self.assertEqual(eu("bosten artean"), [])
+
+
+class TestAraua203Gaps(unittest.TestCase):
+    # Rows of 203. araua that numtag does not read yet. Each test fails until
+    # its issue is fixed; the expected value is the norm's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
+    def test_a_denominator_of_two_words(self):
+        # table, p. 27: "hogeita hamarren bat" is 1/30, "hamar milaren bat" is 1/10000
+        self.assertEqual(eu("hogeita hamarren bat"), [("hogeita hamarren bat", "1/30", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
+    def test_a_denominator_of_two_words_with_a_scale(self):
+        self.assertEqual(eu("hamar milaren bat"), [("hamar milaren bat", "0.0001", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    def test_the_denominator_in_the_ablative_before_the_count(self):
+        self.assertEqual(eu("hamarretik zazpi"), [("hamarretik zazpi", "0.7", F)])  # 7/10
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    def test_the_denominator_in_the_plain_ablative(self):
+        self.assertEqual(eu("bostetik bi"), [("bostetik bi", "0.4", F)])  # 2/5
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    def test_the_denominator_with_ko_before_the_count(self):
+        self.assertEqual(eu("bosteko bi"), [("bosteko bi", "0.4", F)])  # 2/5
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
+        text = "hogeita lau unitate eta bost hamarren"  # 24 + 5/10
+        self.assertEqual(eu(text), [(text, "24.5", D)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    def test_unitate_eta_after_zero(self):
+        text = "zero unitate eta hogeita zazpi ehunen"  # 0 + 27/100
+        self.assertEqual(eu(text), [(text, "0.27", D)])
 
 
 if __name__ == "__main__":

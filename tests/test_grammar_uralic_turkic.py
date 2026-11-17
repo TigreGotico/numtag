@@ -68,6 +68,52 @@ class TestScaleNamesAboveATrillion(unittest.TestCase):
                          [("on iki kentilyon üç yüz kırk beş", "12000000000000000345", C)])
 
 
+class TestVagueQuantity(unittest.TestCase):
+    def test_a_vague_word_before_a_scale_word_is_no_number(self):
+        # TDK "birkaç": "Çok olmayan, az sayıda": the word stands where the count would, so no number
+        for text in ("birkaç milyon kişi", "birkaç bin", "birkaç yüz", "birkaç milyar lira", "Birkaç milyon insan",
+                     "birkaç bine", "birkaç milyonu", "birkaç yüz bin", "birçok milyon", "onlarca milyon dolar",
+                     "yüzlerce bin", "binlerce milyon", "milyonlarca milyar", "Kaç bin kişi geldi?"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "tr"), [])
+
+    def test_a_vague_word_changes_only_the_word_after_it(self):
+        # 10^6; 2 x 10^3; 10^6 / 2; 3 x 10^6 + 2 x 10^5 = 3200000
+        self.assertEqual(read("bir milyon", "tr"), [("bir milyon", "1000000", C)])
+        self.assertEqual(read("iki bin", "tr"), [("iki bin", "2000", C)])
+        self.assertEqual(read("yarım milyon", "tr"), [("yarım milyon", "500000", C)])
+        self.assertEqual(read("üç milyon iki yüz bin", "tr"), [("üç milyon iki yüz bin", "3200000", C)])
+        self.assertEqual(read("birkaç", "tr"), [])
+        self.assertEqual(read("birkaç kişi", "tr"), [])
+        # a comma or a full stop ends the vague phrase, so the next scale word counts one
+        self.assertEqual(read("birkaç milyon, bin kişi", "tr"), [("bin", "1000", C)])
+        self.assertEqual(read("birkaç yüz. Bin kişi geldi.", "tr"), [("Bin", "1000", C)])
+        # a year in digits is its own number
+        self.assertEqual(read("2030 birkaç milyon", "tr"), [("2030", "2030", C)])
+
+    def test_a_hundred_after_a_vague_scale_word_starts_its_own_number(self):
+        # after "birkaç bin" the thousands have no count, and "yüz elli" is a lower group: 100 + 50 = 150
+        self.assertEqual(read("birkaç bin yüz elli kişi", "tr"), [("yüz elli", "150", C)])
+
+    def test_the_split_spelling_bir_kac_reads_as_birkac(self):
+        # the Yazım Kılavuzu writes "birkaç" as one word; the split spelling names no number either,
+        # while "bir" before a scale word stays one: 1 x 10^6
+        self.assertEqual(read("bir kaç milyon", "tr"), [])
+        self.assertEqual(read("bir kaç kişi", "tr"), [])
+        self.assertEqual(read("bir milyon", "tr"), [("bir milyon", "1000000", C)])
+
+    def test_a_vague_word_before_a_quarter_is_no_number(self):
+        # "birkaç çeyrek" is a few quarters, with no number; "çeyrek" alone stays 1/4 at the homograph score
+        self.assertEqual(read("birkaç çeyrek", "tr"), [])
+        self.assertEqual([(m.value, m.confidence) for m in tag_numbers("çeyrek", "tr")], [("0.25", 0.4)])
+
+    def test_the_vague_words_that_are_also_other_words_are_ambiguous(self):
+        # TDK lists "onlarca" also as the adverb "Onlara göre" and "kaç" also as the verb "kaçmak";
+        # "birkaç" has one sense only
+        vague = load("tr").vague_quantifiers
+        self.assertEqual((vague[("birkaç",)], vague[("onlarca",)], vague[("kaç",)]), (False, True, True))
+
+
 class TestTeensAndTens(unittest.TestCase):
     def test_a_teen_joins_only_the_unit_in_its_own_word(self):
         # "yksi toista vastaan" is "one against the other"; "yksitoista" is 1 + 10 = 11
@@ -480,7 +526,7 @@ class TestConfidence(unittest.TestCase):
         self.assertEqual(self.confidence("eggyel", "hu"), [("eggyel", False)])
         self.assertEqual(self.confidence("hat ember", "hu"), [("hat", False)])
         self.assertEqual(self.confidence("Kalelerden biri", "tr"), [("biri", False)])
-        self.assertEqual(self.confidence("birkaç bin asker", "tr"), [("bin", False)])
+        self.assertEqual(self.confidence("bin asker", "tr"), [("bin", False)])
         self.assertEqual(self.confidence("üçə", "az"), [("üçə", False)])
         self.assertEqual(self.confidence("viiest", "et"), [("viiest", False)])
 
