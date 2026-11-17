@@ -751,6 +751,11 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(read("1'234,5", "fr-CH"), [("1'234,5", "1234.5", D)])
         # a point after one or two digits, or a hyphen, is no group
         self.assertEqual(read("12 3.5", "ru"), [("12", "12", C), ("3.5", "3.5", D)])
+        # the native-mark path takes only a first group of 1 to 9 then groups of three
+        self.assertEqual(read("12 3.5", "fi"), [])
+        self.assertEqual(read("12'3.5", "fr-CH"), [])
+        self.assertEqual(read("0\u00a0234.5", "ru"), [])
+        self.assertEqual(read("1 2345.6", "fi"), [])
         self.assertEqual(read("120-160", "ru"), [("120", "120", C), ("160", "160", C)])
         # point group marks and the English comma keep their reading
         self.assertEqual(read("1.500", "de"), [("1.500", "1500", C)])
