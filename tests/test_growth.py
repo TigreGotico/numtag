@@ -43,10 +43,11 @@ class TestGrowth(unittest.TestCase):
                 self.assert_linear(unit, lang, 25)
 
     def test_a_run_of_one_scale_word(self):
-        # a chain of scale words after a vague word must not recurse or rescan the run
+        # a chain of scale words after a vague word must not recurse or rescan the run;
+        # 200 words keep the base time well above the timer noise
         for unit, lang in (("million ", "en"), ("mil ", "pt-PT"), ("tisuća ", "hr")):
             with self.subTest(unit=unit, lang=lang):
-                self.assert_linear(unit, lang, 50)
+                self.assert_linear(unit, lang, 200)
         self.assertEqual(len(tag_numbers("tisuća " * 1500, "hr")), 1500)
         self.assertEqual(len(tag_numbers("mil " * 1500, "pt-PT")), 1500)
         self.assertEqual(tag_numbers("million " * 1500, "en"), [])
