@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.1a1](https://github.com/TigreGotico/numtag/tree/0.13.1a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.0a1...0.13.1a1)
+
+**Merged pull requests:**
+
+- fix\(en\): name the -illion words of ranks 21 to 99 and 101 [\#80](https://github.com/TigreGotico/numtag/pull/80) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.0a1](https://github.com/TigreGotico/numtag/tree/0.13.0a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.16a1...0.13.0a1)
