@@ -19,7 +19,7 @@
   },
   "words": {
     "joiner": {"value": ["dan"], "source": "\"dan\" joins a fraction (\"dua dan sepertiga\")."},
-    "decimal_marker": {"value": ["koma", "titik"], "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x.x: <%spellout-cardinal< titik >%spellout-cardinal>;\", \"x,x: <%spellout-cardinal< koma >%spellout-cardinal>;\" No national source names the spoken word; CLDR is the source."},
+    "decimal_marker": {"value": ["koma", "titik"], "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x.x: << titik >>;\", \"x,x: << koma >>;\" No national source names the spoken word; CLDR is the source."},
     "minus": {"value": ["minus", "negatif"], "source": "CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"-x: negatif >%spellout-cardinal>;\"; \"minus\" is read the same."},
     "minus_idioms": {"value": [], "source": "No Indonesian idiom puts \"minus\" before a positive number."},
     "article_one": {"value": [], "source": "Indonesian has no article that is also the number one; \"se-\" is part of a word."},
@@ -53,8 +53,8 @@
     {"word": "milyar", "role": "scale_noun", "value": 9, "source": "KBBI VI Daring, \"miliar\": \"bentuk tidak baku: milyar [...] sembilan nol (000.000.000)\"."},
     {"word": "triliun", "role": "scale_noun", "value": 12, "source": "KBBI VI Daring, \"triliun\": \"12 nol (000.000.000.000) [...] (di Amerika Serikat dan Prancis, digunakan juga di Indonesia)\"."},
     {"word": "lusin", "role": "collective", "value": "12", "source": "KBBI VI Daring, \"lusin\": \"satuan jumlah sama dengan 12 buah: dibelinya piring satu --, mangkuk dua --\"."},
-    {"word": "setengah", "role": "half", "source": "KBBI VI Daring, \"setengah\": \"seperdua; separuh\"; CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x,x: <%spellout-cardinal< koma >%spellout-cardinal>;\" has no half, so \"dua setengah\" (2.5) follows the KBBI sense."},
-    {"word": "separuh", "role": "half", "source": "KBBI VI Daring, \"setengah\": \"seperdua; separuh\"; CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x,x: <%spellout-cardinal< koma >%spellout-cardinal>;\" has no half, so \"dua setengah\" (2.5) follows the KBBI sense."},
+    {"word": "setengah", "role": "half", "source": "KBBI VI Daring, \"setengah\": \"seperdua; separuh\"; CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x,x: << koma >>;\" has no half, so \"dua setengah\" (2.5) follows the KBBI sense."},
+    {"word": "separuh", "role": "half", "source": "KBBI VI Daring, \"setengah\": \"seperdua; separuh\"; CLDR 48 RBNF (ICU 78) id %spellout-cardinal: \"x,x: << koma >>;\" has no half, so \"dua setengah\" (2.5) follows the KBBI sense."},
     {"word": "per", "role": "denominator_prefix", "part": true, "source": "EYD V, \"Angka dan Bilangan\", G.8.b: \"Bilangan pecahan ditulis dengan per- yang dilekatkan pada bilangan penyebut yang mengikutinya. [...] seperenam belas (⅟16) tiga perempat (¾) dua persepuluh (²∕₁₀) tiga dua-pertiga (3⅔)\": \"per-\" makes the whole number after it the denominator."},
     {"word": "pertama", "role": "ordinal", "value": "1", "source": "KBBI VI Daring, \"pertama\": \"num kesatu\"."},
     {"word": "ke", "role": "ordinal_prefix", "ambiguous": true, "source": "KBBI VI Daring, \"ke-\": \"prefiks pembentuk numeralia tingkat atau urutan: ketiga; kelima; kesebelas\" and \"prefiks pembentuk numeralia kumpulan: kedua (buku); ketiga (orang)\"; \"kedua\": \"num nomor dua: anaknya yang ~ lahir kemarin\" and \"num kelompok yang terdiri atas dua (orang dan barang): ~ mobilnya disita kejaksaan\". The group sense starts its phrase before a noun, the ordinal follows a word (\"anaknya yang ~\", \"juara ~\"), so a ke- word that starts a phrase and has a word after it is a weak ordinal. EYD V, \"Angka dan Bilangan\", G.9: \"abad ke-7 [...] Perang Dunia Ke-2\"."}

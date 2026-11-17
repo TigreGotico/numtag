@@ -95,6 +95,18 @@
   "roman_title_case_cue": {
    "value": false,
    "source": "German writes every noun in title case, so a title-case word before a numeral is no sign of a name (\"Größe XIV\"): Duden, Rechtschreibregeln, Groß- und Kleinschreibung, D 67: \"Substantive schreibt man groß ‹§ 55›.\""
+  },
+  "glued_denominators": {
+   "value": true,
+   "source": "Wiktionary de, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Zehntausendstel.wikitext): \":[1] der zehntausendste Teil von etwas\" and \":[[Derivation]] ([[Ableitung]]) des [[Adjektiv]]s ''[[zehntausendste]]'' mit dem [[Suffix]]/[[Derivatem]] ''[[-el]]''\"; \"Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001.\" The part word is the ordinal of the whole count plus -el, so a count glued to it is part of the denominator. DWDS, \"Hunderttausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/render/dwds-Hunderttausendstel.txt): \"Nur etwa ein Hunderttausendstel aller in uns einströmenden Sinnesdaten gelangt je zum Bewußtsein, so schätzt man.\" A count written apart is a numerator: DWDS, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/render/dwds-Zehntausendstel.txt): \"Die gesamte Lage mißt kaum einen halben Mikrometer, das sind fünf Zehntausendstel Millimeter.\" (5/10000 mm is 0.0005 mm, half of a micrometre)."
+  },
+  "glued_denominator_alone": {
+   "value": true,
+   "source": "Wiktionary de, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Zehntausendstel.wikitext): \":[1] der zehntausendste Teil von etwas\": the noun alone names one part, as \"Hundertstel\" does (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Hundertstel.wikitext): \":[1] der [[hundertste]] Teil von etwas\". A glued count is part of the word: \"Zweihundertstel\" is the 200th part. It derives from the ordinal adjective: \":[[Derivation]] ([[Ableitung]]) des [[Adjektiv]]s ''[[zehntausendste]]'' mit dem [[Suffix]]/[[Derivatem]] ''[[-el]]''\"; the ordinal \"zweihundertste\" is 200, so \"Zweihundertstel\" is the 200th part."
+  },
+  "glued_denominator_alone_ambiguous": {
+   "value": true,
+   "source": "Wiktionary de, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Zehntausendstel.wikitext): \"|Nominativ Plural=Zehntausendstel\": the plural has the form of the singular, so a glued part word with no count before it can be a plural with no determiner. DWDS, \"Hundertstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/render/dwds-Hundertstel.txt): \"Dabei büßten die deutschen Piloten vor allem beim Start wertvolle Hundertstel ein.\" DWDS, \"Zweihundertstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/render/dwds-Zweihundertstel.txt): \"Zweihundertstel Rückstand hatte Maurice Greene (USA) gegenüber Fredericks (Namibia / 9,98 Sek.).\", where the times have hundredths and the word most likely means two hundredths."
   }
  },
  "words": {
