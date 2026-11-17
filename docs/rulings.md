@@ -503,6 +503,17 @@ A word of vague quantity right before a scale word takes the place of its count.
 
 > Hrvatski jezični portal, "više": "6. (čega) neodređena količina a. ob. veća od četiri, a manja od desetak; nekoliko [više milijuna ljudi]".
 
+A clitic of the `vague_clitic` list may stand between the vague word and the scale word: "nekoliko je tisuća puta dalje" holds no number. The reading follows the vague word and ignores the case of the scale word, so "Puno je milijun eura" also reads no number, although "milijun" there is a singular form that counts one million. This is a known trade-off.
+
+```python
+>>> read("Najbliža zvijezda nekoliko je tisuća puta dalje od posljednjeg planeta.", "hr")
+[]
+>>> read("Puno je milijun eura za taj projekt.", "hr")
+[]
+>>> read("Do 2030 nekoliko milijuna ljudi", "hr")
+[('2030', '2030')]
+```
+
 A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
 
 ```python

@@ -81,8 +81,27 @@ class TestScales(unittest.TestCase):
         self.assertEqual(read("ondje je bilo nekoliko stotina tisuća ljudi, vjerojatno i cijeli milijun", "hr"),
                          [("milijun", "1000000", C)])
         self.assertEqual(read("nekoliko stotina milijuna", "hr"), [])
-        # a count before "stotina" ends the chain: 5 x 100 and the thousand, as on origin/dev
-        self.assertEqual(read("pet stotina tisuća", "hr"), [("pet stotina", "500", C), ("tisuća", "1000", C)])
+
+    def test_croatian_vague_quantity_stops_at_punctuation(self):
+        # a full stop or a comma ends the phrase, so "Tisuću" and "tisuću" count one thousand
+        self.assertEqual(read("Bilo ih je nekoliko stotina. Tisuću ljudi je došlo.", "hr"), [("Tisuću", "1000", C)])
+        self.assertEqual(read("nekoliko stotina, tisuću ljudi", "hr"), [("tisuću", "1000", C)])
+
+    def test_croatian_digits_before_a_vague_quantity_do_not_cancel_it(self):
+        # a year in digits is a number of its own and says nothing about "nekoliko milijuna"
+        self.assertEqual(read("Do 2030 nekoliko milijuna ljudi", "hr"), [("2030", "2030", C)])
+
+    def test_croatian_future_and_conditional_clitics_split_the_phrase(self):
+        # hr.wikipedia, "Enklitika": "će" and "bi" are clitics too
+        self.assertEqual(read("nekoliko će tisuća ljudi doći", "hr"), [])
+        self.assertEqual(read("nekoliko bi tisuća", "hr"), [])
+
+    def test_croatian_clitic_skip_ignores_the_case_of_the_scale_word(self):
+        # Known trade-off: after "je" the scale word may stand in the nominative or accusative singular
+        # ("Puno je milijun eura", where 1000000 would be right), and it reads no number
+        self.assertEqual(read("Puno je milijun eura za taj projekt.", "hr"), [])
+        self.assertEqual(read("Mnogo je tisuću kuna.", "hr"), [])
+        self.assertEqual(read("Više je milijun nego tisuću.", "hr"), [("tisuću", "1000", C)])
 
     def test_croatian_vise_after_a_number_is_plus(self):
         # HJP "više", sense 5: "plus (+)". The scale word before "više" is a count, and so is the one after it

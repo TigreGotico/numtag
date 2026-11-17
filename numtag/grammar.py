@@ -181,6 +181,7 @@ class Grammar:
         self.unsigned = unsigned
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
+        self._vague: dict[int, bool] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
@@ -199,18 +200,41 @@ class Grammar:
     def _after_vague(self, i: int) -> bool:
         """A vague quantity ("nekoliko") stands before position ``i``: right
         before it, with one clitic between, or before a scale word or
-        collective that itself follows one ("nekoliko stotina tisuća")."""
-        end = i - 1 if i > 0 and self._is_word(i - 1, self.lex.vague_clitics) else i
+        collective that itself follows one ("nekoliko stotina tisuća"). Only
+        a space or a hyphen joins the words."""
+        if not self.lex.vague_quantifiers:
+            return False
+        path = []
+        while i not in self._vague:
+            path.append(i)
+            found, i = self._vague_step(i)
+            if found is not None:
+                break
+        else:
+            found = self._vague[i]
+        self._vague.update(dict.fromkeys(path, found))
+        return found
+
+    def _vague_step(self, i: int) -> tuple[bool | None, int]:
+        """(True, i) when a vague phrase ends before ``i``; (False, i) when
+        nothing does; (None, j) when the chain goes on at ``j``."""
+        end = i
+        if 0 < i < len(self.tokens) and self.tokens[i].links_to_previous():
+            if self._is_word(i - 1, self.lex.vague_clitics) and self.tokens[i - 1].links_to_previous():
+                end = i - 1
+        else:
+            return False, i
         for phrase in self.lex.vague_quantifiers:
             start = end - len(phrase)
-            if start >= 0 and not any(t.is_digits for t in self.tokens[start:end]) \
-                    and tuple(t.norm for t in self.tokens[start:end]) == phrase \
-                    and not (start > 0 and self.starts_number(start - 1)):
-                return True
+            if start >= 0 and all(t.norm == w and not t.is_digits for t, w in zip(self.tokens[start:end], phrase)) \
+                    and not (start > 0 and not self.tokens[start - 1].is_digits and self.starts_number(start - 1)):
+                return True, i
         before = end - 1
-        return before >= 0 and not self.tokens[before].is_digits and any(
-            e.role in SCALE_ROLES or e.role == "collective"
-            for e in self.lex.readings.get(self.tokens[before].norm, ())) and self._after_vague(before)
+        if before >= 0 and not self.tokens[before].is_digits and any(
+                e.role in SCALE_ROLES or e.role == "collective"
+                for e in self.lex.readings.get(self.tokens[before].norm, ())):
+            return None, before
+        return False, i
 
     def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
         """Positions where the next part may start after position ``i``."""
