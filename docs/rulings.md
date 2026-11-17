@@ -228,6 +228,8 @@ In English, "score" takes a cardinal after "and".
 [('cem e meia dúzia', '106')]
 >>> read("Two and a half million people voted.", "en")
 [('Two and a half million', '2500000')]
+>>> read("The deal was worth 2 and a half million dollars.", "en")
+[('2 and a half million', '2500000')]
 ```
 
 Source: maintainer ruling for the half of a scale noun, and Priberam for the half dozen:

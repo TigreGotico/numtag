@@ -458,7 +458,9 @@ class Grammar:
             if position not in best:
                 continue
             parts, written, origin = best[position]
-            for end, chunk in self.small(position, multiplied=False):
+            # "oh" is the digit 0 after the marker only: "one point oh five"
+            zeros = [(position + 1, "0") for _ in self._readings(position, "decimal_zero")[:1]]
+            for end, chunk in self.small(position, multiplied=False) + zeros:
                 if parts and len(chunk) == 3:
                     continue
                 if end not in best or parts + 1 < best[end][0]:
@@ -588,6 +590,12 @@ class Grammar:
             # milhões e 500 mil" is one number, "2 milhões e 500" two
             end, value, decimal = read
             found.append(count(end, value, needs_multiplier=not first, decimal=decimal))
+            # "2 and a half million": digits before the half, as words are
+            if not decimal and not value.is_zero():
+                whole = _piece(Role.COUNT, i, end, value)
+                # only a half after a joiner: a year before "полмиллиона" is its own number
+                found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
+                          for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
