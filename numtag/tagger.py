@@ -283,8 +283,9 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # The word is the number after a noun that names a number ("o número
     # um"), and before a percent phrase, where it counts the hundredths ("un
     # pour cent")
-    named = (start > 0 and run[start - 1].norm in lexicon.number_nouns
-             or any(tuple(t.norm for t in run[parse.end:parse.end + len(p)]) == p for p in lexicon.percent_phrases))
+    percent_follows = any(tuple(t.norm for t in run[parse.end:parse.end + len(p)]) == p
+                          for p in lexicon.percent_phrases)
+    named = start > 0 and run[start - 1].norm in lexicon.number_nouns or percent_follows
     hyphenated_noun = run[start].noun_before if lexicon.article_after_noun else run[start].noun_after
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles and not named
                     and (hyphenated_noun
@@ -333,5 +334,5 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     whole = alone and parse.end == start + 1 and bool(entries) \
         and all(e.weak_at_end and not e.ambiguous for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    homograph = (parse.ambiguous and not whole) or lone_ambiguous or listed or weak_ordinal or bare_percent
+    homograph = ((parse.ambiguous and not whole) or lone_ambiguous) and not percent_follows or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
