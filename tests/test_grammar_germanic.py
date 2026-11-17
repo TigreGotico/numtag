@@ -4,7 +4,7 @@ tens by twenties, the two Norwegian counting orders, ordinals in digits and
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale, tag_numbers
 from numtag.lexicon import load
 from numtag.tokenize import tokenize
@@ -242,6 +242,66 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         # a quarter past the hour holds the hour 3 only; "kwart" of "kwart finales" is no number
         self.assertEqual(read("kwart oer trije", "fy"), [("trije", "3", C)])
         self.assertEqual(read("de kwart finales", "fy"), [])
+
+
+class TestGluedPartWords(unittest.TestCase):
+    # Sources: Wiktionary de "Zehntausendstel" ("der zehntausendste Teil von
+    # etwas"), DWDS corpus examples; see numtag/lexicon/de.json.
+    def test_a_count_glued_to_a_part_word_names_one_denominator(self):
+        # 1/200 = 0.005; 1/3000 has no finite decimal form
+        self.assertEqual(read("ein Zweihundertstel", "de"), [("ein Zweihundertstel", "0.005", F)])
+        self.assertEqual(read("ein Dreitausendstel", "de"), [("ein Dreitausendstel", "1/3000", F)])
+
+    def test_the_glued_part_word_alone_is_one_of_the_part(self):
+        # 1/200 = 0.005; 1/(10 x 1000) = 0.0001; 1/(2 x 100 x 1000) = 0.000005
+        self.assertEqual(read("Zweihundertstel", "de"), [("Zweihundertstel", "0.005", F)])
+        self.assertEqual(read("Zehntausendstel", "de"), [("Zehntausendstel", "0.0001", F)])
+        self.assertEqual(read("Zweihunderttausendstel", "de"), [("Zweihunderttausendstel", "0.000005", F)])
+
+    def test_a_separate_count_before_a_glued_part_word_is_the_numerator(self):
+        # 3/200 = 0.015; 5/10000 = 0.0005
+        self.assertEqual(read("drei Zweihundertstel", "de"), [("drei Zweihundertstel", "0.015", F)])
+        self.assertEqual(read("fünf Zehntausendstel", "de"), [("fünf Zehntausendstel", "0.0005", F)])
+
+    def test_a_part_word_with_a_separate_count_is_unchanged(self):
+        # 2/100 = 0.02; 3/1000 = 0.003; 1/100 = 0.01
+        self.assertEqual(read("zwei Hundertstel", "de"), [("zwei Hundertstel", "0.02", F)])
+        self.assertEqual(read("drei Tausendstel", "de"), [("drei Tausendstel", "0.003", F)])
+        self.assertEqual(read("ein Hundertstel", "de"), [("ein Hundertstel", "0.01", F)])
+        self.assertEqual(read("Hundertstel", "de"), [])
+
+    def test_a_number_that_no_reading_folds_in_leaves_the_glued_word_unread(self):
+        # DWDS, Aktuelles Lexikon: the 164 stays; the word after it has no reading
+        self.assertEqual(read("Der Tag wird damit in einem Jahrhundert um 164 Hunderttausendstel Sekunden länger.", "de"),
+                         [("einem", "1", C), ("164", "164", C)])
+        self.assertEqual(read("3 Zweihundertstel", "de"), [("3", "3", C)])
+
+    def test_an_ordinal_is_no_part_word(self):
+        self.assertEqual(read("der zweihundertste Tag", "de"), [("zweihundertste", "200", O)])
+
+    def test_a_hyphen_before_the_glued_word_is_no_glued_count(self):
+        # no source rules this shape; the old reading stays: 1 and 2/100 = 0.02
+        self.assertEqual(read("ein-Zweihundertstel", "de"), [("ein", "1", C), ("Zweihundertstel", "0.02", F)])
+
+    def test_sentences_from_the_dwds_corpus(self):
+        # Die Welt, 05.08.2003: 1/200 = 0.005
+        self.assertEqual(read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de"),
+                         [("ein Zweihundertstel", "0.005", F)])
+        # Süddeutsche Zeitung, 30.03.1995: 1/(100 x 1000) = 0.00001
+        self.assertEqual(read("Insgesamt empfängt die Erde vom Mond etwa ein Hunderttausendstel der direkten Sonnenstrahlung.", "de"),
+                         [("ein Hunderttausendstel", "0.00001", F)])
+        # Süddeutsche Zeitung, 14.07.1994: 5/10000 mm = 0.0005 mm = 0.5 micrometre, half of 1
+        self.assertEqual(read("Die gesamte Lage mißt kaum einen halben Mikrometer, das sind fünf Zehntausendstel Millimeter.", "de"),
+                         [("einen halben", "0.5", F), ("fünf Zehntausendstel", "0.0005", F)])
+
+    def test_a_glued_part_word_with_no_count_has_the_score_of_a_homograph(self):
+        # 3 + 1/200 = 3.005; the word alone can be a plural with no determiner
+        # ("wertvolle Hundertstel"), so these score 0.4, and a count before it scores 1.0
+        self.assertEqual(sure("Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 0.4)])
+        self.assertEqual(sure("wertvolle Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 0.4)])
+        self.assertEqual(sure("drei und Zweihundertstel", "de"), [("drei und Zweihundertstel", "3.005", 0.4)])
+        self.assertEqual(sure("ein Zweihundertstel", "de"), [("ein Zweihundertstel", "0.005", 1.0)])
+        self.assertEqual(sure("drei Zweihundertstel", "de"), [("drei Zweihundertstel", "0.015", 1.0)])
 
 
 class TestScales(unittest.TestCase):
