@@ -286,6 +286,10 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("nulla egész kétezred", "hu"), [("nulla", "0", C)])
         self.assertEqual(read("nulla kétszázad", "hu"), [("nulla", "0", C)])
 
+    def test_a_sentence_break_lets_the_lone_reading_back(self):
+        self.assertEqual(read("három. Tízezred része", "hu"),
+                         [("három", "3", C), ("Tízezred", "0.0001", F)])
+
     def test_a_lone_glued_part_word_needs_the_lexicon_setting(self):
         for setting in ("glued_denominator_alone", "glued_denominator_alone_ambiguous"):
             lexicon = replace(load("hu"), **{setting: False})
