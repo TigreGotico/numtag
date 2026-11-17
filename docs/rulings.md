@@ -448,6 +448,19 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
+In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". After a hyphen the count is the second member of a range and keeps its own reading.
+
+```python
+>>> read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de")
+[('ein Zweihundertstel', '0.005')]
+>>> read("ein Dreitausendstel", "de")
+[('ein Dreitausendstel', '1/3000')]
+>>> read("zwei Hundertstel", "de")
+[('zwei Hundertstel', '0.02')]
+```
+
+> Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter". Hungarian reads such a word only after a count and gives no number for the word alone.
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.

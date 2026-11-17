@@ -957,6 +957,10 @@ class Grammar:
                       for e in self._readings(i, "ordinal")]
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
+        # "Zweihundertstel" alone: the count glued in it is part of the denominator
+        if self.lex.glued_denominator_alone:
+            found += [Parse(stop, Rational("1", value), ambiguous=ambiguous, parts=below(i, stop, value))
+                      for stop, value, ambiguous in self._glued_denominators(i)]
         # "heren bat": one after the denominator
         found += [Parse(i + 2, Rational("1", e.value), ambiguous=e.ambiguous,
                         parts=below(i, i + 1, e.value) + _piece(Role.COUNT, i + 1, i + 2, ONE))

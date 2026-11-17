@@ -263,6 +263,9 @@ class Lexicon:
     # A count glued to the part word of a hundred or more multiplies it, as
     # it multiplies the scale word ("kétszázad" is 1/200, as "kétszáz" is 200).
     glued_denominators: bool = False
+    # Such a part word with no count before it is one of the part ("Zweihundertstel"
+    # is 1/200); False where it names no number ("tízezred").
+    glued_denominator_alone: bool = False
     # A period right after a digit string makes it an ordinal when a
     # lower-case word or a digit follows ("a 2. emelet").
     dot_ordinal: bool = False
@@ -557,6 +560,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         fraction_agreement=settings.get("fraction_agreement", True),
         decimal_fraction=settings.get("decimal_fraction", False),
         glued_denominators=settings.get("glued_denominators", False),
+        glued_denominator_alone=settings.get("glued_denominator_alone", False),
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
