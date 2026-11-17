@@ -135,6 +135,28 @@ class TestScales(unittest.TestCase):
         self.assertEqual(read("stotinu tisuća ljudi", "hr"), [("stotinu tisuća", "100000", C)])
         self.assertEqual(read("stotinu milijuna", "hr"), [("stotinu milijuna", "100000000", C)])
 
+    def test_croatian_digits_count_the_hundreds_noun(self):
+        # digits count "stotina" as a word count does: 5 x 100, 2 x 100, 10 x 100, 5 x 100 x 1000,
+        # 2 x 100 x 1000, 3 x 100 x 10^6, 10^6 + 3 x 100 x 1000
+        for text, value in (("5 stotina", "500"), ("2 stotine", "200"), ("10 stotina", "1000"),
+                            ("5 stotina tisuća", "500000"), ("2 stotine tisuća", "200000"),
+                            ("3 stotine milijuna", "300000000"), ("milijun 3 stotine tisuća", "1300000")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [(text, value, C)])
+        self.assertEqual(read("Prodano je 5 stotina tisuća primjeraka.", "hr"), [("5 stotina tisuća", "500000", C)])
+        # 2.5 x 100 = 250
+        self.assertEqual(read("2,5 stotina", "hr"), [("2,5 stotina", "250", C)])
+
+    def test_croatian_word_decimals_count_the_hundreds_noun(self):
+        # a decimal in words counts "stotina" as "one point five hundred" counts "hundred":
+        # 2.5 x 100, 0.5 x 100, 2.25 x 100, 2.5 x 100 x 1000
+        for text, value in (("dva zarez pet stotina", "250"), ("nula zarez pet stotina", "50"),
+                            ("dva zarez dvadeset pet stotina", "225"), ("dva zarez pet stotine tisuća", "250000")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [(text, value, C)])
+        # 3.5 x 100
+        self.assertEqual(read("tri zarez pet stotina ljudi", "hr"), [("tri zarez pet stotina", "350", C)])
+
     def test_slovak_triliarda_and_kvadrilion_in_the_long_scale(self):
         # triliarda = 10^3 x 10^18 = 10^21: 5 x 10^21 and 2 x 10^21
         self.assertEqual(read("päť triliárd", "sk"), [("päť triliárd", "5000000000000000000000", C)])
