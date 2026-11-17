@@ -467,7 +467,7 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
-In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". After a hyphen the count is the second member of a range and keeps its own reading.
+In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread: "3 Zweihundertstel" reads only the 3.
 
 ```python
 >>> read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de")
@@ -476,6 +476,8 @@ In German a count written in one word with a part word is part of the denominato
 [('ein Dreitausendstel', '1/3000')]
 >>> read("zwei Hundertstel", "de")
 [('zwei Hundertstel', '0.02')]
+>>> read("3 Zweihundertstel", "de")
+[('3', '3')]
 ```
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".

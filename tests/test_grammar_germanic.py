@@ -270,18 +270,24 @@ class TestGluedPartWords(unittest.TestCase):
         self.assertEqual(read("ein Hundertstel", "de"), [("ein Hundertstel", "0.01", F)])
         self.assertEqual(read("Hundertstel", "de"), [])
 
+    def test_a_number_that_no_reading_folds_in_leaves_the_glued_word_unread(self):
+        # DWDS, Aktuelles Lexikon: the 164 stays; the word after it has no reading
+        self.assertEqual(read("Der Tag wird damit in einem Jahrhundert um 164 Hunderttausendstel Sekunden länger.", "de"),
+                         [("einem", "1", C), ("164", "164", C)])
+        self.assertEqual(read("3 Zweihundertstel", "de"), [("3", "3", C)])
+
     def test_an_ordinal_is_no_part_word(self):
         self.assertEqual(read("der zweihundertste Tag", "de"), [("zweihundertste", "200", O)])
 
     def test_a_hyphen_before_the_glued_word_is_no_glued_count(self):
-        # as in Hungarian, the hyphen keeps the old reading: 1 and 2/100 = 0.02
+        # no source rules this shape; the old reading stays: 1 and 2/100 = 0.02
         self.assertEqual(read("ein-Zweihundertstel", "de"), [("ein", "1", C), ("Zweihundertstel", "0.02", F)])
 
     def test_sentences_from_the_dwds_corpus(self):
         # Die Welt, 05.08.2003: 1/200 = 0.005
         self.assertEqual(read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de"),
                          [("ein Zweihundertstel", "0.005", F)])
-        # Die Zeit, 05.11.1982 and others: 1/(100 x 1000) = 0.00001
+        # Süddeutsche Zeitung, 30.03.1995: 1/(100 x 1000) = 0.00001
         self.assertEqual(read("Insgesamt empfängt die Erde vom Mond etwa ein Hunderttausendstel der direkten Sonnenstrahlung.", "de"),
                          [("ein Hunderttausendstel", "0.00001", F)])
         # Süddeutsche Zeitung, 14.07.1994: 5/10000 mm = 0.0005 mm = 0.5 micrometre, half of 1

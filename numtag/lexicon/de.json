@@ -102,7 +102,7 @@
   },
   "glued_denominator_alone": {
    "value": true,
-   "source": "Wiktionary de, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Zehntausendstel.wikitext): \":[1] der zehntausendste Teil von etwas\": the noun alone names one part, as \"Hundertstel\" does (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Hundertstel.wikitext): \":[1] der [[hundertste]] Teil von etwas\". A glued count is part of the word: \"Zweihundertstel\" is the 200th part. DWDS, \"Hunderttausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/render/dwds-Hunderttausendstel.txt): \"Der Tag wird damit in einem Jahrhundert um 164 Hunderttausendstel Sekunden länger.\""
+   "source": "Wiktionary de, \"Zehntausendstel\" (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Zehntausendstel.wikitext): \":[1] der zehntausendste Teil von etwas\": the noun alone names one part, as \"Hundertstel\" does (knowledge/wiki/audits/numtag/follow-up-prs/de-glued/sources/wikt-de-Hundertstel.wikitext): \":[1] der [[hundertste]] Teil von etwas\". A glued count is part of the word: \"Zweihundertstel\" is the 200th part. It derives from the ordinal adjective: \":[[Derivation]] ([[Ableitung]]) des [[Adjektiv]]s ''[[zehntausendste]]'' mit dem [[Suffix]]/[[Derivatem]] ''[[-el]]''\"; the ordinal \"zweihundertste\" is 200, so \"Zweihundertstel\" is the 200th part."
   }
  },
  "words": {
