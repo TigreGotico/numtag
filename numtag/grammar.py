@@ -197,8 +197,20 @@ class Grammar:
         return i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
 
     def _after_vague(self, i: int) -> bool:
-        """A word of vague quantity ("nekoliko") stands right before position ``i``."""
-        return i > 0 and self._is_word(i - 1, self.lex.vague_quantifiers)
+        """A vague quantity ("nekoliko") stands before position ``i``: right
+        before it, with one clitic between, or before a scale word or
+        collective that itself follows one ("nekoliko stotina tisuća")."""
+        end = i - 1 if i > 0 and self._is_word(i - 1, self.lex.vague_clitics) else i
+        for phrase in self.lex.vague_quantifiers:
+            start = end - len(phrase)
+            if start >= 0 and not any(t.is_digits for t in self.tokens[start:end]) \
+                    and tuple(t.norm for t in self.tokens[start:end]) == phrase \
+                    and not (start > 0 and self.starts_number(start - 1)):
+                return True
+        before = end - 1
+        return before >= 0 and not self.tokens[before].is_digits and any(
+            e.role in SCALE_ROLES or e.role == "collective"
+            for e in self.lex.readings.get(self.tokens[before].norm, ())) and self._after_vague(before)
 
     def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
         """Positions where the next part may start after position ``i``."""
