@@ -69,6 +69,16 @@ class TestScaleNouns(unittest.TestCase):
         self.assertEqual(it("mila"), [])
 
 
+class TestScaleNounsAboveATrillion(unittest.TestCase):
+    def test_a_quadrilione_is_a_million_trilioni(self):
+        # long scale: quadrilione = 10^(6 x 4) = 10^24, written as 1 and 24 zeros
+        self.assertEqual(it("un quadrilione"), [("un quadrilione", "1000000000000000000000000", C)])
+        # 2 x 10^24
+        self.assertEqual(it("due quadrilioni"), [("due quadrilioni", "2000000000000000000000000", C)])
+        # a half of 10^24 = 5 x 10^23, written as 5 and 23 zeros
+        self.assertEqual(it("mezzo quadrilione"), [("mezzo quadrilione", "500000000000000000000000", C)])
+
+
 class TestMinus(unittest.TestCase):
     def test_meno_after_a_is_a_minus(self):
         self.assertEqual(it("scesa a meno tre gradi"), [("meno tre", "-3", C)])

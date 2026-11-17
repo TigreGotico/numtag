@@ -3,6 +3,7 @@ comment beside it; sources are in numtag/lexicon/fa.json."""
 import unittest
 
 from helpers import read, sure
+from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -31,6 +32,19 @@ class TestPersian(unittest.TestCase):
         # هزار میلیارد = 10^3 x 10^9 = 10^12
         self.assertEqual(fa("هزار میلیارد"), [("هزار میلیارد", "1000000000000", C)])
 
+    def test_a_trillion_is_a_thousand_milliards(self):
+        # تریلیون = هزار میلیارد = 10^3 x 10^9 = 10^12, written as 1 and 12 zeros
+        self.assertEqual(fa("یک تریلیون"), [("یک تریلیون", "1000000000000", C)])
+        # 2 x 10^12
+        self.assertEqual(fa("دو تریلیون"), [("دو تریلیون", "2000000000000", C)])
+
+    def test_a_trillion_is_a_million_million_in_the_long_scale(self):
+        # the word is the third -illion: short scale 10^(3 x 3 + 3) = 10^12, long scale 10^(6 x 3) = 10^18
+        for scale, value in ((None, "1000000000000"), (Scale.SHORT, "1000000000000"), (Scale.LONG, "1000000000000000000")):
+            with self.subTest(scale=scale):
+                found = tag_numbers("یک تریلیون", "fa", **({} if scale is None else {"scale": scale}))
+                self.assertEqual([(m.value, m.number_scale) for m in found], [(value, scale or Scale.SHORT)])
+
     def test_persian_and_arabic_digits(self):
         # ۱۲٬۳۴۵٫۶۷ = 12345.67
         self.assertEqual(fa("۱۲٬۳۴۵٫۶۷ تومان"), [("۱۲٬۳۴۵٫۶۷", "12345.67", D)])
@@ -58,6 +72,11 @@ class TestPersian(unittest.TestCase):
         self.assertEqual(sure("نه", "fa"), [("نه", "9", 0.4)])
         self.assertEqual(sure("نه هزار", "fa"), [("نه هزار", "9000", 1.0)])
         self.assertEqual(sure("هشت", "fa"), [("هشت", "8", 1.0)])
+
+    def test_hifdah_is_seventeen(self):
+        # "هیفده" is "هفده": 17; 100 + 17 = 117
+        self.assertEqual(read("صد و هیفده", "fa"), [("صد و هیفده", "117", "cardinal")])
+        self.assertEqual(read("هیفده", "fa"), [("هیفده", "17", "cardinal")])
 
 
 if __name__ == "__main__":
