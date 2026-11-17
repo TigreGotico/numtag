@@ -467,6 +467,17 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
+In Russian a whole part can come before a fraction of any part, with "целых" and with or without "и": "две целых три пятых" is 2 3/5. A count before a part word belongs to that part word, so it is never a decimal digit. Ukrainian and Czech have no source here for a whole part before a part other than a power of ten, so "дві цілих три п'ятих" reads 2 and 3/5 as two numbers.
+
+```python
+>>> read("Ответ: две целых три пятых.", "ru")
+[('две целых три пятых', '2.6')]
+>>> read("Відповідь: дві цілих три п'ятих.", "uk")
+[('дві', '2'), ("три п'ятих", '0.6')]
+```
+
+> Д. Э. Розенталь, "Справочник по правописанию и литературной правке", 4th edition (1985), § 45, item 3: "три целых и шесть седьмых"
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.

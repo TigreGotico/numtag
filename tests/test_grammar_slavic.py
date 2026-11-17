@@ -360,6 +360,19 @@ class TestPersonalAndCountForms(unittest.TestCase):
         # 3 + 6/7 = 27/7; 2 + 5/10
         self.assertEqual(read("три целых и шесть седьмых", "ru"), [("три целых и шесть седьмых", "27/7", F)])
         self.assertEqual(read("две целых и пять десятых", "ru"), [("две целых и пять десятых", "2.5", D)])
+        # the joiner may be left out: 2 + 3/5 = 2.6; 2 + 1/3 = 7/3
+        self.assertEqual(read("две целых три пятых", "ru"), [("две целых три пятых", "2.6", F)])
+        self.assertEqual(read("две целых одна треть", "ru"), [("две целых одна треть", "7/3", F)])
+
+    def test_a_count_of_parts_is_no_decimal_digit(self):
+        # 2 3/5 is no 2.3: the count belongs to its part word
+        self.assertEqual(read("дві цілих три п'ятих", "uk"), [("дві", "2", C), ("три п'ятих", "0.6", F)])
+        self.assertEqual(read("dvě celé tři pětiny", "cs"), [("dvě", "2", C), ("tři pětiny", "0.6", F)])
+        # 2 + 5/100, as before
+        self.assertEqual(read("дві цілих п'ять сотих", "uk"), [("дві цілих п'ять сотих", "2.05", D)])
+        self.assertEqual(read("dvě celé pět setin", "cs"), [("dvě celé pět setin", "2.05", D)])
+        # "quartos" are also rooms: digits before a word with a second meaning stay decimals
+        self.assertEqual(read("dois vírgula cinco quartos", "pt-PT")[0], ("dois vírgula cinco", "2.5", D))
 
 
 class TestDigitGroups(unittest.TestCase):
