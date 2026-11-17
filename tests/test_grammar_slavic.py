@@ -82,6 +82,18 @@ class TestScales(unittest.TestCase):
                          [("milijun", "1000000", C)])
         self.assertEqual(read("nekoliko stotina milijuna", "hr"), [])
 
+    def test_croatian_hundred_after_a_vague_scale_word_starts_its_own_number(self):
+        # "sto" right after "nekoliko" has no count; after "nekoliko milijuna" it counts the
+        # thousands of a lower group: 100 x 1000 = 100000
+        self.assertEqual(read("nekoliko sto", "hr"), [])
+        # the clitic "je" between the vague word and the hundred keeps the guard
+        self.assertEqual(read("Nekoliko je sto", "hr"), [])
+        self.assertEqual(read("nekoliko milijuna sto tisuća", "hr"), [("sto tisuća", "100000", C)])
+
+    def test_croatian_hundred_word_with_its_own_count_keeps_it(self):
+        # "dvjesto" is two hundred in one word, so the vague word before it takes no count away: 200
+        self.assertEqual(read("nekoliko dvjesto ljudi", "hr"), [("dvjesto", "200", C)])
+
     def test_croatian_vague_quantity_stops_at_punctuation(self):
         # a full stop or a comma ends the phrase, so "Tisuću" and "tisuću" count one thousand
         self.assertEqual(read("Bilo ih je nekoliko stotina. Tisuću ljudi je došlo.", "hr"), [("Tisuću", "1000", C)])
