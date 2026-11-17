@@ -200,6 +200,16 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("dvě celé pět desetin", "cs"), [("dvě celé pět desetin", "2.5", D)])
         self.assertEqual(read("три целых четырнадцать сотых", "ru"), [("три целых четырнадцать сотых", "3.14", D)])
 
+    def test_digits_before_a_power_of_ten_are_its_numerator(self):
+        # 2 + 5/100 = 2.05; 2 + 25/100; 3 + 7/10; never 2.5 and a stray ordinal 100
+        self.assertEqual(read("2 целых 5 сотых", "ru"), [("2 целых 5 сотых", "2.05", D)])
+        self.assertEqual(read("две целых 5 сотых", "ru"), [("две целых 5 сотых", "2.05", D)])
+        self.assertEqual(read("2 целых 25 сотых", "ru"), [("2 целых 25 сотых", "2.25", D)])
+        self.assertEqual(read("3 целых 7 десятых процента", "ru"), [("3 целых 7 десятых", "3.7", D)])
+        self.assertEqual(read("2 цілих 5 сотих", "uk"), [("2 цілих 5 сотих", "2.05", D)])
+        self.assertEqual(read("2 celé 5 setin", "cs"), [("2 celé 5 setin", "2.05", D)])
+        # Slovak reads no power-of-ten fraction after the marker: the digits stay apart
+        self.assertEqual(read("2 celé 5 stotín", "sk"), [("2", "2", C), ("5", "5", C)])
 
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5

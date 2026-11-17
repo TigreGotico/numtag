@@ -450,16 +450,21 @@ class Grammar:
         fractions = [(i + 1, end, written) for end, written in self._decimal_fractions(i + 1)] \
             if self.lex.decimal_fraction else []
         best = {start: (0, "", start) for start in starts}
+        digit_ends: set[int] = set()
         for position in range(min(starts), len(self.tokens)):
             if position not in best:
                 continue
             parts, written, origin = best[position]
             # "oh" is the digit 0 after the marker only: "one point oh five"
             zeros = [(position + 1, "0") for _ in self._readings(position, "decimal_zero")[:1]]
-            # "2 point 5": digits after the marker
-            token = self.tokens[position] if position < len(self.tokens) else None
-            digits_after = [(position + 1, token.latin)] if not parts and token and token.is_digits and not token.suffix \
-                and not token.period_ordinal and token.latin.isdigit() else []
+            # "2 point 5": digits after the marker, alone. Before a power of
+            # ten they are its numerator: "2 целых 5 сотых" is 2.05.
+            written_digits = self._plain_digits(position)
+            digits_after = [(position + 1, written_digits)] if written_digits and not parts and not any(
+                e.value == digits.shift("1", len(e.value) - 1) for e in self._readings(position + 1, "denominator")) else []
+            if position in digit_ends:
+                continue
+            digit_ends.update(end for end, _ in digits_after)
             for end, chunk in self.small(position, multiplied=False) + zeros + digits_after:
                 if parts and len(chunk) == 3:
                     continue
@@ -473,6 +478,14 @@ class Grammar:
             for start in starts:
                 found += [(start, end, written) for end, written in self._decimal_fraction(start)]
         return found
+
+    def _plain_digits(self, i: int) -> str | None:
+        """The ASCII digits of a digit string at ``i`` with no mark, suffix
+        or ordinal period: "5" in "2 point 5"."""
+        token = self.tokens[i] if i < len(self.tokens) else None
+        if token and token.is_digits and not token.suffix and not token.period_ordinal and token.latin.isdigit():
+            return token.latin
+        return None
 
     def _decimal_parts(self, i: int, start: int, end: int, fraction: str) -> Pieces:
         """The marker at ``i``, a joiner after it, and the decimals from
@@ -512,7 +525,9 @@ class Grammar:
         """"пять десятых", "двадцать пять сотых" after a decimal marker: the
         numerator written in as many digits as the denominator has zeros."""
         found = []
-        for end, numerator in self.small(i, nonzero=True):
+        written = self._plain_digits(i)
+        numerators = self.small(i, nonzero=True) + ([(i + 1, written)] if written else [])
+        for end, numerator in numerators:
             for entry in self._readings(end, "denominator"):
                 zeros = len(entry.value) - 1
                 if entry.value == digits.shift("1", zeros) and 0 < len(numerator) <= zeros:
@@ -600,6 +615,7 @@ class Grammar:
                 whole = _piece(Role.COUNT, i, end, value)
                 for start, e, fraction in self.decimal_digits(end):
                     found.append(Count(e, Rational.from_decimal(value.numerator, fraction), decimal=True,
+                                       needs_multiplier=not first,
                                        parts=whole + self._decimal_parts(end, start, e, fraction)))
         return found
 

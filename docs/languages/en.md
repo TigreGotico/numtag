@@ -50,6 +50,13 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 [('twelve hundred', '1200'), ('a hundred', '100'), ('a dozen', '12')]
 ```
 
+Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits after "point" stand alone, so a word after them starts a new number. After the first group, digits take no "point", as they take no group: "2 million and 3 point 5" is two numbers.
+
+```python
+>>> read("Turn it up 2 point 5, then 2 point 5 five, then 2 million and 3 point 5.")
+[('2 point 5', '2.5'), ('2 point 5', '2.5'), ('five', '5'), ('2 million', '2000000'), ('3 point 5', '3.5')]
+```
+
 ## The settings
 
 | Setting | Value | Source |

@@ -433,7 +433,19 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("2 point"), [("2", "2", C)])
         self.assertEqual(en("point 5"), [("5", "5", C)])
         self.assertEqual(en("2 point 5 5"), [("2 point 5", "2.5", D), ("5", "5", C)])
+        # the digits after the point stand alone: no word joins them
+        self.assertEqual(en("2 point 5 five"), [("2 point 5", "2.5", D), ("five", "5", C)])
 
+    def test_a_decimal_in_digits_takes_no_second_point(self):
+        self.assertEqual(en("2.5 point 5"), [("2.5", "2.5", D), ("5", "5", C)])
+        self.assertEqual(read("2,5 vírgula 5", "pt-PT"), [("2,5", "2.5", D), ("5", "5", C)])
+
+    def test_digits_after_the_first_group_take_no_point(self):
+        # "2 milhões e 500" is two numbers, so "2 milhões e 500 vírgula 5" is too
+        self.assertEqual(en("2 million and 3 point 5"),
+                         [("2 million", "2000000", C), ("3 point 5", "3.5", D)])
+        self.assertEqual(read("2 milhões e 500 vírgula 5", "pt-PT"),
+                         [("2 milhões", "2000000", C), ("500 vírgula 5", "500.5", D)])
 
     def test_oh_nought_and_o_after_point_are_the_digit_zero(self):
         # 1 + 05/100; 1 + 005/1000; 1 + 505/1000
