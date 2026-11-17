@@ -91,6 +91,10 @@ class Entry:
     numerator: str = ""
     # A denominator with one form for every numerator ("سوم" in "دو سوم").
     invariant: bool = False
+    # A denominator that also names one part alone, with no count, no
+    # article and no one after it, at the score of a homograph: eu
+    # "laurden" is 1/4, and also starts the compound "final laurden".
+    weak_alone: bool = False
     # The power of ten differs between the long and the short scale ("bilião").
     scale_dependent: bool = False
     # The word names a place in a sequence ("viides", "beşinci"): a number
@@ -102,6 +106,9 @@ class Entry:
     # A ten that takes a unit after it although it is not a round ten from
     # twenty up ("on beş", "tizenöt").
     takes_unit: bool = False
+    # A ten that takes only these units after it, past the joiner: the old
+    # spelling "diez y seis" is 16, and "diez y uno" is no number.
+    takes_units: frozenset[str] = frozenset()
     # A case form that names the parts when a count follows it: Turkish
     # "üçte bir" is one third.
     fraction_case: bool = False
@@ -280,6 +287,9 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # A word between a numerator and a denominator cardinal, as "a/b" is
+    # read aloud: eu "zati" in "hiru zati lau" (3/4).
+    fraction_over: frozenset[str] = frozenset()
     # "wis" in "wis sin": a word that makes the cardinal after it an ordinal.
     ordinal_particles: frozenset[str] = frozenset()
     # Values whose ordinal has a bound form for compounds: in ar "الحادي
@@ -306,6 +316,12 @@ class Lexicon:
     # Where the joiner may go before a half or a fraction after a whole
     # ("dua setengah", "tiga dua-pertiga", "two and a half").
     joiner_before_half: Joiner = Joiner.REQUIRED
+    # The joiner between two groups stands only between a thousand and a one
+    # ("mil y una"); before any other group, the parts are two numbers.
+    joiner_thousand_one_only: bool = False
+    # A percent phrase names the percent sign with no number before it too:
+    # "tanto por ciento" holds no 100.
+    percent_phrase_is_no_number: bool = False
     # A part word after the joiner takes an article: "six and a quarter",
     # never "six and quarter" ("forty and eighth" is 40 and 8th).
     part_after_joiner_needs_article: bool = False
@@ -487,8 +503,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         elif role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
+                            takes_units=frozenset(spec.get("takes_units", ())),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
-                            invariant=spec.get("invariant", False), teens=spec.get("teens", False),
+                            weak_alone=spec.get("weak_alone", False), invariant=spec.get("invariant", False),
+                            teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False), joined_count=spec.get("joined_count", False),
                             weak_after=frozenset(fold(w) for w in spec.get("weak_after", ())),
@@ -586,6 +604,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
         ambiguous_words=frozenset(ambiguous_words),
         ordinal_particles=frozenset(words.get("ordinal_particle", ())),
+        fraction_over=frozenset(words.get("fraction_over", ())),
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
         half_of_scale=settings.get("half_of_scale", False),
@@ -598,6 +617,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
+        joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
+        percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),
         one_after_noun=frozenset(words.get("one_after_noun", ())),

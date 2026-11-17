@@ -33,20 +33,28 @@
    "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\" No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"ciento y veinte\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value."
   },
   "joiner_between_groups": {
-   "value": "never",
-   "source": "DPD \"cardinales\" §2: \"se escriben hoy en una sola palabra los correspondientes a los números 16 a 19 y 21 a 29, así como todas las centenas\"; \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\""
+   "value": "optional",
+   "source": "DPD \"cardinales\" §2: \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\". The DPD writes \"y\" between a ten and a unit only. The \"y\" between \"mil\" and \"un\", \"una\" or \"uno\" is read as one number on the attested idiom: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days). Other uses of \"y\" after \"mil\" are not read as one number: older texts join a hundred after \"mil y\" (es.wikipedia \"Puente del Obispo\", inscription \"Comenzada el año mil y quinientos y cinco\"), and no source opened shows \"dos mil y uno\" or \"mil y veinte\", so they stay two numbers. This is a known gap for older texts."
+  },
+  "percent_phrase_is_no_number": {
+   "value": true,
+   "source": "DPD \"ciento\" §2: \"en la lengua actual se prefiere claramente la forma apocopada cien\" and \"Solo se mantiene hoy el uso de la forma plena ciento en locuciones, frases hechas y refranes, así como en la expresión de los porcentajes\". A hundred is \"cien\" in Spanish, so \"por ciento\" has no \"for a hundred\" reading and its \"ciento\" is the percent phrase, also with no number before it. DPD \"ciento\" §3: \"En la expresión de los porcentajes ha de utilizarse siempre la fórmula por ciento\". es.wiktionary \"ciento\", sense 5: \"Tanto por ciento\". \"tanto por ciento\" holds no 100."
+  },
+  "joiner_thousand_one_only": {
+   "value": true,
+   "source": "The \"y\" joins \"mil\" and a one only: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days)."
   },
   "joiner_before_round_hundred": {
    "value": false,
-   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner follows the thousands, so no count follows one."
+   "source": "joiner_between_groups reads a joiner only between \"mil\" and a one (\"mil y una\"): no count of a hundred or more follows a joiner after the thousands, so the setting is false."
   },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF es, \"1000: mil[ >>];\", writes a space, not a comma, between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
   },
   "joiner_before_last_group": {
-   "value": "never",
-   "source": "CLDR RBNF es (common/rbnf/es.xml, saved as knowledge/wiki/audits/numtag/lang-ports/ibero/sources/cldr-rbnf-es.xml), %spellout-cardinal-masculine: \"1000: mil[ >>];\": no joiner stands before the last group (\"mil doscientos\")."
+   "value": "optional",
+   "source": "DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\": no joiner is required before a last group (\"mil doscientos\", \"mil veintiuno\"). A joiner stands before the last group only in the idiom \"mil y un\", \"mil y una\", \"mil y uno\" (see joiner_between_groups)."
   },
   "ordinal_style": {
    "value": "every_word",
@@ -72,6 +80,10 @@
     "menos"
    ],
    "source": "CLDR RBNF es \"-x: menos >>\"; es.wiktionary \"menos\", locuciones: \"a menos que\", \"al menos\", \"cuando menos\", \"por lo menos\", \"nada menos\", \"más o menos\" are no sign"
+  },
+  "percent_phrase": {
+   "value": ["por ciento", "cien por cien"],
+   "source": "DPD \"ciento\" §3: \"En la expresión de los porcentajes ha de utilizarse siempre la fórmula por ciento\"; \"por ciento se escribe en dos palabras\". The \"ciento\" after \"por\" names the percent sign, not the number 100. The same section rejects \"por cien\" after other numbers and accepts it only for totality: \"no se considera correcto, en estos casos, el uso de la forma apocopada cien: ⊗‍el noventa por cien. Pero cuando el porcentaje expresa totalidad son igualmente válidas las expresiones ciento por ciento (preferida en América), cien por ciento y cien por cien (preferida en España)\"; example «El calor es pegajoso, la humedad del cien por cien» (Sierra Regreso [Esp. 1995]). So \"por cien\" is the percent sign only after \"cien\": \"cien por cien\" is 100 once, and the phrase holds its number. \"el noventa por cien\" and \"por cien euros\" keep the hundred."
   },
   "minus_idioms": {
    "value": [
@@ -297,7 +309,8 @@
    "word": "diez",
    "role": "ten",
    "value": "10",
-   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+   "takes_units": ["6", "7", "8", "9"],
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"Las grafías pluriverbales\" \"diez y seis\", \"veinte y uno\" \"son anticuadas y deben evitarse\": the old spelling of 16 to 19 is \"diez\" \"y\" and the unit 6 to 9. \"diez y uno\" to \"diez y cinco\" are no old spelling: DPD \"cardinales\" §2: \"Hay cardinales simples\" [...] \"de cero a quince\", so \"once\" to \"quince\" are one word each, so they stay two numbers."
   },
   {
    "word": "once",
@@ -991,11 +1004,17 @@
    "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
   },
   {
+   "word": "un-ciento",
+   "role": "hundred",
+   "value": "100",
+   "source": "DPD \"ciento\" §2: \"Quien hace un cesto hace ciento\"; es.wiktionary \"ciento\", sustantivo masculino, sense 4: \"centena\" (a hundred as a collective). es.wikipedia \"Puentedeume\": \"casi un ciento de bares y cafeterías\"; \"Lenguas de México\": \"más de un ciento de lenguas desaparecieron\"."
+  },
+  {
    "word": "ciento",
    "role": "hundred",
    "value": "100",
-   "bound": true,
-   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; \"101 ciento uno\": \"ciento\" stands only before the rest of the number"
+   "ambiguous": true,
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; \"101 ciento uno\"; DPD \"ciento\" §2: \"Solo se mantiene hoy el uso de la forma plena ciento en locuciones, frases hechas y refranes, así como en la expresión de los porcentajes\": \"Quien hace un cesto hace ciento\"; DPD \"ciento\" §3: \"ciento por ciento (preferida en América)\". Alone, \"ciento\" is the noun for the number 100 (es.wiktionary \"ciento\", sustantivo masculino: \"centena\"), a word with a second use besides the cardinal of \"ciento uno\", so it scores as a homograph."
   },
   {
    "word": "doscientos",

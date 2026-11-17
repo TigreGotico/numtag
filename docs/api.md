@@ -118,9 +118,10 @@ The mention value is the one exact answer. A caller does not add up the parts. A
 
 These rules decide the parts:
 
-1. Every word of a mention is in exactly one part. Spaces, hyphens and the comma between classes are in no part.
+1. Every word of a mention is in exactly one part. Spaces, hyphens, the slash of a digit fraction and the comma between classes are in no part.
 2. A count below the next scale word is one count part, with the joiners inside it: "sessenta e seis", "two hundred", "vigésimo primeiro".
 3. A digit string is one part, with its group marks, its decimal mark and its sign: "1.234,5", "-5", "21st".
+   A digit fraction is a count and a denominator: "3/4" is the count "3" and the denominator "4".
 4. An article that the grammar reads as one is a count with the value 1: "a" in "a quarter", and in "a half" alone, which is the count "a" and the denominator "half". Any other article, ordinal prefix, ending or particle is in the part that it introduces or ends: "a half" in "one and a half", "a dozen" after "half", "doze avos".
 5. An ordinal has no role of its own, because the mention kind says ORDINAL. "six thousand two hundredth" is the count "six", the scale "thousand" and the count "two hundredth" (200).
 6. A word that holds two parts is one part. The dual "ألفين" (two thousand) is one scale part with the value 1000, and "ثلثان" (two thirds) is one denominator part with the value 3.

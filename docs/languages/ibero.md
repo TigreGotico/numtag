@@ -4,7 +4,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 221 | 218 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 182 | 181 |
 | Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
@@ -29,6 +29,57 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 >>> read('vint e tres', 'oc')
 [('vint e tres', '23')]
 ```
+
+## The Spanish joiner "y"
+
+In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Other uses of "y" after "mil" stay two numbers. Older texts join them, and numtag reads that form as two numbers. No "y" joins a group after "millón".
+
+```python
+>>> read('Las mil y una noches', 'es')
+[('mil y una', '1001')]
+>>> read('dentro de mil y un días', 'es')
+[('mil y un', '1001')]
+>>> read('mil y quinientos', 'es')
+[('mil', '1000'), ('quinientos', '500')]
+>>> read('un millón y dos', 'es')
+[('un millón', '1000000'), ('dos', '2')]
+>>> read('uno y dos', 'es')
+[('uno', '1'), ('dos', '2')]
+```
+
+The old spelling "diez y seis" is 16, and so are "diez y siete" to "diez y nueve" for 17 to 19. "diez y uno" to "diez y cinco" are two numbers.
+
+```python
+>>> read('diez y seis', 'es')
+[('diez y seis', '16')]
+>>> read('diez y cinco', 'es')
+[('diez', '10'), ('cinco', '5')]
+```
+
+> DPD "cardinales" §2: "Las grafías pluriverbales" "diez y seis" "son anticuadas y deben evitarse"
+
+Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number. "cien por cien" is also 100, because "por cien" is the percent sign after "cien". After any other number, "por cien" keeps its hundred, because the DPD accepts that form only for the whole: "el noventa por cien" is 90 and 100.
+
+```python
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('Éramos ciento y la madre.', 'es')]
+[('ciento', '100', 0.4)]
+>>> read('un ciento de platos', 'es')
+[('un ciento', '100')]
+>>> read('el ciento por ciento', 'es')
+[('ciento', '100')]
+>>> read('cinco por ciento', 'es')
+[('cinco', '5')]
+>>> read('el tanto por ciento', 'es')
+[]
+>>> read('Al cien por cien.', 'es')
+[('cien', '100')]
+>>> read('el noventa por cien', 'es')
+[('noventa', '90'), ('cien', '100')]
+```
+
+> DPD "ciento" §2: "Quien hace un cesto hace ciento"
+
+> DPD "ciento" §3: "cuando el porcentaje expresa totalidad son igualmente válidas las expresiones ciento por ciento (preferida en América), cien por ciento y cien por cien (preferida en España)"
 
 ## Examples from the gold rows
 

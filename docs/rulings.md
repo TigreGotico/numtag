@@ -467,6 +467,45 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
+In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits, a decimal in words, "ein halbes" or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread: "3 Zweihundertstel" reads only the 3. A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel", so it scores as a homograph.
+
+```python
+>>> read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de")
+[('ein Zweihundertstel', '0.005')]
+>>> read("ein Dreitausendstel", "de")
+[('ein Dreitausendstel', '1/3000')]
+>>> read("zwei Hundertstel", "de")
+[('zwei Hundertstel', '0.02')]
+>>> read("3 Zweihundertstel", "de")
+[('3', '3')]
+```
+
+> Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".
+
+A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat".
+
+```python
+>>> read("Zortzi hamarren falta dira.", "eu")
+[('Zortzi hamarren', '0.8')]
+>>> read("Hiru zati lau idatzi du.", "eu")
+[('Hiru zati lau', '0.75')]
+>>> read("Milioi erdi euro eman zituen.", "eu")
+[('Milioi erdi', '500000')]
+```
+
+> Euskaltzaindia, 203. araua, EBO (VI), "Zenbakizko adierazpenak", 6: "Zenbakitzailea bat zenbakia denean (a = 1 denean) eratzen diren zenbakiak izendatzeko, -(r)en eransten zaio zenbaki kardinalari"; "7/8: zazpi zortziren", "8/10: zortzi hamarren", "2/100: bi ehunen"; footnote 22: "3/2 = hiru erdi (hiru *biren)"; "(egokia) 3/4 hiru zati lau (edo hiru laurden)"; note 28: "Izendatzailea milioi bat denean, milioi izena erabiltzen da, ondoren bat erantsi gabe, eta izen-izen erako hitz-elkarte arrunta eratzen da (ordu(-)laurden, final(-)laurden hitzetan bezala)".
+
+"laurden" and "heren" with no count, no article and no "bat" are one part, at the low score of a word with a second meaning. "final laurden" is the quarter-final, and "heren" is also the old ordinal "third". A noun before the word is no part of the number, as in "ordu laurden" (a quarter of an hour). After "eta" with no number before it, the word adds a quarter to an hour of the clock, which is no number word, so "hirurak eta laurden" reads no number.
+
+```python
+>>> read("Ordu laurden barru iritsiko da.", "eu")
+[('laurden', '0.25')]
+>>> read("Hirurak eta laurden dira.", "eu")
+[]
+```
+
+> Euskaltzaindiaren Hiztegia, "laurden": "Lau zati berdinetan banatu den zerbaiten zati bakoitza."; "final laurden": "Finalerdien aurretik jokatzen diren lau partida edo norgehiagoketako bakoitza."; "heren": "Hiru zati berdinetan banatu den zerbaiten zati bakoitza.", "Hirugarrena. Heren egunean piztu zen".
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.
@@ -531,6 +570,32 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 [('2030', '2030')]
 ```
 
+Turkish lists "birkaç", "birçok", "kaç", "onlarca", "yüzlerce", "binlerce" and "milyonlarca". Turkish writes the hundred as "yüz", a numeral that is one hundred alone, so "yüz" after a vague word also reads no number. "iki yüz" keeps its count.
+
+```python
+>>> read("Birkaç milyon kişi geldi.", "tr")
+[]
+>>> read("Birkaç yüz kişi geldi.", "tr")
+[]
+>>> read("Kaç bin kişi geldi?", "tr")
+[]
+>>> read("Onlarca milyon dolar harcandı.", "tr")
+[]
+>>> read("İki yüz kişi geldi.", "tr")
+[('İki yüz', '200')]
+```
+
+> TDK Güncel Türkçe Sözlük, "birkaç": "Çok olmayan, az sayıda".
+
+The Yazım Kılavuzu writes "birkaç" as one word. The split spelling "bir kaç" is a `number_name` and a vague phrase, so it also names no number.
+
+```python
+>>> read("Bir kaç milyon kişi geldi.", "tr")
+[]
+>>> read("Bir milyon kişi geldi.", "tr")
+[('Bir milyon', '1000000')]
+```
+
 A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
 
 ```python
@@ -544,7 +609,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4.
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")
@@ -560,7 +625,15 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers("Calcula el tant per cent de descompte.", "ca")]
 [('cent', '100', 0.4)]
+>>> read("Calcula el tanto por ciento de descuento.", "es")
+[]
+>>> read("La humedad está al cien por cien.", "es")
+[('cien', '100')]
 ```
+
+> DPD "ciento" §2: "en la lengua actual se prefiere claramente la forma apocopada cien"
+
+> TDK Güncel Türkçe Sözlük, "yüzde" 2: "Herhangi bir sayı ile kullanıldığında yüze bölünen bir şeyin o kadarlık parçasını belirten bir söz"
 
 The word for one before a percent phrase counts the hundredths, so it is never the article. "un pour cent" is 1 %, and the mention has no reason.
 
