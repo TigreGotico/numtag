@@ -115,6 +115,26 @@ class TestScales(unittest.TestCase):
         self.assertEqual(read("dva trilijuna tri", "hr"), [("dva trilijuna tri", "2000000000000000003", C)])
         self.assertEqual(read("pet trilijuna", "hr"), [("pet trilijuna", "5000000000000000000", C)])
 
+    def test_croatian_hundreds_noun_is_the_count_of_a_scale_word(self):
+        # Hrvatski pravopis 5.4.1: "pet stotina" writes the hundreds "petsto". 5 x 100 x 1000, 2 x 100 x 1000,
+        # 3 x 100 x 10^6, 10^6 + 3 x 100 x 1000 twice, 5 x 100 x 1000 + 5
+        for text, value in (("pet stotina tisuća", "500000"), ("dvije stotine tisuća", "200000"),
+                            ("tri stotine milijuna", "300000000"), ("milijun tri stotine tisuća", "1300000"),
+                            ("jedan milijun i tri stotine tisuća", "1300000"),
+                            ("pet stotina tisuća i pet", "500005")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [(text, value, C)])
+        # hr.wikipedia, "Domovinski rat": 2 x 100 x 1000
+        self.assertEqual(read("pobili dvije stotine tisuća civila bez suda", "hr"),
+                         [("dvije stotine tisuća", "200000", C)])
+        # 5 x 100 + 20: the hundreds noun is the hundreds of a longer cardinal, as "petsto dvadeset" is
+        self.assertEqual(read("pet stotina dvadeset", "hr"), [("pet stotina dvadeset", "520", C)])
+
+    def test_croatian_stotinu_is_the_hundred(self):
+        # Hrvatski pravopis 5.4.1: "sto ili stotinu". 100 x 1000, 100 x 10^6
+        self.assertEqual(read("stotinu tisuća ljudi", "hr"), [("stotinu tisuća", "100000", C)])
+        self.assertEqual(read("stotinu milijuna", "hr"), [("stotinu milijuna", "100000000", C)])
+
     def test_slovak_triliarda_and_kvadrilion_in_the_long_scale(self):
         # triliarda = 10^3 x 10^18 = 10^21: 5 x 10^21 and 2 x 10^21
         self.assertEqual(read("päť triliárd", "sk"), [("päť triliárd", "5000000000000000000000", C)])
@@ -328,7 +348,7 @@ class TestHomographs(unittest.TestCase):
                                   ("друга", "uk", "2"), ("četvrti", "hr", "4"), ("druga", "sl", "2"),
                                   ("drugi", "hr", "2"), ("druhý", "cs", "2"), ("druhý", "sk", "2"),
                                   ("drugi", "pl", "2"), ("žádná", "cs", "0"), ("stotina", "hr", "100"),
-                                  ("jednou", "cs", "1")):
+                                  ("stotinu", "hr", "100"), ("jednou", "cs", "1")):
             with self.subTest(text=text, lang=lang):
                 (word, read_value, confidence), = self.confidences(text, lang)
                 self.assertEqual((word, read_value), (text, value))
