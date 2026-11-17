@@ -65,7 +65,7 @@
     "coma",
     "punto"
    ],
-   "source": "CLDR RBNF es %spellout-numbering: \"x.x: << punto >>;\", \"x,x: << coma >>;\""
+   "source": "CLDR RBNF es %spellout-numbering: \"x.x: << punto >>;\", \"x,x: << coma >>;\". RAE-ASALE, Diccionario panhispánico de dudas, \"punto\" (knowledge/wiki/audits/numtag/follow-up-prs/sources/es/rae-dpd-punto.txt): \"En algunas áreas hispanohablantes, separa la parte entera de la parte decimal en los números escritos con cifras: π = 3.1416… En España y amplias zonas de América se usa para ello la coma (→ coma2, 5): π = 3,1416… Ambas opciones son válidas de acuerdo con la normativa internacional.\" The Ortografía (2010) recommends the point; Sociedad Española de Astronomía, \"¿Punto o coma?\" (sources/es/sea-2015-09-punto-o-coma.txt): \"hasta 2010 recomendaban la coma (Diccionario panhispánico de dudas, 2005) mientras que ahora recomiendan el punto\". So \"punto\" stays a decimal marker, unlike pt \"ponto\" (docs/rulings.md, \"Decimals\")."
   },
   "minus": {
    "value": [

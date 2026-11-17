@@ -340,6 +340,17 @@ Where the comma marks decimals, the word for the point is no decimal marker. So 
 
 > Manual de Comunicação do Senado Federal, "Números": "Use vírgula para o decimal."
 
+Spanish writes either mark, so "punto" stays a decimal marker: "dos punto cinco" is 2.5. The Ortografía (2010) recommends the point, and much of Latin America writes and says it. "el apartado 3 punto 2" reads 3.2, and that is the known cost.
+
+```python
+>>> read("El valor es dos punto cinco, o dos coma cinco.", "es")
+[('dos punto cinco', '2.5'), ('dos coma cinco', '2.5')]
+```
+
+> RAE-ASALE, Diccionario panhispánico de dudas, "punto": "En algunas áreas hispanohablantes, separa la parte entera de la parte decimal en los números escritos con cifras: π = 3.1416… En España y amplias zonas de América se usa para ello la coma (→ coma2, 5): π = 3,1416… Ambas opciones son válidas de acuerdo con la normativa internacional."
+
+> Sociedad Española de Astronomía, "¿Punto o coma?": "hasta 2010 recomendaban la coma (Diccionario panhispánico de dudas, 2005) mientras que ahora recomiendan el punto".
+
 Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. A locale's own group mark before a point decimal reads the same way, whether the mark is a space, a no-break space or an apostrophe: "1 234.5" in Finnish (a plain space, the Finnish lexicon mark), "10 123.5" in Russian (a no-break space) and "1'234.5" in Swiss French read 1234.5, 10123.5 and 1234.5. Where a point is the group mark (Portuguese, German), a second point is no decimal mark, so "1.234.5" reads no number. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
 
 ```python

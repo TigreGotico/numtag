@@ -465,6 +465,11 @@ class TestDecimalsAndDigits(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertEqual(read(text, lang), [("5", "5", C), ("3", "3", C)])
 
+    def test_spanish_keeps_punto_as_a_decimal_marker(self):
+        # Spanish writes either mark: 2 + 5/10; a section number is the known cost
+        self.assertEqual(read("El valor es dos punto cinco.", "es"), [("dos punto cinco", "2.5", D)])
+        self.assertEqual(read("el apartado 3 punto 2", "es"), [("3 punto 2", "3.2", D)])
+
     def test_digits_after_the_first_group_take_no_point(self):
         # "2 milhões e 500" is two numbers, so "2 milhões e 500 vírgula 5" is too
         self.assertEqual(en("2 million and 3 point 5"),
