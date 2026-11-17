@@ -238,11 +238,47 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
         self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
         self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
-        # a glued part word of a hundred or more alone is no number: AkH 12
-        # §293 reads "háromszázad másodperc" as 3/100, while hu.wikipedia
-        # uses "háromszázad része" as about 1/300; "kétharmad" is 2/3
-        self.assertEqual(read("tízezred", "hu"), [])
+        # "kétharmad" is 2/3
         self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
+
+    def test_a_lone_glued_part_word_is_a_multiplier_at_the_homograph_score(self):
+        # hu.wikipedia uses the lone glued form as a multiplier; AkH 12 §293
+        # reads "háromszázad másodperc" as 3/100 and stays the alternative.
+        # 1/(2 x 100) = 0.005; 1/(10 x 1000) = 0.0001; 1/(100 x 1000) = 0.00001;
+        # 1/(3 x 100) has no finite decimal; 1/(2 x 1000) = 0.0005; 1/(3 x 1000)
+        rows = [
+            ("kétszázad", "kétszázad", "0.005"),
+            ("tízezred", "tízezred", "0.0001"),
+            # hu.wikipedia, "Bróm"
+            ("Az elemi bróm mennyisége körülbelül háromszázad része a klórénak.", "háromszázad", "1/300"),
+            # hu.wikipedia, "Oxigén"
+            ("az oxigén mennyiségének kétezred részét", "kétezred", "0.0005"),
+            # hu.wikipedia, "Atommag"
+            ("ami az atom méretének tízezred része", "tízezred", "0.0001"),
+            # hu.wikipedia, "Izotópos összetétel"
+            ("az atommagok mérete átlagosan százezred Å-nyi (1 fm)", "százezred", "0.00001"),
+            # hu.wikipedia, "ETME"
+            ("a hajszál végének háromezred részével egyenlő", "háromezred", "1/3000"),
+        ]
+        for text, word, value in rows:
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hu")[0], (word, value, F))
+                self.assertEqual(tag_numbers(text, "hu")[0].confidence, 0.4)
+                self.assertEqual(tag_numbers(text, "hu")[0].reasons, frozenset({Reason.HOMOGRAPH}))
+
+    def test_a_lone_glued_part_word_leaves_the_other_readings(self):
+        # a count before it multiplies it, so the lone reading starts no span there
+        self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
+        self.assertEqual(read("három egész egy tízezred", "hu"), [("három egész egy tízezred", "3.0001", D)])
+        self.assertEqual(read("nulla egész kétezer-ötszáz milliomod", "hu"),
+                         [("nulla egész kétezer-ötszáz milliomod", "0.0025", D)])
+        self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
+        # a part word under a hundred is no glued denominator; a bare "milliomod" has no count
+        self.assertEqual(read("milliomod", "hu"), [])
+        self.assertEqual(read("kétharmad része", "hu"), [("kétharmad", "2/3", F)])
+        # 3/10 = 0.3 and 2/10 = 0.2, not 1/30 and 1/20
+        self.assertEqual(read("háromtized", "hu"), [("háromtized", "0.3", F)])
+        self.assertEqual(read("kéttized része", "hu"), [("kéttized", "0.2", F)])
 
     def test_a_count_after_a_range_hyphen_is_no_glued_multiplier(self):
         # hu.wikipedia, "Volfrám": a filament one or two hundredths of a

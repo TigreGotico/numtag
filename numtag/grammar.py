@@ -480,7 +480,8 @@ class Grammar:
         multiplies the scale word ("tízezred" is a ten-thousandth, as
         "tízezer" is ten thousand; "kétszázad" is a two-hundredth). After a
         hyphen the count is the second member of a range: "egy-kétszázad" is
-        one or two hundredths."""
+        one or two hundredths. With no count before it, the glued word is
+        one part of the product ("háromszázad" is 1/300)."""
         if not self.lex.glued_denominators or i >= len(self.tokens) or self.tokens[i].glued \
                 or self.tokens[i].gap.strip() in ("-", "–", "—"):
             return []
@@ -955,6 +956,9 @@ class Grammar:
         if self._is_word(i + 1, self.lex.part_nouns):
             found += [Parse(i + 2, Rational("1", e.value), parts=below(i, i + 2, e.value))
                       for e in self._readings(i, "ordinal")]
+        # "tízezred" alone is the multiplier reading, one ten-thousandth
+        found += [Parse(stop, Rational("1", value), ambiguous=True, parts=below(i, stop, value))
+                  for stop, value, _ in self._glued_denominators(i)]
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
