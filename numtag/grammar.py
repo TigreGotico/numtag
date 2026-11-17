@@ -196,6 +196,10 @@ class Grammar:
     def _is_word(self, i: int, words: frozenset[str]) -> bool:
         return i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
 
+    def _after_vague(self, i: int) -> bool:
+        """A word of vague quantity ("nekoliko") stands right before position ``i``."""
+        return i > 0 and self._is_word(i - 1, self.lex.vague_quantifiers)
+
     def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
         """Positions where the next part may start after position ``i``."""
         joined = [i + 1] if policy != Joiner.NEVER and self._is_word(i, self.lex.joiners) else []
@@ -634,6 +638,9 @@ class Grammar:
             if count.explicit and not count.needs_multiplier and (first or not count.value.is_zero()):
                 found.append(Group(count.end, count.value, decimal=count.decimal, parts=count.parts))
             if count.value.is_zero():
+                continue
+            # "nekoliko milijuna": a vague quantity stands where the count would
+            if not count.explicit and self._after_vague(i):
                 continue
             # "douăzeci de mii": a word may stand between a count and its scale word
             starts = [count.end] + ([count.end + 1] if count.explicit and self._is_word(
@@ -1396,7 +1403,7 @@ class Grammar:
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
                               self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True,
                                                parts=_piece(Role.COUNT, i, i + 1, ONE))]
-        if self.lex.bare_noun_counts_one:
+        if self.lex.bare_noun_counts_one and not self._after_vague(i):
             # "дюжина яиц", "четверть часа": the noun alone is one of it
             for entry in self._readings(i, "collective"):
                 if not entry.plural:

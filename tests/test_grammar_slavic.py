@@ -43,10 +43,35 @@ class TestScales(unittest.TestCase):
                          [("dvanaest trilijuna tristo četrdeset pet", "12000000000000000345", C)])
         self.assertEqual(read("jedan trilijun", "hr"), [("jedan trilijun", "1000000000000000000", C)])
 
-    def test_croatian_trilijuna_without_a_count_is_no_number(self):
-        # the genitive "trilijuna" also follows "nekoliko", so alone it names no number
-        self.assertEqual(read("nekoliko trilijuna kuna", "hr"), [])
-        self.assertEqual(read("trilijuna", "hr"), [])
+    def test_croatian_genitive_scale_word_alone_is_one_of_it(self):
+        # "oko milijuna" and "oko trilijuna" are the genitive singular: 10^6 and 10^18
+        self.assertEqual(read("Bilo ih je oko milijuna.", "hr"), [("milijuna", "1000000", C)])
+        self.assertEqual(read("Bilo ih je oko trilijuna.", "hr"), [("trilijuna", "1" + "0" * 18, C)])
+        self.assertEqual(read("više od milijuna ljudi", "hr"), [("milijuna", "1000000", C)])
+
+    def test_croatian_vague_quantity_before_a_scale_word_is_no_number(self):
+        # "nekoliko", "puno", "više" and "malo" take the genitive plural, so the scale word is no count of one
+        for text in ("nekoliko milijuna ljudi", "nekoliko bilijuna kuna", "nekoliko trilijuna kuna",
+                     "nekoliko milijardi eura", "nekoliko tisuća ljudi", "nekoliko stotina", "nekoliko stotina ljudi",
+                     "puno tisuća", "više milijuna ljudi", "malo milijuna"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [])
+        # hr.wikipedia, "Honduras"
+        self.assertEqual(read("Nemirno vrijeme nastanka vulkanske visoravni na jugozapadu Hondurasa "
+                              "odvijalo se prije nekoliko milijuna godina.", "hr"), [])
+
+    def test_croatian_vague_quantity_changes_only_the_word_after_it(self):
+        # 2 x 10^6, 5 x 10^6, 21 x 10^6 and 20 x 10^6 + 3
+        self.assertEqual(read("dva milijuna", "hr"), [("dva milijuna", "2000000", C)])
+        self.assertEqual(read("pet milijuna ljudi", "hr"), [("pet milijuna", "5000000", C)])
+        self.assertEqual(read("dvadeset i jedan milijun", "hr"), [("dvadeset i jedan milijun", "21000000", C)])
+        self.assertEqual(read("dvadeset milijuna tri", "hr"), [("dvadeset milijuna tri", "20000003", C)])
+        self.assertEqual(read("nekoliko ljudi, dva milijuna", "hr"), [("dva milijuna", "2000000", C)])
+        self.assertEqual(read("nekoliko je stotina", "hr"), [("stotina", "100", C)])
+        self.assertEqual(read("malo je tri", "hr"), [("tri", "3", C)])
+        self.assertEqual(read("nekoliko", "hr"), [])
+
+    def test_croatian_trilijun_scale_words_with_a_count(self):
         # 2 x 10^18 + 3 and 5 x 10^18
         self.assertEqual(read("dva trilijuna tri", "hr"), [("dva trilijuna tri", "2000000000000000003", C)])
         self.assertEqual(read("pet trilijuna", "hr"), [("pet trilijuna", "5000000000000000000", C)])

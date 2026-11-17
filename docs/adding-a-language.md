@@ -90,6 +90,9 @@ Each entry has a `word`, a `role` and a `source`. The role decides the other key
 | `ordinal_scale` | the cardinal scale word that it names | "milésimo" names "mil" |
 | `half` | none | "meio" |
 | `ordinal_suffix` | none | "º", "st" |
+| `vague_quantifier` | none | "nekoliko" |
+
+A `vague_quantifier` entry is the one list per language of words that state an amount with no exact number, such as "nekoliko" or "several". It may carry `"ambiguous": true` where the word is also an ordinary noun or adverb. A scale word or collective right after such a word reads no number, so "nekoliko milijuna ljudi" holds no number. A word in between ends the effect.
 
 These optional keys hold facts that the word form shows:
 

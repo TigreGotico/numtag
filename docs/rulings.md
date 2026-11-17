@@ -484,6 +484,23 @@ A scale noun alone, or a plural scale noun with no count, names no number. A sin
 
 > Priberam, "milhão", sense 2: "[Informal, Figurado] Número ou quantidade muito grande".
 
+A word of vague quantity right before a scale word takes the place of its count. In Croatian, "nekoliko", "puno", "više" and "malo" govern the genitive plural, so "nekoliko milijuna" is no number, while "milijuna" after "oko" or "više od" is the genitive singular and counts one. The `vague_quantifier` entries of the lexicon hold these words.
+
+```python
+>>> read("Prije nekoliko milijuna godina.", "hr")
+[]
+>>> read("Bilo ih je nekoliko stotina.", "hr")
+[]
+>>> read("Bilo ih je oko milijuna.", "hr")
+[('milijuna', '1000000')]
+>>> read("Bilo ih je više od milijuna.", "hr")
+[('milijuna', '1000000')]
+>>> read("Bilo ih je pet milijuna.", "hr")
+[('pet milijuna', '5000000')]
+```
+
+> Hrvatski jezični portal, "više": "6. (čega) neodređena količina a. ob. veća od četiri, a manja od desetak; nekoliko [više milijuna ljudi]".
+
 A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
 
 ```python
