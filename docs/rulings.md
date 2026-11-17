@@ -546,6 +546,32 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 [('2030', '2030')]
 ```
 
+Turkish lists "birkaç", "birçok", "kaç", "onlarca", "yüzlerce", "binlerce" and "milyonlarca". Turkish writes the hundred as "yüz", a numeral that is one hundred alone, so "yüz" after a vague word also reads no number. "iki yüz" keeps its count.
+
+```python
+>>> read("Birkaç milyon kişi geldi.", "tr")
+[]
+>>> read("Birkaç yüz kişi geldi.", "tr")
+[]
+>>> read("Kaç bin kişi geldi?", "tr")
+[]
+>>> read("Onlarca milyon dolar harcandı.", "tr")
+[]
+>>> read("İki yüz kişi geldi.", "tr")
+[('İki yüz', '200')]
+```
+
+> TDK Güncel Türkçe Sözlük, "birkaç": "Çok olmayan, az sayıda".
+
+The Yazım Kılavuzu writes "birkaç" as one word. The split spelling "bir kaç" is a `number_name` and a vague phrase, so it also names no number.
+
+```python
+>>> read("Bir kaç milyon kişi geldi.", "tr")
+[]
+>>> read("Bir milyon kişi geldi.", "tr")
+[('Bir milyon', '1000000')]
+```
+
 A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
 
 ```python
