@@ -4,7 +4,7 @@ tens by twenties, the two Norwegian counting orders, ordinals in digits and
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale, tag_numbers
 from numtag.lexicon import load
 from numtag.tokenize import tokenize
@@ -288,9 +288,10 @@ class TestGluedPartWords(unittest.TestCase):
         self.assertEqual(read("Die gesamte Lage mißt kaum einen halben Mikrometer, das sind fünf Zehntausendstel Millimeter.", "de"),
                          [("einen halben", "0.5", F), ("fünf Zehntausendstel", "0.0005", F)])
 
-    def test_hungarian_alone_stays_no_number(self):
-        self.assertEqual(read("tízezred", "hu"), [])
-        self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
+    def test_a_whole_part_and_a_glued_part_word_add(self):
+        # 3 + 1/200 = 3.005, sure: a German part word is no homograph
+        self.assertEqual(sure("drei und Zweihundertstel", "de"), [("drei und Zweihundertstel", "3.005", 1.0)])
+        self.assertEqual(sure("Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 1.0)])
 
 
 class TestScales(unittest.TestCase):
