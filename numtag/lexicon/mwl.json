@@ -63,10 +63,9 @@
   "decimal_marker": {
    "value": [
     "bírgula",
-    "birgula",
-    "ponto"
+    "birgula"
    ],
-   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\")"
+   "source": "ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=[\"bírgula\", \"ponto\", \"birgula\", ...], NEGATIVE_SIGN=[\"menos\"], fractions \"meio\", \"tércio\", \"quarto\", \"meia\" (\"ũa i meia -> 1.5\"). The comma marks the decimals, so \"ponto\" is no decimal marker (docs/rulings.md, \"Decimals\")."
   },
   "minus": {
    "value": [

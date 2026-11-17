@@ -453,6 +453,18 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("2.5 point 5"), [("2.5", "2.5", D), ("5", "5", C)])
         self.assertEqual(read("2,5 vírgula 5", "pt-PT"), [("2,5", "2.5", D), ("5", "5", C)])
 
+    def test_the_word_for_the_point_is_no_marker_where_a_comma_marks_decimals(self):
+        # the comma marks the decimals: "o artigo 5 ponto 3" is article 5, item 3
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("o artigo 5 ponto 3", lang), [("5", "5", C), ("3", "3", C)])
+                self.assertEqual(read("cinco ponto três", lang), [("cinco", "5", C), ("três", "3", C)])
+        for text, lang in (("Artikel 5 Punkt 3", "de"), ("l'article 5 point 3", "fr-FR"),
+                           ("articolo 5 punto 3", "it"), ("l'article 5 punt 3", "ca"),
+                           ("o artigo 5 punto 3", "gl"), ("l artigo 5 ponto 3", "mwl")):
+            with self.subTest(lang=lang):
+                self.assertEqual(read(text, lang), [("5", "5", C), ("3", "3", C)])
+
     def test_digits_after_the_first_group_take_no_point(self):
         # "2 milhões e 500" is two numbers, so "2 milhões e 500 vírgula 5" is too
         self.assertEqual(en("2 million and 3 point 5"),

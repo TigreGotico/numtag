@@ -314,7 +314,7 @@ No rule joins "um" to "um", so each word is a number. This rule is structural, w
 
 ## Decimals
 
-A decimal marker ("vírgula", "ponto", "point") or a decimal mark in digits ("2,5", "2.5") starts the fraction part. Each word after the marker gives its own digits. Where the words split in more than one way, the reading with the fewest parts wins.
+A decimal marker ("vírgula", "point") or a decimal mark in digits ("2,5", "2.5") starts the fraction part. Each word after the marker gives its own digits. Where the words split in more than one way, the reading with the fewest parts wins.
 
 ```python
 >>> read("O bebé pesa dois vírgula cinco quilos.")
@@ -328,6 +328,17 @@ A decimal marker ("vírgula", "ponto", "point") or a decimal mark in digits ("2,
 > CLDR 49 RBNF pt_PT and pt %spellout-cardinal-masculine: "x.x: << vírgula >>;"; Priberam, "vírgula", sense 2: "[Matemática] Sinal gráfico (,) que serve para separar os números inteiros das fracções decimais."
 
 > Wiktionary, "point", noun sense 1.3: "A decimal point".
+
+Where the comma marks decimals, the word for the point is no decimal marker. So "o artigo 5 ponto 3" is two numbers, and so are "cinco ponto três", Galician "5 punto 3", Mirandese "5 ponto 3" and German "Artikel 5 Punkt 3". English writes decimals with a point, so "2 point 5" stays one decimal.
+
+```python
+>>> read("Leia o artigo 5 ponto 3 e o artigo cinco ponto três.")
+[('5', '5'), ('3', '3'), ('cinco', '5'), ('três', '3')]
+>>> read("Turn it up 2 point 5.", "en")
+[('2 point 5', '2.5')]
+```
+
+> Manual de Comunicação do Senado Federal, "Números": "Use vírgula para o decimal."
 
 Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
 
