@@ -3,6 +3,7 @@ comment beside it; sources are in numtag/lexicon/ar.json."""
 import unittest
 
 from helpers import read, sure
+from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -29,8 +30,20 @@ class TestArabic(unittest.TestCase):
         # the digits start a new number
         self.assertEqual(ar("2 مليون و500 ألف"), [("2 مليون و500 ألف", "2500000", C)])
         self.assertEqual(ar("2 مليون و 500 ألف"), [("2 مليون و 500 ألف", "2500000", C)])
-        self.assertEqual(ar("بين 15 و20"), [("15", "15", C), ("و20", "20", C)])
+        self.assertEqual(ar("بين 15 و20"), [("15", "15", C), ("20", "20", C)])
         self.assertEqual(ar("mp3"), [])
+
+    def test_the_span_starts_after_an_unused_joiner(self):
+        # و (and) is a prefix that starts a new number: the span is the number word
+        for text, word, value in [("عندي خمس تفاحات وسبع برتقالات", "سبع", "7"),
+                                  ("بين عشرة وعشرين شخصا", "عشرين", "20"),
+                                  ("المراكز الرابع والخامس", "الخامس", "5"),
+                                  ("بين 15 و20 درجة", "20", "20")]:
+            start = text.index(word)
+            mention = tag_numbers(text, "ar")[-1]
+            self.assertEqual((mention.char_span, mention.text, mention.value), ((start, start + len(word)), word, value), text)
+        # the joiner inside a number stays in the span: 5 + 20 = 25
+        self.assertEqual([(m.char_span, m.text) for m in tag_numbers("خمسة وعشرون", "ar")], [((0, 11), "خمسة وعشرون")])
 
     def test_the_dual_holds_its_count(self):
         # ألفان = 2 x 1000, + 500 = 2500; مليونان = 2 x 10^6

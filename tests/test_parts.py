@@ -123,10 +123,10 @@ class TestWorkedExamples(unittest.TestCase):
             self.assertEqual(text[part.char_span[0]:part.char_span[1]], part.text)
         self.assertEqual([p.char_span for p in tag_numbers(text, "pt-PT")[0].parts], [(10, 14), (15, 16), (17, 21)])
 
-    def test_a_joiner_prefix_is_in_the_first_part(self):
-        # "ושבעה" is "and seven": the span starts at the prefix, and so does the count
+    def test_a_joiner_prefix_is_in_no_part(self):
+        # "ושבעה" is "and seven": the span and the count start after the prefix
         mention = tag_numbers("שלושה ושבעה", "he")[-1]
-        self.assertEqual([(p.role, p.text, p.value) for p in mention.parts], [(COUNT, "ושבעה", "7")])
+        self.assertEqual([(p.role, p.char_span, p.text, p.value) for p in mention.parts], [(COUNT, (7, 11), "שבעה", "7")])
 
 
 class TestEveryGoldMention(unittest.TestCase):

@@ -179,10 +179,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         value = -best.value if negative != signed else best.value
-        # a number glued to a joiner prefix it does not use ("ושבעה") keeps
-        # the whole word: a span never starts inside a word
-        first = i - 1 if run[i].attached else i
-        span = (run[first].start, run[best.end - 1].end)
+        span = (run[i].start, run[best.end - 1].end)
         reason = _reason(number_grammar, lexicon, run, start, best, alone=text.strip() == run[start].text,
                          signed=negative)
         kind = _kind(lexicon, run[start:best.end], best)
@@ -193,10 +190,6 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             pieces = ((role, first_index, end, -part_value),) + pieces[1:]
         if negative:
             pieces = ((Role.MINUS, i, start, None),) + pieces
-        if first < pieces[0][1]:
-            # the joiner prefix is in the first part, as in the span
-            role, _, end, part_value = pieces[0]
-            pieces = ((role, first, end, part_value),) + pieces[1:]
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), kind,
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],

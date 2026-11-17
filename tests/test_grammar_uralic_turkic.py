@@ -3,7 +3,7 @@ expected value is worked out by hand in the comment beside it; sources are in
 numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Reason, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -36,6 +36,17 @@ class TestCompoundWords(unittest.TestCase):
         self.assertEqual(read("kaksi \u00ad viisi", "fi"), [("kaksi", "2", C), ("viisi", "5", C)])
 
 
+class TestColloquialUnits(unittest.TestCase):
+    def test_the_colloquial_six_and_seven(self):
+        # "kuus" is "kuusi" (6) and "seittemän" is "seitsemän" (7)
+        self.assertEqual(read("kuus", "fi"), [("kuus", "6", C)])
+        self.assertEqual(read("seittemän", "fi"), [("seittemän", "7", C)])
+        # "kuus" is also the shortened "kuussa" (in the month): a weak number alone
+        self.assertEqual(sure("kerran kuus", "fi"), [("kuus", "6", 0.4)])
+        # 6 + 7 as two numbers
+        self.assertEqual(read("kuus ja seittemän", "fi"), [("kuus", "6", C), ("seittemän", "7", C)])
+
+
 class TestGroupsAfterAScale(unittest.TestCase):
     def test_a_bare_hundred_or_ten_after_thousands_joins_the_number(self):
         # 10^6 + 2 x 1000 + 100 + 40 + 5 = 1002145
@@ -43,6 +54,15 @@ class TestGroupsAfterAScale(unittest.TestCase):
                          [("bir milyon iki bin yüz kırk beş", "1002145", C)])
         # 10^6 + 2 x 1000 + 10 = 1002010
         self.assertEqual(read("miljoona kaksituhatta kymmenen", "fi"), [("miljoona kaksituhatta kymmenen", "1002010", C)])
+
+
+class TestScaleNamesAboveATrillion(unittest.TestCase):
+    def test_kentilyon_is_ten_to_the_eighteenth(self):
+        # kentilyon = 1000 x katrilyon = 10^3 x 10^15 = 10^18, written as 1 and 18 zeros
+        self.assertEqual(read("bir kentilyon", "tr"), [("bir kentilyon", "1000000000000000000", C)])
+        # 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("on iki kentilyon üç yüz kırk beş", "tr"),
+                         [("on iki kentilyon üç yüz kırk beş", "12000000000000000345", C)])
 
 
 class TestTeensAndTens(unittest.TestCase):

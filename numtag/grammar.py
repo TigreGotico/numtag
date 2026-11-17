@@ -297,19 +297,22 @@ class Grammar:
             return end, Rational.from_decimal("0", text[1:]), True
         if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
-                text += self.lex.group_mark + self.tokens[end].latin
+                group = self.tokens[end].latin
+                if self.lex.decimal_mark == "," and "." in group:
+                    # SI 5.4.4 "43 279.168 29": a space group and a point are no two group marks
+                    head, fraction = group.split(".")
+                    return end + 1, Rational.from_decimal(text.replace(self.lex.group_mark, "") + head, fraction), True
+                text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
         if not match:
             # where the comma marks decimals, a point that cannot group digits
             # marks them: "1.5", "3.14159", "0.500". A time of day also
             # takes the point ("14.30", "24.00"), so that shape reads no
-            # number, and so do three digits after a space group ("1 234.5").
+            # number.
             point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
             if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
-                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text) \
-                    or (self.lex.space_groups and i > 0 and self.tokens[i - 1].is_digits
-                        and len(token.gap) == 1 and len(point[1]) == 3):
+                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text):
                 return None
             return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
@@ -319,8 +322,9 @@ class Grammar:
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
-        return (token.is_digits and not token.suffix and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:{re.escape(self.lex.decimal_mark)}[0-9]+)?", token.latin) is not None)
+        marks = re.escape(self.lex.decimal_mark) + ("." if self.lex.decimal_mark == "," else "")
+        return (token.is_digits and not token.suffix and token.gap.isspace() and len(token.gap) == 1
+                and re.fullmatch(rf"[0-9]{{3}}(?:[{marks}][0-9]+)?", token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 

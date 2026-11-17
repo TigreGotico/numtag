@@ -1,5 +1,53 @@
 # Changelog
 
+## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.12a1...0.12.13a1)
+
+**Merged pull requests:**
+
+- fix: a space group before a point decimal reads as one SI number [\#81](https://github.com/TigreGotico/numtag/pull/81) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.12a1](https://github.com/TigreGotico/numtag/tree/0.12.12a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.11a1...0.12.12a1)
+
+**Merged pull requests:**
+
+- fix: add the large scale names that ten lexicons lacked [\#77](https://github.com/TigreGotico/numtag/pull/77) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.11a1](https://github.com/TigreGotico/numtag/tree/0.12.11a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.10a1...0.12.11a1)
+
+**Merged pull requests:**
+
+- fix\(an,fi,gl,fa,fy\): add six attested word forms [\#74](https://github.com/TigreGotico/numtag/pull/74) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.10a1](https://github.com/TigreGotico/numtag/tree/0.12.10a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.9a1...0.12.10a1)
+
+**Merged pull requests:**
+
+- fix\(tagger\): a joiner prefix before a number is no part of its span [\#76](https://github.com/TigreGotico/numtag/pull/76) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.9a1](https://github.com/TigreGotico/numtag/tree/0.12.9a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.8a1...0.12.9a1)
+
+**Merged pull requests:**
+
+- fix: only a real space group before a point decimal keeps it unread [\#71](https://github.com/TigreGotico/numtag/pull/71) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.8a1](https://github.com/TigreGotico/numtag/tree/0.12.8a1) (2026-11-16)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a2...0.12.8a1)
+
+**Merged pull requests:**
+
+- fix\(hu\): a count glued to a part word of a hundred or more multiplies it [\#69](https://github.com/TigreGotico/numtag/pull/69) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.7a2](https://github.com/TigreGotico/numtag/tree/0.12.7a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a1...0.12.7a2)
