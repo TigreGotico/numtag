@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.10a1...0.15.0a1)
+
+**Merged pull requests:**
+
+- feat: tag vague quantities in en and pt [\#110](https://github.com/TigreGotico/numtag/pull/110) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.10a1](https://github.com/TigreGotico/numtag/tree/0.14.10a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.9a1...0.14.10a1)
+
+**Merged pull requests:**
+
+- fix: follow CLDR 49.0.0 for the group mark of et, fi, hu, nb, nn and sv [\#126](https://github.com/TigreGotico/numtag/pull/126) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.9a1](https://github.com/TigreGotico/numtag/tree/0.14.9a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.8a1...0.14.9a1)
+
+**Merged pull requests:**
+
+- fix\(es\): read the older "mil y quinientos" as one number [\#109](https://github.com/TigreGotico/numtag/pull/109) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.8a1](https://github.com/TigreGotico/numtag/tree/0.14.8a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.7a1...0.14.8a1)
+
+**Merged pull requests:**
+
+- fix: a hundred after a vague scale word starts its own number [\#122](https://github.com/TigreGotico/numtag/pull/122) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.7a1](https://github.com/TigreGotico/numtag/tree/0.14.7a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a2...0.14.7a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): digits and word decimals count a counted hundred noun [\#114](https://github.com/TigreGotico/numtag/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.6a2](https://github.com/TigreGotico/numtag/tree/0.14.6a2) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a1...0.14.6a2)

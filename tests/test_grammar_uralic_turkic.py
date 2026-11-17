@@ -91,6 +91,10 @@ class TestVagueQuantity(unittest.TestCase):
         # a year in digits is its own number
         self.assertEqual(read("2030 birkaç milyon", "tr"), [("2030", "2030", C)])
 
+    def test_a_hundred_after_a_vague_scale_word_starts_its_own_number(self):
+        # after "birkaç bin" the thousands have no count, and "yüz elli" is a lower group: 100 + 50 = 150
+        self.assertEqual(read("birkaç bin yüz elli kişi", "tr"), [("yüz elli", "150", C)])
+
     def test_the_split_spelling_bir_kac_reads_as_birkac(self):
         # the Yazım Kılavuzu writes "birkaç" as one word; the split spelling names no number either,
         # while "bir" before a scale word stays one: 1 x 10^6

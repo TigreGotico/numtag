@@ -82,6 +82,18 @@ class TestScales(unittest.TestCase):
                          [("milijun", "1000000", C)])
         self.assertEqual(read("nekoliko stotina milijuna", "hr"), [])
 
+    def test_croatian_hundred_after_a_vague_scale_word_starts_its_own_number(self):
+        # "sto" right after "nekoliko" has no count; after "nekoliko milijuna" it counts the
+        # thousands of a lower group: 100 x 1000 = 100000
+        self.assertEqual(read("nekoliko sto", "hr"), [])
+        # the clitic "je" between the vague word and the hundred keeps the guard
+        self.assertEqual(read("Nekoliko je sto", "hr"), [])
+        self.assertEqual(read("nekoliko milijuna sto tisuća", "hr"), [("sto tisuća", "100000", C)])
+
+    def test_croatian_hundred_word_with_its_own_count_keeps_it(self):
+        # "dvjesto" is two hundred in one word, so the vague word before it takes no count away: 200
+        self.assertEqual(read("nekoliko dvjesto ljudi", "hr"), [("dvjesto", "200", C)])
+
     def test_croatian_vague_quantity_stops_at_punctuation(self):
         # a full stop or a comma ends the phrase, so "Tisuću" and "tisuću" count one thousand
         self.assertEqual(read("Bilo ih je nekoliko stotina. Tisuću ljudi je došlo.", "hr"), [("Tisuću", "1000", C)])
@@ -134,6 +146,28 @@ class TestScales(unittest.TestCase):
         # Hrvatski pravopis 5.4.1: "sto ili stotinu". 100 x 1000, 100 x 10^6
         self.assertEqual(read("stotinu tisuća ljudi", "hr"), [("stotinu tisuća", "100000", C)])
         self.assertEqual(read("stotinu milijuna", "hr"), [("stotinu milijuna", "100000000", C)])
+
+    def test_croatian_digits_count_the_hundreds_noun(self):
+        # digits count "stotina" as a word count does: 5 x 100, 2 x 100, 10 x 100, 5 x 100 x 1000,
+        # 2 x 100 x 1000, 3 x 100 x 10^6, 10^6 + 3 x 100 x 1000
+        for text, value in (("5 stotina", "500"), ("2 stotine", "200"), ("10 stotina", "1000"),
+                            ("5 stotina tisuća", "500000"), ("2 stotine tisuća", "200000"),
+                            ("3 stotine milijuna", "300000000"), ("milijun 3 stotine tisuća", "1300000")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [(text, value, C)])
+        self.assertEqual(read("Prodano je 5 stotina tisuća primjeraka.", "hr"), [("5 stotina tisuća", "500000", C)])
+        # 2.5 x 100 = 250
+        self.assertEqual(read("2,5 stotina", "hr"), [("2,5 stotina", "250", C)])
+
+    def test_croatian_word_decimals_count_the_hundreds_noun(self):
+        # a decimal in words counts "stotina" as "one point five hundred" counts "hundred":
+        # 2.5 x 100, 0.5 x 100, 2.25 x 100, 2.5 x 100 x 1000
+        for text, value in (("dva zarez pet stotina", "250"), ("nula zarez pet stotina", "50"),
+                            ("dva zarez dvadeset pet stotina", "225"), ("dva zarez pet stotine tisuća", "250000")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [(text, value, C)])
+        # 3.5 x 100
+        self.assertEqual(read("tri zarez pet stotina ljudi", "hr"), [("tri zarez pet stotina", "350", C)])
 
     def test_slovak_triliarda_and_kvadrilion_in_the_long_scale(self):
         # triliarda = 10^3 x 10^18 = 10^21: 5 x 10^21 and 2 x 10^21

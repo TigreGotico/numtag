@@ -85,7 +85,8 @@ class Entry:
     bound: bool = False
     # A scale word with its count in the form: the dual "ألفان" is 2 x 10^3.
     count: str = ""
-    # A plural multiplier that a count takes ("מאות" in "שלוש מאות").
+    # A plural multiplier that a count takes, in words or in digits below a
+    # thousand ("מאות" in "שלוש מאות" and "3 מאות").
     counted: bool = False
     # A denominator that stands alone as this numerator over it ("ربع" is 1/4).
     numerator: str = ""
@@ -319,6 +320,10 @@ class Lexicon:
     # The joiner between two groups stands only between a thousand and a one
     # ("mil y una"); before any other group, the parts are two numbers.
     joiner_thousand_one_only: bool = False
+    # Where joiner_thousand_one_only holds, the joiner also stands between
+    # the thousands and a group of hundreds ("mil y quinientos"), except
+    # after a range cue, where it joins the two limits.
+    joiner_thousand_hundreds: bool = False
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.
     percent_phrase_is_no_number: bool = False
@@ -621,6 +626,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
         joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
+        joiner_thousand_hundreds=settings.get("joiner_thousand_hundreds", False),
         percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),

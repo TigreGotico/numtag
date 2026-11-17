@@ -152,3 +152,45 @@ class NumberMention:
             if part_end <= reached or len(shared) > 1 or (shared and not shared.isalpha()):
                 raise ValueError(f"part {part!r} is out of reading order")
             reached = part_end
+
+
+class VagueKind(str, Enum):
+    """What a vague quantity states."""
+    MAGNITUDE = "magnitude"  # "millions", "dezenas": a scale, no value
+    AMOUNT = "amount"        # "several", "muitos": no value, no scale, no bound
+
+
+@dataclass(frozen=True)
+class VagueQuantity:
+    """Words that state an amount but no exact number.
+
+    ``char_span`` and ``text`` work as in ``NumberMention``. A MAGNITUDE
+    has a ``scale``, the canonical digit string of its scale word
+    ("1000000" for "millions"), and a ``lower_bound`` when the scale word is
+    plural: two of the scale ("2000000"). An AMOUNT has neither.
+    ``confidence`` and the keyword-only ``reasons`` work as in
+    ``NumberMention`` and are left out of equality.
+    """
+    char_span: Tuple[int, int]
+    text: str
+    kind: VagueKind
+    scale: Optional[str] = None
+    lower_bound: Optional[str] = None
+    confidence: float = field(default=1.0, compare=False)
+    reasons: frozenset[Reason] = field(default=frozenset(), compare=False, kw_only=True)
+
+    def __post_init__(self):
+        start, end = self.char_span
+        if not 0 <= start < end or end - start != len(self.text):
+            raise ValueError(f"char_span {self.char_span} does not fit text {self.text!r}")
+        if not isinstance(self.kind, VagueKind):
+            raise ValueError(f"kind {self.kind!r} is not a VagueKind")
+        if self.kind is VagueKind.AMOUNT and (self.scale is not None or self.lower_bound is not None):
+            raise ValueError("an amount takes no scale and no lower bound")
+        if self.kind is VagueKind.MAGNITUDE and self.scale is None:
+            raise ValueError("a magnitude takes a scale")
+        for value in (self.scale, self.lower_bound):
+            if value is not None and not is_canonical_value(value):
+                raise ValueError(f"value {value!r} is not a canonical digit string")
+        if not isinstance(self.reasons, frozenset) or not all(isinstance(r, Reason) for r in self.reasons):
+            raise ValueError(f"reasons {self.reasons!r} is not a frozenset of Reason")

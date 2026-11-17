@@ -546,6 +546,14 @@ In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و i
 
 > CLDR RBNF, common/rbnf/he.xml: "1: ו=%spellout-numbering=;", "2: ושתיים;": ו is written joined to the next word. en.wiktionary "و", usage notes: "Arabic conjunctions and prepositions that have only one letter, such as وَ ( wa ) , are written as a prefix."
 
+## The group mark follows CLDR, with four exceptions
+
+A lexicon's `group_mark` is the CLDR group symbol of its language, and `tests/test_group_marks.py` checks every language against it. Estonian, Finnish, Hungarian, Norwegian and Swedish write a no-break space (U+00A0), and a plain space also reads through `space_groups`.
+
+Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. Written text in these languages groups digits with a dot ("1.500" is 1500), and a no-break space group mark would stop that reading. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+
+> CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
+
 ## Words that are no number
 
 A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.

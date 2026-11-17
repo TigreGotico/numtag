@@ -34,7 +34,7 @@
   },
   "joiner_between_groups": {
    "value": "optional",
-   "source": "DPD \"cardinales\" §2: \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\". The DPD writes \"y\" between a ten and a unit only. The \"y\" between \"mil\" and \"un\", \"una\" or \"uno\" is read as one number on the attested idiom: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days). Other uses of \"y\" after \"mil\" are not read as one number: older texts join a hundred after \"mil y\" (es.wikipedia \"Puente del Obispo\", inscription \"Comenzada el año mil y quinientos y cinco\"), and no source opened shows \"dos mil y uno\" or \"mil y veinte\", so they stay two numbers. This is a known gap for older texts."
+   "source": "DPD \"cardinales\" §2: \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\". The DPD writes \"y\" between a ten and a unit only. The \"y\" between \"mil\" and \"un\", \"una\" or \"uno\" is read as one number on the attested idiom: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days). Older texts also write \"y\" between the thousands and a group of hundreds (see joiner_thousand_hundreds). No source opened shows \"dos mil y uno\", \"mil y dos\" or \"mil y veinte\" as one number, so they stay two numbers."
   },
   "percent_phrase_is_no_number": {
    "value": true,
@@ -44,9 +44,13 @@
    "value": true,
    "source": "The \"y\" joins \"mil\" and a one only: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days)."
   },
+  "joiner_thousand_hundreds": {
+   "value": true,
+   "source": "Older texts write \"y\" between the thousands and a group of hundreds, and the whole is one number. DLE \"recurso\": \"recurso de mil y quinientas [...] que se interponía para la revisión de ciertos procesos graves, con depósito de 1500 doblas\"; DLE \"mil\", the phrase \"las mil y quinientas\": \"Hora demasiado tardía\". es.wikipedia \"Puente del Obispo\" quotes the inscription \"Comenzada el año mil y quinientos y cinco, y acabada el año mil y quinientos y ocho\" (1505 and 1508); es.wikipedia \"Real Audiencia del Cuzco\": \"cuatro mil y quinientos pesos\" (4500). A. Fábregas, \"Un aspecto de la sintaxis de los cardinales complejos\", Sintagma 26 (2014), p. 71: the \"y\" appears \"solo ocasionalmente, tal vez en estadios anteriores de la lengua, en los millares\". In the es.wikipedia hits for \"mil y quinientos\", \"mil y cien\" and \"mil y doscientos\", a bare group of hundreds after \"mil y\" is one number in 108 places and a list item in one (\"seis mil, mil y cien ajolotes [...], respectivamente\"). After \"entre\" the \"y\" joins the two limits (\"entre mil y mil quinientos\"), so there it ends the first number."
+  },
   "joiner_before_round_hundred": {
    "value": false,
-   "source": "joiner_between_groups reads a joiner only between \"mil\" and a one (\"mil y una\"): no count of a hundred or more follows a joiner after the thousands, so the setting is false."
+   "source": "The setting governs a count of a larger scale noun after the thousands. No source opened shows \"y\" between \"mil\" and a hundred inside the count of \"millones\", so the setting is false: es.wikipedia \"Análogo a la Tierra\": \"entre mil y cien millones de civilizaciones\" is 1000 and 100000000."
   },
   "comma_between_classes": {
    "value": false,
@@ -54,7 +58,7 @@
   },
   "joiner_before_last_group": {
    "value": "optional",
-   "source": "DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\": no joiner is required before a last group (\"mil doscientos\", \"mil veintiuno\"). A joiner stands before the last group only in the idiom \"mil y un\", \"mil y una\", \"mil y uno\" (see joiner_between_groups)."
+   "source": "DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\": no joiner is required before a last group (\"mil doscientos\", \"mil veintiuno\"). A joiner stands before the last group only in the idiom \"mil y un\", \"mil y una\", \"mil y uno\" (see joiner_between_groups) and in the older \"mil y quinientos\" (see joiner_thousand_hundreds)."
   },
   "ordinal_style": {
    "value": "every_word",
