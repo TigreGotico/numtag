@@ -20,6 +20,51 @@ class TestScales(unittest.TestCase):
         self.assertEqual(read("dwa biliony", "pl"), [("dwa biliony", "2000000000000", C)])
         self.assertEqual(read("trzy miliardy", "pl"), [("trzy miliardy", "3000000000", C)])
 
+    def test_russian_quintillion_is_ten_to_the_eighteenth(self):
+        # short scale: 3 x 5 + 3 = 18. 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("двенадцать квинтиллионов триста сорок пять", "ru"),
+                         [("двенадцать квинтиллионов триста сорок пять", "12000000000000000345", C)])
+        # 12 x 10^18 + 5 x 1000 = 12000000000000000000 + 5000
+        self.assertEqual(read("двенадцать квинтиллионов пять тысяч", "ru"),
+                         [("двенадцать квинтиллионов пять тысяч", "12000000000000005000", C)])
+
+    def test_russian_quintillion_in_every_case(self):
+        # each count times 10^18: 1 and 18 zeros, 2 and 18 zeros, 5 and 18 zeros
+        one, two, five = "1" + "0" * 18, "2" + "0" * 18, "5" + "0" * 18
+        for text, value in (("один квинтиллион", one), ("два квинтиллиона", two), ("одному квинтиллиону", one),
+                            ("одним квинтиллионом", one), ("одном квинтиллионе", one), ("пять квинтиллионов", five),
+                            ("пяти квинтиллионам", five), ("пятью квинтиллионами", five), ("пяти квинтиллионах", five)):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "ru"), [(text, value, C)])
+
+    def test_croatian_trilijun_is_ten_to_the_eighteenth(self):
+        # long scale: 6 x 3 = 18. 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("dvanaest trilijuna tristo četrdeset pet", "hr"),
+                         [("dvanaest trilijuna tristo četrdeset pet", "12000000000000000345", C)])
+        self.assertEqual(read("jedan trilijun", "hr"), [("jedan trilijun", "1000000000000000000", C)])
+
+    def test_croatian_trilijuna_without_a_count_is_no_number(self):
+        # the genitive "trilijuna" also follows "nekoliko", so alone it names no number
+        self.assertEqual(read("nekoliko trilijuna kuna", "hr"), [])
+        self.assertEqual(read("trilijuna", "hr"), [])
+        # 2 x 10^18 + 3 and 5 x 10^18
+        self.assertEqual(read("dva trilijuna tri", "hr"), [("dva trilijuna tri", "2000000000000000003", C)])
+        self.assertEqual(read("pet trilijuna", "hr"), [("pet trilijuna", "5000000000000000000", C)])
+
+    def test_slovak_triliarda_and_kvadrilion_in_the_long_scale(self):
+        # triliarda = 10^3 x 10^18 = 10^21: 5 x 10^21 and 2 x 10^21
+        self.assertEqual(read("päť triliárd", "sk"), [("päť triliárd", "5000000000000000000000", C)])
+        self.assertEqual(read("dve triliardy", "sk"), [("dve triliardy", "2000000000000000000000", C)])
+        # kvadrilión = 10^(6 x 4) = 10^24: 12 x 10^24
+        self.assertEqual(read("dvanásť kvadriliónov", "sk"), [("dvanásť kvadriliónov", "12000000000000000000000000", C)])
+        # 1 x 10^21 and the cases of 1 x 10^24, 2 x 10^24
+        one_kvadrilion = "1" + "0" * 24
+        for text, value in (("jedna triliarda", "1" + "0" * 21), ("jeden kvadrilión", one_kvadrilion),
+                            ("dva kvadrilióny", "2" + "0" * 24), ("jedným kvadriliónom", one_kvadrilion),
+                            ("jedného kvadrilióna", one_kvadrilion)):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "sk"), [(text, value, C)])
+
     def test_a_plural_scale_noun_alone_is_no_number(self):
         self.assertEqual(read("тысячи людей", "ru"), [])
         self.assertEqual(read("tisuće ljudi", "hr"), [])
@@ -154,6 +199,7 @@ class TestFractionsAndDecimals(unittest.TestCase):
         # 2 + 5/10; 3 + 14/100
         self.assertEqual(read("dvě celé pět desetin", "cs"), [("dvě celé pět desetin", "2.5", D)])
         self.assertEqual(read("три целых четырнадцать сотых", "ru"), [("три целых четырнадцать сотых", "3.14", D)])
+
 
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5

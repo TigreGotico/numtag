@@ -116,6 +116,8 @@ A word next to the homograph can also make the other meaning likely. Hungarian "
 
 The cues look only at the words next to "hat". After "nem", "hat" gives 0.4 also before a noun: "nem hat perc" ("not six minutes"). A joiner after "hat" ends the clause when no number follows it: "hat és működik" gives 0.4, and "hat és hét" stays sure. The value stays 6, and the caller decides.
 
+Right after a request verb, "hat" is no verb, because a finite verb does not follow another finite verb in one clause. So it is six: "kérek hat", "legyen hat", "állítsd hat". A word that is weak only at the end of a clause is sure when it is the whole text with no punctuation, because a one-word text with no punctuation is a spoken answer: "hat", fr "neuf" and ro "nouă" give the full score alone. With a full stop ("Hat.") or inside a clause, they give 0.4.
+
 ```python
 >>> read("A gyógyszer nem hat.", "hu")
 [('hat', '6', 0.4)]

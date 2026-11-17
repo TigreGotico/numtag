@@ -224,10 +224,16 @@ class Grammar:
             if i < len(self.tokens) and not self.tokens[i].is_digits else []
         return bool(entries) and all(e.ordinal for e in entries)
 
-    def _agrees(self, noun: bool, plural: bool, count: Rational) -> bool:
+    def _agrees(self, noun: bool, plural: bool, count: Rational, words: bool = False) -> bool:
         """Where a noun agrees with its count, a singular noun takes only a
-        count below two: "um milhão", "meio milhão", "mil e um milhões"."""
-        return not (noun and not plural and self.lex.scale_noun_agrees and _whole(count) not in ("0", "1"))
+        count below two: "um milhão", "meio milhão", "mil e um milhões". A
+        plural noun takes no count of one or a half written in words: "meio
+        milhões" and "um milhões" are not one number."""
+        if not (noun and self.lex.scale_noun_agrees):
+            return True
+        if plural:
+            return not (words and count in (ONE, HALF))
+        return _whole(count) in ("0", "1")
 
     def _takes_count(self, i: int, count: Rational, count_exponent: int = 0, whole_group: bool = False) -> bool:
         """True when a multiplier at ``i`` takes ``count``, whose own scale
@@ -239,7 +245,11 @@ class Grammar:
         a hundred word: "yüz yüze" is 100 and 100. Where a bare hundred word
         follows a scale word, a ``whole_group`` count of a hundred or more is
         no count of "hundred": in "tusind hundrede" the thousand ends its
-        group and "hundrede" is the next one."""
+        group and "hundrede" is the next one. A multiplier that starts a
+        glued denominator takes no count: in "hét százezred" it is the
+        "száz" of "százezred"."""
+        if self._glued_denominators(i):
+            return False
         scale_words = self.multipliers(i)
         if not scale_words:
             small = self._readings(i, "hundred_multiplier") + self._readings(i, "ten_multiplier")
@@ -287,11 +297,24 @@ class Grammar:
             return end, Rational.from_decimal("0", text[1:]), True
         if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
             while end < len(self.tokens) and self._space_group(end):
-                text += self.lex.group_mark + self.tokens[end].latin
+                group = self.tokens[end].latin
+                if self.lex.decimal_mark == "," and "." in group:
+                    # SI 5.4.4 "43 279.168 29": a space group and a point are no two group marks
+                    head, fraction = group.split(".")
+                    return end + 1, Rational.from_decimal(text.replace(self.lex.group_mark, "") + head, fraction), True
+                text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
         if not match:
-            return None
+            # where the comma marks decimals, a point that cannot group digits
+            # marks them: "1.5", "3.14159", "0.500". A time of day also
+            # takes the point ("14.30", "24.00"), so that shape reads no
+            # number.
+            point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
+            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
+                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text):
+                return None
+            return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
         whole = whole_text.replace(self.lex.group_mark, "")
         return end, Rational.from_decimal(whole, match.group(1) or ""), bool(match.group(1))
@@ -299,8 +322,9 @@ class Grammar:
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
-        return (token.is_digits and not token.suffix and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:{re.escape(self.lex.decimal_mark)}[0-9]+)?", token.latin) is not None)
+        marks = re.escape(self.lex.decimal_mark) + ("." if self.lex.decimal_mark == "," else "")
+        return (token.is_digits and not token.suffix and token.gap.isspace() and len(token.gap) == 1
+                and re.fullmatch(rf"[0-9]{{3}}(?:[{marks}][0-9]+)?", token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 
@@ -430,11 +454,13 @@ class Grammar:
             if position not in best:
                 continue
             parts, written, origin = best[position]
+            # "oh" is the digit 0 after the marker only: "one point oh five"
+            zeros = [(position + 1, "0") for _ in self._readings(position, "decimal_zero")[:1]]
             # "2 point 5": digits after the marker
             token = self.tokens[position] if position < len(self.tokens) else None
             digits_after = [(position + 1, token.latin)] if not parts and token and token.is_digits and not token.suffix \
                 and not token.period_ordinal and token.latin.isdigit() else []
-            for end, chunk in self.small(position, multiplied=False) + digits_after:
+            for end, chunk in self.small(position, multiplied=False) + zeros + digits_after:
                 if parts and len(chunk) == 3:
                     continue
                 if end not in best or parts + 1 < best[end][0]:
@@ -454,6 +480,34 @@ class Grammar:
         return _piece(Role.DECIMAL_MARK, i, i + 1) + _joined(i + 1, start) \
             + _piece(Role.DECIMALS, start, end, Rational.from_decimal("0", fraction))
 
+    def _glued_denominators(self, i: int) -> list[tuple[int, str, bool]]:
+        """(end, value, ambiguous) of a denominator of a hundred or more glued
+        to the count before it in one word: the count multiplies it, as it
+        multiplies the scale word ("tízezred" is a ten-thousandth, as
+        "tízezer" is ten thousand; "kétszázad" is a two-hundredth). After a
+        hyphen the count is the second member of a range: "egy-kétszázad" is
+        one or two hundredths."""
+        if not self.lex.glued_denominators or i >= len(self.tokens) or self.tokens[i].glued \
+                or self.tokens[i].gap.strip() in ("-", "–", "—"):
+            return []
+        found = []
+        for end, count in self.small(i, nonzero=True):
+            if not all(t.glued for t in self.tokens[i + 1:end + 1]):
+                continue
+            found += [(end + 1, digits.multiply(count, e.value), e.ambiguous) for e in self._readings(end, "denominator")
+                      if not e.plural and len(e.value) > 2 and e.value == digits.shift("1", len(e.value) - 1)]
+        return found
+
+    def _inside_glued_denominator(self, i: int) -> bool:
+        """True when the denominator at ``i`` ends a glued one ("ezred" in
+        "tízezred"): it is no denominator of its own."""
+        if i >= len(self.tokens) or not self.tokens[i].glued:
+            return False
+        start = i
+        while start > 0 and self.tokens[start].glued:
+            start -= 1
+        return any(end == i + 1 for end, _, _ in self._glued_denominators(start))
+
     def _decimal_fraction(self, i: int) -> list[tuple[int, str]]:
         """"пять десятых", "двадцать пять сотых" after a decimal marker: the
         numerator written in as many digits as the denominator has zeros."""
@@ -471,15 +525,23 @@ class Grammar:
         in a case that names them, the parts come first: "onda beş" after
         "tam" is .5."""
         found = []
-        for end, numerator in self.small(i, nonzero=True):
-            for entry in self._readings(end, "denominator"):
-                places = len(entry.value) - 1
-                if entry.value == digits.shift("1", places) and len(numerator) <= places:
-                    found.append((end + 1, numerator.rjust(places, "0")))
+        small = set(self.small(i, nonzero=True))
+        # a numerator of a thousand or more is a whole cardinal: "kétezer-ötszáz tízezred" is .2500
+        numerators = small | {
+            (run[-1].end, _whole(_sum(run))) for run in self.cardinals(i)
+            if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"}
+        for end, numerator in sorted(numerators):
+            readings = () if self._inside_glued_denominator(end) else self._readings(end, "denominator")
+            denominators = [(end + 1, e.value) for e in readings] \
+                + [(stop, value) for stop, value, _ in self._glued_denominators(end)]
+            for stop, value in denominators:
+                places = len(value) - 1
+                if value == digits.shift("1", places) and len(numerator) <= places:
+                    found.append((stop, numerator.rjust(places, "0")))
             places = len(numerator) - 1
             last = self.tokens[end - 1]
-            if places and numerator == digits.shift("1", places) and not last.is_digits and any(
-                    e.fraction_case for e in self.lex.readings.get(last.norm, ())):
+            if places and (end, numerator) in small and numerator == digits.shift("1", places) and not last.is_digits \
+                    and any(e.fraction_case for e in self.lex.readings.get(last.norm, ())):
                 found += [(stop, count.rjust(places, "0")) for stop, count in self.small(end, nonzero=True)
                           if len(count) <= places]
         return found
@@ -528,6 +590,12 @@ class Grammar:
             # milhões e 500 mil" is one number, "2 milhões e 500" two
             end, value, decimal = read
             found.append(count(end, value, needs_multiplier=not first, decimal=decimal))
+            # "2 and a half million": digits before the half, as words are
+            if not decimal and not value.is_zero():
+                whole = _piece(Role.COUNT, i, end, value)
+                # only a half after a joiner: a year before "полмиллиона" is its own number
+                found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
+                          for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
             if not decimal:
                 whole = _piece(Role.COUNT, i, end, value)
                 for start, e, fraction in self.decimal_digits(end):
@@ -606,7 +674,7 @@ class Grammar:
                     if dual and count.explicit:
                         continue
                     value = Rational(dual) if dual else count.value
-                    if not self._agrees(noun, plural, value):
+                    if not self._agrees(noun, plural, value, words=not self.tokens[i].is_digits):
                         continue
                     found.append(Group(end, value, exponent, noun, count.decimal,
                                        count.top, count.half_top, parts=before + scale))
@@ -921,7 +989,11 @@ class Grammar:
                 and bool(self._readings(end, "ordinal")) and bool(self.lex.partitives) \
                 and end + 1 < len(self.tokens) \
                 and not self._is_word(end + 1, self.lex.partitives | self.lex.joiners)
-            for entry in self._readings(end, "denominator"):
+            # "egy tízezred": the count before a glued denominator
+            found += [Parse(stop, Rational(numerator, value), ambiguous=ambiguous, parts=count + below(end, stop, value))
+                      for stop, value, ambiguous in self._glued_denominators(end)]
+            glued = self._inside_glued_denominator(end)
+            for entry in () if glued else self._readings(end, "denominator"):
                 # "um terço", "dois terços"; "dois milésimo" is the ordinal 2000.º
                 if self.lex.fraction_agreement and not entry.invariant and entry.plural == (numerator == "1"):
                     continue

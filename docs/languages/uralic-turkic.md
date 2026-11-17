@@ -79,4 +79,32 @@ Azerbaijani, short scale:
 
 > CLDR 48 RBNF az %spellout-cardinal, ICU 78 rendering of 1000000000: "bir milyard"; CLDR 48 RBNF az %spellout-cardinal, ICU 78 rendering of 1000000000000: "bir trilyon": the word for 10^12 is the short-scale 'trilyon', and 10^9 has its own word.
 
+## Hungarian parts
+
+Hungarian writes a decimal as a whole, "egész", and a count of parts: "három egész két tized" is 3.2. A count glued to the word for a hundredth or a thousandth multiplies it, as it multiplies the scale word: "tízezred" is a ten-thousandth, as "tízezer" is ten thousand. The parts go up to "kvadrilliárdod", 10^27.
+
+```python
+>>> read('három egész egy tízezred', 'hu')
+[('három egész egy tízezred', '3.0001')]
+>>> read('nulla egész kétezer-ötszáz milliomod', 'hu')
+[('nulla egész kétezer-ötszáz milliomod', '0.0025')]
+>>> read('egy kétszázad', 'hu')
+[('egy kétszázad', '0.005')]
+```
+
+> Wiktionary, Module:number list/data/hu (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/number-list-data-hu.lua): numbers[200] has "cardinal = {"kétszáz", "kettőszáz<tag:formal>"}" and "fractional = "kétszázad"", and numbers[10000] has "fractional = "tízezred""
+
+> Wiktionary, "milliomod" (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/milliomod.raw): "[[millionth]] {{gloss|one of a million equal parts of a whole}}"
+
+Before a noun, the glued form can also be a count of parts: "háromszázad másodperc" can be 3/100 of a second. A glued part word of a hundred or more with no count before it therefore gives no number. After a hyphen, the glued count is the second member of a range, and it counts the parts: "egy-kétszázad milliméter" is one or two hundredths of a millimetre.
+
+```python
+>>> read('tízezred', 'hu')
+[]
+>>> read('egy-kétszázad milliméter', 'hu')
+[('egy', '1'), ('kétszázad', '0.02')]
+```
+
+> AkH 12 §293 (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/akh12-293.txt): "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva"
+
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
