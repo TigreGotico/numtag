@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.2a1](https://github.com/TigreGotico/numtag/tree/0.13.2a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.1a1...0.13.2a1)
+
+**Merged pull requests:**
+
+- fix: a locale's own group mark before a point decimal reads as one number [\#82](https://github.com/TigreGotico/numtag/pull/82) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.1a1](https://github.com/TigreGotico/numtag/tree/0.13.1a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.0a1...0.13.1a1)
