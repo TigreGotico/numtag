@@ -210,6 +210,74 @@ class TestCollectivesAndScaleNouns(unittest.TestCase):
         self.assertEqual(pt("1 milhões"), [("1 milhões", "1000000", C)])
 
 
+class TestFractionOfAScale(unittest.TestCase):
+    def test_a_fraction_of_a_scale_noun_is_that_part_of_it(self):
+        # 1/4 x 10^6 = 250000; 3/4 x 10^6 = 750000; 1/4 x 10^3 = 250
+        self.assertEqual(pt("um quarto de milhão"), [("um quarto de milhão", "250000", C)])
+        self.assertEqual(pt("três quartos de milhão"), [("três quartos de milhão", "750000", C)])
+        self.assertEqual(pt("um quarto de milhar"), [("um quarto de milhar", "250", C)])
+
+    def test_the_article_of_the_scale_noun_is_part_of_it(self):
+        # 2/3 x 10^6 and 1/3 x 10^6
+        self.assertEqual(pt("dois terços de um milhão"), [("dois terços de um milhão", "2000000/3", F)])
+        self.assertEqual(pt("um terço de milhão"), [("um terço de milhão", "1000000/3", F)])
+
+    def test_the_number_ends_at_the_scale_noun(self):
+        self.assertEqual(pt("um quarto de milhão de euros"), [("um quarto de milhão", "250000", C)])
+
+    def test_the_quarter_is_sure_before_a_scale_noun(self):
+        # "um quarto" alone is a room or a quarter, so it is not sure
+        self.assertEqual(sure("um quarto de milhão", "pt-PT"), [("um quarto de milhão", "250000", 1.0)])
+        self.assertEqual(sure("um quarto de hora", "pt-PT"), [("um quarto", "0.25", 0.4)])
+
+    def test_pt_br_reads_the_short_scale(self):
+        # 1/4 x 10^9 = 250000000; 1/4 x 10^6
+        self.assertEqual(read("um quarto de bilhão", "pt-BR"), [("um quarto de bilhão", "250000000", C)])
+        self.assertEqual(read("um quarto de milhão", "pt-BR"), [("um quarto de milhão", "250000", C)])
+        self.assertEqual(read("dois terços de um milhão", "pt-BR"), [("dois terços de um milhão", "2000000/3", F)])
+
+    def test_pt_pt_reads_the_long_scale(self):
+        # 1/4 x 10^12 = 250000000000
+        self.assertEqual(pt("um quarto de bilião"), [("um quarto de bilião", "250000000000", C)])
+
+    def test_meio_milhao_is_unchanged(self):
+        self.assertEqual(pt("meio milhão"), [("meio milhão", "500000", C)])
+
+    def test_a_half_word_before_de_and_a_scale_noun_is_no_part_of_it(self):
+        # "no meio de um milhão de pessoas": in the middle of a million people
+        self.assertEqual(pt("no meio de um milhão de pessoas"), [("meio", "0.5", F), ("um milhão", "1000000", C)])
+
+    def test_a_scale_noun_that_starts_a_longer_number_is_not_the_whole_part(self):
+        # The grammar has no reading for a fraction of a compound number, so each
+        # of these keeps the reading of two numbers: 1/3 and 1500; 1/4 and 1200; 3/4 and 10^9.
+        self.assertEqual(pt("um terço de mil e quinhentos"), [("um terço", "1/3", F), ("mil e quinhentos", "1500", C)])
+        self.assertEqual(pt("um quarto de mil e duzentos euros"),
+                         [("um quarto", "0.25", F), ("mil e duzentos", "1200", C)])
+        self.assertEqual(pt("três quartos de mil milhões"), [("três quartos", "0.75", F), ("mil milhões", "1000000000", C)])
+        # constructed short phrases: a longer number after "de" keeps the two
+        # readings of dev; 1/4 and 10^9, 1/4 and 10^12, 1/4 and 1500000
+        self.assertEqual(pt("um quarto de milhar de milhões"),
+                         [("um quarto", "0.25", F), ("milhar de milhões", "1000000000", C)])
+        self.assertEqual(pt("um quarto de milhão de milhões"),
+                         [("um quarto", "0.25", F), ("milhão de milhões", "1000000000000", C)])
+        self.assertEqual(pt("um quarto de um milhão e meio"),
+                         [("um quarto", "0.25", F), ("um milhão e meio", "1500000", C)])
+
+    def test_mil_is_a_numeral_and_joins_no_fraction(self):
+        # "mil" is no scale noun: a quarter, then 1000 euros; two quarters (2/4 = 0.5), then 1000
+        self.assertEqual(pt("Reservou um quarto de mil euros por noite."), [("um quarto", "0.25", F), ("mil", "1000", C)])
+        self.assertEqual(read("Reservou um quarto de mil reais por noite.", "pt-BR"),
+                         [("um quarto", "0.25", F), ("mil", "1000", C)])
+        self.assertEqual(pt("dois quartos de mil euros"), [("dois quartos", "0.5", F), ("mil", "1000", C)])
+
+    def test_only_de_joins_a_fraction_to_a_scale_noun(self):
+        self.assertEqual(pt("um quarto e um milhão"), [("um quarto", "0.25", F), ("um milhão", "1000000", C)])
+
+    def test_a_plural_or_a_count_after_de_stays_apart(self):
+        self.assertEqual(pt("um quarto de milhões de pessoas"), [("um quarto", "0.25", F)])
+        self.assertEqual(pt("um quarto de dois milhões"), [("um quarto", "0.25", F), ("dois milhões", "2000000", C)])
+
+
 class TestCardinals(unittest.TestCase):
     def test_tens_and_units_need_the_conjunction(self):
         self.assertEqual(pt("vinte e um"), [("vinte e um", "21", C)])

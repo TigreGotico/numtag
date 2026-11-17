@@ -422,6 +422,47 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("twenty third"), [("twenty third", "23", O)])
 
 
+class TestFractionOfAScale(unittest.TestCase):
+    def test_a_fraction_of_a_scale_word_is_that_part_of_it(self):
+        # 1/4 x 10^6 = 250000; 3/4 x 10^6 = 750000; 1/4 x 10^3 = 250
+        self.assertEqual(en("a quarter of a million"), [("a quarter of a million", "250000", C)])
+        self.assertEqual(en("three quarters of a million"), [("three quarters of a million", "750000", C)])
+        self.assertEqual(en("a quarter of a thousand"), [("a quarter of a thousand", "250", C)])
+
+    def test_a_part_that_is_no_whole_number_is_a_fraction_value(self):
+        # 10^9 / 3 and 2 x 10^6 / 3
+        self.assertEqual(en("a third of a billion"), [("a third of a billion", "1000000000/3", F)])
+        self.assertEqual(en("two thirds of a million"), [("two thirds of a million", "2000000/3", F)])
+
+    def test_the_number_ends_at_the_scale_word(self):
+        self.assertEqual(en("He inherited a quarter of a million pounds."),
+                         [("a quarter of a million", "250000", C)])
+
+    def test_half_a_million_is_unchanged(self):
+        self.assertEqual(en("half a million"), [("half a million", "500000", C)])
+
+    def test_a_fraction_before_a_plural_or_a_count_stays_apart(self):
+        self.assertEqual(en("a quarter of millions of people"), [("a quarter", "0.25", F)])
+        self.assertEqual(en("a quarter of two million"), [("a quarter", "0.25", F), ("two million", "2000000", C)])
+
+    def test_a_fraction_of_a_unit_that_is_no_scale_word_is_unchanged(self):
+        self.assertEqual(en("a quarter of an hour"), [("a quarter", "0.25", F)])
+
+    def test_a_scale_word_that_starts_a_longer_number_is_not_the_whole_part(self):
+        # The grammar has no reading for a fraction of a compound number, so each
+        # of these keeps the reading of two numbers: 1/4 and 10^9; 1/3 and 1200.
+        self.assertEqual(en("a quarter of a thousand million"),
+                         [("a quarter", "0.25", F), ("a thousand million", "1000000000", C)])
+        self.assertEqual(en("a third of a thousand two hundred"),
+                         [("a third", "1/3", F), ("a thousand two hundred", "1200", C)])
+        # constructed short phrase: 1/4 and 1500000
+        self.assertEqual(en("a quarter of a million and a half"),
+                         [("a quarter", "0.25", F), ("a million and a half", "1500000", C)])
+
+    def test_only_the_linker_word_joins_a_fraction_to_a_scale_word(self):
+        self.assertEqual(en("a quarter in a million"), [("a quarter", "0.25", F), ("a million", "1000000", C)])
+
+
 class TestOrdinals(unittest.TestCase):
     def test_only_the_last_word_is_ordinal(self):
         # 20 + 1 = 21; 100 + 1 = 101

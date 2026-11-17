@@ -1220,6 +1220,23 @@ class Grammar:
                       parts=parts + _piece(Role.COLLECTIVE, fraction.end + 1, at + 1, Rational(entry.value)))
                 for entry in self._readings(at, "collective") if not entry.plural]
 
+    def fraction_of_scale(self, fraction: Parse) -> list[Parse]:
+        """"um quarto de milhão", "a quarter of a million": that part of the
+        singular scale noun. A scale numeral ("mil") is no noun: "um quarto
+        de mil euros" is a quarter and a thousand."""
+        if not self.lex.fraction_of_scale or not self._is_word(fraction.end, self.lex.fraction_of_words):
+            return []
+        start = fraction.end + 1
+        at = start + 1 if self._is_word(start, self.lex.articles) else start
+        parts = fraction.parts + _piece(Role.OF, fraction.end, start)
+        # a scale word that starts a longer number ("mil milhões", "milhar de
+        # milhões", "um milhão e meio") is not the whole part
+        longest = max((p.end for i in {start, at} for p in self._numbers(i)), default=at)
+        return [Parse(end, fraction.value * ONE.scaled(exponent),
+                      parts=parts + _piece(Role.SCALE, start, end, ONE.scaled(exponent)))
+                for end, exponent, dual, noun, _, plural in self.multipliers(at)
+                if noun and not dual and not plural and end >= longest]
+
     def half_collectives(self, i: int) -> list[Parse]:
         """"meia dúzia", "half a dozen", "a half dozen". The article of "half
         a dozen" is in the collective part, as in "a dozen"."""
@@ -1577,6 +1594,7 @@ class Grammar:
                       for run in self.cardinals(i + 1) if not run[-1].decimal]
         for fraction in fractions:
             found += self.fraction_of_collective(fraction)
+            found += self.fraction_of_scale(fraction)
         if self._is_word(i, self.lex.articles):
             for entry in self._readings(i + 1, "collective"):
                 if not entry.plural:
