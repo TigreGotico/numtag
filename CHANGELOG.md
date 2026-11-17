@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.10a1...0.15.0a1)
+
+**Merged pull requests:**
+
+- feat: tag vague quantities in en and pt [\#110](https://github.com/TigreGotico/numtag/pull/110) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.10a1](https://github.com/TigreGotico/numtag/tree/0.14.10a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.9a1...0.14.10a1)
