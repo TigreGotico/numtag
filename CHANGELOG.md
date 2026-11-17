@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.9a1](https://github.com/TigreGotico/numtag/tree/0.14.9a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.8a1...0.14.9a1)
+
+**Merged pull requests:**
+
+- fix\(es\): read the older "mil y quinientos" as one number [\#109](https://github.com/TigreGotico/numtag/pull/109) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.8a1](https://github.com/TigreGotico/numtag/tree/0.14.8a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.7a1...0.14.8a1)
