@@ -211,6 +211,8 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(en("one thousand, nine hundred"), [("one thousand, nine hundred", "1900", C)])
         self.assertEqual(en("two thousand, five"), [("two thousand", "2000", C), ("five", "5", C)])
         self.assertEqual(en("five million, three million"), [("five million", "5000000", C), ("three million", "3000000", C)])
+        # the class after the comma is smaller than the one before it
+        self.assertEqual(en("two thousand, million people"), [("two thousand", "2000", C)])
 
 class TestCollectivesAndHalves(unittest.TestCase):
     def test_a_dozen_after_thousand_counts_the_whole_cardinal(self):

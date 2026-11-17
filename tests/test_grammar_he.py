@@ -49,9 +49,33 @@ class TestHebrew(unittest.TestCase):
         self.assertEqual(he("בשש בבוקר"), [("בשש", "6", C)])
         self.assertEqual(he("הפעם השלישית"), [("השלישית", "3", O)])
 
-    def test_a_number_after_an_unused_joiner_keeps_the_whole_word(self):
-        # "ושלושה" opens the number: the span starts at the word, not inside it
-        self.assertEqual(he("ושלושה ילדים"), [("ושלושה", "3", C)])
+    def test_the_span_starts_after_an_unused_joiner(self):
+        # ו (and) is written joined to the word and starts a new number: the
+        # span is the number word, so it starts one character after the ו
+        for text, word, value in [
+            ("יש לי מכונית ושלוש אופניים", "שלוש", "3"),
+            ("קניתי ספר ועשרה עטים", "עשרה", "10"),
+            ("ושלושה ילדים", "שלושה", "3"),
+            ("שלושה וארבעה", "ארבעה", "4"),
+            ("ושליש", "שליש", "1/3"),
+            ("ורבע", "רבע", "0.25"),
+        ]:
+            start = text.index(word)
+            mention = tag_numbers(text, "he")[-1]
+            self.assertEqual((mention.char_span, mention.text, mention.value), ((start, start + len(word)), word, value), text)
+        # the ו is no part of the second number, and the first keeps its own span
+        self.assertEqual([(m.char_span, m.text, m.value) for m in tag_numbers("ספר אחד ושני עטים", "he")],
+                         [((4, 7), "אחד", "1"), ((9, 12), "שני", "2")])
+
+    def test_a_clitic_after_the_joiner_stays_in_the_span(self):
+        # ו comes off; ה and ב stay: "והשלושה" is ו + השלושה, "ובשלושה" is ו + בשלושה
+        self.assertEqual([(m.char_span, m.text) for m in tag_numbers("והשלושה הלכו", "he")], [((1, 7), "השלושה")])
+        self.assertEqual([(m.char_span, m.text) for m in tag_numbers("ובשלושה", "he")], [((1, 7), "בשלושה")])
+
+    def test_the_joiner_inside_a_number_stays_in_the_span(self):
+        # 20 + 3 = 23: the ו joins the unit to the ten
+        self.assertEqual([(m.char_span, m.text, m.value) for m in tag_numbers("יש עשרים ושלוש", "he")],
+                         [((3, 14), "עשרים ושלוש", "23")])
 
     def test_niqqud_and_bidi_marks(self):
         # the points do not change the word; a mark before a digit is no gap

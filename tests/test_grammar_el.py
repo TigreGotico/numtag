@@ -79,6 +79,13 @@ class TestGreek(unittest.TestCase):
         self.assertEqual(el("δύο εκατομμύρια"), [("δύο εκατομμύρια", "2000000", C)])
         self.assertEqual(el("δύο εκατομμύριο"), [("δύο", "2", C)])
 
+    def test_the_abbreviated_scale_words_take_any_count(self):
+        # el.wiktionary δις: "{{ακλ}}", indeclinable; 10^9, 10^9 / 2, 2 x 10^9, 10^12
+        self.assertEqual(el("ένα δις ευρώ"), [("ένα δις", "1000000000", C)])
+        self.assertEqual(el("μισό δις ευρώ"), [("μισό δις", "500000000", C)])
+        self.assertEqual(el("δύο δις ευρώ"), [("δύο δις", "2000000000", C)])
+        self.assertEqual(el("ένα τρις"), [("ένα τρις", "1000000000000", C)])
+
 
     def test_decomposed_accents_read_as_composed(self):
         # NFD text: "έ" as "ε" and a combining acute
