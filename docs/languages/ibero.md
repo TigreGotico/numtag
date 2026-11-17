@@ -4,7 +4,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 233 | 230 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 182 | 181 |
 | Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
@@ -58,7 +58,7 @@ The old spelling "diez y seis" is 16, and so are "diez y siete" to "diez y nueve
 
 > DPD "cardinales" §2: "Las grafías pluriverbales" "diez y seis" "son anticuadas y deben evitarse"
 
-Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number.
+Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number. "cien por cien" is also 100, because "por cien" is the percent sign after "cien". After any other number, "por cien" keeps its hundred, because the DPD accepts that form only for the whole: "el noventa por cien" is 90 and 100.
 
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers('Éramos ciento y la madre.', 'es')]
@@ -71,9 +71,15 @@ Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un c
 [('cinco', '5')]
 >>> read('el tanto por ciento', 'es')
 []
+>>> read('Al cien por cien.', 'es')
+[('cien', '100')]
+>>> read('el noventa por cien', 'es')
+[('noventa', '90'), ('cien', '100')]
 ```
 
 > DPD "ciento" §2: "Quien hace un cesto hace ciento"
+
+> DPD "ciento" §3: "cuando el porcentaje expresa totalidad son igualmente válidas las expresiones ciento por ciento (preferida en América), cien por ciento y cien por cien (preferida en España)"
 
 ## Examples from the gold rows
 

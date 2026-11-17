@@ -82,8 +82,8 @@
    "source": "CLDR RBNF es \"-x: menos >>\"; es.wiktionary \"menos\", locuciones: \"a menos que\", \"al menos\", \"cuando menos\", \"por lo menos\", \"nada menos\", \"más o menos\" are no sign"
   },
   "percent_phrase": {
-   "value": ["por ciento"],
-   "source": "DPD \"ciento\" §3: \"En la expresión de los porcentajes ha de utilizarse siempre la fórmula por ciento\"; \"por ciento se escribe en dos palabras\". The \"ciento\" after \"por\" names the percent sign, not the number 100."
+   "value": ["por ciento", "cien por cien"],
+   "source": "DPD \"ciento\" §3: \"En la expresión de los porcentajes ha de utilizarse siempre la fórmula por ciento\"; \"por ciento se escribe en dos palabras\". The \"ciento\" after \"por\" names the percent sign, not the number 100. The same section rejects \"por cien\" after other numbers and accepts it only for totality: \"no se considera correcto, en estos casos, el uso de la forma apocopada cien: ⊗‍el noventa por cien. Pero cuando el porcentaje expresa totalidad son igualmente válidas las expresiones ciento por ciento (preferida en América), cien por ciento y cien por cien (preferida en España)\"; example «El calor es pegajoso, la humedad del cien por cien» (Sierra Regreso [Esp. 1995]). So \"por cien\" is the percent sign only after \"cien\": \"cien por cien\" is 100 once, and the phrase holds its number. \"el noventa por cien\" and \"por cien euros\" keep the hundred."
   },
   "minus_idioms": {
    "value": [

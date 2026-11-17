@@ -627,6 +627,8 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 [('cent', '100', 0.4)]
 >>> read("Calcula el tanto por ciento de descuento.", "es")
 []
+>>> read("La humedad está al cien por cien.", "es")
+[('cien', '100')]
 ```
 
 > DPD "ciento" §2: "en la lengua actual se prefiere claramente la forma apocopada cien"
