@@ -294,10 +294,14 @@ class TestGluedPartWords(unittest.TestCase):
         self.assertEqual(read("Die gesamte Lage mißt kaum einen halben Mikrometer, das sind fünf Zehntausendstel Millimeter.", "de"),
                          [("einen halben", "0.5", F), ("fünf Zehntausendstel", "0.0005", F)])
 
-    def test_a_whole_part_and_a_glued_part_word_add(self):
-        # 3 + 1/200 = 3.005, sure: a German part word is no homograph
-        self.assertEqual(sure("drei und Zweihundertstel", "de"), [("drei und Zweihundertstel", "3.005", 1.0)])
-        self.assertEqual(sure("Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 1.0)])
+    def test_a_glued_part_word_with_no_count_has_the_score_of_a_homograph(self):
+        # 3 + 1/200 = 3.005; the word alone can be a plural with no determiner
+        # ("wertvolle Hundertstel"), so these score 0.4, and a count before it scores 1.0
+        self.assertEqual(sure("Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 0.4)])
+        self.assertEqual(sure("wertvolle Zweihundertstel", "de"), [("Zweihundertstel", "0.005", 0.4)])
+        self.assertEqual(sure("drei und Zweihundertstel", "de"), [("drei und Zweihundertstel", "3.005", 0.4)])
+        self.assertEqual(sure("ein Zweihundertstel", "de"), [("ein Zweihundertstel", "0.005", 1.0)])
+        self.assertEqual(sure("drei Zweihundertstel", "de"), [("drei Zweihundertstel", "0.015", 1.0)])
 
 
 class TestScales(unittest.TestCase):
