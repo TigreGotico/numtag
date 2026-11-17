@@ -448,6 +448,25 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
+## A joiner prefix before a number
+
+In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.
+
+```python
+>>> read("עשרים ושלוש", "he")
+[('עשרים ושלוש', '23')]
+>>> read("קניתי ספר ועשרה עטים", "he")
+[('עשרה', '10')]
+>>> read("בשלושה ימים", "he")
+[('בשלושה', '3')]
+>>> read("ובשלושה ימים", "he")
+[('בשלושה', '3')]
+>>> read("بين 15 و20 درجة", "ar")
+[('15', '15'), ('20', '20')]
+```
+
+> CLDR RBNF, common/rbnf/he.xml: "1: ו=%spellout-numbering=;", "2: ושתיים;": ו is written joined to the next word. en.wiktionary "و", usage notes: "Arabic conjunctions and prepositions that have only one letter, such as وَ ( wa ) , are written as a prefix."
+
 ## Words that are no number
 
 A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.
