@@ -256,6 +256,45 @@ class TestCollectivesAndHalves(unittest.TestCase):
         # 2.5 x 10^6 = 2500000
         self.assertEqual(en("two and a half million"), [("two and a half million", "2500000", C)])
 
+    def test_a_googol_is_ten_to_the_hundredth(self):
+        # 1 followed by 100 zeros; 2 followed by 100 zeros; 300 x 10^100
+        self.assertEqual(en("one googol"), [("one googol", "1" + "0" * 100, C)])
+        self.assertEqual(en("a googol"), [("a googol", "1" + "0" * 100, C)])
+        self.assertEqual(en("two googols"), [("two googols", "2" + "0" * 100, C)])
+        self.assertEqual(en("three hundred googol"), [("three hundred googol", "3" + "0" * 102, C)])
+
+    def test_a_googol_alone_names_no_number(self):
+        # as "million" alone names none
+        self.assertEqual(en("googol"), [])
+        self.assertEqual(en("googols"), [])
+
+    def test_digits_and_a_half_count_a_scale(self):
+        # 2.5 x 10^6 = 2500000; 12.5 x 10^3 = 12500; 3.5 x 10^6 = 3500000
+        self.assertEqual(en("2 and a half million"), [("2 and a half million", "2500000", C)])
+        self.assertEqual(en("12 and a half thousand"), [("12 and a half thousand", "12500", C)])
+        self.assertEqual(en("it cost 3 and a half million dollars"),
+                         [("3 and a half million", "3500000", C)])
+
+    def test_a_decimal_before_a_half_is_its_own_number(self):
+        # 2.5 and 10^6 / 2
+        self.assertEqual(en("2.5 and a half million"), [("2.5", "2.5", D), ("a half million", "500000", C)])
+
+    def test_a_zero_before_a_half_adds_no_scale(self):
+        # 0 + 1/2
+        self.assertEqual(en("0 and a half million"), [("0 and a half", "0.5", F)])
+
+    def test_a_year_before_a_bound_half_stays_its_own_number(self):
+        # 2023, then 10^6 / 2: the half of ru, uk and id needs no joiner, so it is no half of the year
+        self.assertEqual(read("В 2023 полмиллиона человек уехали из страны.", "ru"),
+                         [("2023", "2023", C), ("полмиллиона", "500000", C)])
+        self.assertEqual(read("Pada tahun 2023 setengah juta orang", "id"),
+                         [("2023", "2023", C), ("setengah juta", "500000", C)])
+        self.assertEqual(read("У 2023 півмільйона людей виїхали.", "uk"),
+                         [("2023", "2023", C), ("півмільйона", "500000", C)])
+
+    def test_digits_and_a_half_without_a_scale_stay_a_fraction(self):
+        self.assertEqual(en("2 and a half"), [("2 and a half", "2.5", F)])
+
     def test_a_whole_and_a_half(self):
         self.assertEqual(en("two and a half"), [("two and a half", "2.5", F)])
 
@@ -275,6 +314,28 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("two thirds"), [("two thirds", "2/3", F)])
         self.assertEqual(en("three quarters"), [("three quarters", "0.75", F)])
         self.assertEqual(en("one hundredth"), [("one hundredth", "0.01", F)])
+
+    def test_a_billionth_is_one_part_of_a_billion(self):
+        # short scale: 1 / 10^9 and 1 / 10^12; 3 / 10^9
+        self.assertEqual(en("a billionth"), [("a billionth", "0.000000001", F)])
+        self.assertEqual(en("a trillionth"), [("a trillionth", "0.000000000001", F)])
+        self.assertEqual(en("three billionths"), [("three billionths", "0.000000003", F)])
+        # long scale: a billion is 10^12 and a trillion is 10^18
+        self.assertEqual(en("a billionth", scale=Scale.LONG), [("a billionth", "0.000000000001", F)])
+        self.assertEqual(en("a trillionth", scale=Scale.LONG), [("a trillionth", "0.000000000000000001", F)])
+        # a millionth is 10^-6 in both scales
+        self.assertEqual(en("a millionth", scale=Scale.LONG), [("a millionth", "0.000001", F)])
+
+    def test_a_billionth_states_the_scale_it_used(self):
+        self.assertEqual(tag_numbers("three billionths", "en")[0].number_scale, Scale.SHORT)
+        self.assertEqual(tag_numbers("three billionths", "en", scale=Scale.LONG)[0].number_scale, Scale.LONG)
+        # a millionth is the same in both scales
+        self.assertIsNone(tag_numbers("three millionths", "en")[0].number_scale)
+
+    def test_the_billionth_is_an_ordinal(self):
+        # the 10^9-th and the 10^12-th place
+        self.assertEqual(en("the billionth customer"), [("billionth", "1000000000", O)])
+        self.assertEqual(en("the billionth customer", scale=Scale.LONG), [("billionth", "1000000000000", O)])
 
     def test_a_fraction_of_a_collective_is_that_part_of_it(self):
         # 12 / 3 = 4; 3 x 12 / 4 = 9
@@ -359,6 +420,24 @@ class TestDecimalsAndDigits(unittest.TestCase):
         # 1.25 x 100
         self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
         self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
+
+    def test_oh_nought_and_o_after_point_are_the_digit_zero(self):
+        # 1 + 05/100; 1 + 005/1000; 1 + 505/1000
+        self.assertEqual(en("one point oh five"), [("one point oh five", "1.05", D)])
+        self.assertEqual(en("one point o five"), [("one point o five", "1.05", D)])
+        self.assertEqual(en("one point nought five"), [("one point nought five", "1.05", D)])
+        self.assertEqual(en("one point oh oh five"), [("one point oh oh five", "1.005", D)])
+        self.assertEqual(en("one point five oh five"), [("one point five oh five", "1.505", D)])
+        # 2 + 0/10
+        self.assertEqual(en("two point oh"), [("two point oh", "2", C)])
+
+    def test_a_zero_digit_before_a_scale_word_keeps_the_decimal(self):
+        # 1.50 x 10^6 = 1500000
+        self.assertEqual(en("one point five oh million"), [("one point five oh million", "1500000", C)])
+
+    def test_oh_is_no_digit_outside_the_decimals(self):
+        self.assertEqual(en("oh five"), [("five", "5", C)])
+        self.assertEqual(en("one oh five"), [("one", "1", C), ("five", "5", C)])
 
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205

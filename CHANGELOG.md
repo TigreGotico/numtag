@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.13.0a1](https://github.com/TigreGotico/numtag/tree/0.13.0a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.16a1...0.13.0a1)
+
+**Merged pull requests:**
+
+- feat\(en\): read "googol" as 10^100 [\#79](https://github.com/TigreGotico/numtag/pull/79) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.16a1](https://github.com/TigreGotico/numtag/tree/0.12.16a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.15a1...0.12.16a1)
+
+## [0.12.15a1](https://github.com/TigreGotico/numtag/tree/0.12.15a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.14a1...0.12.15a1)
+
+**Merged pull requests:**
+
+- fix\(en\): "oh", "o" and "nought" are the digit zero after "point" [\#73](https://github.com/TigreGotico/numtag/pull/73) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.12.14a1](https://github.com/TigreGotico/numtag/tree/0.12.14a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.13a1...0.12.14a1)
+
+**Merged pull requests:**
+
+- fix\(en\): "a billionth" and "a trillionth" are fractions [\#70](https://github.com/TigreGotico/numtag/pull/70) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(en\): digits before "and a half" count a scale word [\#67](https://github.com/TigreGotico/numtag/pull/67) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.12a1...0.12.13a1)
