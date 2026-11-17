@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.13.5a1](https://github.com/TigreGotico/numtag/tree/0.13.5a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.3a1...0.13.5a1)
+
+**Merged pull requests:**
+
+- fix\(tr\): read a lone "çeyrek" as a quarter [\#88](https://github.com/TigreGotico/numtag/pull/88) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(eu\): read erdi, heren and laurden with the article -a [\#86](https://github.com/TigreGotico/numtag/pull/86) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.3a1](https://github.com/TigreGotico/numtag/tree/0.13.3a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.2a1...0.13.3a1)
