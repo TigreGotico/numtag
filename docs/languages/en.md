@@ -21,6 +21,7 @@ Pass `scale="long"` to read an older British text in the long scale. Read [../nu
 | Role | Entries | Examples |
 |---|---|---|
 | unit | 10 | "zero" to "nine" |
+| decimal zero | 3 | "oh", "o", "nought" after "point" |
 | ten | 18 | "ten" to "nineteen", "twenty" to "ninety" |
 | hundred multiplier | 2 | "hundred", "hundreds" |
 | scale noun | 46 | "thousand", "million", "billion", up to "centillion" |

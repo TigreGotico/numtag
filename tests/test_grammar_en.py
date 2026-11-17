@@ -409,6 +409,24 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
         self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
 
+    def test_oh_nought_and_o_after_point_are_the_digit_zero(self):
+        # 1 + 05/100; 1 + 005/1000; 1 + 505/1000
+        self.assertEqual(en("one point oh five"), [("one point oh five", "1.05", D)])
+        self.assertEqual(en("one point o five"), [("one point o five", "1.05", D)])
+        self.assertEqual(en("one point nought five"), [("one point nought five", "1.05", D)])
+        self.assertEqual(en("one point oh oh five"), [("one point oh oh five", "1.005", D)])
+        self.assertEqual(en("one point five oh five"), [("one point five oh five", "1.505", D)])
+        # 2 + 0/10
+        self.assertEqual(en("two point oh"), [("two point oh", "2", C)])
+
+    def test_a_zero_digit_before_a_scale_word_keeps_the_decimal(self):
+        # 1.50 x 10^6 = 1500000
+        self.assertEqual(en("one point five oh million"), [("one point five oh million", "1500000", C)])
+
+    def test_oh_is_no_digit_outside_the_decimals(self):
+        self.assertEqual(en("oh five"), [("five", "5", C)])
+        self.assertEqual(en("one oh five"), [("one", "1", C), ("five", "5", C)])
+
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205
         self.assertEqual(en("three point twenty five"), [("three point twenty five", "3.25", D)])

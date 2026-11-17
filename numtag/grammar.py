@@ -454,7 +454,9 @@ class Grammar:
             if position not in best:
                 continue
             parts, written, origin = best[position]
-            for end, chunk in self.small(position, multiplied=False):
+            # "oh" is the digit 0 after the marker only: "one point oh five"
+            zeros = [(position + 1, "0") for _ in self._readings(position, "decimal_zero")[:1]]
+            for end, chunk in self.small(position, multiplied=False) + zeros:
                 if parts and len(chunk) == 3:
                     continue
                 if end not in best or parts + 1 < best[end][0]:
