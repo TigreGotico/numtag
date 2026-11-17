@@ -65,6 +65,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `of` | The word after which a plural noun multiplies a scale noun | "de" | empty |
 | `fraction_of` | The word between a fraction and a collective | "de" | "of" |
 | `denominator_particle` | A particle after a denominator | "avos" | empty |
+| `fraction_over` | A word between two cardinals that reads "a/b" aloud (eu "zati") | empty | empty |
 | `class_noun` | A singular noun that names a class after a collective | "milhar" | empty |
 | `half_unit` | Units of measure that a half before them halves | "quilo", "hora" | empty |
 | `abbreviation` | Number words that a period makes an abbreviation | "dez" | empty |
@@ -108,6 +109,7 @@ These optional keys hold facts that the word form shows:
 | `number_after` | the words after which an `ambiguous` or weak word has only its number reading. hu "hat" lists request verbs ("kérek hat", "legyen hat"). Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
 | `bound` | `true` for a form that stands only before the rest of the number ("cento" in "cento e um") |
+| `weak_alone` | `true` for a denominator that is also one part with no count, no article and no one after it, at the confidence 0.4: eu "laurden" is 1/4 and also starts the compound "final laurden". A number, a decimal marker or a joiner before the word cancels it. |
 
 A scale noun with a `rank` gets its power of ten from the scale: 10^(3 × rank + 3) in the short scale, 10^(6 × rank) in the long scale. A mention with such a word states its `number_scale`.
 
