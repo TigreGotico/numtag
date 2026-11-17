@@ -32,15 +32,19 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 
 ## The Spanish joiner "y"
 
-In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Other uses of "y" after "mil" stay two numbers. Older texts join them, and numtag reads that form as two numbers. No "y" joins a group after "millón".
+In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Older texts also write "y" between the thousands and the hundreds, as in the inscription "mil y quinientos y cinco" (1505). After "entre", the "y" joins the two limits of a range. Other uses of "y" after "mil" stay two numbers, and no "y" joins a group after "millón".
 
 ```python
 >>> read('Las mil y una noches', 'es')
 [('mil y una', '1001')]
 >>> read('dentro de mil y un días', 'es')
 [('mil y un', '1001')]
->>> read('mil y quinientos', 'es')
+>>> read('mil y quinientos y cinco', 'es')
+[('mil y quinientos y cinco', '1505')]
+>>> read('entre mil y quinientos', 'es')
 [('mil', '1000'), ('quinientos', '500')]
+>>> read('mil y veinte', 'es')
+[('mil', '1000'), ('veinte', '20')]
 >>> read('un millón y dos', 'es')
 [('un millón', '1000000'), ('dos', '2')]
 >>> read('uno y dos', 'es')
