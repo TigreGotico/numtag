@@ -454,9 +454,10 @@ class Grammar:
         the number ("cento e um", never "cento" alone). Without
         ``multiplied``, no hundreds from a count and a multiplier ("two
         hundred")."""
-        # "birkaç yüz": a vague quantity stands where the one of "one hundred" would
+        # "birkaç yüz": a vague quantity right before the hundred stands where
+        # its one would; after "birkaç bin" the hundred starts a lower group
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")
-                 if e.value != "100" or not self._after_vague(i)]
+                 if e.value != "100" or not self._vague_step(i)[0]]
         if not multiplied:
             return found
         counts = self.tens_units(i, nonzero=True) + self._bound_units(i)
