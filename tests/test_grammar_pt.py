@@ -728,6 +728,48 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(read("11.29 Uhr", "de"), [])
         self.assertEqual(read("The rate is 2.5.", "en"), [("2.5", "2.5", D)])
 
+    def test_a_native_group_mark_before_a_point_decimal(self):
+        # SI 5.4.4 "43 279.168 29" with the locale's own group mark (CLDR numbers,
+        # symbols-numberSystem-latn group): 1 x 1000 + 234 = 1234, 12 x 1000 + 345 = 12345,
+        # 10 x 1000 + 123 = 10123
+        marks = {"plain space": (" ", "et fi hu nb nn sv"), "no-break space": ("\u00a0", "bg kab pl ru sk uk"),
+                 "narrow no-break space": ("\u202f", "fr-FR fr-BE"), "apostrophe": ("'", "fr-CH")}
+        for name, (mark, langs) in marks.items():
+            for lang in langs.split():
+                for whole, fraction, value in (("1", "234.5", "1234.5"), ("12", "345.67", "12345.67"),
+                                               ("10", "123.5", "10123.5")):
+                    text = f"{whole}{mark}{fraction}"
+                    with self.subTest(lang=lang, mark=name, text=text):
+                        self.assertEqual(read(text, lang), [(text, value, D)])
+        # in a sentence, signed, with a second group, and with the comma
+        self.assertEqual(read("Hinta on 1 234.5 euroa.", "fi"), [("1 234.5", "1234.5", D)])
+        self.assertEqual(read("Цена 10\u00a0123.5 рублей", "ru"), [("10\u00a0123.5", "10123.5", D)])
+        self.assertEqual(read("-1\u00a0234.5", "pl"), [("-1\u00a0234.5", "-1234.5", D)])
+        self.assertEqual(read("1'234'567.5", "fr-CH"), [("1'234'567.5", "1234567.5", D)])
+        self.assertEqual(read("1 234,5", "fi"), [("1 234,5", "1234.5", D)])
+        self.assertEqual(read("1\u00a0234,5", "ru"), [("1\u00a0234,5", "1234.5", D)])
+        self.assertEqual(read("1'234,5", "fr-CH"), [("1'234,5", "1234.5", D)])
+        # a point after one or two digits, or a hyphen, is no group
+        self.assertEqual(read("12 3.5", "ru"), [("12", "12", C), ("3.5", "3.5", D)])
+        # the native-mark path takes only a first group of 1 to 9 then groups of three
+        self.assertEqual(read("12 3.5", "fi"), [])
+        self.assertEqual(read("12'3.5", "fr-CH"), [])
+        self.assertEqual(read("0\u00a0234.5", "ru"), [])
+        self.assertEqual(read("1 2345.6", "fi"), [])
+        self.assertEqual(read("120-160", "ru"), [("120", "120", C), ("160", "160", C)])
+        # point group marks and the English comma keep their reading
+        self.assertEqual(read("1.500", "de"), [("1.500", "1500", C)])
+        self.assertEqual(read("234.567", "de"), [("234.567", "234567", C)])
+        for lang in ("pt-PT", "de"):
+            self.assertEqual(read("1.234.5", lang), [])
+            self.assertEqual(read("12.345.67", lang), [])
+        self.assertEqual(read("1,234.5", "en"), [("1,234.5", "1234.5", D)])
+
+    def test_zero_led_digits_before_a_space_group_point_decimal(self):
+        self.assertEqual(pt("0 234.5"), [("0", "0", C), ("234.5", "234.5", D)])
+        self.assertEqual(pt("nota 0 234.5 kg"), [("0", "0", C), ("234.5", "234.5", D)])
+        self.assertEqual(pt("007 234.5"), [("007", "7", C), ("234.5", "234.5", D)])
+
     def test_pt_pt_also_groups_digits_with_a_space(self):
         # 1 x 10^6 + 234 x 10^3 + 567 = 1234567
         self.assertEqual(pt("vivem 1 234 567 pessoas"), [("1 234 567", "1234567", C)])
