@@ -491,7 +491,7 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
-A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count, so "egy kétszázad" is 1/200 and "3 tízezred" reads only the 3. A hyphen before it ends a range.
+A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count, so "egy kétszázad" is 1/200 and "3 tízezred" is 3/10000, as "három tízezred" is. A hyphen before it ends a range.
 
 ```python
 >>> read("A mennyisége körülbelül háromszázad része a klórénak.", "hu")
@@ -504,7 +504,7 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
-In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits, a decimal in words, "ein halbes" or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread: "3 Zweihundertstel" reads only the 3. A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel", so it scores as a homograph.
+In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits is the numerator too, so "3 Zweihundertstel" is 3/200. A decimal in words, "ein halbes" or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread. A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel", so it scores as a homograph.
 
 ```python
 >>> read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de")
@@ -514,7 +514,7 @@ In German a count written in one word with a part word is part of the denominato
 >>> read("zwei Hundertstel", "de")
 [('zwei Hundertstel', '0.02')]
 >>> read("3 Zweihundertstel", "de")
-[('3', '3')]
+[('3 Zweihundertstel', '0.015')]
 ```
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".

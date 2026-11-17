@@ -47,7 +47,7 @@ A fraction in digits with a slash is one FRACTION mention. Its value follows the
 [('3/4', '0.75'), ('1/3', '1/3'), ('6/8', '0.75'), ('2 1/2', '2.5'), ('-5 1/3', '-16/3')]
 ```
 
-Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers. Four digits with no group mark are no whole part, because they are mostly a year. Write "1,500 1/2" for a mixed number above one thousand.
+Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers. Four digits with no group mark are no whole part, because they are mostly a year. For a mixed number above one thousand, write the whole number with the group mark of the language: "1,500 1/2" in English, "1.500 1/2" in Portuguese.
 
 | Text | Result | Reason |
 |---|---|---|

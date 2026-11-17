@@ -328,6 +328,68 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("three quarters"), [("three quarters", "0.75", F)])
         self.assertEqual(en("one hundredth"), [("one hundredth", "0.01", F)])
 
+    def test_digits_count_the_parts_of_a_denominator(self):
+        # 1/6; 3/4; 2/3; 1/2
+        self.assertEqual(en("1 sixth"), [("1 sixth", "1/6", F)])
+        self.assertEqual(en("3 quarters"), [("3 quarters", "0.75", F)])
+        self.assertEqual(en("2 thirds of the cake"), [("2 thirds", "2/3", F)])
+        self.assertEqual(en("1 half"), [("1 half", "0.5", F)])
+        self.assertEqual(en("-1 sixth"), [("-1 sixth", "-1/6", F)])
+
+    def test_digits_before_an_ordinal_word_stay_two_numbers(self):
+        self.assertEqual(en("1 second"), [("1", "1", C), ("second", "2", O)])
+        self.assertEqual(en("1.5 sixth"), [("1.5", "1.5", D), ("sixth", "6", O)])
+        self.assertEqual(en("0 sixths"), [("0", "0", C)])
+
+    def test_a_decimal_is_no_count_of_parts(self):
+        # 2.5 is no whole count: "2.5 sixths" must not read the digits 25 over 6
+        self.assertEqual(en("2.5 sixths"), [("2.5", "2.5", D)])
+        self.assertEqual(read("2,5 terços", "pt-PT"), [("2,5", "2.5", D)])
+
+    def test_digits_before_a_denominator_that_is_also_a_noun_stay_a_count(self):
+        # "quartos" and "cuartos" are also rooms: three bedrooms, not 3/4
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("O apartamento tem 3 quartos e uma sala.", lang)[0], ("3", "3", C))
+        self.assertEqual(read("Un piso de 3 cuartos", "es")[1], ("3", "3", C))
+        self.assertEqual(read("2 quarti", "it")[0], ("2", "2", C))
+
+    def test_a_count_equal_to_its_denominator_is_a_count_of_things(self):
+        # 2/2 and 4/4 are one: in digits that is a count of places or parts
+        self.assertEqual(read("Команда заняла 2 вторых места и 3 третьих места.", "ru"),
+                         [("2", "2", C), ("вторых", "2", O), ("3", "3", C), ("третьих", "3", O)])
+        self.assertEqual(read("Команда посіла 2 других місця.", "uk"), [("2", "2", C), ("других", "2", O)])
+        self.assertEqual(read("2 drugie miejsca", "pl"), [("2", "2", C), ("drugie", "2", O)])
+        self.assertEqual(en("the 4 quarters of the game"), [("4", "4", C)])
+        self.assertEqual(en("2 halves"), [("2", "2", C)])
+        # 3/2; 10/3; 2/3; 3/6 = 1/2
+        self.assertEqual(en("3 halves"), [("3 halves", "1.5", F)])
+        self.assertEqual(en("10 thirds"), [("10 thirds", "10/3", F)])
+        self.assertEqual(read("2 terços", "pt-PT"), [("2 terços", "2/3", F)])
+        self.assertEqual(read("3 sextos", "pt-PT"), [("3 sextos", "0.5", F)])
+
+    def test_a_digit_after_a_slash_counts_no_parts(self):
+        # 5 + 1/2 and 1 + 1/2: the slash fraction keeps its terms
+        self.assertEqual(en("5 1/2 quarters")[0], ("5 1/2", "5.5", F))
+        self.assertEqual(en("1 1/2 thirds")[0], ("1 1/2", "1.5", F))
+
+    def test_a_spaced_slash_feeds_no_count(self):
+        # no slash fraction forms with spaces, so the digit after it is a plain number
+        self.assertEqual(en("1 / 2 quarters"), [("1", "1", C), ("2", "2", C)])
+        self.assertEqual(en("5 1 / 2 quarters"), [("5", "5", C), ("1", "1", C), ("2", "2", C)])
+
+    def test_a_digit_after_a_decimal_marker_counts_no_parts(self):
+        # the 5 of "2 point 5" is a decimal digit, as in "2.5 sixths"
+        self.assertEqual(en("2 point 5 quarters"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 vírgula 5 terços", "pt-PT"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 vírgula 5 terços", "pt-BR"), [("2", "2", C), ("5", "5", C)])
+        self.assertEqual(read("2 coma 5 tercios", "es"), [("2", "2", C), ("5", "5", C)])
+
+    def test_digits_count_the_parts_in_portuguese_and_german(self):
+        # 1/3; 2/6 = 1/3
+        self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])
+        self.assertEqual(read("2 Sechstel", "de"), [("2 Sechstel", "1/3", F)])
+
     def test_a_billionth_is_one_part_of_a_billion(self):
         # short scale: 1 / 10^9 and 1 / 10^12; 3 / 10^9
         self.assertEqual(en("a billionth"), [("a billionth", "0.000000001", F)])

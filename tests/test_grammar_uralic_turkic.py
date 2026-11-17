@@ -325,9 +325,9 @@ class TestFractionsAndDecimals(unittest.TestCase):
                 self.assertEqual(tag_numbers(text, "hu")[0].reasons, frozenset({Reason.HOMOGRAPH}))
 
     def test_a_lone_glued_part_word_after_a_number_reads_as_before(self):
-        # the count before the word is read alone: no second mention of the part word
-        self.assertEqual(read("3 tízezred", "hu"), [("3", "3", C)])
-        self.assertEqual(read("3 tízezred része", "hu"), [("3", "3", C)])
+        # a count before the word takes the count readings, not the lone one: 3 x 1/10000
+        self.assertEqual(read("3 tízezred", "hu"), [("3 tízezred", "0.0003", F)])
+        self.assertEqual(read("3 tízezred része", "hu"), [("3 tízezred", "0.0003", F)])
         self.assertEqual(read("három egész kétezred", "hu"), [("három", "3", C)])
         self.assertEqual(read("nulla egész kétezred", "hu"), [("nulla", "0", C)])
         self.assertEqual(read("nulla kétszázad", "hu"), [("nulla", "0", C)])

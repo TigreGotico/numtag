@@ -302,6 +302,11 @@ class TestSlashFraction(unittest.TestCase):
         self.assertEqual(read("In 2022 1/4 of the budget", "en"),
                          [("2022", "2022", "cardinal"), ("1/4", "0.25", "fraction")])
         self.assertEqual(read("-2023 1/2"), [("-2023", "-2023", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("minus 2023 1/2"), [("minus 2023", "-2023", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("menos 2023 1/2", "pt-PT"),
+                         [("menos 2023", "-2023", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("2023 million 1/2"), [("2023 million 1/2", "2023000000.5", "fraction")])
+        self.assertEqual(read("1.500 1/2", "pt-PT"), [("1.500 1/2", "1500.5", "fraction")])
         self.assertEqual(read("В 2023 1/3 взрослых курили.", "ru"),
                          [("2023", "2023", "cardinal"), ("1/3", "1/3", "fraction")])
         # a group mark, or three or five digits, still make a mixed number
