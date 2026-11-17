@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.5a1](https://github.com/TigreGotico/numtag/tree/0.14.5a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.4a1...0.14.5a1)
+
+**Merged pull requests:**
+
+- fix\(eu\): read the fraction words of Euskaltzaindia rule 203 and a lone "laurden" [\#92](https://github.com/TigreGotico/numtag/pull/92) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.4a1](https://github.com/TigreGotico/numtag/tree/0.14.4a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.3a1...0.14.4a1)
