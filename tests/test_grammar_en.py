@@ -303,6 +303,28 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("three quarters"), [("three quarters", "0.75", F)])
         self.assertEqual(en("one hundredth"), [("one hundredth", "0.01", F)])
 
+    def test_a_billionth_is_one_part_of_a_billion(self):
+        # short scale: 1 / 10^9 and 1 / 10^12; 3 / 10^9
+        self.assertEqual(en("a billionth"), [("a billionth", "0.000000001", F)])
+        self.assertEqual(en("a trillionth"), [("a trillionth", "0.000000000001", F)])
+        self.assertEqual(en("three billionths"), [("three billionths", "0.000000003", F)])
+        # long scale: a billion is 10^12 and a trillion is 10^18
+        self.assertEqual(en("a billionth", scale=Scale.LONG), [("a billionth", "0.000000000001", F)])
+        self.assertEqual(en("a trillionth", scale=Scale.LONG), [("a trillionth", "0.000000000000000001", F)])
+        # a millionth is 10^-6 in both scales
+        self.assertEqual(en("a millionth", scale=Scale.LONG), [("a millionth", "0.000001", F)])
+
+    def test_a_billionth_states_the_scale_it_used(self):
+        self.assertEqual(tag_numbers("three billionths", "en")[0].number_scale, Scale.SHORT)
+        self.assertEqual(tag_numbers("three billionths", "en", scale=Scale.LONG)[0].number_scale, Scale.LONG)
+        # a millionth is the same in both scales
+        self.assertIsNone(tag_numbers("three millionths", "en")[0].number_scale)
+
+    def test_the_billionth_is_an_ordinal(self):
+        # the 10^9-th and the 10^12-th place
+        self.assertEqual(en("the billionth customer"), [("billionth", "1000000000", O)])
+        self.assertEqual(en("the billionth customer", scale=Scale.LONG), [("billionth", "1000000000000", O)])
+
     def test_a_fraction_of_a_collective_is_that_part_of_it(self):
         # 12 / 3 = 4; 3 x 12 / 4 = 9
         self.assertEqual(en("one third of a dozen"), [("one third of a dozen", "4", C)])

@@ -457,14 +457,18 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             for form in script.lexicon_forms(word):
                 readings.setdefault(fold(form), []).append(reading)
 
-    # Ordinal scale words come last: each takes its power of ten from the
-    # cardinal scale word it names.
-    entries = sorted(data["entries"], key=lambda e: e["role"] == "ordinal_scale")
+    # Ordinal scale words and denominators that name a scale word ("scale_of")
+    # come last: each takes its power of ten from the cardinal scale word.
+    entries = sorted(data["entries"], key=lambda e: e["role"] == "ordinal_scale" or "scale_of" in e)
     for spec in entries:
         role = spec["role"]
         facts = dict(gender=spec.get("gender"), plural=spec.get("plural", False),
                      ambiguous=spec.get("ambiguous", False), part=spec.get("part", False))
-        if role in VALUE_ROLES:
+        if role == "denominator" and "scale_of" in spec:
+            cardinal = [e for e in readings[fold(script.fold(spec["scale_of"]))] if e.role in SCALE_ROLES]
+            put(spec, Entry(role, "1" + "0" * cardinal[0].exponent, scale_dependent=cardinal[0].scale_dependent,
+                            **facts))
+        elif role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),

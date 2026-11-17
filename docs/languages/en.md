@@ -26,7 +26,7 @@ Pass `scale="long"` to read an older British text in the long scale. Read [../nu
 | scale noun | 46 | "thousand", "million", "billion", up to "centillion" |
 | collective | 4 | "dozen", "score" and their plurals |
 | half | 1 | "half" |
-| denominator | 46 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
+| denominator | 50 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
 | ordinal | 27 | "first" to "twentieth", the round tens to "ninetieth" |
 | ordinal scale | 5 | "hundredth", "thousandth", "millionth", "billionth", "trillionth" |
 | ordinal suffix | 4 | "st", "nd", "rd", "th" |
