@@ -86,6 +86,8 @@ class TestScales(unittest.TestCase):
         # "sto" right after "nekoliko" has no count; after "nekoliko milijuna" it counts the
         # thousands of a lower group: 100 x 1000 = 100000
         self.assertEqual(read("nekoliko sto", "hr"), [])
+        # the clitic "je" between the vague word and the hundred keeps the guard
+        self.assertEqual(read("Nekoliko je sto", "hr"), [])
         self.assertEqual(read("nekoliko milijuna sto tisuća", "hr"), [("sto tisuća", "100000", C)])
 
     def test_croatian_hundred_word_with_its_own_count_keeps_it(self):
