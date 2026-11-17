@@ -185,6 +185,10 @@ class Grammar:
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
+        # SI 5.4.4 "43 279.168 29": where the comma marks decimals and a mark
+        # other than "." groups digits, a point after the groups marks them too
+        self._group_point = re.compile(rf"([1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+)\.([0-9]+)") \
+            if lexicon.decimal_mark == "," and lexicon.group_mark != "." else None
 
     # Token access -----------------------------------------------------
 
@@ -345,6 +349,8 @@ class Grammar:
                 text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
+        if not match and self._group_point and (si := self._group_point.fullmatch(text)):
+            return end, Rational.from_decimal(si[1].replace(self.lex.group_mark, ""), si[2]), True
         if not match:
             # where the comma marks decimals, a point that cannot group digits
             # marks them: "1.5", "3.14159", "0.500". A time of day also
