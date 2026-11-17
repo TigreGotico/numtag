@@ -3,7 +3,7 @@ expected value is worked out by hand in the comment beside it; sources are in
 numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Reason, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -36,6 +36,17 @@ class TestCompoundWords(unittest.TestCase):
         self.assertEqual(read("kaksi \u00ad viisi", "fi"), [("kaksi", "2", C), ("viisi", "5", C)])
 
 
+class TestColloquialUnits(unittest.TestCase):
+    def test_the_colloquial_six_and_seven(self):
+        # "kuus" is "kuusi" (6) and "seittemän" is "seitsemän" (7)
+        self.assertEqual(read("kuus", "fi"), [("kuus", "6", C)])
+        self.assertEqual(read("seittemän", "fi"), [("seittemän", "7", C)])
+        # "kuus" is also the shortened "kuussa" (in the month): a weak number alone
+        self.assertEqual(sure("kerran kuus", "fi"), [("kuus", "6", 0.4)])
+        # 6 + 7 as two numbers
+        self.assertEqual(read("kuus ja seittemän", "fi"), [("kuus", "6", C), ("seittemän", "7", C)])
+
+
 class TestGroupsAfterAScale(unittest.TestCase):
     def test_a_bare_hundred_or_ten_after_thousands_joins_the_number(self):
         # 10^6 + 2 x 1000 + 100 + 40 + 5 = 1002145
@@ -43,6 +54,15 @@ class TestGroupsAfterAScale(unittest.TestCase):
                          [("bir milyon iki bin yüz kırk beş", "1002145", C)])
         # 10^6 + 2 x 1000 + 10 = 1002010
         self.assertEqual(read("miljoona kaksituhatta kymmenen", "fi"), [("miljoona kaksituhatta kymmenen", "1002010", C)])
+
+
+class TestScaleNamesAboveATrillion(unittest.TestCase):
+    def test_kentilyon_is_ten_to_the_eighteenth(self):
+        # kentilyon = 1000 x katrilyon = 10^3 x 10^15 = 10^18, written as 1 and 18 zeros
+        self.assertEqual(read("bir kentilyon", "tr"), [("bir kentilyon", "1000000000000000000", C)])
+        # 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("on iki kentilyon üç yüz kırk beş", "tr"),
+                         [("on iki kentilyon üç yüz kırk beş", "12000000000000000345", C)])
 
 
 class TestTeensAndTens(unittest.TestCase):
@@ -200,6 +220,44 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("három egész tizenöt század", "hu"), [("három egész tizenöt század", "3.15", D)])
         self.assertEqual(read("egy egész öt ezred", "hu"), [("egy egész öt ezred", "1.005", D)])
 
+    def test_a_count_glued_to_a_denominator_multiplies_it(self):
+        # Wiktionary Module:number list/data/hu: "tízezred" for 10000,
+        # "kétszázad" for 200, "milliomod" for 10^6.
+        # 3 + 1/10^4 = 3.0001; 0 + 2500/10^6 = 0.0025; 3 + 7/10^7 = 3.0000007
+        self.assertEqual(read("három egész egy tízezred", "hu"), [("három egész egy tízezred", "3.0001", D)])
+        self.assertEqual(read("nulla egész kétezer-ötszáz milliomod", "hu"),
+                         [("nulla egész kétezer-ötszáz milliomod", "0.0025", D)])
+        self.assertEqual(read("három egész hét tízmilliomod", "hu"), [("három egész hét tízmilliomod", "3.0000007", D)])
+        # 99999/10^5 = 0.99999: the "száz" of "százezred" counts nothing before it
+        self.assertEqual(read("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "hu"),
+                         [("nulla egész kilencvenkilencezer-kilencszázkilencvenkilenc százezred", "0.99999", D)])
+        # 0 + 1/10^5 = 0.00001 and 1/10^5: "egy" counts "százezred", not the "száz" in it
+        self.assertEqual(read("nulla egész egy százezred", "hu"), [("nulla egész egy százezred", "0.00001", D)])
+        self.assertEqual(read("egy százezred", "hu"), [("egy százezred", "0.00001", F)])
+        # 7/10^5; 1/200 = 0.005; 1/10^6
+        self.assertEqual(read("hét százezred", "hu"), [("hét százezred", "0.00007", F)])
+        self.assertEqual(read("egy kétszázad", "hu"), [("egy kétszázad", "0.005", F)])
+        self.assertEqual(read("egy milliomod", "hu"), [("egy milliomod", "0.000001", F)])
+        # a glued part word of a hundred or more alone is no number: AkH 12
+        # §293 reads "háromszázad másodperc" as 3/100, while hu.wikipedia
+        # uses "háromszázad része" as about 1/300; "kétharmad" is 2/3
+        self.assertEqual(read("tízezred", "hu"), [])
+        self.assertEqual(read("kétharmad", "hu"), [("kétharmad", "2/3", F)])
+
+    def test_a_count_after_a_range_hyphen_is_no_glued_multiplier(self):
+        # hu.wikipedia, "Volfrám": a filament one or two hundredths of a
+        # millimetre thick; AkH 12 §293 glues the count to the part word
+        # before a noun ("háromnegyed óra"), so "kétszázad" is 2/100 = 0.02
+        sentence = "Az izzólámpákban használt spirált egy-kétszázad milliméter vastagságú szálból készítik."
+        self.assertEqual(read(sentence, "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+        self.assertEqual(read("egy–kétszázad milliméter", "hu"), [("egy", "1", C), ("kétszázad", "0.02", F)])
+
+    def test_a_whole_numerator_stays_out_of_parts_in_a_case(self):
+        # after "tam" the part word comes in the locative and its count after
+        # it ("iki tam onda beş (2,5)"); here the count is "iki min beş yüz",
+        # 2500, so 2000/10^6 = 0.002 drops the 500
+        self.assertNotIn("0.002", [m.value for m in tag_numbers("sıfır tam milyonda iki min beş yüz", "az")])
+
     def test_a_part_word_after_a_count_stays_singular(self):
         # 2/3; 3/4 = 0.75
         self.assertEqual(read("két harmad", "hu"), [("két harmad", "2/3", F)])
@@ -211,6 +269,16 @@ class TestFractionsAndDecimals(unittest.TestCase):
         # the parts in the locative, then the count: 2 + 5/10 = 2.5; 2 + 15/100 = 2.15
         self.assertEqual(read("iki tam onda beş", "az"), [("iki tam onda beş", "2.5", D)])
         self.assertEqual(read("iki tam yüzdə on beş", "az"), [("iki tam yüzdə on beş", "2.15", D)])
+
+
+class TestDayAndMonth(unittest.TestCase):
+    def test_a_day_and_month_with_a_period_after_them_read_no_number(self):
+        # en.wikipedia "Date and time notation in Finland": "20.10 represents
+        # 8:10 pm and 20.10. represents 20 October"
+        for text, lang in (("Se oli 24.12.", "fi"), ("3.5. Maanantaina", "fi"), ("20.10.", "fi"), ("klo 20.10", "fi"),
+                           ("24.12. Pazartesi", "tr"), ("24.12. Esmaspäeval", "et")):
+            with self.subTest(text=text):
+                self.assertEqual(tag_numbers(text, lang), [])
 
 
 class TestCaseFolding(unittest.TestCase):
@@ -256,6 +324,17 @@ class TestConfidence(unittest.TestCase):
                            ("hat ITF-tornán győzött", "hat"), ("Láttam hatot.", "hatot"), ("hattal", "hattal")):
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.confidence) for m in tag_numbers(text, "hu")], [(word, "6", 1.0)])
+
+    def test_hat_after_a_request_verb_or_alone_is_six(self):
+        # right after a request verb "hat" is no verb: a finite verb does not
+        # follow another finite verb in one clause
+        for text in ("kérek hat", "Kérem hat", "legyen hat", "Legyen hat!", "állítsd hat", "tedd hat", "hat", "Hat"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "hu")], [("6", 1.0)])
+        # with a full stop, or inside a clause, the end-of-clause cue holds
+        for text in ("Hat.", "A válasz hat.", "a gyógyszer nem hat", "Nem kérek, hat."):
+            with self.subTest(text=text):
+                self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "hu")][-1], ("6", 0.4))
 
     def test_hat_before_a_joiner_and_a_number_is_sure(self):
         # a joiner ends the clause unless a number follows it
