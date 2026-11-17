@@ -437,6 +437,12 @@
    "source": "Omniglot, \"Numbers in Aragonese\" (sources incl. Academia de l'Aragonés GBA): \"dos\", \"tres\", \"cinco\", \"quatre / quatro\", \"vintiquatre\", \"seis\", \"nueu\", \"diez\", \"once\", \"trece\", \"quince\", \"vint, vinte\", \"vintidós\", \"vinticinco\", \"trenta\", \"novanta\", \"docientos\", \"trecientos\", \"quatrecientos, quatrocientos\", \"seicientos\", \"sietecientos\", \"uitcientos\", \"noucientos\", \"mil\", \"millón\"; ordinals \"primero, primer\", \"segundo\", \"tercero, tercer\""
   },
   {
+   "word": "vintisiet",
+   "role": "ten",
+   "value": "27",
+   "source": "Wikipedia (an), \"Cardinals en aragonés\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-an-Cardinals_en_aragonés.wikitext): \"Os cardinals dende vint dica trenta s'escriben con os numeros chuntos: [...] vintisiet(e)/ventisiet(e)/vintiset\""
+  },
+  {
    "word": "vintiueito",
    "role": "ten",
    "value": "28",

@@ -73,6 +73,12 @@ class TestOrdinalArticle(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_noua_as_the_whole_text_is_nine(self):
+        # a one-word text with no punctuation is a spoken answer
+        self.assertEqual(confidence("nouă", "ro"), [("nouă", 1.0)])
+        self.assertEqual(confidence("Nouă.", "ro"), [("Nouă", 0.4)])
+        self.assertEqual(confidence("e nouă", "ro"), [("nouă", 0.4)])
+
     def test_noua_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("tehnologie nouă", "ro"), [("nouă", 0.4)])
         self.assertEqual(confidence("tehnologie nouă și bună", "ro"), [("nouă", 0.4)])

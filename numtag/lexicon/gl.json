@@ -1721,6 +1721,36 @@
    "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
   },
   {
+   "word": "sexaxésimo",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\""
+  },
+  {
+   "word": "sexaxésima",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\""
+  },
+  {
+   "word": "sexaxésimos",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "plural": true,
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\"; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
+   "word": "sexaxésimas",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "feminine",
+   "plural": true,
+   "source": "Dicionario da RAG, \"sexaxésimo\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/rag-dicionario-sexaxesimo.html): \"sexaxésimo [ks] (feminino: sexaxésima)\"; \"Xa van pola sexaxésima edición do libro.\"; RAG Normas 16.2 Ordinais: \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\""
+  },
+  {
    "word": "septuaxésimo",
    "role": "ordinal",
    "value": "70",

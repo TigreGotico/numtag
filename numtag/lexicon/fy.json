@@ -391,6 +391,12 @@
    "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
   },
   {
+   "word": "triljoen",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "nl.wiktionary, \"triljoen\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljoen.wikitext: \"#1.000.000.000.000.000.000 ( = 10<sup>18</sup> )\"; the Frisian section of the same page lists the word with the Dutch sense: knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljoen.wikitext: \"{{=fry=}}\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljoen.wikitext: \"#[[#Nederlands|{{pn}}]]\". The third -illion of the long scale is 10^(6 x 3)"
+  },
+  {
    "word": "heal",
    "role": "half",
    "ambiguous": true,
@@ -679,6 +685,19 @@
    "role": "ordinal_scale",
    "value": "tûzen",
    "source": "ovos-number-parser numbers_fy.py (a lead; no Frisian dictionary entry was checked for this word)"
+  },
+  {
+   "word": "kwart",
+   "role": "denominator",
+   "value": "4",
+   "source": "Wikipedia (fy), \"Alarik II\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Alarik_II.wikitext): \"trije kwart fan [[Spanje]] (útsein de noardwesthoeke)\"; \"Maastricht\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Maastricht.wikitext): \"trije kwart fan de befolking\"; \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"ûngefear in kwart fan it totale oerflak fan Sweden\""
+  },
+  {
+   "word": "kwart",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Wikipedia (fy), \"Alarik II\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Alarik_II.wikitext): \"trije kwart fan [[Spanje]] (útsein de noardwesthoeke)\"; \"Maastricht\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Maastricht.wikitext): \"trije kwart fan de befolking\"; \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"ûngefear in kwart fan it totale oerflak fan Sweden\""
   }
  ]
 }

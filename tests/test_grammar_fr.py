@@ -98,6 +98,13 @@ class TestHomographs(unittest.TestCase):
                 self.assertEqual(read("Il est cent pour cent pour Volange.", lang), [("cent", "100", "cardinal")])
         self.assertEqual(read("Il l'a vendu pour cent euros.", "fr-FR"), [("cent", "100", "cardinal")])
 
+    def test_a_point_marks_decimals_but_three_digits_stay_unread(self):
+        self.assertEqual(fr("3.5"), [("3.5", "3.5", "decimal")])
+        # fr groups with a space, so "1.500" is 1.5 or 1500: no number
+        self.assertEqual(fr("1.500"), [])
+        # a day and a month with a period after them are a date
+        self.assertEqual(fr("le 24.12."), [])
+
     def test_neuf_that_no_word_follows_may_be_new(self):
         self.assertEqual(confidence("un manteau neuf", "fr"), [("un", 0.3), ("neuf", 0.4)])
         self.assertEqual(confidence("Quoi de neuf ?", "fr"), [("neuf", 0.4)])
@@ -106,6 +113,14 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("neuf cents", "fr"), [("neuf cents", 1.0)])
         # a hyphenated noun gives no token, but a word follows "neuf" all the same
         self.assertEqual(confidence("mes neuf arrière-petits-enfants", "fr"), [("neuf", 1.0)])
+
+    def test_neuf_as_the_whole_text_is_nine(self):
+        # a one-word text with no punctuation is a spoken answer
+        for text in ("neuf", "Neuf", " neuf "):
+            with self.subTest(text=text):
+                self.assertEqual(confidence(text, "fr"), [(text.strip(), 1.0)])
+        self.assertEqual(confidence("Neuf.", "fr"), [("Neuf", 0.4)])
+        self.assertEqual(confidence("C'est neuf", "fr"), [("neuf", 0.4)])
 
 
 class TestStandaloneOrdinals(unittest.TestCase):

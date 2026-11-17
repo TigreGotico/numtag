@@ -405,6 +405,12 @@
    "source": "Long scale: \"triljoen\" is 10^18, a million \"biljoen\" (not checked against a dictionary page)"
   },
   {
+   "word": "triljard",
+   "role": "scale_noun",
+   "value": 21,
+   "source": "nl.wiktionary, \"triljard\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljard.wikitext: \"#1.000.000.000.000.000.000.000 (10<sup>21</sup>).\", derived term knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljard.wikitext: \"*[[triljardste]]\""
+  },
+  {
    "word": "dozijn",
    "role": "collective",
    "value": "12",
@@ -794,6 +800,12 @@
    "role": "ordinal_scale",
    "value": "miljard",
    "source": "CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %spellout-ordinal: 100 → \"honderdste\", 1000 → \"duizendste\", 1000000 → \"eenmiljoenste\", 1000000000 → \"eenmiljardste\""
+  },
+  {
+   "word": "triljardste",
+   "role": "ordinal_scale",
+   "value": "triljard",
+   "source": "nl.wiktionary, \"triljard\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljard.wikitext: \"#1.000.000.000.000.000.000.000 (10<sup>21</sup>).\", derived term knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nl-wikt-triljard.wikitext: \"*[[triljardste]]\""
   },
   {
    "word": "e",
