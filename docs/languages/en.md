@@ -24,7 +24,7 @@ Pass `scale="long"` to read an older British text in the long scale. Read [../nu
 | decimal zero | 3 | "oh", "o", "nought" after "point" |
 | ten | 18 | "ten" to "nineteen", "twenty" to "ninety" |
 | hundred multiplier | 2 | "hundred", "hundreds" |
-| scale noun | 46 | "thousand", "million", "billion", up to "centillion" |
+| scale noun | 48 | "thousand", "million", "billion", up to "centillion", and "googol" |
 | collective | 4 | "dozen", "score" and their plurals |
 | half | 1 | "half" |
 | denominator | 50 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
