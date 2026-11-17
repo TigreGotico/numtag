@@ -115,6 +115,14 @@ class TestGalician(unittest.TestCase):
         # 1 / 16 = 0.0625
         self.assertEqual(read("un dezaseisavo", "gl"), [("un dezaseisavo", "0.0625", F)])
 
+    def test_sexaxesimo_is_the_sixtieth(self):
+        # 60 as the ordinal word; 60 + 4 = 64 with the feminine on the last word
+        self.assertEqual(read("o sexaxésimo", "gl"), [("sexaxésimo", "60", O)])
+        self.assertEqual(read("a sexaxésima cuarta vez", "gl"), [("sexaxésima cuarta", "64", O)])
+        # the plural takes the same 60
+        self.assertEqual(read("os sexaxésimos", "gl"), [("sexaxésimos", "60", O)])
+        self.assertEqual(read("as sexaxésimas", "gl"), [("sexaxésimas", "60", O)])
+
 
 class TestCatalan(unittest.TestCase):
     def test_cent_after_per_and_a_number_is_the_percent_sign(self):
@@ -304,6 +312,11 @@ class TestAragonese(unittest.TestCase):
                             ("vente", "20"), ("vintinou", "29")):
             with self.subTest(text=text):
                 self.assertEqual(read(text, "an"), [(text, value, C)])
+
+    def test_vintisiet_is_twenty_seven(self):
+        # 20 + 7 = 27; 100 + 27 = 127
+        self.assertEqual(read("vintisiet", "an"), [("vintisiet", "27", C)])
+        self.assertEqual(read("ciento vintisiet", "an"), [("ciento vintisiet", "127", C)])
 
     def test_millons_is_the_plural(self):
         self.assertEqual(read("35 millons", "an"), [("35 millons", "35000000", C)])

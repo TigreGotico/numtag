@@ -283,6 +283,12 @@
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"17: هفده;\"."
     },
     {
+      "word": "هیفده",
+      "role": "ten",
+      "value": "17",
+      "source": "Dehkhoda, vajehyab.com \"هیفده\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/dehkhoda-vajehyab-hifdah.html): \"هیفده . [ دَه ْ ] (عدد، ص ، اِ) هفده . عدد اصلی مرکب از هفت و ده . آن عدد که پس از شانزده و قبل از هیجده است : ده تخت جامهٔ مرتفع از هر لونی و ده کنیزک و هیفده غلام . (تاریخ بیهقی ). رجوع به هفده شود.\""
+    },
+    {
       "word": "هجده",
       "role": "ten",
       "value": "18",

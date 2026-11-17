@@ -3,7 +3,7 @@ expected value is worked out by hand in the comment beside it; sources are in
 numtag/lexicon/<lang>.json."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Reason, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -34,6 +34,17 @@ class TestCompoundWords(unittest.TestCase):
         # a soft hyphen joins letters only: a hyphen or a space still splits
         self.assertEqual(read("huszon öt", "hu"), [("huszon öt", "25", C)])
         self.assertEqual(read("kaksi \u00ad viisi", "fi"), [("kaksi", "2", C), ("viisi", "5", C)])
+
+
+class TestColloquialUnits(unittest.TestCase):
+    def test_the_colloquial_six_and_seven(self):
+        # "kuus" is "kuusi" (6) and "seittemän" is "seitsemän" (7)
+        self.assertEqual(read("kuus", "fi"), [("kuus", "6", C)])
+        self.assertEqual(read("seittemän", "fi"), [("seittemän", "7", C)])
+        # "kuus" is also the shortened "kuussa" (in the month): a weak number alone
+        self.assertEqual(sure("kerran kuus", "fi"), [("kuus", "6", 0.4)])
+        # 6 + 7 as two numbers
+        self.assertEqual(read("kuus ja seittemän", "fi"), [("kuus", "6", C), ("seittemän", "7", C)])
 
 
 class TestGroupsAfterAScale(unittest.TestCase):
