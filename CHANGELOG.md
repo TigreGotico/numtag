@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.15.1a1](https://github.com/TigreGotico/numtag/tree/0.15.1a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.0a1...0.15.1a1)
+
+**Merged pull requests:**
+
+- fix\(en\): digits around a spoken "point" make one decimal [\#78](https://github.com/TigreGotico/numtag/pull/78) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: digits before a denominator word count its parts [\#75](https://github.com/TigreGotico/numtag/pull/75) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.10a1...0.15.0a1)
