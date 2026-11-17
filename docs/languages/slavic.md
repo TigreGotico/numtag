@@ -82,6 +82,19 @@ Czech "jednou" is the instrumental of "jedna" and also the adverb "once". Alone,
 
 > SSJČ, "jednou": "jednou čísl. nás. příslovečná 1. k jeden; jedenkrát: j. dvě jsou dvě; j. za den"; "4. kdysi; někdy: byl j. jeden král"
 
+## Croatian "stotina"
+
+A count and the noun "stotina" write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. "stotinu" is the hundred "sto".
+
+```python
+>>> read('pet stotina tisuća', 'hr')
+[('pet stotina tisuća', '500000')]
+>>> read('stotinu tisuća ljudi', 'hr')
+[('stotinu tisuća', '100000')]
+```
+
+> Hrvatski pravopis (Institut za hrvatski jezik i jezikoslovlje), 5.4.1. Jednorječnice: "glavni brojevi stotice do 1000: sto ili stotinu"; "Stotice do 1000 mogu se pisati i kao sveza glavnoga broja i imenice stotina: četiri stotine, devet stotina."
+
 ## The scale
 
 Each lexicon sets its default scale from these sources. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Read [../number-scale.md](../number-scale.md).
