@@ -355,11 +355,11 @@ Indonesian keeps "titik" for the same reason. CLDR spells a point decimal with i
 
 > CLDR 48 RBNF (ICU 78) id %spellout-cardinal: "x.x: <%spellout-cardinal< titik >%spellout-cardinal>;"
 
-Digits after a decimal marker are the decimal digits only when no part word follows them. Before a power of ten they are its numerator, as words are: Russian "2 целых 5 сотых", Czech "2 celé 5 setin", Slovene "2 celi 5 stotink" and Croatian "2 cijela 5 stotinki" are 2.05. Before any other part word they are no decimal digits, so "2 целых 3 пятых" stays separate numbers.
+Digits after a decimal marker are the decimal digits only when no part word follows them. Before a power of ten they are its numerator, as words are: Russian "2 целых 5 сотых", Czech "2 celé 5 setin", Slovene "2 celi 5 stotink" and Croatian "2 cijela 5 stotinki" are 2.05. Before any other part word they are no decimal digits, so "2 целых 3 пятых" is no 2.3.
 
 ```python
->>> read("2 целых 5 сотых и 2 целых 3 пятых", "ru")
-[('2 целых 5 сотых', '2.05'), ('2', '2'), ('3', '3'), ('пятых', '5')]
+>>> read("Ответ: 2 целых 5 сотых.", "ru")
+[('2 целых 5 сотых', '2.05')]
 >>> read("Rezultat je dve celi pet stotink.", "sl")
 [('dve celi pet stotink', '2.05')]
 ```

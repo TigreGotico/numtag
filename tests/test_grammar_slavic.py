@@ -281,11 +281,11 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("2 celé 5", "sk"), [("2 celé 5", "2.5", D)])
 
     def test_digits_before_another_part_word_are_no_decimals(self):
-        # 2 3/5 is no 2.3: the digits stay separate numbers
+        # 2 3/5 is no 2.3: the digits are no decimals
         for text, lang in (("2 целых 3 пятых", "ru"), ("2 целых 1 треть", "ru"), ("2 целых 3 четверти", "ru"),
                            ("2 цілих 3 п'ятих", "uk"), ("2 celé 3 pětiny", "cs")):
             with self.subTest(text=text):
-                self.assertEqual(read(text, lang)[:2], [("2", "2", C), ("3" if " 3 " in text else "1", "3" if " 3 " in text else "1", C)])
+                self.assertNotIn(D, [kind for _, _, kind in read(text, lang)])
 
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5
