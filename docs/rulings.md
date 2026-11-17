@@ -503,6 +503,34 @@ A scale noun alone, or a plural scale noun with no count, names no number. A sin
 
 > Priberam, "milhão", sense 2: "[Informal, Figurado] Número ou quantidade muito grande".
 
+A word of vague quantity right before a scale word takes the place of its count. In Croatian, "nekoliko", "puno", "više" and "mnogo" govern the genitive plural, so "nekoliko milijuna" is no number, while "milijuna" after "oko" or "više od" is the genitive singular and counts one. The `vague_quantifier` entries of the lexicon hold these words.
+
+```python
+>>> read("Prije nekoliko milijuna godina.", "hr")
+[]
+>>> read("Bilo ih je nekoliko stotina.", "hr")
+[]
+>>> read("Bilo ih je oko milijuna.", "hr")
+[('milijuna', '1000000')]
+>>> read("Bilo ih je više od milijuna.", "hr")
+[('milijuna', '1000000')]
+>>> read("Bilo ih je pet milijuna.", "hr")
+[('pet milijuna', '5000000')]
+```
+
+> Hrvatski jezični portal, "više": "6. (čega) neodređena količina a. ob. veća od četiri, a manja od desetak; nekoliko [više milijuna ljudi]".
+
+A clitic of the `vague_clitic` list may stand between the vague word and the scale word: "nekoliko je tisuća puta dalje" holds no number. The reading follows the vague word and ignores the case of the scale word, so "Puno je milijun eura" also reads no number, although "milijun" there is a singular form that counts one million. This is a known trade-off.
+
+```python
+>>> read("Najbliža zvijezda nekoliko je tisuća puta dalje od posljednjeg planeta.", "hr")
+[]
+>>> read("Puno je milijun eura za taj projekt.", "hr")
+[]
+>>> read("Do 2030 nekoliko milijuna ljudi", "hr")
+[('2030', '2030')]
+```
+
 A hyphenated compound with a word that is not a number word is one noun, so "segunda-feira" holds no number. "dez." before a digit or a lower-case word is the abbreviation of "dezembro". At a sentence end, "dez." is ten.
 
 ```python
@@ -516,7 +544,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4.
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")
@@ -525,6 +553,8 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 [('cent', '100')]
 >>> read("Augmentation de six pour cent.", "fr-FR")
 [('six', '6')]
+>>> read("Katılım yüzde elli sekiz oldu.", "tr")
+[('elli sekiz', '58')]
 ```
 
 ```python

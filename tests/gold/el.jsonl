@@ -142,7 +142,7 @@
 {"text": "Ήρθαν δεκαοκτώ και δεκαεννιά χρονών παιδιά.", "mentions": [{"start": 6, "end": 14, "value": "18", "kind": "cardinal"}, {"start": 19, "end": 28, "value": "19", "kind": "cardinal"}], "source": "arithmetic."}
 {"text": "Στις τρεις και πέντε θα είμαι εκεί.", "mentions": [{"start": 5, "end": 10, "value": "3", "kind": "cardinal"}, {"start": 15, "end": 20, "value": "5", "kind": "cardinal"}], "source": "arithmetic; a clock time is two numbers to the tagger."}
 {"text": "Ο δεύτερος και ο τρίτος νικητής.", "mentions": [{"start": 2, "end": 10, "value": "2", "kind": "ordinal"}, {"start": 17, "end": 23, "value": "3", "kind": "ordinal"}], "source": "CLDR RBNF el ordinals."}
-{"text": "Το 1/3 δεν είναι ακέραιος; γράφεται και ένα τρίτο.", "mentions": [{"start": 3, "end": 6, "value": "1/3", "kind": "fraction"}, {"start": 40, "end": 49, "value": "1/3", "kind": "fraction"}], "source": "the tagger reads no \"/\" as a fraction; see open questions."}
+{"text": "Το 1/3 δεν είναι ακέραιος; γράφεται και ένα τρίτο.", "mentions": [{"start": 3, "end": 6, "value": "1/3", "kind": "fraction"}, {"start": 40, "end": 49, "value": "1/3", "kind": "fraction"}], "source": "arithmetic: 1/3 written with a slash and in words"}
 {"text": "Δεν έχω καθόλου λεφτά.", "mentions": [], "source": "no number."}
 {"text": "Ο Γιάννης είναι ψηλός.", "mentions": [], "source": "no number."}
 {"text": "Έχει διακόσια ευρώ και τριάντα λεπτά.", "mentions": [{"start": 5, "end": 13, "value": "200", "kind": "cardinal"}, {"start": 23, "end": 30, "value": "30", "kind": "cardinal"}], "source": "arithmetic."}

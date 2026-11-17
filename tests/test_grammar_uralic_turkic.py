@@ -333,6 +333,20 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("két harmad", "hu"), [("két harmad", "2/3", F)])
         self.assertEqual(read("üç çeyrek saat", "tr"), [("üç çeyrek", "0.75", F)])
 
+    def test_a_lone_quarter_word_is_a_quarter(self):
+        # TDK "çeyrek": "Dörtte bir" (1/4); "çeyrek saat" is a quarter of an
+        # hour; a count before the word still sets the numerator: 1/4, 3/4
+        for text in ("çeyrek", "çeyrek saat", "bir çeyrek"):
+            with self.subTest(text=text):
+                self.assertEqual([(m.value, m.confidence) for m in tag_numbers(text, "tr")], [("0.25", 0.4)])
+        self.assertEqual(read("çeyrek saat", "tr"), [("çeyrek", "0.25", F)])
+        self.assertEqual(read("üç çeyrek", "tr"), [("üç çeyrek", "0.75", F)])
+        self.assertEqual([m.reasons for m in tag_numbers("çeyrek", "tr")], [frozenset({Reason.HOMOGRAPH})])
+
+    def test_a_lone_quarter_reads_as_a_lone_half(self):
+        self.assertEqual([(m.text, m.confidence) for m in tag_numbers("yarım saat", "tr")], [("yarım", 0.4)])
+        self.assertEqual([(m.text, m.confidence) for m in tag_numbers("çeyrek saat", "tr")], [("çeyrek", 0.4)])
+
     def test_azerbaijani_decimal_words(self):
         # 2 + 5/10 = 2.5
         self.assertEqual(read("iki tam beş", "az"), [("iki tam beş", "2.5", D)])

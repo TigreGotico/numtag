@@ -35,6 +35,46 @@ class TestOneAfterNoun(unittest.TestCase):
         self.assertEqual(eu("erdi bat"), [("erdi bat", "0.5", F)])
 
 
+class TestFractionArticle(unittest.TestCase):
+    def test_the_article_a_after_erdi(self):
+        # the half of an hour, of a kilo and of a litre: 1/2 = 0.5
+        self.assertEqual(eu("erdia"), [("erdia", "0.5", F)])
+        self.assertEqual(eu("ordu erdia"), [("erdia", "0.5", F)])
+        self.assertEqual(eu("kilo erdia"), [("erdia", "0.5", F)])
+        self.assertEqual(eu("litro erdia"), [("erdia", "0.5", F)])
+
+    def test_the_article_a_after_laurden_and_heren(self):
+        # 1/4 = 0.25; 1/3 stays a ratio
+        self.assertEqual(eu("laurdena"), [("laurdena", "0.25", F)])
+        self.assertEqual(eu("herena"), [("herena", "1/3", F)])
+
+    def test_a_count_does_not_join_the_singular_article_form(self):
+        # a count of two or more takes the plural: "bi herenak", so "bi herena" is no fraction
+        for text in ("bi herena", "hiru laurdena"):
+            with self.subTest(text=text):
+                self.assertNotIn(text, [words for words, _, _ in eu(text)])
+
+    def test_a_count_before_the_half_with_the_article(self):
+        # 1 + 1/2 = 1.5
+        self.assertEqual(eu("bat eta erdia"), [("bat eta erdia", "1.5", F)])
+        self.assertEqual(eu("kilo bat eta erdia"), [("bat eta erdia", "1.5", F)])
+
+    def test_the_article_form_is_a_homograph_like_the_bare_noun(self):
+        # "erdi" is also "middle", "laurden" the quarter-final: the score is 0.4
+        self.assertEqual(confidence("erdi", "eu"), [("erdi", 0.4)])
+        self.assertEqual(confidence("erdia", "eu"), [("erdia", 0.4)])
+        self.assertEqual(confidence("laurdena", "eu"), [("laurdena", 0.4)])
+        self.assertEqual(confidence("herena", "eu"), [("herena", 0.4)])
+
+    def test_a_count_with_the_bare_noun_stays_sure(self):
+        self.assertEqual(confidence("hiru laurden", "eu"), [("hiru laurden", 1.0)])
+        self.assertEqual(eu("bi heren"), [("bi heren", "2/3", F)])
+        self.assertEqual(eu("hiru laurden"), [("hiru laurden", "0.75", F)])
+
+    def test_a_quarter_final_is_no_number(self):
+        self.assertEqual(eu("final-laurdena"), [])
+
+
 class TestOrdinalEnding(unittest.TestCase):
     def test_garren_makes_the_cardinal_before_it_an_ordinal(self):
         # 20 + 1 = 21
