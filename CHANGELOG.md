@@ -1,5 +1,61 @@
 # Changelog
 
+## [0.14.7a1](https://github.com/TigreGotico/numtag/tree/0.14.7a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a2...0.14.7a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): digits and word decimals count a counted hundred noun [\#114](https://github.com/TigreGotico/numtag/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.6a2](https://github.com/TigreGotico/numtag/tree/0.14.6a2) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a1...0.14.6a2)
+
+**Merged pull requests:**
+
+- docs\(tr\): the percent word comes before the number [\#91](https://github.com/TigreGotico/numtag/pull/91) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.6a1](https://github.com/TigreGotico/numtag/tree/0.14.6a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.5a1...0.14.6a1)
+
+**Merged pull requests:**
+
+- fix\(es\): "cien por cien" reads one mention of 100 [\#96](https://github.com/TigreGotico/numtag/pull/96) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.5a1](https://github.com/TigreGotico/numtag/tree/0.14.5a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.4a1...0.14.5a1)
+
+**Merged pull requests:**
+
+- fix\(eu\): read the fraction words of Euskaltzaindia rule 203 and a lone "laurden" [\#92](https://github.com/TigreGotico/numtag/pull/92) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.4a1](https://github.com/TigreGotico/numtag/tree/0.14.4a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.3a1...0.14.4a1)
+
+**Merged pull requests:**
+
+- fix\(tr\): a vague word before a scale word makes no number [\#90](https://github.com/TigreGotico/numtag/pull/90) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.3a1](https://github.com/TigreGotico/numtag/tree/0.14.3a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.2a1...0.14.3a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): a count and "stotina" before a scale word make one number [\#89](https://github.com/TigreGotico/numtag/pull/89) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.14.2a1](https://github.com/TigreGotico/numtag/tree/0.14.2a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.1a1...0.14.2a1)
+
+**Merged pull requests:**
+
+- fix\(de\): a count glued to a part word names one denominator [\#84](https://github.com/TigreGotico/numtag/pull/84) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.1a1](https://github.com/TigreGotico/numtag/tree/0.14.1a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.0a1...0.14.1a1)

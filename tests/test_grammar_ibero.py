@@ -4,7 +4,7 @@ beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
 from helpers import read, sure
-from numtag import Scale
+from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -55,6 +55,30 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(sure("ciento por ciento", "es"), [("ciento", "100", 1.0)])
         self.assertEqual(sure("cinco por ciento", "es"), [("cinco", "5", 1.0)])
         self.assertEqual(sure("el noventa por ciento", "es"), [("noventa", "90", 1.0)])
+
+    def test_cien_por_cien_is_one_hundred_once(self):
+        # DPD "ciento" §3: totality is also "cien por cien": 100, sure, and "por cien" is the sign
+        self.assertEqual(sure("cien por cien", "es"), [("cien", "100", 1.0)])
+        self.assertEqual(sure("Al cien por cien.", "es"), [("cien", "100", 1.0)])
+        self.assertEqual(sure("El calor es pegajoso, la humedad del cien por cien", "es"), [("cien", "100", 1.0)])
+        # es.wikipedia "Nanobatería": 80, the article "un", 100 and 10
+        text = ("Los prototipos fueron capaces de recobrar el ochenta por ciento de capacidad en un minuto "
+                "y estaban recargadas al cien por cien después de 10 minutos.")
+        ochenta, un, diez = text.index("ochenta"), text.index(" un ") + 1, text.index("10")
+        cien = text.index("cien por cien")
+        self.assertEqual([(m.char_span, m.value, round(m.confidence, 1)) for m in tag_numbers(text, "es")],
+                         [((ochenta, ochenta + 7), "80", 1.0), ((un, un + 2), "1", 0.3),
+                          ((cien, cien + 4), "100", 1.0), ((diez, diez + 2), "10", 1.0)])
+
+    def test_por_cien_after_another_number_keeps_its_hundred(self):
+        # DPD "ciento" §3 rejects "el noventa por cien": "por cien" is the sign only after "cien"
+        self.assertEqual(read("el noventa por cien", "es"), [("noventa", "90", C), ("cien", "100", C)])
+        self.assertEqual(read("cinco por cien", "es"), [("cinco", "5", C), ("cien", "100", C)])
+        self.assertEqual(read("el 20 por cien", "es"), [("20", "20", C), ("cien", "100", C)])
+        # with no number before it, "por cien" is a price: 100
+        self.assertEqual(read("Lo vendió por cien euros.", "es"), [("cien", "100", C)])
+        self.assertEqual(read("por ciento veinte votos", "es"), [("ciento veinte", "120", C)])
+        self.assertEqual(read("cien por ciento", "es"), [("cien", "100", C)])
 
     def test_y_between_mil_and_a_one_is_one_number(self):
         # 1000 + 1 = 1001, es.wikipedia "Las mil y una noches" and "Los mil y un días"

@@ -454,7 +454,9 @@ class Grammar:
         the number ("cento e um", never "cento" alone). Without
         ``multiplied``, no hundreds from a count and a multiplier ("two
         hundred")."""
-        found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")]
+        # "birkaç yüz": a vague quantity stands where the one of "one hundred" would
+        found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")
+                 if e.value != "100" or not self._after_vague(i)]
         if not multiplied:
             return found
         counts = self.tens_units(i, nonzero=True) + self._bound_units(i)
@@ -553,6 +555,20 @@ class Grammar:
                       parts=_piece(Role.DENOMINATOR, i, stop, Rational(value)))
                 for stop, value, _ in self._glued_denominators(i)]
 
+    def _lone_denominator(self, i: int) -> list[Parse]:
+        """A part word that is also one part alone is a weak number: the bare
+        noun also starts a compound noun that names no number, as a
+        quarter-final. A number, a decimal marker or a joiner before the word
+        leaves it to the readings that fold that count in: after a joiner
+        with no number before it, the part adds to a whole that is no number
+        word, as the hour of a time."""
+        if i >= len(self.tokens) or i > 0 and not self.tokens[i].gap.strip() and (
+                self.starts_number(i - 1) or self._is_word(i - 1, self.lex.decimal_markers | self.lex.joiners)):
+            return []
+        return [Parse(i + 1, Rational("1", e.value), ambiguous=True,
+                      parts=_piece(Role.DENOMINATOR, i, i + 1, Rational(e.value)))
+                for e in self._readings(i, "denominator") if e.weak_alone]
+
     def _inside_glued_denominator(self, i: int) -> bool:
         """True when the denominator at ``i`` ends a glued one ("ezred" in
         "tízezred"): it is no denominator of its own."""
@@ -632,7 +648,7 @@ class Grammar:
                 # "one point two hundred": a multiplier after the decimals
                 found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True,
                                 parts=parts + _piece(Role.SCALE, e, e + 1, ONE.scaled(m.exponent)))
-                          for m in self._readings(e, "hundred_multiplier") if not m.plural]
+                          for m in self._readings(e, "hundred_multiplier") if not m.plural or m.counted]
             # "two and a half million", "zweieinhalb Millionen", "iki buçuk milyon"
             if value != "0":
                 found += [Count(e, Rational(value) + HALF, needs_multiplier=True, parts=whole + half)
@@ -651,6 +667,11 @@ class Grammar:
                 # only a half after a joiner: a year before "полмиллиона" is its own number
                 found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
                           for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
+            # a counted hundred noun takes digits below a thousand as it takes
+            # a word count: "3 מאות" is 300, as "שלוש מאות" is
+            if len(_whole(value)) <= 3:
+                found += [count(end + 1, value.scaled(m.exponent), needs_multiplier=not first, decimal=decimal)
+                          for m in self._readings(end, "hundred_multiplier") if m.counted]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
@@ -1040,7 +1061,8 @@ class Grammar:
         if self._is_word(i + 1, self.lex.part_nouns):
             found += [Parse(i + 2, Rational("1", e.value), parts=below(i, i + 2, e.value))
                       for e in self._readings(i, "ordinal")]
-        found += self._lone_glued_denominator(i)
+        found += self._lone_glued_denominator(i) + self._lone_denominator(i)
+        found += self._over_fractions(i)
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
@@ -1084,19 +1106,40 @@ class Grammar:
                           if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"]
         return found
 
+    def _over_fractions(self, i: int) -> list[Parse]:
+        """A cardinal, a word that reads "a/b" aloud, and a second cardinal:
+        the first is the numerator and the second the denominator. The word
+        belongs to the denominator part."""
+        if not self.lex.fraction_over:
+            return []
+        found = []
+        for top in self.cardinals(i):
+            if top[-1].decimal or not _sum(top).is_whole() or not self._is_word(top[-1].end, self.lex.fraction_over):
+                continue
+            count = _piece(Role.COUNT, i, top[-1].end, _sum(top))
+            found += [Parse(run[-1].end, Rational(_whole(_sum(top)), _whole(_sum(run))),
+                            parts=count + _piece(Role.DENOMINATOR, top[-1].end, run[-1].end, _sum(run)))
+                      for run in self.cardinals(top[-1].end + 1)
+                      if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"]
+        return found
+
     def scale_fractions(self, i: int) -> list[Parse]:
         """A fraction word after a scale word takes that part of it: "milioi
         erdi bat" is 500000 and "hiru milioi laurden" 750000. With no count,
-        the one after the noun ends it."""
+        the scale word and the fraction word make one compound noun, with or
+        without the one after it."""
         if not self.lex.fraction_after_scale:
             return []
         found = []
         for end, exponent, _, _, _, plural in self.multipliers(i):
-            if not plural and self._is_word(end + 1, self.lex.one_after_noun):
-                scale = _piece(Role.SCALE, i, end, ONE.scaled(exponent))
-                found += [Parse(end + 2, ONE.scaled(exponent) * share,
-                                parts=scale + piece + _piece(Role.COUNT, end + 1, end + 2, ONE))
-                          for share, piece in self._parts(end)]
+            if plural:
+                continue
+            scale = _piece(Role.SCALE, i, end, ONE.scaled(exponent))
+            one = _piece(Role.COUNT, end + 1, end + 2, ONE) if self._is_word(end + 1, self.lex.one_after_noun) else ()
+            for share, piece in self._parts(end):
+                found.append(Parse(end + 1, ONE.scaled(exponent) * share, parts=scale + piece))
+                if one:
+                    found.append(Parse(end + 2, ONE.scaled(exponent) * share, parts=scale + piece + one))
         for run in self.cardinals(i):
             if run[-1].exponent and not run[-1].decimal:
                 found += [Parse(run[-1].end + 1, _sum(run) * share, parts=_run_parts(run) + piece)
