@@ -86,11 +86,13 @@ A Basque ordinal takes the article -a with no space, as any other word does. num
 
 ## Basque fractions with the article
 
-"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a with no space, as an ordinal does. numtag reads "erdia" as 0.5, "herena" as 1/3 and "laurdena" as 0.25. A noun before "erdia" is no part of the number: in "ordu erdia" (half an hour) the number is "erdia". Euskaltzaindia rule 203 gives a unit fraction as the denominator with -(r)en, and the article stands for the count one:
+"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads "erdia" as 0.5, "herena" as 1/3 and "laurdena" as 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
 
-> Altxorraren hamarrena nahi dut, baldin eta aurkitzen baduzu.
+> artikulua eta kasu-marka zuzenean lotzen zaizkio zenbatzaileari, beste edozein hitzi bezala, bien artean ezer jarri gabe eta bien artean zuriunerik utzi gabe
 
-A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does.
+The rule does not name these three words. The value comes from the noun, and the Euskaltzaindia dictionary gives the forms: "Bizitzaren erdia.", "Liburuaren laurdena ere ez du irakurri.", "Lehen herena." A noun before "erdia" is no part of the number. In "ordu erdia" (half an hour) the number is "erdia".
+
+A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
 
 ```python
 >>> read('Biribilaren laurdena da.', 'eu')

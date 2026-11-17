@@ -44,11 +44,15 @@ class TestFractionArticle(unittest.TestCase):
         self.assertEqual(eu("litro erdia"), [("erdia", "0.5", F)])
 
     def test_the_article_a_after_laurden_and_heren(self):
-        # 1/4 = 0.25; 1/3 stays a ratio; 3 x 1/4 = 0.75; 2 x 1/3 = 2/3
+        # 1/4 = 0.25; 1/3 stays a ratio
         self.assertEqual(eu("laurdena"), [("laurdena", "0.25", F)])
         self.assertEqual(eu("herena"), [("herena", "1/3", F)])
-        self.assertEqual(eu("hiru laurdena"), [("hiru laurdena", "0.75", F)])
-        self.assertEqual(eu("bi herena"), [("bi herena", "2/3", F)])
+
+    def test_a_count_does_not_join_the_singular_article_form(self):
+        # a count of two or more takes the plural: "bi herenak", so "bi herena" is no fraction
+        for text in ("bi herena", "hiru laurdena"):
+            with self.subTest(text=text):
+                self.assertNotIn(text, [words for words, _, _ in eu(text)])
 
     def test_a_count_before_the_half_with_the_article(self):
         # 1 + 1/2 = 1.5
