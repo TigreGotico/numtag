@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.10a1](https://github.com/TigreGotico/numtag/tree/0.12.10a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.9a1...0.12.10a1)
+
+**Merged pull requests:**
+
+- fix\(tagger\): a joiner prefix before a number is no part of its span [\#76](https://github.com/TigreGotico/numtag/pull/76) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.9a1](https://github.com/TigreGotico/numtag/tree/0.12.9a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.8a1...0.12.9a1)
