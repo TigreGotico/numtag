@@ -68,6 +68,14 @@ class TestScaleWordAfterVagueWord(unittest.TestCase):
         # pt-BR "bilhão" is 10^9: 1000 x 10^9 + 3 = 1000000000003
         self.assertEqual(numbers("alguns mil bilhões e três", "pt-BR"), [("mil bilhões e três", "1000000000003")])
 
+    def test_a_joined_half_after_a_chain_of_scale_words_keeps_the_number(self):
+        # short phrases: 1000 x 1000000 x 1.5 = 1500000000
+        self.assertEqual(numbers("A obra custou alguns mil milhões e meio de euros.", "pt-PT"),
+                         [("mil milhões e meio", "1500000000")])
+        self.assertEqual(numbers("muitos mil milhões e meio", "pt-PT"), [("mil milhões e meio", "1500000000")])
+        # pt-BR "bilhão" is 10^9: 1000 x 10^9 x 1.5 = 1500000000000
+        self.assertEqual(numbers("alguns mil bilhões e meio", "pt-BR"), [("mil bilhões e meio", "1500000000000")])
+
     def test_no_number_after_the_joiner_keeps_the_guard(self):
         # short phrases: "e" with no number after it joins no group
         self.assertEqual(numbers("alguns mil e pessoas", "pt-PT"), [])

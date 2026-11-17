@@ -255,12 +255,14 @@ class Grammar:
         return not self._readings(i, "hundred_multiplier") and (hundred.bound or self._takes_multiplier(i + 1))
 
     def _joined_after(self, i: int) -> bool:
-        """A joiner and a number follow position ``i``, past any scale words:
-        "mil milhões e duzentos mil" goes on after "mil"."""
+        """A joiner and a number or a half follow position ``i``, past any
+        scale words: "mil milhões e duzentos mil" and "mil milhões e meio" go
+        on after "mil"."""
         while i < len(self.tokens) and not self.tokens[i].is_digits and any(
                 e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ())):
             i += 1
-        return self._is_word(i, self.lex.joiners) and self.starts_number(i + 1)
+        return self._is_word(i, self.lex.joiners) and (
+            self.starts_number(i + 1) or bool(self._readings(i + 1, "half")))
 
     def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
         """Positions where the next part may start after position ``i``."""
