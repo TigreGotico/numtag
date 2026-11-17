@@ -62,10 +62,9 @@
   },
   "decimal_marker": {
    "value": [
-    "coma",
-    "punto"
+    "coma"
    ],
-   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \"; \"coma\" names the decimal sign, as ovos-number-parser numbers_gl.py DECIMAL_MARKER reads it."
+   "source": "CLDR 48 numbers, gl (latn): decimal \",\", group \" \"; \"coma\" names the decimal sign, as ovos-number-parser numbers_gl.py DECIMAL_MARKER reads it. The comma marks the decimals, so \"punto\" is no decimal marker (docs/rulings.md, \"Decimals\")."
   },
   "minus": {
    "value": [

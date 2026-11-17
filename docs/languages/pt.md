@@ -86,7 +86,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | List | Words | Use |
 |---|---|---|
 | `joiner` | "e" | joins the parts of a number |
-| `decimal_marker` | "vírgula", "virgula", "ponto" | starts the fraction part |
+| `decimal_marker` | "vírgula", "virgula" | starts the fraction part |
 | `minus` | "menos" | makes the number negative |
 | `minus_idioms` | "pelo menos", "ao menos", "mais ou menos", "a menos" | "menos" in these is no sign |
 | `article_one` | "um", "uma" | the article that is also the number one |

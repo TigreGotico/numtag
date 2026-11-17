@@ -62,10 +62,9 @@
   },
   "decimal_marker": {
    "value": [
-    "coma",
-    "puntu"
+    "coma"
    ],
-   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\"; en.wiktionary, Asturian \"puntu\", noun: \"dot\", \"full stop, period\". \"coma\" comes from ovos-number-parser numbers_ast.py DECIMAL_MARKER (a lead: \"coma\", \"punto\"); en.wiktionary lists Asturian \"coma\" only as a form of \"comer\", so a native speaker must confirm it."
+   "source": "CLDR 48 numbers, ast (latn): decimal \",\", group \".\"; en.wiktionary, Asturian \"puntu\", noun: \"dot\", \"full stop, period\". \"coma\" comes from ovos-number-parser numbers_ast.py DECIMAL_MARKER (a lead: \"coma\", \"punto\"); en.wiktionary lists Asturian \"coma\" only as a form of \"comer\", so a native speaker must confirm it. The comma marks the decimals, so \"puntu\" is no decimal marker (docs/rulings.md, \"Decimals\")."
   },
   "minus": {
    "value": [

@@ -434,6 +434,50 @@ class TestDecimalsAndDigits(unittest.TestCase):
         self.assertEqual(en("one point two five hundred"), [("one point two five hundred", "125", C)])
         self.assertEqual(en("one point two million"), [("one point two million", "1200000", C)])
 
+    def test_digits_around_a_spoken_point_are_one_decimal(self):
+        # 2 + 5/10; 2.5 x 10^6; -(2 + 5/10)
+        self.assertEqual(en("2 point 5"), [("2 point 5", "2.5", D)])
+        self.assertEqual(en("two point 5"), [("two point 5", "2.5", D)])
+        self.assertEqual(en("2 point five"), [("2 point five", "2.5", D)])
+        self.assertEqual(en("2 point 5 million"), [("2 point 5 million", "2500000", C)])
+        self.assertEqual(en("-2 point 5"), [("-2 point 5", "-2.5", D)])
+
+    def test_a_point_with_no_digit_after_it_ends_the_number(self):
+        self.assertEqual(en("2 point"), [("2", "2", C)])
+        self.assertEqual(en("point 5"), [("5", "5", C)])
+        self.assertEqual(en("2 point 5 5"), [("2 point 5", "2.5", D), ("5", "5", C)])
+        # the digits after the point stand alone: no word joins them
+        self.assertEqual(en("2 point 5 five"), [("2 point 5", "2.5", D), ("five", "5", C)])
+
+    def test_a_decimal_in_digits_takes_no_second_point(self):
+        self.assertEqual(en("2.5 point 5"), [("2.5", "2.5", D), ("5", "5", C)])
+        self.assertEqual(read("2,5 vírgula 5", "pt-PT"), [("2,5", "2.5", D), ("5", "5", C)])
+
+    def test_the_word_for_the_point_is_no_marker_where_a_comma_marks_decimals(self):
+        # the comma marks the decimals: "o artigo 5 ponto 3" is article 5, item 3
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("o artigo 5 ponto 3", lang), [("5", "5", C), ("3", "3", C)])
+                self.assertEqual(read("cinco ponto três", lang), [("cinco", "5", C), ("três", "3", C)])
+        for text, lang in (("Artikel 5 Punkt 3", "de"), ("l'article 5 point 3", "fr-FR"),
+                           ("articolo 5 punto 3", "it"), ("l'article 5 punt 3", "ca"),
+                           ("o artigo 5 punto 3", "gl"), ("l artigo 5 ponto 3", "mwl"),
+                           ("l artículu 5 puntu 3", "ast")):
+            with self.subTest(lang=lang):
+                self.assertEqual(read(text, lang), [("5", "5", C), ("3", "3", C)])
+
+    def test_spanish_keeps_punto_as_a_decimal_marker(self):
+        # Spanish writes either mark: 2 + 5/10; a section number is the known cost
+        self.assertEqual(read("El valor es dos punto cinco.", "es"), [("dos punto cinco", "2.5", D)])
+        self.assertEqual(read("el apartado 3 punto 2", "es"), [("3 punto 2", "3.2", D)])
+
+    def test_digits_after_the_first_group_take_no_point(self):
+        # "2 milhões e 500" is two numbers, so "2 milhões e 500 vírgula 5" is too
+        self.assertEqual(en("2 million and 3 point 5"),
+                         [("2 million", "2000000", C), ("3 point 5", "3.5", D)])
+        self.assertEqual(read("2 milhões e 500 vírgula 5", "pt-PT"),
+                         [("2 milhões", "2000000", C), ("500 vírgula 5", "500.5", D)])
+
     def test_oh_nought_and_o_after_point_are_the_digit_zero(self):
         # 1 + 05/100; 1 + 005/1000; 1 + 505/1000
         self.assertEqual(en("one point oh five"), [("one point oh five", "1.05", D)])
