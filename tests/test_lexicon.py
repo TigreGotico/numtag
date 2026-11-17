@@ -2,9 +2,12 @@ import json
 import re
 import tomllib
 import unittest
+from copy import deepcopy
+from unittest import mock
 from fnmatch import fnmatch
 from pathlib import Path
 
+from numtag import lexicon as lexicon_module, tag_numbers
 from numtag.lexicon import Joiner, load
 from numtag.tagger import lexicon_name
 
@@ -105,6 +108,41 @@ class TestLexiconFiles(unittest.TestCase):
         belgian, swiss = load("fr-BE").readings, load("fr-CH").readings
         self.assertEqual(set(swiss) - set(belgian), {"huitante", "huitantième", "huitantièmes"})
         self.assertEqual(load("fr-CH").of("huitante", "ten")[0].value, "80")
+
+    def test_a_vague_quantifier_of_several_words_keeps_its_words_and_its_flag(self):
+        data = deepcopy(lexicon_module._read("hr"))
+        data["entries"] += [{"word": "jako puno", "role": "vague_quantifier", "source": "test entry"},
+                            {"word": "Više", "role": "vague_quantifier", "ambiguous": True, "source": "test entry"}]
+        with mock.patch.object(lexicon_module, "_read", lambda lang: data), \
+                mock.patch.object(lexicon_module, "exists", lambda lang: True):
+            phrases = lexicon_module.load("hr-test").vague_quantifiers
+            lexicon_module.load.cache_clear()
+        self.assertEqual(phrases[("jako", "puno")], False)
+        self.assertEqual(phrases[("više",)], True)
+        self.assertNotIn(("jako puno",), phrases)
+
+    def test_a_multi_word_vague_quantifier_reads_before_a_scale_word(self):
+        data = deepcopy(lexicon_module._read("hr"))
+        data["entries"] = [e for e in data["entries"] if e["role"] != "vague_quantifier"] + [
+            {"word": "jako puno", "role": "vague_quantifier", "source": "test entry"}]
+        with mock.patch.object(lexicon_module, "_read", lambda lang: data), \
+                mock.patch.object(lexicon_module, "exists", lambda lang: True):
+            lexicon_module.load.cache_clear()
+            vague = [(m.text, m.value) for m in tag_numbers("jako puno tisuća", "hr")]
+            alone = [(m.text, m.value) for m in tag_numbers("puno tisuća", "hr")]
+            lexicon_module.load.cache_clear()
+        self.assertEqual(vague, [])
+        self.assertEqual(alone, [("tisuća", "1000")])
+
+    def test_a_comma_between_classes_does_not_carry_a_vague_quantity(self):
+        # where a comma may link two classes of one number, the guard still stops at it
+        data = deepcopy(lexicon_module._read("hr"))
+        data["settings"]["comma_between_classes"] = {"value": True, "source": "test setting"}
+        with mock.patch.object(lexicon_module, "_read", lambda lang: data):
+            lexicon_module.load.cache_clear()
+            read = [(m.text, m.value) for m in tag_numbers("nekoliko milijuna, tisuću ljudi", "hr")]
+            lexicon_module.load.cache_clear()
+        self.assertEqual(read, [("tisuću", "1000")])
 
     def test_a_region_without_a_file_reads_with_the_base_lexicon(self):
         self.assertEqual(lexicon_name("fr"), "fr-FR")
