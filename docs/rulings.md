@@ -467,6 +467,30 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
+A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat".
+
+```python
+>>> read("Zortzi hamarren falta dira.", "eu")
+[('Zortzi hamarren', '0.8')]
+>>> read("Hiru zati lau idatzi du.", "eu")
+[('Hiru zati lau', '0.75')]
+>>> read("Milioi erdi euro eman zituen.", "eu")
+[('Milioi erdi', '500000')]
+```
+
+> Euskaltzaindia, 203. araua, EBO (VI), "Zenbakizko adierazpenak", 6: "Zenbakitzailea bat zenbakia denean (a = 1 denean) eratzen diren zenbakiak izendatzeko, -(r)en eransten zaio zenbaki kardinalari"; "7/8: zazpi zortziren", "8/10: zortzi hamarren", "2/100: bi ehunen"; footnote 22: "3/2 = hiru erdi (hiru *biren)"; "(egokia) 3/4 hiru zati lau (edo hiru laurden)"; note 28: "Izendatzailea milioi bat denean, milioi izena erabiltzen da, ondoren bat erantsi gabe, eta izen-izen erako hitz-elkarte arrunta eratzen da (ordu(-)laurden, final(-)laurden hitzetan bezala)".
+
+"laurden" and "heren" with no count, no article and no "bat" are one part, at the low score of a word with a second meaning. "final laurden" is the quarter-final, and "heren" is also the old ordinal "third". A noun before the word is no part of the number, as in "ordu laurden" (a quarter of an hour). After "eta" with no number before it, the word adds a quarter to an hour of the clock, which is no number word, so "hirurak eta laurden" reads no number.
+
+```python
+>>> read("Ordu laurden barru iritsiko da.", "eu")
+[('laurden', '0.25')]
+>>> read("Hirurak eta laurden dira.", "eu")
+[]
+```
+
+> Euskaltzaindiaren Hiztegia, "laurden": "Lau zati berdinetan banatu den zerbaiten zati bakoitza."; "final laurden": "Finalerdien aurretik jokatzen diren lau partida edo norgehiagoketako bakoitza."; "heren": "Hiru zati berdinetan banatu den zerbaiten zati bakoitza.", "Hirugarrena. Heren egunean piztu zen".
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.
