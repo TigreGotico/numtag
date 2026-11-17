@@ -632,7 +632,7 @@ class Grammar:
                 # "one point two hundred": a multiplier after the decimals
                 found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True,
                                 parts=parts + _piece(Role.SCALE, e, e + 1, ONE.scaled(m.exponent)))
-                          for m in self._readings(e, "hundred_multiplier") if not m.plural]
+                          for m in self._readings(e, "hundred_multiplier") if not m.plural or m.counted]
             # "two and a half million", "zweieinhalb Millionen", "iki buçuk milyon"
             if value != "0":
                 found += [Count(e, Rational(value) + HALF, needs_multiplier=True, parts=whole + half)
@@ -651,6 +651,11 @@ class Grammar:
                 # only a half after a joiner: a year before "полмиллиона" is its own number
                 found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
                           for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
+            # a counted hundred noun takes digits below a thousand as it takes
+            # a word count: "3 מאות" is 300, as "שלוש מאות" is
+            if len(_whole(value)) <= 3:
+                found += [count(end + 1, value.scaled(m.exponent), needs_multiplier=not first, decimal=decimal)
+                          for m in self._readings(end, "hundred_multiplier") if m.counted]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:

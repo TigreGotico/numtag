@@ -85,7 +85,8 @@ class Entry:
     bound: bool = False
     # A scale word with its count in the form: the dual "ألفان" is 2 x 10^3.
     count: str = ""
-    # A plural multiplier that a count takes ("מאות" in "שלוש מאות").
+    # A plural multiplier that a count takes, in words or in digits below a
+    # thousand ("מאות" in "שלוש מאות" and "3 מאות").
     counted: bool = False
     # A denominator that stands alone as this numerator over it ("ربع" is 1/4).
     numerator: str = ""
