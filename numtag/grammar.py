@@ -231,7 +231,8 @@ class Grammar:
         for phrase in self.lex.vague_quantifiers:
             start = end - len(phrase)
             if start >= 0 and all(t.norm == w and not t.is_digits for t, w in zip(self.tokens[start:end], phrase)) \
-                    and not (start > 0 and not self.tokens[start - 1].is_digits and self.starts_number(start - 1)):
+                    and not (start > 0 and self.starts_number(start - 1)
+                             and (not self.tokens[start - 1].is_digits or self._plural_scale(start))):
                 return True, i
         before = end - 1
         if before >= 0 and not self.tokens[before].is_digits and any(
@@ -239,6 +240,29 @@ class Grammar:
                 for e in self.lex.readings.get(self.tokens[before].norm, ())):
             return None, before
         return False, i
+
+    def _plural_scale(self, i: int) -> bool:
+        """"milhões": a plural scale word or collective. With a count before it
+        ("3 milhões") it is a number, not a vague quantity."""
+        return not self.tokens[i].is_digits and any(
+            (e.role in SCALE_ROLES or e.role == "collective") and e.plural
+            for e in self.lex.readings.get(self.tokens[i].norm, ()))
+
+    def _goes_on(self, i: int, hundred: Entry) -> bool:
+        """A hundred word that takes no count ("cento", "cem", never "dois
+        cem") and goes on as a number: a bound form ("alguns cento e vinte")
+        or one before a scale word ("algumas cem mil")."""
+        return not self._readings(i, "hundred_multiplier") and (hundred.bound or self._takes_multiplier(i + 1))
+
+    def _joined_after(self, i: int) -> bool:
+        """A joiner and a number or a half follow position ``i``, past any
+        scale words: "mil milhões e duzentos mil" and "mil milhões e meio" go
+        on after "mil"."""
+        while i < len(self.tokens) and not self.tokens[i].is_digits and any(
+                e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ())):
+            i += 1
+        return self._is_word(i, self.lex.joiners) and (
+            self.starts_number(i + 1) or bool(self._readings(i + 1, "half")))
 
     def _after_joiner(self, i: int, policy: Joiner) -> list[int]:
         """Positions where the next part may start after position ``i``."""
@@ -457,7 +481,7 @@ class Grammar:
         # "birkaç yüz": a vague quantity right before the hundred stands where
         # its one would; after "birkaç bin" the hundred starts a lower group
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")
-                 if e.value != "100" or not self._vague_step(i)[0]]
+                 if e.value != "100" or self._goes_on(i, e) or not self._vague_step(i)[0]]
         if not multiplied:
             return found
         counts = self.tens_units(i, nonzero=True) + self._bound_units(i)
@@ -725,8 +749,7 @@ class Grammar:
             if count.value.is_zero():
                 continue
             # "nekoliko milijuna": a vague quantity stands where the count would
-            if not count.explicit and self._after_vague(i):
-                continue
+            vague = not count.explicit and self._after_vague(i)
             # "douăzeci de mii": a word may stand between a count and its scale word
             starts = [count.end] + ([count.end + 1] if count.explicit and self._is_word(
                 count.end, self.lex.count_of) else [])
@@ -737,6 +760,9 @@ class Grammar:
                 for end, exponent, dual, noun, needs_count, plural in self.multipliers(
                         start, first and not count.explicit):
                     if count.top and exponent <= count.top:
+                        continue
+                    # "alguns mil e duzentos" is still 1200: a group joined after the scale words goes on the number
+                    if vague and not self._joined_after(end):
                         continue
                     # a dual holds its count ("ألفان"): its one part is the scale
                     scale = _piece(Role.SCALE, scale_from, end, ONE.scaled(exponent))
