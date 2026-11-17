@@ -248,6 +248,12 @@ class Grammar:
             (e.role in SCALE_ROLES or e.role == "collective") and e.plural
             for e in self.lex.readings.get(self.tokens[i].norm, ()))
 
+    def _goes_on(self, i: int, hundred: Entry) -> bool:
+        """A hundred word that takes no count ("cento", "cem", never "dois
+        cem") and goes on as a number: a bound form ("alguns cento e vinte")
+        or one before a scale word ("algumas cem mil")."""
+        return not self._readings(i, "hundred_multiplier") and (hundred.bound or self._takes_multiplier(i + 1))
+
     def _joined_after(self, i: int) -> bool:
         """A joiner and a number follow position ``i``, past any scale words:
         "mil milhões e duzentos mil" goes on after "mil"."""
@@ -473,7 +479,7 @@ class Grammar:
         # "birkaç yüz": a vague quantity right before the hundred stands where
         # its one would; after "birkaç bin" the hundred starts a lower group
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")
-                 if e.value != "100" or not self._vague_step(i)[0]]
+                 if e.value != "100" or self._goes_on(i, e) or not self._vague_step(i)[0]]
         if not multiplied:
             return found
         counts = self.tens_units(i, nonzero=True) + self._bound_units(i)

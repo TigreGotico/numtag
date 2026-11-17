@@ -75,9 +75,9 @@ class TestScaleWordAfterVagueWord(unittest.TestCase):
 
 
 class TestHundredWordAfterVagueWord(unittest.TestCase):
-    """A Portuguese hundred word takes no count ("dois cem" is no number), so a
-    vague word never stands for its count, and the hundred word reads as without
-    the list. Short phrases; values by hand."""
+    """A Portuguese hundred word takes no count ("dois cem" is no number). When
+    it goes on as a number, in a bound form or before a scale word, it reads as
+    without the list. Short phrases; values by hand."""
 
     def test_cento_and_cem_after_a_vague_word(self):
         # 100 + 50 = 150; 150 x 1000 = 150000
