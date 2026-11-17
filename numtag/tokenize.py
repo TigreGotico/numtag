@@ -137,7 +137,13 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
         word = rf"{letter}(?:{letter}|[{inner}]|[{joins}]{letter})*"
     else:
         word = rf"{letter}+(?:[{joins}]{letter}+)*"
-    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:[{between}]\d+)*)|(?P<word>{word})")
+    if group_mark.isspace():
+        # a space joins a group of three digits, or a group that no slash
+        # and digit follow: "5 1/2" is 5 and 1/2, not "5 1" and 2
+        joined = rf"[{marks}]\d+|{re.escape(group_mark)}(?:\d{{3}}(?!\d)|\d+(?!\d|/\d))"
+    else:
+        joined = rf"[{between}]\d+"
+    return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:{joined})*)|(?P<word>{word})")
 
 
 @cache
