@@ -270,6 +270,32 @@ class TestScales(unittest.TestCase):
         self.assertEqual(read("trettioettusen kronor", "sv"), [("trettioettusen", "31000", C)])
 
 
+class TestScaleNamesAboveABillion(unittest.TestCase):
+    # long scale: the n-th -illion is 10^(6 n), and the -iard after it is 10^(6 n + 3)
+    def test_triljoen_is_ten_to_the_eighteenth_in_frisian(self):
+        # 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("tolve triljoen trijehûndertfiifenfjirtich", "fy"),
+                         [("tolve triljoen trijehûndertfiifenfjirtich", "12000000000000000345", C)])
+
+    def test_trillion_is_ten_to_the_eighteenth_in_norwegian(self):
+        # 12 x 10^18 + 345 = 12000000000000000000 + 345
+        self.assertEqual(read("tolv trillioner tre hundre og førtifem", "nb"),
+                         [("tolv trillioner tre hundre og førtifem", "12000000000000000345", C)])
+        self.assertEqual(read("tolv trillionar tre hundre og førtifem", "nn"),
+                         [("tolv trillionar tre hundre og førtifem", "12000000000000000345", C)])
+        # 1 x 10^18, written as 1 and 18 zeros
+        self.assertEqual(read("en trillion", "nb"), [("en trillion", "1000000000000000000", C)])
+        self.assertEqual(read("ein trillion", "nn"), [("ein trillion", "1000000000000000000", C)])
+
+    def test_triljard_is_ten_to_the_twenty_first_in_dutch(self):
+        # 10^3 x 10^18 = 10^21, written as 1 and 21 zeros
+        self.assertEqual(read("een triljard", "nl"), [("een triljard", "1000000000000000000000", C)])
+        # nl.wiktionary "triljard": 602 x 10^21 + 214 x 10^18 = 602214 x 10^18
+        self.assertEqual(read("bij benadering zeshonderdtwee triljard tweehonderdveertien triljoen moleculen", "nl"),
+                         [("zeshonderdtwee triljard tweehonderdveertien triljoen", "602214000000000000000000", C)])
+        self.assertEqual(read("triljardste", "nl"), [("triljardste", "1000000000000000000000", "ordinal")])
+
+
 class TestArticles(unittest.TestCase):
     def test_an_article_before_a_hyphenated_noun_is_weak(self):
         for text, lang, word in (("Mache eine Bildschirm-Aufnahme.", "de", "eine"),
