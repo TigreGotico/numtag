@@ -570,7 +570,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4.
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")
@@ -586,7 +586,11 @@ The hundred of a percent phrase is the percent sign, not a number: ca "per cent"
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers("Calcula el tant per cent de descompte.", "ca")]
 [('cent', '100', 0.4)]
+>>> read("Calcula el tanto por ciento de descuento.", "es")
+[]
 ```
+
+> DPD "ciento" §2: "en la lengua actual se prefiere claramente la forma apocopada cien"
 
 The word for one before a percent phrase counts the hundredths, so it is never the article. "un pour cent" is 1 %, and the mention has no reason.
 
