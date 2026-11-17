@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.3a1](https://github.com/TigreGotico/numtag/tree/0.14.3a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.2a1...0.14.3a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): a count and "stotina" before a scale word make one number [\#89](https://github.com/TigreGotico/numtag/pull/89) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.2a1](https://github.com/TigreGotico/numtag/tree/0.14.2a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.1a1...0.14.2a1)
