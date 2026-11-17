@@ -102,6 +102,9 @@ class Entry:
     # A ten that takes a unit after it although it is not a round ten from
     # twenty up ("on beş", "tizenöt").
     takes_unit: bool = False
+    # A ten that takes only these units after it, past the joiner: the old
+    # spelling "diez y seis" is 16, and "diez y uno" is no number.
+    takes_units: frozenset[str] = frozenset()
     # A case form that names the parts when a count follows it: Turkish
     # "üçte bir" is one third.
     fraction_case: bool = False
@@ -306,6 +309,12 @@ class Lexicon:
     # Where the joiner may go before a half or a fraction after a whole
     # ("dua setengah", "tiga dua-pertiga", "two and a half").
     joiner_before_half: Joiner = Joiner.REQUIRED
+    # The joiner between two groups stands only between a thousand and a one
+    # ("mil y una"); before any other group, the parts are two numbers.
+    joiner_thousand_one_only: bool = False
+    # A percent phrase names the percent sign with no number before it too:
+    # "tanto por ciento" holds no 100.
+    percent_phrase_is_no_number: bool = False
     # A part word after the joiner takes an article: "six and a quarter",
     # never "six and quarter" ("forty and eighth" is 40 and 8th).
     part_after_joiner_needs_article: bool = False
@@ -487,6 +496,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         elif role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
+                            takes_units=frozenset(spec.get("takes_units", ())),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             invariant=spec.get("invariant", False), teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
@@ -598,6 +608,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
+        joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
+        percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),
         one_after_noun=frozenset(words.get("one_after_noun", ())),
