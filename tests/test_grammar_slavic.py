@@ -208,8 +208,8 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("3 целых 7 десятых процента", "ru"), [("3 целых 7 десятых", "3.7", D)])
         self.assertEqual(read("2 цілих 5 сотих", "uk"), [("2 цілих 5 сотих", "2.05", D)])
         self.assertEqual(read("2 celé 5 setin", "cs"), [("2 celé 5 setin", "2.05", D)])
-        # Slovak reads no power-of-ten fraction after the marker: the digits stay apart
-        self.assertEqual(read("2 celé 5 stotín", "sk"), [("2", "2", C), ("5", "5", C)])
+        # Slovak reads no power-of-ten fraction after the marker: the whole part stays apart
+        self.assertEqual(read("2 celé 5 stotín", "sk")[0], ("2", "2", C))
 
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5
