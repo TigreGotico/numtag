@@ -1,11 +1,11 @@
 # API reference
 
-The package `numtag` exports eleven names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE` and `UnsupportedLanguageError`. This page describes each of them. Every other module is internal.
+The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity` and `VagueKind`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'is_canonical_value', 'tag_numbers']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'tag_numbers', 'tag_vague_quantities']
 ```
 
 ## tag_numbers
@@ -242,6 +242,80 @@ A word in the `roman_lower_word` list is a word only in lower case: pt, es and i
 In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
 
 numtag gives the value and the kind. How a numeral is said, "Luís XIV" as "catorze" or "D. João VI" as "sexto", is a rule of the speaking language and belongs to text2spoken.
+
+## tag_vague_quantities
+
+```text
+tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]
+```
+
+`tag_vague_quantities` returns the words of `text` that state an amount but no exact number. The list is in reading order, and no two results overlap. `lang` works as in `tag_numbers`, and a language with no lexicon raises `UnsupportedLanguageError`. A language with no `vague_quantifier` entries returns an empty list. English and Portuguese have entries.
+
+A vague word never becomes a digit, so `tag_numbers` gives no mention for it. A count before a plural scale word makes an ordinary number, and no vague quantity: "three million" is 3000000.
+
+```python
+>>> from numtag import tag_vague_quantities, VagueKind
+>>> text = "Navios-tanque podem carregar desde várias centenas de toneladas."
+>>> [(q.text, q.kind.value, q.scale, q.lower_bound) for q in tag_vague_quantities(text, "pt-PT")]
+[('várias centenas', 'magnitude', '100', '200')]
+>>> tag_numbers(text, "pt-PT")
+[]
+>>> tag_vague_quantities("It serves a region of three million people.", "en")
+[]
+```
+
+There are two kinds of result.
+
+| Kind | Words | `scale` | `lower_bound` |
+|---|---|---|---|
+| `VagueKind.MAGNITUDE` | a plural scale word with no count: "millions", "dozens", "milhares", "dezenas" | the scale word: "1000000", "12" | two of the scale: "2000000", "24" |
+| `VagueKind.MAGNITUDE` | a vague word and the scale words after it: "several million", "a few dozen", "muitos mil milhões" | the product of the scale words: "1000000", "12", "1000000000" | two of the scale when one plural scale word follows ("alguns milhares"), else `None` |
+| `VagueKind.AMOUNT` | a vague word alone: "many", "several", "a few", "umpteen", "muitos", "alguns" | `None` | `None` |
+
+```python
+>>> text = "Benthic landers have deployment durations from a few days to several years."
+>>> [(q.text, q.kind.value) for q in tag_vague_quantities(text, "en")]
+[('a few', 'amount'), ('several', 'amount')]
+>>> [(q.text, q.scale, q.lower_bound) for q in tag_vague_quantities("Several million years ago.", "en")]
+[('Several million', '1000000', None)]
+```
+
+A word that is also an ordinary noun, adjective or adverb gets a low confidence and `Reason.HOMOGRAPH`, as in `tag_numbers`. "a lot" also names an area of land, and "bastante" also means "enough". A scale word after the vague word makes the quantity reading clear.
+
+```python
+>>> [(q.text, q.confidence, sorted(q.reasons)) for q in tag_vague_quantities("O ciclismo é um esporte bastante popular.", "pt-BR")]
+[('bastante', 0.4, [<Reason.HOMOGRAPH: 'homograph'>])]
+```
+
+Fixed counts are no vague quantity. "half a dozen" and "meia dúzia" have a value, so `tag_numbers` reads them.
+
+## VagueQuantity
+
+A `VagueQuantity` is a frozen dataclass.
+
+| Field | Type | Meaning |
+|---|---|---|
+| `char_span` | `tuple[int, int]` | The half-open character range of the words, as in `NumberMention` |
+| `text` | `str` | The exact words |
+| `kind` | `VagueKind` | `MAGNITUDE` or `AMOUNT` |
+| `scale` | `str` or `None` | The canonical digit string of the scale word of a magnitude |
+| `lower_bound` | `str` or `None` | Two of the scale, when the scale word is plural |
+| `confidence` | `float` | A fixed score in (0, 1], not part of equality |
+| `reasons` | `frozenset[Reason]` | Keyword only, not part of equality. Why the confidence is low |
+
+A `VagueQuantity` checks its fields when it is made. It raises `ValueError` when the span does not fit the text, when an amount has a scale or a bound, when a magnitude has no scale, or when a scale or bound is not a canonical digit string.
+
+```python
+>>> from numtag import VagueQuantity
+>>> VagueQuantity((0, 7), "several", VagueKind.AMOUNT, "100")
+Traceback (most recent call last):
+  ...
+ValueError: an amount takes no scale and no lower bound
+```
+
+## VagueKind
+
+`VagueKind` is a string enum with two members: `VagueKind.MAGNITUDE` (`"magnitude"`) and `VagueKind.AMOUNT` (`"amount"`).
 
 ## Reason
 

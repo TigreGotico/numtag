@@ -30,22 +30,25 @@ def lexicon_name(lang: str) -> str:
     return BASE_LEXICON.get(primary, primary)
 
 
+def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
+    return tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
+                    lexicon.abbreviations, lexicon.number_words, lexicon.script,
+                    compound_words=lexicon.compound_parts,
+                    compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
+                    dotted_i=lexicon.dotted_i, apostrophes=lexicon.word_apostrophes,
+                    suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
+                    period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
+                                               lexicon.period_ordinal_free_digits)
+                    if lexicon.period_ordinals else None,
+                    dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
+                    phrases=lexicon.phrases, group_mark=lexicon.group_mark,
+                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
+
+
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
     """Every non-overlapping number in ``text``, in reading order."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
-    words = lexicon.number_words
-    tokens = tokenize(text, frozenset(lexicon.ordinal_suffixes), lexicon.lone_decimal_marks,
-                      lexicon.abbreviations, words, lexicon.script,
-                      compound_words=lexicon.compound_parts,
-                      compound_inner=lexicon.joiners, shared_letter=lexicon.compound_shared_letter,
-                      dotted_i=lexicon.dotted_i, apostrophes=lexicon.word_apostrophes,
-                      suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
-                      period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
-                                                 lexicon.period_ordinal_free_digits)
-                      if lexicon.period_ordinals else None,
-                      dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
-                      phrases=lexicon.phrases, group_mark=lexicon.group_mark,
-                      compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
+    tokens = _tokenize(text, lexicon)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
