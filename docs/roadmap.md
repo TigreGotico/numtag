@@ -69,13 +69,12 @@ These readings wait for a ruling. The table shows what numtag reads.
 |---|---|---|
 | "a million billion" | 1000000, and "billion" reads no number | Is it 10^15? |
 | "dois mil meio" | 2000 and 0.5 | Is it 2000.5? No source gives that reading. |
-| "meio milhões de pessoas" | 500000 | "meio" and a plural noun do not agree. Is it a number? |
 
 ```python
 >>> [(m.text, m.value) for m in tag_numbers("a million billion", "en")]
 [('a million', '1000000')]
->>> [(m.text, m.value) for m in tag_numbers("dois mil meio e meio milhões de pessoas", "pt-PT")]
-[('dois mil', '2000'), ('meio', '0.5'), ('meio milhões', '500000')]
+>>> [(m.text, m.value) for m in tag_numbers("dois mil meio", "pt-PT")]
+[('dois mil', '2000'), ('meio', '0.5')]
 ```
 
 ---

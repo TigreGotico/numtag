@@ -425,6 +425,19 @@
    "source": "CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000000000000000: éin billiard[ →→]\", \"2000000000000000: ←← biliardar[ →→]\""
   },
   {
+   "word": "trillion",
+   "role": "scale_noun",
+   "rank": 3,
+   "source": "Nynorskordboka (ordbokene.no), \"trillion\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"\"word_form\": \"trillionar\"\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"ein million billionar\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"grunntalet 1 000 000 000 000 000 000\""
+  },
+  {
+   "word": "trillionar",
+   "role": "scale_noun",
+   "plural": true,
+   "rank": 3,
+   "source": "Nynorskordboka (ordbokene.no), \"trillion\": knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"\"word_form\": \"trillionar\"\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"ein million billionar\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/nn-ordbok-81171.json: \"grunntalet 1 000 000 000 000 000 000\""
+  },
+  {
    "word": "dusin",
    "role": "collective",
    "value": "12",
