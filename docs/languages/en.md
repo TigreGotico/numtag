@@ -21,12 +21,13 @@ Pass `scale="long"` to read an older British text in the long scale. Read [../nu
 | Role | Entries | Examples |
 |---|---|---|
 | unit | 10 | "zero" to "nine" |
+| decimal zero | 3 | "oh", "o", "nought" after "point" |
 | ten | 18 | "ten" to "nineteen", "twenty" to "ninety" |
 | hundred multiplier | 2 | "hundred", "hundreds" |
 | scale noun | 48 | "thousand", "million", "billion", up to "centillion", and "googol" |
 | collective | 4 | "dozen", "score" and their plurals |
 | half | 1 | "half" |
-| denominator | 46 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
+| denominator | 50 | "half", "third", "quarter", "tenth", "hundredth" and their plurals |
 | ordinal | 27 | "first" to "twentieth", the round tens to "ninetieth" |
 | ordinal scale | 5 | "hundredth", "thousandth", "millionth", "billionth", "trillionth" |
 | ordinal suffix | 4 | "st", "nd", "rd", "th" |
