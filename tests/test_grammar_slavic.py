@@ -272,8 +272,20 @@ class TestFractionsAndDecimals(unittest.TestCase):
         self.assertEqual(read("3 целых 7 десятых процента", "ru"), [("3 целых 7 десятых", "3.7", D)])
         self.assertEqual(read("2 цілих 5 сотих", "uk"), [("2 цілих 5 сотих", "2.05", D)])
         self.assertEqual(read("2 celé 5 setin", "cs"), [("2 celé 5 setin", "2.05", D)])
-        # Slovak reads no power-of-ten fraction after the marker: the whole part stays apart
-        self.assertEqual(read("2 celé 5 stotín", "sk")[0], ("2", "2", C))
+        # sl and hr part words: 2 + 5/100; SSKJ "ena cela, pet stotink 1,05"
+        self.assertEqual(read("2 celi 5 stotink", "sl"), [("2 celi 5 stotink", "2.05", D)])
+        self.assertEqual(read("dve celi pet stotink", "sl"), [("dve celi pet stotink", "2.05", D)])
+        self.assertEqual(read("2 cijela 5 stotinki", "hr"), [("2 cijela 5 stotinki", "2.05", D)])
+        self.assertEqual(read("dva cijela pet stotinki", "hr"), [("dva cijela pet stotinki", "2.05", D)])
+        # 2 + 5/10 in Slovak digits
+        self.assertEqual(read("2 celé 5", "sk"), [("2 celé 5", "2.5", D)])
+
+    def test_digits_before_another_part_word_are_no_decimals(self):
+        # 2 3/5 is no 2.3: the digits stay separate numbers
+        for text, lang in (("2 целых 3 пятых", "ru"), ("2 целых 1 треть", "ru"), ("2 целых 3 четверти", "ru"),
+                           ("2 цілих 3 п'ятих", "uk"), ("2 celé 3 pětiny", "cs")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, lang)[:2], [("2", "2", C), ("3" if " 3 " in text else "1", "3" if " 3 " in text else "1", C)])
 
     def test_a_joiner_after_the_decimal_marker(self):
         # 2 + 0.5

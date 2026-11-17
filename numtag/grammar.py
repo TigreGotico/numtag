@@ -503,11 +503,12 @@ class Grammar:
             parts, written, origin = best[position]
             # "oh" is the digit 0 after the marker only: "one point oh five"
             zeros = [(position + 1, "0") for _ in self._readings(position, "decimal_zero")[:1]]
-            # "2 point 5": digits after the marker, alone. Before a power of
-            # ten they are its numerator: "2 целых 5 сотых" is 2.05.
+            # "2 point 5": digits after the marker, alone. Before a part word
+            # they are its numerator ("2 целых 5 сотых" is 2.05), or no
+            # decimal digits at all ("2 целых 3 пятых").
             written_digits = self._plain_digits(position)
-            digits_after = [(position + 1, written_digits)] if written_digits and not parts and not any(
-                e.value == digits.shift("1", len(e.value) - 1) for e in self._readings(position + 1, "denominator")) else []
+            digits_after = [(position + 1, written_digits)] if written_digits and not parts \
+                and not self._readings(position + 1, "denominator") else []
             if position in digit_ends:
                 continue
             digit_ends.update(end for end, _ in digits_after)

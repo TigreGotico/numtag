@@ -461,7 +461,8 @@ class TestDecimalsAndDigits(unittest.TestCase):
                 self.assertEqual(read("cinco ponto três", lang), [("cinco", "5", C), ("três", "3", C)])
         for text, lang in (("Artikel 5 Punkt 3", "de"), ("l'article 5 point 3", "fr-FR"),
                            ("articolo 5 punto 3", "it"), ("l'article 5 punt 3", "ca"),
-                           ("o artigo 5 punto 3", "gl"), ("l artigo 5 ponto 3", "mwl")):
+                           ("o artigo 5 punto 3", "gl"), ("l artigo 5 ponto 3", "mwl"),
+                           ("l artículu 5 puntu 3", "ast")):
             with self.subTest(lang=lang):
                 self.assertEqual(read(text, lang), [("5", "5", C), ("3", "3", C)])
 
