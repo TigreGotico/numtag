@@ -454,6 +454,19 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
+A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count, so "egy kétszázad" is 1/200 and "3 tízezred" reads only the 3. A hyphen before it ends a range.
+
+```python
+>>> read("A mennyisége körülbelül háromszázad része a klórénak.", "hu")
+[('háromszázad', '1/300')]
+>>> read("Az atommag az atom méretének tízezred része.", "hu")
+[('tízezred', '0.0001')]
+>>> read("Egy kétszázad milliméter vastag.", "hu")
+[('Egy kétszázad', '0.005')]
+```
+
+> hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.

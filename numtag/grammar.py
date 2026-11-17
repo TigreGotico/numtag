@@ -501,6 +501,18 @@ class Grammar:
                       if not e.plural and len(e.value) > 2 and e.value == digits.shift("1", len(e.value) - 1)]
         return found
 
+    def _lone_glued_denominator(self, i: int) -> list[Parse]:
+        """"tízezred" with no number before it is one part of the product,
+        one ten-thousandth. A number or a decimal marker before the word
+        leaves it to the readings that fold that count in."""
+        if not self.lex.glued_denominator_alone or i > 0 and (
+                not self.tokens[i].gap.strip()
+                and (self.starts_number(i - 1) or self._is_word(i - 1, self.lex.decimal_markers))):
+            return []
+        return [Parse(stop, Rational("1", value), ambiguous=self.lex.glued_denominator_alone_ambiguous,
+                      parts=_piece(Role.DENOMINATOR, i, stop, Rational(value)))
+                for stop, value, _ in self._glued_denominators(i)]
+
     def _inside_glued_denominator(self, i: int) -> bool:
         """True when the denominator at ``i`` ends a glued one ("ezred" in
         "tízezred"): it is no denominator of its own."""
@@ -926,7 +938,8 @@ class Grammar:
                 (Role.DECIMAL_MARK if self._is_word(k, self.lex.decimal_markers) else Role.JOINER, k, k + 1, None)
                 for k in range(last.end, j))
             # the whole part before the joiner makes the fraction clear: "três e um quarto"
-            found += [replace(f, value=_sum(run) + f.value, ambiguous=False, parts=parts + f.parts)
+            lone = self._lone_glued_denominator(j)
+            found += [replace(f, value=_sum(run) + f.value, ambiguous=f in lone and f.ambiguous, parts=parts + f.parts)
                       for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
             if not self.lex.part_after_joiner_needs_article:
@@ -974,6 +987,7 @@ class Grammar:
         if self._is_word(i + 1, self.lex.part_nouns):
             found += [Parse(i + 2, Rational("1", e.value), parts=below(i, i + 2, e.value))
                       for e in self._readings(i, "ordinal")]
+        found += self._lone_glued_denominator(i)
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
