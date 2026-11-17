@@ -5,8 +5,8 @@
    "source": "Swedish uses the long scale: CLDR RBNF sv (unicode-rbnf 2.4.1 data, sv.xml), %spellout-numbering: \"1000000000: en miljard[ →→]\", \"1000000000000: en biljon[ →→]\", \"1000000000000000: en biljard[ →→]\""
   },
   "group_mark": {
-   "value": " ",
-   "source": "CLDR number symbols for Swedish (Babel 2.18.0): decimal ',', group ' '"
+   "value": "\u00a0",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/sv/numbers.json, main.sv.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space), \"decimal\": \",\". A plain space between groups reads through space_groups."
   },
   "decimal_mark": {
    "value": ",",
