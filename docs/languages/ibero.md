@@ -32,13 +32,13 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 
 ## The Spanish joiner "y"
 
-In Spanish, "y" joins a ten and a unit. After "mil" it also joins a last group below a hundred, as in "mil y una noches". A hundred after "mil y" is a second number, and no "y" joins a group after "millón".
+In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Other uses of "y" after "mil" stay two numbers. Older texts join them, and numtag does not read that form yet. No "y" joins a group after "millón".
 
 ```python
 >>> read('Las mil y una noches', 'es')
 [('mil y una', '1001')]
->>> read('dos mil y uno', 'es')
-[('dos mil y uno', '2001')]
+>>> read('dentro de mil y un días', 'es')
+[('mil y un', '1001')]
 >>> read('mil y quinientos', 'es')
 [('mil', '1000'), ('quinientos', '500')]
 >>> read('un millón y dos', 'es')
@@ -58,7 +58,7 @@ The old spelling "diez y seis" is 16, and so are "diez y siete" to "diez y nueve
 
 > DPD "cardinales" §2: "Las grafías pluriverbales" "diez y seis" "son anticuadas y deben evitarse"
 
-Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign.
+Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number.
 
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers('Éramos ciento y la madre.', 'es')]
@@ -69,6 +69,8 @@ Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un c
 [('ciento', '100')]
 >>> read('cinco por ciento', 'es')
 [('cinco', '5')]
+>>> read('el tanto por ciento', 'es')
+[]
 ```
 
 > DPD "ciento" §2: "Quien hace un cesto hace ciento"

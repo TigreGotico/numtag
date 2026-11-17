@@ -45,9 +45,9 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(read("cien", "es"), [("cien", "100", C)])
 
     def test_un_ciento_is_a_hundred(self):
-        # es.wikipedia "Puentedeume": 9 and 100
-        self.assertEqual(read("Nueve restaurantes y casi un ciento de bares y cafeterías.", "es"),
-                         [("Nueve", "9", C), ("un ciento", "100", C)])
+        # es.wikipedia "Puentedeume": 9, 100 and the year 2011
+        self.assertEqual(read("Nueve restaurantes y casi un ciento de bares y cafeterías (datos de 2011).", "es"),
+                         [("Nueve", "9", C), ("un ciento", "100", C), ("2011", "2011", C)])
         self.assertEqual(read("un ciento de platos", "es"), [("un ciento", "100", C)])
 
     def test_ciento_por_ciento_is_one_hundred_and_por_ciento_after_a_number_is_the_sign(self):
@@ -56,22 +56,34 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(sure("cinco por ciento", "es"), [("cinco", "5", 1.0)])
         self.assertEqual(sure("el noventa por ciento", "es"), [("noventa", "90", 1.0)])
 
-    def test_y_after_mil_joins_a_last_group_below_a_hundred(self):
-        # 1000 + 1 = 1001; 2000 + 1 = 2001; 1000 + 20 = 1020; 2000 + 45 = 2045
+    def test_y_between_mil_and_a_one_is_one_number(self):
+        # 1000 + 1 = 1001, es.wikipedia "Las mil y una noches" and "Los mil y un días"
         self.assertEqual(read("Las mil y una noches", "es"), [("mil y una", "1001", C)])
-        self.assertEqual(read("dos mil y uno", "es"), [("dos mil y uno", "2001", C)])
         self.assertEqual(read("dentro de mil y un días", "es"), [("mil y un", "1001", C)])
-        self.assertEqual(read("mil y veinte", "es"), [("mil y veinte", "1020", C)])
-        self.assertEqual(read("dos mil y cuarenta y cinco", "es"), [("dos mil y cuarenta y cinco", "2045", C)])
+        self.assertEqual(read("mil y uno", "es"), [("mil y uno", "1001", C)])
         # without "y" the same number stays whole
         self.assertEqual(read("mil uno", "es"), [("mil uno", "1001", C)])
 
-    def test_y_joins_no_hundred_after_mil_and_nothing_after_a_larger_scale(self):
+    def test_other_y_after_mil_stays_two_numbers_a_known_gap(self):
+        # Older texts join these; numtag reads the unjoined form, and the gap is open
         self.assertEqual(read("mil y quinientos", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
-        self.assertEqual(read("mil y cien", "es"), [("mil", "1000", C), ("cien", "100", C)])
+        self.assertEqual(read("mil y veinte", "es"), [("mil", "1000", C), ("veinte", "20", C)])
+        self.assertEqual(read("dos mil y uno", "es"), [("dos mil", "2000", C), ("uno", "1", C)])
+        self.assertEqual(read("doscientos mil y uno", "es"), [("doscientos mil", "200000", C), ("uno", "1", C)])
+
+    def test_no_y_joins_a_group_after_a_larger_scale(self):
         self.assertEqual(read("un millón y dos", "es"), [("un millón", "1000000", C), ("dos", "2", C)])
         self.assertEqual(read("dos millones y quinientos mil", "es"),
                          [("dos millones", "2000000", C), ("quinientos mil", "500000", C)])
+
+    def test_por_ciento_with_no_number_before_it_holds_no_hundred(self):
+        # "tanto por ciento" is a percentage (es.wiktionary "ciento", sense 5)
+        self.assertEqual(sure("el tanto por ciento", "es"), [])
+        self.assertEqual(sure("¿qué tanto por ciento?", "es"), [])
+        self.assertEqual(sure("un tanto por ciento elevado", "es"), [("un", "1", 0.3)])
+
+    def test_an_ordinal_before_por_ciento_keeps_its_score(self):
+        self.assertEqual(sure("segundo por ciento", "es"), [("segundo", "2", 0.4)])
 
     def test_the_old_spelling_diez_y_seis_to_nueve_is_one_number(self):
         # 10 + 6 = 16; 10 + 7 = 17; 10 + 9 = 19
@@ -85,7 +97,7 @@ class TestSpanish(unittest.TestCase):
                                     ("diez y cinco", "10", "5"), ("diez y veinte", "10", "20"),
                                     ("once y doce", "11", "12"), ("quince y dieciséis", "15", "16")):
             with self.subTest(text=text):
-                self.assertEqual([(m[1]) for m in read(text, "es")], [first, second])
+                self.assertEqual([m[1] for m in read(text, "es")], [first, second])
 
     def test_the_one_word_tens_are_valid(self):
         # 30 + 1 = 31; 40 + 3 = 43

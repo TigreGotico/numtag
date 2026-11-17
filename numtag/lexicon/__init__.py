@@ -303,10 +303,12 @@ class Lexicon:
     # Where the joiner may go before a half or a fraction after a whole
     # ("dua setengah", "tiga dua-pertiga", "two and a half").
     joiner_before_half: Joiner = Joiner.REQUIRED
-    # The joiner between two groups stands only after the thousands and
-    # before a last group below a hundred ("mil y una"); after a larger scale
-    # word, or before a hundred or more, the parts are two numbers.
-    joiner_thousand_tens_units_only: bool = False
+    # The joiner between two groups stands only between a thousand and a one
+    # ("mil y una"); before any other group, the parts are two numbers.
+    joiner_thousand_one_only: bool = False
+    # A percent phrase names the percent sign with no number before it too:
+    # "tanto por ciento" holds no 100.
+    percent_phrase_is_no_number: bool = False
     # A part word after the joiner takes an article: "six and a quarter",
     # never "six and quarter" ("forty and eighth" is 40 and 8th).
     part_after_joiner_needs_article: bool = False
@@ -586,7 +588,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
-        joiner_thousand_tens_units_only=settings.get("joiner_thousand_tens_units_only", False),
+        joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
+        percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),
         one_after_noun=frozenset(words.get("one_after_noun", ())),

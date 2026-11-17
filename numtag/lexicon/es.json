@@ -34,23 +34,27 @@
   },
   "joiner_between_groups": {
    "value": "optional",
-   "source": "DPD \"cardinales\" §2: \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\". The \"y\" is the joiner of a ten and a unit. Read as a joiner after \"mil\" only before a last group below a hundred (\"mil y una\", \"dos mil y uno\", \"mil y veinte\"): es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights), and \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\". No source joins \"y\" to a hundred after \"mil\", so \"mil y quinientos\" stays two numbers; no source joins \"y\" after a larger scale word, so \"un millón y dos\" stays two numbers."
+   "source": "DPD \"cardinales\" §2: \"interponiendo entre los cardinales simples la conjunción y: treinta y uno [...]; el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\". The DPD writes \"y\" between a ten and a unit only. The \"y\" between \"mil\" and \"un\", \"una\" or \"uno\" is read as one number on the attested idiom: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days). Other uses of \"y\" after \"mil\" are not read as one number: older texts join a hundred after \"mil y\" (\"mil y quinientos\"), and no source opened shows \"dos mil y uno\" or \"mil y veinte\", so they stay two numbers. This is a known gap for older texts."
   },
-  "joiner_thousand_tens_units_only": {
+  "percent_phrase_is_no_number": {
    "value": true,
-   "source": "The same sources as joiner_between_groups: the \"y\" joins only a last group below a hundred, and only after \"mil\"."
+   "source": "DPD \"ciento\" §3: \"En la expresión de los porcentajes ha de utilizarse siempre la fórmula por ciento\"; \"por ciento se escribe en dos palabras\". The \"ciento\" after \"por\" is part of the phrase, also with no number before it: es.wiktionary \"ciento\", locuciones \"por ciento\" and \"ciento por ciento\", sense 5 \"Tanto por ciento\" (a percentage). \"tanto por ciento\" holds no 100."
+  },
+  "joiner_thousand_one_only": {
+   "value": true,
+   "source": "The \"y\" joins \"mil\" and a one only: es.wikipedia \"Las mil y una noches\": \"La estratagema se repite durante mil y una noches\" (1001 nights); \"Los mil y un días\": \"Los mil y un días es un conjunto de historias\" (1001 days)."
   },
   "joiner_before_round_hundred": {
    "value": false,
-   "source": "No hundred follows the joiner after the thousands: DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta\"; the \"y\" joins a ten and a unit only."
+   "source": "joiner_between_groups reads a joiner only between \"mil\" and a one (\"mil y una\"): no count of a hundred or more follows a joiner after the thousands, so the setting is false."
   },
   "comma_between_classes": {
    "value": false,
    "source": "CLDR RBNF es, \"1000: mil[ >>];\", writes a space, not a comma, between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
   },
   "joiner_before_last_group": {
-   "value": "never",
-   "source": "DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\": no joiner stands before the last group (\"mil doscientos\", \"mil veintiuno\")."
+   "value": "optional",
+   "source": "DPD \"cardinales\" §2: \"el resto se forma por mera yuxtaposición: ciento dos, mil cuatrocientos treinta, trescientos mil veintiuno\": no joiner is required before a last group (\"mil doscientos\", \"mil veintiuno\"). A joiner stands before the last group only in the idiom \"mil y un\", \"mil y una\", \"mil y uno\" (see joiner_between_groups)."
   },
   "ordinal_style": {
    "value": "every_word",
@@ -306,7 +310,7 @@
    "role": "ten",
    "value": "10",
    "takes_units": ["6", "7", "8", "9"],
-   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"Las grafías pluriverbales\" \"diez y seis\", \"veinte y uno\" \"son anticuadas y deben evitarse\": the old spelling of 16 to 19 is \"diez\" \"y\" and the unit 6 to 9. \"diez y uno\" to \"diez y cinco\" are no old spelling (the one-word \"once\" to \"quince\" are the numbers), so they stay two numbers."
+   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; DPD \"cardinales\" §2: \"Las grafías pluriverbales\" \"diez y seis\", \"veinte y uno\" \"son anticuadas y deben evitarse\": the old spelling of 16 to 19 is \"diez\" \"y\" and the unit 6 to 9. \"diez y uno\" to \"diez y cinco\" are no old spelling: DPD \"cardinales\" §2: \"Hay cardinales simples\" [...] \"de cero a quince\", so \"once\" to \"quince\" are one word each, so they stay two numbers."
   },
   {
    "word": "once",
