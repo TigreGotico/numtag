@@ -470,10 +470,10 @@ class Grammar:
         the number ("cento e um", never "cento" alone). Without
         ``multiplied``, no hundreds from a count and a multiplier ("two
         hundred")."""
-        # "birkaç yüz": a vague quantity stands where the one of "one hundred" would, when the
-        # hundred word takes a count ("iki yüz"). "cento" and "cem" take none: "alguns cento e vinte" is 120
+        # "birkaç yüz": a vague quantity right before the hundred stands where
+        # its one would; after "birkaç bin" the hundred starts a lower group
         found = [(i + 1, e.value, e.bound) for e in self._readings(i, "hundred")
-                 if e.value != "100" or not self._readings(i, "hundred_multiplier") or not self._after_vague(i)]
+                 if e.value != "100" or not self._vague_step(i)[0]]
         if not multiplied:
             return found
         counts = self.tens_units(i, nonzero=True) + self._bound_units(i)
@@ -665,7 +665,7 @@ class Grammar:
                 # "one point two hundred": a multiplier after the decimals
                 found += [Count(e + 1, decimal.scaled(m.exponent), decimal=True,
                                 parts=parts + _piece(Role.SCALE, e, e + 1, ONE.scaled(m.exponent)))
-                          for m in self._readings(e, "hundred_multiplier") if not m.plural]
+                          for m in self._readings(e, "hundred_multiplier") if not m.plural or m.counted]
             # "two and a half million", "zweieinhalb Millionen", "iki buçuk milyon"
             if value != "0":
                 found += [Count(e, Rational(value) + HALF, needs_multiplier=True, parts=whole + half)
@@ -684,6 +684,11 @@ class Grammar:
                 # only a half after a joiner: a year before "полмиллиона" is its own number
                 found += [Count(e, value + HALF, needs_multiplier=True, parts=whole + half)
                           for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
+            # a counted hundred noun takes digits below a thousand as it takes
+            # a word count: "3 מאות" is 300, as "שלוש מאות" is
+            if len(_whole(value)) <= 3:
+                found += [count(end + 1, value.scaled(m.exponent), needs_multiplier=not first, decimal=decimal)
+                          for m in self._readings(end, "hundred_multiplier") if m.counted]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
