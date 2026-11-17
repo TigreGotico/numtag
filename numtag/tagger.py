@@ -76,7 +76,9 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
                      after_slash: list[bool]) -> list[NumberMention]:
     """A digit fraction with a slash, "3/4", is one FRACTION mention. A sure
     cardinal right before it, with only a space between, makes a mixed
-    number: "5 1/2" is 5.5, and a sign of the whole covers the fraction. Only
+    number: "5 1/2" is 5.5, and a sign of the whole covers the fraction. Four
+    digits with no group mark are no whole part, because they are mostly a
+    year: "In 2023 1/3 of adults" is 2023 and 1/3. Only
     a fraction below one reads, so "24/7" and "50/50" keep their two numbers.
     So do a chain of slashes ("12/05/2024"), a term with a leading zero
     ("03/04") and a numerator right after a sign ("5-1/2")."""
@@ -97,7 +99,9 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
             continue
         spaced = top.gap != "" and not top.gap.strip(" \u00a0\u202f")
         whole = by_end.get(tokens[k - 2].end) if k > 1 and spaced and not (signed or after_slash[k - 2]) else None
-        if whole and (whole.kind != Kind.CARDINAL or whole.reasons):
+        # Four digits with no group mark are mostly a year: "In 2023 1/3 of adults".
+        if whole and (whole.kind != Kind.CARDINAL or whole.reasons
+                      or (len(whole.text.lstrip(SIGNS)) == 4 and whole.text.lstrip(SIGNS).isdigit())):
             whole = None
         value = Rational(*terms, signed)
         parts = (Part(Role.COUNT, (top.start, top.end), top.text, Rational(terms[0], negative=signed).canonical()),

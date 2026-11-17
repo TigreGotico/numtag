@@ -47,7 +47,7 @@ A fraction in digits with a slash is one FRACTION mention. Its value follows the
 [('3/4', '0.75'), ('1/3', '1/3'), ('6/8', '0.75'), ('2 1/2', '2.5'), ('-5 1/3', '-16/3')]
 ```
 
-Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers.
+Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers. Four digits with no group mark are no whole part, because they are mostly a year. Write "1,500 1/2" for a mixed number above one thousand.
 
 | Text | Result | Reason |
 |---|---|---|
@@ -56,10 +56,13 @@ Only a fraction below one reads, and each term has no leading zero. Every other 
 | "12/05/2024", "1/2/3" | three numbers | a chain of slashes |
 | "5-1/2", "3 / 4" | no fraction | a sign or a space at the slash |
 | "3.5 1/2" | 3.5 and 0.5 | a decimal is no whole part |
+| "In 2023 1/3 of adults" | 2023 and 1/3 | four digits with no group mark are mostly a year |
 
 ```python
 >>> [(m.text, m.value) for m in tag_numbers("A 24/7 shop, a 50/50 chance, due 03/04, and 3.5 1/2 more.", "en")]
 [('24', '24'), ('7', '7'), ('50', '50'), ('50', '50'), ('03', '3'), ('04', '4'), ('3.5', '3.5'), ('1/2', '0.5')]
+>>> [(m.text, m.value) for m in tag_numbers("In 2023 1/3 of adults smoked.", "en")]
+[('2023', '2023'), ('1/3', '1/3')]
 ```
 
 Where a language groups digits with a space, as Norwegian and Swedish do, a group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.

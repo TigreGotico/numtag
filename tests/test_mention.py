@@ -295,6 +295,20 @@ class TestSlashFraction(unittest.TestCase):
         self.assertEqual([m.value for m in tag_numbers("1.5/4", "en")], ["1.5", "4"])
         self.assertEqual([m.value for m in tag_numbers("1/2.5", "en")], ["1", "2.5"])
 
+    def test_four_digits_with_no_group_mark_are_no_whole_part(self):
+        # four digits are mostly a year: "In 2023 1/3 of adults" is the year 2023 and a third
+        self.assertEqual(read("In 2023 1/3 of adults smoked."),
+                         [("2023", "2023", "cardinal"), ("1/3", "1/3", "fraction")])
+        self.assertEqual(read("In 2022 1/4 of the budget", "en"),
+                         [("2022", "2022", "cardinal"), ("1/4", "0.25", "fraction")])
+        self.assertEqual(read("-2023 1/2"), [("-2023", "-2023", "cardinal"), ("1/2", "0.5", "fraction")])
+        self.assertEqual(read("В 2023 1/3 взрослых курили.", "ru"),
+                         [("2023", "2023", "cardinal"), ("1/3", "1/3", "fraction")])
+        # a group mark, or three or five digits, still make a mixed number
+        self.assertEqual(read("1,500 1/2"), [("1,500 1/2", "1500.5", "fraction")])  # 1500 + 1/2
+        self.assertEqual(read("999 1/2"), [("999 1/2", "999.5", "fraction")])
+        self.assertEqual(read("12345 1/2"), [("12345 1/2", "12345.5", "fraction")])
+
     def test_only_a_cardinal_before_the_fraction_makes_it_mixed(self):
         self.assertEqual(read("x 3.5 1/2 y"), [("3.5", "3.5", "decimal"), ("1/2", "0.5", "fraction")])
         self.assertEqual(read("-3.5 1/2"), [("-3.5", "-3.5", "decimal"), ("1/2", "0.5", "fraction")])
