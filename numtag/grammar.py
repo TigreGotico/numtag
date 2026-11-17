@@ -818,9 +818,13 @@ class Grammar:
                             and self.lex.joiner_before_last_group == Joiner.REQUIRED:
                         continue
                     count = group.count.scaled(group.exponent)
+                    # a group of hundreds after the thousands joins them,
+                    # except after a range cue, where the joiner joins the limits
+                    hundreds = self.lex.joiner_thousand_hundreds and len(_whole(count)) == 3 \
+                        and not (i > 0 and self._is_word(i - 1, self.lex.range_cues))
                     if j > last.end and self.lex.joiner_thousand_one_only \
-                            and not (last.exponent == THOUSAND and _whole(last.count) == "1"
-                                     and _whole(count) == "1"):
+                            and not (last.exponent == THOUSAND
+                                     and (_whole(last.count) == "1" == _whole(count) or hundreds)):
                         continue
                     if compound and not group.top and self._takes_count(group.end, count, group.exponent, whole_group=True):
                         continue
