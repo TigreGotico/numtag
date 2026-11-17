@@ -9,7 +9,7 @@ numtag reads French, Italian, Romanian, Basque and Indonesian. French has three 
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
 | Italian | every `it` tag | `numtag/lexicon/it.json` | long | 187 | 185 |
 | Romanian | every `ro` tag | `numtag/lexicon/ro.json` | long | 157 | 157 |
-| Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 162 | 162 |
+| Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 168 | 168 |
 | Indonesian | every `id` tag | `numtag/lexicon/id.json` | short | 175 | 174 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -82,6 +82,25 @@ A Basque ordinal takes the article -a with no space, as any other word does. num
 [('hirugarrena', '3')]
 >>> read('Maiatzaren Lehena kalean bizi da.', 'eu')
 [('Lehena', '1')]
+```
+
+## Basque fractions with the article
+
+"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads "erdia" as 0.5, "herena" as 1/3 and "laurdena" as 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
+
+> artikulua eta kasu-marka zuzenean lotzen zaizkio zenbatzaileari, beste edozein hitzi bezala, bien artean ezer jarri gabe eta bien artean zuriunerik utzi gabe
+
+The rule does not name these three words. The value comes from the noun, and the Euskaltzaindia dictionary gives the forms: "Bizitzaren erdia.", "Liburuaren laurdena ere ez du irakurri.", "Lehen herena." A noun before "erdia" is no part of the number. In "ordu erdia" (half an hour) the number is "erdia".
+
+A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
+
+```python
+>>> read('Biribilaren laurdena da.', 'eu')
+[('laurdena', '0.25')]
+>>> read('lehenengo ordu erdia', 'eu')
+[('lehenengo', '1'), ('erdia', '0.5')]
+>>> read('kilo bat eta erdia', 'eu')
+[('bat eta erdia', '1.5')]
 ```
 
 ## The scale
