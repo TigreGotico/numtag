@@ -51,7 +51,7 @@ class TensOrder(str, Enum):
 # ("δυόμισι"); a "rational" word is a number that is no whole number
 # ("полтора" is 3/2); a "teen_suffix" adds its value to the unit before it
 # ("dua belas" is 12).
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen",
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen", "decimal_zero",
                "value_word", "unit_and_half", "rational", "teen_suffix")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
@@ -260,6 +260,9 @@ class Lexicon:
     # After a decimal marker a numerator and a power-of-ten denominator
     # give the decimals ("öt egész két tized" is 5.2).
     decimal_fraction: bool = False
+    # A count glued to the part word of a hundred or more multiplies it, as
+    # it multiplies the scale word ("kétszázad" is 1/200, as "kétszáz" is 200).
+    glued_denominators: bool = False
     # A period right after a digit string makes it an ordinal when a
     # lower-case word or a digit follows ("a 2. emelet").
     dot_ordinal: bool = False
@@ -454,14 +457,18 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             for form in script.lexicon_forms(word):
                 readings.setdefault(fold(form), []).append(reading)
 
-    # Ordinal scale words come last: each takes its power of ten from the
-    # cardinal scale word it names.
-    entries = sorted(data["entries"], key=lambda e: e["role"] == "ordinal_scale")
+    # Ordinal scale words and denominators that name a scale word ("scale_of")
+    # come last: each takes its power of ten from the cardinal scale word.
+    entries = sorted(data["entries"], key=lambda e: e["role"] == "ordinal_scale" or "scale_of" in e)
     for spec in entries:
         role = spec["role"]
         facts = dict(gender=spec.get("gender"), plural=spec.get("plural", False),
                      ambiguous=spec.get("ambiguous", False), part=spec.get("part", False))
-        if role in VALUE_ROLES:
+        if role == "denominator" and "scale_of" in spec:
+            cardinal = [e for e in readings[fold(script.fold(spec["scale_of"]))] if e.role in SCALE_ROLES]
+            put(spec, Entry(role, "1" + "0" * cardinal[0].exponent, scale_dependent=cardinal[0].scale_dependent,
+                            **facts))
+        elif role in VALUE_ROLES:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
@@ -553,6 +560,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         dotted_i=settings.get("dotted_i", False),
         fraction_agreement=settings.get("fraction_agreement", True),
         decimal_fraction=settings.get("decimal_fraction", False),
+        glued_denominators=settings.get("glued_denominators", False),
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),

@@ -283,6 +283,12 @@
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"17: هفده;\"."
     },
     {
+      "word": "هیفده",
+      "role": "ten",
+      "value": "17",
+      "source": "Dehkhoda, vajehyab.com \"هیفده\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/dehkhoda-vajehyab-hifdah.html): \"هیفده . [ دَه ْ ] (عدد، ص ، اِ) هفده . عدد اصلی مرکب از هفت و ده . آن عدد که پس از شانزده و قبل از هیجده است : ده تخت جامهٔ مرتفع از هر لونی و ده کنیزک و هیفده غلام . (تاریخ بیهقی ). رجوع به هفده شود.\""
+    },
+    {
       "word": "هجده",
       "role": "ten",
       "value": "18",
@@ -451,6 +457,12 @@
       "value": 9,
       "plural": true,
       "source": "CLDR RBNF, common/rbnf/fa.xml (unicode-org/cldr, cldrVersion 50): \"1000000: << میلیون\", \"1000000000: << میلیارد\": each takes a count; \"1000000000000: << هزار میلیارد\". en.wiktionary \"میلیون\": \"( plural میلیون‌ها ( milyun-hâ, melyun-hâ ) )\"; fa.wikipedia \"دستور زبان فارسی\": \"همه اسم‌ها در فارسی با پسوند -ها جمع می‌شوند\"; fa.wiktionary \"میلیارد\" names it a noun: \"ملیارد: هزار میلیون.\""
+    },
+    {
+      "word": "تریلیون",
+      "role": "scale_noun",
+      "rank": 3,
+      "source": "CLDR RBNF fa: knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/cldr-rbnf-fa.xml: \"1000000000000: << هزار میلیارد[ و >>];\"; fa.wikipedia, \"تریلیون\", which opens by naming two definitions, knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wp-trilyun.wikitext: \"تریلیون عددی با دو تعریف متمایز است:\"; short scale, knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wp-trilyun.wikitext: \"۱٬۰۰۰٬۰۰۰٬۰۰۰٬۰۰۰، یعنی یک میلیون میلیون یا 10¹² (ده تا توان دوازدهم)، همان‌طور که در مقیاس کوتاه تعریف شده‌است\"; long scale, knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wp-trilyun.wikitext: \"یعنی 10¹⁸ (ده به توان هجده) همان‌طور که در مقیاس طولانی تعریف شده‌است\"; the article's own definition line, knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wp-trilyun.wikitext: \"ی است برابر با ۱٬۰۰۰٬۰۰۰٬۰۰۰٬۰۰۰\"; fa.wiktionary, \"تریلیون\", citing the Moin dictionary for the long-scale sense (10^9 x 10^9 = 10^18), knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wikt-تریلیون.wikitext: \"# عددی معادل یک میلیارد میلیارد.\", knowledge/wiki/audits/numtag/follow-up-prs/scale-names/sources/fa-wikt-تریلیون.wikitext: \"* فرهنگ لغت معین\". The lexicon scale is short, so the default is 10^12; scale=long gives 10^18"
     },
     {
       "word": "نیم",

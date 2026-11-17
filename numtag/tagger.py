@@ -45,7 +45,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                       if lexicon.period_ordinals else None,
                       dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
                       phrases=lexicon.phrases, group_mark=lexicon.group_mark,
-                      compounds=lexicon.compounds)
+                      compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
         mentions += _tag_run(text, lexicon, run)
@@ -81,10 +81,17 @@ def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
 
 
 def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:
-    return (lexicon.comma_between_classes and token.gap.startswith(",") and token.gap[1:].isspace()
-            and not previous.is_digits and not token.is_digits
-            and any(e.role in ("scale_numeral", "scale_noun") for e in lexicon.readings.get(previous.norm, ()))
-            and any(e.role != "half" for e in lexicon.readings.get(token.norm, ())))
+    """The classes go from the largest down, so the class after the comma
+    is smaller: "dois milhões, mil e quinhentos" is one number, and "dois
+    mil, milhões de pessoas" is two thousand and then a noun phrase."""
+    if not (lexicon.comma_between_classes and token.gap.startswith(",") and token.gap[1:].isspace()
+            and not previous.is_digits and not token.is_digits):
+        return False
+    classes = ("scale_numeral", "scale_noun")
+    scales = [e.exponent for e in lexicon.readings.get(previous.norm, ()) if e.role in classes]
+    after = lexicon.readings.get(token.norm, ())
+    return bool(scales) and any(e.role != "half" for e in after) \
+        and all(e.exponent < max(scales) for e in after if e.role in classes)
 
 
 def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMention]:
@@ -120,10 +127,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         value = -best.value if negative != signed else best.value
-        # a number glued to a joiner prefix it does not use ("ושבעה") keeps
-        # the whole word: a span never starts inside a word
-        first = i - 1 if run[i].attached else i
-        span = (run[first].start, run[best.end - 1].end)
+        span = (run[i].start, run[best.end - 1].end)
         reason = _reason(number_grammar, lexicon, run, start, best, alone=text.strip() == run[start].text,
                          signed=negative)
         kind = _kind(lexicon, run[start:best.end], best)
@@ -134,10 +138,6 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             pieces = ((role, first_index, end, -part_value),) + pieces[1:]
         if negative:
             pieces = ((Role.MINUS, i, start, None),) + pieces
-        if first < pieces[0][1]:
-            # the joiner prefix is in the first part, as in the span
-            role, _, end, part_value = pieces[0]
-            pieces = ((role, first, end, part_value),) + pieces[1:]
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), kind,
             _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
@@ -328,6 +328,10 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     bare_percent = parse.end == start + 1 and not run[start].is_digits \
         and (parse.end == len(run) or run[parse.end].norm in lexicon.of_words) and any(
             tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p for p in lexicon.percent_phrases)
+    # a word that is weak only at the end of a clause is the number when it
+    # is the whole text with no punctuation: a spoken answer ("hat" answers "hány?")
+    whole = alone and parse.end == start + 1 and bool(entries) \
+        and all(e.weak_at_end and not e.ambiguous for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    homograph = parse.ambiguous or lone_ambiguous or listed or weak_ordinal or bare_percent
+    homograph = (parse.ambiguous and not whole) or lone_ambiguous or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
