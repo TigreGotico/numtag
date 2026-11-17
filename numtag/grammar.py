@@ -952,8 +952,10 @@ class Grammar:
 
         numerators = [(end, value) for end, value in self.small(i, nonzero=True)
                       if not self._ordinal_form(end - 1)]
-        # "1 sixth", "3 quarters": digits count the parts
-        if (read := self._digit_value(i)) and not read[2] and not read[1].is_zero():
+        # "1 sixth", "3 quarters": digits count the parts. A denominator that
+        # is also a common noun takes no digits: "3 quartos" are three rooms.
+        if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
+                and not any(e.ambiguous for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))
         # "doze avos": the particle is in the denominator
         found = [Parse(end + 1, Rational("1", value), parts=below(i, end + 1, value)) for end, value in numerators

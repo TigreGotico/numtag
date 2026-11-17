@@ -165,6 +165,15 @@ A threshold also drops a real number when the weak word joins it. In "O apartame
 [('três quartos', '0.75', 0.4), ('uma', '1', 0.3)]
 ```
 
+Digits before a denominator count its parts: "3 quarters" is 0.75 and "2 terços" is 2/3. An ambiguous denominator takes no digits, because a fraction in digits is written "3/4". So "3 quartos" keeps the count three, and "quartos" stands alone at 0.4.
+
+```python
+>>> read("O apartamento tem 3 quartos e uma sala.", "pt-PT")
+[('3', '3', 1.0), ('quartos', '4', 0.4), ('uma', '1', 0.3)]
+>>> read("Comeu 2 terços do bolo.", "pt-PT")
+[('2 terços', '2/3', 1.0)]
+```
+
 ## What a caller does with a low score
 
 | Need | Action |

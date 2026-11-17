@@ -328,6 +328,19 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("1.5 sixth"), [("1.5", "1.5", D), ("sixth", "6", O)])
         self.assertEqual(en("0 sixths"), [("0", "0", C)])
 
+    def test_a_decimal_is_no_count_of_parts(self):
+        # 2.5 is no whole count: "2.5 sixths" must not read the digits 25 over 6
+        self.assertEqual(en("2.5 sixths"), [("2.5", "2.5", D)])
+        self.assertEqual(read("2,5 terços", "pt-PT"), [("2,5", "2.5", D)])
+
+    def test_digits_before_a_denominator_that_is_also_a_noun_stay_a_count(self):
+        # "quartos" and "cuartos" are also rooms: three bedrooms, not 3/4
+        for lang in ("pt-PT", "pt-BR"):
+            with self.subTest(lang=lang):
+                self.assertEqual(read("O apartamento tem 3 quartos e uma sala.", lang)[0], ("3", "3", C))
+        self.assertEqual(read("Un piso de 3 cuartos", "es")[1], ("3", "3", C))
+        self.assertEqual(read("2 quarti", "it")[0], ("2", "2", C))
+
     def test_digits_count_the_parts_in_portuguese_and_german(self):
         # 1/3; 2/6 = 1/3
         self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])
