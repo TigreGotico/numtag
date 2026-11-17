@@ -96,11 +96,11 @@ Hungarian writes a decimal as a whole, "egész", and a count of parts: "három e
 
 > Wiktionary, "milliomod" (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/milliomod.raw): "[[millionth]] {{gloss|one of a million equal parts of a whole}}"
 
-Before a noun, the glued form can also be a count of parts: "háromszázad másodperc" can be 3/100 of a second. A glued part word of a hundred or more with no count before it therefore gives no number. After a hyphen, the glued count is the second member of a range, and it counts the parts: "egy-kétszázad milliméter" is one or two hundredths of a millimetre.
+Before a noun, the glued form can also be a count of parts: "háromszázad másodperc" can be 3/100 of a second. A glued part word of a hundred or more with no count before it reads as one part of the product, the multiplier that hu.wikipedia writes: "háromszázad" is 1/300, at the low score of a word with a second meaning, and the count of parts stays the alternative. After a hyphen, the glued count is the second member of a range, and it counts the parts: "egy-kétszázad milliméter" is one or two hundredths of a millimetre.
 
 ```python
 >>> read('tízezred', 'hu')
-[]
+[('tízezred', '0.0001')]
 >>> read('egy-kétszázad milliméter', 'hu')
 [('egy', '1'), ('kétszázad', '0.02')]
 ```
