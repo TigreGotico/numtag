@@ -5,8 +5,8 @@
    "source": "Norwegian Nynorsk uses the long scale: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: \"1000000000: éin milliard[ →→]\", \"1000000000000: éin billion[ →→]\""
   },
   "group_mark": {
-   "value": " ",
-   "source": "CLDR number symbols for Norwegian Nynorsk (Babel 2.18.0): decimal ',', group ' '"
+   "value": "\u00a0",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/nn/numbers.json, main.nn.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space), \"decimal\": \",\". A plain space between groups reads through space_groups."
   },
   "decimal_mark": {
    "value": ",",
