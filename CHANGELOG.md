@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.6a1](https://github.com/TigreGotico/numtag/tree/0.14.6a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.5a1...0.14.6a1)
+
+**Merged pull requests:**
+
+- fix\(es\): "cien por cien" reads one mention of 100 [\#96](https://github.com/TigreGotico/numtag/pull/96) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.14.5a1](https://github.com/TigreGotico/numtag/tree/0.14.5a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.4a1...0.14.5a1)
