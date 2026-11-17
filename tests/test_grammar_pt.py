@@ -247,6 +247,21 @@ class TestFractionOfAScale(unittest.TestCase):
         # "no meio de um milhão de pessoas": in the middle of a million people
         self.assertEqual(pt("no meio de um milhão de pessoas"), [("meio", "0.5", F), ("um milhão", "1000000", C)])
 
+    def test_a_scale_noun_that_starts_a_longer_number_is_not_the_whole_part(self):
+        # The grammar has no reading for a fraction of a compound number, so each
+        # of these keeps the reading of two numbers: 1/3 and 1500; 1/4 and 1200; 3/4 and 10^9.
+        self.assertEqual(pt("um terço de mil e quinhentos"), [("um terço", "1/3", F), ("mil e quinhentos", "1500", C)])
+        self.assertEqual(pt("um quarto de mil e duzentos euros"),
+                         [("um quarto", "0.25", F), ("mil e duzentos", "1200", C)])
+        self.assertEqual(pt("três quartos de mil milhões"), [("três quartos", "0.75", F), ("mil milhões", "1000000000", C)])
+
+    def test_mil_is_a_numeral_and_joins_no_fraction(self):
+        # "mil" is no scale noun: a quarter, then 1000 euros; two quarters (2/4 = 0.5), then 1000
+        self.assertEqual(pt("Reservou um quarto de mil euros por noite."), [("um quarto", "0.25", F), ("mil", "1000", C)])
+        self.assertEqual(read("Reservou um quarto de mil reais por noite.", "pt-BR"),
+                         [("um quarto", "0.25", F), ("mil", "1000", C)])
+        self.assertEqual(pt("dois quartos de mil euros"), [("dois quartos", "0.5", F), ("mil", "1000", C)])
+
     def test_only_de_joins_a_fraction_to_a_scale_noun(self):
         self.assertEqual(pt("um quarto e um milhão"), [("um quarto", "0.25", F), ("um milhão", "1000000", C)])
 

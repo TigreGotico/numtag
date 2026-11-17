@@ -340,7 +340,7 @@ class Lexicon:
     # A fraction word after a scale word takes a part of it ("milioi erdi
     # bat" is 500000, "hiru milioi laurden" 750000).
     fraction_after_scale: bool = False
-    # A fraction before "de" and a scale word takes that part of it ("um
+    # A fraction before "de" and a scale noun takes that part of it ("um
     # quarto de milhão" is 250000, "a quarter of a million" the same).
     fraction_of_scale: bool = False
     # Words written in several parts ("dètz-e-sèt", "bint'i un"): the

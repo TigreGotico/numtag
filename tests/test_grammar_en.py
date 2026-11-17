@@ -386,6 +386,14 @@ class TestFractionOfAScale(unittest.TestCase):
     def test_a_fraction_of_a_unit_that_is_no_scale_word_is_unchanged(self):
         self.assertEqual(en("a quarter of an hour"), [("a quarter", "0.25", F)])
 
+    def test_a_scale_word_that_starts_a_longer_number_is_not_the_whole_part(self):
+        # The grammar has no reading for a fraction of a compound number, so each
+        # of these keeps the reading of two numbers: 1/4 and 10^9; 1/3 and 1200.
+        self.assertEqual(en("a quarter of a thousand million"),
+                         [("a quarter", "0.25", F), ("a thousand million", "1000000000", C)])
+        self.assertEqual(en("a third of a thousand two hundred"),
+                         [("a third", "1/3", F), ("a thousand two hundred", "1200", C)])
+
     def test_only_the_linker_word_joins_a_fraction_to_a_scale_word(self):
         self.assertEqual(en("a quarter in a million"), [("a quarter", "0.25", F), ("a million", "1000000", C)])
 
