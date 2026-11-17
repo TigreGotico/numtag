@@ -721,6 +721,8 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(read("120-160 Kubikmeter", "de"), [("120", "120", C), ("160", "160", C)])
         # de reads a space group before a point decimal the same way, and "1.500" as 1500
         self.assertEqual(read("1 234.5", "de"), [("1 234.5", "1234.5", D)])
+        # fr groups with a narrow space, not a point: the space group still comes before the decimal
+        self.assertEqual(read("1 234.5", "fr-FR"), [("1 234.5", "1234.5", D)])
         self.assertEqual(read("1.500", "de"), [("1.500", "1500", C)])
         self.assertEqual(read("am 24.12.", "de"), [])
         self.assertEqual(read("11.29 Uhr", "de"), [])
