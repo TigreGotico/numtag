@@ -340,7 +340,7 @@ Where the comma marks decimals, the word for the point is no decimal marker. So 
 
 > Manual de Comunicação do Senado Federal, "Números": "Use vírgula para o decimal."
 
-Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
+Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. A locale's own group mark before a point decimal reads the same way, whether the mark is a space, a no-break space or an apostrophe: "1 234.5" in Finnish (a plain space, the Finnish lexicon mark), "10 123.5" in Russian (a no-break space) and "1'234.5" in Swiss French read 1234.5, 10123.5 and 1234.5. Where a point is the group mark (Portuguese, German), a second point is no decimal mark, so "1.234.5" reads no number. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
 
 ```python
 >>> read("Custa 1.5 milhões, e pi é 3.14159.")
@@ -351,7 +351,11 @@ Where the comma marks decimals, a point between digits groups thousands. A point
 []
 >>> read("Am 24.12. ist Heiligabend.", "de")
 []
+>>> read("Preis: 1'234.5 CHF", "fr-CH")
+[("1'234.5", '1234.5')]
 ```
+
+> Unicode CLDR (cldr-json, cldr-numbers-full/main/<locale>/numbers.json, "symbols-numberSystem-latn"), "group": U+00A0 in bg, et, fi, hu, kab, nb, nn, pl, ru, sk, sv and uk; U+202F in fr and fr-BE; the apostrophe in fr-CH; the decimal symbol is a comma in each. BIPM, SI Brochure, 9th edition, 5.4.4: no dot or comma is ever inserted in the spaces between groups.
 
 > BIPM, SI Brochure, 9th edition, 5.4.4: the decimal marker "shall be either the point on the line or the comma on the line." "The decimal marker chosen should be that which is customary in the language and context concerned." "If the number is between +1 and −1, then the decimal marker is always preceded by a zero."
 
