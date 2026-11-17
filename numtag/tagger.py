@@ -1,9 +1,14 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
+from numtag import digits
+from numtag.digits import Rational
 from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
 from numtag.roman import roman_numerals
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
+
+# The hyphen-minus and the minus sign that start a signed digit string.
+SIGNS = "-\u2212"
 
 # A weak number: an article alone before a noun, or a word with a common
 # meaning that is no number. Scores are deterministic, not probabilities.
@@ -57,6 +62,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
                 and not after_slash[k - 1] and not after_slash[k + 1]]
     mentions = [m for m in mentions
                 if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
+    mentions = _slash_fractions(text, tokens, mentions, after_slash)
     for token, value, kind, reason in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
         span = (token.start, token.end)
         mentions.append(NumberMention(
@@ -64,6 +70,56 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=(Part(Role.COUNT, span, token.text, value),)))
     return sorted(mentions, key=lambda m: m.char_span)
+
+
+def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMention],
+                     after_slash: list[bool]) -> list[NumberMention]:
+    """A digit fraction with a slash, "3/4", is one FRACTION mention. A sure
+    cardinal right before it, with only a space between, makes a mixed
+    number: "5 1/2" is 5.5, and a sign of the whole covers the fraction. Four
+    digits with no group mark are no whole part, because they are mostly a
+    year: "In 2023 1/3 of adults" is 2023 and 1/3. Only
+    a fraction below one reads, so "24/7" and "50/50" keep their two numbers.
+    So do a chain of slashes ("12/05/2024"), a term with a leading zero
+    ("03/04") and a numerator right after a sign ("5-1/2")."""
+    by_span = {m.char_span: m for m in mentions}
+    by_end = {m.char_span[1]: m for m in mentions}
+    consumed: set[tuple[int, int]] = set()
+    fractions = []
+    for k in range(1, len(tokens)):
+        if not after_slash[k] or after_slash[k - 1] or after_slash[k + 1]:
+            continue
+        top, bottom = tokens[k - 1], tokens[k]
+        signed = top.latin[0] in SIGNS
+        terms = top.latin.lstrip(SIGNS), bottom.latin
+        terms_read = [by_span.get((t.start, t.end)) for t in (top, bottom)]
+        if (not all(t.isdigit() and t[0] != "0" for t in terms) or digits.compare(*terms) >= 0
+                or text.endswith(tuple(SIGNS), 0, top.start)
+                or any(m is None or m.kind != Kind.CARDINAL for m in terms_read)):
+            continue
+        spaced = top.gap != "" and not top.gap.strip(" \u00a0\u202f")
+        whole = by_end.get(tokens[k - 2].end) if k > 1 and spaced and not (signed or after_slash[k - 2]) else None
+        # Four digits with no group mark are mostly a year: "In 2023 1/3 of adults".
+        if whole and (whole.kind != Kind.CARDINAL or whole.reasons
+                      or (len(whole.text.lstrip(SIGNS)) == 4 and whole.text.lstrip(SIGNS).isdigit())):
+            whole = None
+        value = Rational(*terms, signed)
+        parts = (Part(Role.COUNT, (top.start, top.end), top.text, Rational(terms[0], negative=signed).canonical()),
+                 Part(Role.DENOMINATOR, (bottom.start, bottom.end), bottom.text, terms[1]))
+        first, form, gender, scale = top.start, Form.DIGITS, None, None
+        if whole:
+            value = Rational(whole.value.lstrip(SIGNS)) + value
+            if whole.text[0] in SIGNS or any(p.role == Role.MINUS for p in whole.parts):
+                value = -value
+            first, gender, scale = whole.char_span[0], whole.gender, whole.number_scale
+            form = Form.DIGITS if whole.form == Form.DIGITS else Form.MIXED
+            parts = whole.parts + parts
+            consumed.add(whole.char_span)
+        consumed.update(m.char_span for m in terms_read)
+        span = (first, bottom.end)
+        fractions.append(NumberMention(span, text[first:bottom.end], value.canonical(), Kind.FRACTION, form, gender,
+                                       number_scale=scale, parts=parts))
+    return [m for m in mentions if m.char_span not in consumed] + fractions
 
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
@@ -180,7 +236,7 @@ def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, 
     for phrase in lexicon.percent_phrases:
         head = start - len(phrase) + 1
         if head >= 0 and tuple(t.norm for t in run[head:start + 1]) == phrase \
-                and (number_end == head
+                and (number_end == head or lexicon.percent_phrase_is_no_number
                      or head == 0 and (run[0].gap.rstrip().endswith("}") or parse.end == len(run))):
             return True
     return False
@@ -283,8 +339,9 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # The word is the number after a noun that names a number ("o número
     # um"), and before a percent phrase, where it counts the hundredths ("un
     # pour cent")
-    named = (start > 0 and run[start - 1].norm in lexicon.number_nouns
-             or any(tuple(t.norm for t in run[parse.end:parse.end + len(p)]) == p for p in lexicon.percent_phrases))
+    percent_follows = any(tuple(t.norm for t in run[parse.end:parse.end + len(p)]) == p
+                          for p in lexicon.percent_phrases)
+    named = start > 0 and run[start - 1].norm in lexicon.number_nouns or percent_follows
     hyphenated_noun = run[start].noun_before if lexicon.article_after_noun else run[start].noun_after
     lone_article = (parse.end == start + 1 and run[start].norm in lexicon.articles and not named
                     and (hyphenated_noun
@@ -333,5 +390,7 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     whole = alone and parse.end == start + 1 and bool(entries) \
         and all(e.weak_at_end and not e.ambiguous for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    homograph = (parse.ambiguous and not whole) or lone_ambiguous or listed or weak_ordinal or bare_percent
+    cardinal_percent = percent_follows and parse.kind == Kind.CARDINAL
+    homograph = ((parse.ambiguous and not whole) or lone_ambiguous) and not cardinal_percent \
+        or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
