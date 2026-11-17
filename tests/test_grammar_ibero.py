@@ -64,16 +64,46 @@ class TestSpanish(unittest.TestCase):
         # without "y" the same number stays whole
         self.assertEqual(read("mil uno", "es"), [("mil uno", "1001", C)])
 
-    def test_other_y_after_mil_stays_two_numbers_a_known_gap(self):
-        # Older texts join these; numtag reads the unjoined form, and the gap is open
-        self.assertEqual(read("mil y quinientos", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
+    def test_y_after_mil_before_a_group_below_a_hundred_stays_two_numbers(self):
+        # no source shows these as one number
         self.assertEqual(read("mil y veinte", "es"), [("mil", "1000", C), ("veinte", "20", C)])
         self.assertEqual(read("mil y dos", "es"), [("mil", "1000", C), ("dos", "2", C)])
         self.assertEqual(read("dos mil y uno", "es"), [("dos mil", "2000", C), ("uno", "1", C)])
         self.assertEqual(read("doscientos mil y uno", "es"), [("doscientos mil", "200000", C), ("uno", "1", C)])
 
+    def test_older_texts_join_y_between_the_thousands_and_a_group_of_hundreds(self):
+        # es.wikipedia "Puente del Obispo": 1000 + 500 + 5 = 1505; 1000 + 500 + 8 = 1508
+        self.assertEqual(read("Comenzada el año mil y quinientos y cinco, y acabada el año mil y quinientos y ocho.", "es"),
+                         [("mil y quinientos y cinco", "1505", C), ("mil y quinientos y ocho", "1508", C)])
+        # es.wikipedia "Real Audiencia del Cuzco": 4 x 1000 + 500 = 4500
+        self.assertEqual(read("el sueldo de cuatro mil y quinientos pesos", "es"),
+                         [("cuatro mil y quinientos", "4500", C)])
+        # 1000 + 500 + 80 + 8 = 1588; 3000 + 500 + 40 + 1 = 3541; 1000 + 100 = 1100
+        self.assertEqual(read("desde el año de mil y quinientos ochenta y ocho", "es"),
+                         [("mil y quinientos ochenta y ocho", "1588", C)])
+        self.assertEqual(read("tres mil y quinientos y cuarenta y un reales", "es"),
+                         [("tres mil y quinientos y cuarenta y un", "3541", C)])
+        self.assertEqual(read("Ya hay mil y cien años", "es"), [("mil y cien", "1100", C)])
+        # 1000 + 500 = 1500, then the second limit 2000
+        self.assertEqual(read("de mil y quinientos a dos mil hombres", "es"),
+                         [("mil y quinientos", "1500", C), ("dos mil", "2000", C)])
+
+    def test_after_entre_y_after_mil_joins_the_two_limits(self):
+        self.assertEqual(read("entre mil y quinientos", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
+        self.assertEqual(read("Entre cuatro mil y quinientos", "es"), [("cuatro mil", "4000", C), ("quinientos", "500", C)])
+        self.assertEqual(read("entre mil y mil quinientos obreros", "es"), [("mil", "1000", C), ("mil quinientos", "1500", C)])
+
+    def test_y_after_mil_joins_no_group_with_its_own_scale_word(self):
+        # es.wikipedia "Análogo a la Tierra" and "Batalla del Puente de Calderón": two limits each
+        self.assertEqual(read("entre mil y cien millones de civilizaciones", "es"),
+                         [("mil", "1000", C), ("cien millones", "100000000", C)])
+        self.assertEqual(read("entre ochenta mil y cien mil hombres", "es"),
+                         [("ochenta mil", "80000", C), ("cien mil", "100000", C)])
+        self.assertEqual(read("mil y quinientos millones", "es"), [("mil", "1000", C), ("quinientos millones", "500000000", C)])
+
     def test_no_y_joins_a_group_after_a_larger_scale(self):
         self.assertEqual(read("un millón y dos", "es"), [("un millón", "1000000", C), ("dos", "2", C)])
+        self.assertEqual(read("un millón y quinientos", "es"), [("un millón", "1000000", C), ("quinientos", "500", C)])
         self.assertEqual(read("dos millones y quinientos mil", "es"),
                          [("dos millones", "2000000", C), ("quinientos mil", "500000", C)])
 

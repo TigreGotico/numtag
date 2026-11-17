@@ -312,6 +312,10 @@ class Lexicon:
     # The joiner between two groups stands only between a thousand and a one
     # ("mil y una"); before any other group, the parts are two numbers.
     joiner_thousand_one_only: bool = False
+    # Where joiner_thousand_one_only holds, the joiner also stands between
+    # the thousands and a group of hundreds ("mil y quinientos"), except
+    # after a range cue, where it joins the two limits.
+    joiner_thousand_hundreds: bool = False
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.
     percent_phrase_is_no_number: bool = False
@@ -609,6 +613,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
         joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
+        joiner_thousand_hundreds=settings.get("joiner_thousand_hundreds", False),
         percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words.get("count_of", ())),
