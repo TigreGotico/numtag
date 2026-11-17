@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0a1](https://github.com/TigreGotico/numtag/tree/0.14.0a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.6a1...0.14.0a1)
+
+**Merged pull requests:**
+
+- feat: read a proper digit slash fraction as one fraction mention [\#72](https://github.com/TigreGotico/numtag/pull/72) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.13.6a1](https://github.com/TigreGotico/numtag/tree/0.13.6a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.5a1...0.13.6a1)
