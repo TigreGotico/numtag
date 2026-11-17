@@ -450,7 +450,7 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
-A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". The word is also a count of parts before a noun, and AkH 12 §293 reads "háromszázad másodperc" as 3/100. That reading stays the alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A count before the word still multiplies it, and a hyphen before it ends a range.
+A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". The word is also a count of parts before a noun, and By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count, so "egy kétszázad" is 1/200 and "3 tízezred" reads only the 3. A hyphen before it ends a range.
 
 ```python
 >>> read("A mennyisége körülbelül háromszázad része a klórénak.", "hu")
