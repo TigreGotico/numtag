@@ -7,7 +7,7 @@ pt-BR reads the "pt" file and fr-FR the "fr" file.
 import unittest
 
 from numtag.lexicon import load
-from tests.helpers import read
+from helpers import read
 
 CLDR = {
     "ar": (",", "."), "ast": (".", ","), "az": (".", ","), "bg": (" ", ","), "ca": (".", ","),
