@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.12a1...0.12.13a1)
+
+**Merged pull requests:**
+
+- fix: a space group before a point decimal reads as one SI number [\#81](https://github.com/TigreGotico/numtag/pull/81) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.12.12a1](https://github.com/TigreGotico/numtag/tree/0.12.12a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.11a1...0.12.12a1)
