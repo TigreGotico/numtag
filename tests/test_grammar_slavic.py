@@ -43,10 +43,74 @@ class TestScales(unittest.TestCase):
                          [("dvanaest trilijuna tristo četrdeset pet", "12000000000000000345", C)])
         self.assertEqual(read("jedan trilijun", "hr"), [("jedan trilijun", "1000000000000000000", C)])
 
-    def test_croatian_trilijuna_without_a_count_is_no_number(self):
-        # the genitive "trilijuna" also follows "nekoliko", so alone it names no number
-        self.assertEqual(read("nekoliko trilijuna kuna", "hr"), [])
-        self.assertEqual(read("trilijuna", "hr"), [])
+    def test_croatian_genitive_scale_word_alone_is_one_of_it(self):
+        # "oko milijuna" and "oko trilijuna" are the genitive singular: 10^6 and 10^18
+        self.assertEqual(read("Bilo ih je oko milijuna.", "hr"), [("milijuna", "1000000", C)])
+        self.assertEqual(read("Bilo ih je oko trilijuna.", "hr"), [("trilijuna", "1" + "0" * 18, C)])
+        self.assertEqual(read("više od milijuna ljudi", "hr"), [("milijuna", "1000000", C)])
+
+    def test_croatian_vague_quantity_before_a_scale_word_is_no_number(self):
+        # "nekoliko", "puno", "više" and "mnogo" take the genitive plural, so the scale word is no count of one
+        for text in ("nekoliko milijuna ljudi", "nekoliko bilijuna kuna", "nekoliko trilijuna kuna",
+                     "nekoliko milijardi eura", "nekoliko tisuća ljudi", "nekoliko stotina", "nekoliko stotina ljudi",
+                     "puno tisuća", "više milijuna ljudi", "mnogo milijuna ljudi"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "hr"), [])
+        # hr.wikipedia, "Honduras"
+        self.assertEqual(read("Nemirno vrijeme nastanka vulkanske visoravni na jugozapadu Hondurasa "
+                              "odvijalo se prije nekoliko milijuna godina.", "hr"), [])
+
+    def test_croatian_vague_quantity_changes_only_the_word_after_it(self):
+        # 2 x 10^6, 5 x 10^6, 21 x 10^6 and 20 x 10^6 + 3
+        self.assertEqual(read("dva milijuna", "hr"), [("dva milijuna", "2000000", C)])
+        self.assertEqual(read("pet milijuna ljudi", "hr"), [("pet milijuna", "5000000", C)])
+        self.assertEqual(read("dvadeset i jedan milijun", "hr"), [("dvadeset i jedan milijun", "21000000", C)])
+        self.assertEqual(read("dvadeset milijuna tri", "hr"), [("dvadeset milijuna tri", "20000003", C)])
+        self.assertEqual(read("nekoliko ljudi, dva milijuna", "hr"), [("dva milijuna", "2000000", C)])
+        self.assertEqual(read("nekoliko, milijuna", "hr"), [("milijuna", "1000000", C)])
+        self.assertEqual(read("malo milijuna", "hr"), [("milijuna", "1000000", C)])
+        self.assertEqual(read("nekoliko", "hr"), [])
+
+    def test_croatian_clitic_between_vague_quantity_and_scale_word(self):
+        # hr.wikipedia, "Amaterska astronomija": "je" takes the second place and splits "nekoliko tisuća"
+        self.assertEqual(read("Najbliža zvijezda nekoliko je tisuća puta dalje od posljednjeg planeta.", "hr"), [])
+        self.assertEqual(read("nekoliko je stotina", "hr"), [])
+
+    def test_croatian_vague_quantity_holds_through_a_chain_of_scale_words(self):
+        # hr.wikipedia, "Woodstock": "stotina" counts several, so "tisuća" after it has no count either
+        self.assertEqual(read("ondje je bilo nekoliko stotina tisuća ljudi, vjerojatno i cijeli milijun", "hr"),
+                         [("milijun", "1000000", C)])
+        self.assertEqual(read("nekoliko stotina milijuna", "hr"), [])
+
+    def test_croatian_vague_quantity_stops_at_punctuation(self):
+        # a full stop or a comma ends the phrase, so "Tisuću" and "tisuću" count one thousand
+        self.assertEqual(read("Bilo ih je nekoliko stotina. Tisuću ljudi je došlo.", "hr"), [("Tisuću", "1000", C)])
+        self.assertEqual(read("nekoliko stotina, tisuću ljudi", "hr"), [("tisuću", "1000", C)])
+
+    def test_croatian_digits_before_a_vague_quantity_do_not_cancel_it(self):
+        # a year in digits is a number of its own and says nothing about "nekoliko milijuna"
+        self.assertEqual(read("Do 2030 nekoliko milijuna ljudi", "hr"), [("2030", "2030", C)])
+
+    def test_croatian_future_and_conditional_clitics_split_the_phrase(self):
+        # hr.wikipedia, "Enklitika": "će" and "bi" are clitics too
+        self.assertEqual(read("nekoliko će tisuća ljudi doći", "hr"), [])
+        self.assertEqual(read("nekoliko bi tisuća", "hr"), [])
+
+    def test_croatian_clitic_skip_ignores_the_case_of_the_scale_word(self):
+        # Known trade-off: after "je" the scale word may stand in the nominative or accusative singular
+        # ("Puno je milijun eura", where 1000000 would be right), and it reads no number
+        self.assertEqual(read("Puno je milijun eura za taj projekt.", "hr"), [])
+        self.assertEqual(read("Mnogo je tisuću kuna.", "hr"), [])
+        self.assertEqual(read("Više je milijun nego tisuću.", "hr"), [("tisuću", "1000", C)])
+
+    def test_croatian_vise_after_a_number_is_plus(self):
+        # HJP "više", sense 5: "plus (+)". The scale word before "više" is a count, and so is the one after it
+        self.assertEqual(read("milijun više milijun su dva milijuna", "hr"),
+                         [("milijun", "1000000", C), ("milijun", "1000000", C), ("dva milijuna", "2000000", C)])
+        self.assertEqual(read("tisuću više tisuću je dvije tisuće", "hr"),
+                         [("tisuću", "1000", C), ("tisuću", "1000", C), ("dvije tisuće", "2000", C)])
+
+    def test_croatian_trilijun_scale_words_with_a_count(self):
         # 2 x 10^18 + 3 and 5 x 10^18
         self.assertEqual(read("dva trilijuna tri", "hr"), [("dva trilijuna tri", "2000000000000000003", C)])
         self.assertEqual(read("pet trilijuna", "hr"), [("pet trilijuna", "5000000000000000000", C)])
