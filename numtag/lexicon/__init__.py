@@ -340,6 +340,9 @@ class Lexicon:
     # A fraction word after a scale word takes a part of it ("milioi erdi
     # bat" is 500000, "hiru milioi laurden" 750000).
     fraction_after_scale: bool = False
+    # A fraction before "de" and a scale word takes that part of it ("um
+    # quarto de milhão" is 250000, "a quarter of a million" the same).
+    fraction_of_scale: bool = False
     # Words written in several parts ("dètz-e-sèt", "bint'i un"): the
     # tokenizer reads each as one token.
     compounds: frozenset[str] = frozenset()
@@ -618,6 +621,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_articles=frozenset(words.get("ordinal_article", ())),
         article_after_noun=settings.get("article_after_noun", False),
         fraction_after_scale=settings.get("fraction_after_scale", False),
+        fraction_of_scale=settings.get("fraction_of_scale", False),
         compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
         roman_series_nouns=frozenset(words.get("roman_series_noun", ())),
         roman_titles=frozenset(words.get("roman_title", ())),

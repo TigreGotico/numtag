@@ -482,6 +482,27 @@ In German a count written in one word with a part word is part of the denominato
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".
 
+## A fraction of a scale word
+
+A fraction word, "de" or "of", and a singular scale word make that part of the scale word. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, or a count after "de", gives no product: "um quarto de dois milhões" is two numbers.
+
+```python
+>>> read("Calcularam um quarto de milhão de euros.")
+[('um quarto de milhão', '250000')]
+>>> read("Pagaram dois terços de um milhão de euros.")
+[('dois terços de um milhão', '2000000/3')]
+>>> read("Perdeu um quarto de hora.")
+[('um quarto', '0.25')]
+>>> read("He inherited a quarter of a million pounds.", "en")
+[('a quarter of a million', '250000')]
+>>> read("There were three quarters of a million votes.", "en")
+[('three quarters of a million', '750000')]
+```
+
+> Priberam, "quarto", nome masculino: "Cada uma das quatro partes iguais em que se divide a unidade; quarta parte de um todo." Cambridge Dictionary, "quarter" (fourth part): "one of four equal or almost equal parts of something"; example: "He inherited a quarter of a million pounds on his mother's death".
+
+A half before "de" is no part of the scale word: "no meio de um milhão de pessoas" says "in the middle", so "meio" stays a separate word. "half a million" and "meio milhão" have their own rule.
+
 ## A joiner prefix before a number
 
 In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و in Arabic, written joined to the next word. A joiner inside a number stays in the span: "עשרים ושלוש" is 23. A joiner before the first word of a number is no part of it, so the span starts after the letter. A one-letter article or preposition glued to a number word ("בשלושה") stays in the span of that word.

@@ -71,6 +71,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `plural_scale_needs_count` | true | Priberam, "milhão" and "milhar" |
 | `scale_noun_agrees` | true | Squarisi, Correio Braziliense; Priberam, "milhão" |
 | `ordinal_style` | every_word | CLDR 49 RBNF pt %spellout-ordinal-masculine |
+| `fraction_of_scale` | true | Priberam, "quarto", "terço" and "milhão" |
 
 [../rulings.md](../rulings.md) quotes each source and shows each rule at work. The main rule of Portuguese numbers is the joiner before the last group.
 

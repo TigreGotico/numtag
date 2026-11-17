@@ -65,6 +65,7 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |
 | `ten_joins_unit_ordinal` | false | Wikipedia, "English numerals" |
 | `part_after_joiner_needs_article` | true | Wikipedia, "English numerals" |
+| `fraction_of_scale` | true | Cambridge Dictionary and Merriam-Webster, "quarter" |
 
 [../rulings.md](../rulings.md) quotes each source and shows each rule at work.
 
