@@ -393,6 +393,9 @@ class TestFractionOfAScale(unittest.TestCase):
                          [("a quarter", "0.25", F), ("a thousand million", "1000000000", C)])
         self.assertEqual(en("a third of a thousand two hundred"),
                          [("a third", "1/3", F), ("a thousand two hundred", "1200", C)])
+        # constructed short phrase: 1/4 and 1500000
+        self.assertEqual(en("a quarter of a million and a half"),
+                         [("a quarter", "0.25", F), ("a million and a half", "1500000", C)])
 
     def test_only_the_linker_word_joins_a_fraction_to_a_scale_word(self):
         self.assertEqual(en("a quarter in a million"), [("a quarter", "0.25", F), ("a million", "1000000", C)])

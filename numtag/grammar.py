@@ -1156,8 +1156,9 @@ class Grammar:
         start = fraction.end + 1
         at = start + 1 if self._is_word(start, self.lex.articles) else start
         parts = fraction.parts + _piece(Role.OF, fraction.end, start)
-        # a scale word that starts a longer number ("mil milhões", "mil e duzentos") is not the whole part
-        longest = max((run[-1].end for i in {start, at} for run in self.cardinals(i)), default=at)
+        # a scale word that starts a longer number ("mil milhões", "milhar de
+        # milhões", "um milhão e meio") is not the whole part
+        longest = max((p.end for i in {start, at} for p in self._numbers(i)), default=at)
         return [Parse(end, fraction.value * ONE.scaled(exponent),
                       parts=parts + _piece(Role.SCALE, start, end, ONE.scaled(exponent)))
                 for end, exponent, dual, noun, _, plural in self.multipliers(at)

@@ -254,6 +254,14 @@ class TestFractionOfAScale(unittest.TestCase):
         self.assertEqual(pt("um quarto de mil e duzentos euros"),
                          [("um quarto", "0.25", F), ("mil e duzentos", "1200", C)])
         self.assertEqual(pt("três quartos de mil milhões"), [("três quartos", "0.75", F), ("mil milhões", "1000000000", C)])
+        # constructed short phrases: a longer number after "de" keeps the two
+        # readings of dev; 1/4 and 10^9, 1/4 and 10^12, 1/4 and 1500000
+        self.assertEqual(pt("um quarto de milhar de milhões"),
+                         [("um quarto", "0.25", F), ("milhar de milhões", "1000000000", C)])
+        self.assertEqual(pt("um quarto de milhão de milhões"),
+                         [("um quarto", "0.25", F), ("milhão de milhões", "1000000000000", C)])
+        self.assertEqual(pt("um quarto de um milhão e meio"),
+                         [("um quarto", "0.25", F), ("um milhão e meio", "1500000", C)])
 
     def test_mil_is_a_numeral_and_joins_no_fraction(self):
         # "mil" is no scale noun: a quarter, then 1000 euros; two quarters (2/4 = 0.5), then 1000

@@ -508,7 +508,7 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 
 ## A fraction of a scale word
 
-A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "mil e duzentos") gives no product, and so does a count after "de": "um quarto de dois milhões" is two numbers.
+A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio") gives no product, and so does a count after "de": "um quarto de dois milhões" is two numbers.
 
 ```python
 >>> read("Calcularam um quarto de milhão de euros.")
