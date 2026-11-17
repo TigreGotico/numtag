@@ -717,7 +717,7 @@ class Grammar:
                     count = group.count.scaled(group.exponent)
                     if j > last.end and self.lex.joiner_thousand_one_only \
                             and not (last.exponent == THOUSAND and _whole(last.count) == "1"
-                                     and not group.exponent and _whole(count) == "1"):
+                                     and _whole(count) == "1"):
                         continue
                     if compound and not group.top and self._takes_count(group.end, count, group.exponent, whole_group=True):
                         continue

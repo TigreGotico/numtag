@@ -68,6 +68,7 @@ class TestSpanish(unittest.TestCase):
         # Older texts join these; numtag reads the unjoined form, and the gap is open
         self.assertEqual(read("mil y quinientos", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
         self.assertEqual(read("mil y veinte", "es"), [("mil", "1000", C), ("veinte", "20", C)])
+        self.assertEqual(read("mil y dos", "es"), [("mil", "1000", C), ("dos", "2", C)])
         self.assertEqual(read("dos mil y uno", "es"), [("dos mil", "2000", C), ("uno", "1", C)])
         self.assertEqual(read("doscientos mil y uno", "es"), [("doscientos mil", "200000", C), ("uno", "1", C)])
 
