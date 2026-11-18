@@ -58,6 +58,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
+| `percent_before` | Percent words that stand before the number (tr "yüzde"): the number after one is the amount, with no homograph score | empty | empty |
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
 | `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `number_name` | Names and set phrases that start with a number word and hold no number (fa "سه شنبه", Tuesday; ru "одно и то же", the same) | empty | empty |

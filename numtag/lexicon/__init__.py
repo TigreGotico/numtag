@@ -243,6 +243,8 @@ class Lexicon:
     # "einhalb" in "zweieinhalb": a word that adds a half to the number before it.
     and_a_half: frozenset[str]
     range_cues: frozenset[str]
+    # "yüzde" in "yüzde yüz": a percent word before the number, which then is the amount, never a homograph.
+    percent_before: frozenset[str]
     # "zum" in "zum 1000. Mal": a word before digits that makes their period an ordinal mark.
     period_ordinal_before: frozenset[str]
     # "ein" in "Er lud mich ein.": an article that alone at the end of a
@@ -429,7 +431,7 @@ DEFAULT_SETTINGS = {
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
                  "negative_particle": [], "noun_after_count": [],
-                 "number_noun": [], "number_name": []}
+                 "number_noun": [], "number_name": [], "percent_before": []}
 
 
 def _read(lang: str) -> dict:
@@ -604,6 +606,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         and_a_half=frozenset(w.casefold() for w in words["and_a_half"]),
         range_cues=frozenset(words["range_cue"]),
+        percent_before=frozenset(words["percent_before"]),
         period_ordinal_before=frozenset(w.casefold() for w in words["period_ordinal_before"]),
         article_needs_noun=frozenset(words["article_needs_noun"]),
         partitives=frozenset(words["partitive"]),
