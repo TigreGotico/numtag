@@ -161,3 +161,6 @@
 {"text": "Miasto ma połowę miliona mieszkańców.", "mentions": [{"start": 10, "end": 24, "value": "500000", "kind": "cardinal"}], "source": "Wiktionary (en), \"połowa\": half; arithmetic: 1/2 x 10^6"}
 {"text": "Nie było ani jednego ciasteczka.", "mentions": [], "source": "Wiktionary, \"ani\", Polish particle: \"nary, not a, not even one\", \"Nie było ani jednego ciasteczka.\" (There wasn't even a single cookie.) After \"ani\" the word for one counts nothing."}
 {"text": "To pytanie pozostanie chyba nie rozstrzygnięte, gdyż był to często jeden i ten sam człowiek.", "mentions": [], "source": "Korpus języka polskiego, quoted in Słownik synonimów PWN, \"jeden i ten sam\": \"ten sam\", \"jedno i to samo\". The set phrase means \"the same\" and counts nothing."}
+{"text": "Zapłacił dwie setki tysięcy złotych.", "mentions": [{"start": 9, "end": 27, "value": "200000", "kind": "cardinal"}], "source": "arithmetic: 2 x 100 x 1000 (PWN, \"setka\": \"liczba sto\")"}
+{"text": "Mówimy o pięciu setkach tysięcy ludzi.", "mentions": [{"start": 9, "end": 31, "value": "500000", "kind": "cardinal"}], "source": "arithmetic: 5 x 100 x 1000 (locative of \"pięć setek\")"}
+{"text": "Koszt wyniósł pięć setek tysięcy złotych.", "mentions": [{"start": 14, "end": 32, "value": "500000", "kind": "cardinal"}], "source": "arithmetic: 5 x 100 x 1000"}
