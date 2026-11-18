@@ -5,6 +5,8 @@ whose lower bound is two of the scale. "several" and "muitos" are an AMOUNT:
 no value, no scale and no bound. The words are the ``vague_quantifier``
 entries of each lexicon, each with its source; the same list stops a scale
 word right after one of them from reading a number (grammar ``_after_vague``).
+A plural scale word and the scale word it counts, joined by a ``vague_of`` word
+("milhares de milhões"), make one magnitude.
 """
 from bisect import bisect_left
 
@@ -38,10 +40,14 @@ def tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]:
             if not phrase or not all(free(t) for t in run[i:end]):
                 i += 1
                 continue
+            if i and not run[i - 1].is_digits and run[i - 1].norm in lexicon.vague_not_after.get(phrase, ()):
+                i += 1
+                continue
             ambiguous = lexicon.vague_quantifiers[phrase]
             head = _scale(lexicon, run[i]) if len(phrase) == 1 else None
             if head is not None and head.plural:
                 scales = [head]
+                ambiguous = ambiguous or head.ambiguous
             else:
                 # "several million", "muitos mil milhões": the vague word stands where
                 # the count would, and the scale words make the quantity reading clear
@@ -49,7 +55,17 @@ def tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]:
                 while end < len(run) and free(run[end]) and (entry := _scale(lexicon, run[end])):
                     scales.append(entry)
                     end += 1
-                ambiguous = ambiguous and not scales
+                ambiguous = any(e.ambiguous for e in scales) if scales else ambiguous
+            # "milhares de milhões": a plural scale word and the scale word it counts
+            # make one magnitude, the product of both
+            direct = len(scales)
+            counted = bool(scales) and scales[-1].plural
+            while counted and end + 1 < len(run) and not run[end].is_digits and run[end].norm in lexicon.vague_of \
+                    and free(run[end]) and free(run[end + 1]) and (entry := _scale(lexicon, run[end + 1])):
+                scales.append(entry)
+                ambiguous = ambiguous or entry.ambiguous
+                end += 2
+                counted = entry.plural
             reason = Reason.HOMOGRAPH if ambiguous else None
             span = (run[i].start, run[end - 1].end)
             if scales:
@@ -57,8 +73,9 @@ def tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]:
                 for entry in scales:
                     value = digits.multiply(value, entry.value if entry.role == "collective"
                                             else digits.shift("1", entry.exponent))
-                # the plural means more than one: "millions" is at least two million
-                bound = digits.multiply("2", value) if len(scales) == 1 and scales[0].plural else None
+                # the plural means more than one: "millions" is at least two million, and
+                # "milhares de milhões" at least two thousand millions
+                bound = digits.multiply("2", value) if direct == 1 and scales[0].plural else None
             else:
                 kind, value, bound = VagueKind.AMOUNT, None, None
             found.append(VagueQuantity(span, text[span[0]:span[1]], kind, value, bound, CONFIDENCE[reason],
