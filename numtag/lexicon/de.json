@@ -1,5 +1,9 @@
 {
  "settings": {
+  "clock_half": {
+   "value": true,
+   "source": "DWDS, \"halb\", 1c: \"es ist halb zwölf Uhr (= elf Uhr dreißig)\", \"das Essen auf halb eins ansetzen\": \"halb\" before an hour names the half hour before it, so \"um halb drei\" is 2:30 and \"halb\" is no number there."
+  },
   "scale": {
    "value": "long",
    "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde[ →→]\", \"1000000000000: eine Billion[ →→]\", \"1000000000000000: eine Billiarde[ →→]\""

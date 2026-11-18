@@ -67,6 +67,20 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('tredje', '3')]
 ```
 
+## German "halb" before an hour
+
+German "halb" before an hour names the half hour before that hour, so "um halb drei" is 2:30. The hour is the number, and "halb" is no half of it. The `clock_half` setting holds this rule. A half with no number after it is still a weak half.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value) for m in tag_numbers('weck mich um halb drei', 'de')]
+[('drei', '3')]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('halb so viel', 'de')]
+[('halb', '0.5', 0.4)]
+```
+
+> DWDS, "halb", 1c: "es ist halb zwölf Uhr (= elf Uhr dreißig)", "das Essen auf halb eins ansetzen"
+
 ## The scale
 
 Each lexicon sets its default scale from these sources. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Read [../number-scale.md](../number-scale.md).
