@@ -114,5 +114,30 @@ class TestArabic(unittest.TestCase):
         self.assertEqual(sure("مائة ريال", "ar"), [("مائة", "100", 1.0)])
 
 
+class TestSpokenArabic(unittest.TestCase):
+    def test_the_spoken_teens_are_one_word(self):
+        # Egyptian 11, South Levantine 15, North Levantine 13, Moroccan 16
+        for word, value in (("حداشر", "11"), ("خمستعش", "15"), ("تلطعش", "13"), ("ستاش", "16"), ("هدعش", "11")):
+            with self.subTest(word=word):
+                self.assertEqual(ar(word), [(word, value, C)])
+
+    def test_spoken_tens_and_hundreds_join_a_number(self):
+        # 3 + 30 = 33; 1000 + 15 = 1015; 500 with ه for ة; 1000 + 200 = 1200
+        self.assertEqual(ar("ثلاث وتلاتين"), [("ثلاث وتلاتين", "33", C)])
+        self.assertEqual(ar("الف وخمستعش"), [("الف وخمستعش", "1015", C)])
+        self.assertEqual(ar("خمسميه"), [("خمسميه", "500", C)])
+        self.assertEqual(ar("الف وميتين"), [("الف وميتين", "1200", C)])
+
+    def test_two_hundred_alone_is_weak(self):
+        # "ميتين" is also the plural of "dead"
+        self.assertEqual(sure("ناس ميتين", "ar"), [("ميتين", "200", 0.4)])
+
+    def test_standard_arabic_words_stay_words(self):
+        # the dragon, the price, the spouse; Monday and Tuesday
+        for text in ("ثم ظهر التنين", "ثمن السيارة", "زوج أختي", "يوم الاتنين", "ويوم التلاتة"):
+            with self.subTest(text=text):
+                self.assertEqual(ar(text), [])
+
+
 if __name__ == "__main__":
     unittest.main()
