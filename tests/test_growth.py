@@ -5,8 +5,10 @@ must stay below 12. A quadratic split search took 17 to 18 times as long on
 run with joiners."""
 import time
 import unittest
+from unittest import mock
 
 from numtag import tag_numbers
+from numtag.grammar import Grammar
 
 THRESHOLD = 12
 
@@ -36,6 +38,13 @@ class TestGrowth(unittest.TestCase):
         for unit, lang in (("um ", "pt-PT"), ("one ", "en"), ("-5 ", "pt-PT")):
             with self.subTest(unit=unit, lang=lang):
                 self.assert_linear(unit, lang, 250)
+
+    def test_each_position_is_read_once(self):
+        # a run of number words with no joiner reads the numbers from each
+        # word once, however often the split search and the reasons ask for them
+        with mock.patch.object(Grammar, "fractions", autospec=True, side_effect=Grammar.fractions) as read:
+            self.assertEqual(len(tag_numbers("um " * 200, "pt-PT")), 200)
+        self.assertEqual(read.call_count, 200)
 
     def test_a_run_of_number_words_and_joiners(self):
         for unit, lang in (("mil e ", "pt-PT"), ("one and ", "en"), ("dois milhões e ", "pt-PT")):

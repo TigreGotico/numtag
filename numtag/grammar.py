@@ -182,6 +182,7 @@ class Grammar:
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         self._vague: dict[int, bool] = {}
+        self._parses: dict[int, list[Parse]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
@@ -1588,6 +1589,8 @@ class Grammar:
             self.lex.joiners | self.lex.of_words | self.lex.decimal_markers | self.lex.articles)
 
     def _numbers(self, i: int) -> list[Parse]:
+        if i in self._parses:
+            return list(self._parses[i])
         fractions = self.fractions(i)
         found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions
         # "wis sin", "tis tlata": a particle makes the cardinal after it an ordinal
@@ -1629,7 +1632,8 @@ class Grammar:
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
             found += self.case_fraction_tail(run)
-        return found
+        self._parses[i] = found
+        return list(found)
 
 
 def _rational(value: str) -> Rational:
