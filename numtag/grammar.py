@@ -717,7 +717,7 @@ class Grammar:
                           for half, e in self._halves_after(end) if half[0][0] == Role.JOINER]
             # a counted hundred noun takes digits below a thousand as it takes
             # a word count: "3 מאות" is 300, as "שלוש מאות" is
-            if len(_whole(value)) <= 3:
+            if len(_whole(value)) <= 3 and not value.is_zero():
                 found += [count(end + 1, value.scaled(m.exponent), needs_multiplier=not first, decimal=decimal)
                           for m in self._readings(end, "hundred_multiplier") if m.counted]
             if not decimal:
