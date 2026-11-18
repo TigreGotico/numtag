@@ -260,7 +260,11 @@ class Grammar:
     def _joined_after(self, i: int) -> bool:
         """A joiner and a number or a half follow position ``i``, past any
         scale words: "mil milhões e duzentos mil" and "mil milhões e meio" go
-        on after "mil"."""
+        on after "mil". Only where the joiner before the last group is
+        required: an optional one can join two phrases, as hr "i" does in
+        "nekoliko tisuća i pet"."""
+        if self.lex.joiner_before_last_group != Joiner.REQUIRED:
+            return False
         while i < len(self.tokens) and not self.tokens[i].is_digits and any(
                 e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ())):
             i += 1

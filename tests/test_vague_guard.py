@@ -113,5 +113,31 @@ class TestCountBeforeAPluralScaleWord(unittest.TestCase):
         self.assertEqual(numbers("3 milhões mil euros", "pt-PT"), [("3 milhões", "3000000"), ("mil", "1000")])
 
 
+
+class TestOptionalJoinerAfterVagueWord(unittest.TestCase):
+    """Where the joiner before the last group is optional (hr, en), it can
+    join two phrases, so the vague amount reads no number and the number
+    after the joiner reads alone. Short phrases; values by hand."""
+
+    def test_croatian_number_after_i_reads_alone(self):
+        for text, words, value in (("nekoliko tisuća i pet", "pet", "5"),
+                                   ("nekoliko milijuna i pet", "pet", "5"),
+                                   ("nekoliko stotina tisuća i pet", "pet", "5"),
+                                   # 5 x 100 = 500
+                                   ("nekoliko tisuća i pet stotina", "pet stotina", "500"),
+                                   # 200 x 1000 = 200000
+                                   ("nekoliko milijuna i dvjesto tisuća", "dvjesto tisuća", "200000"),
+                                   ("nekoliko tisuća milijuna i pet", "pet", "5")):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "hr"), [(words, value)])
+
+    def test_croatian_number_with_no_vague_word_keeps_the_joiner(self):
+        # 1000 + 5 = 1005: "Tisuću i jedna noć" writes "i" before the last group
+        self.assertEqual(numbers("tisuću i pet", "hr"), [("tisuću i pet", "1005")])
+
+    def test_english_number_after_and_reads_alone(self):
+        self.assertEqual(numbers("a few thousand and five", "en"), [("five", "5")])
+
+
 if __name__ == "__main__":
     unittest.main()
