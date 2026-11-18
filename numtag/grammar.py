@@ -590,7 +590,7 @@ class Grammar:
         """"tízezred" with no number before it is one part of the product,
         one ten-thousandth. A number or a decimal marker before the word
         leaves it to the readings that fold that count in."""
-        if not self.lex.glued_denominator_alone or i > 0 and (
+        if not self.lex.glued_denominator_alone or i >= len(self.tokens) or i > 0 and (
                 not self.tokens[i].gap.strip()
                 and (self.starts_number(i - 1) or self._is_word(i - 1, self.lex.decimal_markers))):
             return []
