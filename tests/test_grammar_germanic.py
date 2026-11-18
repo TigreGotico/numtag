@@ -214,6 +214,30 @@ class TestDigitOrdinals(unittest.TestCase):
     def test_the_dutch_letter_suffix(self):
         self.assertEqual(read("de 2de plaats", "nl"), [("2de", "2", O)])
 
+    def test_the_frisian_letter_suffix(self):
+        # Wikipedia (fy), "21e iuw": "De 21e iuw of ienentweintichste iuw"
+        self.assertEqual(read("de 21e iuw", "fy"), [("21e", "21", O)])
+
+
+class TestFrisianClockHours(unittest.TestCase):
+    def test_the_hour_after_healwei_kertier_oer_and_foar_is_sure(self):
+        # the inflected hour forms: "fiven" is 5, "fjouweren" 4, "trijen" 3, "tolven" 12
+        self.assertEqual(sure("healwei fiven", "fy"), [("fiven", "5", 1.0)])
+        self.assertEqual(sure("kertier oer fjouweren", "fy"), [("fjouweren", "4", 1.0)])
+        self.assertEqual(sure("kertier foar trijen", "fy"), [("trijen", "3", 1.0)])
+        self.assertEqual(read("om healwei tolven", "fy"), [("tolven", "12", C)])
+
+    def test_the_hour_form_alone_is_also_a_plural_noun(self):
+        # Wiktionary, "achten": plural of "acht"
+        self.assertEqual(sure("de achten", "fy"), [("achten", "8", 0.4)])
+
+    def test_the_hour_form_is_no_first_part_of_a_compound(self):
+        # 1 + 20 = 21, 8 + 40 = 48, 9 + 30 = 39: "ienen", "achten" and
+        # "njoggenen" end in the joiner "en", and the split keeps the joiner
+        self.assertEqual(read("ienentweintich", "fy"), [("ienentweintich", "21", C)])
+        self.assertEqual(read("achtenfjirtich", "fy"), [("achtenfjirtich", "48", C)])
+        self.assertEqual(read("njoggenentritich", "fy"), [("njoggenentritich", "39", C)])
+
 
 class TestHalvesAndFractionWords(unittest.TestCase):
     def test_a_word_that_adds_a_half(self):

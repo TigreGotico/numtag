@@ -396,6 +396,13 @@ class Lexicon:
         return frozenset(w for w, entries in self.readings.items()
                          if any(e.role in COMPOUND_ROLES for e in entries)) | self.joiners
 
+    @property
+    def compound_last_parts(self) -> frozenset[str]:
+        """The compound parts that close a number, so they are only the last
+        part of a compound: fy "fiven" is no part of "fiventweintich"."""
+        return frozenset(w for w in self.compound_parts
+                         if (entries := self.readings.get(w)) and all(e.final for e in entries))
+
 
 # Settings and word lists that a lexicon may leave out: each is off by default.
 DEFAULT_SETTINGS = {
