@@ -15,6 +15,8 @@ _NEXT_WORD = re.compile(r"\.\s([^\W\d_]+)")
 _DAY_MONTH = re.compile(r"(?:0?[1-9]|[12][0-9]|3[01])\.(?:0?[1-9]|1[0-2])")
 _DAY_MONTH_END = re.compile(r"\.(?!\d)")
 _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
+# the space groups before the last group of a number ("10 " in "10 000.")
+_GROUPS_BEFORE = re.compile(r"(?<![\d.,])[1-9][0-9]{0,2}(?:\s[0-9]{3})*\s$")
 
 
 # Apostrophes that a language may keep inside a word ("п'ять"); a word's
@@ -33,10 +35,12 @@ class PeriodCues:
     sentence end: a word before the digits ("zum 1000. Mal"), with
     ``lowercase`` any lower-case word after the period ("17. mai"), and a
     number of at most ``free_digits`` digits with no cue ("3. Platz", where
-    every noun takes a capital)."""
+    every noun takes a capital). With ``space_groups``, the number starts at
+    its first space group ("der 10 000. Besucher")."""
     before: frozenset[str] = frozenset()
     lowercase: bool = False
     free_digits: int = 0
+    space_groups: bool = False
 
 
 # Directional marks and embedding controls: no letter, so a script that sets
@@ -498,7 +502,9 @@ def _period_ordinal(text: str, start: int, end: int, cues: PeriodCues) -> bool:
     if after is None:
         return False
     word = after.group(1)
-    if end - start <= cues.free_digits or (cues.lowercase and word[0].islower()):
+    if cues.space_groups and (groups := _GROUPS_BEFORE.search(text, max(0, start - 64), start)):
+        start = groups.start()
+    if sum(c.isdigit() for c in text[start:end]) <= cues.free_digits or (cues.lowercase and word[0].islower()):
         return True
     before = _PREVIOUS_WORD.search(text, max(0, start - 64), start)
     return before is not None and before.group(1).casefold() in cues.before

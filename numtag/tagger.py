@@ -43,7 +43,7 @@ def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
                     dotted_i=lexicon.dotted_i, apostrophes=lexicon.word_apostrophes,
                     suffix_marks=lexicon.ordinal_suffix_marks, digit_suffix_marks=lexicon.digit_suffix_marks,
                     period_ordinals=PeriodCues(lexicon.period_ordinal_before, lexicon.period_ordinal_lowercase,
-                                               lexicon.period_ordinal_free_digits)
+                                               lexicon.period_ordinal_free_digits, lexicon.space_groups)
                     if lexicon.period_ordinals else None,
                     dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
                     phrases=lexicon.phrases, group_mark=lexicon.group_mark,
