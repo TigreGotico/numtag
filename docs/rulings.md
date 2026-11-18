@@ -656,6 +656,29 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 [('2030', '2030')]
 ```
 
+After the scale words of a vague amount, a joiner and a number keep the scale words in the number only where the lexicon requires the joiner before the last group. Portuguese requires "e" there, so "alguns mil e cinco" is 1005, as "mil e cinco" is. Croatian and English may leave the joiner out, so "i" and "and" there can join two phrases. The vague amount then names no number, and the number after the joiner reads alone.
+
+```python
+>>> read("alguns mil e cinco")
+[('mil e cinco', '1005')]
+>>> read("nekoliko tisuća i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko milijuna i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko stotina tisuća i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko tisuća i pet stotina", "hr")
+[('pet stotina', '500')]
+>>> read("nekoliko milijuna i dvjesto tisuća", "hr")
+[('dvjesto tisuća', '200000')]
+>>> read("nekoliko tisuća milijuna i pet", "hr")
+[('pet', '5')]
+>>> read("a few thousand and five", "en")
+[('five', '5')]
+```
+
+Source: maintainer ruling.
+
 Turkish lists "birkaç", "birçok", "kaç", "onlarca", "yüzlerce", "binlerce" and "milyonlarca". Turkish writes the hundred as "yüz", a numeral that is one hundred alone, so "yüz" after a vague word also reads no number. "iki yüz" keeps its count.
 
 ```python
