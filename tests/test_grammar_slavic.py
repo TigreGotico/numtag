@@ -464,3 +464,27 @@ class TestApostrophes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCaseAgreement(unittest.TestCase):
+    """Every word of a Russian cardinal declines: CLDR RBNF ru writes 29 as
+    "двадцать девять" in %spellout-cardinal-masculine and as "двадцати
+    девяти" in %spellout-cardinal-masculine-genitive."""
+
+    def test_an_oblique_ten_takes_a_unit_in_its_own_case(self):
+        self.assertEqual(read("двадцати девяти", "ru"), [("двадцати девяти", "29", C)])
+        self.assertEqual(read("с двадцатью девятью", "ru"), [("двадцатью девятью", "29", C)])
+        self.assertEqual(read("о сорока двух", "ru"), [("сорока двух", "42", C)])
+
+    def test_an_oblique_ten_and_a_nominative_unit_are_two_numbers(self):
+        # the clock "без двадцати девять" is twenty minutes to nine
+        self.assertEqual(read("без двадцати девять", "ru"), [("двадцати", "20", C), ("девять", "9", C)])
+        self.assertEqual(read("без двадцати пяти девять", "ru"),
+                         [("двадцати пяти", "25", C), ("девять", "9", C)])
+        self.assertEqual(read("без двадцати одиннадцать", "ru"),
+                         [("двадцати", "20", C), ("одиннадцать", "11", C)])
+
+    def test_a_nominative_ten_takes_any_unit(self):
+        self.assertEqual(read("двадцать девять", "ru"), [("двадцать девять", "29", C)])
+        # the animate accusative: "увидел двадцать одного студента"
+        self.assertEqual(read("двадцать одного", "ru"), [("двадцать одного", "21", C)])

@@ -406,7 +406,8 @@ class Grammar:
         where the language says so ("einundzwanzig", "خمسة وعشرون")."""
         units = self._readings(i, "unit")
         found = [(i + 1, e.value) for e in units if not e.bound and not (nonzero and e.value == "0")]
-        tens = [(i + 1, ten.value, ten.bound, ten.takes_unit or bool(ten.takes_units), ten.takes_units)
+        tens = [(i + 1, ten.value, ten.bound, ten.takes_unit or bool(ten.takes_units), ten.takes_units,
+                 ten.case if "nominative" not in ten.case else frozenset())
                 for ten in self._readings(i, "ten")]
         # a teen is written in one word with its unit: "yksitoista" is 11,
         # "yksi toista" (one the other) is no number
@@ -418,11 +419,11 @@ class Grammar:
             # "yksi" "toista" is 11; "kaksi" "kymmentä" is 20.
             found += [(i + 2, digits.add(teen.value, unit.value)) for teen in teens
                       if teen.ordinal_unit or not unit.ordinal]
-            tens += [(i + 2, unit.value + "0", False, True, frozenset())
+            tens += [(i + 2, unit.value + "0", False, True, frozenset(), frozenset())
                      for m in self._readings(i + 1, "ten_multiplier") if m.exponent == 1]
             # "dua belas": a word after the unit that makes it a teen
             found += [(i + 2, digits.add(unit.value, suffix.value)) for suffix in self._readings(i + 1, "teen_suffix")]
-        for end, value, bound, takes_unit, only in tens:
+        for end, value, bound, takes_unit, only, case in tens:
             if not bound:
                 found.append((end, value))
             # A round ten from twenty up takes a unit after it, and so does
@@ -430,7 +431,8 @@ class Grammar:
             if self.lex.tens_order != TensOrder.UNIT_TEN and (bound or takes_unit or _round_ten(value)):
                 for j in self._after_joiner(end, self.lex.joiner_tens_units):
                     found += [(j + 1, digits.add(value, unit.value))
-                              for unit in self._readings(j, "unit") if unit.value != "0" and (not only or unit.value in only)]
+                              for unit in self._readings(j, "unit") if unit.value != "0" and (not only or unit.value in only)
+                              and (not case or not unit.case or case & unit.case)]
         # "soixante-dix": a ten marked so also takes a number from ten to nineteen
         for ten in self._readings(i, "ten"):
             if ten.teens and _round_ten(ten.value):

@@ -111,6 +111,7 @@ These optional keys hold facts that the word form shows:
 | `number_after` | the words after which an `ambiguous` or weak word has only its number reading. hu "hat" lists request verbs ("kérek hat", "legyen hat"). Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
 | `bound` | `true` for a form that stands only before the rest of the number ("cento" in "cento e um") |
+| `case` | the grammatical cases of a unit or ten form, as the CLDR rule sets that write it name them. A ten with no `"nominative"` in its list takes only a unit that shares a case with it: ru "двадцати девяти" is 29, and "без двадцати девять" is 20 and 9. A ten with a nominative form takes any unit, so the animate accusative "двадцать одного" stays 21. |
 | `weak_alone` | `true` for a denominator that is also one part with no count, no article and no one after it, at the confidence 0.4: eu "laurden" is 1/4 and also starts the compound "final laurden". A number, a decimal marker or a joiner before the word cancels it. |
 
 A scale noun with a `rank` gets its power of ten from the scale: 10^(3 × rank + 3) in the short scale, 10^(6 × rank) in the long scale. A mention with such a word states its `number_scale`.
