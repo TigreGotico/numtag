@@ -407,6 +407,17 @@ The fraction part follows the grammar of the whole part. A hundreds word never f
 [('zero vírgula dois cinco', '0.25')]
 ```
 
+A word for one before a part word counts that part, so it is no decimal digit. The decimal ends before it, as digits before a part word are no decimal digits. A unit that a hyphen joins to a hundreds word counts the hundreds, so it is no decimal digit either: Catalan writes "dos-cents" with a hyphen. These two rules are structural, with no outside source.
+
+```python
+>>> read("drei Komma fünf ein halb", "de")
+[('drei Komma fünf', '3.5'), ('ein halb', '0.5')]
+>>> read("drei Komma fünf eins", "de")
+[('drei Komma fünf eins', '3.51')]
+>>> read("entre un coma vint i dos-cents euros", "ca")
+[('un coma vint', '1.2'), ('dos-cents', '200')]
+```
+
 A multiplier after a decimal multiplies it, as a scale word does.
 
 ```python

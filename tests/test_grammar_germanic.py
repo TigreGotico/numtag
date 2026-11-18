@@ -429,5 +429,42 @@ class TestLanguageTags(unittest.TestCase):
         self.assertEqual(read("einundzwanzig", "de-AT"), [("einundzwanzig", "21", C)])
 
 
+class TestDecimalBeforeAPart(unittest.TestCase):
+    def test_the_one_before_a_part_word_is_no_decimal_digit(self):
+        # "ein halb" is 1/2 = 0.5, so the decimal ends at "fünf": 3 + 5/10 = 3.5
+        self.assertEqual(read("drei Komma fünf ein halb", "de"), [("drei Komma fünf", "3.5", D), ("ein halb", "0.5", F)])
+        # "ein Viertel" is 1/4 = 0.25
+        self.assertEqual(read("drei Komma fünf ein Viertel", "de"),
+                         [("drei Komma fünf", "3.5", D), ("ein Viertel", "0.25", F)])
+        self.assertEqual(read("tre komma fem en halv", "da"), [("tre komma fem", "3.5", D), ("en halv", "0.5", F)])
+
+    def test_the_one_before_no_part_word_stays_a_decimal_digit(self):
+        # 3 + 5/10 + 1/100 = 3.51
+        self.assertEqual(read("drei Komma fünf eins", "de"), [("drei Komma fünf eins", "3.51", D)])
+        self.assertEqual(read("tre komma fem en", "da"), [("tre komma fem en", "3.51", D)])
+        # 3 + 1/10 + 4/100 = 3.14
+        self.assertEqual(read("tre komma en fire", "da"), [("tre komma en fire", "3.14", D)])
+
+
+class TestHalfOfAPart(unittest.TestCase):
+    def test_a_half_before_a_part_word_halves_the_part(self):
+        # half of a quarter: 1/2 x 1/4 = 1/8 = 0.125
+        self.assertEqual(read("ein halbes Viertel", "de"), [("ein halbes Viertel", "0.125", F)])
+        self.assertEqual(read("Ein halbes Viertel Liter", "de"), [("Ein halbes Viertel", "0.125", F)])
+
+    def test_a_half_before_a_noun_stays_a_half(self):
+        self.assertEqual(read("ein halbes Brot", "de"), [("ein halbes", "0.5", F)])
+
+
+class TestVaguePhrases(unittest.TestCase):
+    def test_een_paar_is_no_count(self):
+        # "een paar": "meerdere, maar niet heel veel" (nl.wiktionary, "paar")
+        self.assertEqual(read("Neem jij een paar appels mee?", "nl"), [])
+        self.assertEqual(read("een paar honderd mensen", "nl"), [])
+
+    def test_een_before_a_noun_keeps_its_reading(self):
+        self.assertEqual(read("een appel", "nl"), [("een", "1", C)])
+
+
 if __name__ == "__main__":
     unittest.main()

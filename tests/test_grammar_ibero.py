@@ -561,5 +561,16 @@ class TestRanges(unittest.TestCase):
                 self.assertEqual(read(text, lang), [(low, "20", C), (high, "30", C)])
 
 
+class TestHyphenatedHundredsAfterADecimal(unittest.TestCase):
+    def test_a_unit_that_a_hyphen_joins_to_the_hundreds_counts_them(self):
+        # "dos-cents" is 2 x 100 = 200, so the decimal is 1 + 2/10 = 1.2
+        self.assertEqual(read("entre un coma vint i dos-cents euros", "ca"),
+                         [("un coma vint", "1.2", D), ("dos-cents", "200", C)])
+
+    def test_a_hyphenated_tens_and_unit_stay_decimal_digits(self):
+        # 1 + 22/100 = 1.22
+        self.assertEqual(read("un coma vint-i-dos", "ca"), [("un coma vint-i-dos", "1.22", D)])
+
+
 if __name__ == "__main__":
     unittest.main()

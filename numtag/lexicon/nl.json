@@ -117,6 +117,7 @@
    "source": "\"min of meer\" puts no number after \"min\"."
   },
   "number_noun": {"value": ["nummer"], "source": "Wiktionary, \"nummer\", Dutch noun: \"number used as a means of identification\", \"number (used to show the rank of something in a list or sequence)\". The word after \"nummer\" names the number, so \"nummer een\" is one, not the article."},
+  "number_name": {"value": ["een paar"], "source": "nl.wiktionary, \"paar\" (knowledge/wiki/audits/numtag/issue-fixes/166/sources/nl-wiktionary-paar.txt), onbepaald voornaamwoord: \"meerdere, maar niet heel veel\"; \"Neem jij een paar appels mee?\": \"een\" is no count of one there."},
   "article_one": {
    "value": [
     "een"
@@ -827,6 +828,11 @@
    "word": "de",
    "role": "ordinal_suffix",
    "source": "\"1e\", \"1ste\", \"2de\" (Taalunie, Woordenlijst; the page needs JavaScript, so not checked against the page); CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %digits-ordinal: \"0: =#,##0=e\""
+  },
+  {
+   "word": "een paar",
+   "role": "vague_quantifier",
+   "source": "nl.wiktionary, \"paar\" (knowledge/wiki/audits/numtag/issue-fixes/166/sources/nl-wiktionary-paar.txt), onbepaald voornaamwoord: \"meerdere, maar niet heel veel\"; \"Neem jij een paar appels mee?\". The noun sense \"twee personen of zaken die bij elkaar horen\" names a pair, not a count of the noun after it."
   }
  ]
 }
