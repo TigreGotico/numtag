@@ -110,6 +110,12 @@ class Entry:
     # A ten that takes only these units after it, past the joiner: the old
     # spelling "diez y seis" is 16, and "diez y uno" is no number.
     takes_units: frozenset[str] = frozenset()
+    # The grammatical cases the form stands in. Every word of a cardinal
+    # declines, so a ten with no nominative form takes only a unit that
+    # shares a case with it: Russian "двадцати девяти" is 29, and
+    # "без двадцати девять" is 20 and 9. A ten with a nominative form takes
+    # any unit: the animate accusative "двадцать одного" is 21.
+    case: frozenset[str] = frozenset()
     # A case form that names the parts when a count follows it: Turkish
     # "üçte bir" is one third.
     fraction_case: bool = False
@@ -512,6 +518,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
                             takes_units=frozenset(spec.get("takes_units", ())),
+                            case=frozenset(spec.get("case", ())),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             weak_alone=spec.get("weak_alone", False), invariant=spec.get("invariant", False),
                             teens=spec.get("teens", False),
