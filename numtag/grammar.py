@@ -191,15 +191,17 @@ class Grammar:
             if lexicon.decimal_mark == "," and lexicon.group_mark != "." else None
 
     # Token access -----------------------------------------------------
+    # A position before the first token reads as no word: "i - 1" at the
+    # first token must not wrap to the last one.
 
     def _readings(self, i: int, role: str) -> tuple[Entry, ...]:
-        if i >= len(self.tokens) or self.tokens[i].is_digits:
+        if not 0 <= i < len(self.tokens) or self.tokens[i].is_digits:
             return ()
         entries = self.lex.of(self.tokens[i].norm, role)
         return entries if self.tokens[i].part else tuple(e for e in entries if not e.part)
 
     def _is_word(self, i: int, words: frozenset[str]) -> bool:
-        return i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
+        return 0 <= i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
 
     def _after_vague(self, i: int) -> bool:
         """A vague quantity ("nekoliko") stands before position ``i``: right
@@ -339,7 +341,7 @@ class Grammar:
         return bool(readings) and all(e.ambiguous for e in readings)
 
     def starts_number(self, i: int) -> bool:
-        if i >= len(self.tokens):
+        if not 0 <= i < len(self.tokens):
             return False
         token = self.tokens[i]
         return token.is_digits or any(
@@ -1102,11 +1104,12 @@ class Grammar:
         # A count equal to the denominator is a count of things ("2 вторых
         # места", "the 4 quarters"), and a digit after a slash is a term of
         # a slash fraction ("5 1/2 quarters"). A digit right after a decimal
-        # marker is a decimal digit ("2 point 5 quarters"); a first digit has
-        # no word before it.
+        # marker with a number before it is a decimal digit ("2 point 5
+        # quarters"); with none, the marker word is a noun ("at that point 3
+        # quarters").
         if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
                 and self.tokens[i].gap.strip() != "/"
-                and not (i and self._is_word(i - 1, self.lex.decimal_markers))
+                and not (self._is_word(i - 1, self.lex.decimal_markers) and self.starts_number(i - 2))
                 and not any(e.ambiguous or e.value == read[1].numerator
                             for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))
