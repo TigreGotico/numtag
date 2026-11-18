@@ -1,5 +1,9 @@
 {
  "settings": {
+  "part_glued_to_whole": {
+   "value": true,
+   "source": "Duden, \"eindreiviertel\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/duden-eindreiviertel.html): \"Wortart: ⓘ Zahlwort\", \"Worttrennung ein|drei|vier|tel\", \"Schreibung in Ziffern 1 ¾\", \"eindreiviertel Jahre, in eindreiviertel Jahren\", \"Bruchzahl\". DWDS corpus examples, a whole and a quarter fraction in one word: \"Nach zweieinviertel Stunden verwandelte sie ihren zweiten Matchball\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-zweieinviertel.html), \"Vor eineinviertel Jahren hat ihn das Leben doch zu einer Wende gezwungen.\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-eineinviertel.html), \"Frauen verwenden hierfür mit zweidreiviertel Stunden mehr als doppelt so viel Zeit auf wie die Männer.\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-zweidreiviertel.html). The fraction keeps its own count (\"ein\", \"drei\") and is below one, so \"zweidrittel\" stays 2/3."
+  },
   "scale": {
    "value": "long",
    "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde[ →→]\", \"1000000000000: eine Billion[ →→]\", \"1000000000000000: eine Billiarde[ →→]\""

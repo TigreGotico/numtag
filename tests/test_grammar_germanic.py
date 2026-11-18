@@ -221,6 +221,29 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         self.assertEqual(read("zweieinhalb Stunden", "de"), [("zweieinhalb", "2.5", F)])
         self.assertEqual(read("viereinhalb Milliarden", "de"), [("viereinhalb Milliarden", "4500000000", C)])
 
+    def test_a_quarter_fraction_glued_to_the_whole(self):
+        # 2 + 1/4 = 2.25; 1 + 1/4 = 1.25; 10 + 1/4 = 10.25; 2 + 3/4 = 2.75; 1 + 3/4 = 1.75
+        self.assertEqual(read("in zweieinviertel Stunden", "de"), [("zweieinviertel", "2.25", F)])
+        self.assertEqual(read("in eineinviertel Stunden", "de"), [("eineinviertel", "1.25", F)])
+        self.assertEqual(read("in zehneinviertel Stunden", "de"), [("zehneinviertel", "10.25", F)])
+        self.assertEqual(read("in zweidreiviertel Stunden", "de"), [("zweidreiviertel", "2.75", F)])
+        self.assertEqual(read("eindreiviertel Jahre", "de"), [("eindreiviertel", "1.75", F)])
+        # 21 + 1/4 = 21.25
+        self.assertEqual(read("einundzwanzigeinviertel", "de"), [("einundzwanzigeinviertel", "21.25", F)])
+
+    def test_a_glued_count_and_part_with_no_whole_stay_one_fraction(self):
+        # "zweidrittel" is 2/3, not 2 + 1/3: the part has no count of its own
+        self.assertEqual(read("zweidrittel", "de"), [("zweidrittel", "2/3", F)])
+        self.assertEqual(read("zweieinhalb", "de"), [("zweieinhalb", "2.5", F)])
+        # a part word of a hundred or more after a count is a glued denominator,
+        # never a part after the whole: no 2 + 10/10000 or 2 + 1/100
+        self.assertEqual(read("zweizehntausendstel", "de"), [])
+        self.assertEqual(read("zweieinhundertstel", "de"), [])
+
+    def test_a_part_glued_to_the_whole_is_only_german(self):
+        # no lexicon but German turns the setting on
+        self.assertEqual(read("tvåtrekvart", "sv"), [])
+
     def test_a_word_whose_value_is_a_fraction(self):
         # 3/2 = 1.5; 3/2 x 10^6 = 1500000
         self.assertEqual(read("anderthalb Liter", "de"), [("anderthalb", "1.5", F)])
