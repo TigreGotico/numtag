@@ -405,6 +405,14 @@ class TestArticles(unittest.TestCase):
         self.assertEqual(read("in miljoen", "fy"), [("in miljoen", "1000000", C)])
 
 
+class TestZwo(unittest.TestCase):
+    def test_zwo_is_two_in_any_context(self):
+        # Duden, "zwo": "Zahlwort", "Bedeutung ⓘ zwei"; 0, 1, 7, 2 said one by one is 172 with the digits 0172
+        self.assertEqual(read("um zwo Uhr", "de"), [("zwo", "2", C)])
+        found = tag_numbers("null eins sieben zwo", "de")
+        self.assertEqual([(m.value, m.digits) for m in found], [("172", "0172")])
+
+
 class TestRanges(unittest.TestCase):
     def test_a_joiner_inside_a_compound_word_splits_no_range(self):
         # 21 to 30

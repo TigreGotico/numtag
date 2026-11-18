@@ -56,7 +56,7 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     tokens = _tokenize(text, lexicon)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
-        mentions += _tag_run(text, lexicon, run)
+        mentions += _spoken_digits(text, lexicon, run, _tag_run(text, lexicon, run))
     # "1/0" is a fraction with a zero denominator: it has no value, so its
     # digits give no mention. A chain of slashes ("3/5/2025") is no fraction.
     after_slash = [k > 0 and t.gap == "/" for k, t in enumerate(tokens)] + [False]
@@ -124,6 +124,99 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
         fractions.append(NumberMention(span, text[first:bottom.end], value.canonical(), Kind.FRACTION, form, gender,
                                        number_scale=scale, parts=parts))
     return [m for m in mentions if m.char_span not in consumed] + fractions
+
+
+# The fewest digits that a spoken digit sequence holds: "nine six three"
+# is 963, while "dois três dias" and "un nou telèfon" keep their words apart.
+SPOKEN_DIGITS_MIN = 3
+
+
+def _spoken_digits(text: str, lexicon: Lexicon, run: list[Token],
+                   mentions: list[NumberMention]) -> list[NumberMention]:
+    """The mentions of ``run`` with each spoken digit sequence read as one
+    number. A sequence is SPOKEN_DIGITS_MIN or more digits said one by one,
+    as in a telephone number: a unit word from zero to nine, a
+    ``digit_alias`` ("oh", pt-BR "meia") or a ``digit_repeat`` before a digit
+    ("double oh seven" is 007), with at least one unit word among them so
+    that "oh oh oh" stays an interjection. A word inside a longer number joins no
+    sequence: "one point two three four" stays a decimal. A number from ten
+    to ninety-nine, a zero alias and a unit say four digits in pairs, as in
+    a year: "nineteen oh five" is 1905."""
+    index = {token.start: k for k, token in enumerate(run)}
+    ends = {token.end: k for k, token in enumerate(run)}
+    used: set[int] = set()  # run indexes inside a longer mention or a sequence
+    for mention in mentions:
+        first, last = index.get(mention.char_span[0]), ends.get(mention.char_span[1])
+        if first is not None and last is not None and last > first:
+            used.update(range(first, last + 1))
+
+    def said(k: int, *roles: str, homograph: bool = False) -> str | None:
+        """The digit, or the count of a repeat, that the word at ``k`` says. A
+        case form ("dördü" is in the accusative) says none, and a homograph
+        ("hét" is also a week) only with ``homograph``."""
+        if k >= len(run) or k in used or run[k].is_digits or run[k].glued or run[k].part:
+            return None
+        return next((e.value for e in lexicon.readings.get(run[k].norm, ())
+                     if e.role in roles and len(e.value) == 1 and not (e.final or e.part or e.bound)
+                     and (homograph or not e.ambiguous)), None)
+
+    def part(k: int, role: Role, value: str) -> Part:
+        return Part(role, (run[k].start, run[k].end), run[k].text, value)
+
+    found: list[NumberMention] = []
+    for mention in mentions:
+        first, last = index.get(mention.char_span[0]), ends.get(mention.char_span[1])
+        if first is None or last is None or mention.kind is not Kind.CARDINAL or mention.form is not Form.WORDS \
+                or not (len(mention.value) == 2 and mention.value.isdigit()):
+            continue
+        zero, unit = last + 1, last + 2
+        if said(zero, "digit_alias") == "0" and said(unit, "unit") not in (None, "0") \
+                and said(unit + 1, "unit", "digit_alias") is None:
+            span = (mention.char_span[0], run[unit].end)
+            value = mention.value + "0" + said(unit, "unit")
+            found.append(NumberMention(span, text[span[0]:span[1]], value, Kind.CARDINAL, Form.SPOKEN_DIGITS,
+                                       confidence=mention.confidence, reasons=mention.reasons, digits=value,
+                                       parts=mention.parts + (part(zero, Role.COUNT, "0"),
+                                                              part(unit, Role.COUNT, said(unit, "unit")))))
+            used.update(range(first, unit + 1))
+    i = 0
+    while i < len(run):
+        # one step per digit or repeat: (first word, end, parts, digits, sure, unit word)
+        steps, j = [], i
+        while True:
+            times = said(j, "digit_repeat")
+            repeated = said(j + 1, "unit", "digit_alias", homograph=True) if times else None
+            digit = said(j, "unit", "digit_alias", homograph=True)
+            if repeated is not None:
+                steps.append((j, j + 2, [part(j, Role.REPEAT, times), part(j + 1, Role.COUNT, repeated)],
+                              repeated * "0123456789".index(times),
+                              said(j + 1, "unit", "digit_alias") is not None, False))
+                j += 2
+            elif digit is not None:
+                steps.append((j, j + 1, [part(j, Role.COUNT, digit)], digit,
+                              said(j, "unit", "digit_alias") is not None, said(j, "unit", homograph=True) is not None))
+                j += 1
+            else:
+                break
+        # a homograph is a digit only between two sure ones: "tre sei due"
+        while steps and not steps[-1][4]:
+            steps.pop()
+        while steps and not steps[0][4]:
+            steps.pop(0)
+        digits_said = "".join(step[3] for step in steps)
+        # a unit word among them: "oh oh oh" is an interjection
+        if len(digits_said) >= SPOKEN_DIGITS_MIN and steps[-1][1] - steps[0][0] > 1 and any(s[5] for s in steps):
+            first, end = steps[0][0], steps[-1][1]
+            span = (run[first].start, run[end - 1].end)
+            found.append(NumberMention(span, text[span[0]:span[1]], digits_said.lstrip("0") or "0", Kind.CARDINAL,
+                                       Form.SPOKEN_DIGITS, digits=digits_said,
+                                       parts=tuple(p for step in steps for p in step[2])))
+            used.update(range(first, end))
+        i = max(j, i + 1)
+    if not found:
+        return mentions
+    taken = [m.char_span for m in found]
+    return [m for m in mentions if not any(s < m.char_span[1] and m.char_span[0] < e for s, e in taken)] + found
 
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:

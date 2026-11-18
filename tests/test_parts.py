@@ -149,10 +149,30 @@ class TestEveryGoldMention(unittest.TestCase):
                 checked += 1
         self.assertGreater(checked, 8000)
 
+    def test_spoken_digits_give_the_digits_and_the_value(self):
+        checked = 0
+        for lang, text in _gold():
+            for mention in tag_numbers(text, lang):
+                if mention.form is not Form.SPOKEN_DIGITS:
+                    continue
+                said, times = "", 1
+                for part in mention.parts:
+                    if part.role == Role.REPEAT:
+                        times = int(part.value)
+                    else:
+                        said, times = said + part.value * times, 1
+                with self.subTest(lang=lang, text=mention.text):
+                    self.assertEqual(said, mention.digits)
+                    self.assertEqual(Fraction(said), Fraction(mention.value))
+                checked += 1
+        self.assertGreater(checked, 5)
+
     def test_counts_and_scales_give_the_mention_value(self):
         checked = 0
         for lang, text in _gold():
             for mention in tag_numbers(text, lang):
+                if mention.form is Form.SPOKEN_DIGITS:
+                    continue
                 value = _value_from_counts_and_scales(lang, mention.parts)
                 if value is None:
                     continue

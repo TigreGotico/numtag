@@ -18,7 +18,7 @@ Give `tag_numbers` a text and a language tag. It returns a list of mentions in r
 >>> from numtag import tag_numbers
 >>> mentions = tag_numbers("A viagem custou mil e duzentos euros.", "pt-PT")
 >>> mentions
-[NumberMention(char_span=(16, 30), text='mil e duzentos', value='1200', kind=<Kind.CARDINAL: 'cardinal'>, form=<Form.WORDS: 'words'>, gender='masculine', confidence=1.0, number_scale=None, reasons=frozenset(), parts=(Part(role=<Role.SCALE: 'scale'>, char_span=(16, 19), text='mil', value='1000'), Part(role=<Role.JOINER: 'joiner'>, char_span=(20, 21), text='e', value=None), Part(role=<Role.COUNT: 'count'>, char_span=(22, 30), text='duzentos', value='200')))]
+[NumberMention(char_span=(16, 30), text='mil e duzentos', value='1200', kind=<Kind.CARDINAL: 'cardinal'>, form=<Form.WORDS: 'words'>, gender='masculine', confidence=1.0, number_scale=None, reasons=frozenset(), parts=(Part(role=<Role.SCALE: 'scale'>, char_span=(16, 19), text='mil', value='1000'), Part(role=<Role.JOINER: 'joiner'>, char_span=(20, 21), text='e', value=None), Part(role=<Role.COUNT: 'count'>, char_span=(22, 30), text='duzentos', value='200')), digits=None)]
 ```
 
 A text with no number gives an empty list.

@@ -65,6 +65,20 @@ class TestBindingRulings(unittest.TestCase):
                          [("dois milhões de dúzias", "24000000", C), ("três milhões", "3000000", C)])
 
 
+class TestSpokenDigits(unittest.TestCase):
+    def test_meia_is_six_in_a_brazilian_digit_sequence(self):
+        # Priberam, "meia": "[Brasil] O número 6."; 3, 6, 2 is 362
+        found = tag_numbers("três meia dois", "pt-BR")
+        self.assertEqual([(m.text, m.value, m.form, m.digits) for m in found],
+                         [("três meia dois", "362", Form.SPOKEN_DIGITS, "362")])
+        self.assertEqual(read("comprei meia pizza", "pt-BR"), [("meia", "0.5", "fraction")])
+        self.assertEqual(read("dois meia", "pt-BR"), [("dois", "2", "cardinal"), ("meia", "0.5", "fraction")])
+
+    def test_meia_is_no_digit_in_portugal(self):
+        self.assertEqual(read("três meia dois", "pt-PT"),
+                         [("três", "3", "cardinal"), ("meia", "0.5", "fraction"), ("dois", "2", "cardinal")])
+
+
 class TestHalves(unittest.TestCase):
     def test_a_half_after_a_collective_is_half_a_group(self):
         # 2 x 12 + 12 / 2 = 30

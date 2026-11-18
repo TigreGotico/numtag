@@ -16,6 +16,13 @@ def confidence(text: str, lang: str) -> list[tuple[str, float]]:
     return [(m.text, m.confidence) for m in tag_numbers(text, lang)]
 
 
+class TestSpokenDigits(unittest.TestCase):
+    def test_a_homograph_is_a_digit_only_between_sure_digits(self):
+        # "sei" is also "you are": 3, 6, 2 is 362; at the end of the run it stays apart
+        self.assertEqual(it("chiama il tre sei due"), [("tre sei due", "362", "cardinal")])
+        self.assertEqual(it("tre due sei"), [("tre", "3", "cardinal"), ("due", "2", "cardinal"), ("sei", "6", "cardinal")])
+
+
 class TestCompoundWords(unittest.TestCase):
     def test_a_word_splits_into_number_words(self):
         # 20 + 3 = 23; 2 x 1000 + 500 = 2500; 1000 + 100 + 1 = 1101

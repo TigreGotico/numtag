@@ -59,6 +59,7 @@ A `NumberMention` is a frozen dataclass. It describes one number in the text.
 | `number_scale` | `Scale` or `None` | Keyword only. The scale that gave the value, set only when the value depends on the scale |
 | `reasons` | `frozenset[Reason]` | Keyword only. Why the confidence is low. Empty for a sure number |
 | `parts` | `tuple[Part, ...]` | Keyword only. The pieces of the mention in reading order. Read [Part](#part). |
+| `digits` | `str` or `None` | Keyword only. For a `Form.SPOKEN_DIGITS` mention, the digits as they were said, leading zeros kept. `None` for every other form. |
 
 ```python
 >>> m = tag_numbers("Recebeu 2,5 milhões de euros.", "pt-PT")[0]
@@ -73,7 +74,7 @@ The gender comes from the last word of the number that shows one. Portuguese wor
 [('duas dúzias', 'feminine'), ('2.º', 'masculine')]
 ```
 
-A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, when `reasons` is not a frozenset of `Reason`, or when a part is not inside the mention or not in reading order.
+A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, when `reasons` is not a frozenset of `Reason`, when `digits` is set for a form other than `Form.SPOKEN_DIGITS` or does not give the value, or when a part is not inside the mention or not in reading order.
 
 ```python
 >>> from numtag import NumberMention, Kind, Form
@@ -160,6 +161,7 @@ ValueError: a joiner part takes no value
 | `Role.MINUS` | `"minus"` | "menos", "minus" | None |
 | `Role.DECIMAL_MARK` | `"decimal_mark"` | "vírgula", "point" | None |
 | `Role.DECIMALS` | `"decimals"` | "zero cinco" after "vírgula" | The fraction it adds: 0.05 |
+| `Role.REPEAT` | `"repeat"` | "double" in "double oh seven" | How many times the next digit is said: 2 |
 | `Role.MANTISSA`, `Role.TIMES`, `Role.BASE`, `Role.EXPONENT` | | Scientific notation ("6.02e-23") | Reserved. numtag gives no part with these roles |
 
 ## Kind
@@ -190,6 +192,15 @@ The kind follows the words, and the form of the value follows the arithmetic. So
 | `Form.DIGITS` | `"digits"` | "2000000", "1.000.000", "21st" |
 | `Form.MIXED` | `"mixed"` | "2 milhões" |
 | `Form.ROMAN` | `"roman"` | "XIV", "Ⅻ" |
+| `Form.SPOKEN_DIGITS` | `"spoken_digits"` | "zero nine one", "double oh seven", pt-BR "três meia dois" |
+
+A spoken digit sequence says three or more digits one by one, as in a telephone number. Its value is a whole number, so leading zeros drop out of it, as they do from "007" in digits. The field `digits` keeps the digits as they were said. Read [rulings.md](rulings.md#spoken-digit-sequences).
+
+```python
+>>> m = tag_numbers("Call oh one two three now.", "en")[0]
+>>> m.text, m.value, m.form.value, m.digits
+('oh one two three', '123', 'spoken_digits', '0123')
+```
 
 A minus word before digits does not change the form.
 

@@ -306,11 +306,45 @@ At each position numtag takes the longest number. Where a number can still grow 
 [('duzentos mil e dois milhões', '200002000000')]
 >>> read("twenty one twenty", "en")
 [('twenty one', '21'), ('twenty', '20')]
->>> read("um um um")
-[('um', '1'), ('um', '1'), ('um', '1')]
+>>> read("um um")
+[('um', '1'), ('um', '1')]
 ```
 
-No rule joins "um" to "um", so each word is a number. This rule is structural, with no outside source.
+No rule joins "um" to "um", so each word is a number. This rule is structural, with no outside source. Three or more digits in a row are one spoken digit sequence: read [Spoken digit sequences](#spoken-digit-sequences).
+
+## Spoken digit sequences
+
+Three or more digits said one by one, as in a telephone number, are one number with `Form.SPOKEN_DIGITS`. A digit is a unit word from zero to nine, or a word that is a digit only in such a sequence: en "oh", pt-BR "meia". "double" and "triple" say the next digit two or three times. The value is a whole number, and the field `digits` keeps the leading zeros. A sequence needs at least one unit word, so "oh oh oh" stays an interjection. Two digit words stay two numbers, because "dois três dias" and "un nou telèfon" are no sequence. A word inside a longer number joins no sequence: "one point two three four" stays a decimal.
+
+```python
+>>> read("Ligue para três meia dois.", "pt-BR")
+[('três meia dois', '362')]
+>>> read("Ligue para três meia dois.", "pt-PT")
+[('três', '3'), ('meia', '0.5'), ('dois', '2')]
+>>> [(m.text, m.digits) for m in tag_numbers("He is double oh seven.", "en")]
+[('double oh seven', '007')]
+>>> read("Oh, five people came.", "en")
+[('five', '5')]
+>>> read("one point two three four", "en")
+[('one point two three four', '1.234')]
+```
+
+> Wiktionary, "oh" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/wikt-oh.wikitext), Etymology 3, noun: "The digit [[0]] (especially in representations of speech)", as in "Eight six seven five three '''oh''' nine."
+
+> Dicio, "meia" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/dicio-meia.html): "No discurso falado, o número seis ou o que possui igual valor: moro na casa três-meia-cinco (365)."
+
+The minimum of three digits is a maintainer ruling: informal digit words "only really happen when speaking digit sequences". The gold corpus holds two-word runs that are no sequence, such as ca "un nou telèfon" and fi "yhden kolmesta", and no run of three or more digit words that is not one.
+
+A number from ten to ninety-nine, "oh" and a unit name four digits in pairs, as in a year: "nineteen oh five" is 1905. "nil" is zero in a score, at the score of a homograph, because it also means nothing.
+
+```python
+>>> read("It was built in nineteen oh five.", "en")
+[('nineteen oh five', '1905')]
+>>> read("They won two nil.", "en")
+[('two', '2'), ('nil', '0')]
+```
+
+> Wikipedia, "English numerals" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/wp-English_numerals.wikitext): "Nineteen oh-one"
 
 ## Decimals
 

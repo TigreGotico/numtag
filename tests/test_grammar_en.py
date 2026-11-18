@@ -4,7 +4,7 @@ import time
 import unittest
 
 from helpers import read
-from numtag import Scale, tag_numbers
+from numtag import Form, Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -463,6 +463,49 @@ class TestFractionOfAScale(unittest.TestCase):
         self.assertEqual(en("a quarter in a million"), [("a quarter", "0.25", F), ("a million", "1000000", C)])
 
 
+class TestSpokenDigits(unittest.TestCase):
+    def spoken(self, text: str) -> list[tuple[str, str, str, str | None]]:
+        return [(m.text, m.value, m.form.value, m.digits) for m in tag_numbers(text, "en")]
+
+    def test_three_digits_said_one_by_one_are_one_number(self):
+        # 9, 6, 3 is 963; 0, 9, 1 is 91 with the digits 091
+        self.assertEqual(self.spoken("nine six three"), [("nine six three", "963", "spoken_digits", "963")])
+        self.assertEqual(self.spoken("zero nine one"), [("zero nine one", "91", "spoken_digits", "091")])
+        self.assertEqual(self.spoken("eight-six-seven-five-three-oh-nine"),
+                         [("eight-six-seven-five-three-oh-nine", "8675309", "spoken_digits", "8675309")])
+
+    def test_double_and_triple_repeat_the_next_digit(self):
+        # Wikipedia, "English numerals": 007 is "double oh seven", 2000 is "two triple-oh"
+        self.assertEqual(self.spoken("double oh seven"), [("double oh seven", "7", "spoken_digits", "007")])
+        self.assertEqual(self.spoken("two triple oh"), [("two triple oh", "2000", "spoken_digits", "2000")])
+        self.assertEqual(en("a double room"), [])
+
+    def test_two_digit_words_stay_two_numbers(self):
+        self.assertEqual(en("one two"), [("one", "1", C), ("two", "2", C)])
+        self.assertEqual(en("double six"), [("six", "6", C)])
+
+    def test_oh_alone_or_with_no_unit_word_is_no_digit(self):
+        self.assertEqual(en("oh oh oh"), [])
+        self.assertEqual(en("oh, one two three"), [("one two three", "123", C)])
+
+    def test_a_word_inside_a_longer_number_joins_no_sequence(self):
+        self.assertEqual(en("one point two three four"), [("one point two three four", "1.234", D)])
+        self.assertEqual(en("twenty one two three"), [("twenty one", "21", C), ("two", "2", C), ("three", "3", C)])
+        self.assertEqual(en("two three-bedroom flats"), [("two", "2", C)])
+
+    def test_a_pair_oh_and_a_unit_say_four_digits(self):
+        # 19 x 100 + 5 = 1905; 41 x 100 + 5 = 4105
+        self.assertEqual(self.spoken("nineteen oh five"), [("nineteen oh five", "1905", "spoken_digits", "1905")])
+        self.assertEqual(self.spoken("forty-one oh five"), [("forty-one oh five", "4105", "spoken_digits", "4105")])
+        # one digit first: the digits 8, 0, 5
+        self.assertEqual(self.spoken("eight oh five"), [("eight oh five", "805", "spoken_digits", "805")])
+
+    def test_nil_and_nought_are_zero(self):
+        self.assertEqual([(m.text, m.value, round(m.confidence, 1)) for m in tag_numbers("two nil", "en")],
+                         [("two", "2", 1.0), ("nil", "0", 0.4)])
+        self.assertEqual(en("nought point five"), [("nought point five", "0.5", D)])
+
+
 class TestOrdinals(unittest.TestCase):
     def test_only_the_last_word_is_ordinal(self):
         # 20 + 1 = 21; 100 + 1 = 101
@@ -595,9 +638,11 @@ class TestDecimalsAndDigits(unittest.TestCase):
         # 1.50 x 10^6 = 1500000
         self.assertEqual(en("one point five oh million"), [("one point five oh million", "1500000", C)])
 
-    def test_oh_is_no_digit_outside_the_decimals(self):
+    def test_oh_is_a_digit_only_in_the_decimals_or_a_spoken_digit_sequence(self):
         self.assertEqual(en("oh five"), [("five", "5", C)])
-        self.assertEqual(en("one oh five"), [("one", "1", C), ("five", "5", C)])
+        self.assertEqual(en("oh, five people came"), [("five", "5", C)])
+        # 1, 0, 5 said one by one
+        self.assertEqual(en("one oh five"), [("one oh five", "105", C)])
 
     def test_a_ten_and_its_unit_after_point_are_one_part(self):
         # 3 + 25/100 = 3.25, not 3.205

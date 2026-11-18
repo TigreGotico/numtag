@@ -35,6 +35,14 @@ class TestNumberMention(unittest.TestCase):
                                 Form.WORDS, gender="feminine")
         self.assertEqual(text[slice(*mention.char_span)], mention.text)
 
+    def test_digits_go_only_with_spoken_digits_and_give_the_value(self):
+        mention = NumberMention((0, 13), "zero nine one", "91", Kind.CARDINAL, Form.SPOKEN_DIGITS, digits="091")
+        self.assertEqual(mention.digits, "091")
+        for form, digits, value in ((Form.SPOKEN_DIGITS, None, "91"), (Form.WORDS, "091", "91"),
+                                    (Form.SPOKEN_DIGITS, "092", "91"), (Form.SPOKEN_DIGITS, "0x1", "91")):
+            with self.subTest(form=form, digits=digits), self.assertRaises(ValueError):
+                NumberMention((0, 13), "zero nine one", value, Kind.CARDINAL, form, digits=digits)
+
     def test_a_span_that_does_not_fit_the_text_is_refused(self):
         with self.assertRaises(ValueError):
             NumberMention((0, 3), "duas", "2", Kind.CARDINAL, Form.WORDS)

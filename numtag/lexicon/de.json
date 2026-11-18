@@ -302,7 +302,7 @@
    "word": "zwo",
    "role": "unit",
    "value": "2",
-   "source": "Duden, \"zwo\": a form of \"zwei\" used to tell it from \"drei\" in speech"
+   "source": "Duden, \"zwo\" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/duden-zwo.html): \"Wortart: ⓘ Zahlwort\"; \"umgangssprachlich, häufig auch aus Gründen der Deutlichkeit, um eine akustische Verwechslung mit „drei“ zu vermeiden\"; \"Bedeutung ⓘ zwei\". The word is a numeral in every context, not only in a spoken digit sequence."
   },
   {
    "word": "zwei",

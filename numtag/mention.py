@@ -31,6 +31,7 @@ class Form(str, Enum):
     DIGITS = "digits"       # "2000000"
     MIXED = "mixed"         # "2 milhões"
     ROMAN = "roman"         # "XIV", "Ⅻ"
+    SPOKEN_DIGITS = "spoken_digits"  # "zero nine one", "double oh seven"
 
 
 _WHOLE = r"-?(?:0|[1-9][0-9]*)"
@@ -68,6 +69,7 @@ class Role(str, Enum):
     TIMES = "times"                # "e", "E", "×", "·", "x", "*", "vezes"
     BASE = "base"                  # "10", "dez", "ten"
     EXPONENT = "exponent"          # "-23", "⁻²³", "^-3", "elevado a menos três"
+    REPEAT = "repeat"              # "double", "triple" before a spoken digit
 
 
 #: The roles of words that name no number: their parts have no value.
@@ -117,6 +119,10 @@ class NumberMention:
     empty for a sure number. ``parts``, a keyword-only field left out of
     equality, lists the pieces of the mention in reading order; the value
     stays the one answer, and a caller does not add the parts up.
+    ``digits``, a keyword-only field, is the digit string of a
+    ``Form.SPOKEN_DIGITS`` mention as it was said, leading zeros kept:
+    "zero nine one" has the value "91" and the digits "091". It is None for
+    every other form.
     """
     char_span: Tuple[int, int]
     text: str
@@ -128,6 +134,7 @@ class NumberMention:
     number_scale: Optional[Scale] = field(default=None, kw_only=True)
     reasons: frozenset[Reason] = field(default=frozenset(), compare=False, kw_only=True)
     parts: Tuple[Part, ...] = field(default=(), compare=False, kw_only=True)
+    digits: Optional[str] = field(default=None, kw_only=True)
 
     def __post_init__(self):
         start, end = self.char_span
@@ -135,6 +142,11 @@ class NumberMention:
             raise ValueError(f"char_span {self.char_span} does not fit text {self.text!r}")
         if not is_canonical_value(self.value):
             raise ValueError(f"value {self.value!r} is not a canonical digit string")
+        if (self.digits is None) != (self.form is not Form.SPOKEN_DIGITS):
+            raise ValueError("a mention has digits exactly when its form is spoken_digits")
+        if self.digits is not None and not (self.digits.isascii() and self.digits.isdigit()
+                                            and (self.digits.lstrip("0") or "0") == self.value):
+            raise ValueError(f"digits {self.digits!r} do not give the value {self.value!r}")
         if self.number_scale is not None and not isinstance(self.number_scale, Scale):
             raise ValueError(f"number_scale {self.number_scale!r} is not a Scale")
         if not isinstance(self.reasons, frozenset) or not all(isinstance(r, Reason) for r in self.reasons):
