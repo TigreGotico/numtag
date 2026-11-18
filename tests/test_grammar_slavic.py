@@ -3,7 +3,7 @@ worked out by hand in the comment beside it; sources are in the lexicon of
 each language under numtag/lexicon/."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -464,3 +464,25 @@ class TestApostrophes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestOneBeforeAnAmbiguousCollective(unittest.TestCase):
+    def test_one_before_stotina_is_a_homograph(self):
+        # Hrvatski pravopis 5.4.2 "jedna stotina (1/100)", HJP "stȍtina" 100 and "stotìna" 1/100:
+        # the count 1 x 100 = 100 at the score of a homograph
+        for text, words in (("Na skupu je bila jedna stotina ljudi.", "jedna stotina"),
+                            ("Platio je jednu stotinu kuna.", "jednu stotinu")):
+            with self.subTest(text=text):
+                self.assertEqual(sure(text, "hr"), [(words, "100", 0.4)])
+                self.assertEqual([sorted(r.value for r in m.reasons) for m in tag_numbers(text, "hr")], [["homograph"]])
+
+    def test_a_count_above_one_keeps_the_sure_reading(self):
+        # 2 x 100 = 200, 5 x 100 = 500, 1000 + 100 = 1100
+        self.assertEqual(sure("dvije stotine", "hr"), [("dvije stotine", "200", 1.0)])
+        self.assertEqual(sure("pet stotina", "hr"), [("pet stotina", "500", 1.0)])
+        self.assertEqual(sure("tisuću i jedna stotina", "hr"), [("tisuću i jedna stotina", "1100", 1.0)])
+
+    def test_one_before_score_reads_as_an_article_before_it(self):
+        # "score" is also a mark: 1 x 20 = 20 at the score of a homograph, as "A score"; 3 x 20 + 10 = 70 is sure
+        self.assertEqual(sure("One score of people came.", "en"), [("One score", "20", 0.4)])
+        self.assertEqual(sure("Three score and ten years.", "en"), [("Three score and ten", "70", 1.0)])
