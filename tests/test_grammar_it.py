@@ -78,6 +78,14 @@ class TestScaleNounsAboveATrillion(unittest.TestCase):
         # a half of 10^24 = 5 x 10^23, written as 5 and 23 zeros
         self.assertEqual(it("mezzo quadrilione"), [("mezzo quadrilione", "500000000000000000000000", C)])
 
+    def test_the_iardi_and_illioni_up_to_sistiliardo(self):
+        # long scale: triliardo 10^21, quintilione 10^30, sistilione 10^36, sistiliardo 10^39
+        for text, value in (("sette triliardi", "7" + "0" * 21), ("un quintilione", "1" + "0" * 30),
+                            ("un sistilione", "1" + "0" * 36),
+                            ("novecentonovantanove sistiliardi", "999" + "0" * 39)):
+            with self.subTest(text=text):
+                self.assertEqual(it(text), [(text, value, C)])
+
 
 class TestMinus(unittest.TestCase):
     def test_meno_after_a_is_a_minus(self):

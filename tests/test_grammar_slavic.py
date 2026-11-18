@@ -37,6 +37,35 @@ class TestScales(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(read(text, "ru"), [(text, value, C)])
 
+    def test_ukrainian_illions_count_in_the_chosen_scale(self):
+        # short scale: rank n is 10^(3n + 3); long scale: 10^(6n)
+        for text, rank in (("сім квадрильйонів", 4), ("дванадцять квінтильйонів", 5), ("одним децильйоном", 10),
+                           ("два вігінтильйони", 20)):
+            count = {"сім": "7", "дванадцять": "12", "одним": "1", "два": "2"}[text.split()[0]]
+            for scale, exponent in ((Scale.SHORT, 3 * rank + 3), (Scale.LONG, 6 * rank)):
+                with self.subTest(text=text, scale=scale):
+                    self.assertEqual(read(text, "uk", scale=scale), [(text, count + "0" * exponent, C)])
+
+    def test_ukrainian_illiards_are_long_scale_only(self):
+        # трильярд 10^21, децильярд 10^63, вігінтильярд 10^123, under either scale
+        for text, value in (("сім трильярдів", "7" + "0" * 21), ("три децильярди", "3" + "0" * 63),
+                            ("один вігінтильярд", "1" + "0" * 123)):
+            for scale in (Scale.SHORT, Scale.LONG):
+                with self.subTest(text=text, scale=scale):
+                    self.assertEqual(read(text, "uk", scale=scale), [(text, value, C)])
+        # 12 x 10^18 + 345 in the default short scale
+        self.assertEqual(read("дванадцять квінтильйонів триста сорок пʼять", "uk"),
+                         [("дванадцять квінтильйонів триста сорок пʼять", "12" + "0" * 15 + "345", C)])
+
+    def test_czech_long_scale_names(self):
+        # trilion 10^18 (+1); kvadrilion 10^24; sexdecilion 10^96; triliarda 10^21; sexdeciliarda 10^99
+        for text, value in (("jeden trilion jedna", "1" + "0" * 17 + "1"),
+                            ("dvanáct trilionů tři sta čtyřicet pět", "12" + "0" * 15 + "345"),
+                            ("sedm kvadrilionů", "7" + "0" * 24), ("dva sexdeciliony", "2" + "0" * 96),
+                            ("dvě triliardy", "2" + "0" * 21), ("sedm sexdeciliard", "7" + "0" * 99)):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "cs"), [(text, value, C)])
+
     def test_croatian_trilijun_is_ten_to_the_eighteenth(self):
         # long scale: 6 x 3 = 18. 12 x 10^18 + 345 = 12000000000000000000 + 345
         self.assertEqual(read("dvanaest trilijuna tristo četrdeset pet", "hr"),

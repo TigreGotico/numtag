@@ -131,4 +131,18 @@ Croatian, long scale:
 
 > CLDR RBNF hr renders 10^9 as "jedna milijarda" and 10^12 as "jedan bilijun": Croatian counts in the long scale.
 
+Ukrainian and Czech also name the higher powers. A name in "-ильйон" or "-ilion" counts in the chosen scale, as "трильйон" does. A name in "-ильярд" or "-iarda" exists only in the long scale, so it has one value under either scale.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value) for m in tag_numbers('сім квадрильйонів', 'uk')]
+[('сім квадрильйонів', '7000000000000000')]
+>>> [(m.text, m.value) for m in tag_numbers('сім квадрильйонів', 'uk', scale='long')]
+[('сім квадрильйонів', '7000000000000000000000000')]
+>>> [(m.text, m.value) for m in tag_numbers('сім трильярдів', 'uk')]
+[('сім трильярдів', '7000000000000000000000')]
+>>> [(m.text, m.value) for m in tag_numbers('jeden trilion jedna', 'cs')]
+[('jeden trilion jedna', '1000000000000000001')]
+```
+
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
