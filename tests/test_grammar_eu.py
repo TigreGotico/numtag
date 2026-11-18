@@ -237,6 +237,18 @@ class TestAraua203Fractions(unittest.TestCase):
     def test_a_noun_after_the_compound(self):
         self.assertEqual(eu("milioi erdi euro"), [("milioi erdi", "500000", C)])
 
+    def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
+        for text, value in (("hogeita lau unitate eta bost hamarren", "24.5"),  # 24 + 5/10
+                            ("zero unitate eta hogeita zazpi ehunen", "0.27"),  # 0 + 27/100
+                            ("zero unitate eta berrogeita hiru milaren", "0.043")):  # 0 + 43/1000
+            with self.subTest(text=text):
+                self.assertEqual(eu(text), [(text, value, D)])
+
+    def test_unitate_as_a_noun_keeps_the_numbers_apart(self):
+        # "hiru unitate eta bi ordu" is 3 units and 2 hours
+        self.assertEqual(eu("hiru unitate eta bi ordu"), [("hiru", "3", C), ("bi", "2", C)])
+        self.assertEqual(eu("hiru unitate"), [("hiru", "3", C)])
+
     def test_the_genitive_ren_alone_is_no_number(self):
         # "bosten artean" is "among five": the -(r)en word reads only with a count or "bat"
         self.assertEqual(eu("bosten artean"), [])
@@ -266,16 +278,6 @@ class TestAraua203Gaps(unittest.TestCase):
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
     def test_the_denominator_with_ko_before_the_count(self):
         self.assertEqual(eu("bosteko bi"), [("bosteko bi", "0.4", F)])  # 2/5
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
-    def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
-        text = "hogeita lau unitate eta bost hamarren"  # 24 + 5/10
-        self.assertEqual(eu(text), [(text, "24.5", D)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
-    def test_unitate_eta_after_zero(self):
-        text = "zero unitate eta hogeita zazpi ehunen"  # 0 + 27/100
-        self.assertEqual(eu(text), [(text, "0.27", D)])
 
 
 if __name__ == "__main__":

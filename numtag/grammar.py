@@ -1053,17 +1053,23 @@ class Grammar:
         if self.lex.joiner_after_decimal_marker != Joiner.NEVER and self._is_word(last.end, self.lex.decimal_markers):
             # "три целых и шесть седьмых": the whole part, its marker, a joiner and a fraction
             starts += self._after_joiner(last.end + 1, Joiner.REQUIRED)
+        # "hogeita lau unitate eta bost hamarren": a noun for the whole part, a joiner and a fraction
+        whole_noun = self._is_word(last.end, self.lex.whole_part_nouns)
+        if whole_noun:
+            starts += self._after_joiner(last.end + 1, Joiner.REQUIRED)
         for j in starts:
             # digits take no part without the joiner ("tiga dua-pertiga" is 11/3)
             if j == last.end and self.tokens[j - 1].is_digits:
                 continue
             # "três e um quarto"; "три целых и шесть седьмых" has the marker before the joiner
             parts = _run_parts(run) + tuple(
-                (Role.DECIMAL_MARK if self._is_word(k, self.lex.decimal_markers) else Role.JOINER, k, k + 1, None)
+                (Role.DECIMAL_MARK if self._is_word(k, self.lex.decimal_markers | self.lex.whole_part_nouns)
+                 else Role.JOINER, k, k + 1, None)
                 for k in range(last.end, j))
             # the whole part before the joiner makes the fraction clear: "três e um quarto"
             lone = self._lone_glued_denominator(j)
-            found += [replace(f, value=_sum(run) + f.value, ambiguous=f in lone and f.ambiguous, parts=parts + f.parts)
+            found += [replace(f, value=_sum(run) + f.value, ambiguous=f in lone and f.ambiguous, parts=parts + f.parts,
+                              decimal=f.decimal or whole_noun and j > last.end + 1)
                       for f in self.fractions(j)]
             # "dois mil e terço", "dois milhões e quarto"
             if not self.lex.part_after_joiner_needs_article:
