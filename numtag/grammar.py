@@ -849,8 +849,8 @@ class Grammar:
                     count = group.count.scaled(group.exponent)
                     # a group of hundreds after the thousands joins them,
                     # except after a range cue, where the joiner joins the limits
-                    hundreds = self.lex.joiner_thousand_hundreds and len(_whole(count)) == 3 \
-                        and not (i > 0 and self._is_word(i - 1, self.lex.range_cues))
+                    hundreds = self.lex.joiner_thousand_hundreds and len(_whole(count)) >= 3 \
+                        and not self._after_range_cue(i)
                     if j > last.end and self.lex.joiner_thousand_one_only \
                             and not (last.exponent == THOUSAND
                                      and (_whole(last.count) == "1" == _whole(count) or hundreds)):
@@ -1462,11 +1462,18 @@ class Grammar:
             left = self._split_left(i)
         return self._numbers(i) if left is None else left
 
+    def _after_range_cue(self, i: int) -> bool:
+        """True when a range cue stands before ``i``, with at most one
+        determiner between them: "entre mil y", "entre los mil y"."""
+        return i > 0 and (self._is_word(i - 1, self.lex.range_cues)
+                          or i > 1 and self._is_word(i - 1, self.lex.range_cue_determiners)
+                          and self._is_word(i - 2, self.lex.range_cues))
+
     def _range_left(self, i: int) -> list[Parse] | None:
         """After a range cue ("entre", "between"), the readings of the first
         number when a joiner splits the words into two numbers, the left one
         smaller: "entre cem mil e um milhão" is 100000 and 1000000."""
-        if i == 0 or not self._is_word(i - 1, self.lex.range_cues):
+        if not self._after_range_cue(i):
             return None
         signed = i == self.unsigned
         splits = [(left, right, inner, digits) for left, right, inner, digits in self._splits(i)

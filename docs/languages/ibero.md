@@ -32,7 +32,7 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 
 ## The Spanish joiner "y"
 
-In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Older texts also write "y" between the thousands and the hundreds, as in the inscription "mil y quinientos y cinco" (1505). After "entre", the "y" joins the two limits of a range. Other uses of "y" after "mil" stay two numbers, and no "y" joins a group after "millón".
+In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes one number, as in the title "Las mil y una noches". Older texts also write "y" between the thousands and the hundreds, as in the inscription "mil y quinientos y cinco" (1505). After "entre", also after "entre los" or "entre unos", the "y" joins the two limits of a range. The idiom "las mil y quinientas" means a very late hour (DLE "mil") and holds no number. Other uses of "y" after "mil" stay two numbers, and no "y" joins a group after "millón".
 
 ```python
 >>> read('Las mil y una noches', 'es')
@@ -43,6 +43,10 @@ In Spanish, "y" joins a ten and a unit. Between "mil" and a one it also makes on
 [('mil y quinientos y cinco', '1505')]
 >>> read('entre mil y quinientos', 'es')
 [('mil', '1000'), ('quinientos', '500')]
+>>> read('entre los mil y quinientos', 'es')
+[('mil', '1000'), ('quinientos', '500')]
+>>> read('Vendrá a las mil y quinientas.', 'es')
+[]
 >>> read('mil y veinte', 'es')
 [('mil', '1000'), ('veinte', '20')]
 >>> read('un millón y dos', 'es')
