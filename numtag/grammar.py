@@ -1276,7 +1276,8 @@ class Grammar:
         half alone."""
         halves = [half for half in self._readings(i, "half") if not half.bound]
         half_part = _piece(Role.HALF, i, i + 1, HALF)
-        found = [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
+        clock = self.lex.clock_half and self.starts_number(i + 1)
+        found = [] if clock else [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
         # "erdi bat": one after the half, as after a denominator
         if self._is_word(i + 1, self.lex.one_after_noun):
             found += [Parse(i + 2, HALF, ambiguous=half.ambiguous,

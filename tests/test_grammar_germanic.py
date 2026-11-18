@@ -246,6 +246,16 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         self.assertEqual(read("kwart oer trije", "fy"), [("trije", "3", C)])
         self.assertEqual(read("de kwart finales", "fy"), [])
 
+    def test_halb_before_an_hour_is_the_half_hour(self):
+        # "halb drei" is 2:30: the hour 3 is the number, "halb" is no half of it
+        for text, hour, value in (("um halb drei", "drei", "3"), ("weck mich um halb zwölf", "zwölf", "12"),
+                                  ("um halb 3", "3", "3")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "de"), [(hour, value, C)])
+        # a half with no number after it stays a weak half
+        self.assertEqual(read("halb so viel", "de"), [("halb", "0.5", F)])
+        self.assertEqual(read("ein halbes Brot", "de"), [("ein halbes", "0.5", F)])
+
 
 class TestGluedPartWords(unittest.TestCase):
     # Sources: Wiktionary de "Zehntausendstel" ("der zehntausendste Teil von
