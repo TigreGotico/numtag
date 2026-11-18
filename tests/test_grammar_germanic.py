@@ -431,3 +431,11 @@ class TestLanguageTags(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDecimalCountOfParts(unittest.TestCase):
+    def test_a_decimal_counts_the_parts_of_a_part_word(self):
+        # 2.5 x 1/3 = 5/6; Dutch and German part words have one form
+        self.assertEqual(read("2,5 derde", "nl"), [("2,5 derde", "5/6", F)])
+        self.assertEqual(read("twee komma vijf derde", "nl"), [("twee komma vijf derde", "5/6", F)])
+        self.assertEqual(read("2,5 Drittel", "de"), [("2,5 Drittel", "5/6", F)])

@@ -563,6 +563,19 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 
 > Euskaltzaindiaren Hiztegia, "laurden": "Lau zati berdinetan banatu den zerbaiten zati bakoitza."; "final laurden": "Finalerdien aurretik jokatzen diren lau partida edo norgehiagoketako bakoitza."; "heren": "Hiru zati berdinetan banatu den zerbaiten zati bakoitza.", "Hirugarrena. Heren egunean piztu zen".
 
+## A decimal count of parts
+
+A decimal before a plural part word counts the parts, as a whole count does. "dois vírgula cinco centésimas" is 2.5 hundredths, which is 0.025. The part word does not stand as an ordinal of its own. A part word that is also a common noun, as "quartos" (rooms), takes no decimal. The product is a decimal when it has a finite decimal form, and a fraction when it has none: 2.5 thirds is 5/6. Where a part word after a decimal marker names the place of the decimals, as in Russian "три целых шесть седьмых" (3 6/7), a decimal counts no parts.
+
+> Priberam, "vigésimo", noun sense 2: "Cada uma das vinte partes iguais em que se divide um todo."; arithmetic: 2.5 x 1/100 = 0.025.
+
+```python
+>>> read("dois vírgula cinco centésimas")
+[('dois vírgula cinco centésimas', '0.025')]
+>>> read("two point five thirds", "en")
+[('two point five thirds', '5/6')]
+```
+
 ## A fraction of a scale word
 
 A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio") gives no product, and so does a count after "de": "um quarto de dois milhões" is two numbers.
