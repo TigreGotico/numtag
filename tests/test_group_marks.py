@@ -4,8 +4,11 @@ CLDR 49.0.0 (unicode-org/cldr-json, cldr-numbers-full/main/<locale>/numbers.json
 main.<locale>.numbers.symbols-numberSystem-latn) gives (group, decimal) below;
 pt-BR reads the "pt" file and fr-FR the "fr" file.
 """
+import itertools
 import unittest
+from pathlib import Path
 
+import numtag.lexicon
 from numtag.lexicon import load
 from helpers import read
 
@@ -24,6 +27,12 @@ CLDR = {
 #: Each lexicon keeps the dot; the ruling is in docs/rulings.md.
 DOT_EXCEPTIONS = {"cs": ".", "gl": ".", "oc": ".", "pt-PT": "."}
 NO_BREAK_SPACE_LANGS = ("et", "fi", "hu", "nb", "nn", "sv")
+#: CLDR 49.0.0 has no numbers file for Aragonese, and Mirandese has no CLDR locale.
+NO_CLDR_DATA = ("an", "mwl")
+#: A plain space, a no-break space and a narrow no-break space.
+SPACES = (" ", "\u00a0", "\u202f")
+LEXICONS = sorted(path.stem for path in Path(numtag.lexicon.__file__).parent.glob("*.json"))
+SPACE_GROUP_LANGS = [lang for lang in LEXICONS if load(lang).space_groups]
 
 
 class TestGroupMarks(unittest.TestCase):
@@ -48,3 +57,39 @@ class TestGroupMarks(unittest.TestCase):
                 with self.subTest(lang=lang, mark=mark):
                     text = f"Han fick 1{mark}234{mark}567 stk."
                     self.assertEqual(read(text, lang), [(f"1{mark}234{mark}567", "1234567", "cardinal")])
+
+    def test_every_lexicon_has_a_cldr_row_or_is_named_as_a_gap(self):
+        self.assertEqual(sorted(set(LEXICONS) - set(CLDR)), list(NO_CLDR_DATA))
+        self.assertEqual(sorted(set(CLDR) - set(LEXICONS)), [])
+
+    def test_every_lexicon_that_groups_with_a_space_is_checked_for_mixed_marks(self):
+        self.assertIn("sv", SPACE_GROUP_LANGS)
+        self.assertEqual(sorted(set(NO_BREAK_SPACE_LANGS) - set(SPACE_GROUP_LANGS)), [])
+
+
+class TestMixedMarks(unittest.TestCase):
+    """One number may hold a plain space, a no-break space and a narrow no-break space,
+    in any order. The value is the digits joined: 1 + 000 + 000 is 1000000."""
+
+    def test_two_group_marks_in_any_order(self):
+        for lang in SPACE_GROUP_LANGS:
+            for first, second in itertools.product(SPACES, repeat=2):
+                text = f"1{first}000{second}000"
+                with self.subTest(lang=lang, first=first, second=second):
+                    self.assertEqual(read(text, lang), [(text, "1000000", "cardinal")])
+
+    def test_three_group_marks_in_any_order(self):
+        for lang in SPACE_GROUP_LANGS:
+            for marks in itertools.product(SPACES, repeat=3):
+                text = "12" + "".join(f"{mark}{group}" for mark, group in zip(marks, ("345", "678", "901")))
+                with self.subTest(lang=lang, marks=marks):
+                    self.assertEqual(read(text, lang), [(text, "12345678901", "cardinal")])
+
+    def test_mixed_marks_before_a_decimal(self):
+        for lang in SPACE_GROUP_LANGS:
+            if load(lang).decimal_mark != ",":
+                continue
+            for first, second in itertools.product(SPACES, repeat=2):
+                text = f"1{first}000{second}000,5"
+                with self.subTest(lang=lang, first=first, second=second):
+                    self.assertEqual(read(text, lang), [(text, "1000000.5", "decimal")])

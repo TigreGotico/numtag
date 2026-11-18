@@ -184,6 +184,12 @@ class Grammar:
         self._vague: dict[int, bool] = {}
         self._parses: dict[int, list[Parse]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
+        # a group mark that is a space joins digits in the tokenizer, so a head or a
+        # space group may hold marks of its own: "1\u00a0000 000", "1 000\u00a0000"
+        joined = rf"(?:{group}[0-9]{{3}})*" if lexicon.group_mark.isspace() else ""
+        marks = decimal + ("." if lexicon.decimal_mark == "," else "")
+        self._group_head = re.compile(rf"[1-9][0-9]{{0,2}}{joined}")
+        self._group_tail = re.compile(rf"[0-9]{{3}}{joined}(?:[{marks}][0-9]+)?")
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
         # SI 5.4.4 "43 279.168 29": where the comma marks decimals and a mark
@@ -366,13 +372,13 @@ class Grammar:
         if text[0] in ".,":
             # a lone decimal mark (".5"): the tokenizer keeps only a listed one
             return end, Rational.from_decimal("0", text[1:]), True
-        if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
+        if self.lex.space_groups and self._group_head.fullmatch(text):
             while end < len(self.tokens) and self._space_group(end):
                 group = self.tokens[end].latin
                 if self.lex.decimal_mark == "," and "." in group:
                     # SI 5.4.4 "43 279.168 29": a space group and a point are no two group marks
                     head, fraction = group.split(".")
-                    return end + 1, Rational.from_decimal(text.replace(self.lex.group_mark, "") + head, fraction), True
+                    return end + 1, Rational.from_decimal((text + head).replace(self.lex.group_mark, ""), fraction), True
                 text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
@@ -395,9 +401,8 @@ class Grammar:
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
-        marks = re.escape(self.lex.decimal_mark) + ("." if self.lex.decimal_mark == "," else "")
         return (token.is_digits and not token.suffix and token.gap.isspace() and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:[{marks}][0-9]+)?", token.latin) is not None)
+                and self._group_tail.fullmatch(token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 

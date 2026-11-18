@@ -34,7 +34,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | Setting | Type | Meaning |
 |---|---|---|
 | `scale` | `"long"` or `"short"` | The default scale of the language |
-| `group_mark` | string | The mark that groups digits: "." in pt, "," in en |
+| `group_mark` | string | The mark that groups digits: "." in pt, "," in en. It is the CLDR group symbol of the language (`tests/test_group_marks.py` checks it against the CLDR table). A language that keeps another mark names the exception in `docs/rulings.md` and in `DOT_EXCEPTIONS` of that test. A new lexicon needs a row in the table, or a name in `NO_CLDR_DATA` when CLDR has no numbers file for it. |
 | `decimal_mark` | string | The mark before the decimals: "," in pt, "." in en |
 | `space_groups` | bool | A single space groups digits ("1 000 000") |
 | `plural_scale_needs_count` | bool | A plural scale word with no count is no number ("milhões de pessoas") |

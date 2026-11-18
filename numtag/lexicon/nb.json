@@ -10,11 +10,11 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group ' '"
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/nb/numbers.json, main.nb.numbers.symbols-numberSystem-latn: \"decimal\": \",\". Babel 2.18.0 gives the same: Locale.parse(\"nb\").number_symbols[\"latn\"][\"decimal\"] is \",\"."
   },
   "space_groups": {
    "value": true,
-   "source": "CLDR number symbols for Norwegian Bokmål (Babel 2.18.0): decimal ',', group ' ': digits are grouped by a space"
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/nb/numbers.json, main.nb.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space). Babel 2.18.0 gives the same: Locale.parse(\"nb\").number_symbols[\"latn\"][\"group\"] is U+00A0. A plain space and U+202F also group digits, in any order."
   },
   "compound_words": {
    "value": true,
