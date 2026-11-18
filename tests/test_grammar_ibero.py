@@ -198,6 +198,24 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(read("1.234,5 kilos", "es"), [("1.234,5", "1234.5", D)])
 
 
+class TestSpanishFusedOrdinals(unittest.TestCase):
+    def test_every_fused_ordinal_from_the_thirties(self):
+        # ten + unit, in the four forms and the apocope of 1 and 3
+        for word, value in (("trigesimoprimero", "31"), ("trigesimoprimera", "31"), ("trigesimoprimer", "31"),
+                            ("trigesimosegundo", "32"), ("trigesimotercer", "33"), ("trigesimocuarta", "34"),
+                            ("trigesimoquinto", "35"), ("trigesimosexta", "36"), ("trigesimoséptimo", "37"),
+                            ("trigesimoctavo", "38"), ("trigesimonovena", "39"), ("cuadragesimosegundas", "42"),
+                            ("nonagesimonoveno", "99")):
+            with self.subTest(word=word):
+                self.assertEqual(read(f"el {word} mes", "es"), [(word, value, O)])
+
+    def test_the_teens_and_twenties_that_lacked_a_form(self):
+        # "decimonono" is "decimonoveno"; "vigesimotercer" before a masculine noun
+        self.assertEqual(read("el decimonono mes", "es"), [("decimonono", "19", O)])
+        self.assertEqual(read("la decimonona", "es"), [("decimonona", "19", O)])
+        self.assertEqual(read("el vigesimotercer mes", "es"), [("vigesimotercer", "23", O)])
+
+
 class TestGalician(unittest.TestCase):
     def test_e_joins_tens_and_units_and_cento_takes_no_e(self):
         # 200 + 30 + 4 = 234; 100 + 1 = 101
