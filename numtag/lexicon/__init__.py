@@ -52,7 +52,7 @@ class TensOrder(str, Enum):
 # ("полтора" is 3/2); a "teen_suffix" adds its value to the unit before it
 # ("dua belas" is 12).
 VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen", "decimal_zero",
-               "value_word", "unit_and_half", "rational", "teen_suffix")
+               "value_word", "unit_and_half", "rational", "teen_suffix", "ablative_denominator")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")

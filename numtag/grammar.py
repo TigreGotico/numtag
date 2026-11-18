@@ -1127,6 +1127,7 @@ class Grammar:
                       for e in self._readings(i, "ordinal")]
         found += self._lone_glued_denominator(i) + self._lone_denominator(i)
         found += self._over_fractions(i)
+        found += self._denominator_first(i)
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
@@ -1168,6 +1169,20 @@ class Grammar:
                                 parts=count + below(end, run[-1].end, _whole(_sum(run))))
                           for run in self.cardinals(end + 1)
                           if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"]
+        return found
+
+    def _denominator_first(self, i: int) -> list[Parse]:
+        """A denominator in the ablative and the count after it: eu
+        "hamarretik zazpi" is 7/10. The count is smaller than the
+        denominator. With no count after it the word is no number, as in the
+        clock phrase "hirurak eta bostetik"."""
+        found = []
+        for entry in self._readings(i, "ablative_denominator"):
+            denominator = Rational(entry.value)
+            found += [Parse(end, Rational(numerator, entry.value),
+                            parts=_piece(Role.DENOMINATOR, i, i + 1, denominator)
+                            + _piece(Role.COUNT, i + 1, end, Rational(numerator)))
+                      for end, numerator in self.small(i + 1, nonzero=True) if _less(Rational(numerator), denominator)]
         return found
 
     def _over_fractions(self, i: int) -> list[Parse]:

@@ -539,7 +539,7 @@ In German a count written in one word with a part word is part of the denominato
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".
 
-A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat".
+A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat". The denominator can also come first, in the ablative, with the count after it: "hamarretik zazpi" and "bosteko bi" are 7/10 and 2/5. The count is below the denominator. The same ablative with no count after it stands in clock phrases ("hirurak eta bostetik") and reads no number.
 
 ```python
 >>> read("Zortzi hamarren falta dira.", "eu")
