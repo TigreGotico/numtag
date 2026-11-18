@@ -271,6 +271,7 @@ There are two kinds of result.
 |---|---|---|---|
 | `VagueKind.MAGNITUDE` | a plural scale word with no count: "millions", "dozens", "milhares", "dezenas" | the scale word: "1000000", "12" | two of the scale: "2000000", "24" |
 | `VagueKind.MAGNITUDE` | a vague word and the scale words after it: "several million", "a few dozen", "muitos mil milhões" | the product of the scale words: "1000000", "12", "1000000000" | two of the scale when one plural scale word follows ("alguns milhares"), else `None` |
+| `VagueKind.MAGNITUDE` | a plural scale word and the scale word that it counts: "hundreds of thousands", "milhares de milhões" | the product of the scales: "100000", "1000000000" | two of the product: "200000", "2000000000" |
 | `VagueKind.AMOUNT` | a vague word alone: "many", "several", "a few", "umpteen", "muitos", "alguns" | `None` | `None` |
 
 ```python
@@ -281,14 +282,14 @@ There are two kinds of result.
 [('Several million', '1000000', None)]
 ```
 
-A word that is also an ordinary noun, adjective or adverb gets a low confidence and `Reason.HOMOGRAPH`, as in `tag_numbers`. "a lot" also names an area of land, and "bastante" also means "enough". A scale word after the vague word makes the quantity reading clear.
+A word that is also an ordinary noun, adjective or adverb gets a low confidence and `Reason.HOMOGRAPH`, as in `tag_numbers`. "a lot" also names an area of land, and "bastante" also means "enough". A scale word after the vague word makes the quantity reading clear, but a scale word that is itself a homograph gives the low confidence back: "several scores" may mean test results.
 
 ```python
 >>> [(q.text, q.confidence, sorted(q.reasons)) for q in tag_vague_quantities("O ciclismo é um esporte bastante popular.", "pt-BR")]
 [('bastante', 0.4, [<Reason.HOMOGRAPH: 'homograph'>])]
 ```
 
-Fixed counts are no vague quantity. "half a dozen" and "meia dúzia" have a value, so `tag_numbers` reads them.
+"how many" and "as many" are no vague quantity: the first asks for a number and the second compares two numbers. Fixed counts are no vague quantity. "half a dozen" and "meia dúzia" have a value, so `tag_numbers` reads them.
 
 ## VagueQuantity
 

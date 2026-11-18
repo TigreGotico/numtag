@@ -760,5 +760,19 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 
 > Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
 
+## Vague quantities
+
+A plural scale word that has no count, and the scale word that it counts after "of" or "de", state one magnitude. "milhares de milhões" is a thousand thousand millions of the pt-PT long scale: 1000 x 1000000 = 1000000000, with a lower bound of two of that product. The same holds for "hundreds of thousands" (100000) and "thousands of millions" (1000000000). A noun after "of" ends the magnitude, so "thousands of dollars" is "thousands" alone.
+
+> Priberam, "centena": "na ordem das centenas de milhares de toneladas". Cambridge Dictionary, "thousand": "a thousand/thousands of something".
+
+"how many" and "as many" are no vague quantity. In "how many" the word asks for a number, and in "as many" it compares two numbers. "so many" and "too many" state a large amount.
+
+> Cambridge Dictionary, "many": "used mainly in negative sentences and questions and with "too", "so", and "as" to mean "a large number of""; "how many How many students are there in each class?"; "as many If there were as many women as there are men in parliament".
+
+A scale word with a homograph sense keeps its low confidence in a vague quantity, so "several scores" has the confidence 0.4 and `Reason.HOMOGRAPH`. The en lexicon flags "score" and "scores" because both also name a result in a game or a test. A vague word before a scale word loses its own flag, because the scale word makes the quantity reading clear.
+
+> Wiktionary, "score", noun: "Twenty (20)".
+
 ---
 [← Confidence and homographs](confidence-and-homographs.md) · [Home](index.md) · [Portuguese →](languages/pt.md)

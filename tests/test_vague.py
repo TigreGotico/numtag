@@ -4,8 +4,11 @@ Each row is a sentence of an en.wikipedia or pt.wikipedia article, named in
 the comment beside it. Each scale and lower bound is worked out by hand in
 that comment. The sources of the words are in numtag/lexicon/en.json and
 numtag/lexicon/pt-PT.json."""
+import json
 import unittest
+from pathlib import Path
 
+import numtag
 from numtag import (Reason, UnsupportedLanguageError, VagueKind, VagueQuantity, tag_numbers,
                     tag_vague_quantities)
 from numtag.lexicon import SCALE_ROLES, load
@@ -66,14 +69,42 @@ class TestMagnitudes(unittest.TestCase):
                 "semi-industriais, reproduz dezenas de peças iguais.")
         self.assertEqual(vague(text, "pt-BR"), [at(text, "dezenas", M, "10", "20")])
 
-    def test_each_plural_scale_word_of_a_phrase_is_its_own_magnitude(self):
-        # pt.wikipedia, "Navio-tanque": 100, 2 x 100 = 200; 1000, 2 x 1000 = 2000. "centenas de
-        # milhares" gives two magnitudes: the lexicon holds no product for a phrase with "de".
+    def test_a_plural_scale_word_and_the_scale_word_it_counts_make_one_magnitude(self):
+        # pt.wikipedia, "Navio-tanque": 100 x 1000 = 100000; 2 x 100000 = 200000
         text = "Navios-tanque podem carregar desde várias centenas de toneladas até centenas de milhares de toneladas."
         first = text.index("centenas")
         self.assertEqual(vague(text, "pt-PT"),
                          [at(text, "várias centenas", M, "100", "200"),
-                          at(text, "centenas", M, "100", "200", first + 1), at(text, "milhares", M, "1000", "2000")])
+                          at(text, "centenas de milhares", M, "100000", "200000", first + 1)])
+
+    def test_thousands_of_millions_is_ten_to_the_ninth(self):
+        # pt-PT counts the long scale: 1000 x 10^6 = 10^9 = 1000000000; 2 x 10^9 = 2000000000
+        text = "Foram gastos milhares de milhões de euros."
+        self.assertEqual(vague(text, "pt-PT"), [at(text, "milhares de milhões", M, "1000000000", "2000000000")])
+        self.assertEqual(vague(text, "pt-BR"), [at(text, "milhares de milhões", M, "1000000000", "2000000000")])
+        # the same product as a count before the phrase: 3 x 10^9 = 3000000000
+        self.assertEqual(numbers("3 milhares de milhões", "pt-PT"), [("3 milhares de milhões", "3000000000")])
+        text = "It cost thousands of millions of dollars."
+        self.assertEqual(vague(text, "en"), [at(text, "thousands of millions", M, "1000000000", "2000000000")])
+
+    def test_a_chain_of_three_plural_scale_words(self):
+        # 100 x 1000 x 10^6 = 10^11 = 100000000000; 2 x 10^11 = 200000000000
+        text = "centenas de milhares de milhões"
+        self.assertEqual(vague(text, "pt-PT"), [at(text, text, M, "100000000000", "200000000000")])
+
+    def test_a_vague_word_before_the_phrase_keeps_one_magnitude(self):
+        # 100 x 1000 = 100000; "várias" is a vague word, "centenas" is plural
+        text = "várias centenas de milhares de toneladas"
+        self.assertEqual(vague(text, "pt-PT"), [at(text, "várias centenas de milhares", M, "100000", "200000")])
+
+    def test_a_noun_after_of_ends_the_magnitude(self):
+        # "thousands of dollars": "dollars" is no scale word
+        text = "The damage will cost thousands of dollars to repair."
+        self.assertEqual(vague(text, "en"), [at(text, "thousands", M, "1000", "2000")])
+
+    def test_a_digit_string_after_of_ends_the_magnitude(self):
+        text = "hundreds of 3 millions"
+        self.assertEqual(vague(text, "en"), [at(text, "hundreds", M, "100", "200")])
 
 
 class TestVagueWordBeforeScaleWord(unittest.TestCase):
@@ -174,6 +205,29 @@ class TestAmounts(unittest.TestCase):
 
 
 class TestHomographs(unittest.TestCase):
+    def test_a_scale_word_with_another_common_sense_has_a_low_confidence(self):
+        # Wiktionary, "score", noun: "Twenty (20)"; the word is also a result in a game or a test. 20, 2 x 20 = 40
+        for text, words, bound in (("Several scores were averaged.", "Several scores", "40"),
+                                   ("Many scores were averaged.", "Many scores", "40"),
+                                   ("Several score were averaged.", "Several score", None)):
+            with self.subTest(text=text):
+                [quantity] = vague(text, "en")
+                self.assertEqual(quantity, at(text, words, M, "20", bound))
+                self.assertEqual((quantity.confidence, quantity.reasons),
+                                 (AMBIGUOUS_CONFIDENCE, frozenset({Reason.HOMOGRAPH})))
+
+    def test_the_flag_covers_the_singular_and_the_plural_of_a_scale_word(self):
+        lexicon = load("en")
+        for word in ("score", "scores"):
+            with self.subTest(word=word):
+                self.assertTrue(all(e.ambiguous for e in lexicon.readings[word]))
+
+    def test_a_homograph_scale_word_after_of_has_a_low_confidence(self):
+        text = "hundreds of scores"
+        [quantity] = vague(text, "en")
+        self.assertEqual((quantity.scale, quantity.confidence, quantity.reasons),
+                         ("2000", AMBIGUOUS_CONFIDENCE, frozenset({Reason.HOMOGRAPH})))
+
     def test_a_word_with_another_common_sense_has_a_low_confidence(self):
         # en.wikipedia, "Diagnosis": "a lot" is also an adverb and a piece of land
         text = ("Diagnosis is used in a lot of different disciplines, with variations in the use of logic, "
@@ -196,6 +250,33 @@ class TestHomographs(unittest.TestCase):
 
 
 class TestNoVagueQuantity(unittest.TestCase):
+    def test_how_many_asks_for_a_number(self):
+        # Cambridge Dictionary, "many": "How many students are there in each class?"
+        text = "How many students are there in each class?"
+        self.assertEqual(vague(text, "en"), [])
+        text = "Many people ask how many students are there."
+        self.assertEqual(vague(text, "en"), [at(text, "Many", A)])
+
+    def test_as_many_compares_two_numbers(self):
+        # Cambridge Dictionary, "many": "If there were as many women as there are men in parliament, ..."
+        # and "As many as (= the surprisingly large number of) 6,000 people may have been infected"
+        text = "If there were as many women as there are men in parliament, the situation would be different."
+        self.assertEqual(vague(text, "en"), [])
+        text = "As many as 6,000 people may have been infected with the disease."
+        self.assertEqual(vague(text, "en"), [])
+        self.assertEqual(numbers(text, "en"), [("6,000", "6000")])
+
+    def test_so_many_and_too_many_state_a_large_amount(self):
+        # Cambridge Dictionary, "many": "so many I've met him so many times", "too many There are too many people"
+        text = "I have met him so many times, and there are too many people."
+        self.assertEqual(vague(text, "en"), [at(text, "many", A), at(text, "many", A, start=text.index("too"))])
+
+    def test_the_source_of_many_states_its_limit(self):
+        entries = json.loads((Path(numtag.__file__).parent / "lexicon" / "en.json").read_text(encoding="utf-8"))["entries"]
+        [many] = [e for e in entries if e["word"] == "many" and e["role"] == "vague_quantifier"]
+        self.assertEqual(many["not_after"], ["how", "as"])
+        self.assertIn("used mainly in negative sentences and questions", many["source"])
+
     def test_a_count_before_the_scale_word_makes_a_number(self):
         # en.wikipedia, "Indore Police": 3 x 10^6 = 3000000
         text = "MP Police (District Indore) serves a region of three million people."

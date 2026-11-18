@@ -342,6 +342,12 @@ class Lexicon:
     # folded words of each phrase, and whether the phrase is also an ordinary
     # noun or adverb.
     vague_quantifiers: dict[tuple[str, ...], bool] = field(default_factory=dict)
+    # "how" in "how many": the folded words that, right before a vague phrase,
+    # make it no vague quantity.
+    vague_not_after: dict[tuple[str, ...], frozenset[str]] = field(default_factory=dict)
+    # "of" in "thousands of millions": a word that joins a plural scale word to
+    # the scale word that it counts.
+    vague_of: frozenset[str] = frozenset()
     # "je" in "nekoliko je tisuća": a clitic that may stand between a vague
     # quantifier and the scale word.
     vague_clitics: frozenset[str] = frozenset()
@@ -491,6 +497,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
 
     ambiguous_words: set[str] = set()
     vague_quantifiers: dict[tuple[str, ...], bool] = {}
+    vague_not_after: dict[tuple[str, ...], frozenset[str]] = {}
 
     def put(spec: dict, entry: Entry) -> None:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
@@ -553,7 +560,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         elif role == "ordinal_suffix":
             suffixes[fold(spec["word"])] = spec.get("gender")
         elif role == "vague_quantifier":
-            vague_quantifiers[tuple(fold(w) for w in spec["word"].split())] = spec.get("ambiguous", False)
+            phrase = tuple(fold(w) for w in spec["word"].split())
+            vague_quantifiers[phrase] = spec.get("ambiguous", False)
+            if "not_after" in spec:
+                vague_not_after[phrase] = frozenset(fold(w) for w in spec["not_after"])
         else:
             raise ValueError(f"{lang}: unknown role {role!r} for {spec['word']!r}")
 
@@ -641,6 +651,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         count_of=frozenset(words.get("count_of", ())),
         one_after_noun=frozenset(words.get("one_after_noun", ())),
         vague_quantifiers=vague_quantifiers,
+        vague_not_after=vague_not_after,
+        vague_of=frozenset(fold(w) for w in words.get("vague_of", ())),
         vague_clitics=frozenset(fold(w) for w in words.get("vague_clitic", ())),
         ordinal_articles=frozenset(words.get("ordinal_article", ())),
         article_after_noun=settings.get("article_after_noun", False),
