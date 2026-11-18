@@ -98,6 +98,13 @@ class TestHomographs(unittest.TestCase):
                 self.assertEqual(read("Il est cent pour cent pour Volange.", lang), [("cent", "100", "cardinal")])
         self.assertEqual(read("Il l'a vendu pour cent euros.", "fr-FR"), [("cent", "100", "cardinal")])
 
+    def test_a_number_that_starts_with_cent_after_pour_stays_whole(self):
+        # two for 100 + 20 = 120 euros; 1 per 100 x 1000 = 100000
+        self.assertEqual(read("deux pour cent vingt euros", "fr-FR"),
+                         [("deux", "2", "cardinal"), ("cent vingt", "120", "cardinal")])
+        self.assertEqual(read("un pour cent mille", "fr-FR"),
+                         [("un", "1", "cardinal"), ("cent mille", "100000", "cardinal")])
+
     def test_a_point_marks_decimals_but_three_digits_stay_unread(self):
         self.assertEqual(fr("3.5"), [("3.5", "3.5", "decimal")])
         # fr groups with a space, so "1.500" is 1.5 or 1500: no number

@@ -103,6 +103,14 @@ class TestHomographs(unittest.TestCase):
         # "per cento euro" is for a hundred euros
         self.assertEqual(read("l'ho venduto per cento euro", "it"), [("cento", "100", "cardinal")])
 
+    def test_a_number_that_starts_with_cento_after_per_stays_whole(self):
+        # 10 per 100 x 1000 = 100000 inhabitants; two for 100 + 20 = 120 euros
+        self.assertEqual(read("dieci per centomila abitanti", "it"),
+                         [("dieci", "10", "cardinal"), ("centomila", "100000", "cardinal")])
+        self.assertEqual(confidence("due per cento venti euro", "it"), [("due", 1.0), ("cento venti", 1.0)])
+        self.assertEqual(read("due per cento venti euro", "it"),
+                         [("due", "2", "cardinal"), ("cento venti", "120", "cardinal")])
+
     def test_sei_and_venti_alone_may_be_words(self):
         # "sei" may be "you are", "venti" "winds"
         self.assertEqual(confidence("Sei sicuro?", "it"), [("Sei", 0.4)])

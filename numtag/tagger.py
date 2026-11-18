@@ -158,6 +158,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
     grammar = Grammar(lexicon, run)
     mentions = []
     number_end = -1  # the run index after the last number
+    number_start = -1  # the run index where the last number starts
     count_end = -1  # the run index after the last sure cardinal
     i = 0
     while i < len(run):
@@ -178,7 +179,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         best = max(parses, key=lambda p: p.end)
-        if not negative and (_percent_word(lexicon, run, start, best, number_end)
+        if not negative and (_percent_word(lexicon, run, start, best, number_end, number_start)
                              or _not_a_single(lexicon, run, start, best)
                              # "öt hét" is five weeks: right after a sure cardinal, a word
                              # that is also a noun is the noun that the cardinal counts
@@ -206,6 +207,7 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             parts=_parts(text, run, pieces)))
         count_end = best.end if kind == Kind.CARDINAL and reason is None else -1
         i = number_end = best.end
+        number_start = start
     return mentions
 
 
@@ -229,18 +231,22 @@ def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) 
             and run[start - 1].norm in lexicon.negative_particles and parse.value.canonical() == "1")
 
 
-def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, number_end: int) -> bool:
-    """True when the one word at ``start`` ends a percent phrase after a
-    number ("vint per cent", "20 per cent"), after a slot that holds a
-    number ("{brightness} per cent de brillantor"), or alone ("per cent", a
-    line of a vocabulary file). "Ho he venut per cent." (for a hundred) and
-    "per cent vint" (for 120) keep their number."""
-    if parse.end != start + 1 or run[start].is_digits:
+def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, number_end: int,
+                  number_start: int) -> bool:
+    """True when the word at ``start`` ends a percent phrase after a number, a slot or alone. A phrase that
+    starts with a number word ("cien por cien") needs that word alone before it."""
+    if run[start].is_digits:
         return False
     for phrase in lexicon.percent_phrases:
         head = start - len(phrase) + 1
-        if head >= 0 and tuple(t.norm for t in run[head:start + 1]) == phrase \
-                and (number_end == head or lexicon.percent_phrase_is_no_number
+        if head < 0 or tuple(t.norm for t in run[head:start + 1]) != phrase:
+            continue
+        # alone or before a joiner: "deux pour cent vingt euros" is 2 and 120
+        if (number_end == head or number_end == head + 1 and number_start == head) \
+                and (parse.end == start + 1 or run[start + 1].norm in lexicon.joiners):
+            return True
+        if number_end != head + 1 and parse.end == start + 1 \
+                and (lexicon.percent_phrase_is_no_number
                      or head == 0 and (run[0].gap.rstrip().endswith("}") or parse.end == len(run))):
             return True
     return False
@@ -388,7 +394,8 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # noun it is the price: "per cent euros".
     bare_percent = parse.end == start + 1 and not run[start].is_digits \
         and (parse.end == len(run) or run[parse.end].norm in lexicon.of_words) and any(
-            tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p for p in lexicon.percent_phrases)
+            tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p
+            for p in lexicon.bare_percent_phrases)
     # a word that is weak only at the end of a clause is the number when it
     # is the whole text with no punctuation: a spoken answer ("hat" answers "hány?")
     whole = alone and parse.end == start + 1 and bool(entries) \
