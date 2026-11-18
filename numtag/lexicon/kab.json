@@ -382,6 +382,117 @@
       "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"ḥḍac [11], tnac [12], tleṭṭac [13], ṛbeɛṭac [14], xemseṭṭac [15], seṭṭac [16], sebeɛṭac [17], temmenṭac [18], and tseɛṭac [19]\"; fr.wiktionary, \"Cardinaux en kabyle\": \"telṭac\", \"sbeɛṭac\", \"tmenṭac\"; en.wiktionary \"tesɛaṭac m or f\", \"nineteen\"."
     },
     {
+      "word": "lweḥda",
+      "role": "unit",
+      "value": "1",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lweḥda n tṣ̣ebḥit\"; Tatoeba sentence 11224479 \"Ha-tt-an d lweḥda d wezgen.\" (\"It's half past one.\"); the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "jjuj",
+      "role": "unit",
+      "value": "2",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef tizi n jjuj d wezgen n tmeddit\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "zzuǧ",
+      "role": "unit",
+      "value": "2",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 13763605 \"Ha-tt-an d zzuǧ ɣiṛ ṛṛbeɛ.\" (\"It's quarter to two.\"); the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ssaɛtin",
+      "role": "unit",
+      "value": "2",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 13763607 \"Ha-tt-an d ssaɛtin ɣiṛ ṛṛbeɛ.\" (\"It's quarter to two.\"); a native Kabyle speaker on TigreGotico/chronologia#846 (https://github.com/TigreGotico/chronologia/pull/846#issuecomment-5573978767): \"For the clock hour, you write \\\"ssaɛtin\\\" (d ssaɛtin = it's two o'clock)\", and on two hours: \"Only two o'clock.\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ṛṛebɛa",
+      "role": "unit",
+      "value": "4",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef ṛṛebɛa d wezgen n tmeddit\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "lxemsa",
+      "role": "unit",
+      "value": "5",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa n tmeddit\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ssetta",
+      "role": "unit",
+      "value": "6",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 11226836 \"Ad d-uɣaleɣ ɣef ssetta d wezgen.\" (\"I will be back at half past six.\"); a native Kabyle speaker on TigreGotico/chronologia#846 (https://github.com/TigreGotico/chronologia/pull/846#issuecomment-5573978767): \"Six is ssetta, but seven is ssebɛa (always with the final -a).\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ssebɛa",
+      "role": "unit",
+      "value": "7",
+      "final": true,
+      "source": "A clock hour with the Arabic article: a native Kabyle speaker on TigreGotico/chronologia#846 (https://github.com/TigreGotico/chronologia/pull/846#issuecomment-5573978767): \"Six is ssetta, but seven is ssebɛa (always with the final -a).\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ssebɛ",
+      "role": "unit",
+      "value": "7",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 13763598 \"Ha-tt-an d ssebɛ u ṛṛbeɛ.\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ttmanya",
+      "role": "unit",
+      "value": "8",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 13763628 \"Ha-tt-an d ttmanya ɣiṛ ṛṛbeɛ.\" (\"It's a quarter to eight.\"); the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ttesɛa",
+      "role": "unit",
+      "value": "9",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef ttesɛa n tṣ̣ebḥit ay mlalen\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "lɛecṛa",
+      "role": "ten",
+      "value": "10",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"Lɛecṛa n tṣ̣ebḥit\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "lɛacra",
+      "role": "ten",
+      "value": "10",
+      "final": true,
+      "source": "A clock hour with the Arabic article: Tatoeba sentence 12173337 \"Attan d lεacra d wezgen.\" (\"It is ten-thirty.\"); the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "leḥdac",
+      "role": "ten",
+      "value": "11",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef leḥdac d wezgen n tṣ̣ebḥit\"; Tatoeba sentence 13763625 \"Ha-tt-an d leḥḍac u ṛṛbeɛ.\" (\"It's a quarter past eleven.\"); the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "ttnac",
+      "role": "ten",
+      "value": "12",
+      "final": true,
+      "source": "A clock hour with the Arabic article: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef ttnac n yiḍ\"; the hour noun closes the number, and the minutes after \"u\" are a number of their own: kab.wikipedia, \"Tafsut n Yimaziɣen\": \"ɣef lxemsa u xemsin n ddqayeq\"."
+    },
+    {
+      "word": "jjuǧ",
+      "role": "unit",
+      "value": "2",
+      "source": "a native Kabyle speaker on TigreGotico/chronologia#846 (https://github.com/TigreGotico/chronologia/pull/846#issuecomment-5573978767): \"If transcribing the cardinal number \\\"2\\\" itself, use jjuǧ depending on regional phonetics.\""
+    },
+    {
       "word": "tleṭṭac",
       "role": "ten",
       "value": "13",
