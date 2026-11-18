@@ -224,6 +224,9 @@ class TestHalvesAndFractionWords(unittest.TestCase):
     def test_a_word_whose_value_is_a_fraction(self):
         # 3/2 = 1.5; 3/2 x 10^6 = 1500000
         self.assertEqual(read("anderthalb Liter", "de"), [("anderthalb", "1.5", F)])
+        # the inflected form before a common-gender noun
+        self.assertEqual(read("anderhalve week", "nl"), [("anderhalve", "1.5", F)])
+        self.assertEqual(read("anderhalf jaar", "nl"), [("anderhalf", "1.5", F)])
         self.assertEqual(read("halvanden million", "da"), [("halvanden million", "1500000", C)])
 
     def test_a_fraction_written_as_one_word(self):
