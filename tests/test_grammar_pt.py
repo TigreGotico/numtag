@@ -85,6 +85,11 @@ class TestSpokenDigits(unittest.TestCase):
     def test_meia_is_a_half_by_default(self):
         self.assertEqual(read("três meia dois", "pt-BR"),
                          [("três", "3", "cardinal"), ("meia", "0.5", "fraction"), ("dois", "2", "cardinal")])
+        # the digit reading of "meia" changes no other reading: it stays feminine, and 11 + 1/2 is 11.5
+        self.assertEqual([(m.text, m.gender) for m in tag_numbers("Esperou meia hora.", "pt-BR")],
+                         [("meia", "feminine")])
+        self.assertEqual(read("onze e meia meia hora", "pt-BR"),
+                         [("onze e meia", "11.5", "fraction"), ("meia", "0.5", "fraction")])
 
     def test_meia_is_no_digit_in_portugal(self):
         self.assertEqual(read("três meia dois", "pt-PT", spoken_digits=True),
