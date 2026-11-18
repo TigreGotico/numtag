@@ -327,6 +327,10 @@ class Lexicon:
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.
     percent_phrase_is_no_number: bool = False
+    # A plural part word that is also a plural ordinal form takes no count
+    # in digits: "3 пятых класса" is three fifth-grade classes, and a
+    # fraction in digits is written "3/5".
+    ordinal_form_part_takes_no_digits: bool = False
     # A part word after the joiner takes an article: "six and a quarter",
     # never "six and quarter" ("forty and eighth" is 40 and 8th).
     part_after_joiner_needs_article: bool = False
@@ -634,6 +638,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         word_apostrophes=frozenset(words.get("word_apostrophe", ())),
         joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
         part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
+        ordinal_form_part_takes_no_digits=settings.get("ordinal_form_part_takes_no_digits", False),
         joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
         joiner_thousand_hundreds=settings.get("joiner_thousand_hundreds", False),
         percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
