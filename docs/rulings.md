@@ -46,6 +46,17 @@ The same rule holds after every scale word.
 
 > Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
 
+In Galician, the normative form writes no "e" after "mil" or "cento" ("mil novecentos e noventa", "cento un"). Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
+
+```python
+>>> read("A lei entra en vigor en dous mil e vinte e seis.", "gl")
+[('dous mil e vinte e seis', '2026')]
+>>> read("en dous mil vinte e seis", "gl")
+[('dous mil vinte e seis', '2026')]
+```
+
+> Maintainer ruling: "be lenient and read 'mil e' as one number"
+
 In English, "and" is optional between groups and after "hundred". Both forms read the same number.
 
 ```python

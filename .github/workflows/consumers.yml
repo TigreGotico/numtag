@@ -45,10 +45,10 @@ jobs:
             test_path: tests
             system_deps: ''
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: numtag
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: ${{ matrix.repo }}
           ref: dev
@@ -56,7 +56,7 @@ jobs:
       - name: Install system packages
         if: matrix.system_deps != ''
         run: sudo apt-get update && sudo apt-get install -y ${{ matrix.system_deps }}
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v10.3.3
         with:
           python-version: '3.12'
       - name: Install the consumer, then numtag from this checkout
