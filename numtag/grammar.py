@@ -716,13 +716,17 @@ class Grammar:
             # a word count: "3 מאות" is 300, as "שלוש מאות" is
             if len(_whole(value)) <= 3:
                 found += [count(end + 1, value.scaled(m.exponent), needs_multiplier=not first, decimal=decimal)
-                          for m in self._readings(end, "hundred_multiplier") if m.counted]
+                          for m in self._readings(end, "hundred_multiplier") if m.counted or decimal and not m.plural]
             if not decimal:
                 whole = _piece(Role.COUNT, i, end, value)
                 for start, e, fraction in self.decimal_digits(end):
-                    found.append(Count(e, Rational.from_decimal(value.numerator, fraction), decimal=True,
-                                       needs_multiplier=not first,
-                                       parts=whole + self._decimal_parts(end, start, e, fraction)))
+                    point = Rational.from_decimal(value.numerator, fraction)
+                    parts = whole + self._decimal_parts(end, start, e, fraction)
+                    found.append(Count(e, point, decimal=True, needs_multiplier=not first, parts=parts))
+                    # "2 point 5 hundred" is 250, as "two point five hundred" is
+                    found += [Count(e + 1, point.scaled(m.exponent), decimal=True, needs_multiplier=not first,
+                                    parts=parts + _piece(Role.SCALE, e, e + 1, ONE.scaled(m.exponent)))
+                              for m in self._readings(e, "hundred_multiplier") if not m.plural or m.counted]
         return found
 
     def multipliers(self, i: int, starts: bool = False) -> list[tuple[int, int, str, bool, bool, bool]]:
