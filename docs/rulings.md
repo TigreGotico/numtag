@@ -619,6 +619,21 @@ A scale noun alone, or a plural scale noun with no count, names no number. A sin
 
 > Priberam, "milhão", sense 2: "[Informal, Figurado] Número ou quantidade muito grande".
 
+German writes a number word below a million in lower case when it counts. With a capital the word is a noun: the name of a digit or a mark ("eine Eins im Zeugnis"), or a homograph ("außer Acht", "der Elf"). So a capitalised German number word that does not open a sentence is a weak candidate, at the score of a word with a second meaning. At the start of a sentence the capital is no cue, so "Tausend Dank" stays 1000. The `capital_noun` setting holds this rule.
+
+```python
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Er hat es außer Acht gelassen", "de")]
+[('Acht', '8', 0.4)]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Der Elf Legolas", "de")]
+[('Elf', '11', 0.4)]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Tausend Dank", "de")]
+[('Tausend', '1000', 1.0)]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Er kommt um acht.", "de")]
+[('acht', '8', 1.0)]
+```
+
+> Duden, Rechtschreibregeln, Groß- und Kleinschreibung, D 78: "Sonst werden Grundzahlen unter einer Million kleingeschrieben." "Weibliche Substantivierungen schreibt man groß."
+
 A word of vague quantity right before a scale word takes the place of its count. In Croatian, "nekoliko", "puno", "više" and "mnogo" govern the genitive plural, so "nekoliko milijuna" is no number, while "milijuna" after "oko" or "više od" is the genitive singular and counts one. The `vague_quantifier` entries of the lexicon hold these words.
 
 ```python
