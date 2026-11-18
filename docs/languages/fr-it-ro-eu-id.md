@@ -36,6 +36,20 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('dua puluh lima', '25')]
 ```
 
+## Italian ordinals from primo to nono
+
+A longer Italian ordinal is one word that ends in "-esimo" ("ventiduesimo", "centotreesimo"). "primo" to "nono" never end a longer ordinal. So a cardinal and one of these words are two numbers: "dieci secondi" is 10 and the time unit "secondi", never 12. "decimo" can end one ("centodecimo"), so "cento decimo" is 110.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('tra dieci secondi', 'it')]
+[('dieci', '10', 'cardinal'), ('secondi', '2', 'ordinal')]
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('cento decimo', 'it')]
+[('cento decimo', '110', 'ordinal')]
+```
+
+> CLDR 48 RBNF it: "2: secondo;", "11: undicesimo;". Treccani, "Ordinali": "I primi dieci ordinali presentano una forma propria derivata dal latino: primo, secondo, terzo, quarto, quinto, sesto, settimo, ottavo, nono, decimo."
+
 ## Examples from the gold rows
 
 ```python
