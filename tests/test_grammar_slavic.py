@@ -269,6 +269,21 @@ class TestOrdinals(unittest.TestCase):
         self.assertEqual(read("dwa tysiące dwudziesty trzeci", "pl"), [("dwa tysiące dwudziesty trzeci", "2023", O)])
         self.assertEqual(read("dvacátý první", "cs"), [("dvacátý první", "21", O)])
 
+    def test_polish_ordinals_of_fifty_sixty_and_ninety(self):
+        # Słownik języka polskiego PWN spells them "pięćdziesiąty",
+        # "sześćdziesiąty" and "dziewięćdziesiąty"
+        for text, value in (("pięćdziesiąty", "50"), ("sześćdziesiątego", "60"),
+                            ("dziewięćdziesiątym", "90"), ("pięćdziesiątą", "50"),
+                            ("dziewięćdziesiątych", "90")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "pl"), [(text, value, O)])
+        # 1000 + 900 + 90 + 1; 1000 + 900 + 50 + 6; 2000 + 60
+        self.assertEqual(read("tysiąc dziewięćset dziewięćdziesiąty pierwszy", "pl"),
+                         [("tysiąc dziewięćset dziewięćdziesiąty pierwszy", "1991", O)])
+        self.assertEqual(read("w tysiąc dziewięćset pięćdziesiątym szóstym roku", "pl"),
+                         [("tysiąc dziewięćset pięćdziesiątym szóstym", "1956", O)])
+        self.assertEqual(read("dwa tysiące sześćdziesiąty", "pl"), [("dwa tysiące sześćdziesiąty", "2060", O)])
+
     def test_an_ordinal_scale_word_counts_only_the_groups_below_it(self):
         # 2 x 10^6 + 300 x 10^3, not (2 x 10^6 + 300) x 10^3
         self.assertEqual(read("два миллиона трехсоттысячный", "ru"), [("два миллиона трехсоттысячный", "2300000", O)])
