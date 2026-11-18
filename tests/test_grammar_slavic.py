@@ -464,3 +464,10 @@ class TestApostrophes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCroatianDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_stotina_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "dva zarez pet stotina" is
+        self.assertEqual(read("dva zarez pet stotina", "hr"), [("dva zarez pet stotina", "250", C)])
+        self.assertEqual(read("2 zarez 5 stotina", "hr"), [("2 zarez 5 stotina", "250", C)])

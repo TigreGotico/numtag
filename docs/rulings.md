@@ -416,11 +416,13 @@ The fraction part follows the grammar of the whole part. A hundreds word never f
 [('zero vírgula dois cinco', '0.25')]
 ```
 
-A multiplier after a decimal multiplies it, as a scale word does.
+A multiplier after a decimal multiplies it, as a scale word does. A decimal in digits, with a marker word or a decimal mark, takes it the same way, so "2 point 5 hundred" and "2.5 hundred" are 250.
 
 ```python
 >>> read("one point two hundred", "en")
 [('one point two hundred', '120')]
+>>> read("2 point 5 hundred", "en")
+[('2 point 5 hundred', '250')]
 >>> read("Sales hit one point two million units.", "en")
 [('one point two million', '1200000')]
 >>> read("um vírgula dois mil")
