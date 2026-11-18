@@ -103,6 +103,14 @@ def _value_from_counts_and_scales(lang: str, parts: tuple[Part, ...]) -> Fractio
     return -total if parts[0].role == MINUS else total
 
 
+#: dictated numbers beyond the gold texts, with repeats and digit aliases
+SPOKEN_DIGITS = (("en", "Jenny, your number is eight six seven five three oh nine."),
+                 ("en", "He is agent double oh seven."), ("en", "two triple oh"), ("en", "triple seven"),
+                 ("en", "double nine double nine"), ("en", "nought nought seven"),
+                 ("pt-BR", "Moro na casa três-meia-cinco."), ("pt-BR", "O telefone é nove nove meia um dois."),
+                 ("de", "null eins sieben zwo"), ("it", "chiama il tre sei due"))
+
+
 def _gold():
     for path in sorted(GOLD.glob("*.jsonl")):
         for line in path.read_text(encoding="utf-8").splitlines():
@@ -151,7 +159,7 @@ class TestEveryGoldMention(unittest.TestCase):
 
     def test_spoken_digits_give_the_digits_and_the_value(self):
         checked = 0
-        for lang, text in _gold():
+        for lang, text in [*_gold(), *SPOKEN_DIGITS]:
             for mention in tag_numbers(text, lang, spoken_digits=True):
                 if mention.form is not Form.SPOKEN_DIGITS:
                     continue
