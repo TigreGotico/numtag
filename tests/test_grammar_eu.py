@@ -180,8 +180,8 @@ class TestLoneFractionWord(unittest.TestCase):
 
 
 class TestAraua203Fractions(unittest.TestCase):
-    # Euskaltzaindia, 203. araua, section 6: the table on p. 27, the
-    # examples on p. 28, footnote 22 and the note (oharra) on p. 28. The value is the fraction
+    # Euskaltzaindia, 203. araua, section 6: the table on p. 28, the
+    # examples on p. 28, footnote 22 and the note (oharra) on p. 29. The value is the fraction
     # the norm writes beside each phrase, worked out by hand.
     ROWS = [
         ("erdi bat", "0.5", F),  # 1/2
@@ -216,12 +216,12 @@ class TestAraua203Fractions(unittest.TestCase):
         ("hamahiru zati berrogeita zazpi", "13/47", F),
         ("bat zati hiru", "1/3", F),
         ("bi milioi zati ehun eta bi", "1000000/51", F),  # 2000000/102
-        ("milioi erdi bat", "500000", C),  # 1000000/2, the note on p. 28
+        ("milioi erdi bat", "500000", C),  # 1000000/2, the note on p. 29
         ("milioi heren bat", "1000000/3", F),
         ("milioi laurden bat", "250000", C),  # 1000000/4
         ("milioi bosten bat", "200000", C),  # 1000000/5
         ("milioi-erdi bat", "500000", C),
-        ("milioi erdi", "500000", C),  # the note on p. 28: one compound noun, as "ordu laurden"
+        ("milioi erdi", "500000", C),  # the note on p. 29: one compound noun, as "ordu laurden"
         ("zazpi hamarren", "0.7", F),  # 7/10
         ("bi bosten", "0.4", F),  # 2/5
         ("hogeita zazpi ehunen", "0.27", F),  # 27/100
@@ -251,7 +251,7 @@ class TestAraua203Gaps(unittest.TestCase):
 
     @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/93
     def test_a_denominator_of_two_words(self):
-        # table, p. 27: "hogeita hamarren bat" is 1/30, "hamar milaren bat" is 1/10000
+        # table, p. 28: "hogeita hamarren bat" is 1/30, "hamar milaren bat" is 1/10000
         self.assertEqual(eu("hogeita hamarren bat"), [("hogeita hamarren bat", "1/30", F)])
 
     @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/93
