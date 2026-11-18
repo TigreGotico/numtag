@@ -1,8 +1,25 @@
 # Changelog
 
+## [0.15.5a1](https://github.com/TigreGotico/numtag/tree/0.15.5a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.5a1)
+
+**Merged pull requests:**
+
+- fix\(gl\): read "mil e" and the next group as one number [\#154](https://github.com/TigreGotico/numtag/pull/154) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(nl\): read "anderhalve" as 1.5 [\#151](https://github.com/TigreGotico/numtag/pull/151) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.4a3](https://github.com/TigreGotico/numtag/tree/0.15.4a3) (2026-11-18)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.3a1...0.15.4a3)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a2...0.15.4a3)
+
+## [0.15.4a2](https://github.com/TigreGotico/numtag/tree/0.15.4a2) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a1...0.15.4a2)
+
+## [0.15.4a1](https://github.com/TigreGotico/numtag/tree/0.15.4a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.3a1...0.15.4a1)
 
 **Merged pull requests:**
 
@@ -733,10 +750,6 @@
 ## [0.0.1](https://github.com/TigreGotico/numtag/tree/0.0.1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1a2...0.0.1)
-
-**Merged pull requests:**
-
-- Configure Renovate [\#1](https://github.com/TigreGotico/numtag/pull/1) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [0.0.1a2](https://github.com/TigreGotico/numtag/tree/0.0.1a2) (2026-11-15)
 
