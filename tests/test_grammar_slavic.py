@@ -3,7 +3,7 @@ worked out by hand in the comment beside it; sources are in the lexicon of
 each language under numtag/lexicon/."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -454,6 +454,21 @@ class TestDigitGroups(unittest.TestCase):
         for lang in ("ru", "uk", "bg", "pl", "sk"):
             with self.subTest(lang=lang):
                 self.assertNotIn("1000000", [value for _, value, _ in read("1.000.000", lang)])
+
+class TestDigitCountOfAHundredNoun(unittest.TestCase):
+    def test_a_zero_count_multiplies_no_hundred_noun(self):
+        # 0 x 100 is no count of hundreds: the noun stands alone, a weak hundred (as "0 tisuća" leaves "tisuća")
+        self.assertEqual(sure("0 stotina", "hr"), [("stotina", "100", 0.4)])
+        self.assertEqual(read("0 stotine", "hr"), [])
+
+    def test_digits_count_hundreds_below_a_thousand(self):
+        # 5 x 100 = 500, and 3 x 100 = 300
+        self.assertEqual(read("5 stotina", "hr"), [("5 stotina", "500", C)])
+        self.assertEqual(read("3 stotine", "hr"), [("3 stotine", "300", C)])
+
+    def test_digits_after_a_scale_word_do_not_multiply_into_the_scale_group(self):
+        # 2 x 1000 = 2000 and 5 x 100 = 500: the hundreds after the thousands are a new number, not 2005 x 100
+        self.assertEqual(read("2 tisuće 5 stotina", "hr"), [("2 tisuće", "2000", C), ("5 stotina", "500", C)])
 
 
 class TestApostrophes(unittest.TestCase):
