@@ -111,5 +111,17 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("seimila", "it"), [("seimila", 1.0)])
 
 
+class TestMinusIdioms(unittest.TestCase):
+    def test_quanto_meno_is_no_sign(self):
+        self.assertEqual(read("Ci vogliono quanto meno tre ore.", "it"), [("tre", "3", C)])
+        self.assertEqual(read("quanto meno 3 ore", "it"), [("3", "3", C)])
+
+    def test_meno_before_a_number_still_signs(self):
+        self.assertEqual(read("Fuori ci sono meno tre gradi.", "it"), [("meno tre", "-3", C)])
+
+    def test_a_point_before_the_first_digit_marks_decimals(self):
+        self.assertEqual(read("-.5", "it"), [("-.5", "-0.5", "decimal")])
+
+
 if __name__ == "__main__":
     unittest.main()
