@@ -470,6 +470,26 @@ In English "one hundredth" is a fraction or an ordinal. After "the" it is the or
 
 > Wikipedia, "English numerals": "In spoken English, ordinal numerals and partitive numerals are identical with a few exceptions. Thus 'fifth' can mean the element between fourth and sixth, or the fraction created by dividing the unit into five pieces".
 
+A digit ordinal takes its suffix on the last group, and the suffix marks the whole number. "10 000e" is the ten-thousandth, with a space, a no-break space or the locale's group mark between the groups. A group of other than three digits starts another number.
+
+```python
+>>> read("le 10 000e visiteur", "fr-FR")
+[('10 000e', '10000')]
+>>> read("10 000-й посетитель", "ru")
+[('10 000-й', '10000')]
+>>> read("page 10 2e ligne", "fr-FR")
+[('10', '10'), ('2e', '2')]
+```
+
+> Vikidia, "Vikidia:10 000e article": "c'est donc bien Fusée qui est le 10 000ème article".
+
+In German a period after the digits marks an ordinal only with a cue, and a number of more than three digits needs a word before it. With space groups that word stands before the first group: "der 10 000. Besucher" is an ordinal, and "Es waren 10 000. Danach" ends a sentence.
+
+```python
+>>> read("der 10 000. Besucher", "de")
+[('10 000', '10000')]
+```
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.

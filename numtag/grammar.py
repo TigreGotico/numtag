@@ -1439,11 +1439,26 @@ class Grammar:
         return found
 
     def digit_ordinal(self, i: int) -> list[Parse]:
-        token = self.tokens[i]
-        if not (token.is_digits and (token.suffix or token.period_ordinal)) or not token.digits.isdigit():
+        """An ordinal in digits ("2e", "17."). The suffix on the last group
+        marks the whole number: "10 000e" is the ten-thousandth, also with
+        the locale's group mark, and with a space where the locale groups
+        digits with one."""
+        head, j = "", i
+        if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", self._plain_digits(i) or ""):
+            head, j = self.tokens[i].latin, i + 1
+            while j < len(self.tokens) and self._space_group(j) and self._plain_digits(j):
+                head, j = head + self.tokens[j].latin, j + 1
+        token = self.tokens[j] if j < len(self.tokens) else None
+        if token is None or not (token.is_digits and (token.suffix or token.period_ordinal)):
             return []
-        value = Rational(digits.normalise(token.digits))
-        return [Parse(i + 1, value, Kind.ORDINAL, parts=_piece(Role.COUNT, i, i + 1, value))]
+        written = token.digits
+        if not head and re.fullmatch(rf"[1-9][0-9]{{0,2}}(?:{re.escape(self.lex.group_mark)}[0-9]{{3}})+", written):
+            written = written.replace(self.lex.group_mark, "")
+        if not written.isdigit() or head and not (
+                len(written) == 3 and token.gap.isspace() and len(token.gap) == 1):
+            return []
+        value = Rational(digits.normalise(head + written))
+        return [Parse(j + 1, value, Kind.ORDINAL, parts=_piece(Role.COUNT, i, j + 1, value))]
 
     # The whole number -------------------------------------------------
 

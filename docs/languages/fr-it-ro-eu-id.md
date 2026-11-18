@@ -4,7 +4,7 @@ numtag reads French, Italian, Romanian, Basque and Indonesian. French has three 
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 190 | 189 |
+| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 202 | 200 |
 | French (Belgium) | `fr-BE` | `numtag/lexicon/fr-BE.json` | long | 22 | 22 |
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
 | Italian | every `it` tag | `numtag/lexicon/it.json` | long | 187 | 185 |
