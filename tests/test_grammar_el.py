@@ -18,6 +18,10 @@ class TestGreek(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual([v for _, v, _ in read(text, "el")], ["2"])
 
+    def test_a_number_that_starts_with_ekato_after_tois_stays_whole(self):
+        # 10 per 100 x 1000 = 100000
+        self.assertEqual(read("δέκα τοις εκατό χιλιάδες", "el"), [("δέκα", "10", C), ("εκατό χιλιάδες", "100000", C)])
+
     def test_tens_and_units_take_no_joiner(self):
         # 20 + 3 = 23; 1000 + 900 + 80 + 4 = 1984
         self.assertEqual(el("είκοσι τρία"), [("είκοσι τρία", "23", C)])

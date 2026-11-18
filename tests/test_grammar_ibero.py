@@ -80,6 +80,11 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(sure("cien por cien y cinco por ciento", "es"), [("cien", "100", 1.0), ("cinco", "5", 1.0)])
         self.assertEqual(sure("diez por ciento y cinco por ciento", "es"), [("diez", "10", 1.0), ("cinco", "5", 1.0)])
 
+    def test_a_number_that_starts_with_the_hundred_after_a_percent_phrase_stays_whole(self):
+        # 100 per 100 x 1000 = 100000 inhabitants
+        self.assertEqual(sure("cien por cien mil habitantes", "es"),
+                         [("cien", "100", 1.0), ("cien mil", "100000", 1.0)])
+
     def test_por_cien_after_another_number_keeps_its_hundred(self):
         # DPD "ciento" §3 rejects "el noventa por cien": "por cien" is the sign only after "cien"
         self.assertEqual(read("el noventa por cien", "es"), [("noventa", "90", C), ("cien", "100", C)])
@@ -258,6 +263,11 @@ class TestGalician(unittest.TestCase):
 
 
 class TestCatalan(unittest.TestCase):
+    def test_a_number_that_starts_with_cent_after_per_stays_whole(self):
+        # two for 100 + 20 = 120 euros; 1 per 100 x 1000 = 100000
+        self.assertEqual(read("dos per cent vint euros", "ca"), [("dos", "2", C), ("cent vint", "120", C)])
+        self.assertEqual(read("u per cent mil", "ca"), [("u", "1", C), ("cent mil", "100000", C)])
+
     def test_cent_after_per_and_a_number_is_the_percent_sign(self):
         # "per cent" is the percent sign: 50, not 50 and 100
         self.assertEqual(read("posa el volum al cinquanta per cent", "ca"), [("cinquanta", "50", C)])
@@ -458,6 +468,11 @@ class TestAragonese(unittest.TestCase):
 class TestOccitan(unittest.TestCase):
     def test_cent_after_per_and_a_number_is_the_percent_sign(self):
         self.assertEqual(read("vint per cent", "oc"), [("vint", "20", C)])
+
+    def test_a_number_that_starts_with_cent_after_per_stays_whole(self):
+        # 20 per 100 x 1000 = 100000; two for 100 + 20 = 120 euros
+        self.assertEqual(read("vint per cent mila", "oc"), [("vint", "20", C), ("cent mila", "100000", C)])
+        self.assertEqual(read("dos per cent vint euros", "oc"), [("dos", "2", C), ("cent vint", "120", C)])
 
     def test_detz_e_set_reads_with_hyphens_or_spaces(self):
         for text, value in (("dètz-e-sèt", "17"), ("dètz e sèt", "17"), ("dètz-e-uèch", "18"),

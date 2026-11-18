@@ -388,6 +388,12 @@ class Lexicon:
                 found[word, entry.role] = found.get((word, entry.role), ()) + (entry,)
         return found
 
+    @cached_property
+    def bare_percent_phrases(self) -> tuple[tuple[str, ...], ...]:
+        """The percent phrases that start with no cardinal: "per cent", not "cien por cien"."""
+        return tuple(p for p in self.percent_phrases
+                     if not any(e.role in CARDINAL_ROLES for e in self.readings.get(p[0], ())))
+
     @property
     def number_words(self) -> frozenset[str]:
         """Every word that may be part of a number."""

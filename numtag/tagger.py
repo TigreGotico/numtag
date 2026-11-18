@@ -233,22 +233,17 @@ def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) 
 
 def _percent_word(lexicon: Lexicon, run: list[Token], start: int, parse: Parse, number_end: int,
                   number_start: int) -> bool:
-    """True when the word at ``start`` ends a percent phrase after a number
-    ("vint per cent", "20 per cent", "cien por cien"), after a slot that
-    holds a number ("{brightness} per cent de brillantor"), or alone ("per
-    cent", a line of a vocabulary file). The words after a percent phrase
-    that follows a number start a new number ("cien por cien y cinco por
-    ciento"). A phrase that starts with a number word needs that word alone
-    as the number before it: "mil cien por cien" keeps its hundred. "Ho he
-    venut per cent." (for a hundred) and "per cent vint" (for 120) keep
-    their number."""
+    """True when the word at ``start`` ends a percent phrase after a number, a slot or alone. A phrase that
+    starts with a number word ("cien por cien") needs that word alone before it."""
     if run[start].is_digits:
         return False
     for phrase in lexicon.percent_phrases:
         head = start - len(phrase) + 1
         if head < 0 or tuple(t.norm for t in run[head:start + 1]) != phrase:
             continue
-        if number_end == head or number_end == head + 1 and number_start == head:
+        # alone or before a joiner: "deux pour cent vingt euros" is 2 and 120
+        if (number_end == head or number_end == head + 1 and number_start == head) \
+                and (parse.end == start + 1 or run[start + 1].norm in lexicon.joiners):
             return True
         if number_end != head + 1 and parse.end == start + 1 \
                 and (lexicon.percent_phrase_is_no_number
@@ -400,8 +395,7 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     bare_percent = parse.end == start + 1 and not run[start].is_digits \
         and (parse.end == len(run) or run[parse.end].norm in lexicon.of_words) and any(
             tuple(t.norm for t in run[max(start - len(p) + 1, 0):start + 1]) == p
-            and not any(e.role in CARDINAL_ROLES for e in lexicon.readings.get(p[0], ()))
-            for p in lexicon.percent_phrases)
+            for p in lexicon.bare_percent_phrases)
     # a word that is weak only at the end of a clause is the number when it
     # is the whole text with no punctuation: a spoken answer ("hat" answers "hány?")
     whole = alone and parse.end == start + 1 and bool(entries) \
