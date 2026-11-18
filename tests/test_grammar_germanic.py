@@ -457,10 +457,11 @@ class TestHalfOfAPart(unittest.TestCase):
 
 
 class TestVaguePhrases(unittest.TestCase):
-    def test_een_paar_is_no_count(self):
-        # "een paar": "meerdere, maar niet heel veel" (nl.wiktionary, "paar")
-        self.assertEqual(read("Neem jij een paar appels mee?", "nl"), [])
-        self.assertEqual(read("een paar honderd mensen", "nl"), [])
+    def test_een_paar_takes_no_scale_word(self):
+        # "een paar": "meerdere, maar niet heel veel" (nl.wiktionary, "paar"),
+        # so "honderd" after it is no 100; "een" stays the weak article 1
+        self.assertEqual(sure("een paar honderd mensen", "nl"), [("een", "1", 0.3)])
+        self.assertEqual(sure("Neem jij een paar appels mee?", "nl"), [("een", "1", 0.3)])
 
     def test_een_before_a_noun_keeps_its_reading(self):
         self.assertEqual(read("een appel", "nl"), [("een", "1", C)])
