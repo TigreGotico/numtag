@@ -113,3 +113,21 @@ class TestHomographs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCountBeforeAPluralPartWord(unittest.TestCase):
+    """Treccani, "centesimo", s. m.: "La centesima parte (numericamente
+    1/100)". A count before the plural counts hundredths."""
+
+    def test_a_count_before_the_plural_counts_parts(self):
+        # 50 x 1/100 = 0.5; 5 x 1/100 = 0.05; 5 x 1/1000 = 0.005
+        self.assertEqual(it("costa 50 centesimi di euro"), [("50 centesimi", "0.5", "fraction")])
+        self.assertEqual(it("5 centesimi"), [("5 centesimi", "0.05", "fraction")])
+        self.assertEqual(it("cinque centesimi"), [("cinque centesimi", "0.05", "fraction")])
+        self.assertEqual(it("5 millesimi"), [("5 millesimi", "0.005", "fraction")])
+        self.assertEqual(it("due millesimi di secondo")[0], ("due millesimi", "0.002", "fraction"))
+
+    def test_one_word_stays_the_ordinal(self):
+        # "duemillesimo" is 2 x 1000; the plural of the one word is the same ordinal
+        self.assertEqual(it("i duemillesimi"), [("duemillesimi", "2000", O)])
+        self.assertEqual(it("il duecentesimo"), [("duecentesimo", "200", O)])

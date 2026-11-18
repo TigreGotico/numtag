@@ -1378,8 +1378,11 @@ class Grammar:
         top = run[-1].exponent if run else 0
         found = []
         for scale in self._readings(j, "ordinal_scale") if scales else ():
-            if scale.plural or (one_is_fraction and prefix is not None and prefix.canonical() == "1"):
-                continue  # "dois milésimos" and "um milésimo" are fractions
+            if scale.plural and not self.tokens[j].glued \
+                    or one_is_fraction and prefix is not None and prefix.canonical() == "1":
+                # "cinque centesimi" and "um milésimo" are fractions; one
+                # word ("duemillesimi") is the ordinal
+                continue
             if prefix is not None and scale.exponent < top and scale.alone and self.lex.ordinal_style == "last_word":
                 value = prefix + ONE.scaled(scale.exponent)
                 parts = before + _piece(Role.SCALE if scale.exponent >= THOUSAND else Role.COUNT, j, j + 1,
