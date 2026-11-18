@@ -4,7 +4,7 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| German | every `de` tag | `numtag/lexicon/de.json` | long | 191 | 191 |
+| German | every `de` tag | `numtag/lexicon/de.json` | long | 203 | 203 |
 | Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 184 | 184 |
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 150 | 150 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
@@ -32,6 +32,19 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('enogtyve', '21')]
 >>> read('Det kostet tusen og to kroner.', 'no')
 [('tusen og to', '1002')]
+```
+
+## Umlauts written as ae, oe and ue
+
+Text typed with no umlaut key writes "ä", "ö" and "ü" as "ae", "oe" and "ue". The German lexicon reads both spellings, so "fuenf" is 5. Wikipedia (de), "Umlaut":
+
+> "Umschreibungen (ae, oe, ue)"
+
+```python
+>>> read('Der Zug braucht zwoelf Minuten bis Berlin.', 'de')
+[('zwoelf', '12')]
+>>> read('Im Saal sitzen sechsundfuenfzig Gaeste.', 'de')
+[('sechsundfuenfzig', '56')]
 ```
 
 ## Examples from the gold rows
