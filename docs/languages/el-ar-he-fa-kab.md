@@ -8,7 +8,7 @@ numtag reads Greek, Arabic, Hebrew, Persian and Kabyle. Arabic and Persian text 
 | Arabic | every `ar` tag | `numtag/lexicon/ar.json` | short | 157 | 156 |
 | Hebrew | every `he` tag | `numtag/lexicon/he.json` | long | 160 | 157 |
 | Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 151 | 151 |
-| Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 163 | 163 |
+| Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 168 | 168 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -57,6 +57,19 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('2025', '2025')]
 >>> read('D azgen.', 'kab')
 [('azgen', '0.5')]
+```
+
+## Kabyle clock hours
+
+Kabyle tells the time with Arabic hour nouns that carry the article: "lxemsa" is five o'clock, and "ttnac" is twelve o'clock. Each hour noun reads as its number. The hour closes the number, so the minutes after "u" are a number of their own. kab.wikipedia, "Tafsut n Yimaziɣen", writes "ɣef lxemsa u xemsin n ddqayeq", at five and fifty minutes.
+
+```python
+>>> read('ɣef lxemsa n tmeddit', 'kab')
+[('lxemsa', '5')]
+>>> read('ɣef lxemsa u xemsin n ddqayeq', 'kab')
+[('lxemsa', '5'), ('xemsin', '50')]
+>>> read('xemsa u xemsin', 'kab')
+[('xemsa u xemsin', '55')]
 ```
 
 ## The scale

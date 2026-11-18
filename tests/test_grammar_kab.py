@@ -44,3 +44,23 @@ class TestKabyle(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestClockHours(unittest.TestCase):
+    def test_an_hour_noun_with_the_article_is_its_number(self):
+        # kab.wikipedia "ɣef lxemsa n tmeddit", "ɣef ttnac n yiḍ"; Tatoeba "d ssaɛtin ɣiṛ ṛṛbeɛ"
+        self.assertEqual(kab("ɣef lxemsa n tmeddit"), [("lxemsa", "5", C)])
+        self.assertEqual(kab("ɣef ttnac n yiḍ"), [("ttnac", "12", C)])
+        self.assertEqual(kab("d ssaɛtin ɣiṛ ṛṛbeɛ"), [("ssaɛtin", "2", C)])
+        self.assertEqual(kab("d leḥḍac u ṛṛbeɛ"), [("leḥḍac", "11", C)])
+        self.assertEqual(kab("Attan d lεacra d wezgen"), [("lεacra", "10", C)])
+
+    def test_the_hour_closes_the_number(self):
+        # "ɣef lxemsa u xemsin n ddqayeq" is five and fifty minutes, not 55;
+        # the bare unit still joins its ten: 5 + 50 = 55
+        self.assertEqual(kab("ɣef lxemsa u xemsin n ddqayeq"), [("lxemsa", "5", C), ("xemsin", "50", C)])
+        self.assertEqual(kab("xemsa u xemsin"), [("xemsa u xemsin", "55", C)])
+
+    def test_the_cardinal_two_takes_a_ten(self):
+        # "jjuǧ" is the cardinal 2, not only the hour: 2 + 20 = 22
+        self.assertEqual(kab("jjuǧ u ɛecrin"), [("jjuǧ u ɛecrin", "22", C)])

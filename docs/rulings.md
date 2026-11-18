@@ -591,6 +591,17 @@ Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR giv
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
+## A clock hour closes the number
+
+Kabyle names the hour with an Arabic noun that carries the article, as "lxemsa" for five o'clock. The minutes after "u" are a second number, so "lxemsa u xemsin" is 5 and 50. The bare unit still joins its ten: "xemsa u xemsin" is 55.
+
+> kab.wikipedia, "Tafsut n Yimaziɣen": "ɣef lxemsa u xemsin n ddqayeq" (at five and fifty minutes).
+
+```python
+>>> read("ɣef lxemsa u xemsin n ddqayeq", "kab")
+[('lxemsa', '5'), ('xemsin', '50')]
+```
+
 ## Words that are no number
 
 A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.
