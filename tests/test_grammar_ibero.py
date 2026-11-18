@@ -563,3 +563,10 @@ class TestRanges(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSpanishDecimalCountOfParts(unittest.TestCase):
+    def test_a_decimal_counts_the_parts_of_a_plural_part_word(self):
+        # 2.5 x 1/10 = 0.25
+        self.assertEqual(read("dos punto cinco décimas", "es"), [("dos punto cinco décimas", "0.25", D)])
+        self.assertEqual(read("La diferencia fue de 2,5 décimas.", "es"), [("2,5 décimas", "0.25", D)])

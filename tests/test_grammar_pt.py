@@ -1166,3 +1166,16 @@ class TestAbbreviations(unittest.TestCase):
     def test_dez_and_a_period_at_a_sentence_end_is_ten(self):
         self.assertEqual(pt("ganhou dez. Ele ganhou cinco."), [("dez", "10", C), ("cinco", "5", C)])
         self.assertEqual(pt("ganhou dez."), [("dez", "10", C)])
+
+
+class TestDecimalCountOfParts(unittest.TestCase):
+    def test_a_decimal_counts_the_parts_of_a_plural_part_word(self):
+        # 2.5 x 1/100 = 0.025; 2.5 x 1/10 = 0.25
+        self.assertEqual(pt("dois vírgula cinco centésimas"), [("dois vírgula cinco centésimas", "0.025", D)])
+        self.assertEqual(pt("2,5 centésimas"), [("2,5 centésimas", "0.025", D)])
+        self.assertEqual(pt("A diferença foi de dois vírgula cinco décimas."),
+                         [("dois vírgula cinco décimas", "0.25", D)])
+
+    def test_a_part_word_that_is_also_a_noun_takes_no_decimal(self):
+        # "quartos" are also rooms: the decimal stays alone
+        self.assertEqual(pt("2,5 quartos")[0], ("2,5", "2.5", D))

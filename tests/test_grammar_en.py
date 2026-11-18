@@ -341,10 +341,10 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(en("1.5 sixth"), [("1.5", "1.5", D), ("sixth", "6", O)])
         self.assertEqual(en("0 sixths"), [("0", "0", C)])
 
-    def test_a_decimal_is_no_count_of_parts(self):
-        # 2.5 is no whole count: "2.5 sixths" must not read the digits 25 over 6
-        self.assertEqual(en("2.5 sixths"), [("2.5", "2.5", D)])
-        self.assertEqual(read("2,5 terços", "pt-PT"), [("2,5", "2.5", D)])
+    def test_a_decimal_counts_the_parts_as_a_product(self):
+        # 2.5 x 1/6 = 5/12, never the digits 25 over 6; 2.5 x 1/3 = 5/6
+        self.assertEqual(en("2.5 sixths"), [("2.5 sixths", "5/12", F)])
+        self.assertEqual(read("2,5 terços", "pt-PT"), [("2,5 terços", "5/6", F)])
 
     def test_digits_before_a_denominator_that_is_also_a_noun_stay_a_count(self):
         # "quartos" and "cuartos" are also rooms: three bedrooms, not 3/4
@@ -435,6 +435,16 @@ class TestFractions(unittest.TestCase):
     def test_a_count_before_a_singular_ordinal_is_an_ordinal(self):
         # 20 + 3 = 23
         self.assertEqual(en("twenty third"), [("twenty third", "23", O)])
+
+
+class TestDecimalCountOfParts(unittest.TestCase):
+    def test_a_decimal_counts_the_parts_of_a_plural_part_word(self):
+        # 2.5 x 1/3 = 5/6, a fraction; 2.5 x 1/100 = 0.025, a decimal
+        self.assertEqual(en("two point five thirds"), [("two point five thirds", "5/6", F)])
+        self.assertEqual(en("The gap was 2.5 hundredths."), [("2.5 hundredths", "0.025", D)])
+
+    def test_a_word_that_is_no_part_word_leaves_the_decimal(self):
+        self.assertEqual(en("1.5 seconds"), [("1.5", "1.5", D)])
 
 
 class TestFractionOfAScale(unittest.TestCase):

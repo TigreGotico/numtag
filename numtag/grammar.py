@@ -1041,6 +1041,24 @@ class Grammar:
                       parts=_run_parts(run) + self._decimal_parts(last.end, start, end, fraction))
                 for start, end, fraction in self.decimal_digits(last.end)]
 
+    def decimal_count_tail(self, run: tuple[Group, ...]) -> list[Parse]:
+        """"dois vírgula cinco centésimas" is 2.5 hundredths, 0.025: a decimal
+        counts the parts of a plural part word after it. A part word that is
+        also a common noun takes no decimal: "2,5 quartos" are rooms. Where a
+        part word after a decimal marker names the place of the decimals
+        ("три целых шесть седьмых" is 3 6/7), no decimal counts parts. A
+        product with no finite decimal form is a fraction: 2.5 thirds is 5/6."""
+        if self.lex.decimal_fractions or not any(g.decimal for g in run):
+            return []
+        end = run[-1].end
+        found = []
+        for e in self._readings(end, "denominator"):
+            if e.plural and not e.ambiguous:
+                value = _sum(run) / Rational(e.value)
+                found.append(Parse(end + 1, value, decimal="/" not in value.canonical(),
+                                   parts=_run_parts(run) + _piece(Role.DENOMINATOR, end, end + 1, Rational(e.value))))
+        return found
+
     def fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:
         """"dois e um terço" is 7/3, and "tiga dua-pertiga" 11/3 where the
         language puts no joiner before a part. Digits take no part without
@@ -1634,6 +1652,7 @@ class Grammar:
                                parts=_run_parts(run)))
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
+            found += self.decimal_count_tail(run)
             found += self.case_fraction_tail(run)
         self._parses[i] = found
         return list(found)

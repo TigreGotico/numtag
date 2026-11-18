@@ -113,3 +113,10 @@ class TestHomographs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDecimalCountOfParts(unittest.TestCase):
+    def test_a_decimal_counts_the_parts_of_a_plural_part_word(self):
+        # 2.5 x 1/3 = 5/6
+        self.assertEqual(it("2,5 terzi"), [("2,5 terzi", "5/6", "fraction")])
+        self.assertEqual(it("due virgola cinque terzi"), [("due virgola cinque terzi", "5/6", "fraction")])
