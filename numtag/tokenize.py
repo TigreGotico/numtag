@@ -1,6 +1,7 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
 import unicodedata
+from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from functools import cache
 
@@ -347,7 +348,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 number_words is None or lookup not in number_words):
             source = fold_dotted_i(letters) if dotted_i else letters.translate(_APOSTROPHES)
             if len(source) == len(offsets):
-                parts = _split_compound(source, compound_words, compound_inner, shared_letter)
+                # a letter fold may change the length of a part ("fünf" is looked up as "fuenf")
+                parts = _split_compound(source, compound_words, compound_inner, shared_letter,
+                                        script.fold if script.letter_folds else str.casefold)
         if parts:
             for n, (a, b) in enumerate(parts):
                 first, last = offsets[a], offsets[b - 1] + 1
@@ -462,9 +465,9 @@ def _joiner_split(token: Token, number_words: frozenset[str], script: Script) ->
 
 
 def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
-                    shared_letter: bool = False) -> list[tuple[int, int]]:
+                    shared_letter: bool = False, key: Callable[[str], str] = str.casefold) -> list[tuple[int, int]]:
     """The offsets of the fewest parts that ``word`` splits into, each one in
-    ``parts`` after case folding and no ``inner`` part at either end; [] when
+    ``parts`` after ``key`` folds it and no ``inner`` part at either end; [] when
     it splits in no way. Among splits with as many parts, the one with the
     longest last part wins. With ``shared_letter``, a part that ends in a
     double letter shares its last letter with the next part ("ettusen" is
@@ -480,7 +483,7 @@ def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
             starts.append(covered - 1)
         for start in starts:
             for end in range(min(len(word), start + longest), covered, -1):
-                part = word[start:end].casefold()
+                part = key(word[start:end])
                 if part not in parts or (part in inner and (start == 0 or end == len(word))):
                     continue
                 split = best[covered] + [(start, end)]

@@ -1,5 +1,13 @@
 {
  "settings": {
+  "letter_folds": {
+   "value": {
+    "ä": "ae",
+    "ö": "oe",
+    "ü": "ue"
+   },
+   "source": "Wikipedia (de), \"Umlaut\" (knowledge/wiki/audits/numtag/issue-fixes/de-148/sources/wp-de-Umlaut.wikitext): \"Personen mit Umlauten im Namen haben häufig Probleme, da viele elektronische Systeme Umlaute nicht verarbeiten können und man auf Umschreibungen (ae, oe, ue) ausweichen muss.\" Text typed with no umlaut key writes the same words with ae, oe and ue, so \"fuenf\" is \"fünf\". \"ß\" needs no fold: a casefold already gives \"ss\", as in Swiss \"dreissig\"."
+  },
   "scale": {
    "value": "long",
    "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde[ →→]\", \"1000000000000: eine Billion[ →→]\", \"1000000000000000: eine Billiarde[ →→]\""

@@ -47,6 +47,21 @@ class TestCompoundWords(unittest.TestCase):
         self.assertEqual(read(text, "de"), [("dreiunddreißig", "33", C)])
 
 
+class TestAsciiUmlauts(unittest.TestCase):
+    def test_ae_oe_ue_stand_for_the_umlaut(self):
+        # "fuenf" is "fünf": 5, 12, 15, 50, 51 and the ordinals 5 and 12
+        self.assertEqual(read("in fuenf Tagen", "de"), [("fuenf", "5", C)])
+        self.assertEqual(read("zwoelf", "de"), [("zwoelf", "12", C)])
+        self.assertEqual(read("fuenfzehn", "de"), [("fuenfzehn", "15", C)])
+        self.assertEqual(read("fuenfzig", "de"), [("fuenfzig", "50", C)])
+        self.assertEqual(read("einundfuenfzig", "de"), [("einundfuenfzig", "51", C)])
+        self.assertEqual(read("der fuenfte Mai", "de"), [("fuenfte", "5", O)])
+        self.assertEqual(read("der zwoelfte Tag", "de"), [("zwoelfte", "12", O)])
+        # the umlaut spelling still reads, in a compound word too: 6 + 50 = 56
+        self.assertEqual(read("in fünf Tagen", "de"), [("fünf", "5", C)])
+        self.assertEqual(read("sechsundfünfzig Gäste", "de"), [("sechsundfünfzig", "56", C)])
+
+
 class TestUnitBeforeTen(unittest.TestCase):
     def test_the_unit_and_the_joiner_go_before_the_ten(self):
         # 1 + 20 = 21; 5 + 50 = 55
@@ -353,7 +368,7 @@ class TestScaleNamesAboveABillion(unittest.TestCase):
         # nl.wiktionary "triljard": 602 x 10^21 + 214 x 10^18 = 602214 x 10^18
         self.assertEqual(read("bij benadering zeshonderdtwee triljard tweehonderdveertien triljoen moleculen", "nl"),
                          [("zeshonderdtwee triljard tweehonderdveertien triljoen", "602214000000000000000000", C)])
-        self.assertEqual(read("triljardste", "nl"), [("triljardste", "1000000000000000000000", "ordinal")])
+        self.assertEqual(read("triljardste", "nl"), [("triljardste", "1000000000000000000000", O)])
 
 
 class TestArticles(unittest.TestCase):
