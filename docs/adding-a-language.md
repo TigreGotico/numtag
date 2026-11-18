@@ -61,6 +61,8 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
 | `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `number_name` | Names and set phrases that start with a number word and hold no number (fa "سه شنبه", Tuesday; ru "одно и то же", the same) | empty | empty |
+| `vague_before_count` | Vague words whose count and scale word after them are part of the vague quantity (tr "birkaç on bin") | empty | empty |
+| `vague_after_count` | Vague words whose count before them is part of the vague quantity (tr "yüz binlerce") | empty | empty |
 | `article_one` | Articles that also mean one | "um", "uma" | "a", "an" |
 | `of` | The word after which a plural noun multiplies a scale noun | "de" | empty |
 | `fraction_of` | The word between a fraction and a collective | "de" | "of" |

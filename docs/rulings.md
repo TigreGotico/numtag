@@ -658,6 +658,8 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 
 Turkish lists "birkaç", "birçok", "kaç", "onlarca", "yüzlerce", "binlerce" and "milyonlarca". Turkish writes the hundred as "yüz", a numeral that is one hundred alone, so "yüz" after a vague word also reads no number. "iki yüz" keeps its count.
 
+A count after "birkaç" and its scale word belong to the vague quantity: "birkaç on bin yıl" is a few tens of thousands of years and reads no number. A count before "binlerce" or "milyonlarca" does too: "yüz binlerce" is hundreds of thousands (TDK "binlerce", compounds "on binlerce, yüz binlerce"). "yüz bin" and "on bin" keep their number.
+
 ```python
 >>> read("Birkaç milyon kişi geldi.", "tr")
 []

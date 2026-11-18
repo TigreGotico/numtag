@@ -178,6 +178,11 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             i += 1
             continue
         best = max(parses, key=lambda p: p.end)
+        # "birkaç on bin", "yüz binlerce": the count is part of a vague quantity
+        if not negative and (i > 0 and run[i - 1].norm in lexicon.vague_before_count
+                             or best.end < len(run) and run[best.end].norm in lexicon.vague_after_count):
+            i = best.end
+            continue
         if not negative and (_percent_word(lexicon, run, start, best, number_end)
                              or _not_a_single(lexicon, run, start, best)
                              # "öt hét" is five weeks: right after a sure cardinal, a word

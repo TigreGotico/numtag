@@ -107,6 +107,23 @@ class TestVagueQuantity(unittest.TestCase):
         self.assertEqual(read("birkaç çeyrek", "tr"), [])
         self.assertEqual([(m.value, m.confidence) for m in tag_numbers("çeyrek", "tr")], [("0.25", 0.4)])
 
+    def test_a_count_before_a_vague_word_with_lerce_is_part_of_it(self):
+        # TDK "binlerce" lists the compounds "on binlerce, yüz binlerce": tens and hundreds of thousands
+        for text in ("yüz binlerce kişi", "on binlerce kişi", "yüz milyonlarca dolar", "Yüz binlerce kişi geldi."):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "tr"), [])
+        # a plain count keeps its number
+        self.assertEqual(read("yüz bin kişi", "tr"), [("yüz bin", "100000", C)])
+        self.assertEqual(read("on bin kişi", "tr"), [("on bin", "10000", C)])
+
+    def test_a_count_and_a_scale_word_after_birkac_are_part_of_it(self):
+        # tr.wikipedia "Gezegenimsi bulutsu": "birkaç on bin yıl yaşayan"; "Yıldız kümesi": "birkaç on milyon yıl"
+        for text in ("birkaç on bin kişi", "birkaç on milyon yıl", "birkaç on kişi"):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "tr"), [])
+        # a number after a clause break is a number
+        self.assertEqual(read("birkaç kişi geldi, on bin lira verdi.", "tr"), [("on bin", "10000", C)])
+
     def test_the_vague_words_that_are_also_other_words_are_ambiguous(self):
         # TDK lists "onlarca" also as the adverb "Onlara göre" and "kaç" also as the verb "kaçmak";
         # "birkaç" has one sense only
