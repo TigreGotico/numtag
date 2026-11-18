@@ -2,7 +2,6 @@
 comment beside it; sources are in numtag/lexicon/eu.json."""
 import unittest
 
-import pytest
 from helpers import read
 from numtag import tag_numbers
 
@@ -182,7 +181,7 @@ class TestLoneFractionWord(unittest.TestCase):
 
 class TestAraua203Fractions(unittest.TestCase):
     # Euskaltzaindia, 203. araua, section 6: the table on p. 27, the
-    # examples on p. 28, footnote 22 and note 28. The value is the fraction
+    # examples on p. 28, footnote 22 and the note (oharra) on p. 28. The value is the fraction
     # the norm writes beside each phrase, worked out by hand.
     ROWS = [
         ("erdi bat", "0.5", F),  # 1/2
@@ -217,12 +216,12 @@ class TestAraua203Fractions(unittest.TestCase):
         ("hamahiru zati berrogeita zazpi", "13/47", F),
         ("bat zati hiru", "1/3", F),
         ("bi milioi zati ehun eta bi", "1000000/51", F),  # 2000000/102
-        ("milioi erdi bat", "500000", C),  # 1000000/2, note 28
+        ("milioi erdi bat", "500000", C),  # 1000000/2, the note on p. 28
         ("milioi heren bat", "1000000/3", F),
         ("milioi laurden bat", "250000", C),  # 1000000/4
         ("milioi bosten bat", "200000", C),  # 1000000/5
         ("milioi-erdi bat", "500000", C),
-        ("milioi erdi", "500000", C),  # note 28: one compound noun, as "ordu laurden"
+        ("milioi erdi", "500000", C),  # the note on p. 28: one compound noun, as "ordu laurden"
         ("zazpi hamarren", "0.7", F),  # 7/10
         ("bi bosten", "0.4", F),  # 2/5
         ("hogeita zazpi ehunen", "0.27", F),  # 27/100
@@ -237,6 +236,10 @@ class TestAraua203Fractions(unittest.TestCase):
     def test_a_noun_after_the_compound(self):
         self.assertEqual(eu("milioi erdi euro"), [("milioi erdi", "500000", C)])
 
+    def test_zati_before_zero_is_no_fraction(self):
+        # a/0 has no value: "hiru zati zero" is the numbers 3 and 0
+        self.assertEqual(eu("hiru zati zero"), [("hiru", "3", C), ("zero", "0", C)])
+
     def test_the_genitive_ren_alone_is_no_number(self):
         # "bosten artean" is "among five": the -(r)en word reads only with a count or "bat"
         self.assertEqual(eu("bosten artean"), [])
@@ -246,33 +249,33 @@ class TestAraua203Gaps(unittest.TestCase):
     # Rows of 203. araua that numtag does not read yet. Each test fails until
     # its issue is fixed; the expected value is the norm's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/93
     def test_a_denominator_of_two_words(self):
         # table, p. 27: "hogeita hamarren bat" is 1/30, "hamar milaren bat" is 1/10000
         self.assertEqual(eu("hogeita hamarren bat"), [("hogeita hamarren bat", "1/30", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/93
     def test_a_denominator_of_two_words_with_a_scale(self):
         self.assertEqual(eu("hamar milaren bat"), [("hamar milaren bat", "0.0001", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/94
     def test_the_denominator_in_the_ablative_before_the_count(self):
         self.assertEqual(eu("hamarretik zazpi"), [("hamarretik zazpi", "0.7", F)])  # 7/10
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/94
     def test_the_denominator_in_the_plain_ablative(self):
         self.assertEqual(eu("bostetik bi"), [("bostetik bi", "0.4", F)])  # 2/5
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/94
     def test_the_denominator_with_ko_before_the_count(self):
         self.assertEqual(eu("bosteko bi"), [("bosteko bi", "0.4", F)])  # 2/5
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/95
     def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
         text = "hogeita lau unitate eta bost hamarren"  # 24 + 5/10
         self.assertEqual(eu(text), [(text, "24.5", D)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    @unittest.expectedFailure  # https://github.com/TigreGotico/numtag/issues/95
     def test_unitate_eta_after_zero(self):
         text = "zero unitate eta hogeita zazpi ehunen"  # 0 + 27/100
         self.assertEqual(eu(text), [(text, "0.27", D)])
