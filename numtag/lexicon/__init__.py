@@ -213,6 +213,8 @@ class Lexicon:
     readings: dict[str, tuple[Entry, ...]]
     joiners: frozenset[str]
     decimal_markers: frozenset[str]
+    # "unitate" in "hogeita lau unitate eta bost hamarren": a noun that ends the whole part before a fraction.
+    whole_part_nouns: frozenset[str]
     minus_words: frozenset[str]
     minus_idioms: tuple[tuple[str, ...], ...]
     # "per cent" in "vint per cent": a phrase whose last word is a number
@@ -429,7 +431,7 @@ DEFAULT_SETTINGS = {
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
                  "negative_particle": [], "noun_after_count": [],
-                 "number_noun": [], "number_name": []}
+                 "number_noun": [], "number_name": [], "whole_part_noun": []}
 
 
 def _read(lang: str) -> dict:
@@ -588,6 +590,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),
         decimal_markers=frozenset(words["decimal_marker"]),
+        whole_part_nouns=frozenset(words["whole_part_noun"]),
         minus_words=frozenset(words["minus"]),
         minus_idioms=tuple(tuple(p.split()) for p in words["minus_idioms"]),
         negative_particles=frozenset(words["negative_particle"]),

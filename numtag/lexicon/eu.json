@@ -26,6 +26,7 @@
     "article_one": {"value": ["bat"], "source": "Euskaltzaindia, 12. araua: \"bat bakarrik agertzen denean, eta b) determinatzaile gisa —hots, izen baten ondoren— agertzen denean\"; alone after a noun it is a weak number."},
     "of": {"value": [], "source": "Basque marks the noun with a case ending, not a preposition."},
     "fraction_of": {"value": [], "source": "Basque marks the noun with a case ending, not a preposition."},
+    "whole_part_noun": {"value": ["unitate"], "source": "Euskaltzaindia, 203. araua, EBO (VI), \"Zenbakizko adierazpenak\": \"24,5: hogeita lau unitate eta bost hamarren\"; \"0,27: (zero unitate eta) hogeita zazpi ehunen\"; \"0,043: (zero unitate eta) berrogeita hiru milaren\"."},
     "denominator_particle": {"value": [], "source": "Basque has no particle like pt \"avos\"."},
     "class_noun": {"value": [], "source": "No Basque class noun is read."},
     "half_unit": {"value": [], "source": "\"eta erdi\" follows the noun in Basque (\"kilo bat eta erdi\")."},

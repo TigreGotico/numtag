@@ -55,6 +55,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 |---|---|---|---|
 | `joiner` | The word that joins parts of a number | "e" | "and" |
 | `decimal_marker` | The words that start the fraction part | "vírgula" | "point" |
+| `whole_part_noun` | A noun that ends the whole part before a joiner and a fraction (eu "unitate"): the whole number and the fraction make one decimal | empty | empty |
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
