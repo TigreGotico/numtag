@@ -73,11 +73,11 @@ class TestLexiconFiles(unittest.TestCase):
                     self.assertIn(lexicon.script.fold(MILLION[path.stem]), lexicon.readings)
 
     def test_pt_br_extends_pt_pt_with_the_short_scale(self):
-        brazil, portugal = load("pt-BR").readings, load("pt-PT", "short").readings
-        # pt-BR adds one reading: "meia" is 6 in a spoken digit sequence
-        self.assertEqual(brazil["meia"], portugal["meia"] + load("pt-BR").of("meia", "digit_alias"))
-        self.assertEqual({w: e for w, e in brazil.items() if w != "meia"},
-                         {w: e for w, e in portugal.items() if w != "meia"})
+        self.assertEqual(load("pt-BR").readings, load("pt-PT", "short").readings)
+        # pt-BR adds one digit word: "meia" is 6 in a spoken digit sequence
+        self.assertEqual([(w, e.role, e.value) for w, es in load("pt-BR").digit_words.items() for e in es],
+                         [("meia", "digit_alias", "6")])
+        self.assertEqual(load("pt-PT").digit_words, {})
         self.assertEqual(load("pt-BR").of("bilião", "scale_noun")[0].exponent, 9)
         self.assertEqual(load("pt-PT").of("bilião", "scale_noun")[0].exponent, 12)
 

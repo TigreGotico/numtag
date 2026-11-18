@@ -158,7 +158,8 @@ def _spoken_digits(text: str, lexicon: Lexicon, run: list[Token],
         ("hét" is also a week) only with ``homograph``."""
         if k >= len(run) or k in used or run[k].is_digits or run[k].glued or run[k].part:
             return None
-        return next((e.value for e in lexicon.readings.get(run[k].norm, ())
+        entries = lexicon.readings.get(run[k].norm, ()) + lexicon.digit_words.get(run[k].norm, ())
+        return next((e.value for e in entries
                      if e.role in roles and len(e.value) == 1 and not (e.final or e.part or e.bound)
                      and (homograph or not e.ambiguous)), None)
 
