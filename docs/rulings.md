@@ -340,6 +340,15 @@ A decimal marker ("vírgula", "point") or a decimal mark in digits ("2,5", "2.5"
 
 > Wiktionary, "point", noun sense 1.3: "A decimal point".
 
+A marker word with no number before it starts no fraction part: it is a noun. So digits after it keep their count of parts. With a number before the marker, the digits are decimal digits and count no parts.
+
+```python
+>>> read("At that point 3 quarters of the votes were counted.", "en")
+[('3 quarters', '0.75')]
+>>> read("two point 5 quarters", "en")
+[('two', '2'), ('5', '5')]
+```
+
 Where the comma marks decimals, the word for the point is no decimal marker. So "o artigo 5 ponto 3" is two numbers, and so are "cinco ponto três", Galician "5 punto 3", Mirandese "5 ponto 3", Asturian "5 puntu 3" and German "Artikel 5 Punkt 3". English writes decimals with a point, so "2 point 5" stays one decimal.
 
 ```python
