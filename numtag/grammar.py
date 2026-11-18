@@ -546,6 +546,12 @@ class Grammar:
             for end, chunk in self.small(position, multiplied=False) + zeros + digits_after:
                 if parts and len(chunk) == 3:
                     continue
+                # a count before a part word that is no power of ten is a numerator,
+                # no decimal digit: "две целых три пятых" is 2 3/5
+                if self.lex.decimal_fractions and any(
+                        not e.ambiguous and e.value != digits.shift("1", len(e.value) - 1)
+                        for e in self._readings(end, "denominator")):
+                    continue
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk, origin)
         # a fraction reading wins over digits that end at the same word
@@ -1052,7 +1058,7 @@ class Grammar:
         starts = self._after_joiner(last.end, self.lex.joiner_before_half)
         if self.lex.joiner_after_decimal_marker != Joiner.NEVER and self._is_word(last.end, self.lex.decimal_markers):
             # "три целых и шесть седьмых": the whole part, its marker, a joiner and a fraction
-            starts += self._after_joiner(last.end + 1, Joiner.REQUIRED)
+            starts += self._after_joiner(last.end + 1, self.lex.joiner_after_decimal_marker)
         for j in starts:
             # digits take no part without the joiner ("tiga dua-pertiga" is 11/3)
             if j == last.end and self.tokens[j - 1].is_digits:

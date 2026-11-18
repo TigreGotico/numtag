@@ -386,6 +386,17 @@ Digits after a decimal marker are the decimal digits only when no part word foll
 
 > Slovar slovenskega knjižnega jezika (SSKJ², Fran), "stotinka" (knowledge/wiki/audits/numtag/follow-up-prs/sources/sl/fran-stotinka.txt): "del na sto enakih delov razdeljene merske enote", "mat. ena cela, pet stotink 1,05"
 
+Words follow the same rule. A count before a part word that is no power of ten is the numerator of that part, never a decimal digit. In Russian the whole part, "целых" and the fraction add, with or without "и": "две целых три пятых" is 2 3/5. Ukrainian, Czech, Croatian and Slovene have no source here for a whole part before a part other than a power of ten, so the whole part and the fraction are two numbers.
+
+```python
+>>> read("Ответ: две целых три пятых.", "ru")
+[('две целых три пятых', '2.6')]
+>>> read("Відповідь: дві цілих три п'ятих.", "uk")
+[('дві', '2'), ("три п'ятих", '0.6')]
+```
+
+> Д. Э. Розенталь, "Справочник по правописанию и литературной правке", 4th edition (1985), § 45, item 3: "три целых и шесть седьмых"
+
 Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. A locale's own group mark before a point decimal reads the same way, whether the mark is a space, a no-break space or an apostrophe: "1 234.5" in Finnish (a plain space, the Finnish lexicon mark), "10 123.5" in Russian (a no-break space) and "1'234.5" in Swiss French read 1234.5, 10123.5 and 1234.5. Where a point is the group mark (Portuguese, German), a second point is no decimal mark, so "1.234.5" reads no number. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
 
 ```python

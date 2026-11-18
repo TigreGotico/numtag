@@ -462,5 +462,29 @@ class TestApostrophes(unittest.TestCase):
             self.assertEqual(read(word, "uk"), [(word, "5", C)])
 
 
+class TestCountBeforeAPartWordAfterAMarker(unittest.TestCase):
+    def test_a_count_before_a_part_that_is_no_power_of_ten_is_no_decimal_digit(self):
+        # the whole part and a fraction add: 2 + 3/5 = 13/5 = 2.6, and 2 + 1/3 = 7/3
+        self.assertEqual(read("две целых три пятых", "ru"), [("две целых три пятых", "2.6", F)])
+        self.assertEqual(read("две целых одна треть", "ru"), [("две целых одна треть", "7/3", F)])
+        self.assertEqual(read("три целых и шесть седьмых", "ru"), [("три целых и шесть седьмых", "27/7", F)])
+
+    def test_a_power_of_ten_part_still_names_the_decimal_place(self):
+        # 2 + 5/100 = 2.05, 2 + 25/100 = 2.25, 2 + 5/10 = 2.5
+        self.assertEqual(read("две целых пять сотых", "ru"), [("две целых пять сотых", "2.05", D)])
+        self.assertEqual(read("две целых двадцать пять сотых", "ru"), [("две целых двадцать пять сотых", "2.25", D)])
+        self.assertEqual(read("dvě celé pět desetin", "cs"), [("dvě celé pět desetin", "2.5", D)])
+        self.assertEqual(read("dva cijela pet stotinki", "hr"), [("dva cijela pet stotinki", "2.05", D)])
+
+    def test_without_a_source_for_a_mixed_number_the_whole_and_the_fraction_are_two_numbers(self):
+        # 3 fifths are 3/5 = 0.6; no source shows a whole part before a fifth in these languages
+        for lang, text, whole, part in (("uk", "дві цілих три п'ятих", "дві", "три п'ятих"),
+                                        ("cs", "dvě celé tři pětiny", "dvě", "tři pětiny"),
+                                        ("hr", "dva cijela tri petine", "dva", "tri petine"),
+                                        ("sl", "dve celi tri petine", "dve", "tri petine")):
+            with self.subTest(lang=lang):
+                self.assertEqual(read(text, lang), [(whole, "2", C), (part, "0.6", F)])
+
+
 if __name__ == "__main__":
     unittest.main()
