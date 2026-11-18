@@ -563,6 +563,21 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 
 > Euskaltzaindiaren Hiztegia, "laurden": "Lau zati berdinetan banatu den zerbaiten zati bakoitza."; "final laurden": "Finalerdien aurretik jokatzen diren lau partida edo norgehiagoketako bakoitza."; "heren": "Hiru zati berdinetan banatu den zerbaiten zati bakoitza.", "Hirugarrena. Heren egunean piztu zen".
 
+In Russian, Ukrainian and Polish the plural part word has the form of the plural ordinal: "пятых" is "fifths" and also "fifth". A fraction in digits is written with a slash, so digits before such a word count things and the word is the ordinal: "3 пятых класса" is three fifth-grade classes. A count in words keeps the fraction, and a part word that is no ordinal form, as "четверти", keeps the fraction after digits too.
+
+```python
+>>> read("В школе 3 пятых класса.", "ru")
+[('3', '3'), ('пятых', '5')]
+>>> read("W szkole 3 piąte klasy.", "pl")
+[('3', '3'), ('piąte', '5')]
+>>> read("три пятых", "ru")
+[('три пятых', '0.6')]
+>>> read("3 четверти", "ru")
+[('3 четверти', '0.75')]
+```
+
+> Д. Э. Розенталь, "Справочник по правописанию и литературной правке", 4th edition (1985), § 45, item 3: "Дробные числительные пишутся раздельно, например: две пятых (2/5)".
+
 ## A fraction of a scale word
 
 A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio") gives no product, and so does a count after "de": "um quarto de dois milhões" is two numbers.
