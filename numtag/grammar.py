@@ -1109,10 +1109,12 @@ class Grammar:
         # is also a common noun takes no digits: "3 quartos" are three rooms.
         # A count equal to the denominator is a count of things ("2 вторых
         # места", "the 4 quarters"), and a digit after a slash is a term of
-        # a slash fraction ("5 1/2 quarters").
+        # a slash fraction ("5 1/2 quarters"). A digit right after a decimal
+        # marker is a decimal digit ("2 point 5 quarters"); a first digit has
+        # no word before it.
         if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
                 and self.tokens[i].gap.strip() != "/"
-                and not self._is_word(i - 1, self.lex.decimal_markers)
+                and not (i and self._is_word(i - 1, self.lex.decimal_markers))
                 and not any(e.ambiguous or e.value == read[1].numerator
                             for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))

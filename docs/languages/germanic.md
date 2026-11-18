@@ -5,7 +5,7 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | German | every `de` tag | `numtag/lexicon/de.json` | long | 199 | 199 |
-| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 184 | 184 |
+| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 186 | 186 |
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 150 | 150 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
