@@ -140,7 +140,9 @@ class Entry:
     weak_after: frozenset[str] = frozenset()
     weak_before: frozenset[str] = frozenset()
     # An ordinal that is never the last word of a longer ordinal: French
-    # "premier" and "second" ("vingt et unième", "vingt-deuxième").
+    # "premier" and "second" ("vingt et unième", "vingt-deuxième"),
+    # Italian "secondo" ("ventiduesimo"). Only a hyphen joins it to a
+    # number before it: ICU 78 wrote the Catalan 22nd "vint-i-segon".
     standalone: bool = False
     # Words after which the word has only its number reading: after "les"
     # the Catalan adjective "nou" ("new") is "noves", so "a les nou" is

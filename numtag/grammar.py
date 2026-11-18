@@ -1402,7 +1402,7 @@ class Grammar:
                     found += rest[:1]
                 else:
                     found += rest
-            elif entry.standalone:
+            elif entry.standalone and self.tokens[j].gap != "-":
                 continue  # "dix premiers" is 10 and 1st, never 11th
             elif self.lex.ordinal_style == "last_word" \
                     and (_room_for(prefix, value) or (teens and _teen(value))) \
