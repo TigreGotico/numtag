@@ -30,6 +30,10 @@ class TestGrowth(unittest.TestCase):
         self.assertEqual(len(tag_numbers("um " * 50, "pt-PT")), 50)
         self.assertEqual(len(tag_numbers("one " * 50, "en")), 50)
         self.assertEqual(len(tag_numbers("dois três " * 25, "pt-BR")), 50)
+        # with spoken_digits, a run of digit words is one spoken digit sequence
+        self.assertEqual([m.digits for m in tag_numbers("um " * 50, "pt-PT", spoken_digits=True)], ["1" * 50])
+        self.assertEqual([m.digits for m in tag_numbers("one " * 50, "en", spoken_digits=True)], ["1" * 50])
+        self.assertEqual([m.digits for m in tag_numbers("dois três " * 25, "pt-BR", spoken_digits=True)], ["23" * 25])
         # a coarse guard: copying the run for each signed number grows past
         # the threshold only from about 2000 numbers
         self.assertEqual(len(tag_numbers("-5 " * 50, "pt-PT")), 50)

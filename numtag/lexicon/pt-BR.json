@@ -3,5 +3,8 @@
   "settings": {
     "scale": {"value": "short", "source": "Priberam, \"bilião\", sense 2: \"[Brasil] Mil milhões (10^9)\": pt-BR counts in the short scale."},
     "space_groups": {"value": false, "source": "CLDR 49 numbers, pt (latn): \"'symbols-numberSystem-latn': { 'decimal': ',', 'group': '.'\": pt-BR groups digits with a dot (\"1.000.000\"). Structural, no external source: a space between digit strings separates two numbers."}
-  }
+  },
+  "entries": [
+    {"word": "meia", "role": "digit_alias", "value": "6", "source": "Priberam, \"meia\" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/priberam-meia.html): sense \"meia 2\", \"nome masculino de dois números\", marked [Brasil]: \"O número 6.\", \"Origem: redução de meia dúzia\"; Dicio, \"meia\" (knowledge/wiki/audits/numtag/issue-fixes/spoken-digits/sources/dicio-meia.html): \"No discurso falado, o número seis ou o que possui igual valor: moro na casa três-meia-cinco (365).\""}
+  ]
 }

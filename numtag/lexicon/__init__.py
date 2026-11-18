@@ -53,6 +53,11 @@ class TensOrder(str, Enum):
 # ("dua belas" is 12).
 VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen", "decimal_zero",
                "value_word", "unit_and_half", "rational", "teen_suffix")
+# Roles of words that say a digit only inside a spoken digit sequence: a
+# "digit_alias" is the digit (pt-BR "meia" is 6 in "três meia dois"), and a
+# "digit_repeat" says the next digit that many times ("double oh seven").
+# Their entries live apart from the readings, so the grammar never sees them.
+DIGIT_ROLES = ("digit_alias", "digit_repeat")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
@@ -375,6 +380,9 @@ class Lexicon:
     # A title-case word before a numeral is a cue ("Luís XIV"), unless the
     # language writes every noun in title case ("Größe XIV").
     roman_title_case_cue: bool = True
+    # The digit_alias and digit_repeat entries, which only a spoken digit
+    # sequence reads.
+    digit_words: dict[str, tuple[Entry, ...]] = field(default_factory=dict)
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
         return tuple(e for e in self.readings.get(word, ()) if e.role == role)
@@ -476,6 +484,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
              for key, value in raw_words.items()}
     scale = Scale(scale or settings["scale"])
     readings: dict[str, list[Entry]] = {}
+    digit_words: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
     inflection = data.get("inflection", {})
     suffix_ends = settings.get("inflection_position", "every") == "last"
@@ -483,7 +492,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     ambiguous_words: set[str] = set()
     vague_quantifiers: dict[tuple[str, ...], bool] = {}
 
-    def put(spec: dict, entry: Entry) -> None:
+    def put(spec: dict, entry: Entry, target: dict[str, list[Entry]] = readings) -> None:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
         ambiguous_words.update(ambiguous)
         weak = {w.casefold() for w in spec.get("weak_forms", [])}
@@ -495,7 +504,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                 reading = replace(reading, weak_at_end=False, joined_count=False,
                                   weak_after=frozenset(), weak_before=frozenset())
             for form in script.lexicon_forms(word):
-                readings.setdefault(fold(form), []).append(reading)
+                target.setdefault(fold(form), []).append(reading)
 
     # Ordinal scale words and denominators that name a scale word ("scale_of")
     # come last: each takes its power of ten from the cardinal scale word.
@@ -521,6 +530,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             weak_before=frozenset(fold(w) for w in spec.get("weak_before", ())),
                             standalone=spec.get("standalone", False),
                             number_after=frozenset(fold(w) for w in spec.get("number_after", ())), **facts))
+        elif role in DIGIT_ROLES:
+            put(spec, Entry(role, spec["value"], **facts), digit_words)
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:
@@ -644,6 +655,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         roman_lower_words=frozenset(words.get("roman_lower_word", ())),
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
+        digit_words={w: tuple(e) for w, e in digit_words.items()},
     )
 
 
