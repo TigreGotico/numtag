@@ -43,7 +43,8 @@ class TestGrowth(unittest.TestCase):
         # a run of number words with no joiner reads the numbers from each
         # word once, however often the split search and the reasons ask for them
         with mock.patch.object(Grammar, "fractions", autospec=True, side_effect=Grammar.fractions) as read:
-            self.assertEqual(len(tag_numbers("um " * 200, "pt-PT")), 200)
+            mentions = tag_numbers("um " * 200, "pt-PT")
+        self.assertEqual(" ".join(m.text for m in mentions).split(), ["um"] * 200)
         self.assertEqual(read.call_count, 200)
 
     def test_a_run_of_number_words_and_joiners(self):
