@@ -494,6 +494,11 @@ class Grammar:
             for multiplier in self._readings(end, "hundred_multiplier"):
                 if not multiplier.plural or multiplier.counted:
                     found.append((end + 1, digits.shift(count, multiplier.exponent), False))
+            # "pet i pol stotina" is 5.5 x 100: a half after the count counts half a hundred too
+            for _, after in self._halves_after(end):
+                found += [(after + 1, digits.add(digits.shift(count, multiplier.exponent),
+                                                 digits.shift("5", multiplier.exponent - 1)), False)
+                          for multiplier in self._readings(after, "hundred_multiplier") if multiplier.counted]
         return found
 
     def _bound_units(self, i: int) -> list[tuple[int, str]]:
@@ -936,6 +941,9 @@ class Grammar:
             place = split < len(run) - 1 and entry.value.strip("0") == "1" and len(
                 _whole(last.count * Rational(entry.value))) <= _room(run[-2])
             cut = len(run) - 1 if place else split
+            # a hundred noun counts no thousands, as a hundred multiplier does: a year before "stotine ljudi" is a year
+            if self.lex.hundred_counts_below_thousand and entry.value == "100" and len(_whole(_sum(run[cut:]))) > 3:
+                continue
             found += self._collective(_sum(run[:cut]), _sum(run[cut:]), entry, last.end, may_take_of=cut == 0 or place,
                                       parts=_run_parts(run))
         decimal = any(g.decimal for g in run)
