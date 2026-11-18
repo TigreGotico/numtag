@@ -46,7 +46,7 @@ The same rule holds after every scale word.
 
 > Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
 
-In Galician, the normative form writes no "e" after "mil" or "cento" ("mil novecentos e noventa", "cento un"). Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
+In Galician, the table of cardinals in RAG Normas 16.1 writes "cento un", with no "e" after "cento". The table ends at "mil", so it shows no form after "mil". Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
 
 ```python
 >>> read("A lei entra en vigor en dous mil e vinte e seis.", "gl")
