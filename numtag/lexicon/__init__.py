@@ -15,7 +15,7 @@ A class may mark its forms as ordinal or as naming the parts of a fraction
 import json
 from dataclasses import dataclass, field, replace
 from enum import Enum
-from functools import cache
+from functools import cache, cached_property
 from pathlib import Path
 
 from numtag.mention import Scale
@@ -377,7 +377,16 @@ class Lexicon:
     roman_title_case_cue: bool = True
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
-        return tuple(e for e in self.readings.get(word, ()) if e.role == role)
+        return self._by_role.get((word, role), ())
+
+    @cached_property
+    def _by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
+        """The entries of each word, by role."""
+        found: dict[tuple[str, str], tuple[Entry, ...]] = {}
+        for word, entries in self.readings.items():
+            for entry in entries:
+                found[word, entry.role] = found.get((word, entry.role), ()) + (entry,)
+        return found
 
     @property
     def number_words(self) -> frozenset[str]:
