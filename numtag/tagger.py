@@ -393,8 +393,20 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     # is the whole text with no punctuation: a spoken answer ("hat" answers "hány?")
     whole = alone and parse.end == start + 1 and bool(entries) \
         and all(e.weak_at_end and not e.ambiguous for e in entries)
+    # "außer Acht", "der Elf": a capital that opens no sentence makes a
+    # number word below a million a noun
+    capital_noun = lexicon.capital_noun and run[start].text[:1].isupper() \
+        and not run[start].text.isupper() and not _opens_sentence(run[start]) \
+        and any(e.role in CARDINAL_ROLES and e.exponent < 6 for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
     cardinal_percent = percent_follows and parse.kind == Kind.CARDINAL
     homograph = ((parse.ambiguous and not whole) or lone_ambiguous) and not cardinal_percent \
-        or listed or weak_ordinal or bare_percent
+        or listed or weak_ordinal or bare_percent or capital_noun
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
+
+
+def _opens_sentence(token: Token) -> bool:
+    """The token is the first word of the text or comes after the end of a
+    sentence, past any opening quote or bracket."""
+    before = token.gap.rstrip().rstrip("\"'„“‚‘»«([")
+    return not before and token.start == len(token.gap) or before.endswith((".", "!", "?", ":"))

@@ -1,5 +1,9 @@
 {
  "settings": {
+  "capital_noun": {
+   "value": true,
+   "source": "Duden, Rechtschreibregeln, Groß- und Kleinschreibung, D 78: \"Sonst werden Grundzahlen unter einer Million kleingeschrieben.\" \"Weibliche Substantivierungen schreibt man groß.\" (\"die Acht, die Zahl Acht\", \"eine Eins, die Note »Eins«, vier Einsen im Zeugnis\"). A capital that opens no sentence makes the word a noun: \"außer Acht\", \"der Elf\"."
+  },
   "scale": {
    "value": "long",
    "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde[ →→]\", \"1000000000000: eine Billion[ →→]\", \"1000000000000000: eine Billiarde[ →→]\""

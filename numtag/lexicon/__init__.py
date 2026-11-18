@@ -298,6 +298,9 @@ class Lexicon:
     bound_ordinal_values: frozenset[str] = frozenset()
     # A half after any scale word is half of that scale ("אלף וחצי" is 1500).
     half_of_scale: bool = False
+    # A number word below a million counts in lower case and is a noun with
+    # a capital: German "außer Acht", "eine Eins im Zeugnis".
+    capital_noun: bool = False
     script: Script = Script()
     # "petindvajset", "pětadvacet": a unit, then the joiner as this policy
     # says, then a round ten, all parts of one compound word.
@@ -616,6 +619,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
         half_of_scale=settings.get("half_of_scale", False),
+        capital_noun=settings.get("capital_noun", False),
         script=script,
         inverted_tens=Joiner(settings["inverted_tens"]) if settings.get("inverted_tens") else None,
         compound_parts_by_role=settings.get("compound_parts_by_role", False),

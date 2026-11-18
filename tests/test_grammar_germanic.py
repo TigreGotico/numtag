@@ -408,6 +408,21 @@ class TestArticles(unittest.TestCase):
         self.assertEqual(read("in miljoen", "fy"), [("in miljoen", "1000000", C)])
 
 
+class TestCapitalNouns(unittest.TestCase):
+    def test_a_capital_inside_a_sentence_makes_a_weak_noun(self):
+        # "außer Acht" is "disregarded", "der Elf" the creature, "eine Eins" the mark
+        for text, word in (("Er hat es außer Acht gelassen", "Acht"), ("Nimm dich in Acht", "Acht"),
+                           ("Der Elf Legolas", "Elf"), ("Er hat eine Eins im Zeugnis", "Eins")):
+            with self.subTest(text=text):
+                self.assertIn((word, 0.4), [(m.text, m.confidence) for m in tag_numbers(text, "de")])
+
+    def test_a_capital_that_opens_a_sentence_or_a_lower_case_word_counts(self):
+        for text, word in (("Tausend Dank", "Tausend"), ("Es kamen acht Leute. Acht blieben.", "Acht"),
+                           ("Er kommt um acht.", "acht"), ("Er zahlte zwei Millionen", "zwei Millionen")):
+            with self.subTest(text=text):
+                self.assertIn((word, 1.0), [(m.text, m.confidence) for m in tag_numbers(text, "de")])
+
+
 class TestRanges(unittest.TestCase):
     def test_a_joiner_inside_a_compound_word_splits_no_range(self):
         # 21 to 30
