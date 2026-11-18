@@ -412,8 +412,10 @@ class TestZwo(unittest.TestCase):
     def test_zwo_is_two_in_any_context(self):
         # Duden, "zwo": "Zahlwort", "Bedeutung ⓘ zwei"; 0, 1, 7, 2 said one by one is 172 with the digits 0172
         self.assertEqual(read("um zwo Uhr", "de"), [("zwo", "2", C)])
-        found = tag_numbers("null eins sieben zwo", "de")
+        found = tag_numbers("null eins sieben zwo", "de", spoken_digits=True)
         self.assertEqual([(m.value, m.digits) for m in found], [("172", "0172")])
+        self.assertEqual(read("null eins sieben zwo", "de"), [("null", "0", C), ("eins", "1", C), ("sieben", "7", C),
+                                                             ("zwo", "2", C)])
 
 
 class TestRanges(unittest.TestCase):

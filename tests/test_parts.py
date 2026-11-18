@@ -152,7 +152,7 @@ class TestEveryGoldMention(unittest.TestCase):
     def test_spoken_digits_give_the_digits_and_the_value(self):
         checked = 0
         for lang, text in _gold():
-            for mention in tag_numbers(text, lang):
+            for mention in tag_numbers(text, lang, spoken_digits=True):
                 if mention.form is not Form.SPOKEN_DIGITS:
                     continue
                 said, times = "", 1
@@ -171,8 +171,6 @@ class TestEveryGoldMention(unittest.TestCase):
         checked = 0
         for lang, text in _gold():
             for mention in tag_numbers(text, lang):
-                if mention.form is Form.SPOKEN_DIGITS:
-                    continue
                 value = _value_from_counts_and_scales(lang, mention.parts)
                 if value is None:
                     continue

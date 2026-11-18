@@ -19,8 +19,10 @@ def confidence(text: str, lang: str) -> list[tuple[str, float]]:
 class TestSpokenDigits(unittest.TestCase):
     def test_a_homograph_is_a_digit_only_between_sure_digits(self):
         # "sei" is also "you are": 3, 6, 2 is 362; at the end of the run it stays apart
-        self.assertEqual(it("chiama il tre sei due"), [("tre sei due", "362", "cardinal")])
-        self.assertEqual(it("tre due sei"), [("tre", "3", "cardinal"), ("due", "2", "cardinal"), ("sei", "6", "cardinal")])
+        spoken = [(m.text, m.value) for m in tag_numbers("chiama il tre sei due", "it", spoken_digits=True)]
+        self.assertEqual(spoken, [("tre sei due", "362")])
+        spoken = [(m.text, m.value) for m in tag_numbers("tre due sei", "it", spoken_digits=True)]
+        self.assertEqual(spoken, [("tre", "3"), ("due", "2"), ("sei", "6")])
 
 
 class TestCompoundWords(unittest.TestCase):

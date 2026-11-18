@@ -100,7 +100,7 @@
 {"text": "what happened in the year fourteen ninety two", "lang": "en-US", "reading": ["14", "92"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts 1492: the skill joins 14 and 92"}
 {"text": "what happened in the year fourteen hundred ninety two", "lang": "en-US", "reading": ["1492"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts 1492"}
 {"text": "what happened in the year twenty twenty", "lang": "en-US", "reading": ["20", "20"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts 2020: the skill joins 20 and 20"}
-{"text": "what happened in the year nineteen oh five", "lang": "en-US", "reading": ["1905"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts 1905. numtag reads \"nineteen oh five\" as one spoken-digit mention, 1905, and _get_year returns a lone value as the year; with two mentions the skill joins 19, \"oh\" and 5"}
+{"text": "what happened in the year nineteen oh five", "lang": "en-US", "reading": ["19", "5"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts 1905: the skill joins 19, \"oh\" and 5"}
 {"text": "what happened in the year nineteen banana five", "lang": "en-US", "reading": ["19", "5"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts None: \"banana\" between 19 and 5 is no \"oh\""}
 {"text": "what happened in the year 3.5", "lang": "en-US", "reading": ["3.5"], "source": "ovos-skill-days-in-history test/test_get_year.py asserts None: 3.5 is no whole year"}
 {"text": "what happened in the year banana", "lang": "en-US", "reading": [], "source": "ovos-skill-days-in-history test/test_get_year.py asserts None"}

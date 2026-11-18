@@ -68,14 +68,26 @@ class TestBindingRulings(unittest.TestCase):
 class TestSpokenDigits(unittest.TestCase):
     def test_meia_is_six_in_a_brazilian_digit_sequence(self):
         # Priberam, "meia": "[Brasil] O número 6."; 3, 6, 2 is 362
-        found = tag_numbers("três meia dois", "pt-BR")
+        found = tag_numbers("três meia dois", "pt-BR", spoken_digits=True)
         self.assertEqual([(m.text, m.value, m.form, m.digits) for m in found],
                          [("três meia dois", "362", Form.SPOKEN_DIGITS, "362")])
-        self.assertEqual(read("comprei meia pizza", "pt-BR"), [("meia", "0.5", "fraction")])
-        self.assertEqual(read("dois meia", "pt-BR"), [("dois", "2", "cardinal"), ("meia", "0.5", "fraction")])
+        # Dicio, "meia": "No discurso falado, o número seis ou o que possui igual valor: moro na
+        # casa três-meia-cinco (365)."
+        self.assertEqual(read("Moro na casa três-meia-cinco.", "pt-BR", spoken_digits=True),
+                         [("três-meia-cinco", "365", "cardinal")])
+        # 9, 9, 6, 1, 2 is 99612
+        self.assertEqual(read("O telefone é nove nove meia um dois.", "pt-BR", spoken_digits=True),
+                         [("nove nove meia um dois", "99612", "cardinal")])
+        self.assertEqual(read("comprei meia pizza", "pt-BR", spoken_digits=True), [("meia", "0.5", "fraction")])
+        self.assertEqual(read("dois meia", "pt-BR", spoken_digits=True),
+                         [("dois", "2", "cardinal"), ("meia", "0.5", "fraction")])
+
+    def test_meia_is_a_half_by_default(self):
+        self.assertEqual(read("três meia dois", "pt-BR"),
+                         [("três", "3", "cardinal"), ("meia", "0.5", "fraction"), ("dois", "2", "cardinal")])
 
     def test_meia_is_no_digit_in_portugal(self):
-        self.assertEqual(read("três meia dois", "pt-PT"),
+        self.assertEqual(read("três meia dois", "pt-PT", spoken_digits=True),
                          [("três", "3", "cardinal"), ("meia", "0.5", "fraction"), ("dois", "2", "cardinal")])
 
 

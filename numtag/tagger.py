@@ -50,13 +50,17 @@ def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
                     compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
 
 
-def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
-    """Every non-overlapping number in ``text``, in reading order."""
+def tag_numbers(text: str, lang: str, *, scale: Scale | None = None,
+                spoken_digits: bool = False) -> list[NumberMention]:
+    """Every non-overlapping number in ``text``, in reading order. With
+    ``spoken_digits``, three or more digits said one by one, as in a
+    telephone number, are one ``Form.SPOKEN_DIGITS`` mention."""
     lexicon = load(lexicon_name(lang), Scale(scale) if scale else None)
     tokens = _tokenize(text, lexicon)
     mentions: list[NumberMention] = []
     for run in _runs(tokens, lexicon):
-        mentions += _spoken_digits(text, lexicon, run, _tag_run(text, lexicon, run))
+        found = _tag_run(text, lexicon, run)
+        mentions += _spoken_digits(text, lexicon, run, found) if spoken_digits else found
     # "1/0" is a fraction with a zero denominator: it has no value, so its
     # digits give no mention. A chain of slashes ("3/5/2025") is no fraction.
     after_slash = [k > 0 and t.gap == "/" for k, t in enumerate(tokens)] + [False]
@@ -139,9 +143,7 @@ def _spoken_digits(text: str, lexicon: Lexicon, run: list[Token],
     ``digit_alias`` ("oh", pt-BR "meia") or a ``digit_repeat`` before a digit
     ("double oh seven" is 007), with at least one unit word among them so
     that "oh oh oh" stays an interjection. A word inside a longer number joins no
-    sequence: "one point two three four" stays a decimal. A number from ten
-    to ninety-nine, a zero alias and a unit say four digits in pairs, as in
-    a year: "nineteen oh five" is 1905."""
+    sequence: "one point two three four" stays a decimal."""
     index = {token.start: k for k, token in enumerate(run)}
     ends = {token.end: k for k, token in enumerate(run)}
     used: set[int] = set()  # run indexes inside a longer mention or a sequence
@@ -164,21 +166,6 @@ def _spoken_digits(text: str, lexicon: Lexicon, run: list[Token],
         return Part(role, (run[k].start, run[k].end), run[k].text, value)
 
     found: list[NumberMention] = []
-    for mention in mentions:
-        first, last = index.get(mention.char_span[0]), ends.get(mention.char_span[1])
-        if first is None or last is None or mention.kind is not Kind.CARDINAL or mention.form is not Form.WORDS \
-                or not (len(mention.value) == 2 and mention.value.isdigit()):
-            continue
-        zero, unit = last + 1, last + 2
-        if said(zero, "digit_alias") == "0" and said(unit, "unit") not in (None, "0") \
-                and said(unit + 1, "unit", "digit_alias") is None:
-            span = (mention.char_span[0], run[unit].end)
-            value = mention.value + "0" + said(unit, "unit")
-            found.append(NumberMention(span, text[span[0]:span[1]], value, Kind.CARDINAL, Form.SPOKEN_DIGITS,
-                                       confidence=mention.confidence, reasons=mention.reasons, digits=value,
-                                       parts=mention.parts + (part(zero, Role.COUNT, "0"),
-                                                              part(unit, Role.COUNT, said(unit, "unit")))))
-            used.update(range(first, unit + 1))
     i = 0
     while i < len(run):
         # one step per digit or repeat: (first word, end, parts, digits, sure, unit word)
@@ -190,7 +177,8 @@ def _spoken_digits(text: str, lexicon: Lexicon, run: list[Token],
             if repeated is not None:
                 steps.append((j, j + 2, [part(j, Role.REPEAT, times), part(j + 1, Role.COUNT, repeated)],
                               repeated * "0123456789".index(times),
-                              said(j + 1, "unit", "digit_alias") is not None, False))
+                              said(j + 1, "unit", "digit_alias") is not None,
+                              said(j + 1, "unit", homograph=True) is not None))
                 j += 2
             elif digit is not None:
                 steps.append((j, j + 1, [part(j, Role.COUNT, digit)], digit,

@@ -11,7 +11,7 @@ The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Pa
 ## tag_numbers
 
 ```text
-tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]
+tag_numbers(text: str, lang: str, *, scale: Scale | None = None, spoken_digits: bool = False) -> list[NumberMention]
 ```
 
 `tag_numbers` returns every number in `text` as a list of `NumberMention` objects. The list is in reading order, and no two mentions overlap.
@@ -21,6 +21,7 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | `text` | The text to read. numtag never changes it. |
 | `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons, every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
+| `spoken_digits` | Optional, keyword only, `False` by default. When it is `True`, three or more digits said one by one are one `Form.SPOKEN_DIGITS` mention. Read [Form](#form). |
 
 `tag_numbers` raises `UnsupportedLanguageError` for a language with no lexicon. It is a subclass of `ValueError`, so a caller can catch it alone and skip the text, or catch `ValueError` for every bad argument. A `scale` that is not a scale raises a plain `ValueError`. An empty value reads the default scale.
 
@@ -194,12 +195,14 @@ The kind follows the words, and the form of the value follows the arithmetic. So
 | `Form.ROMAN` | `"roman"` | "XIV", "Ⅻ" |
 | `Form.SPOKEN_DIGITS` | `"spoken_digits"` | "zero nine one", "double oh seven", pt-BR "três meia dois" |
 
-A spoken digit sequence says three or more digits one by one, as in a telephone number. Its value is a whole number, so leading zeros drop out of it, as they do from "007" in digits. The field `digits` keeps the digits as they were said. Read [rulings.md](rulings.md#spoken-digit-sequences).
+A spoken digit sequence says three or more digits one by one, as in a telephone number. numtag reads it only when the caller passes `spoken_digits=True`. By default each digit word is a number of its own. Its value is a whole number, so leading zeros drop out of it, as they do from "007" in digits. The field `digits` keeps the digits as they were said. Read [rulings.md](rulings.md#spoken-digit-sequences).
 
 ```python
->>> m = tag_numbers("Call oh one two three now.", "en")[0]
+>>> m = tag_numbers("Call oh one two three now.", "en", spoken_digits=True)[0]
 >>> m.text, m.value, m.form.value, m.digits
 ('oh one two three', '123', 'spoken_digits', '0123')
+>>> [m.text for m in tag_numbers("Call oh one two three now.", "en")]
+['one', 'two', 'three']
 ```
 
 A minus word before digits does not change the form.
