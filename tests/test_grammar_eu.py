@@ -227,6 +227,14 @@ class TestAraua203Fractions(unittest.TestCase):
         ("bi bosten", "0.4", F),  # 2/5
         ("hogeita zazpi ehunen", "0.27", F),  # 27/100
         ("berrogeita hiru milaren", "0.043", F),  # 43/1000
+        ("hamarretik zazpi", "0.7", F),  # 7/10, p. 27
+        ("hamarretatik zazpi", "0.7", F),
+        ("hamarretarik zazpi", "0.7", F),
+        ("hamarreko zazpi", "0.7", F),
+        ("bostetik bi", "0.4", F),  # 2/5
+        ("bostetatik bi", "0.4", F),
+        ("bostetarik bi", "0.4", F),
+        ("bosteko bi", "0.4", F),
     ]
 
     def test_each_fraction_of_the_norm(self):
@@ -236,6 +244,16 @@ class TestAraua203Fractions(unittest.TestCase):
 
     def test_a_noun_after_the_compound(self):
         self.assertEqual(eu("milioi erdi euro"), [("milioi erdi", "500000", C)])
+
+    def test_the_ablative_denominator_needs_a_count_after_it(self):
+        # Araua 35 uses the same ablative in clock phrases: "hirurak eta bostetik" is five past three
+        self.assertEqual(eu("hirurak eta bostetik"), [])
+        self.assertEqual(eu("hirurak eta hogeita hamarretik"), [])
+        self.assertEqual(eu("hamabostetik"), [])
+
+    def test_the_count_after_an_ablative_denominator_is_below_it(self):
+        self.assertEqual(eu("bostetik hamar"), [("hamar", "10", C)])
+        self.assertEqual(eu("bostetik bost"), [("bost", "5", C)])
 
     def test_the_genitive_ren_alone_is_no_number(self):
         # "bosten artean" is "among five": the -(r)en word reads only with a count or "bat"
@@ -254,18 +272,6 @@ class TestAraua203Gaps(unittest.TestCase):
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
     def test_a_denominator_of_two_words_with_a_scale(self):
         self.assertEqual(eu("hamar milaren bat"), [("hamar milaren bat", "0.0001", F)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
-    def test_the_denominator_in_the_ablative_before_the_count(self):
-        self.assertEqual(eu("hamarretik zazpi"), [("hamarretik zazpi", "0.7", F)])  # 7/10
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
-    def test_the_denominator_in_the_plain_ablative(self):
-        self.assertEqual(eu("bostetik bi"), [("bostetik bi", "0.4", F)])  # 2/5
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
-    def test_the_denominator_with_ko_before_the_count(self):
-        self.assertEqual(eu("bosteko bi"), [("bosteko bi", "0.4", F)])  # 2/5
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
     def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
