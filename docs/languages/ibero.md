@@ -62,7 +62,7 @@ The old spelling "diez y seis" is 16, and so are "diez y siete" to "diez y nueve
 
 > DPD "cardinales" §2: "Las grafías pluriverbales" "diez y seis" "son anticuadas y deben evitarse"
 
-Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number. "cien por cien" is also 100, because "por cien" is the percent sign after "cien". After any other number, "por cien" keeps its hundred, because the DPD accepts that form only for the whole: "el noventa por cien" is 90 and 100.
+Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un ciento" and "ciento por ciento" are 100. After a number, "por ciento" is the percent sign, and with no number before it ("tanto por ciento") it holds no number. "cien por cien" is also 100, because "por cien" is the percent sign after "cien" alone. After any other number, also after "mil cien", "por cien" keeps its hundred, because the DPD accepts that form only for the whole: "el noventa por cien" is 90 and 100, and "mil cien por cien" is 1100 and 100. The words after a percent phrase start a new number: "cien por cien y cinco por ciento" is 100 and 5. A number in digits before "por cien" ("el 100 por cien") is also 100 and 100: the DPD names the word forms only.
 
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers('Éramos ciento y la madre.', 'es')]
@@ -79,6 +79,8 @@ Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un c
 [('cien', '100')]
 >>> read('el noventa por cien', 'es')
 [('noventa', '90'), ('cien', '100')]
+>>> read('mil cien por cien', 'es')
+[('mil cien', '1100'), ('cien', '100')]
 ```
 
 > DPD "ciento" §2: "Quien hace un cesto hace ciento"

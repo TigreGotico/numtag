@@ -70,6 +70,16 @@ class TestSpanish(unittest.TestCase):
                          [((ochenta, ochenta + 7), "80", 1.0), ((un, un + 2), "1", 0.3),
                           ((cien, cien + 4), "100", 1.0), ((diez, diez + 2), "10", 1.0)])
 
+    def test_cien_por_cien_needs_cien_alone_before_it(self):
+        # DPD "ciento" §3 accepts "cien por cien" for totality only: after "mil cien", "por cien" is the rejected
+        # form, so the hundred stays: 1100 and 100
+        self.assertEqual(sure("mil cien por cien", "es"), [("mil cien", "1100", 1.0), ("cien", "100", 1.0)])
+
+    def test_a_number_after_a_percent_phrase_is_a_new_number(self):
+        # "cien y cinco" is 105, but here "cien por cien" and "cinco por ciento" are two percent phrases: 100 and 5
+        self.assertEqual(sure("cien por cien y cinco por ciento", "es"), [("cien", "100", 1.0), ("cinco", "5", 1.0)])
+        self.assertEqual(sure("diez por ciento y cinco por ciento", "es"), [("diez", "10", 1.0), ("cinco", "5", 1.0)])
+
     def test_por_cien_after_another_number_keeps_its_hundred(self):
         # DPD "ciento" §3 rejects "el noventa por cien": "por cien" is the sign only after "cien"
         self.assertEqual(read("el noventa por cien", "es"), [("noventa", "90", C), ("cien", "100", C)])
