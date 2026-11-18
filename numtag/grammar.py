@@ -544,7 +544,7 @@ class Grammar:
                 continue
             digit_ends.update(end for end, _ in digits_after)
             for end, chunk in self.small(position, multiplied=False) + zeros + digits_after:
-                if parts and len(chunk) == 3:
+                if parts and len(chunk) == 3 or self._counts_next(end, chunk):
                     continue
                 if end not in best or parts + 1 < best[end][0]:
                     best[end] = (parts + 1, written + chunk, origin)
@@ -556,6 +556,18 @@ class Grammar:
             for start in starts:
                 found += [(start, end, written) for end, written in self._decimal_fraction(start)]
         return found
+
+    def _counts_next(self, end: int, chunk: str) -> bool:
+        """The words before ``end`` count the word at ``end``, so they are no
+        decimal digits: the one before a part word ("drei Komma fünf ein
+        halb" is 3.5 and 1/2, as "2 целых 3 пятых" is no 2.3), and a unit
+        that a hyphen joins to a hundreds word ("un coma vint i dos-cents" is
+        1.2 and 200)."""
+        if end >= len(self.tokens):
+            return False
+        if chunk == "1" and any(not e.plural and not e.ambiguous for e in self._readings(end, "denominator")):
+            return True
+        return self.tokens[end].gap == "-" and bool(self._readings(end, "hundred_multiplier"))
 
     def _plain_digits(self, i: int) -> str | None:
         """The ASCII digits of a digit string at ``i`` with no mark, suffix
@@ -1156,6 +1168,12 @@ class Grammar:
                     continue
                 found.append(Parse(end + 1, Rational(numerator, entry.value), ambiguous=entry.ambiguous,
                                    parts=count + below(end, end + 1, entry.value)))
+                # "ein halbes Viertel": the half of a part is one eighth
+                if self._readings(end, "half"):
+                    found += [Parse(end + 2, Rational(numerator, digits.multiply(entry.value, part.value)),
+                                    parts=count + below(end, end + 2, digits.multiply(entry.value, part.value)))
+                              for part in self._readings(end + 1, "denominator")
+                              if not part.plural and not part.ambiguous]
             for after, denominator in self.small(end, nonzero=True):
                 if _above_ten(denominator) and self._is_word(after, self.lex.denominator_particles):
                     found.append(Parse(after + 1, Rational(numerator, denominator),

@@ -677,5 +677,14 @@ class TestMinusAndArticles(unittest.TestCase):
         self.assertEqual([(m.value, m.confidence) for m in mentions], [("1", 1.0)])
 
 
+class TestDecimalBeforeAPart(unittest.TestCase):
+    def test_the_one_before_a_part_word_is_no_decimal_digit(self):
+        # "one half" is 1/2 = 0.5, so the decimal is 3 + 5/10 = 3.5
+        self.assertEqual(read("three point five one half", "en"),
+                         [("three point five", "3.5", D), ("one half", "0.5", F)])
+        # 3 + 1/10 = 3.1
+        self.assertEqual(read("three point one", "en"), [("three point one", "3.1", D)])
+
+
 if __name__ == "__main__":
     unittest.main()

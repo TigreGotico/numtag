@@ -827,6 +827,11 @@
    "word": "de",
    "role": "ordinal_suffix",
    "source": "\"1e\", \"1ste\", \"2de\" (Taalunie, Woordenlijst; the page needs JavaScript, so not checked against the page); CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %digits-ordinal: \"0: =#,##0=e\""
+  },
+  {
+   "word": "een paar",
+   "role": "vague_quantifier",
+   "source": "nl.wiktionary, \"paar\" (knowledge/wiki/audits/numtag/issue-fixes/166/sources/nl-wiktionary-paar.txt), onbepaald voornaamwoord: \"meerdere, maar niet heel veel\"; \"Neem jij een paar appels mee?\". The noun sense \"twee personen of zaken die bij elkaar horen\" names a pair, not a count of the noun after it."
   }
  ]
 }

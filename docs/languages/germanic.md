@@ -67,6 +67,24 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('tredje', '3')]
 ```
 
+## Halves and vague phrases
+
+A half before a part word halves that part. German "ein halbes Viertel" is a half of a quarter, so it reads 1/8. The rule follows Duden, "halb": "die Hälfte von etwas umfassend".
+
+```python
+>>> read('Er trank ein halbes Viertel Wein.', 'de')
+[('ein halbes Viertel', '0.125')]
+```
+
+Dutch "een paar" before a noun is an indefinite pronoun: "meerdere, maar niet heel veel" (nl.wiktionary, "paar"). So a scale word after the phrase names no exact number. "een" keeps its reading as an article, a weak 1, so a reader that knows the phrase can join the two words.
+
+```python
+>>> read('Neem jij een paar appels mee?', 'nl')
+[('een', '1')]
+>>> read('Er kwamen een paar honderd mensen.', 'nl')
+[('een', '1')]
+```
+
 ## The scale
 
 Each lexicon sets its default scale from these sources. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Read [../number-scale.md](../number-scale.md).
