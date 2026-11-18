@@ -46,7 +46,7 @@
   },
   "joiner_thousand_hundreds": {
    "value": true,
-   "source": "Older texts write \"y\" between the thousands and a group of hundreds, and the whole is one number. DLE \"recurso\": \"recurso de mil y quinientas [...] que se interponía para la revisión de ciertos procesos graves, con depósito de 1500 doblas\"; DLE \"mil\", the phrase \"las mil y quinientas\": \"Hora demasiado tardía\". es.wikipedia \"Puente del Obispo\" quotes the inscription \"Comenzada el año mil y quinientos y cinco, y acabada el año mil y quinientos y ocho\" (1505 and 1508); es.wikipedia \"Real Audiencia del Cuzco\": \"cuatro mil y quinientos pesos\" (4500). A. Fábregas, \"Un aspecto de la sintaxis de los cardinales complejos\", Sintagma 26 (2014), p. 71: the \"y\" appears \"solo ocasionalmente, tal vez en estadios anteriores de la lengua, en los millares\". In the es.wikipedia hits for \"mil y quinientos\", \"mil y cien\" and \"mil y doscientos\", a bare group of hundreds after \"mil y\" is one number in 108 places and a list item in one (\"seis mil, mil y cien ajolotes [...], respectivamente\"). After \"entre\" the \"y\" joins the two limits (\"entre mil y mil quinientos\"), so there it ends the first number."
+   "source": "Older texts write \"y\" between the thousands and a group of hundreds, and the whole is one number. DLE \"recurso\": \"recurso de mil y quinientas [...] que se interponía para la revisión de ciertos procesos graves, con depósito de 1500 doblas\"; es.wikipedia \"Puente del Obispo\" quotes the inscription \"Comenzada el año mil y quinientos y cinco, y acabada el año mil y quinientos y ocho\" (1505 and 1508); es.wikipedia \"Real Audiencia del Cuzco\": \"cuatro mil y quinientos pesos\" (4500). A. Fábregas, \"Un aspecto de la sintaxis de los cardinales complejos\", Sintagma 26 (2014), p. 71: the \"y\" appears \"solo ocasionalmente, tal vez en estadios anteriores de la lengua, en los millares\". In the es.wikipedia hits for \"mil y quinientos\", \"mil y cien\" and \"mil y doscientos\", a bare group of hundreds after \"mil y\" is one number in 108 places and a list item in one (\"seis mil, mil y cien ajolotes [...], respectivamente\"). After \"entre\" the \"y\" joins the two limits (\"entre mil y mil quinientos\"), so there it ends the first number."
   },
   "joiner_before_round_hundred": {
    "value": false,
@@ -177,6 +177,21 @@
     "entre"
    ],
    "source": "en.wiktionary, Spanish \"entre\", preposition sense 1: \"between\", \"La frutería se encuentra entre el restaurante chileno y la panadería\". In \"entre A y B\" the \"y\" joins the two limits, so it ends the first number where the words split into two numbers, the first smaller."
+  },
+  "range_cue_determiner": {
+   "value": [
+    "los",
+    "las",
+    "unos",
+    "unas"
+   ],
+   "source": "es.wikipedia \"Puerto del Escudo\": \"la actividad glaciar que se desarrolló durante el Cuaternario entre los mil y dos mil metros de altitud\"; es.wikipedia \"Tierras altas de Bohemia y Moravia\": \"alturas de entre unos 500 y 800 metros\". A plural article or \"unos\" between \"entre\" and the first limit leaves the \"y\" as the range joiner."
+  },
+  "number_name": {
+   "value": [
+    "las mil y quinientas"
+   ],
+   "source": "DLE \"mil\", the phrase \"las mil y quinientas\": \"1. f. pl. coloquial Hora demasiado tardía. Vendrá a las mil y quinientas.\" The idiom names a late hour and counts nothing."
   },
   "roman_series_noun": {
    "value": [

@@ -117,6 +117,20 @@ class TestSpanish(unittest.TestCase):
         self.assertEqual(read("Entre cuatro mil y quinientos", "es"), [("cuatro mil", "4000", C), ("quinientos", "500", C)])
         self.assertEqual(read("entre mil y mil quinientos obreros", "es"), [("mil", "1000", C), ("mil quinientos", "1500", C)])
 
+    def test_a_determiner_between_entre_and_the_first_limit_keeps_the_limits_apart(self):
+        # es.wikipedia "Puerto del Escudo": "entre los mil y dos mil metros"; "Tierras altas de Bohemia y Moravia": "entre unos 500 y 800 metros"
+        self.assertEqual(read("entre los mil y quinientos euros", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
+        self.assertEqual(read("entre unos mil y quinientos euros", "es"), [("mil", "1000", C), ("quinientos", "500", C)])
+        self.assertEqual(read("entre las mil y mil quinientas personas", "es"), [("mil", "1000", C), ("mil quinientas", "1500", C)])
+        # a determiner that no range cue precedes joins nothing
+        self.assertEqual(read("los mil y quinientos euros", "es"), [("mil y quinientos", "1500", C)])
+
+    def test_las_mil_y_quinientas_is_a_late_hour_and_holds_no_number(self):
+        # DLE "mil": "las mil y quinientas 1. f. pl. coloquial Hora demasiado tardía. Vendrá a las mil y quinientas."
+        self.assertEqual(read("Llegó a casa a las mil y quinientas.", "es"), [])
+        self.assertEqual(read("Vendrá a las mil y quinientas.", "es"), [])
+        self.assertEqual(read("Llegó a las dos y a las mil y quinientas.", "es"), [("dos", "2", C)])
+
     def test_y_after_mil_joins_no_group_with_its_own_scale_word(self):
         # es.wikipedia "Análogo a la Tierra" and "Batalla del Puente de Calderón": two limits each
         self.assertEqual(read("entre mil y cien millones de civilizaciones", "es"),
