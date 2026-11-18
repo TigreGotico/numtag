@@ -143,6 +143,17 @@ class TestStandaloneOrdinals(unittest.TestCase):
                          [("une", "1", "cardinal"), ("seconde", "2", O)])
 
 
+class TestENotation(unittest.TestCase):
+    def test_a_number_in_e_notation_holds_no_ordinal(self):
+        # "1e5" is 10^5 in E notation: neither the 1st nor 1 and 5
+        for text in ("1e5", "1e309", "5e3", "2,5e-3", "1E5 cellules"):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), [])
+        # the ordinal suffix with no digit after it stays
+        self.assertEqual(fr("le 2e jour"), [("2e", "2", O)])
+        self.assertEqual(fr("le 1er mai"), [("1er", "1", O)])
+
+
 class TestSwissDigits(unittest.TestCase):
     def test_an_apostrophe_groups_digits_in_switzerland(self):
         # 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5

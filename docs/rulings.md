@@ -470,6 +470,15 @@ In English "one hundredth" is a fraction or an ordinal. After "the" it is the or
 
 > Wikipedia, "English numerals": "In spoken English, ordinal numerals and partitive numerals are identical with a few exceptions. Thus 'fifth' can mean the element between fourth and sixth, or the fraction created by dividing the unit into five pieces".
 
+A number in E notation ("1e5", "2,5e-3") is no number of the reader. Its "e" is no ordinal suffix, so "1e5" is not the 1st, and its digits are no count.
+
+```python
+>>> read("1e5", "fr")
+[]
+>>> read("le 2e jour", "fr")
+[('2e', '2')]
+```
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.
