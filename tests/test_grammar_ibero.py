@@ -231,6 +231,17 @@ class TestGalician(unittest.TestCase):
         # "cen" stands alone: 100, then 20 from "vinte"
         self.assertEqual(read("cen persoas e vinte cans", "gl"), [("cen", "100", C), ("vinte", "20", C)])
 
+    def test_a_written_e_after_mil_joins_the_next_group(self):
+        # 2000 + 26 = 2026; 2000 + 1 = 2001; 1000 + 66 = 1066; 1000 + 990 = 1990
+        self.assertEqual(read("en dous mil e vinte e seis", "gl"), [("dous mil e vinte e seis", "2026", C)])
+        self.assertEqual(read("en dous mil e un", "gl"), [("dous mil e un", "2001", C)])
+        self.assertEqual(read("mil e sesenta e seis", "gl"), [("mil e sesenta e seis", "1066", C)])
+        # the normative form, with no "e", reads the same
+        self.assertEqual(read("en dous mil vinte e seis", "gl"), [("dous mil vinte e seis", "2026", C)])
+        self.assertEqual(read("mil novecentos e noventa", "gl"), [("mil novecentos e noventa", "1990", C)])
+        # the joiner of a range still joins the limits
+        self.assertEqual(read("entre mil e dous mil persoas", "gl"), [("mil", "1000", C), ("dous mil", "2000", C)])
+
     def test_the_feminine_forms(self):
         self.assertEqual(read("duascentas", "gl"), [("duascentas", "200", C)])
         self.assertEqual(read("vinte e unha", "gl"), [("vinte e unha", "21", C)])

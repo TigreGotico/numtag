@@ -454,6 +454,12 @@
    "source": "\"anderhalf\": one and a half (Van Dale; its free dictionary has closed, so not checked against the page)"
   },
   {
+   "word": "anderhalve",
+   "role": "fraction",
+   "value": "3/2",
+   "source": "WikiWoordenboek, \"anderhalve\" (knowledge/wiki/audits/numtag/issue-fixes/nl-145/sources/wikt-nl-anderhalve.wikitext): \"{{nl-adjc-form|anderhalf|decl|pos}}\", the inflected form of \"anderhalf\"; WikiWoordenboek, \"anderhalf\" (knowledge/wiki/audits/numtag/issue-fixes/nl-145/sources/wikt-nl-anderhalf.wikitext): \"{{breukgetal|nld}} ''met enkelvoud'': één en een half, 1,5\" and \"'''Anderhalve''' week is niet zo lang.\""
+  },
+  {
    "word": "kwart",
    "role": "denominator",
    "value": "4",

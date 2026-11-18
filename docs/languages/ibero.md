@@ -5,7 +5,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 242 | 239 |
-| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 182 | 181 |
+| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
 | Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
