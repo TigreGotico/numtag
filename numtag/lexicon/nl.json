@@ -92,6 +92,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "om"
+   ],
+   "source": "nl.wikipedia \"Tijdnotatie\": \"Men zegt bijvoorbeeld \\\"3 uur\\\" en schrijft \\\"15.00\\\"\", \"vijf uur 's middags worden geschreven als \\\"17.00 uur\\\", maar ook als \\\"17 u.\\\"\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "uur",
+    "u"
+   ],
+   "source": "nl.wikipedia \"Tijdnotatie\": \"Men zegt bijvoorbeeld \\\"3 uur\\\" en schrijft \\\"15.00\\\"\", \"vijf uur 's middags worden geschreven als \\\"17.00 uur\\\", maar ook als \\\"17 u.\\\"\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "en",

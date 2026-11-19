@@ -293,6 +293,11 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # "um" in "um 14.30": a word before an hour and minutes written with a
+    # point, which then read as a time and no number.
+    clock_before: frozenset[str] = frozenset()
+    # "Uhr" in "14.30 Uhr": the same, as a word after them.
+    clock_after: frozenset[str] = frozenset()
     # A word between a numerator and a denominator cardinal, as "a/b" is
     # read aloud: eu "zati" in "hiru zati lau" (3/4).
     fraction_over: frozenset[str] = frozenset()
@@ -635,6 +640,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        clock_before=frozenset(w.casefold() for w in words.get("clock_before", ())),
+        clock_after=frozenset(w.casefold() for w in words.get("clock_after", ())),
         ambiguous_words=frozenset(ambiguous_words),
         ordinal_particles=frozenset(words.get("ordinal_particle", ())),
         fraction_over=frozenset(words.get("fraction_over", ())),
