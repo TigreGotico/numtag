@@ -764,7 +764,7 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 
 ## Two or a few: "a couple", "een paar", "ein paar"
 
-In English, "a couple" and "a couple of" give two at the score of a homograph, 0.4, with `Reason.HOMOGRAPH`. The dictionaries give the phrase two senses: two, and a small number. numtag cannot tell the senses apart from the text, so it gives two and marks the mention as weak. "couple" is a collective of two, as "dozen" is of twelve: it takes a count or an article. "The couple" names two persons and has no count, so it gives no number.
+In English, "a couple" and "a couple of" give two at the score of a homograph, 0.4, with `Reason.HOMOGRAPH`. The dictionaries give the phrase two senses: two, and a small number. numtag cannot tell the senses apart from the text, so it gives two and marks the mention as weak. Only the article makes "couple" a number. With a count before it, "couple" is the noun "two persons paired", and the count counts couples: "one couple" is 1, and "three couple dances" is 3. "The couple" names two persons and has no count, so it gives no number.
 
 ```python
 >>> read("Roll a couple of dice.", "en")
@@ -773,9 +773,11 @@ In English, "a couple" and "a couple of" give two at the score of a homograph, 0
 [('2', 0.4)]
 >>> read("The couple walked in.", "en")
 []
+>>> read("One couple said they had waited for hours.", "en")
+[('One', '1')]
 ```
 
-> Merriam-Webster, "couple", adjective: "two also : few"; noun sense 4: "an indefinite small number : few". Cambridge Dictionary, "couple", noun (SOME): "two or a few things that are similar or the same, or two or a few people who are in some way connected".
+> Merriam-Webster, "couple", adjective: "two also : few"; noun sense 4: "an indefinite small number : few"; noun sense 1a: "two persons married, engaged, or otherwise romantically paired". Cambridge Dictionary, "couple", noun (SOME): "two or a few things that are similar or the same, or two or a few people who are in some way connected".
 
 Before a scale word or a collective, "a couple" and "a couple of" stand where the count would, as "a few" does. The words give no number, and `tag_vague_quantities` gives a magnitude: "a couple hundred" is a magnitude of a hundred. numtag has no weak count before a scale word, so it does not give 200 at the score of a homograph.
 
@@ -789,7 +791,7 @@ Before a scale word or a collective, "a couple" and "a couple of" stand where th
 
 > Merriam-Webster, usage guide: "It is most frequently used with periods of time a couple weeks and numbers. a couple hundred a couple dozen".
 
-In Dutch and German, "een paar" and "ein paar" are an amount with no value. The phrase is an indefinite numeral, as "enkele" and "einige" are, and it can name more than two. The article in the phrase is no count of one, so `tag_numbers` gives no number. `tag_vague_quantities` gives an amount at the low score with `Reason.HOMOGRAPH`, because the noun "paar" also names a pair. numtag folds case, so German "ein Paar Schuhe" (a pair of shoes) gives the same amount. A count before "paar" keeps its number. Before a scale word the phrase gives a magnitude.
+In Dutch and German, "een paar" and "ein paar" are an amount with no value. The phrase is an indefinite numeral, as "enkele" and "einige" are, and it can name more than two. The article in the phrase is no count of one, so `tag_numbers` gives no number. `tag_vague_quantities` gives an amount at the low score with `Reason.HOMOGRAPH`, because the noun "paar" also names a pair. numtag folds case, so German "ein Paar Schuhe" (a pair of shoes) gives the same amount. That reading is wrong: the capital "Paar" is the noun, and the article counts one pair (issue #249). A count before "paar" keeps its number. Before a scale word the phrase gives a magnitude.
 
 ```python
 >>> read("Foto in een paar seconden.", "nl")
