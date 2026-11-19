@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.16.1a1](https://github.com/TigreGotico/numtag/tree/0.16.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.0a1...0.16.1a1)
+
+**Merged pull requests:**
+
+- feat\(sr\): add a Serbian lexicon [\#245](https://github.com/TigreGotico/numtag/pull/245) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat\(lt\): add a Lithuanian lexicon [\#242](https://github.com/TigreGotico/numtag/pull/242) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fy\): read the inflected clock hours and the digit ordinal "21e" [\#146](https://github.com/TigreGotico/numtag/pull/146) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.16.0a1](https://github.com/TigreGotico/numtag/tree/0.16.0a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.11a1...0.16.0a1)
@@ -708,10 +718,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.6.0a1...0.7.0a1)
 
-**Merged pull requests:**
-
-- feat: read es, gl, ca, ast, an, oc and mwl numbers [\#11](https://github.com/TigreGotico/numtag/pull/11) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.6.0a1](https://github.com/TigreGotico/numtag/tree/0.6.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.5.0a1...0.6.0a1)
@@ -759,10 +765,6 @@
 ## [0.2.0a1](https://github.com/TigreGotico/numtag/tree/0.2.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a1)
-
-**Merged pull requests:**
-
-- docs: quote a saved page in every lexicon and gold source field [\#14](https://github.com/TigreGotico/numtag/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 
