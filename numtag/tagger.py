@@ -395,7 +395,8 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
     whole = alone and parse.end == start + 1 and bool(entries) \
         and all(e.weak_at_end and not e.ambiguous for e in entries)
     # "miinus viis": a minus word starts only a number, so it makes the reading clear
-    cardinal_percent = percent_follows and parse.kind == Kind.CARDINAL
+    cardinal_percent = (percent_follows or start > 0 and run[start - 1].norm in lexicon.percent_before) \
+        and parse.kind == Kind.CARDINAL
     homograph = ((parse.ambiguous and not whole) or lone_ambiguous) and not cardinal_percent \
         or listed or weak_ordinal or bare_percent
     return Reason.HOMOGRAPH if homograph and not signed and not agrees else None

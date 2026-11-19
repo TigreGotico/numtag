@@ -34,7 +34,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | Setting | Type | Meaning |
 |---|---|---|
 | `scale` | `"long"` or `"short"` | The default scale of the language |
-| `group_mark` | string | The mark that groups digits: "." in pt, "," in en |
+| `group_mark` | string | The mark that groups digits: "." in pt, "," in en. It is the CLDR group symbol of the language (`tests/test_group_marks.py` checks it against the CLDR table). A language that keeps another mark names the exception in `docs/rulings.md` and in `DOT_EXCEPTIONS` of that test. A new lexicon needs a row in the table, or a name in `NO_CLDR_DATA` when CLDR has no numbers file for it. |
 | `decimal_mark` | string | The mark before the decimals: "," in pt, "." in en |
 | `space_groups` | bool | A single space groups digits ("1 000 000") |
 | `plural_scale_needs_count` | bool | A plural scale word with no count is no number ("milhões de pessoas") |
@@ -58,6 +58,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
+| `percent_before` | Percent words that stand before the number (tr "yüzde"): the number after one is the amount, with no homograph score | empty | empty |
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
 | `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `number_name` | Names and set phrases that start with a number word and hold no number (fa "سه شنبه", Tuesday; ru "одно и то же", the same) | empty | empty |

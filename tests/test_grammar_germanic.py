@@ -248,6 +248,9 @@ class TestHalvesAndFractionWords(unittest.TestCase):
     def test_a_word_whose_value_is_a_fraction(self):
         # 3/2 = 1.5; 3/2 x 10^6 = 1500000
         self.assertEqual(read("anderthalb Liter", "de"), [("anderthalb", "1.5", F)])
+        # the inflected form before a common-gender noun
+        self.assertEqual(read("anderhalve week", "nl"), [("anderhalve", "1.5", F)])
+        self.assertEqual(read("anderhalf jaar", "nl"), [("anderhalf", "1.5", F)])
         self.assertEqual(read("halvanden million", "da"), [("halvanden million", "1500000", C)])
 
     def test_a_fraction_written_as_one_word(self):
@@ -266,6 +269,16 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         # a quarter past the hour holds the hour 3 only; "kwart" of "kwart finales" is no number
         self.assertEqual(read("kwart oer trije", "fy"), [("trije", "3", C)])
         self.assertEqual(read("de kwart finales", "fy"), [])
+
+    def test_halb_before_an_hour_is_the_half_hour(self):
+        # "halb drei" is 2:30: the hour 3 is the number, "halb" is no half of it
+        for text, hour, value in (("um halb drei", "drei", "3"), ("weck mich um halb zwölf", "zwölf", "12"),
+                                  ("um halb 3", "3", "3")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "de"), [(hour, value, C)])
+        # a half with no number after it stays a weak half
+        self.assertEqual(read("halb so viel", "de"), [("halb", "0.5", F)])
+        self.assertEqual(read("ein halbes Brot", "de"), [("ein halbes", "0.5", F)])
 
 
 class TestGluedPartWords(unittest.TestCase):
@@ -412,6 +425,14 @@ class TestArticles(unittest.TestCase):
         found = tag_numbers("eines", "de")
         self.assertEqual([m.value for m in found], ["1"])
         self.assertLess(found[0].confidence, 0.5)
+
+    def test_annen_and_fyrste_are_ordinals_that_are_also_other_words(self):
+        # Bokmålsordboka "andre, annen": 2nd, and "annen": other;
+        # Nynorskordboka "første, fyrste": 1st, and "fyrste": a prince
+        self.assertEqual(read("annen mandag i januar", "nb"), [("annen", "2", O)])
+        self.assertEqual(read("fyrste måndag", "nn"), [("fyrste", "1", O)])
+        self.assertEqual(sure("annen mandag", "nb"), [("annen", "2", 0.4)])
+        self.assertEqual(sure("fyrste kvartal", "nn"), [("fyrste", "1", 0.4)])
 
     def test_tiende_is_also_the_tithe(self):
         for lang in ("da", "nb"):

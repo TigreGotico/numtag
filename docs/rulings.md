@@ -46,6 +46,17 @@ The same rule holds after every scale word.
 
 > Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
 
+In Galician, the normative form writes no "e" after "mil" or "cento" ("mil novecentos e noventa", "cento un"). Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
+
+```python
+>>> read("A lei entra en vigor en dous mil e vinte e seis.", "gl")
+[('dous mil e vinte e seis', '2026')]
+>>> read("en dous mil vinte e seis", "gl")
+[('dous mil vinte e seis', '2026')]
+```
+
+> Maintainer ruling: "be lenient and read 'mil e' as one number"
+
 In English, "and" is optional between groups and after "hundred". Both forms read the same number.
 
 ```python
@@ -329,6 +340,15 @@ A decimal marker ("vírgula", "point") or a decimal mark in digits ("2,5", "2.5"
 
 > Wiktionary, "point", noun sense 1.3: "A decimal point".
 
+A marker word with no number before it starts no fraction part: it is a noun. So digits after it keep their count of parts. With a number before the marker, the digits are decimal digits and count no parts.
+
+```python
+>>> read("At that point 3 quarters of the votes were counted.", "en")
+[('3 quarters', '0.75')]
+>>> read("two point 5 quarters", "en")
+[('two', '2'), ('5', '5')]
+```
+
 Where the comma marks decimals, the word for the point is no decimal marker. So "o artigo 5 ponto 3" is two numbers, and so are "cinco ponto três", Galician "5 punto 3", Mirandese "5 ponto 3", Asturian "5 puntu 3" and German "Artikel 5 Punkt 3". English writes decimals with a point, so "2 point 5" stays one decimal.
 
 ```python
@@ -587,7 +607,9 @@ In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و i
 
 A lexicon's `group_mark` is the CLDR group symbol of its language, and `tests/test_group_marks.py` checks every language against it. Estonian, Finnish, Hungarian, Norwegian and Swedish write a no-break space (U+00A0), and a plain space also reads through `space_groups`.
 
-Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. Written text in these languages groups digits with a dot ("1.500" is 1500), and a no-break space group mark would stop that reading. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. In each of them the comma marks decimals, so a dot before exactly three digits has no decimal reading and groups digits ("1.500" is 1500). A space between groups reads through `space_groups`, so "1 500" is 1500 as well. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+
+The four sources differ in strength. European Portuguese rests on Wikipedia, "Decimal separator", which lists Portugal among the countries that write "1.234.567,89". Galician rests on the reading of ovos-number-parser and on the dot of Spanish and Portuguese. The Czech reference grammar allows the dot only for money amounts in administrative text, and the lexicon reads it in every Czech text, because the comma is the only decimal mark. A section number such as "1.500" reads as 1500 for that reason. Occitan rests on the reading of ovos-number-parser alone, and no Occitan grammar in the sources names the dot. A source for the Occitan dot is open.
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
@@ -675,7 +697,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
+The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. The number after "yüzde" is the amount even when its word is also a noun: "yüzde yüz" is 100 at full confidence, and a lone "yüz" (also "face") keeps the homograph score. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")

@@ -213,6 +213,17 @@ class TestGalician(unittest.TestCase):
         # "cen" stands alone: 100, then 20 from "vinte"
         self.assertEqual(read("cen persoas e vinte cans", "gl"), [("cen", "100", C), ("vinte", "20", C)])
 
+    def test_a_written_e_after_mil_joins_the_next_group(self):
+        # 2000 + 26 = 2026; 2000 + 1 = 2001; 1000 + 66 = 1066; 1000 + 990 = 1990
+        self.assertEqual(read("en dous mil e vinte e seis", "gl"), [("dous mil e vinte e seis", "2026", C)])
+        self.assertEqual(read("en dous mil e un", "gl"), [("dous mil e un", "2001", C)])
+        self.assertEqual(read("mil e sesenta e seis", "gl"), [("mil e sesenta e seis", "1066", C)])
+        # the normative form, with no "e", reads the same
+        self.assertEqual(read("en dous mil vinte e seis", "gl"), [("dous mil vinte e seis", "2026", C)])
+        self.assertEqual(read("mil novecentos e noventa", "gl"), [("mil novecentos e noventa", "1990", C)])
+        # the joiner of a range still joins the limits
+        self.assertEqual(read("entre mil e dous mil persoas", "gl"), [("mil", "1000", C), ("dous mil", "2000", C)])
+
     def test_the_feminine_forms(self):
         self.assertEqual(read("duascentas", "gl"), [("duascentas", "200", C)])
         self.assertEqual(read("vinte e unha", "gl"), [("vinte e unha", "21", C)])
@@ -362,6 +373,17 @@ class TestCatalan(unittest.TestCase):
         # 100 + 10 = 110 and "segon"; 112th is "cent dotzè"
         self.assertEqual(read("cent deu segons", "ca")[0], ("cent deu", "110", C))
 
+    def test_the_first_four_ordinals_end_no_longer_ordinal(self):
+        # 22nd is "vint-i-dosè" and 101st "cent unè": "vint segons" is 20
+        # and the time unit, never 22
+        for text, count, unit in [("vint segons", "20", "2"), ("trenta primers", "30", "1"),
+                                  ("cent tercer", "100", "3")]:
+            with self.subTest(text=text):
+                self.assertEqual([(value, kind) for _, value, kind in read(text, "ca")], [(count, C), (unit, O)])
+        self.assertEqual(read("vint-i-dosè", "ca"), [("vint-i-dosè", "22", O)])
+        # ICU 78 wrote 22nd with a hyphen: 20 + 2 = 22
+        self.assertEqual(read("el vint-i-segon", "ca"), [("vint-i-segon", "22", O)])
+
     def test_menys_in_an_idiom_holds_no_sign(self):
         for text in ("al menys tres dies", "més o menys tres dies", "ni més ni menys tres dies"):
             with self.subTest(text=text):
@@ -448,6 +470,11 @@ class TestOccitan(unittest.TestCase):
         # 20 + 1 = 21; 30 + 2 = 32
         self.assertEqual(read("vint e un", "oc"), [("vint e un", "21", C)])
         self.assertEqual(read("trenta doas", "oc"), [("trenta doas", "32", C)])
+
+    def test_segond_ends_no_longer_ordinal(self):
+        # the compound unit is "dosen": "vint segondas" is 20 and 2nd, never 22
+        self.assertEqual([(value, kind) for _, value, kind in read("vint segondas", "oc")], [("20", C), ("2", O)])
+        self.assertEqual([(value, kind) for _, value, kind in read("cent primièr", "oc")], [("100", C), ("1", O)])
 
     def test_cent_and_cents_after_a_count(self):
         # 2 x 100 = 200; 2 x 100 + 20 = 220

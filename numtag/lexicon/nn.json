@@ -10,11 +10,11 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for Norwegian Nynorsk (Babel 2.18.0): decimal ',', group ' '"
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/nn/numbers.json, main.nn.numbers.symbols-numberSystem-latn: \"decimal\": \",\". Babel 2.18.0 gives the same: Locale.parse(\"nn\").number_symbols[\"latn\"][\"decimal\"] is \",\"."
   },
   "space_groups": {
    "value": true,
-   "source": "CLDR number symbols for Norwegian Nynorsk (Babel 2.18.0): decimal ',', group ' ': digits are grouped by a space"
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/nn/numbers.json, main.nn.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space). Babel 2.18.0 gives the same: Locale.parse(\"nn\").number_symbols[\"latn\"][\"group\"] is U+00A0. A plain space and U+202F also group digits, in any order."
   },
   "compound_words": {
    "value": true,
@@ -739,6 +739,13 @@
    "value": "2",
    "ambiguous": true,
    "source": "Nynorsk ordinals end in -ande: Nynorskordboka, \"tiande\" (article 78684): \"rekkjetal til ti (10.)\"; \"tjuande\" (article 79531): \"rekkjetal til 20\". CLDR has no nn ordinal rules; the other words follow the same pattern (not checked against the page); The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
+  },
+  {
+   "word": "fyrste",
+   "role": "ordinal",
+   "value": "1",
+   "ambiguous": true,
+   "source": "Nynorskordboka, \"første, fyrste\" (article 23123), adjective: \"rekkjetal til éin (1.)\"; \"fyrste\" (article 23122), noun: \"monarkisk statsoverhovud, no særleg i visse mindre land\", as in \"fyrsten av Monaco\". The word also names a prince, so it is ambiguous outside a number."
   },
   {
    "word": "hundrede",

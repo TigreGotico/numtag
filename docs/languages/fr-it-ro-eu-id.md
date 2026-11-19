@@ -36,6 +36,20 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('dua puluh lima', '25')]
 ```
 
+## Italian ordinals from primo to nono
+
+A longer Italian ordinal is one word that ends in "-esimo" ("ventiduesimo", "centotreesimo"). "primo" to "nono" never end a longer ordinal. So a cardinal and one of these words are two numbers: "dieci secondi" is 10 and the time unit "secondi", never 12. "decimo" can end one ("centodecimo"), so "cento decimo" is 110.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('tra dieci secondi', 'it')]
+[('dieci', '10', 'cardinal'), ('secondi', '2', 'ordinal')]
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('cento decimo', 'it')]
+[('cento decimo', '110', 'ordinal')]
+```
+
+> CLDR 48 RBNF it: "2: secondo;", "11: undicesimo;". Treccani, "Ordinali": "I primi dieci ordinali presentano una forma propria derivata dal latino: primo, secondo, terzo, quarto, quinto, sesto, settimo, ottavo, nono, decimo."
+
 ## Examples from the gold rows
 
 ```python
@@ -69,6 +83,30 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('seribu', '1000')]
 >>> read('Panjangnya 12,5 m.', 'id')
 [('12,5', '12.5')]
+```
+
+## Minus words that are no sign
+
+French "moins" after an hour counts the minutes before that hour. TLFi, "moins", gives this use: "Dans le décompte de l'heure, précédant le nom de nombre correspondant au nombre des minutes manquant". The hour is "heure", the symbol "h", "midi" or "minuit". French "à tout le moins" and Italian "quanto meno" mean "at least", so the minus word in them is no sign either.
+
+```python
+>>> read('Il est midi moins dix.', 'fr')
+[('dix', '10')]
+>>> read('Il est 9h moins 10.', 'fr')
+[('9', '9'), ('10', '10')]
+>>> read('Il faut à tout le moins trois jours.', 'fr')
+[('trois', '3')]
+>>> read('Ci vogliono quanto meno tre ore.', 'it')
+[('tre', '3')]
+>>> read('Il fait moins trois degrés.', 'fr')
+[('moins trois', '-3')]
+```
+
+A point right before the first digit marks decimals, because a group mark stands only between digits. So "-.5" is -0.5 in French, Italian and Romanian, as ",5" is 0.5.
+
+```python
+>>> read('-.5', 'fr'), read('-.5', 'it'), read('-.5', 'ro')
+([('-.5', '-0.5')], [('-.5', '-0.5')], [('-.5', '-0.5')])
 ```
 
 ## Basque ordinals with the article

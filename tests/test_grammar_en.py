@@ -385,6 +385,21 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(read("2 vírgula 5 terços", "pt-BR"), [("2", "2", C), ("5", "5", C)])
         self.assertEqual(read("2 coma 5 tercios", "es"), [("2", "2", C), ("5", "5", C)])
 
+    def test_a_marker_word_with_no_number_before_it_is_a_noun(self):
+        # "point" with no number before it is no decimal marker: 3/4 = 0.75
+        self.assertEqual(en("At that point 3 quarters of the votes were counted."), [("3 quarters", "0.75", F)])
+        self.assertEqual(en("point 3 quarters"), [("3 quarters", "0.75", F)])
+        # a number right before the marker keeps the digit a decimal digit
+        self.assertEqual(en("two point 5 quarters"), [("two", "2", C), ("5", "5", C)])
+
+    def test_a_marker_word_at_the_end_leaves_a_first_digit_its_count(self):
+        # short phrases: the digit is the first word, and the marker word at the
+        # end is no decimal marker of it; 3/4 = 0.75, 2/3
+        self.assertEqual(en("3 quarters of a percentage point"), [("3 quarters", "0.75", F)])
+        self.assertEqual(en("It fell 3 quarters of a percentage point"), [("3 quarters", "0.75", F)])
+        self.assertEqual(read("2 terços vêm antes da vírgula", "pt-PT"), [("2 terços", "2/3", F)])
+        self.assertEqual(read("2 tercios del texto van antes de la coma", "es"), [("2 tercios", "2/3", F)])
+
     def test_digits_count_the_parts_in_portuguese_and_german(self):
         # 1/3; 2/6 = 1/3
         self.assertEqual(read("1 terço", "pt-PT"), [("1 terço", "1/3", F)])

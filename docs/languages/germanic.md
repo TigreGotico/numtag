@@ -5,12 +5,12 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | German | every `de` tag | `numtag/lexicon/de.json` | long | 191 | 191 |
-| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 184 | 184 |
+| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 186 | 186 |
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 156 | 156 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
-| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 176 | 176 |
-| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 154 | 154 |
+| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 178 | 178 |
+| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 157 | 157 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -66,6 +66,20 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 >>> read('Vi bur i tredje etasje.', 'nn')
 [('tredje', '3')]
 ```
+
+## German "halb" before an hour
+
+German "halb" before an hour names the half hour before that hour, so "um halb drei" is 2:30. The hour is the number, and "halb" is no half of it. The `clock_half` setting holds this rule. A half with no number after it is still a weak half.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value) for m in tag_numbers('weck mich um halb drei', 'de')]
+[('drei', '3')]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('halb so viel', 'de')]
+[('halb', '0.5', 0.4)]
+```
+
+> DWDS, "halb", 1c: "es ist halb zwölf Uhr (= elf Uhr dreißig)", "das Essen auf halb eins ansetzen"
 
 ## West Frisian clock hours
 

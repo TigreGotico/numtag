@@ -5,7 +5,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
-| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 182 | 181 |
+| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
 | Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
@@ -131,6 +131,22 @@ Catalan "nou" is nine and also "new", and "u" is one and also the name of a lett
 ```
 
 > DIEC2 "nou" 2 1: "Vuit més un. Aviat farà nou anys."; DIEC2 "nou" 3 1 1: "Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou."
+
+## The first ordinals end no longer ordinal
+
+A longer Catalan ordinal ends in "-unè", "-dosè", "-tresè" or "-quatrè", never in "primer", "segon", "tercer" or "quart". The Occitan ones end in "-unen" and "-dosen". So a cardinal and one of these words after a space are two numbers. "vint segons" is 20 and the time unit "segons", and "deu segons" is 10. A hyphen still joins them, because ICU 78 wrote the Catalan 22nd "vint-i-segon".
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('Espera vint segons.', 'ca')]
+[('vint', '20', 'cardinal'), ('segons', '2', 'ordinal')]
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('el vint-i-segon', 'ca')]
+[('vint-i-segon', '22', 'ordinal')]
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('vint segondas', 'oc')]
+[('vint', '20', 'cardinal'), ('segondas', '2', 'ordinal')]
+```
+
+> CLDR RBNF ca: "1: unè;", "2: dosè;". ca.wikipedia "Numerals en català": "presenten unes formes específiques per als quatre primers", "21è | vint-i-unè".
 
 ## The scale
 

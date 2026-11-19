@@ -182,7 +182,14 @@ class Grammar:
         self._groups: dict[tuple[int, bool, bool], list[Group]] = {}
         self._cardinals: dict[tuple[int, bool, bool], list[tuple[Group, ...]]] = {}
         self._vague: dict[int, bool] = {}
+        self._parses: dict[int, list[Parse]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
+        # a group mark that is a space joins digits in the tokenizer, so a head or a
+        # space group may hold marks of its own: "1\u00a0000 000", "1 000\u00a0000"
+        joined = rf"(?:{group}[0-9]{{3}})*" if lexicon.group_mark.isspace() else ""
+        marks = decimal + ("." if lexicon.decimal_mark == "," else "")
+        self._group_head = re.compile(rf"[1-9][0-9]{{0,2}}{joined}")
+        self._group_tail = re.compile(rf"[0-9]{{3}}{joined}(?:[{marks}][0-9]+)?")
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
         # SI 5.4.4 "43 279.168 29": where the comma marks decimals and a mark
@@ -191,15 +198,17 @@ class Grammar:
             if lexicon.decimal_mark == "," and lexicon.group_mark != "." else None
 
     # Token access -----------------------------------------------------
+    # A position before the first token reads as no word: "i - 1" at the
+    # first token must not wrap to the last one.
 
     def _readings(self, i: int, role: str) -> tuple[Entry, ...]:
-        if i >= len(self.tokens) or self.tokens[i].is_digits:
+        if not 0 <= i < len(self.tokens) or self.tokens[i].is_digits:
             return ()
         entries = self.lex.of(self.tokens[i].norm, role)
         return entries if self.tokens[i].part else tuple(e for e in entries if not e.part)
 
     def _is_word(self, i: int, words: frozenset[str]) -> bool:
-        return i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
+        return 0 <= i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
 
     def _after_vague(self, i: int) -> bool:
         """A vague quantity ("nekoliko") stands before position ``i``: right
@@ -339,7 +348,7 @@ class Grammar:
         return bool(readings) and all(e.ambiguous for e in readings)
 
     def starts_number(self, i: int) -> bool:
-        if i >= len(self.tokens):
+        if not 0 <= i < len(self.tokens):
             return False
         token = self.tokens[i]
         return token.is_digits or any(
@@ -363,13 +372,13 @@ class Grammar:
         if text[0] in ".,":
             # a lone decimal mark (".5"): the tokenizer keeps only a listed one
             return end, Rational.from_decimal("0", text[1:]), True
-        if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
+        if self.lex.space_groups and self._group_head.fullmatch(text):
             while end < len(self.tokens) and self._space_group(end):
                 group = self.tokens[end].latin
                 if self.lex.decimal_mark == "," and "." in group:
                     # SI 5.4.4 "43 279.168 29": a space group and a point are no two group marks
                     head, fraction = group.split(".")
-                    return end + 1, Rational.from_decimal(text.replace(self.lex.group_mark, "") + head, fraction), True
+                    return end + 1, Rational.from_decimal((text + head).replace(self.lex.group_mark, ""), fraction), True
                 text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
@@ -392,9 +401,8 @@ class Grammar:
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
-        marks = re.escape(self.lex.decimal_mark) + ("." if self.lex.decimal_mark == "," else "")
         return (token.is_digits and not token.suffix and token.gap.isspace() and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:[{marks}][0-9]+)?", token.latin) is not None)
+                and self._group_tail.fullmatch(token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 
@@ -1101,10 +1109,13 @@ class Grammar:
         # is also a common noun takes no digits: "3 quartos" are three rooms.
         # A count equal to the denominator is a count of things ("2 вторых
         # места", "the 4 quarters"), and a digit after a slash is a term of
-        # a slash fraction ("5 1/2 quarters").
+        # a slash fraction ("5 1/2 quarters"). A digit right after a decimal
+        # marker with a number before it is a decimal digit ("2 point 5
+        # quarters"); with none, the marker word is a noun ("at that point 3
+        # quarters").
         if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
                 and self.tokens[i].gap.strip() != "/"
-                and not self._is_word(i - 1, self.lex.decimal_markers)
+                and not (self._is_word(i - 1, self.lex.decimal_markers) and self.starts_number(i - 2))
                 and not any(e.ambiguous or e.value == read[1].numerator
                             for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))
@@ -1270,7 +1281,8 @@ class Grammar:
         half alone."""
         halves = [half for half in self._readings(i, "half") if not half.bound]
         half_part = _piece(Role.HALF, i, i + 1, HALF)
-        found = [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
+        clock = self.lex.clock_half and self.starts_number(i + 1)
+        found = [] if clock else [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
         # "erdi bat": one after the half, as after a denominator
         if self._is_word(i + 1, self.lex.one_after_noun):
             found += [Parse(i + 2, HALF, ambiguous=half.ambiguous,
@@ -1400,7 +1412,7 @@ class Grammar:
                     found += rest[:1]
                 else:
                     found += rest
-            elif entry.standalone:
+            elif entry.standalone and self.tokens[j].gap != "-":
                 continue  # "dix premiers" is 10 and 1st, never 11th
             elif self.lex.ordinal_style == "last_word" \
                     and (_room_for(prefix, value) or (teens and _teen(value))) \
@@ -1586,6 +1598,8 @@ class Grammar:
             self.lex.joiners | self.lex.of_words | self.lex.decimal_markers | self.lex.articles)
 
     def _numbers(self, i: int) -> list[Parse]:
+        if i in self._parses:
+            return list(self._parses[i])
         fractions = self.fractions(i)
         found = self.digit_ordinal(i) + self.half_numbers(i) + self.ordinals(i) + fractions
         # "wis sin", "tis tlata": a particle makes the cardinal after it an ordinal
@@ -1627,7 +1641,8 @@ class Grammar:
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
             found += self.case_fraction_tail(run)
-        return found
+        self._parses[i] = found
+        return list(found)
 
 
 def _rational(value: str) -> Rational:

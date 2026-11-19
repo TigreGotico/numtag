@@ -2,7 +2,7 @@
 import re
 import unicodedata
 from dataclasses import dataclass, field, replace
-from functools import cache
+from functools import cache, cached_property
 
 _LONE_MARK = re.compile(r"[.,][0-9]+")
 _TRAILING_MARK = re.compile(r"\D+$")
@@ -186,7 +186,7 @@ class Token:
     noun_before: bool = False
     noun_after: bool = False
 
-    @property
+    @cached_property
     def norm(self) -> str:
         if self.key is not None:
             return self.key
