@@ -1,12 +1,19 @@
 # Changelog
 
+## [0.16.0a1](https://github.com/TigreGotico/numtag/tree/0.16.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.11a1...0.16.0a1)
+
+**Merged pull requests:**
+
+- feat\(ms\): add a Malay lexicon [\#187](https://github.com/TigreGotico/numtag/pull/187) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.11a1](https://github.com/TigreGotico/numtag/tree/0.15.11a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.10a1...0.15.11a1)
 
 **Merged pull requests:**
 
-- feat\(ms\): add a Malay lexicon [\#187](https://github.com/TigreGotico/numtag/pull/187) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(nb, nn\): read the ordinals "annen" and "fyrste" [\#147](https://github.com/TigreGotico/numtag/pull/147) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.10a1](https://github.com/TigreGotico/numtag/tree/0.15.10a1) (2026-11-19)

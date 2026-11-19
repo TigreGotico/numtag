@@ -33,6 +33,7 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "bg": (",", "цяло", "цели", "запетая"), "pl": (",", "przecinek", "całych", "cała", "całe"),
                  "cs": (",", "celá", "celé", "celých", "čárka"), "sk": (",", "celá", "celé", "celých", "čiarka"),
                  "sl": (",", "cela", "celi", "cele", "celih", "vejica"), "hr": (",", "zarez", "cijela", "cijelih", "cijele"),
+                 "sr": (",", "zarez", "koma"),
                  "fr-FR": (",", "virgule"), "fr-BE": (",", "virgule"), "fr-CH": (",", "virgule"),
                  "it": (",", "virgola"), "ro": (",", "virgulă", "virgula"), "eu": (",", "koma"),
                  "id": (",", "koma", "titik"),
@@ -40,6 +41,7 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
                  "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),
                  "mwl": (",", "bírgula", "birgula", "ponto"),
+                 "lt": (",", "kablelis"),
                  "mt": (".", "punt")}
 
 
