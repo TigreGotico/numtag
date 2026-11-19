@@ -66,6 +66,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "las"
+   ],
+   "source": "RAE, DPD \"números\", 1.1d: \"De acuerdo con la normativa internacional, para separar la parte entera de la decimal son válidos tanto la coma como el punto, según las preferencias de cada zona o país: El valor de π es 3,1416… o El valor de π es 3.1416…\" DPD \"hora\", 4a: \"Fuera de textos técnicos, es también válido el uso del punto: 13:30, 13.30\"; 4c: \"17:30 o 17.30 h\"; \"a las 7 h\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h",
+    "horas"
+   ],
+   "source": "RAE, DPD \"números\", 1.1d: \"De acuerdo con la normativa internacional, para separar la parte entera de la decimal son válidos tanto la coma como el punto, según las preferencias de cada zona o país: El valor de π es 3,1416… o El valor de π es 3.1416…\" DPD \"hora\", 4a: \"Fuera de textos técnicos, es también válido el uso del punto: 13:30, 13.30\"; 4c: \"17:30 o 17.30 h\"; \"a las 7 h\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "y"

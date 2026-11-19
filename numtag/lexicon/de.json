@@ -114,6 +114,20 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "um",
+    "gegen"
+   ],
+   "source": "Duden, \"Uhr\", Beispiele: \"es geschah gegen drei Uhr\", \"der Zug fährt [um] elf Uhr sieben/11:07 Uhr\", Zeichen \"h\". de.wikipedia \"Uhrzeit\": \"Ziffern und Punkte werden aber generell ohne Leerzeichen geschrieben. Beispiele: 9 Uhr, 17:30 Uhr, 0.12 Uhr\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "Uhr",
+    "h"
+   ],
+   "source": "Duden, \"Uhr\", Beispiele: \"es geschah gegen drei Uhr\", \"der Zug fährt [um] elf Uhr sieben/11:07 Uhr\", Zeichen \"h\". de.wikipedia \"Uhrzeit\": \"Ziffern und Punkte werden aber generell ohne Leerzeichen geschrieben. Beispiele: 9 Uhr, 17:30 Uhr, 0.12 Uhr\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "period_ordinal_before": {
    "value": [
     "der",
