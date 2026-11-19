@@ -1,8 +1,21 @@
 # Changelog
 
+## [0.18.1a1](https://github.com/TigreGotico/numtag/tree/0.18.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.0a1...0.18.1a1)
+
+**Merged pull requests:**
+
+- fix: read en "a couple" as a weak 2, and nl "een paar" and de "ein paar" as an amount [\#247](https://github.com/TigreGotico/numtag/pull/247) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat\(mt\): add a Maltese lexicon [\#243](https://github.com/TigreGotico/numtag/pull/243) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.18.0a1](https://github.com/TigreGotico/numtag/tree/0.18.0a1) (2026-11-19)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.1a1...0.18.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.17.0a1...0.18.0a1)
+
+## [0.17.0a1](https://github.com/TigreGotico/numtag/tree/0.17.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.1a1...0.17.0a1)
 
 **Merged pull requests:**
 
@@ -753,17 +766,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a3...0.2.0a4)
 
-**Merged pull requests:**
-
-- docs: fix the claims of the claim audit [\#15](https://github.com/TigreGotico/numtag/pull/15) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.2.0a3](https://github.com/TigreGotico/numtag/tree/0.2.0a3) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a2...0.2.0a3)
-
-**Merged pull requests:**
-
-- test: a round last class before a collective needs the joiner [\#16](https://github.com/TigreGotico/numtag/pull/16) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.2.0a2](https://github.com/TigreGotico/numtag/tree/0.2.0a2) (2026-11-15)
 
