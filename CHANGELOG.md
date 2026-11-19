@@ -1,8 +1,26 @@
 # Changelog
 
+## [0.15.7a1](https://github.com/TigreGotico/numtag/tree/0.15.7a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.6a1...0.15.7a1)
+
+**Merged pull requests:**
+
+- fix: tr yuzde yuz reads 100 at full confidence [\#208](https://github.com/TigreGotico/numtag/pull/208) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: read a number whose group marks mix spaces, and check every lexicon's marks [\#205](https://github.com/TigreGotico/numtag/pull/205) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(de\): "halb" before an hour is the half hour, no number [\#183](https://github.com/TigreGotico/numtag/pull/183) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(it,ca,oc\): a cardinal before a Latin unit ordinal makes no compound [\#182](https://github.com/TigreGotico/numtag/pull/182) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fr, it, ro\): read "moins" after an hour, "quanto meno" and a lone point [\#175](https://github.com/TigreGotico/numtag/pull/175) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- perf: read each position once and cache the lookup forms [\#153](https://github.com/TigreGotico/numtag/pull/153) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: read no word before the first token, and a marker word as a noun [\#152](https://github.com/TigreGotico/numtag/pull/152) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.6a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.5a1...0.15.6a1)
+
+## [0.15.5a1](https://github.com/TigreGotico/numtag/tree/0.15.5a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.5a1)
 
 **Merged pull requests:**
 
@@ -670,17 +688,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.5.0a1...0.6.0a1)
 
-**Merged pull requests:**
-
-- feat: read French, Italian, Romanian, Basque and Indonesian numbers [\#8](https://github.com/TigreGotico/numtag/pull/8) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.5.0a1](https://github.com/TigreGotico/numtag/tree/0.5.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.4.0a1...0.5.0a1)
-
-**Merged pull requests:**
-
-- feat: read ru, uk, bg, pl, cs, sk, sl and hr numbers [\#7](https://github.com/TigreGotico/numtag/pull/7) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.4.0a1](https://github.com/TigreGotico/numtag/tree/0.4.0a1) (2026-11-15)
 
@@ -701,10 +711,6 @@
 ## [0.3.0a1](https://github.com/TigreGotico/numtag/tree/0.3.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a4...0.3.0a1)
-
-**Merged pull requests:**
-
-- feat: read de, nl, fy, da, sv, nb and nn numbers [\#6](https://github.com/TigreGotico/numtag/pull/6) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.2.0a4](https://github.com/TigreGotico/numtag/tree/0.2.0a4) (2026-11-15)
 
@@ -739,10 +745,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.2a1...0.1.0a1)
 
-**Merged pull requests:**
-
-- feat: tag\_numbers engine for pt-PT, pt-BR and en [\#4](https://github.com/TigreGotico/numtag/pull/4) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.0.2a1](https://github.com/TigreGotico/numtag/tree/0.0.2a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.1...0.0.2a1)
@@ -754,12 +756,6 @@
 ## [0.0.1a2](https://github.com/TigreGotico/numtag/tree/0.0.1a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/8755566a98e5c6ad921f1edd2a001145180787c6...0.0.1a2)
-
-**Merged pull requests:**
-
-- ci: publish alphas on merge to dev and stable releases from master [\#5](https://github.com/TigreGotico/numtag/pull/5) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- test: the gold checker refuses a cut word, a wrong decimal kind and a repeated text [\#3](https://github.com/TigreGotico/numtag/pull/3) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- test: gold corpus for pt-PT, pt-BR and en [\#2](https://github.com/TigreGotico/numtag/pull/2) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 
 
