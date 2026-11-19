@@ -29,6 +29,7 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | [languages/el-ar-he-fa-kab.md](languages/el-ar-he-fa-kab.md) | Greek, Arabic, Hebrew, Persian and Kabyle |
 | [languages/germanic.md](languages/germanic.md) | German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk |
 | [languages/uralic-turkic.md](languages/uralic-turkic.md) | Finnish, Estonian, Hungarian, Turkish and Azerbaijani |
+| [languages/baltic.md](languages/baltic.md) | Lithuanian |
 | [languages/slavic.md](languages/slavic.md) | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene and Croatian |
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |
