@@ -6,7 +6,7 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 |---|---|---|---|---|---|
 | German | every `de` tag | `numtag/lexicon/de.json` | long | 191 | 191 |
 | Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 186 | 186 |
-| West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 150 | 150 |
+| West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 156 | 156 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
 | Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 178 | 178 |
@@ -80,6 +80,23 @@ German "halb" before an hour names the half hour before that hour, so "um halb d
 ```
 
 > DWDS, "halb", 1c: "es ist halb zwölf Uhr (= elf Uhr dreißig)", "das Essen auf halb eins ansetzen"
+
+## West Frisian clock hours
+
+After "healwei" (half before), "kertier oer" (quarter past) and "kertier foar" (quarter to), West Frisian names the hour with an inflected form: "fiven" for 5, "tolven" for 12. Such a form reads as a sure number only after "healwei", "oer" or "foar". Elsewhere it may be a plural noun, so it gets the score of a homograph. The form ends the number, so it is never the first part of a compound word: "achtenfjirtich" stays 48.
+
+```python
+>>> read('Yn de Greidhoeke begûn men tusken 4 oere en healwei fiven.', 'fy')
+[('4', '4'), ('fiven', '5')]
+>>> read('Koelstra waard om kertier foar trijen moarns eksekutearre.', 'fy')
+[('trijen', '3')]
+>>> read('Hy wie achtenfjirtich jier.', 'fy')
+[('achtenfjirtich', '48')]
+>>> [m.confidence for m in tag_numbers('de achten', 'fy')]
+[0.4]
+```
+
+> Wikipedia (fy), "Haadstjoertiid" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Haadstjoertiid.wikitext): "fan healwei sânen oant sân oere jûns"
 
 ## The scale
 
