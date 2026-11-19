@@ -1,6 +1,6 @@
-# Greek, Arabic, Hebrew, Persian and Kabyle
+# Greek, Arabic, Hebrew, Persian, Kabyle and Maltese
 
-numtag reads Greek, Arabic, Hebrew, Persian and Kabyle. Arabic and Persian text can use the Arabic-Indic digits, and numtag reads them as digits.
+numtag reads Greek, Arabic, Hebrew, Persian, Kabyle and Maltese. Arabic and Persian text can use the Arabic-Indic digits, and numtag reads them as digits.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
@@ -9,6 +9,7 @@ numtag reads Greek, Arabic, Hebrew, Persian and Kabyle. Arabic and Persian text 
 | Hebrew | every `he` tag | `numtag/lexicon/he.json` | long | 160 | 157 |
 | Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 151 | 151 |
 | Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 163 | 163 |
+| Maltese | every `mt` tag | `numtag/lexicon/mt.json` | short | 185 | 177 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -32,6 +33,8 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('עשרים וחמישה', '25')]
 >>> read('είκοσι πέντε', 'el')
 [('είκοσι πέντε', '25')]
+>>> read('ħamsa u għoxrin', 'mt')
+[('ħamsa u għoxrin', '25')]
 ```
 
 ## Examples from the gold rows
@@ -82,5 +85,9 @@ Persian, short scale:
 Kabyle, short scale:
 
 > languagesandnumbers.com, "Counting in Kabyle": "amelyun [1 million]", "amelyar [1 billion]": each word has one fixed value.
+
+Maltese, short scale:
+
+> CLDR RBNF mt (unicode-org/cldr release-49, common/rbnf/mt.xml): "1000000000: biljun[ u >>];" names 10^9, the short scale.
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.

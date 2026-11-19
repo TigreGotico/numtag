@@ -71,7 +71,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `pt-BR` | Brazilian Portuguese | short: "bilhão" is 10^9 |
 | every other `pt` tag (`pt`, `pt-PT`, `pt-AO`) | European Portuguese | long: "bilião" is 10^12 |
 | every `en` tag (`en`, `en-US`, `en-GB`) | English | short: "billion" is 10^9 |
-| `el`, `ar`, `he`, `fa`, `kab` | Greek, Arabic, Hebrew, Persian, Kabyle | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
+| `el`, `ar`, `he`, `fa`, `kab`, `mt` | Greek, Arabic, Hebrew, Persian, Kabyle, Maltese | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
 | `de`, `nl`, `fy`, `da`, `sv`, `nb` (and `no`), `nn` | German, Dutch, West Frisian, Danish, Swedish, Norwegian | per lexicon, in [germanic.md](docs/languages/germanic.md) |
 | `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
 | `lt` | Lithuanian | short: "trilijonas" is 10^12, in [baltic.md](docs/languages/baltic.md) |

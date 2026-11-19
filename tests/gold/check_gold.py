@@ -41,7 +41,8 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
                  "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),
                  "mwl": (",", "bírgula", "birgula", "ponto"),
-                 "lt": (",", "kablelis")}
+                 "lt": (",", "kablelis"),
+                 "mt": (".", "punt")}
 
 
 def _is_edge_noise(ch: str) -> bool:
