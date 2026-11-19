@@ -772,6 +772,13 @@
    "source": "CLDR RBNF nb (unicode-rbnf 2.4.1 data, no.xml), %spellout-ordinal-masculine: 1 → \"første\", 3 → \"tredje\", 4 → \"fjerde\", 5 → \"femte\", 6 → \"sjette\", 7 → \"sjuende\", 8 → \"åttende\", 9 → \"niende\", 10 → \"tiende\", 11 → \"ellevte\", 12 → \"tolvte\", 13 → \"trettende\", 19 → \"nittende\", 21 → \"tjueførste\", 30 → \"trettiende\", 90 → \"nittiende\"; Bokmålsordboka, \"tjuende\" (article 61230): \"ordenstall til 20\", where CLDR writes \"tjueende\"; \"syvende\" and \"tyvende\" follow \"syv\" and \"tyve\"; The word also means \"other\", so it is ambiguous outside a number (not checked against a dictionary page)."
   },
   {
+   "word": "annen",
+   "role": "ordinal",
+   "value": "2",
+   "ambiguous": true,
+   "source": "Bokmålsordboka, \"andre, annen\" (article 107465), adjective: \"ordenstall til to (2.)\"; \"annen\" (article 1973), determiner: \"én til, flere av samme slaget\", as in \"Per og en annen gutt\". The word also means \"other\", so it is ambiguous outside a number."
+  },
+  {
    "word": "nullte",
    "role": "ordinal",
    "value": "0",
