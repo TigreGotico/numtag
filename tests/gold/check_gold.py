@@ -36,6 +36,7 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "fr-FR": (",", "virgule"), "fr-BE": (",", "virgule"), "fr-CH": (",", "virgule"),
                  "it": (",", "virgola"), "ro": (",", "virgulă", "virgula"), "eu": (",", "koma"),
                  "id": (",", "koma", "titik"),
+                 "ms": (".", "perpuluhan"),
                  "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
                  "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),
                  "mwl": (",", "bírgula", "birgula", "ponto")}
