@@ -26,7 +26,7 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | [rulings.md](rulings.md) | Each reading rule with an example sentence and its source |
 | [languages/pt.md](languages/pt.md) | European and Brazilian Portuguese |
 | [languages/en.md](languages/en.md) | English |
-| [languages/el-ar-he-fa-kab.md](languages/el-ar-he-fa-kab.md) | Greek, Arabic, Hebrew, Persian and Kabyle |
+| [languages/el-ar-he-fa-kab.md](languages/el-ar-he-fa-kab.md) | Greek, Arabic, Hebrew, Persian, Kabyle and Maltese |
 | [languages/germanic.md](languages/germanic.md) | German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk |
 | [languages/uralic-turkic.md](languages/uralic-turkic.md) | Finnish, Estonian, Hungarian, Turkish and Azerbaijani |
 | [languages/slavic.md](languages/slavic.md) | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene and Croatian |
