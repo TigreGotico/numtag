@@ -402,6 +402,14 @@ class TestArticles(unittest.TestCase):
         self.assertEqual([m.value for m in found], ["1"])
         self.assertLess(found[0].confidence, 0.5)
 
+    def test_annen_and_fyrste_are_ordinals_that_are_also_other_words(self):
+        # Bokmålsordboka "andre, annen": 2nd, and "annen": other;
+        # Nynorskordboka "første, fyrste": 1st, and "fyrste": a prince
+        self.assertEqual(read("annen mandag i januar", "nb"), [("annen", "2", O)])
+        self.assertEqual(read("fyrste måndag", "nn"), [("fyrste", "1", O)])
+        self.assertEqual(sure("annen mandag", "nb"), [("annen", "2", 0.4)])
+        self.assertEqual(sure("fyrste kvartal", "nn"), [("fyrste", "1", 0.4)])
+
     def test_tiende_is_also_the_tithe(self):
         for lang in ("da", "nb"):
             with self.subTest(lang=lang):
