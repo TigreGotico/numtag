@@ -1,8 +1,29 @@
 # Changelog
 
+## [0.15.11a1](https://github.com/TigreGotico/numtag/tree/0.15.11a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.10a1...0.15.11a1)
+
+**Merged pull requests:**
+
+- feat\(ms\): add a Malay lexicon [\#187](https://github.com/TigreGotico/numtag/pull/187) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(nb, nn\): read the ordinals "annen" and "fyrste" [\#147](https://github.com/TigreGotico/numtag/pull/147) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.10a1](https://github.com/TigreGotico/numtag/tree/0.15.10a1) (2026-11-19)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.6a1...0.15.10a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.9a1...0.15.10a1)
+
+## [0.15.9a1](https://github.com/TigreGotico/numtag/tree/0.15.9a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.8a1...0.15.9a1)
+
+## [0.15.8a1](https://github.com/TigreGotico/numtag/tree/0.15.8a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.7a1...0.15.8a1)
+
+## [0.15.7a1](https://github.com/TigreGotico/numtag/tree/0.15.7a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.6a1...0.15.7a1)
 
 **Merged pull requests:**
 
@@ -696,10 +717,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a2...0.4.0a1)
 
-**Merged pull requests:**
-
-- feat: read Finnish, Estonian, Hungarian, Turkish and Azerbaijani numbers [\#9](https://github.com/TigreGotico/numtag/pull/9) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.3.0a2](https://github.com/TigreGotico/numtag/tree/0.3.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a1...0.3.0a2)
@@ -739,7 +756,6 @@
 **Merged pull requests:**
 
 - docs: quote a saved page in every lexicon and gold source field [\#14](https://github.com/TigreGotico/numtag/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- feat: read el, ar, he, fa and kab numbers [\#10](https://github.com/TigreGotico/numtag/pull/10) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 

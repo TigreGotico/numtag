@@ -76,7 +76,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
 | `lt` | Lithuanian | short: "trilijonas" is 10^12, in [baltic.md](docs/languages/baltic.md) |
 | `ru`, `uk`, `bg`, `pl`, `cs`, `sk`, `sl`, `hr` | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian | per lexicon, in [slavic.md](docs/languages/slavic.md) |
-| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id` | French, Italian, Romanian, Basque, Indonesian | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
+| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id`, `ms` | French, Italian, Romanian, Basque, Indonesian, Malay | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
 | `es`, `gl`, `ca`, `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
 
 Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
