@@ -50,9 +50,10 @@ class TensOrder(str, Enum):
 # whole ("puolitoista" is 3/2); a unit-and-half word is its value and a half
 # ("δυόμισι"); a "rational" word is a number that is no whole number
 # ("полтора" is 3/2); a "teen_suffix" adds its value to the unit before it
-# ("dua belas" is 12).
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen", "decimal_zero",
-               "value_word", "unit_and_half", "rational", "teen_suffix")
+# ("dua belas" is 12); an "article_collective" is a collective that only the
+# article counts ("a couple", never "one couple").
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "article_collective", "denominator", "ordinal", "fraction",
+               "teen", "decimal_zero", "value_word", "unit_and_half", "rational", "teen_suffix")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")

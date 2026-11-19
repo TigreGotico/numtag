@@ -123,6 +123,7 @@
    ],
    "source": "\"een\" is the indefinite article and the numeral 1; \"één\" with accents is only the numeral (Taalunie, Woordenlijst; the page needs JavaScript, so not checked against the page)"
   },
+  "number_name": {"value": ["een paar"], "source": "Onze Taal 72 (2003), \"De verandering van een telwoord\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dbnl-2003-paar.txt): \"Als we spreken over ‘een paar schoenen’ (twee bijeenhorende schoenen, een linker- en een rechterschoen), is paar nog steeds een zelfstandig naamwoord. Maar als een paar de betekenis heeft van ‘een klein aantal’ (een paar kinderen, een paar aardappels) krijgt de woordgroep de waarde van een onbepaald telwoord. De betekenis is dan vergelijkbaar met bijvoorbeeld veel en enkele.\" De Nieuwe Taalgids 57 (1964), \"Twee en een paar\" (dbnl-1964-paar.txt): \"dat het laatste ook wel meer dan twee kan zijn\". nl.wiktionary, \"paar\" (nlwikt-paar.txt), onbepaald voornaamwoord: \"meerdere, maar niet heel veel\"; \"Neem jij een paar appels mee?\" With the word for one before it, \"paar\" names two or a small number, never one, so the article is no count. The phrase is a vague quantity."},
   "of": {
    "value": [],
    "source": "Dutch has no such word in its numbers."
@@ -827,6 +828,12 @@
    "word": "de",
    "role": "ordinal_suffix",
    "source": "\"1e\", \"1ste\", \"2de\" (Taalunie, Woordenlijst; the page needs JavaScript, so not checked against the page); CLDR RBNF nl (unicode-rbnf 2.4.1 data, nl.xml), %digits-ordinal: \"0: =#,##0=e\""
+  },
+  {
+   "word": "een paar",
+   "role": "vague_quantifier",
+   "ambiguous": true,
+   "source": "Onze Taal 72 (2003), \"De verandering van een telwoord\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dbnl-2003-paar.txt): \"Als we spreken over ‘een paar schoenen’ (twee bijeenhorende schoenen, een linker- en een rechterschoen), is paar nog steeds een zelfstandig naamwoord. Maar als een paar de betekenis heeft van ‘een klein aantal’ (een paar kinderen, een paar aardappels) krijgt de woordgroep de waarde van een onbepaald telwoord. De betekenis is dan vergelijkbaar met bijvoorbeeld veel en enkele.\" De Nieuwe Taalgids 57 (1964), \"Twee en een paar\" (dbnl-1964-paar.txt): \"dat het laatste ook wel meer dan twee kan zijn\". nl.wiktionary, \"paar\" (nlwikt-paar.txt), onbepaald voornaamwoord: \"meerdere, maar niet heel veel\"; \"Neem jij een paar appels mee?\" The noun \"paar\" also names a pair, two that belong together, which numtag cannot tell from the text."
   }
  ]
 }

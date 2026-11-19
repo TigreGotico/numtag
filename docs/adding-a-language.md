@@ -85,6 +85,7 @@ Each entry has a `word`, a `role` and a `source`. The role decides the other key
 |---|---|---|
 | `unit`, `ten`, `hundred` | the digit string of the word | "dois" is "2", "vinte" is "20", "cem" is "100" |
 | `collective` | the digit string of the group | "dúzia" is "12" |
+| `article_collective` | the digit string of the group, read only after the indefinite article. A count before the word reads alone | en "couple" is "2" in "a couple"; "one couple" is 1 |
 | `denominator` | the digit string of the denominator; or `scale_of`, a scale word whose power of ten is the denominator | "terço" is "3"; "billionth" has `scale_of` "billion" |
 | `ordinal` | the digit string of the position | "primeiro" is "1" |
 | `hundred_multiplier`, `scale_numeral`, `scale_noun` | a power of ten, as an integer | "mil" is 3 |

@@ -762,5 +762,53 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 
 > Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
 
+## Two or a few: "a couple", "een paar", "ein paar"
+
+In English, "a couple" and "a couple of" give two at the score of a homograph, 0.4, with `Reason.HOMOGRAPH`. The dictionaries give the phrase two senses: two, and a small number. numtag cannot tell the senses apart from the text, so it gives two and marks the mention as weak. Only the article makes "couple" a number. With a count before it, "couple" is the noun "two persons paired", and the count counts couples: "one couple" is 1, and "three couple dances" is 3. "The couple" names two persons and has no count, so it gives no number.
+
+```python
+>>> read("Roll a couple of dice.", "en")
+[('a couple', '2')]
+>>> [(m.value, m.confidence) for m in tag_numbers("Take a picture in a couple of seconds.", "en")]
+[('2', 0.4)]
+>>> read("The couple walked in.", "en")
+[]
+>>> read("One couple said they had waited for hours.", "en")
+[('One', '1')]
+```
+
+> Merriam-Webster, "couple", adjective: "two also : few"; noun sense 4: "an indefinite small number : few"; noun sense 1a: "two persons married, engaged, or otherwise romantically paired". Cambridge Dictionary, "couple", noun (SOME): "two or a few things that are similar or the same, or two or a few people who are in some way connected".
+
+Before a scale word or a collective, "a couple" and "a couple of" stand where the count would, as "a few" does. The words give no number, and `tag_vague_quantities` gives a magnitude: "a couple hundred" is a magnitude of a hundred. numtag has no weak count before a scale word, so it does not give 200 at the score of a homograph.
+
+```python
+>>> from numtag import tag_vague_quantities
+>>> read("It cost a couple hundred dollars.", "en")
+[]
+>>> [(q.text, q.kind.value, q.scale) for q in tag_vague_quantities("It cost a couple hundred dollars.", "en")]
+[('a couple hundred', 'magnitude', '100')]
+```
+
+> Merriam-Webster, usage guide: "It is most frequently used with periods of time a couple weeks and numbers. a couple hundred a couple dozen".
+
+In Dutch and German, "een paar" and "ein paar" are an amount with no value. The phrase is an indefinite numeral, as "enkele" and "einige" are, and it can name more than two. The article in the phrase is no count of one, so `tag_numbers` gives no number. `tag_vague_quantities` gives an amount at the low score with `Reason.HOMOGRAPH`, because the noun "paar" also names a pair. numtag folds case, so German "ein Paar Schuhe" (a pair of shoes) gives the same amount. That reading is wrong: the capital "Paar" is the noun, and the article counts one pair (issue #249). A count before "paar" keeps its number. Before a scale word the phrase gives a magnitude.
+
+```python
+>>> read("Foto in een paar seconden.", "nl")
+[]
+>>> [(q.text, q.kind.value, q.confidence) for q in tag_vague_quantities("Foto in een paar seconden.", "nl")]
+[('een paar', 'amount', 0.4)]
+>>> read("In ein paar Sekunden.", "de")
+[]
+>>> read("Twee paar schoenen.", "nl")
+[('Twee', '2')]
+>>> [(q.text, q.scale) for q in tag_vague_quantities("een paar honderd mensen", "nl")]
+[('een paar honderd', '100')]
+```
+
+> Onze Taal 72 (2003), "De verandering van een telwoord": "Maar als een paar de betekenis heeft van ‘een klein aantal’ (een paar kinderen, een paar aardappels) krijgt de woordgroep de waarde van een onbepaald telwoord. De betekenis is dan vergelijkbaar met bijvoorbeeld veel en enkele." De Nieuwe Taalgids 57 (1964), "Twee en een paar": "dat het laatste ook wel meer dan twee kan zijn". DWDS, "ein paar": "bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung".
+
+A skill that needs one count can take the weak mention of "a couple" as 2. "een paar", "ein paar" and "a few" give no number: the skill uses its own default or asks the user for a number.
+
 ---
 [← Confidence and homographs](confidence-and-homographs.md) · [Home](index.md) · [Portuguese →](languages/pt.md)
