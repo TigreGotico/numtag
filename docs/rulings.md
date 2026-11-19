@@ -607,7 +607,9 @@ In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و i
 
 A lexicon's `group_mark` is the CLDR group symbol of its language, and `tests/test_group_marks.py` checks every language against it. Estonian, Finnish, Hungarian, Norwegian and Swedish write a no-break space (U+00A0), and a plain space also reads through `space_groups`.
 
-Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. Written text in these languages groups digits with a dot ("1.500" is 1500), and a no-break space group mark would stop that reading. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. In each of them the comma marks decimals, so a dot before exactly three digits has no decimal reading and groups digits ("1.500" is 1500). A space between groups reads through `space_groups`, so "1 500" is 1500 as well. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+
+The four sources differ in strength. European Portuguese rests on Wikipedia, "Decimal separator", which lists Portugal among the countries that write "1.234.567,89". Galician rests on the reading of ovos-number-parser and on the dot of Spanish and Portuguese. The Czech reference grammar allows the dot only for money amounts in administrative text, and the lexicon reads it in every Czech text, because the comma is the only decimal mark. A section number such as "1.500" reads as 1500 for that reason. Occitan rests on the reading of ovos-number-parser alone, and no Occitan grammar in the sources names the dot. A source for the Occitan dot is open.
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
