@@ -456,6 +456,17 @@ class TestDigitGroups(unittest.TestCase):
                 self.assertNotIn("1000000", [value for _, value, _ in read("1.000.000", lang)])
 
 
+class TestCzechMinus(unittest.TestCase):
+    def test_minus_with_a_long_i_is_a_sign(self):
+        # IJP "minus": "lze i: mínus"; -10 and -7
+        self.assertEqual(read("teplota mínus deset stupňů", "cs"), [("mínus deset", "-10", C)])
+        self.assertEqual(read("mínus sedm", "cs"), [("mínus sedm", "-7", C)])
+
+    def test_minus_after_a_number_is_no_sign(self):
+        # "pět mínus dva" is 5 and 2, as "pět minus dva" is
+        self.assertEqual(read("pět mínus dva", "cs"), [("pět", "5", C), ("dva", "2", C)])
+
+
 class TestApostrophes(unittest.TestCase):
     def test_ukrainian_apostrophe_spellings_are_one_letter(self):
         for word in ("пʼять", "п'ять", "п’ять"):
