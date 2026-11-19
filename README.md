@@ -75,6 +75,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `de`, `nl`, `fy`, `da`, `sv`, `nb` (and `no`), `nn` | German, Dutch, West Frisian, Danish, Swedish, Norwegian | per lexicon, in [germanic.md](docs/languages/germanic.md) |
 | `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
 | `ru`, `uk`, `bg`, `pl`, `cs`, `sk`, `sl`, `hr` | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian | per lexicon, in [slavic.md](docs/languages/slavic.md) |
+| `sr` | Serbian, in the Latin and the Cyrillic script | long: "bilion" is 10^12, in [slavic.md](docs/languages/slavic.md) |
 | `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id` | French, Italian, Romanian, Basque, Indonesian | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
 | `es`, `gl`, `ca`, `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
 

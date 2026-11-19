@@ -21,7 +21,7 @@ CLDR = {
     "it": (".", ","), "kab": (" ", ","), "nb": (" ", ","), "nl": (".", ","),
     "nn": (" ", ","), "oc": (" ", ","), "pl": (" ", ","), "pt-BR": (".", ","),
     "pt-PT": (" ", ","), "ro": (".", ","), "ru": (" ", ","), "sk": (" ", ","),
-    "sl": (".", ","), "sv": (" ", ","), "tr": (".", ","), "uk": (" ", ","),
+    "sl": (".", ","), "sr": (".", ","), "sv": (" ", ","), "tr": (".", ","), "uk": (" ", ","),
 }
 #: Written pt and gl text groups digits with a dot ("1.500"), where CLDR gives a no-break space.
 #: Each lexicon keeps the dot; the ruling is in docs/rulings.md.
