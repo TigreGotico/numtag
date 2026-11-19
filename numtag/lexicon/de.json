@@ -166,6 +166,7 @@
    ],
    "source": "The indefinite article has the forms of the numeral 1: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-masculine: \"1: ein\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-feminine: \"1: eine\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-n: \"1: einen\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-r: \"1: einer\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-s: \"1: eines\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-m: \"1: einem\""
   },
+  "number_name": {"value": ["ein paar"], "source": "DWDS, \"ein paar\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dwds-ein-paar.txt), Indefinitpronomen, eWDG 1974: \"bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung\"; \"ein paar Schritte gehen\". DWDS, \"paar\" (dwds-paar.txt): \"indeklinables Indef.pron.\"; Etymologisches Wörterbuch (Pfeifer), \"Paar n.\": \"zwei zusammengehörende Dinge von gleicher oder ähnlicher Beschaffenheit\" With the word for one before it, \"paar\" names two or a small number, never one, so the article is no count. The phrase is a vague quantity."},
   "article_needs_noun": {
    "value": [
     "ein",
@@ -1829,6 +1830,12 @@
    "role": "ordinal_scale",
    "value": "milliarde",
    "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 100 → \"einhundertste\", 1000 → \"eintausendste\", 1000000 → \"eine Millionste\", 1000000000 → \"eine Milliardeste\""
+  },
+  {
+   "word": "ein paar",
+   "role": "vague_quantifier",
+   "ambiguous": true,
+   "source": "DWDS, \"ein paar\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dwds-ein-paar.txt), Indefinitpronomen, eWDG 1974: \"bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung\"; \"ein paar Schritte gehen\". DWDS, \"paar\" (dwds-paar.txt): \"indeklinables Indef.pron.\"; Etymologisches Wörterbuch (Pfeifer), \"Paar n.\": \"zwei zusammengehörende Dinge von gleicher oder ähnlicher Beschaffenheit\" The noun \"paar\" also names a pair, two that belong together, which numtag cannot tell from the text."
   }
  ]
 }

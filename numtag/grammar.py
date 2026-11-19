@@ -1611,7 +1611,12 @@ class Grammar:
             found += self.fraction_of_scale(fraction)
         if self._is_word(i, self.lex.articles):
             for entry in self._readings(i + 1, "collective"):
-                if not entry.plural:
+                # "a couple hundred", "a couple of thousand": a vague phrase stands where the
+                # count of the scale word would, as "a few" does in "a few hundred"
+                if not entry.plural and not any(
+                        tuple(t.norm for t in self.tokens[i:i + len(phrase)]) == phrase
+                        and any(self._readings(i + len(phrase), role) for role in (*SCALE_ROLES, "collective"))
+                        for phrase in self.lex.vague_quantifiers):
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
                               self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True,
                                                parts=_piece(Role.COUNT, i, i + 1, ONE))]
