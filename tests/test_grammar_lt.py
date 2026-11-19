@@ -77,6 +77,11 @@ class TestLithuanian(unittest.TestCase):
         self.assertEqual(lt("tris ketvirtadalius"), [("tris ketvirtadalius", "0.75", F)])
         self.assertEqual(lt("dvi trečiosios"), [("dvi trečiosios", "2/3", F)])
 
+    def test_the_quarter_noun_softens_t_to_c_before_i(self):
+        # 3 x 1/4 = 0.75
+        self.assertEqual(lt("trys ketvirčiai"), [("trys ketvirčiai", "0.75", F)])
+        self.assertEqual(lt("tris ketvirčius"), [("tris ketvirčius", "0.75", F)])
+
     def test_ir_joins_a_whole_number_to_a_fraction_only(self):
         # 2 + 5/10 = 2.5; 3 + 1/2 = 3.5; "penki ir šeši" is two numbers
         self.assertEqual(lt("du ir penkios dešimtosios"), [("du ir penkios dešimtosios", "2.5", F)])

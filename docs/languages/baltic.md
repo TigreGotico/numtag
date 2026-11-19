@@ -4,7 +4,7 @@ numtag reads Lithuanian. Lithuanian declines its numbers: a cardinal takes the c
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Lithuanian | every `lt` tag | `numtag/lexicon/lt.json` | short | 166 | 166 |
+| Lithuanian | every `lt` tag | `numtag/lexicon/lt.json` | short | 167 | 167 |
 
 The gold rows are in `tests/gold/lt.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked this lexicon or its gold rows.
 
