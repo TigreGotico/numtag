@@ -4,7 +4,7 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 242 | 239 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
 | Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
@@ -84,6 +84,21 @@ Alone, "ciento" is the noun for a hundred, so it gets the homograph score. "un c
 > DPD "ciento" §2: "Quien hace un cesto hace ciento"
 
 > DPD "ciento" §3: "cuando el porcentaje expresa totalidad son igualmente válidas las expresiones ciento por ciento (preferida en América), cien por ciento y cien por cien (preferida en España)"
+
+## Spanish ordinals in one word
+
+A Spanish ordinal above the tenth is one word or two: "vigesimoprimero" and "vigésimo primero" are both 21. From the thirties, the two-word form is the usual one, and the DPD also accepts the one-word form:
+
+> "se consideran también válidas las grafías unitarias por la tendencia de estos ordinales a la cohesión prosódica y morfológica: trigesimoprimero(s)"
+
+The lexicon holds the one-word form of every ordinal from 11 to 99, in the masculine, the feminine, the plural and the apocope ("trigesimoprimer").
+
+```python
+>>> read('Boleros es el trigesimoprimer álbum de estudio del cantautor mexicano Juan Gabriel.', 'es')
+[('trigesimoprimer', '31')]
+>>> read('El corredor llegó en el puesto decimonono.', 'es')
+[('decimonono', '19')]
+```
 
 ## Examples from the gold rows
 
