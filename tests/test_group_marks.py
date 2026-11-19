@@ -18,7 +18,7 @@ CLDR = {
     "es": (".", ","), "et": (" ", ","), "eu": (".", ","), "fa": (",", "."), "fi": (" ", ","),
     "fr-BE": (" ", ","), "fr-CH": ("'", ","), "fr-FR": (" ", ","), "fy": (".", ","),
     "gl": (" ", ","), "he": (",", "."), "hr": (".", ","), "hu": (" ", ","), "id": (".", ","),
-    "it": (".", ","), "kab": (" ", ","), "nb": (" ", ","), "nl": (".", ","),
+    "it": (".", ","), "kab": (" ", ","), "lt": (" ", ","), "nb": (" ", ","), "nl": (".", ","),
     "nn": (" ", ","), "oc": (" ", ","), "pl": (" ", ","), "pt-BR": (".", ","),
     "pt-PT": (" ", ","), "ro": (".", ","), "ru": (" ", ","), "sk": (" ", ","),
     "sl": (".", ","), "sv": (" ", ","), "tr": (".", ","), "uk": (" ", ","),
@@ -26,7 +26,7 @@ CLDR = {
 #: Written pt and gl text groups digits with a dot ("1.500"), where CLDR gives a no-break space.
 #: Each lexicon keeps the dot; the ruling is in docs/rulings.md.
 DOT_EXCEPTIONS = {"cs": ".", "gl": ".", "oc": ".", "pt-PT": "."}
-NO_BREAK_SPACE_LANGS = ("et", "fi", "hu", "nb", "nn", "sv")
+NO_BREAK_SPACE_LANGS = ("et", "fi", "hu", "lt", "nb", "nn", "sv")
 #: CLDR 49.0.0 has no numbers file for Aragonese, and Mirandese has no CLDR locale.
 NO_CLDR_DATA = ("an", "mwl")
 #: A plain space, a no-break space and a narrow no-break space.

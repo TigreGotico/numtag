@@ -24,7 +24,7 @@ MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "milli
            "sl": "milijon", "hr": "milijun", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
            "fr-FR": "million", "id": "juta", "it": "milione", "ro": "milion",
            "es": "millón", "gl": "millón", "ca": "milió", "ast": "millón", "an": "millón",
-           "oc": "milion", "mwl": "milhon"}
+           "oc": "milion", "mwl": "milhon", "lt": "milijonas"}
 
 
 class TestLexiconFiles(unittest.TestCase):
