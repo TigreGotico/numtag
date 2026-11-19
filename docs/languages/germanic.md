@@ -9,8 +9,8 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 150 | 150 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
-| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 176 | 176 |
-| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 154 | 154 |
+| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 178 | 178 |
+| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 157 | 157 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 

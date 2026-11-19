@@ -1,6 +1,6 @@
-# French, Italian, Romanian, Basque and Indonesian
+# French, Italian, Romanian, Basque, Indonesian and Malay
 
-numtag reads French, Italian, Romanian, Basque and Indonesian. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
+numtag reads French, Italian, Romanian, Basque, Indonesian and Malay. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
@@ -11,6 +11,7 @@ numtag reads French, Italian, Romanian, Basque and Indonesian. French has three 
 | Romanian | every `ro` tag | `numtag/lexicon/ro.json` | long | 157 | 157 |
 | Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 168 | 168 |
 | Indonesian | every `id` tag | `numtag/lexicon/id.json` | short | 175 | 174 |
+| Malay | every `ms` tag | `numtag/lexicon/ms.json` | short | 162 | 161 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -34,6 +35,8 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('hogeita bost', '25')]
 >>> read('dua puluh lima', 'id')
 [('dua puluh lima', '25')]
+>>> read('lapan puluh lima', 'ms')
+[('lapan puluh lima', '85')]
 ```
 
 ## Italian ordinals from primo to nono
@@ -168,5 +171,9 @@ Basque, long scale:
 Indonesian, short scale:
 
 > KBBI VI Daring, "triliun": "12 nol (000.000.000.000) [...] (di Amerika Serikat dan Prancis, digunakan juga di Indonesia)". "miliar" is 10^9 and "triliun" 10^12 in Indonesia, so the scale changes no value.
+
+Malay, short scale:
+
+> Kamus Dewan Edisi Keempat, "bilion": "1. (di Britain) satu juta juta, ditulis sbg 1 000 000 000 000 atau 1012; 2. (di AS) satu ribu juta, ditulis sbg 1 000 000 000 atau 109"; [...]
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
