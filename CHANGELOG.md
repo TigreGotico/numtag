@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.1a2](https://github.com/TigreGotico/numtag/tree/0.19.1a2) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.1a1...0.19.1a2)
+
+**Merged pull requests:**
+
+- docs: README, docs index, navigation and agent hints [\#257](https://github.com/TigreGotico/numtag/pull/257) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.1a1](https://github.com/TigreGotico/numtag/tree/0.19.1a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.0a1...0.19.1a1)
@@ -741,10 +749,6 @@
 ## [0.7.0a2](https://github.com/TigreGotico/numtag/tree/0.7.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.0a1...0.7.0a2)
-
-**Merged pull requests:**
-
-- docs: list the ported languages and add a page per language group [\#18](https://github.com/TigreGotico/numtag/pull/18) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.0a1](https://github.com/TigreGotico/numtag/tree/0.7.0a1) (2026-11-15)
 
