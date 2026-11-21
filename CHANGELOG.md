@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.19.1a1](https://github.com/TigreGotico/numtag/tree/0.19.1a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.0a1...0.19.1a1)
+
+**Merged pull requests:**
+
+- fix: read a clock-shaped point decimal as a decimal without a clock word [\#255](https://github.com/TigreGotico/numtag/pull/255) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.0a1](https://github.com/TigreGotico/numtag/tree/0.19.0a1) (2026-11-19)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.0a1...0.19.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.1a1...0.19.0a1)
+
+## [0.18.1a1](https://github.com/TigreGotico/numtag/tree/0.18.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.0a1...0.18.1a1)
 
 **Merged pull requests:**
 
@@ -753,10 +765,6 @@
 ## [0.3.0a2](https://github.com/TigreGotico/numtag/tree/0.3.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a1...0.3.0a2)
-
-**Merged pull requests:**
-
-- test: a count and a collective after a scale numeral start a new number [\#17](https://github.com/TigreGotico/numtag/pull/17) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.3.0a1](https://github.com/TigreGotico/numtag/tree/0.3.0a1) (2026-11-15)
 
