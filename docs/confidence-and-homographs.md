@@ -4,7 +4,7 @@
 covers: What a low confidence means, which words get one, and what a caller does with them.
 source: numtag/tagger.py:CONFIDENCE, numtag/grammar.py, the ambiguous and article words of each lexicon
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/confidence-and-homographs.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: getting-started.md, rulings.md
 -->
 

@@ -4,7 +4,7 @@
 covers: What numtag does, how to install it, a first example, the supported languages and the way into docs/.
 source: numtag/__init__.py:__all__, numtag/tagger.py:tag_numbers, numtag/lexicon/*.json
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: diff <(awk '/^\x60\x60\x60python/{n++;f=(n==1);next} /^\x60\x60\x60/{f=0} f' README.md | python -) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' README.md) && sed '/^\x60\x60\x60/d' README.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: docs/index.md, docs/getting-started.md, AGENTS.md
 -->
 

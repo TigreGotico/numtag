@@ -4,7 +4,7 @@
 covers: The planned features, stated as plans, and the readings that wait for a ruling.
 source: numtag/__init__.py:__all__, numtag/mention.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/roadmap.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: api.md, rulings.md
 -->
 

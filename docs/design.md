@@ -4,7 +4,7 @@
 covers: How the tagger works inside: tokenizer, lexicon, grammar and string arithmetic.
 source: numtag/tokenize.py, numtag/grammar.py, numtag/tagger.py, numtag/digits.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/design.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: adding-a-language.md, benchmarks.md
 -->
 

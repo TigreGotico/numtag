@@ -1,14 +1,14 @@
 # Benchmarks
 
 <!-- agent-hint
-covers: Accuracy, memory and time of numtag against ovos-number-parser, with the commands that produce them.
+covers: Accuracy and memory of numtag against ovos-number-parser, with the commands that produce them.
 source: benchmarks/bench.py, tests/gold/
 generated: no
-verify: .venv/bin/python benchmarks/bench.py numtag tests/gold numtag.json and .venv-parser/bin/python benchmarks/bench.py parser tests/gold parser.json
+verify: diff <(python -c "import json,subprocess as s; n,p=[json.loads(s.check_output([c,'benchmarks/bench.py',k,'tests/gold','/dev/null'])) for c,k in (('.venv/bin/python','numtag'),('.venv-parser/bin/python','parser'))]; [print('| %s | %d | %d | %d | %d | %d | %d |'%(l,n['accuracy'][l]['rows'],n['accuracy'][l]['rows_right'],p['accuracy'][l]['rows_right'],n['accuracy'][l]['gold_mentions'],n['accuracy'][l]['mentions_found'],p['accuracy'][l]['mentions_found'])) for l in ('pt-PT','pt-BR','en')]") <(grep -E '^\| (pt-PT|pt-BR|en) \| [0-9]' docs/benchmarks.md)
 see: design.md
 -->
 
-This page compares numtag with ovos-number-parser on accuracy, memory and time. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
+This page compares numtag with ovos-number-parser on accuracy and memory. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
 
 ## What was measured
 
@@ -59,20 +59,6 @@ The rows that numtag misses are in [languages/pt.md](languages/pt.md) and [langu
 | Python allocations in the first call per language (tracemalloc peak) | 2933 KiB | 64 KiB |
 
 numtag loads the JSON lexicon of a language on the first call for that language. The parser builds its tables when it is imported, and its import also loads its dependencies.
-
-## Time
-
-The table gives the time of the parser divided by the time of numtag, for the same input in the same run. A value of 6 means the parser takes six times as long. Absolute times depend on the machine and its load, so the page gives none. The runs used Python 3.14.6 on a laptop with an Intel Core i9-11900H.
-
-| Measure | Parser time divided by numtag time (pt-PT / pt-BR / en) |
-|---|---|
-| Import | 6 |
-| Per gold sentence, median | 6.0 / 7.8 / 4.4 |
-| Per gold sentence, 95th percentile | 3.1 / 6.4 / 10.2 |
-| Short command, median | 5.6 / 7.8 / 4.0 |
-| 2000 words of pt-PT text, best of 3 | 9.0 |
-
-The per-sentence times come from 5 passes over each corpus after a first call. The short command is read 200 times. It is "quanto é vinte e três mais quarenta e cinco" in Portuguese and "what is twenty three plus forty five" in English. The long text is the first 2000 words of the pt-PT gold sentences, joined.
 
 ---
 [← Design](design.md) · [Home](index.md) · [Roadmap →](roadmap.md)

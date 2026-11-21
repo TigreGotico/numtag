@@ -4,7 +4,7 @@
 covers: Each decided reading of a number phrase, with an example and its source.
 source: numtag/lexicon/*.json, tests/gold/*.jsonl (the source fields)
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/rulings.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: confidence-and-homographs.md, adding-a-language.md
 -->
 

@@ -4,7 +4,7 @@
 covers: The three canonical value strings, how to convert them, and why a value has no length limit.
 source: numtag/mention.py:is_canonical_value, numtag/digits.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/values.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: api.md, number-scale.md
 -->
 

@@ -4,7 +4,7 @@
 covers: The map of the documentation: what numtag is and which page answers which question.
 source: docs/*.md, numtag/__init__.py:__all__
 generated: no
-verify: python -c "import numtag; print(sorted(numtag.__all__))" and a check that every relative link of docs/ resolves
+verify: diff <(ls docs/*.md docs/languages/*.md | sed 's#docs/##' | grep -v '^index.md$' | sort) <(grep -o '^| \[[^]]*\]([a-z/-]*\.md)' docs/index.md | sed 's/.*(\(.*\))/\1/' | sort)
 see: getting-started.md, api.md
 -->
 

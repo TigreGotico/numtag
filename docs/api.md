@@ -4,7 +4,7 @@
 covers: Every public name of the package with its signature, fields and defaults.
 source: numtag/__init__.py:__all__, numtag/tagger.py, numtag/mention.py, numtag/vague.py:tag_vague_quantities, numtag/roman.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: getting-started.md, values.md
 -->
 

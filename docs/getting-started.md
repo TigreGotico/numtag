@@ -4,7 +4,7 @@
 covers: How to make the first call and do the common tasks: filter weak mentions, replace numbers with digits, convert values, choose a scale.
 source: numtag/tagger.py:tag_numbers, numtag/mention.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: sed '/^\x60\x60\x60/d' docs/getting-started.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: api.md, values.md, number-scale.md
 -->
 

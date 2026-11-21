@@ -4,7 +4,7 @@
 covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
 source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
 see: rulings.md, design.md
 -->
 

@@ -4,7 +4,7 @@
 covers: What numtag reads in Lithuanian.
 source: numtag/lexicon/lt.json, tests/gold/lt.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
+verify: sed '/^\x60\x60\x60/d' docs/languages/baltic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nprint(len(rows),"rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows else 0)' docs/languages/baltic.md
 see: ../rulings.md, ../adding-a-language.md
 -->
 
