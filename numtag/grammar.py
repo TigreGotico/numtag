@@ -386,13 +386,18 @@ class Grammar:
             return end, Rational.from_decimal(si[1].replace(self.lex.group_mark, ""), si[2]), True
         if not match:
             # where the comma marks decimals, a point that cannot group digits
-            # marks them: "1.5", "3.14159", "0.500". A time of day also
-            # takes the point ("14.30", "24.00"), so that shape reads no
-            # number.
+            # marks them: "1.5", "3.14159", "0.500". A time of day also takes
+            # the point, so an hour and minutes ("14.30") read no number.
+            # Spanish reads them as a decimal, and so does any locale for an
+            # hour of "0" ("0.25"), unless a clock word stands beside them.
             point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
-            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
-                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text):
+            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) or text == "24.00":
                 return None
+            if re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]", text):
+                clocked = (i > 0 and self.tokens[i - 1].norm in self.lex.clock_before) \
+                    or (end < len(self.tokens) and self.tokens[end].norm in self.lex.clock_after)
+                if clocked or not (self.lex.point_decimal or point[1] == "0"):
+                    return None
             return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
         whole = whole_text.replace(self.lex.group_mark, "")

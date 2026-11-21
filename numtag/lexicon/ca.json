@@ -58,6 +58,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "les",
+    "la"
+   ],
+   "source": "ca.wikipedia \"Sistema horari de 24 hores\": \"el dia comença a les 00.00, just després de mitjanit i acaba a les 24.00\". \"la\" is the article of one o'clock: the Spanish DPD \"hora\" says \"el artículo debe ir en singular (la una\"; no Catalan quote. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h"
+   ],
+   "source": "ca.wikipedia \"Sistema horari de 24 hores\": \"el dia comença a les 00.00, just després de mitjanit i acaba a les 24.00\". \"la\" is the article of one o'clock: the Spanish DPD \"hora\" says \"el artículo debe ir en singular (la una\"; no Catalan quote. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "i"

@@ -129,16 +129,26 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
     """Stretches of tokens with only spaces or hyphens between them: a
-    number never crosses punctuation. Where the lexicon allows it, a comma
-    after a scale word links a number word: "dois milhões, duzentos e
-    trinta e seis mil" is one number."""
+    number never crosses punctuation. A clock word joins the digits it touches
+    or follows with a period ("14.30h", "kl. 14.30"). Where the lexicon allows
+    it, a comma after a scale word links a number word: "dois milhões,
+    duzentos e trinta e seis mil" is one number."""
     runs: list[list[Token]] = []
     for token in tokens:
-        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)):
+        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)
+                     or _clock_word_joins(lexicon, runs[-1][-1], token)):
             runs[-1].append(token)
         else:
             runs.append([token])
     return runs
+
+
+def _clock_word_joins(lexicon: Lexicon, previous: Token, token: Token) -> bool:
+    """A clock word that touches the digits ("14.30h", "14.30Uhr"), and the
+    digits after an abbreviated clock word and its period ("kl. 14.30")."""
+    if token.is_digits:
+        return token.gap.startswith(".") and token.gap[1:].isspace() and previous.norm in lexicon.clock_abbreviation
+    return previous.is_digits and token.gap == "" and token.norm in lexicon.clock_after
 
 
 def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:

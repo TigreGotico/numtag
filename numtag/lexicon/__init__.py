@@ -293,6 +293,17 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # "um" in "um 14.30": a word before an hour and minutes written with a
+    # point, which then read as a time and no number.
+    clock_before: frozenset[str] = frozenset()
+    # "Uhr" in "14.30 Uhr": the same, as a word after them.
+    clock_after: frozenset[str] = frozenset()
+    # "kl" in "kl. 14.30": a clock word that is an abbreviation, so its period
+    # joins it to the digits after it. It is also a clock_before word.
+    clock_abbreviation: frozenset[str] = frozenset()
+    # Spanish: an hour and minutes with a point are a decimal unless a clock
+    # word stands beside them; elsewhere only an hour of "0" is.
+    point_decimal: bool = False
     # A word between a numerator and a denominator cardinal, as "a/b" is
     # read aloud: eu "zati" in "hiru zati lau" (3/4).
     fraction_over: frozenset[str] = frozenset()
@@ -635,6 +646,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        clock_before=frozenset(w.casefold() for w in (*words.get("clock_before", ()), *words.get("clock_abbreviation", ()))),
+        clock_abbreviation=frozenset(w.casefold() for w in words.get("clock_abbreviation", ())),
+        point_decimal=settings.get("point_decimal", False),
+        clock_after=frozenset(w.casefold() for w in words.get("clock_after", ())),
         ambiguous_words=frozenset(ambiguous_words),
         ordinal_particles=frozenset(words.get("ordinal_particle", ())),
         fraction_over=frozenset(words.get("fraction_over", ())),
