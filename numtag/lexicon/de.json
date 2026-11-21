@@ -14,7 +14,7 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'. de.wikipedia \"Dezimaltrennzeichen\", quoting DIN EN ISO 80000-1: \"Im deutschsprachigen Raum ist das Komma das Dezimalzeichen\""
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'. de.wikipedia \"Dezimaltrennzeichen\", quoting DIN EN ISO 80000-1: \"Im deutschsprachigen Raum ist das Komma das Dezimalzeichen\". Duden, \"Komma\" (https://www.duden.de/rechtschreibung/Komma), Bedeutung: \"Zeichen in Form eines kleinen geschwungenen Strichs, mit dem Sätze oder Satzteile voneinander getrennt oder bei der Ziffernschreibung die Dezimalstellen abgetrennt werden\""
   },
   "space_groups": {
    "value": true,
