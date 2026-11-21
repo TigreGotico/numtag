@@ -135,6 +135,8 @@ class TestArabic(unittest.TestCase):
         # water, and a hundred before a number: 100 + 2 = 102
         self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
         self.assertEqual(ar("مية واثنين"), [("مية واثنين", "102", C)])
+        # ميتين is also "dead" (plural): alone it reads 200 at the homograph confidence
+        self.assertEqual(sure("ناس ميتين", "ar"), [("ميتين", "200", 0.4)])
 
 
 if __name__ == "__main__":
