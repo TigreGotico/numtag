@@ -4,7 +4,7 @@
 covers: What numtag reads in Lithuanian.
 source: numtag/lexicon/lt.json, tests/gold/lt.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

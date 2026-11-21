@@ -4,7 +4,7 @@
 covers: What numtag reads in Finnish, Estonian, Hungarian, Turkish and Azerbaijani.
 source: numtag/lexicon/{fi,et,hu,tr,az}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

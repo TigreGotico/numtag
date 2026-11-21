@@ -4,7 +4,7 @@
 covers: What numtag reads in English.
 source: numtag/lexicon/en.json, tests/gold/en.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../number-scale.md
 -->
 

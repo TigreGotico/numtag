@@ -4,7 +4,7 @@
 covers: What numtag reads in Greek, Arabic, Hebrew, Persian, Kabyle and Maltese.
 source: numtag/lexicon/{el,ar,he,fa,kab,mt}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

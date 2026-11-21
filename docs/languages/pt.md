@@ -4,7 +4,7 @@
 covers: What numtag reads in European and Brazilian Portuguese.
 source: numtag/lexicon/pt-PT.json, tests/gold/pt-PT.jsonl, numtag/lexicon/pt-BR.json, tests/gold/pt-BR.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../number-scale.md
 -->
 

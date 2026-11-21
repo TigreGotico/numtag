@@ -4,7 +4,7 @@
 covers: What numtag reads in Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian.
 source: numtag/lexicon/{ru,uk,bg,pl,cs,sk,sl,hr,sr}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

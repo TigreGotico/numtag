@@ -4,7 +4,7 @@
 covers: What numtag reads in German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk.
 source: numtag/lexicon/{de,nl,fy,da,sv,nb,nn}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

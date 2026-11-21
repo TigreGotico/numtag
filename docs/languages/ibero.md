@@ -4,7 +4,7 @@
 covers: What numtag reads in Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese.
 source: numtag/lexicon/{es,gl,ca,ast,an,oc,mwl}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 

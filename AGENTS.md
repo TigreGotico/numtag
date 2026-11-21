@@ -2,7 +2,7 @@
 
 Read this file before you change anything in the repository. It gives the map, the setup, the hard rules and the checks to run before a push. The documentation index is [docs/index.md](docs/index.md).
 
-numtag finds every number in a text. It returns one mention per number with the exact words, the character span, an exact value as a digit string, the kind and the form. It reads numbers only. It has no runtime dependencies.
+numtag finds every number in a text and returns one mention per number, with the exact words, the character span, an exact value as a digit string, the kind and the form. It reads numbers only and has no runtime dependencies.
 
 ## Repository map
 
@@ -44,11 +44,9 @@ The full suite takes several minutes. `tests/test_docs.py` runs every example in
 5. A value is a canonical digit string ([values.md](docs/values.md)).
 6. A new language has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
 7. Every example in the docs runs as a test and shows the output it gives.
-8. A page of `docs/` states what is. It has no dates and no history, and [roadmap.md](docs/roadmap.md) states plans without dates.
-9. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
+8. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
 
 ## Before you push
 
 1. Run the full test suite.
 2. If you added, removed or moved a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.
-3. Squash to one commit with a conventional-commit message (`fix:`, `feat:`, `docs:`). Open the pull request against `dev` as a draft.

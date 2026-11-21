@@ -4,7 +4,7 @@
 covers: What numtag reads in French, Italian, Romanian, Basque, Indonesian and Malay.
 source: numtag/lexicon/{fr-FR,fr-BE,fr-CH,it,ro,eu,id,ms}.json, the same names under tests/gold/*.jsonl
 generated: no
-verify: python -m pytest tests/test_docs.py -q
+verify: python -m pytest tests/test_docs.py tests/test_gold.py -s -q
 see: ../rulings.md, ../adding-a-language.md
 -->
 
