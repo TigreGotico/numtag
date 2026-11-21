@@ -14,7 +14,7 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'"
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'. de.wikipedia \"Dezimaltrennzeichen\", quoting DIN EN ISO 80000-1: \"Im deutschsprachigen Raum ist das Komma das Dezimalzeichen\""
   },
   "space_groups": {
    "value": true,

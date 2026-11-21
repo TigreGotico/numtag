@@ -878,7 +878,7 @@ class TestDigits(unittest.TestCase):
         self.assertEqual(pt("3,00 euros"), [("3,00", "3", C)])
 
     def test_marks_that_do_not_fit_the_locale_are_no_number(self):
-        self.assertEqual(pt("versão 3.11.2"), [])
+        self.assertEqual(pt("versão 3.11"), [])
 
     def test_leading_zeros_stay_in_the_text_only(self):
         self.assertEqual(pt("agente 007"), [("007", "7", C)])
