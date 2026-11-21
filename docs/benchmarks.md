@@ -1,14 +1,14 @@
 # Benchmarks
 
 <!-- agent-hint
-covers: Accuracy and memory of numtag against ovos-number-parser, with the commands that produce them.
+covers: Accuracy of numtag against ovos-number-parser, with the commands that produce them.
 source: benchmarks/bench.py, tests/gold/
 generated: no
 verify: diff <(python -c "import json,subprocess as s; n,p=[json.loads(s.check_output([c,'benchmarks/bench.py',k,'tests/gold','/dev/null'])) for c,k in (('.venv/bin/python','numtag'),('.venv-parser/bin/python','parser'))]; [print('| %s | %d | %d | %d | %d | %d | %d |'%(l,n['accuracy'][l]['rows'],n['accuracy'][l]['rows_right'],p['accuracy'][l]['rows_right'],n['accuracy'][l]['gold_mentions'],n['accuracy'][l]['mentions_found'],p['accuracy'][l]['mentions_found'])) for l in ('pt-PT','pt-BR','en')]") <(grep -E '^\| (pt-PT|pt-BR|en) \| [0-9]' docs/benchmarks.md)
 see: design.md
 -->
 
-This page compares numtag with ovos-number-parser on accuracy and memory. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
+This page compares numtag with ovos-number-parser on accuracy. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
 
 ## What was measured
 
@@ -24,7 +24,7 @@ The parser runs with ordinals on, because that mode finds more of the gold menti
 
 ## Commands
 
-Each library gets its own virtual environment, so that the memory numbers belong to one library.
+Each library gets its own virtual environment, so that each run loads one library.
 
 ```bash
 uv venv .venv
@@ -35,7 +35,7 @@ uv pip install --python .venv-parser/bin/python --prerelease=allow "ovos-number-
 .venv-parser/bin/python benchmarks/bench.py parser tests/gold parser.json
 ```
 
-Each run writes a JSON report and prints it. The parser version is pinned because ovos-number-parser reads numbers with numtag from 0.25.0a1 (it requires `numtag>=0.12.12a1`). A run of such a version gives the numtag scores in both columns.
+Each run writes a JSON report and prints it. The parser version is pinned because ovos-number-parser reads numbers with numtag from 0.31.0a1, which requires `numtag>=0.19.0a1`. A run of such a version gives the numtag scores in both columns.
 
 ## Accuracy
 
@@ -48,17 +48,6 @@ A row is right when the set of (start, end, value) that the library gives equals
 | en | 444 | 442 | 358 | 486 | 485 | 400 |
 
 The rows that numtag misses are in [languages/pt.md](languages/pt.md) and [languages/en.md](languages/en.md). The gold values come from sources and hand arithmetic, not from either library.
-
-## Memory
-
-| Measure | numtag | parser |
-|---|---|---|
-| Resident memory of the bare interpreter | 18.1 MiB | 18.2 MiB |
-| Resident memory after the import | 22.6 MiB | 32.9 MiB |
-| Resident memory after the whole run | 27.8 MiB | 33.6 MiB |
-| Python allocations in the first call per language (tracemalloc peak) | 2933 KiB | 64 KiB |
-
-numtag loads the JSON lexicon of a language on the first call for that language. The parser builds its tables when it is imported, and its import also loads its dependencies.
 
 ---
 [← Design](design.md) · [Home](index.md) · [Roadmap →](roadmap.md)

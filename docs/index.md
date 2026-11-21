@@ -48,7 +48,7 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | Guide | Content |
 |---|---|
 | [design.md](design.md) | Principles, tokenizer, lexicon, grammar, string arithmetic and determinism |
-| [benchmarks.md](benchmarks.md) | Accuracy, memory and time against ovos-number-parser, with the commands |
+| [benchmarks.md](benchmarks.md) | Accuracy against ovos-number-parser, with the commands |
 | [roadmap.md](roadmap.md) | Planned features |
 
 ## Terms
