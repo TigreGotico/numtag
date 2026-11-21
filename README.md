@@ -1,5 +1,13 @@
 # numtag
 
+<!-- agent-hint
+covers: What numtag does, how to install it, a first example, the supported languages and the way into docs/.
+source: numtag/__init__.py:__all__, numtag/tagger.py:tag_numbers, numtag/lexicon/*.json
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: docs/index.md, docs/getting-started.md, AGENTS.md
+-->
+
 numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões").
 
 ```python
@@ -85,6 +93,8 @@ Each language page gives the default scale of each lexicon. Pass `scale="long"` 
 Each language is one JSON file in `numtag/lexicon/`. Each word and each setting in the file carries the source of its rule.
 
 ## Documentation
+
+Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.md](docs/getting-started.md) for the first calls. Agents that change the repository read [AGENTS.md](AGENTS.md).
 
 | Guide | Content |
 |---|---|

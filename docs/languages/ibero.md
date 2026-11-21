@@ -1,15 +1,23 @@
 # Iberian languages and Occitan
 
+<!-- agent-hint
+covers: What numtag reads in Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese.
+source: numtag/lexicon/{es,gl,ca,ast,an,oc,mwl}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese. All of them count in the long scale: "billón" and its cognates are 10^12.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 237 | 234 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
-| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
+| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 228 | 225 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
-| Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 173 | 173 |
+| Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 174 | 174 |
 | Mirandese | every `mwl` tag | `numtag/lexicon/mwl.json` | long | 162 | 162 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -181,3 +189,6 @@ Mirandese, long scale:
 > ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=["bírgula", "ponto", "birgula", ...], NEGATIVE_SIGN=["menos"], fractions "meio", "tércio", "quarto", "meia" ("ũa i meia -> 1.5") [...]
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← French, Italian, Romanian, Basque, Indonesian and Malay](fr-it-ro-eu-id.md) · [Home](../index.md) · [Adding a language →](../adding-a-language.md)

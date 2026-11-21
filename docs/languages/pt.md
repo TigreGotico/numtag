@@ -1,5 +1,13 @@
 # Portuguese
 
+<!-- agent-hint
+covers: What numtag reads in European and Brazilian Portuguese.
+source: numtag/lexicon/pt-PT.json, tests/gold/pt-PT.jsonl, numtag/lexicon/pt-BR.json, tests/gold/pt-BR.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../number-scale.md
+-->
+
 numtag reads European Portuguese and Brazilian Portuguese. The tag `pt-BR` reads Brazilian Portuguese. Every other `pt` tag (`pt`, `pt-PT`, `pt-AO`, `pt-MZ`) reads European Portuguese. The lexicon files are `numtag/lexicon/pt-PT.json` and `numtag/lexicon/pt-BR.json`.
 
 ## Two lexicons, one grammar
@@ -102,7 +110,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 
 ## Known misreadings
 
-The European Portuguese gold corpus has 474 rows, and numtag reads 468 of them right. The Brazilian corpus has 466 rows, and numtag reads 460 right. The same six sentences fail in both.
+The European Portuguese gold corpus has 479 rows, and numtag reads 473 of them right. The Brazilian corpus has 470 rows, and numtag reads 464 right. The same six sentences fail in both.
 
 | Sentence | Gold | numtag |
 |---|---|---|

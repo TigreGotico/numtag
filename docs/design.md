@@ -1,5 +1,13 @@
 # Design
 
+<!-- agent-hint
+covers: How the tagger works inside: tokenizer, lexicon, grammar and string arithmetic.
+source: numtag/tokenize.py, numtag/grammar.py, numtag/tagger.py, numtag/digits.py
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: adding-a-language.md, benchmarks.md
+-->
+
 numtag has one reader. It turns a text into tokens, splits the tokens into runs, parses the longest number at each position of a run, and computes each value with arithmetic on digit strings. This page describes each step and the principles behind it.
 
 ## Principles

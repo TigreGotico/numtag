@@ -1,5 +1,13 @@
 # Roadmap
 
+<!-- agent-hint
+covers: The planned features, stated as plans, and the readings that wait for a ruling.
+source: numtag/__init__.py:__all__, numtag/mention.py
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: api.md, rulings.md
+-->
+
 This page lists planned features. None of them is built. The API names on this page do not exist in the package, and no code may depend on them. Each feature comes as its own change, with tests and a documentation update.
 
 ```python

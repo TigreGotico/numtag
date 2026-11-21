@@ -1,11 +1,19 @@
 # Germanic languages
 
+<!-- agent-hint
+covers: What numtag reads in German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk.
+source: numtag/lexicon/{de,nl,fy,da,sv,nb,nn}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written forms of Norwegian. German, Dutch, West Frisian and Danish say the unit before the ten: German "einundzwanzig" is 21. Swedish says the ten first, and Norwegian has both orders. German writes a number below a million as one word.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| German | every `de` tag | `numtag/lexicon/de.json` | long | 191 | 191 |
-| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 186 | 186 |
+| German | every `de` tag | `numtag/lexicon/de.json` | long | 196 | 196 |
+| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 187 | 187 |
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 156 | 156 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
@@ -131,3 +139,6 @@ Norwegian Nynorsk, long scale:
 > Norwegian Nynorsk uses the long scale: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: "1000000000: éin milliard[ →→]", "1000000000000: éin billion[ →→]"
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Greek, Arabic, Hebrew, Persian, Kabyle and Maltese](el-ar-he-fa-kab.md) · [Home](../index.md) · [Uralic and Turkic languages →](uralic-turkic.md)

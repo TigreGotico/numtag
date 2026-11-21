@@ -1,13 +1,21 @@
 # Greek, Arabic, Hebrew, Persian, Kabyle and Maltese
 
+<!-- agent-hint
+covers: What numtag reads in Greek, Arabic, Hebrew, Persian, Kabyle and Maltese.
+source: numtag/lexicon/{el,ar,he,fa,kab,mt}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Greek, Arabic, Hebrew, Persian, Kabyle and Maltese. Arabic and Persian text can use the Arabic-Indic digits, and numtag reads them as digits.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Greek | every `el` tag | `numtag/lexicon/el.json` | short | 159 | 158 |
+| Greek | every `el` tag | `numtag/lexicon/el.json` | short | 161 | 161 |
 | Arabic | every `ar` tag | `numtag/lexicon/ar.json` | short | 157 | 156 |
 | Hebrew | every `he` tag | `numtag/lexicon/he.json` | long | 160 | 157 |
-| Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 151 | 151 |
+| Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 153 | 153 |
 | Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 163 | 163 |
 | Maltese | every `mt` tag | `numtag/lexicon/mt.json` | short | 185 | 177 |
 
@@ -91,3 +99,6 @@ Maltese, short scale:
 > CLDR RBNF mt (unicode-org/cldr release-49, common/rbnf/mt.xml): "1000000000: biljun[ u >>];" names 10^9, the short scale.
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← English](en.md) · [Home](../index.md) · [Germanic languages →](germanic.md)

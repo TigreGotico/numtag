@@ -1,5 +1,13 @@
 # English
 
+<!-- agent-hint
+covers: What numtag reads in English.
+source: numtag/lexicon/en.json, tests/gold/en.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../number-scale.md
+-->
+
 numtag reads every `en` tag (`en`, `en-US`, `en-GB`, `en-AU`) with one lexicon, `numtag/lexicon/en.json`. English reads in the short scale: "billion" is 10^9.
 
 ```python
@@ -127,7 +135,7 @@ numtag reads "nineteen ninety nine" as two numbers, 19 and 99. A year grammar jo
 
 ## Known misreadings
 
-The English gold corpus has 420 rows, and numtag reads 419 of them right. The miss is "second" as a time unit.
+The English gold corpus has 444 rows, and numtag reads 442 of them right. One miss is "second" as a time unit. The other is the second "X" of a papal name.
 
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers("The error was one hundredth of a second.", "en")]
@@ -136,5 +144,14 @@ The English gold corpus has 420 rows, and numtag reads 419 of them right. The mi
 
 The gold row has one mention, 0.01. numtag also gives "second" as the ordinal 2, at the low score 0.4. Read [../confidence-and-homographs.md](../confidence-and-homographs.md).
 
+The Roman numeral after a name needs a cue. numtag reads the "X" after "Pius" and leaves the "X" after "Pio" in the same sentence:
+
+```python
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Pope Pius X (Italian: Pio X; born Giuseppe Melchiorre Sarto)", "en")]
+[('X', '10', 'ordinal')]
+```
+
+The gold row expects both, as 10 and 10.
+
 ---
-[← Portuguese](pt.md) · [Home](../index.md) · [Adding a language →](../adding-a-language.md)
+[← Portuguese](pt.md) · [Home](../index.md) · [Greek, Arabic, Hebrew, Persian, Kabyle and Maltese →](el-ar-he-fa-kab.md)

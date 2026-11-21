@@ -1,5 +1,13 @@
 # Baltic languages
 
+<!-- agent-hint
+covers: What numtag reads in Lithuanian.
+source: numtag/lexicon/lt.json, tests/gold/lt.jsonl
+generated: no
+verify: python -m pytest tests/test_docs.py -q
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Lithuanian. Lithuanian declines its numbers: a cardinal takes the case and gender of the noun it counts, and the hundreds and thousands are nouns with their own case forms. A date names its day with the pronominal ordinal, and a year ends in an ordinal.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
@@ -55,3 +63,6 @@ Lithuanian counts in the short scale: "trilijonas" is 10^12. Pass `scale="long"`
 > Vikipedija (lt), "Trilijonas" (knowledge/wiki/audits/numtag/lexicons/lt/pages/ltwp-trilijonas.txt): "Lietuvoje naudojama trumpoji skalė, todėl trilijono vertė laikoma" 10^12.
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Uralic and Turkic languages](uralic-turkic.md) · [Home](../index.md) · [Slavic languages →](slavic.md)
