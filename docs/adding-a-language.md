@@ -1,5 +1,13 @@
 # Adding a language
 
+<!-- agent-hint
+covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
+source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
+generated: no
+verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
+see: rulings.md, design.md
+-->
+
 A language in numtag is one JSON lexicon file, a gold corpus of real sentences, and tests. The grammar engine is shared. This guide gives the lexicon format, the source rule, the gold format and the gates that a new language must pass.
 
 ## Find the sources first
@@ -156,13 +164,13 @@ A new language needs at least 150 rows. Cover the cardinals 0 to 20, the tens, t
 Check the format of each file. The checker prints the rows in and the rows out, and the two counts must be equal.
 
 ```bash
-python tests/gold/check_gold.py
+python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl
 ```
 
 ```text
-en.jsonl: 420 in, 420 out
-pt-BR.jsonl: 456 in, 456 out
-pt-PT.jsonl: 458 in, 458 out
+en.jsonl: 444 in, 444 out
+pt-BR.jsonl: 470 in, 470 out
+pt-PT.jsonl: 479 in, 479 out
 ```
 
 Add the decimal marks of the language to `DECIMAL_MARKS` in `tests/gold/check_gold.py`, so that the checker can tell a decimal from a fraction.
@@ -186,4 +194,4 @@ A new language passes these gates before it merges.
 Some languages need an engine feature that Portuguese and English do not use. Examples are inverted tens ("einundzwanzig"), vigesimal counting ("quatre-vingts"), compound words ("kaksikymmentä"), case forms, a script other than Latin, or native digits. Add the feature to the engine as a general mechanism. A lexicon setting switches it on, and the default is off. The outputs of the languages that do not set it must not change.
 
 ---
-[← English](languages/en.md) · [Home](index.md) · [Design →](design.md)
+[← Iberian languages and Occitan](languages/ibero.md) · [Home](index.md) · [Design →](design.md)

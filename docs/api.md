@@ -1,5 +1,13 @@
 # API reference
 
+<!-- agent-hint
+covers: Every public name of the package with its signature, fields and defaults.
+source: numtag/__init__.py:__all__, numtag/tagger.py, numtag/mention.py, numtag/vague.py:tag_vague_quantities, numtag/roman.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: getting-started.md, values.md
+-->
+
 The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity` and `VagueKind`. This page describes each of them. Every other module is internal.
 
 ```python

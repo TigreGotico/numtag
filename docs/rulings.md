@@ -1,5 +1,13 @@
 # Rulings
 
+<!-- agent-hint
+covers: Each decided reading of a number phrase, with an example and its source.
+source: numtag/lexicon/*.json, tests/gold/*.jsonl (the source fields)
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/rulings.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: confidence-and-homographs.md, adding-a-language.md
+-->
+
 A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. Each quote in a block quote on this page is also in a source field of a lexicon file or a gold row, word for word.
 
 All examples on this page use this helper:

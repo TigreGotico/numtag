@@ -1,5 +1,13 @@
 # numtag
 
+<!-- agent-hint
+covers: What numtag does, how to install it, a first example, the supported languages and the way into docs/.
+source: numtag/__init__.py:__all__, numtag/tagger.py:tag_numbers, numtag/lexicon/*.json
+generated: no
+verify: diff <(awk '/^\x60\x60\x60python/{n++;f=(n==1);next} /^\x60\x60\x60/{f=0} f' README.md | python -) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' README.md) && sed '/^\x60\x60\x60/d' README.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: docs/index.md, docs/getting-started.md, AGENTS.md
+-->
+
 numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões").
 
 ```python
@@ -86,6 +94,8 @@ Each language is one JSON file in `numtag/lexicon/`. Each word and each setting 
 
 ## Documentation
 
+Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.md](docs/getting-started.md) for the first calls. Agents that change the repository read [AGENTS.md](AGENTS.md).
+
 | Guide | Content |
 |---|---|
 | [docs/index.md](docs/index.md) | The map of the documentation |
@@ -98,7 +108,7 @@ Each language is one JSON file in `numtag/lexicon/`. Each word and each setting 
 | [docs/languages/](docs/languages/) | What each language reads |
 | [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for a new language |
 | [docs/design.md](docs/design.md) | How the tagger works inside |
-| [docs/benchmarks.md](docs/benchmarks.md) | Accuracy, memory and time against ovos-number-parser |
+| [docs/benchmarks.md](docs/benchmarks.md) | Accuracy against ovos-number-parser |
 | [docs/roadmap.md](docs/roadmap.md) | Planned features |
 
 ## License

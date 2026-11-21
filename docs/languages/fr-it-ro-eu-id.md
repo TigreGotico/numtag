@@ -1,13 +1,21 @@
 # French, Italian, Romanian, Basque, Indonesian and Malay
 
+<!-- agent-hint
+covers: What numtag reads in French, Italian, Romanian, Basque, Indonesian and Malay.
+source: numtag/lexicon/{fr-FR,fr-BE,fr-CH,it,ro,eu,id,ms}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/fr-it-ro-eu-id.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/fr-it-ro-eu-id.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads French, Italian, Romanian, Basque, Indonesian and Malay. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 190 | 189 |
+| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 201 | 199 |
 | French (Belgium) | `fr-BE` | `numtag/lexicon/fr-BE.json` | long | 22 | 22 |
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
-| Italian | every `it` tag | `numtag/lexicon/it.json` | long | 187 | 185 |
+| Italian | every `it` tag | `numtag/lexicon/it.json` | long | 194 | 191 |
 | Romanian | every `ro` tag | `numtag/lexicon/ro.json` | long | 157 | 157 |
 | Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 168 | 168 |
 | Indonesian | every `id` tag | `numtag/lexicon/id.json` | short | 175 | 174 |
@@ -177,3 +185,6 @@ Malay, short scale:
 > Kamus Dewan Edisi Keempat, "bilion": "1. (di Britain) satu juta juta, ditulis sbg 1 000 000 000 000 atau 1012; 2. (di AS) satu ribu juta, ditulis sbg 1 000 000 000 atau 109"; [...]
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Slavic languages](slavic.md) · [Home](../index.md) · [Iberian languages and Occitan →](ibero.md)
