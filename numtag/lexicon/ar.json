@@ -696,6 +696,85 @@
       "source": "en.wiktionary page ثلثمائة: \"ثَلَثُمِائَة • ( ṯalāṯumiʔah ) ? alternative spelling of ثَلَاثُمِئَة ( ṯalāṯumiʔa )\"."
     },
     {
+      "word": "ميتين",
+      "role": "hundred",
+      "value": "200",
+      "ambiguous": true,
+      "source": "en.wiktionary \"ميتين\", Egyptian Arabic: \"{{numberbox|arz|200}}\" with the numeral entry \"two hundred\" and alternative spelling متين, Moroccan Arabic \"مِيتِين\" \"two hundred\", South Levantine Arabic \"مية ... two hundred\"; Etymology 2 of the same entry is the plural of ميّت, \"dead\". Alone it is low confidence, as مية is."
+    },
+    {
+      "word": "ثلاثمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), pp. 293-306: θalaθmiya 300, 'arbaʕmiya 400, xamsmiya 500, sitmiya 600, sabaʕmiya 700, θamanmiya 800, tisiʕmiya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تلتمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "en.wiktionary, Moroccan Arabic numeral entries تلتمية \"{{number box|ary|300}} ... three hundred\" and ربعمية (the fraction-prefix hundreds taltimya, rabʕamya). The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "اربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "أربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "en.wiktionary, Moroccan Arabic numeral entries تلتمية \"{{number box|ary|300}} ... three hundred\" and ربعمية (the fraction-prefix hundreds taltimya, rabʕamya). The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "خمسمية",
+      "role": "hundred",
+      "value": "500",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ستمية",
+      "role": "hundred",
+      "value": "600",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "سبعمية",
+      "role": "hundred",
+      "value": "700",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تمنمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ثمنمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), pp. 293-306: θalaθmiya 300, 'arbaʕmiya 400, xamsmiya 500, sitmiya 600, sabaʕmiya 700, θamanmiya 800, tisiʕmiya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ثمانمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), pp. 293-306: θalaθmiya 300, 'arbaʕmiya 400, xamsmiya 500, sitmiya 600, sabaʕmiya 700, θamanmiya 800, tisiʕmiya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تسعمية",
+      "role": "hundred",
+      "value": "900",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
       "word": "ألف",
       "role": "scale_numeral",
       "value": 3,
