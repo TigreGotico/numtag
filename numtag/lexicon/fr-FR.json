@@ -16,7 +16,7 @@
     "ordinal_style": {"value": "last_word", "source": "CLDR 48 RBNF (ICU 78) fr %%spellout-ordinal: \"21: vingt->%%et-unieme>;\": only the last word of an ordinal is ordinal."}
   },
   "words": {
-    "clock_after": {"value": ["h", "heures"], "source": "fr.wikipedia \"Système horaire sur 24 heures\": \"mercredi à 0 h 56\": \"h\" after the hour. \"à\" is no clock word here: \"à 0.25\" also sets a value. An hour and minutes written with a point before one of these words are a time of day, not a decimal."},
+    "clock_after": {"value": ["h"], "source": "fr.wikipedia \"Système horaire sur 24 heures\": \"mercredi à 0 h 56\": \"h\" after the hour. \"à\" is no clock word here: \"à 0.25\" also sets a value. An hour and minutes written with a point before one of these words are a time of day, not a decimal."},
     "joiner": {"value": ["et"], "source": "CLDR 48 RBNF (ICU 78) fr %%et-un: \"1: et-un;\", \"11: et-onze;\"; \"et\" also joins \"mille et un\"."},
     "decimal_marker": {"value": ["virgule"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgule >%spellout-cardinal-masculine>;\"; TLFi, VIRGULE: \"[Dans la lecture d'un nombre; indique la présence de ce signe] [...] 494 virgule 39 par jour\"."},
     "minus": {"value": ["moins"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"-x: moins >%spellout-cardinal-masculine>;\""},

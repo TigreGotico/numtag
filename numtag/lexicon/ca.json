@@ -66,8 +66,7 @@
   },
   "clock_after": {
    "value": [
-    "h",
-    "hores"
+    "h"
    ],
    "source": "ca.wikipedia \"Sistema horari de 24 hores\": \"el dia comença a les 00.00, just després de mitjanit i acaba a les 24.00\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
   },

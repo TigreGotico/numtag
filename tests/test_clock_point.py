@@ -22,14 +22,22 @@ PRICED = (
     ("gl", "pon o brillo a 0.25", "0.25", "0.25"),
 )
 CLOCK = (
-    ("es", "quedamos a las 11.30"), ("es", "son las 11.30 horas"), ("es", "llega a las 11.30 h"),
-    ("pt-PT", "chegamos às 11.30"), ("pt-PT", "são 11.30 horas"), ("pt-BR", "saio às 11.30 h"),
+    ("es", "quedamos a las 11.30"), ("es", "a las 17.30 horas"), ("es", "llega a las 11.30 h"),
+    ("pt-PT", "chegamos às 11.30"), ("pt-BR", "saio às 11.30 h"),
     ("de", "wir kommen um 11.30"), ("de", "gegen 11.30 Uhr"), ("de", "es ist 11.30 Uhr"),
-    ("fr-FR", "il est 11.30 heures"), ("fr-FR", "départ 11.30 h"),
-    ("it", "arriviamo alle 11.30"), ("it", "sono le 11.30 ore"), ("it", "parte 11.30 h"),
+    ("fr-FR", "départ 11.30 h"),
+    ("it", "arriviamo alle 11.30"), ("it", "parte 11.30 h"),
     ("nl", "we komen om 11.30"), ("nl", "het is 11.30 uur"),
-    ("ca", "arribem a les 11.30"), ("ca", "són les 11.30 h"), ("ca", "a les 11.30 hores"),
-    ("gl", "chegamos ás 11.30"), ("gl", "son as 11.30 horas"), ("gl", "saio 11.30 h"),
+    ("ca", "arribem a les 11.30"), ("ca", "són les 11.30 h"),
+    ("gl", "chegamos ás 11.30"), ("gl", "saio 11.30 h"),
+    ("nb", "møtet er kl. 11.30"), ("nn", "møtet er kl. 11.30"), ("da", "mødet er kl. 11.30"),
+)
+
+# a plural count noun after the digits counts a length as well, so it marks no clock
+DURATION = (
+    ("es", "dura 1.25 horas", "1.25"), ("pt-PT", "dura 1.25 horas", "1.25"), ("gl", "dura 1.25 horas", "1.25"),
+    ("fr-FR", "dure 1.5 heures", "1.5"), ("it", "dura 1.5 ore", "1.5"),
+    ("fr-FR", "dure 1.25 heures", "1.25"), ("it", "dura 1.25 ore", "1.25"), ("ca", "dura 1.25 hores", "1.25"),
 )
 
 
@@ -48,3 +56,8 @@ class TestClockShapedPoint(unittest.TestCase):
         for lang in ("es", "de", "fr-FR", "nl"):
             with self.subTest(lang=lang):
                 self.assertEqual(tag_numbers("24.00", lang), [])
+
+    def test_a_plural_hour_noun_after_the_shape_is_a_duration(self):
+        for lang, text, value in DURATION:
+            with self.subTest(lang=lang, text=text):
+                self.assertEqual([m.value for m in tag_numbers(text, lang)], [value])

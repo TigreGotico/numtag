@@ -18,7 +18,7 @@
   },
   "words": {
     "clock_before": {"value": ["alle", "ore"], "source": "it.wikipedia \"Sistema orario a 24 ore\": \"quello corrispondente alle 23:59\", \"si usa la lettera h (a significare heure) quando si parla solo in termini di ore e minuti (es. 01h45)\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."},
-    "clock_after": {"value": ["ore", "h"], "source": "it.wikipedia \"Sistema orario a 24 ore\": \"quello corrispondente alle 23:59\", \"si usa la lettera h (a significare heure) quando si parla solo in termini di ore e minuti (es. 01h45)\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."},
+    "clock_after": {"value": ["h"], "source": "it.wikipedia \"Sistema orario a 24 ore\": \"quello corrispondente alle 23:59\", \"si usa la lettera h (a significare heure) quando si parla solo in termini di ore e minuti (es. 01h45)\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."},
     "joiner": {"value": ["e"], "source": "\"e\" joins a half (\"due e mezzo\", \"un milione e mezzo\") and, in speech, the groups (\"un milione e duecentomila\")."},
     "decimal_marker": {"value": ["virgola"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgola >%spellout-cardinal-masculine>;\""},
     "minus": {"value": ["meno"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"-x: meno >%spellout-cardinal-masculine>;\""},
