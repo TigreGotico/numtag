@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a1](https://github.com/TigreGotico/numtag/tree/0.19.22a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.21a1...0.19.22a1)
+
+**Merged pull requests:**
+
+- fix: a number in E notation is no ordinal and no count [\#185](https://github.com/TigreGotico/numtag/pull/185) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.21a1](https://github.com/TigreGotico/numtag/tree/0.19.21a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.20a1...0.19.21a1)
@@ -741,10 +749,6 @@
 ## [0.10.1a1](https://github.com/TigreGotico/numtag/tree/0.10.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.0a1...0.10.1a1)
-
-**Merged pull requests:**
-
-- fix\(hu, fr\): a count noun after a sure cardinal is no number [\#39](https://github.com/TigreGotico/numtag/pull/39) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.0a1](https://github.com/TigreGotico/numtag/tree/0.10.0a1) (2026-11-16)
 
