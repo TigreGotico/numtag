@@ -736,6 +736,7 @@
     {"word": "stotinu", "role": "hundred", "value": "100", "source": "Institut za hrvatski jezik i jezikoslovlje, Hrvatski pravopis, 5.4.1. Jednorječnice (pravopis.hr/pravilo/jednorjecnice/30/): \"glavni brojevi stotice do 1000: sto ili stotinu\". \"stotinu\" is the hundred \"sto\", so \"stotinu tisuća\" is 100000."},
     {"word": "dvema", "role": "unit", "value": "2", "source": "Wiktionary (en), \"dva\": a form in its declension table."},
     {"word": "dve", "role": "unit", "value": "2", "source": "Wiktionary (en), \"dva\": a form in its declension table."},
-    {"word": "tisućo", "role": "scale_numeral", "value": 3, "source": "Wiktionary (en), \"tisuća\": a form in its declension table."}
+    {"word": "tisućo", "role": "scale_numeral", "value": 3, "source": "Wiktionary (en), \"tisuća\": a form in its declension table."},
+    {"word": "stotinama", "role": "hundred_multiplier", "value": 2, "plural": true, "counted": true, "source": "Hrvatski jezični portal (hjp.znanje.hr), entry \"stotina\"; Wiktionary (en), \"stotina\": \"a group of one hundred (100)\", declension of \"stotina\": dative, locative and instrumental plural \"stotinama\"; Hrvatski pravopis 5.4.1 (pravopis.hr/pravilo/jednorjecnice/30/) writes hundreds up to 1000 as a count with \"stotina\". After a count the noun counts hundreds: \"dvjema stotinama\"."}
   ]
 }
