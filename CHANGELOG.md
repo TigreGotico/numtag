@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.19a1](https://github.com/TigreGotico/numtag/tree/0.19.19a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.18a1...0.19.19a1)
+
+**Merged pull requests:**
+
+- fix: read no number in "centenas de milhar", and keep a number word after a plural scale word [\#219](https://github.com/TigreGotico/numtag/pull/219) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.18a1](https://github.com/TigreGotico/numtag/tree/0.19.18a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.17a1...0.19.18a1)
@@ -741,10 +749,6 @@
 ## [0.9.3a1](https://github.com/TigreGotico/numtag/tree/0.9.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.2a1...0.9.3a1)
-
-**Merged pull requests:**
-
-- fix\(ru, pl\): one after a negative particle counts nothing [\#36](https://github.com/TigreGotico/numtag/pull/36) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.2a1](https://github.com/TigreGotico/numtag/tree/0.9.2a1) (2026-11-16)
 
