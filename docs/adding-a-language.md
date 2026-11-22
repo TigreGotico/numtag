@@ -1,5 +1,13 @@
 # Adding a language
 
+<!-- agent-hint
+covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
+source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
+generated: no
+verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
+see: rulings.md, design.md
+-->
+
 A language in numtag is one JSON lexicon file, a gold corpus of real sentences, and tests. The grammar engine is shared. This guide gives the lexicon format, the source rule, the gold format and the gates that a new language must pass.
 
 ## Find the sources first
@@ -34,7 +42,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | Setting | Type | Meaning |
 |---|---|---|
 | `scale` | `"long"` or `"short"` | The default scale of the language |
-| `group_mark` | string | The mark that groups digits: "." in pt, "," in en |
+| `group_mark` | string | The mark that groups digits: "." in pt, "," in en. It is the CLDR group symbol of the language (`tests/test_group_marks.py` checks it against the CLDR table). A language that keeps another mark names the exception in `docs/rulings.md` and in `DOT_EXCEPTIONS` of that test. A new lexicon needs a row in the table, or a name in `NO_CLDR_DATA` when CLDR has no numbers file for it. |
 | `decimal_mark` | string | The mark before the decimals: "," in pt, "." in en |
 | `space_groups` | bool | A single space groups digits ("1 000 000") |
 | `plural_scale_needs_count` | bool | A plural scale word with no count is no number ("milhões de pessoas") |
@@ -58,6 +66,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
+| `percent_before` | Percent words that stand before the number (tr "yüzde"): the number after one is the amount, with no homograph score | empty | empty |
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
 | `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `number_name` | Names and set phrases that start with a number word and hold no number (fa "سه شنبه", Tuesday; ru "одно и то же", the same) | empty | empty |
@@ -84,6 +93,7 @@ Each entry has a `word`, a `role` and a `source`. The role decides the other key
 |---|---|---|
 | `unit`, `ten`, `hundred` | the digit string of the word | "dois" is "2", "vinte" is "20", "cem" is "100" |
 | `collective` | the digit string of the group | "dúzia" is "12" |
+| `article_collective` | the digit string of the group, read only after the indefinite article. A count before the word reads alone | en "couple" is "2" in "a couple"; "one couple" is 1 |
 | `denominator` | the digit string of the denominator; or `scale_of`, a scale word whose power of ten is the denominator | "terço" is "3"; "billionth" has `scale_of` "billion" |
 | `ordinal` | the digit string of the position | "primeiro" is "1" |
 | `hundred_multiplier`, `scale_numeral`, `scale_noun` | a power of ten, as an integer | "mil" is 3 |
@@ -154,13 +164,13 @@ A new language needs at least 150 rows. Cover the cardinals 0 to 20, the tens, t
 Check the format of each file. The checker prints the rows in and the rows out, and the two counts must be equal.
 
 ```bash
-python tests/gold/check_gold.py
+python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl
 ```
 
 ```text
-en.jsonl: 420 in, 420 out
-pt-BR.jsonl: 456 in, 456 out
-pt-PT.jsonl: 458 in, 458 out
+en.jsonl: 444 in, 444 out
+pt-BR.jsonl: 470 in, 470 out
+pt-PT.jsonl: 479 in, 479 out
 ```
 
 Add the decimal marks of the language to `DECIMAL_MARKS` in `tests/gold/check_gold.py`, so that the checker can tell a decimal from a fraction.
@@ -184,4 +194,4 @@ A new language passes these gates before it merges.
 Some languages need an engine feature that Portuguese and English do not use. Examples are inverted tens ("einundzwanzig"), vigesimal counting ("quatre-vingts"), compound words ("kaksikymmentä"), case forms, a script other than Latin, or native digits. Add the feature to the engine as a general mechanism. A lexicon setting switches it on, and the default is off. The outputs of the languages that do not set it must not change.
 
 ---
-[← English](languages/en.md) · [Home](index.md) · [Design →](design.md)
+[← Iberian languages and Occitan](languages/ibero.md) · [Home](index.md) · [Design →](design.md)

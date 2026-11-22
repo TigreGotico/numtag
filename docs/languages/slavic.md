@@ -1,17 +1,26 @@
 # Slavic languages
 
-numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene and Croatian. The number words decline, and each lexicon lists each case form as a word.
+<!-- agent-hint
+covers: What numtag reads in Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian.
+source: numtag/lexicon/{ru,uk,bg,pl,cs,sk,sl,hr,sr}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/slavic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/slavic.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
+numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian. The number words decline, and each lexicon lists each case form as a word.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 187 | 186 |
-| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 178 | 178 |
+| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 191 | 190 |
+| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 180 | 180 |
 | Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 156 | 156 |
-| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 161 | 161 |
-| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 175 | 174 |
+| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 163 | 163 |
+| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 176 | 175 |
 | Slovak | every `sk` tag | `numtag/lexicon/sk.json` | long | 154 | 154 |
 | Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 162 | 162 |
 | Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 169 | 168 |
+| Serbian | every `sr` tag | `numtag/lexicon/sr.json` | long | 149 | 149 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -95,6 +104,23 @@ A count and the noun "stotina" write the hundreds of a cardinal, as "petsto" doe
 
 > Hrvatski pravopis (Institut za hrvatski jezik i jezikoslovlje), 5.4.1. Jednorječnice: "glavni brojevi stotice do 1000: sto ili stotinu"; "Stotice do 1000 mogu se pisati i kao sveza glavnoga broja i imenice stotina: četiri stotine, devet stotina."
 
+## Serbian in two scripts
+
+The Serbian lexicon lists its words in the Latin script. Each Cyrillic letter reads as its Latin letter or digraph, so a text in either script reads. A date names its day with the genitive ordinal, and a year ends in an ordinal.
+
+```python
+>>> read('Видимо се двадесет петог маја.', 'sr')
+[('двадесет петог', '25')]
+>>> read('To se desilo dve hiljade dvadeset pete godine.', 'sr')
+[('dve hiljade dvadeset pete', '2025')]
+>>> read('Хиљаду и једна ноћ', 'sr')
+[('Хиљаду и једна', '1001')]
+>>> read('Rođen je 25. avgusta.', 'sr')
+[('25', '25')]
+```
+
+> Vikipedija (sr), "Редни број": "Када се редни број пише цифрама тада се иза броја додаје тачка да би се разликовало од обичног броја: 13. страна, 25. август, 3. спрат."
+
 ## The scale
 
 Each lexicon sets its default scale from these sources. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Read [../number-scale.md](../number-scale.md).
@@ -131,4 +157,11 @@ Croatian, long scale:
 
 > CLDR RBNF hr renders 10^9 as "jedna milijarda" and 10^12 as "jedan bilijun": Croatian counts in the long scale.
 
+Serbian, long scale:
+
+> Vikipedija (sr), "Билион": "Билион је назив за позитиван природан број који се записује као 1.000.000.000.000".
+
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Baltic languages](baltic.md) · [Home](../index.md) · [French, Italian, Romanian, Basque, Indonesian and Malay →](fr-it-ro-eu-id.md)

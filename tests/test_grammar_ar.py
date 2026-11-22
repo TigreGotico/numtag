@@ -113,6 +113,31 @@ class TestArabic(unittest.TestCase):
         self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
         self.assertEqual(sure("مائة ريال", "ar"), [("مائة", "100", 1.0)])
 
+    def test_the_spoken_hundreds_are_fused_words(self):
+        # 200 to 900, each spelled with ة and with ه (the spelling of ميه)
+        for value, words in [("200", ["ميتين"]), ("300", ["ثلاثمية", "تلتمية"]),
+                             ("400", ["اربعمية", "أربعمية", "ربعمية"]), ("500", ["خمسمية", "خمسميه"]),
+                             ("600", ["ستمية"]), ("700", ["سبعمية"]),
+                             ("800", ["تمنمية", "ثمنمية", "ثمانمية"]), ("900", ["تسعمية", "تسعميه"])]:
+            for word in words:
+                self.assertEqual(ar(word + " كيلو"), [(word, value, C)], word)
+
+    def test_the_spoken_hundreds_join_with_the_joiner(self):
+        # 1000 + 200 = 1200; 300 + 11 = 311; 400 + 50 = 450; 300 + 25 = 325
+        self.assertEqual(ar("الف وميتين"), [("الف وميتين", "1200", C)])
+        self.assertEqual(ar("ثلاثمية وواحد عشر"), [("ثلاثمية وواحد عشر", "311", C)])
+        self.assertEqual(ar("اربعمية وخمسين"), [("اربعمية وخمسين", "450", C)])
+        self.assertEqual(ar("ثلاثمية وخمسة وعشرين"), [("ثلاثمية وخمسة وعشرين", "325", C)])
+        # 600 + 10 x 1000 + 200 = 610200
+        self.assertEqual(ar("ستمية وعشرة الاف وميتين"), [("ستمية وعشرة الاف وميتين", "610200", C)])
+
+    def test_the_homograph_hundred_reads_as_before(self):
+        # water, and a hundred before a number: 100 + 2 = 102
+        self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
+        self.assertEqual(ar("مية واثنين"), [("مية واثنين", "102", C)])
+        # ميتين is also "dead" (plural): alone it reads 200 at the homograph confidence
+        self.assertEqual(sure("ناس ميتين", "ar"), [("ميتين", "200", 0.4)])
+
 
 class TestSpokenArabic(unittest.TestCase):
     def test_the_spoken_teens_are_one_word(self):

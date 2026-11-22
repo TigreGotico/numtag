@@ -184,6 +184,12 @@ class Grammar:
         self._vague: dict[int, bool] = {}
         self._parses: dict[int, list[Parse]] = {}
         group, decimal = re.escape(lexicon.group_mark), re.escape(lexicon.decimal_mark)
+        # a group mark that is a space joins digits in the tokenizer, so a head or a
+        # space group may hold marks of its own: "1\u00a0000 000", "1 000\u00a0000"
+        joined = rf"(?:{group}[0-9]{{3}})*" if lexicon.group_mark.isspace() else ""
+        marks = decimal + ("." if lexicon.decimal_mark == "," else "")
+        self._group_head = re.compile(rf"[1-9][0-9]{{0,2}}{joined}")
+        self._group_tail = re.compile(rf"[0-9]{{3}}{joined}(?:[{marks}][0-9]+)?")
         self._digit_pattern = re.compile(
             rf"(?:[1-9][0-9]{{0,2}}(?:{group}[0-9]{{3}})+|[0-9]+)(?:{decimal}([0-9]+))?")
         # SI 5.4.4 "43 279.168 29": where the comma marks decimals and a mark
@@ -366,13 +372,13 @@ class Grammar:
         if text[0] in ".,":
             # a lone decimal mark (".5"): the tokenizer keeps only a listed one
             return end, Rational.from_decimal("0", text[1:]), True
-        if self.lex.space_groups and re.fullmatch(r"[1-9][0-9]{0,2}", text):
+        if self.lex.space_groups and self._group_head.fullmatch(text):
             while end < len(self.tokens) and self._space_group(end):
                 group = self.tokens[end].latin
                 if self.lex.decimal_mark == "," and "." in group:
                     # SI 5.4.4 "43 279.168 29": a space group and a point are no two group marks
                     head, fraction = group.split(".")
-                    return end + 1, Rational.from_decimal(text.replace(self.lex.group_mark, "") + head, fraction), True
+                    return end + 1, Rational.from_decimal((text + head).replace(self.lex.group_mark, ""), fraction), True
                 text += self.lex.group_mark + group
                 end += 1
         match = self._digit_pattern.fullmatch(text)
@@ -380,13 +386,18 @@ class Grammar:
             return end, Rational.from_decimal(si[1].replace(self.lex.group_mark, ""), si[2]), True
         if not match:
             # where the comma marks decimals, a point that cannot group digits
-            # marks them: "1.5", "3.14159", "0.500". A time of day also
-            # takes the point ("14.30", "24.00"), so that shape reads no
-            # number.
+            # marks them: "1.5", "3.14159", "0.500". A time of day also takes
+            # the point, so an hour and minutes ("14.30") read no number.
+            # Spanish reads them as a decimal, and so does any locale for an
+            # hour of "0" ("0.25"), unless a clock word stands beside them.
             point = re.fullmatch(r"(0|[1-9][0-9]*)\.([0-9]+)", text) if self.lex.decimal_mark != "." else None
-            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) \
-                    or re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]|24\.00", text):
+            if point is None or (re.fullmatch(r"[1-9][0-9]{0,2}", point[1]) and len(point[2]) == 3) or text == "24.00":
                 return None
+            if re.fullmatch(r"(?:1?[0-9]|2[0-3])\.[0-5][0-9]", text):
+                clocked = (i > 0 and self.tokens[i - 1].norm in self.lex.clock_before) \
+                    or (end < len(self.tokens) and self.tokens[end].norm in self.lex.clock_after)
+                if clocked or not (self.lex.point_decimal or point[1] == "0"):
+                    return None
             return end, Rational.from_decimal(point[1], point[2]), True
         whole_text = text.split(self.lex.decimal_mark)[0] if match.group(1) else text
         whole = whole_text.replace(self.lex.group_mark, "")
@@ -395,9 +406,8 @@ class Grammar:
     def _space_group(self, i: int) -> bool:
         """A group of three digits after a single space ("000" in "1 000")."""
         token = self.tokens[i]
-        marks = re.escape(self.lex.decimal_mark) + ("." if self.lex.decimal_mark == "," else "")
         return (token.is_digits and not token.suffix and token.gap.isspace() and len(token.gap) == 1
-                and re.fullmatch(rf"[0-9]{{3}}(?:[{marks}][0-9]+)?", token.latin) is not None)
+                and self._group_tail.fullmatch(token.latin) is not None)
 
     # Below a thousand -------------------------------------------------
 
@@ -1276,7 +1286,8 @@ class Grammar:
         half alone."""
         halves = [half for half in self._readings(i, "half") if not half.bound]
         half_part = _piece(Role.HALF, i, i + 1, HALF)
-        found = [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
+        clock = self.lex.clock_half and self.starts_number(i + 1)
+        found = [] if clock else [Parse(i + 1, HALF, ambiguous=half.ambiguous, parts=half_part) for half in halves]
         # "erdi bat": one after the half, as after a denominator
         if self._is_word(i + 1, self.lex.one_after_noun):
             found += [Parse(i + 2, HALF, ambiguous=half.ambiguous,
@@ -1406,7 +1417,7 @@ class Grammar:
                     found += rest[:1]
                 else:
                     found += rest
-            elif entry.standalone:
+            elif entry.standalone and self.tokens[j].gap != "-":
                 continue  # "dix premiers" is 10 and 1st, never 11th
             elif self.lex.ordinal_style == "last_word" \
                     and (_room_for(prefix, value) or (teens and _teen(value))) \
@@ -1604,8 +1615,15 @@ class Grammar:
             found += self.fraction_of_collective(fraction)
             found += self.fraction_of_scale(fraction)
         if self._is_word(i, self.lex.articles):
-            for entry in self._readings(i + 1, "collective"):
-                if not entry.plural:
+            collectives = [e for e in self._readings(i + 1, "collective") + self._readings(i + 1, "article_collective")
+                           if not e.plural]
+            # "a couple hundred", "a couple of thousand": a vague phrase stands where the
+            # count of the scale word would, as "a few" does in "a few hundred"
+            if collectives and not any(
+                    tuple(t.norm for t in self.tokens[i:i + len(phrase)]) == phrase
+                    and any(self._readings(i + len(phrase), role) for role in (*SCALE_ROLES, "collective"))
+                    for phrase in self.lex.vague_quantifiers):
+                for entry in collectives:
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
                               self._collective(Rational("0"), ONE, entry, i + 1, may_take_of=True,
                                                parts=_piece(Role.COUNT, i, i + 1, ONE))]

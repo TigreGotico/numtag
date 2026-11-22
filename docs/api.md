@@ -1,5 +1,13 @@
 # API reference
 
+<!-- agent-hint
+covers: Every public name of the package with its signature, fields and defaults.
+source: numtag/__init__.py:__all__, numtag/tagger.py, numtag/mention.py, numtag/vague.py:tag_vague_quantities, numtag/roman.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: getting-started.md, values.md
+-->
+
 The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity` and `VagueKind`. This page describes each of them. Every other module is internal.
 
 ```python
@@ -250,7 +258,7 @@ numtag gives the value and the kind. How a numeral is said, "Luís XIV" as "cato
 tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]
 ```
 
-`tag_vague_quantities` returns the words of `text` that state an amount but no exact number. The list is in reading order, and no two results overlap. `lang` works as in `tag_numbers`, and a language with no lexicon raises `UnsupportedLanguageError`. A language with no `vague_quantifier` entries returns an empty list. English and Portuguese have entries.
+`tag_vague_quantities` returns the words of `text` that state an amount but no exact number. The list is in reading order, and no two results overlap. `lang` works as in `tag_numbers`, and a language with no lexicon raises `UnsupportedLanguageError`. A language with no `vague_quantifier` entries returns an empty list. English, Portuguese, Croatian, Turkish, Dutch and German have entries.
 
 A vague word never becomes a digit, so `tag_numbers` gives no mention for it. A count before a plural scale word makes an ordinary number, and no vague quantity: "three million" is 3000000.
 

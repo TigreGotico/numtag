@@ -1,5 +1,13 @@
 # Values
 
+<!-- agent-hint
+covers: The three canonical value strings, how to convert them, and why a value has no length limit.
+source: numtag/mention.py:is_canonical_value, numtag/digits.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/values.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: api.md, number-scale.md
+-->
+
 The `value` of a mention is a string of digits. numtag never gives an `int`, a `float` or a `Decimal`. This page states the three value forms, their rules, and how a caller converts them.
 
 ## The three forms

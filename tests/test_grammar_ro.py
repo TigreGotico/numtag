@@ -89,5 +89,12 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("nouă sute", "ro"), [("nouă sute", 1.0)])
 
 
+class TestLonePoint(unittest.TestCase):
+    def test_a_point_before_the_first_digit_marks_decimals(self):
+        self.assertEqual(read("-.5", "ro"), [("-.5", "-0.5", "decimal")])
+        # the point between digits still groups thousands
+        self.assertEqual(read("1.500", "ro"), [("1.500", "1500", C)])
+
+
 if __name__ == "__main__":
     unittest.main()
