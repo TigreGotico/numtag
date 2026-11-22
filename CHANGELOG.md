@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.13a1](https://github.com/TigreGotico/numtag/tree/0.19.13a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.12a1...0.19.13a1)
+
+**Merged pull requests:**
+
+- fix\(cs, pl, ru, uk, hr\): read a counted hundreds noun before a scale word [\#207](https://github.com/TigreGotico/numtag/pull/207) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.12a1](https://github.com/TigreGotico/numtag/tree/0.19.12a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.11a1...0.19.12a1)
@@ -741,10 +749,6 @@
 ## [0.8.2a1](https://github.com/TigreGotico/numtag/tree/0.8.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.1a1...0.8.2a1)
-
-**Merged pull requests:**
-
-- fix: a slash fraction over zero gives no mention [\#30](https://github.com/TigreGotico/numtag/pull/30) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.1a1](https://github.com/TigreGotico/numtag/tree/0.8.1a1) (2026-11-16)
 
