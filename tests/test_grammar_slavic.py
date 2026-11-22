@@ -551,3 +551,33 @@ class TestCroatianDigitDecimalTakesAMultiplier(unittest.TestCase):
         # 2.5 x 100 = 250, as "dva zarez pet stotina" is
         self.assertEqual(read("dva zarez pet stotina", "hr"), [("dva zarez pet stotina", "250", C)])
         self.assertEqual(read("2 zarez 5 stotina", "hr"), [("2 zarez 5 stotina", "250", C)])
+
+
+class TestDigitsBeforeAnOrdinalFormPart(unittest.TestCase):
+    def test_digits_before_a_plural_ordinal_form_count_things(self):
+        # Rosenthal § 45.3 writes a fraction in digits as "2/5": "3 пятых класса"
+        # is 3 classes of the 5th grade, so the count 3 and the ordinal 5
+        for text, lang, digits, word in (("В школе 3 пятых класса.", "ru", "3", "пятых"),
+                                         ("У школі 3 п'ятих класи.", "uk", "3", "п'ятих"),
+                                         ("W szkole 3 piąte klasy.", "pl", "3", "piąte"),
+                                         ("3 пятые", "ru", "3", "пятые"),
+                                         ("3 piątych", "pl", "3", "piątych")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, lang), [(digits, "3", C), (word, "5", O)])
+
+    def test_words_before_the_same_part_word_keep_the_fraction(self):
+        # 3/5 = 0.6 and 2/3, Rosenthal § 45.3 "две пятых (2/5)"
+        self.assertEqual(read("три пятых", "ru"), [("три пятых", "0.6", F)])
+        self.assertEqual(read("три п'ятих", "uk"), [("три п'ятих", "0.6", F)])
+        self.assertEqual(read("dwie trzecie", "pl"), [("dwie trzecie", "2/3", F)])
+
+    def test_digits_before_a_part_noun_keep_the_fraction(self):
+        # "четверть" is a noun, no ordinal form: 3/4 = 0.75; a slash fraction is 3/5 = 0.6
+        self.assertEqual(read("3 четверти", "ru"), [("3 четверти", "0.75", F)])
+        self.assertEqual(read("3/5", "ru"), [("3/5", "0.6", F)])
+        # the ruling names the plural forms only: a singular part word keeps 1/5 = 0.2
+        self.assertEqual(read("1 пятая", "ru"), [("1 пятая", "0.2", F)])
+
+    def test_a_language_with_no_ruling_keeps_the_digit_fraction(self):
+        # bg is left out of the ruling: 3/5 = 0.6
+        self.assertEqual(read("3 пети", "bg"), [("3 пети", "0.6", F)])

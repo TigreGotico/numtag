@@ -17,7 +17,8 @@
     "ordinal_style": {"value": "last_word", "source": "CLDR RBNF uk renders 2023 in %spellout-ordinal-masculine as \"дві тисячі двадцять третій\": only the last word is ordinal."},
     "compound_words": {"value": true, "source": "CLDR RBNF uk writes 2000th as one word (\"двотисячний\"). Український правопис (2019), § 38 \"Складні числівники\", writes such ordinals with digits and a hyphen (\"3-ти́сячний\"). A word that is a sequence of number words reads as its parts."},
     "bare_noun_counts_one": {"value": true, "source": "Ukrainian has no article, so a singular collective or fraction noun alone counts one. Wiktionary (en), \"чверть\": \"чверть години\", \"a quarter of an hour\"."},
-    "decimal_fractions": {"value": true, "source": "CLDR RBNF uk renders 2.5 as \"дві цілих пʼять десятих\": the decimals are a fraction whose denominator is a power of ten."}
+    "decimal_fractions": {"value": true, "source": "CLDR RBNF uk renders 2.5 as \"дві цілих пʼять десятих\": the decimals are a fraction whose denominator is a power of ten."},
+    "ordinal_form_part_takes_no_digits": {"value": true, "source": "Maintainer ruling on numtag issue 98 for ru, uk and pl, after Д. Э. Розенталь, \"Справочник по правописанию и литературной правке\", 4th edition (1985), § 45, item 3: \"Дробные числительные пишутся раздельно, например: две пятых (2/5)\". A fraction in digits is written with a slash, so digits before a part word that is also a plural ordinal form count things: \"3 пятых класса\" is three fifth-grade classes. The uk plural part word is the plural ordinal form too (\"п'ятих\")."}
   },
   "words": {
     "joiner": {"value": ["з", "із"], "source": "Wiktionary (en), \"половина\" and \"пів\" give the half; \"з\" (also \"із\") joins a half to a whole: a paraphrase, the usage example is not on those pages."},

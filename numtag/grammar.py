@@ -1133,11 +1133,14 @@ class Grammar:
         # a slash fraction ("5 1/2 quarters"). A digit right after a decimal
         # marker with a number before it is a decimal digit ("2 point 5
         # quarters"); with none, the marker word is a noun ("at that point 3
-        # quarters").
+        # quarters"). Where a plural part word is also a plural ordinal
+        # form, digits before it count things ("3 пятых класса").
         if ((read := self._digit_value(i)) and not read[2] and not read[1].is_zero()
                 and self.tokens[i].gap.strip() != "/"
                 and not (self._is_word(i - 1, self.lex.decimal_markers) and self.starts_number(i - 2))
                 and not any(e.ambiguous or e.value == read[1].numerator
+                            or e.plural and self.lex.ordinal_form_part_takes_no_digits
+                            and (self._readings(read[0], "ordinal") or self._readings(read[0], "ordinal_scale"))
                             for e in self._readings(read[0], "denominator"))):
             numerators.append((read[0], read[1].numerator))
         # "doze avos": the particle is in the denominator
