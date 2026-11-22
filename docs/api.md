@@ -307,12 +307,12 @@ A `VagueQuantity` is a frozen dataclass.
 | `char_span` | `tuple[int, int]` | The half-open character range of the words, as in `NumberMention` |
 | `text` | `str` | The exact words |
 | `kind` | `VagueKind` | `MAGNITUDE` or `AMOUNT` |
-| `scale` | `str` or `None` | The canonical digit string of the scale word of a magnitude |
+| `scale` | `str` or `None` | The digit string of the scale of a magnitude, a positive whole number |
 | `lower_bound` | `str` or `None` | Two of the scale, when the scale word is plural |
-| `confidence` | `float` | A fixed score in (0, 1], not part of equality |
+| `confidence` | `float` | A fixed score from 0 to 1, not part of equality |
 | `reasons` | `frozenset[Reason]` | Keyword only, not part of equality. Why the confidence is low |
 
-A `VagueQuantity` checks its fields when it is made. It raises `ValueError` when the span does not fit the text, when an amount has a scale or a bound, when a magnitude has no scale, or when a scale or bound is not a canonical digit string.
+A `VagueQuantity` checks its fields when it is made. It raises `ValueError` when the span does not fit the text, when an amount has a scale or a bound, when a magnitude has no scale, when a scale or bound is not a positive whole digit string, when the bound is below the scale, or when the confidence is not a number from 0 to 1.
 
 ```python
 >>> from numtag import VagueQuantity
