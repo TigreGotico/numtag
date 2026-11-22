@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.21a1](https://github.com/TigreGotico/numtag/tree/0.19.21a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.20a1...0.19.21a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): read the spoken teens, tens and hundreds of the Wiktionary number lists [\#213](https://github.com/TigreGotico/numtag/pull/213) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.20a1](https://github.com/TigreGotico/numtag/tree/0.19.20a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.19a1...0.19.20a1)
@@ -741,10 +749,6 @@
 ## [0.10.0a1](https://github.com/TigreGotico/numtag/tree/0.10.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.4a1...0.10.0a1)
-
-**Merged pull requests:**
-
-- feat: raise UnsupportedLanguageError for a language with no lexicon [\#38](https://github.com/TigreGotico/numtag/pull/38) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.4a1](https://github.com/TigreGotico/numtag/tree/0.9.4a1) (2026-11-16)
 
