@@ -632,14 +632,16 @@
    "role": "ordinal",
    "value": "1",
    "gender": "masculine",
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "primièra",
    "role": "ordinal",
    "value": "1",
    "gender": "feminine",
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "primièrs",
@@ -647,7 +649,8 @@
    "value": "1",
    "gender": "masculine",
    "plural": true,
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "primièras",
@@ -655,21 +658,24 @@
    "value": "1",
    "gender": "feminine",
    "plural": true,
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\")"
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "premièr",
    "role": "ordinal",
    "value": "1",
    "gender": "masculine",
-   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "premièra",
    "role": "ordinal",
    "value": "1",
    "gender": "feminine",
-   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "premièrs",
@@ -677,7 +683,8 @@
    "value": "1",
    "gender": "masculine",
    "plural": true,
-   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "premièras",
@@ -685,21 +692,24 @@
    "value": "1",
    "gender": "feminine",
    "plural": true,
-   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "segond",
    "role": "ordinal",
    "value": "2",
    "gender": "masculine",
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "segonda",
    "role": "ordinal",
    "value": "2",
    "gender": "feminine",
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "segonds",
@@ -707,7 +717,8 @@
    "value": "2",
    "gender": "masculine",
    "plural": true,
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "segondas",
@@ -715,7 +726,8 @@
    "value": "2",
    "gender": "feminine",
    "plural": true,
-   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\""
+   "standalone": true,
+   "source": "ovos-number-parser numbers_oc.py (a lead; cites Lo Congrès dicod'Òc): \"zèro\", \"catòrze\", \"mens\", \"virgula\", \"bilion\" 10^12 in the long scale, ordinals \"primièr\", \"segond\", \"tresen\", \"quatren\", \"cinquen\", \"desen\", \"onzen\", \"vinten\", \"centen\", \"milen\", compound units \"unen\", \"dosen\" (\"vint-e-unen, trenta dosen\"); Omniglot, \"Numbers in Occitan\": \"1 un\", \"6 sièis\", \"7 sèt\", \"8 uèch\", \"9 nòu\", \"10 dètz\", \"17 dètz e sèt\", \"21 vint e un\", \"80 ochanta\", \"90 nonanta\", \"200 dos cents\", \"1 000 mila\", \"2 000 dos mila\", \"1 000 000 un milion\", \"1 000 000 000 un miliard\"; ordinals \"premièr\", \"segonda\", \"tresena\", \"desena\", \"vintena\", \"vint e unena\", \"centena\", \"milena\"; the compound units are \"unen\" and \"dosen\" (\"vint-e-unen, trenta dosen\"; Omniglot \"vint e unena\"), so \"primièr\" and \"segond\" end no longer ordinal: \"vint segondas\" is 20 and the time unit."
   },
   {
    "word": "unen",

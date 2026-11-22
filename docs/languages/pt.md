@@ -1,5 +1,13 @@
 # Portuguese
 
+<!-- agent-hint
+covers: What numtag reads in European and Brazilian Portuguese.
+source: numtag/lexicon/pt-PT.json, tests/gold/pt-PT.jsonl, numtag/lexicon/pt-BR.json, tests/gold/pt-BR.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/pt.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"has (\\d+) rows, and numtag reads (\\d+)",Path(sys.argv[1]).read_text())\ngot=[(str(s.rows),str(s.correct)) for s in (score_file(Path("tests/gold/"+l+".jsonl")) for l in sys.argv[2:])]\nprint(rows,got)\nsys.exit(0 if rows==got and rows else 1)' docs/languages/pt.md pt-PT pt-BR
+see: ../rulings.md, ../number-scale.md
+-->
+
 numtag reads European Portuguese and Brazilian Portuguese. The tag `pt-BR` reads Brazilian Portuguese. Every other `pt` tag (`pt`, `pt-PT`, `pt-AO`, `pt-MZ`) reads European Portuguese. The lexicon files are `numtag/lexicon/pt-PT.json` and `numtag/lexicon/pt-BR.json`.
 
 ## Two lexicons, one grammar
@@ -102,7 +110,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 
 ## Known misreadings
 
-The European Portuguese gold corpus has 474 rows, and numtag reads 468 of them right. The Brazilian corpus has 466 rows, and numtag reads 460 right. The same six sentences fail in both.
+The European Portuguese gold corpus has 479 rows, and numtag reads 473 of them right. The Brazilian corpus has 470 rows, and numtag reads 464 right. The same six sentences fail in both.
 
 | Sentence | Gold | numtag |
 |---|---|---|

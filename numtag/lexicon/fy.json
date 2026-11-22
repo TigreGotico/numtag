@@ -698,6 +698,167 @@
    "value": "4",
    "plural": true,
    "source": "Wikipedia (fy), \"Alarik II\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Alarik_II.wikitext): \"trije kwart fan [[Spanje]] (útsein de noardwesthoeke)\"; \"Maastricht\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Maastricht.wikitext): \"trije kwart fan de befolking\"; \"Lappland (lânskip fan Sweden)\" (knowledge/wiki/audits/numtag/follow-up-prs/word-forms/sources/wikipedia-fy-Lappland_lanskip_fan_Sweden.wikitext): \"ûngefear in kwart fan it totale oerflak fan Sweden\""
+  },
+  {
+   "word": "ienen",
+   "role": "unit",
+   "value": "1",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"D'Olde Togers\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/D_Olde_Togers.wikitext): \"Om healwei ienen Aldjiersnacht\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "twaen",
+   "role": "unit",
+   "value": "2",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Snitser Bloednacht\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Snitser_Bloednacht.wikitext): \"De twadde groep kaam om healwei twaen hinne\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "trijen",
+   "role": "unit",
+   "value": "3",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Klaas Koelstra\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Klaas_Koelstra.wikitext): \"Koelstra waard om kertier foar trijen moarns\"; \"Snitser Bloednacht\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Snitser_Bloednacht.wikitext): \"Om healwei trijen\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "fjouweren",
+   "role": "unit",
+   "value": "4",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Immanuel Kant\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Immanuel_Kant.wikitext): \"alle dagen stipt om healwei fjouweren middeis\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "fiven",
+   "role": "unit",
+   "value": "5",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Skoft- en itenstiden\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Skoft-_en_itenstiden.wikitext): \"begûn men tusken 4 oere en healwei fiven\"; \"Freulepartij\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Freulepartij.wikitext): \"om kertier oer fiven\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "seizen",
+   "role": "unit",
+   "value": "6",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Sittende Bolle\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Sittende_Bolle.wikitext): \"Moarns om healwei seizen\"; \"T.S. Eliot\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/T.S._Eliot.wikitext): \"moarns om kertier oer seizen\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "sânen",
+   "role": "unit",
+   "value": "7",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Haadstjoertiid\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Haadstjoertiid.wikitext): \"fan healwei sânen oant sân oere jûns\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "achten",
+   "role": "unit",
+   "value": "8",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Haadstjoertiid\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Haadstjoertiid.wikitext): \"tusken healwei achten en tsien oere jûns\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "njoggenen",
+   "role": "unit",
+   "value": "9",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"UTY\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/UTY.wikitext): \"jûns om healwei njoggenen\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "tsienen",
+   "role": "ten",
+   "value": "10",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Katedraal fan Us-Leaffrouwe fan de Berch Karmel (Jolo)\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Katedraal_fan_Us-Leaffrouwe_fan_de_Berch_Karmel__Jolo_.wikitext): \"yn 'e jûn om healwei tsienen\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "alven",
+   "role": "ten",
+   "value": "11",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"De Witte Os\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/De_Witte_Os.wikitext): \"sneons oant jûns healwei alven\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "tolven",
+   "role": "ten",
+   "value": "12",
+   "ambiguous": true,
+   "final": true,
+   "number_after": [
+    "healwei",
+    "oer",
+    "foar"
+   ],
+   "source": "Wikipedia (fy), \"Rink van der Velde\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Rink_van_der_Velde.wikitext): \"Joun healwei tolven\". The hour after \"healwei\", \"kertier oer\" and \"kertier foar\" takes this inflected form. The form also reads as a plural noun: Wiktionary, \"achten\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/wiktionary-en-achten.wikitext), West Frisian: \"{{plural of|fy|acht}}\", so it is sure only after \"healwei\", \"oer\" or \"foar\", and it closes the number."
+  },
+  {
+   "word": "e",
+   "role": "ordinal_suffix",
+   "source": "Wikipedia (fy), \"21e iuw\" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/21e_iuw.wikitext): \"De 21e iuw of ienentweintichste iuw rint fan 1 jannewaris 2001 oant 31 desimber 2100\", with the wiki links removed."
   }
  ]
 }

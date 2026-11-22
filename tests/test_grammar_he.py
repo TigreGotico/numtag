@@ -102,3 +102,10 @@ class TestHebrew(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_meot_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "שתיים נקודה חמש מאות" is
+        self.assertEqual(read("שתיים נקודה חמש מאות", "he"), [("שתיים נקודה חמש מאות", "250", C)])
+        self.assertEqual(read("2 נקודה 5 מאות", "he"), [("2 נקודה 5 מאות", "250", C)])
