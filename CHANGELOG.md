@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.15a1](https://github.com/TigreGotico/numtag/tree/0.19.15a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.14a1...0.19.15a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): count a half before stotina and no year as a count of hundreds [\#212](https://github.com/TigreGotico/numtag/pull/212) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.14a1](https://github.com/TigreGotico/numtag/tree/0.19.14a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.13a1...0.19.14a1)
@@ -741,10 +749,6 @@
 ## [0.8.4a1](https://github.com/TigreGotico/numtag/tree/0.8.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.3a1...0.8.4a1)
-
-**Merged pull requests:**
-
-- fix\(en\): a collective after "thousand" counts the whole cardinal [\#32](https://github.com/TigreGotico/numtag/pull/32) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.3a1](https://github.com/TigreGotico/numtag/tree/0.8.3a1) (2026-11-16)
 
