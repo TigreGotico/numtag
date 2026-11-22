@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.8a1](https://github.com/TigreGotico/numtag/tree/0.19.8a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.7a1...0.19.8a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): read the long ordinal genitive and dative with the movable vowel [\#196](https://github.com/TigreGotico/numtag/pull/196) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.7a1](https://github.com/TigreGotico/numtag/tree/0.19.7a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.6a1...0.19.7a1)
@@ -741,10 +749,6 @@
 ## [0.7.7a1](https://github.com/TigreGotico/numtag/tree/0.7.7a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.6a1...0.7.7a1)
-
-**Merged pull requests:**
-
-- fix\(es, de\): a lone article at the clause end gets the article score [\#25](https://github.com/TigreGotico/numtag/pull/25) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.6a1](https://github.com/TigreGotico/numtag/tree/0.7.6a1) (2026-11-16)
 
