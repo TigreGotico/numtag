@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.5a1](https://github.com/TigreGotico/numtag/tree/0.19.5a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.4a1...0.19.5a1)
+
+**Merged pull requests:**
+
+- fix\(kab, mwl\): waḥed stands alone; cite a Mirandese source for abos [\#188](https://github.com/TigreGotico/numtag/pull/188) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.4a1](https://github.com/TigreGotico/numtag/tree/0.19.4a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.3a1...0.19.4a1)
@@ -741,10 +749,6 @@
 ## [0.7.4a1](https://github.com/TigreGotico/numtag/tree/0.7.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.3a1...0.7.4a1)
-
-**Merged pull requests:**
-
-- fix: read "the one hundredth" as an English ordinal [\#22](https://github.com/TigreGotico/numtag/pull/22) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.3a1](https://github.com/TigreGotico/numtag/tree/0.7.3a1) (2026-11-15)
 
