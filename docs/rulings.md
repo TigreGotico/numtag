@@ -555,7 +555,7 @@ In German a count written in one word with a part word is part of the denominato
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".
 
-A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat".
+A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat". A denominator of several words takes the ending on its last word, so the words before it belong to the denominator: "hogeita hamarren bat" is 1/30 and "hamar milaren bat" is 1/10000 (Araua 203, table of fractions with the numerator 1). "-(r)en bat" is also "about N" ("ehunen bat film", about a hundred films), so the reading of an -(r)en word with "bat" has the confidence 0.4. "heren bat" and "laurden bat" have no such sense and stay sure.
 
 ```python
 >>> read("Zortzi hamarren falta dira.", "eu")
@@ -564,6 +564,8 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 [('Hiru zati lau', '0.75')]
 >>> read("Milioi erdi euro eman zituen.", "eu")
 [('Milioi erdi', '500000')]
+>>> read("Hogeita hamarren bat falta da.", "eu")
+[('Hogeita hamarren bat', '1/30')]
 ```
 
 > Euskaltzaindia, 203. araua, EBO (VI), "Zenbakizko adierazpenak", 6: "Zenbakitzailea bat zenbakia denean (a = 1 denean) eratzen diren zenbakiak izendatzeko, -(r)en eransten zaio zenbaki kardinalari"; "7/8: zazpi zortziren", "8/10: zortzi hamarren", "2/100: bi ehunen"; footnote 22: "3/2 = hiru erdi (hiru *biren)"; "(egokia) 3/4 hiru zati lau (edo hiru laurden)"; note 28: "Izendatzailea milioi bat denean, milioi izena erabiltzen da, ondoren bat erantsi gabe, eta izen-izen erako hitz-elkarte arrunta eratzen da (ordu(-)laurden, final(-)laurden hitzetan bezala)".

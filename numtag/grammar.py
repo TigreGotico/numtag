@@ -37,6 +37,8 @@ HALF = Rational("1", "2")
 # The power of ten of "mil" and "thousand": the only scale whose cardinal
 # counts a larger scale noun ("mil milhões", "mil biliões", "a thousand million").
 THOUSAND = 3
+# The most words before the suffix word of a denominator that reads as a cardinal run.
+COMPOUND_DENOMINATOR_WORDS = 8
 
 # A part of a reading: its role, its first token, the token after it, and the
 # value of its words alone (None for a word that names no number).
@@ -1143,10 +1145,11 @@ class Grammar:
                       for e in self._readings(i, "ordinal")]
         found += self._lone_glued_denominator(i) + self._lone_denominator(i)
         found += self._over_fractions(i)
+        found += self._compound_denominators(i)
         if self._is_word(i, self.lex.articles):
             numerators.append((i + 1, "1"))
         # "heren bat": one after the denominator
-        found += [Parse(i + 2, Rational("1", e.value), ambiguous=e.ambiguous,
+        found += [Parse(i + 2, Rational("1", e.value), ambiguous=e.ambiguous or bool(e.cardinal),
                         parts=below(i, i + 1, e.value) + _piece(Role.COUNT, i + 1, i + 2, ONE))
                   for e in self._readings(i, "denominator")
                   if not e.plural and self._is_word(i + 1, self.lex.one_after_noun)]
@@ -1184,6 +1187,27 @@ class Grammar:
                                 parts=count + below(end, run[-1].end, _whole(_sum(run))))
                           for run in self.cardinals(end + 1)
                           if not run[-1].decimal and _sum(run).is_whole() and _whole(_sum(run)) != "0"]
+        return found
+
+    def _compound_denominators(self, i: int) -> list[Parse]:
+        """A denominator of several words whose last word takes a suffix, and
+        the one after it: "hogeita hamarren bat" is one part of 30. The last
+        word stands for its cardinal, so the words are a cardinal run. The
+        suffix word followed by "bat" is also "about N" ("ehunen bat film"),
+        so the reading is a homograph."""
+        found = []
+        for k in range(i + 1, min(i + COMPOUND_DENOMINATOR_WORDS, len(self.tokens) - 1)):
+            if not self._is_word(k + 1, self.lex.one_after_noun):
+                continue
+            for entry in self._readings(k, "denominator"):
+                if not entry.cardinal:
+                    continue
+                words = self.tokens[:k] + [replace(self.tokens[k], key=entry.cardinal)]
+                found += [Parse(k + 2, Rational("1", _whole(_sum(run))), ambiguous=True,
+                                parts=_piece(Role.DENOMINATOR, i, k + 1, _sum(run)) + _piece(Role.COUNT, k + 1, k + 2, ONE))
+                          for run in Grammar(self.lex, words).cardinals(i)
+                          if run[-1].end == k + 1 and not run[-1].decimal and _sum(run).is_whole()
+                          and _whole(_sum(run)) != "0"]
         return found
 
     def _over_fractions(self, i: int) -> list[Parse]:

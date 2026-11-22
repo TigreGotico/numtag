@@ -93,6 +93,10 @@ class Entry:
     numerator: str = ""
     # A denominator with one form for every numerator ("سوم" in "دو سوم").
     invariant: bool = False
+    # The cardinal word that a denominator ends in when its last word takes
+    # a suffix: eu "hamarren" is the cardinal "hamar" with -(r)en, so
+    # "hogeita hamarren" is the denominator 30.
+    cardinal: str = ""
     # A denominator that also names one part alone, with no count, no
     # article and no one after it, at the score of a homograph: eu
     # "laurden" is 1/4, and also starts the compound "final laurden".
@@ -556,6 +560,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             case=frozenset(spec.get("case", ())),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             weak_alone=spec.get("weak_alone", False), invariant=spec.get("invariant", False),
+                            cardinal=spec.get("cardinal", ""),
                             teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False), joined_count=spec.get("joined_count", False),
