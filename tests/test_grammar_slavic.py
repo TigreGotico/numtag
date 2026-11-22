@@ -3,7 +3,7 @@ worked out by hand in the comment beside it; sources are in the lexicon of
 each language under numtag/lexicon/."""
 import unittest
 
-from helpers import read
+from helpers import read, sure
 from numtag import Scale, tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -455,6 +455,45 @@ class TestDigitGroups(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertNotIn("1000000", [value for _, value, _ in read("1.000.000", lang)])
 
+class TestDigitCountOfAHundredNoun(unittest.TestCase):
+    def test_a_zero_count_multiplies_no_hundred_noun(self):
+        # 0 x 100 is no count of hundreds: the noun stands alone, a weak hundred (as "0 tisuća" leaves "tisuća")
+        self.assertEqual(sure("0 stotina", "hr"), [("stotina", "100", 0.4)])
+        self.assertEqual(read("0 stotine", "hr"), [])
+
+    def test_digits_count_hundreds_below_a_thousand(self):
+        # 5 x 100 = 500, and 3 x 100 = 300
+        self.assertEqual(read("5 stotina", "hr"), [("5 stotina", "500", C)])
+        self.assertEqual(read("3 stotine", "hr"), [("3 stotine", "300", C)])
+
+    def test_digits_after_a_scale_word_do_not_multiply_into_the_scale_group(self):
+        # 2 x 1000 = 2000 and 5 x 100 = 500: the hundreds after the thousands are a new number, not 2005 x 100
+        self.assertEqual(read("2 tisuće 5 stotina", "hr"), [("2 tisuće", "2000", C), ("5 stotina", "500", C)])
+
+
+class TestCzechMinus(unittest.TestCase):
+    def test_minus_with_a_long_i_is_a_sign(self):
+        # IJP "minus": "lze i: mínus"; -10 and -7
+        self.assertEqual(read("teplota mínus deset stupňů", "cs"), [("mínus deset", "-10", C)])
+        self.assertEqual(read("mínus sedm", "cs"), [("mínus sedm", "-7", C)])
+
+    def test_minus_after_a_number_is_no_sign(self):
+        # "pět mínus dva" is 5 and 2, as "pět minus dva" is
+        self.assertEqual(read("pět mínus dva", "cs"), [("pět", "5", C), ("dva", "2", C)])
+
+
+class TestHundredNounWithAHalfAndAYear(unittest.TestCase):
+    def test_a_half_after_the_count_counts_half_a_hundred_too(self):
+        # 5.5 x 100 = 550, 2.5 x 100 = 250, 3.5 x 100 x 1000 = 350000, and 5.5 x 1000 = 5500
+        self.assertEqual(read("pet i pol stotina", "hr"), [("pet i pol stotina", "550", C)])
+        self.assertEqual(read("dvije i pol stotine", "hr"), [("dvije i pol stotine", "250", C)])
+        self.assertEqual(read("tri i pol stotine tisuća", "hr"), [("tri i pol stotine tisuća", "350000", C)])
+        self.assertEqual(read("pet i pol tisuća", "hr"), [("pet i pol tisuća", "5500", C)])
+
+    def test_a_year_is_no_count_of_a_hundred_noun(self):
+        # a count of a thousand or more takes no hundred noun: the year stays 1995, not 1995 x 100
+        self.assertEqual(read("Godine 1995 stotine ljudi", "hr"), [("1995", "1995", C)])
+
 
 class TestApostrophes(unittest.TestCase):
     def test_ukrainian_apostrophe_spellings_are_one_letter(self):
@@ -462,8 +501,56 @@ class TestApostrophes(unittest.TestCase):
             self.assertEqual(read(word, "uk"), [(word, "5", C)])
 
 
+class TestSlovene(unittest.TestCase):
+    def test_the_clock_hour_enih_is_one(self):
+        # SSKJ2 "en": "ob eni(h) (popoldne) 13 h"; "dveh" names 2 the same way
+        self.assertEqual(read("ob enih", "sl"), [("enih", "1", C)])
+        self.assertEqual(read("ob dveh", "sl"), [("dveh", "2", C)])
+
+    def test_tisoce_alone_is_weak_and_after_a_count_is_sure(self):
+        # "tisoče" is the plural noun of "tisoč" ("na tisoče turistov", SSKJ2 "tisoč 1") and the ordinal
+        # of the neuter ("dvatisoče leto" is the 2000th year): the ordinal is sure only after a count
+        (alone,) = tag_numbers("na tisoče turistov", "sl")
+        self.assertEqual((alone.text, alone.value, alone.kind.value), ("tisoče", "1000", O))
+        self.assertLess(alone.confidence, 0.5)
+        (counted,) = tag_numbers("dvatisoče leto", "sl")
+        self.assertEqual((counted.text, counted.value, counted.kind.value), ("dvatisoče", "2000", O))
+        self.assertGreaterEqual(counted.confidence, 0.5)
+
+
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCaseAgreement(unittest.TestCase):
+    """Every word of a Russian cardinal declines: CLDR RBNF ru writes 29 as
+    "двадцать девять" in %spellout-cardinal-masculine and as "двадцати
+    девяти" in %spellout-cardinal-masculine-genitive."""
+
+    def test_an_oblique_ten_takes_a_unit_in_its_own_case(self):
+        self.assertEqual(read("двадцати девяти", "ru"), [("двадцати девяти", "29", C)])
+        self.assertEqual(read("с двадцатью девятью", "ru"), [("двадцатью девятью", "29", C)])
+        self.assertEqual(read("о сорока двух", "ru"), [("сорока двух", "42", C)])
+
+    def test_an_oblique_ten_and_a_nominative_unit_are_two_numbers(self):
+        # the clock "без двадцати девять" is twenty minutes to nine
+        self.assertEqual(read("без двадцати девять", "ru"), [("двадцати", "20", C), ("девять", "9", C)])
+        self.assertEqual(read("без двадцати пяти девять", "ru"),
+                         [("двадцати пяти", "25", C), ("девять", "9", C)])
+        self.assertEqual(read("без двадцати одиннадцать", "ru"),
+                         [("двадцати", "20", C), ("одиннадцать", "11", C)])
+
+    def test_a_nominative_ten_takes_any_unit(self):
+        self.assertEqual(read("двадцать девять", "ru"), [("двадцать девять", "29", C)])
+        # the animate accusative: "увидел двадцать одного студента"
+        self.assertEqual(read("двадцать одного", "ru"), [("двадцать одного", "21", C)])
+
+
+class TestCroatianDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_stotina_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "dva zarez pet stotina" is
+        self.assertEqual(read("dva zarez pet stotina", "hr"), [("dva zarez pet stotina", "250", C)])
+        self.assertEqual(read("2 zarez 5 stotina", "hr"), [("2 zarez 5 stotina", "250", C)])
 
 
 class TestDigitsBeforeAnOrdinalFormPart(unittest.TestCase):

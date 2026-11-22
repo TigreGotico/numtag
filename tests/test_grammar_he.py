@@ -29,6 +29,14 @@ class TestHebrew(unittest.TestCase):
         # 3 x 100 = 300
         self.assertEqual(he("שלוש מאות"), [("שלוש מאות", "300", C)])
 
+    def test_digits_count_hundreds_below_a_thousand(self):
+        # 3 x 100 = 300
+        self.assertEqual(he("3 מאות"), [("3 מאות", "300", C)])
+        # a count of a thousand or more takes no hundred noun: 1000 x 100 is no number here
+        self.assertNotIn("100000", [value for _, value, _ in he("1000 מאות")])
+        # 0 x 100 is no count of hundreds
+        self.assertEqual(he("0 מאות"), [])
+
     def test_the_dual_holds_its_count(self):
         # אלפיים = 2 x 1000; + 20 + 5 = 2025
         self.assertEqual(he("אלפיים ועשרים וחמש"), [("אלפיים ועשרים וחמש", "2025", C)])
@@ -102,3 +110,10 @@ class TestHebrew(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_meot_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "שתיים נקודה חמש מאות" is
+        self.assertEqual(read("שתיים נקודה חמש מאות", "he"), [("שתיים נקודה חמש מאות", "250", C)])
+        self.assertEqual(read("2 נקודה 5 מאות", "he"), [("2 נקודה 5 מאות", "250", C)])
