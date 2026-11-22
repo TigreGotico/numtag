@@ -1406,7 +1406,7 @@ class Grammar:
                 if value is None:
                     continue
                 parts = _times_power(before, j, scale.exponent)
-            found += self._ordinal_rest(j + 1, value, scale.ambiguous, parts)
+            found += self._ordinal_rest(j + 1, value, scale.ambiguous and prefix is None, parts)
         words = [(j + 1, entry.value, entry) for entry in self._readings(j, "ordinal")]
         if self.lex.tens_order != TensOrder.TEN_UNIT:
             units = [e.value for e in self._readings(j, "unit")]

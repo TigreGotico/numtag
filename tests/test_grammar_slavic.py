@@ -473,6 +473,23 @@ class TestApostrophes(unittest.TestCase):
             self.assertEqual(read(word, "uk"), [(word, "5", C)])
 
 
+class TestSlovene(unittest.TestCase):
+    def test_the_clock_hour_enih_is_one(self):
+        # SSKJ2 "en": "ob eni(h) (popoldne) 13 h"; "dveh" names 2 the same way
+        self.assertEqual(read("ob enih", "sl"), [("enih", "1", C)])
+        self.assertEqual(read("ob dveh", "sl"), [("dveh", "2", C)])
+
+    def test_tisoce_alone_is_weak_and_after_a_count_is_sure(self):
+        # "tisoče" is the plural noun of "tisoč" ("na tisoče turistov", SSKJ2 "tisoč 1") and the ordinal
+        # of the neuter ("dvatisoče leto" is the 2000th year): the ordinal is sure only after a count
+        (alone,) = tag_numbers("na tisoče turistov", "sl")
+        self.assertEqual((alone.text, alone.value, alone.kind.value), ("tisoče", "1000", O))
+        self.assertLess(alone.confidence, 0.5)
+        (counted,) = tag_numbers("dvatisoče leto", "sl")
+        self.assertEqual((counted.text, counted.value, counted.kind.value), ("dvatisoče", "2000", O))
+        self.assertGreaterEqual(counted.confidence, 0.5)
+
+
 if __name__ == "__main__":
     unittest.main()
 
