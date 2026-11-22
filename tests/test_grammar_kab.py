@@ -13,10 +13,14 @@ def kab(text: str) -> list[tuple[str, str, str]]:
 
 class TestKabyle(unittest.TestCase):
     def test_the_unit_comes_before_the_ten(self):
-        # 6 + 20 = 26; waḥed stands only in a compound: 1 + 20 = 21
+        # 6 + 20 = 26; 1 + 20 = 21
         self.assertEqual(kab("setta u ɛecrin"), [("setta u ɛecrin", "26", C)])
         self.assertEqual(kab("waḥed u ɛecrin"), [("waḥed u ɛecrin", "21", C)])
-        self.assertEqual(kab("waḥed"), [])
+
+    def test_wahed_also_stands_alone(self):
+        # 1 alone, as in counting "waḥed, sin, tlata"; 100 + 1 = 101
+        self.assertEqual(kab("waḥed"), [("waḥed", "1", C)])
+        self.assertEqual(kab("mya u waḥed n wussan"), [("mya u waḥed", "101", C)])
 
     def test_a_short_unit_counts_the_hundreds_and_thousands(self):
         # 3 x 100 = 300; 8 x 100 x 1000 = 800000
