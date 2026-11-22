@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.17a1](https://github.com/TigreGotico/numtag/tree/0.19.17a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.16a1...0.19.17a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): read "jedna stotina" as a homograph of 100 and 1/100 [\#217](https://github.com/TigreGotico/numtag/pull/217) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.16a1](https://github.com/TigreGotico/numtag/tree/0.19.16a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.15a1...0.19.16a1)
@@ -741,10 +749,6 @@
 ## [0.9.1a1](https://github.com/TigreGotico/numtag/tree/0.9.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.0a1...0.9.1a1)
-
-**Merged pull requests:**
-
-- fix: the hundred of a percent phrase is the percent sign [\#34](https://github.com/TigreGotico/numtag/pull/34) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.0a1](https://github.com/TigreGotico/numtag/tree/0.9.0a1) (2026-11-16)
 
