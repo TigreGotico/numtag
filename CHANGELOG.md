@@ -742,10 +742,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.4a1...0.7.5a1)
 
-**Merged pull requests:**
-
-- fix\(eu\): read an ordinal with the article -a [\#23](https://github.com/TigreGotico/numtag/pull/23) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.4a1](https://github.com/TigreGotico/numtag/tree/0.7.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.3a1...0.7.4a1)
