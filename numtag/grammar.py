@@ -1694,6 +1694,9 @@ class Grammar:
             found += self.collective_tail(run) + self.of_tail(run) + self.half_tail(run)
             found += self.decimal_tail(run) + self.fraction_tail(run) + self.half_collective_tail(run)
             found += self.case_fraction_tail(run)
+        # "jedna stotina" is also 1/100: the word for one rests on the homograph, as an article does
+        if weak := [Rational(e.value) for e in self._readings(i + 1, "collective") if e.ambiguous]:
+            found = [replace(p, ambiguous=True) if p.end == i + 2 and p.value in weak else p for p in found]
         self._parses[i] = found
         return list(found)
 

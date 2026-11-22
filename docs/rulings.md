@@ -232,6 +232,17 @@ In English, "score" takes a cardinal after "and".
 
 > Wiktionary, "dozen", noun: "A set of twelve"; "score", noun: "Twenty (20)".
 
+Croatian "jedna stotina" is a homograph. The noun "stȍtina" is a group of a hundred, and "stotìna" is the hundredth part, so "jedna stotina" is 100 or 1/100. The phrase reads the frequent count 100 at the score of a homograph, as "A score" does in English. A count above one keeps the sure reading.
+
+```python
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Na skupu je bila jedna stotina ljudi.", "hr")]
+[('jedna stotina', '100', 0.4)]
+>>> read("Na skupu je bilo pet stotina ljudi.", "hr")
+[('pet stotina', '500')]
+```
+
+> Hrvatski jezični portal, "stȍtina": "100 izbrojanih jedinica čega uzetih kao cjelina"; "stotìna": "stoti dio jednog cijelog, ob. u zn. maleni dio čega". Hrvatski pravopis, 5.4.2. Višerječnice: "jedna stotina (1/100)".
+
 ## Halves
 
 "e meio" after a scale noun adds half of that noun. After a collective it adds half of the collective. After a small number it adds a half of one.

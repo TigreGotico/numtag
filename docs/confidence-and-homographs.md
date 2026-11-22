@@ -92,7 +92,7 @@ German and Spanish count with a form that is not the article: "eins" and "uno". 
 
 A lexicon entry can carry `"ambiguous": true`. In Portuguese these are "meio", "meia", and "quarto" and "quartos" as a fraction. The ordinals "segundo", "quarto", "quinto" and "sexto" are ambiguous in every gender and number. In English they are "half", "second" and "score". In French, "premier" is also "prime" and "original" in every gender and number. In Italian, "primo" is also "prime", and "prima" is also "before".
 
-Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective. When other number words make the reading clear, the number gets 1.0.
+Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article or the word for one with it as the collective. When other number words make the reading clear, the number gets 1.0.
 
 ```python
 >>> read("Chegou em segundo lugar.", "pt-PT")

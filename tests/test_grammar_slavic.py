@@ -581,3 +581,25 @@ class TestDigitsBeforeAnOrdinalFormPart(unittest.TestCase):
     def test_a_language_with_no_ruling_keeps_the_digit_fraction(self):
         # bg is left out of the ruling: 3/5 = 0.6
         self.assertEqual(read("3 пети", "bg"), [("3 пети", "0.6", F)])
+
+
+class TestOneBeforeAnAmbiguousCollective(unittest.TestCase):
+    def test_one_before_stotina_is_a_homograph(self):
+        # Hrvatski pravopis 5.4.2 "jedna stotina (1/100)", HJP "stȍtina" 100 and "stotìna" 1/100:
+        # the count 1 x 100 = 100 at the score of a homograph
+        for text, words in (("Na skupu je bila jedna stotina ljudi.", "jedna stotina"),
+                            ("Platio je jednu stotinu kuna.", "jednu stotinu")):
+            with self.subTest(text=text):
+                self.assertEqual(sure(text, "hr"), [(words, "100", 0.4)])
+                self.assertEqual([sorted(r.value for r in m.reasons) for m in tag_numbers(text, "hr")], [["homograph"]])
+
+    def test_a_count_above_one_keeps_the_sure_reading(self):
+        # 2 x 100 = 200, 5 x 100 = 500, 1000 + 100 = 1100
+        self.assertEqual(sure("dvije stotine", "hr"), [("dvije stotine", "200", 1.0)])
+        self.assertEqual(sure("pet stotina", "hr"), [("pet stotina", "500", 1.0)])
+        self.assertEqual(sure("tisuću i jedna stotina", "hr"), [("tisuću i jedna stotina", "1100", 1.0)])
+
+    def test_one_before_score_reads_as_an_article_before_it(self):
+        # "score" is also a mark: 1 x 20 = 20 at the score of a homograph, as "A score"; 3 x 20 + 10 = 70 is sure
+        self.assertEqual(sure("One score of people came.", "en"), [("One score", "20", 0.4)])
+        self.assertEqual(sure("Three score and ten years.", "en"), [("Three score and ten", "70", 1.0)])
