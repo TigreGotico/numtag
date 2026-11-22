@@ -52,6 +52,19 @@ class TestOrdinalEnding(unittest.TestCase):
         self.assertEqual(it("trentottesimo"), [("trentottesimo", "38", O)])
         self.assertEqual(it("centesimo"), [("centesimo", "100", O)])
 
+    def test_a_latin_unit_ordinal_ends_no_longer_ordinal(self):
+        # 22nd is "ventiduesimo" and 103rd "centotreesimo": "dieci secondi"
+        # is 10 and the time unit, never 12
+        for text, count in [("tra dieci secondi", "10"), ("trenta secondi", "30"),
+                            ("cento terzo", "100"), ("venti primi", "20")]:
+            with self.subTest(text=text):
+                found = it(text)
+                self.assertEqual(found[0][1:], (count, C))
+                self.assertEqual(len(found), 2)
+                self.assertEqual(found[1][2], O)
+        # "decimo" ends "centodecimo", so 100 + 10 = 110 still reads
+        self.assertEqual(it("cento decimo"), [("cento decimo", "110", O)])
+
 
 class TestScaleNouns(unittest.TestCase):
     def test_a_singular_scale_noun_takes_only_the_count_one(self):

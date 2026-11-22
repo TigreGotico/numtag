@@ -1,5 +1,13 @@
 # Confidence and homographs
 
+<!-- agent-hint
+covers: What a low confidence means, which words get one, and what a caller does with them.
+source: numtag/tagger.py:CONFIDENCE, numtag/grammar.py, the ambiguous and article words of each lexicon
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/confidence-and-homographs.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: getting-started.md, rulings.md
+-->
+
 Some number words have a second meaning. Portuguese "uma" is also the article "a", and "segundo" is also "according to". English "second" is also a unit of time. numtag tags these words and gives them a low confidence. The caller decides what to keep.
 
 ## The scores
@@ -84,7 +92,7 @@ German and Spanish count with a form that is not the article: "eins" and "uno". 
 
 A lexicon entry can carry `"ambiguous": true`. In Portuguese these are "meio", "meia", and "quarto" and "quartos" as a fraction. The ordinals "segundo", "quarto", "quinto" and "sexto" are ambiguous in every gender and number. In English they are "half", "second" and "score". In French, "premier" is also "prime" and "original" in every gender and number. In Italian, "primo" is also "prime", and "prima" is also "before".
 
-Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article with it as the collective. When other number words make the reading clear, the number gets 1.0.
+Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article or the word for one with it as the collective. When other number words make the reading clear, the number gets 1.0.
 
 ```python
 >>> read("Chegou em segundo lugar.", "pt-PT")

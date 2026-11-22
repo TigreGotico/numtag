@@ -227,6 +227,12 @@ class TestAraua203Fractions(unittest.TestCase):
         ("bi bosten", "0.4", F),  # 2/5
         ("hogeita zazpi ehunen", "0.27", F),  # 27/100
         ("berrogeita hiru milaren", "0.043", F),  # 43/1000
+        ("hogeita hamarren bat", "1/30", F),  # table, p. 27
+        ("hamar milaren bat", "0.0001", F),  # table, p. 27: 1/10000
+        ("hogeita bosten bat", "0.04", F),  # 1/25
+        ("berrogeita bosten bat", "1/45", F),
+        ("hiru milaren bat", "1/3000", F),  # the same rule: bat after a denominator of 3000
+        ("ehun eta hogeita hamarren bat", "1/130", F),
     ]
 
     def test_each_fraction_of_the_norm(self):
@@ -237,6 +243,20 @@ class TestAraua203Fractions(unittest.TestCase):
     def test_a_noun_after_the_compound(self):
         self.assertEqual(eu("milioi erdi euro"), [("milioi erdi", "500000", C)])
 
+    def test_a_denominator_of_several_words_is_one_part_of_the_whole_number(self):
+        self.assertEqual(eu("berrogeita bosten bat urte"), [("berrogeita bosten bat", "1/45", F)])
+        self.assertEqual(eu("Hamar milaren bat euro."), [("Hamar milaren bat", "0.0001", F)])
+
+    def test_a_word_with_ren_and_bat_is_also_about_that_number(self):
+        # "ehunen bat film" is "about a hundred films" as well as one hundredth: both readings are common
+        for text in ("ehunen bat film", "milaren bat langile", "hogeita hamarren bat", "hamar milaren bat"):
+            with self.subTest(text=text):
+                self.assertEqual([m.confidence for m in tag_numbers(text, "eu")], [0.4])
+        # the irregular forms have no such reading
+        self.assertEqual([m.confidence for m in tag_numbers("heren bat", "eu")], [1.0])
+        # a count with no "bat" is no homograph
+        self.assertEqual([m.confidence for m in tag_numbers("bi ehunen", "eu")], [1.0])
+
     def test_the_genitive_ren_alone_is_no_number(self):
         # "bosten artean" is "among five": the -(r)en word reads only with a count or "bat"
         self.assertEqual(eu("bosten artean"), [])
@@ -245,15 +265,6 @@ class TestAraua203Fractions(unittest.TestCase):
 class TestAraua203Gaps(unittest.TestCase):
     # Rows of 203. araua that numtag does not read yet. Each test fails until
     # its issue is fixed; the expected value is the norm's, worked out by hand.
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
-    def test_a_denominator_of_two_words(self):
-        # table, p. 27: "hogeita hamarren bat" is 1/30, "hamar milaren bat" is 1/10000
-        self.assertEqual(eu("hogeita hamarren bat"), [("hogeita hamarren bat", "1/30", F)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/93")
-    def test_a_denominator_of_two_words_with_a_scale(self):
-        self.assertEqual(eu("hamar milaren bat"), [("hamar milaren bat", "0.0001", F)])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
     def test_the_denominator_in_the_ablative_before_the_count(self):

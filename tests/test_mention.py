@@ -3,7 +3,8 @@ from decimal import Decimal
 from fractions import Fraction
 
 import numtag
-from numtag import ARTICLE_CONFIDENCE, Form, Kind, NumberMention, Reason, Scale, is_canonical_value, tag_numbers
+from numtag import (ARTICLE_CONFIDENCE, Form, Kind, NumberMention, Reason, Scale, VagueKind, VagueQuantity,
+                    is_canonical_value, tag_numbers)
 from numtag import tagger
 from numtag import lexicon
 
@@ -178,6 +179,46 @@ class TestReasons(unittest.TestCase):
                           reasons=frozenset({Reason.ARTICLE}))
         self.assertEqual(a, NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS))
         self.assertEqual(NumberMention((0, 3), "uma", "1", Kind.CARDINAL, Form.WORDS).reasons, frozenset())
+
+
+class TestVagueQuantityValues(unittest.TestCase):
+    """A scale is a positive whole number, a lower bound is not below its scale, and a
+    confidence is a number from 0 to 1."""
+
+    def magnitude(self, scale, lower_bound=None, **kwargs):
+        return VagueQuantity((0, 8), "millions", VagueKind.MAGNITUDE, scale, lower_bound, **kwargs)
+
+    def test_a_scale_that_is_not_a_positive_whole_number_is_refused(self):
+        for scale in ("-5", "0", "1/3", "2.5", "007", "", "1e6", "1 000", "\u0661\u0660"):
+            with self.subTest(scale=scale), self.assertRaises(ValueError):
+                self.magnitude(scale)
+
+    def test_a_lower_bound_below_the_scale_is_refused(self):
+        for scale, bound in (("1000000", "5"), ("1000", "999"), ("20", "19"), ("1" + "0" * 600, "9" * 600)):
+            with self.subTest(scale=scale[:8], bound=bound[:8]), self.assertRaises(ValueError):
+                self.magnitude(scale, bound)
+
+    def test_a_lower_bound_that_is_not_a_positive_whole_number_is_refused(self):
+        for bound in ("-2000", "0", "2000.5", "4000/3"):
+            with self.subTest(bound=bound), self.assertRaises(ValueError):
+                self.magnitude("1000", bound)
+
+    def test_a_confidence_outside_zero_to_one_is_refused(self):
+        for confidence in (7.0, -0.1, 1.0001, float("nan"), float("inf"), "0.4", None, True):
+            with self.subTest(confidence=confidence), self.assertRaises(ValueError):
+                self.magnitude("1000", confidence=confidence)
+
+    def test_valid_values_are_accepted(self):
+        # 2 x 1000 = 2000; the lower bound may equal the scale or go above it; a dozen is 12
+        for scale, bound, confidence in (("1000", "2000", 1.0), ("1000", "1000", 0.4), ("12", None, 0),
+                                         ("1", None, 1), ("1" + "0" * 600, "2" + "0" * 600, 0.5)):
+            with self.subTest(scale=scale[:8], bound=bound):
+                self.assertEqual(self.magnitude(scale, bound, confidence=confidence).scale, scale)
+
+    def test_an_amount_takes_a_confidence_in_range(self):
+        with self.assertRaises(ValueError):
+            VagueQuantity((0, 4), "many", VagueKind.AMOUNT, confidence=2.0)
+        self.assertEqual(VagueQuantity((0, 4), "many", VagueKind.AMOUNT, confidence=0.4).confidence, 0.4)
 
 
 def read(text: str, lang: str = "en") -> list[tuple[str, str, str]]:

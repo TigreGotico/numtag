@@ -94,6 +94,12 @@
   }
  },
  "words": {
+  "clock_abbreviation": {
+   "value": [
+    "kl"
+   ],
+   "source": "en.wikipedia \"Date and time notation in Denmark\" lists no time form; the abbreviation \"kl\" (klokken, \"the clock\") before an hour and minutes written with a point makes them a time, not a decimal; the abbreviation itself is not quoted from a source."
+  },
   "period_ordinal_before": {
    "value": [
     "den"
