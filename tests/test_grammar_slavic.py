@@ -488,3 +488,10 @@ class TestCaseAgreement(unittest.TestCase):
         self.assertEqual(read("двадцать девять", "ru"), [("двадцать девять", "29", C)])
         # the animate accusative: "увидел двадцать одного студента"
         self.assertEqual(read("двадцать одного", "ru"), [("двадцать одного", "21", C)])
+
+
+class TestCroatianDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_stotina_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "dva zarez pet stotina" is
+        self.assertEqual(read("dva zarez pet stotina", "hr"), [("dva zarez pet stotina", "250", C)])
+        self.assertEqual(read("2 zarez 5 stotina", "hr"), [("2 zarez 5 stotina", "250", C)])
