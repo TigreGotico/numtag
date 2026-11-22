@@ -42,6 +42,17 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('petindvajset', '25')]
 ```
 
+Every word of a Russian cardinal declines, so a ten in the genitive, dative or another oblique case takes a unit in the same case. "двадцати девяти" is 29. In the clock "без двадцати девять" (twenty to nine), the genitive "двадцати" and the nominative "девять" are two numbers. A ten in the nominative takes any unit after it.
+
+```python
+>>> read('двадцати девяти', 'ru')
+[('двадцати девяти', '29')]
+>>> read('без двадцати девять', 'ru')
+[('двадцати', '20'), ('девять', '9')]
+>>> read('без двадцати пяти девять', 'ru')
+[('двадцати пяти', '25'), ('девять', '9')]
+```
+
 ## Examples from the gold rows
 
 ```python
