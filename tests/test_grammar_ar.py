@@ -163,6 +163,12 @@ class TestSpokenArabic(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(ar(text), [])
 
+    def test_illiteracy_and_umayya_read_no_number(self):
+        # "امية" is the plain-alif spelling of "illiteracy" and of the name Umayya
+        for text in ("محو الامية", "نسبة الامية في مصر", "بنو امية", "امية بن ابي الصلت"):
+            with self.subTest(text=text):
+                self.assertEqual(sure(text, "ar"), [])
+
 
 if __name__ == "__main__":
     unittest.main()

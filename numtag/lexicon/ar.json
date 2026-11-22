@@ -1462,12 +1462,6 @@
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[14], cardinal \"أربعطعش\"."
     },
     {
-      "word": "أربعمية",
-      "role": "hundred",
-      "value": "400",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[400], cardinal \"أربعمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[400], cardinal \"أربعمية\"."
-    },
-    {
       "word": "إدعش",
       "role": "ten",
       "value": "11",
@@ -1508,18 +1502,6 @@
       "role": "ten",
       "value": "14",
       "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[14], cardinal \"اربعتعش\"."
-    },
-    {
-      "word": "اربعمية",
-      "role": "hundred",
-      "value": "400",
-      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[400], cardinal \"اربعمية\"."
-    },
-    {
-      "word": "امية",
-      "role": "hundred",
-      "value": "100",
-      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[100], cardinal \"امية\"."
     },
     {
       "word": "اهدعش",
@@ -1564,12 +1546,6 @@
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[19], cardinal \"تسعطعش\"."
     },
     {
-      "word": "تسعمية",
-      "role": "hundred",
-      "value": "900",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[900], cardinal \"تسعمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[900], cardinal \"تسعمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[900], cardinal \"تسعمية\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[900], cardinal \"تسعمية\"."
-    },
-    {
       "word": "تلاتاشر",
       "role": "ten",
       "value": "13",
@@ -1604,12 +1580,6 @@
       "role": "ten",
       "value": "13",
       "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[13], cardinal \"تلتعش\"."
-    },
-    {
-      "word": "تلتمية",
-      "role": "hundred",
-      "value": "300",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[300], cardinal \"تلتمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[300], cardinal \"تلتمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[300], cardinal \"تلتمية\"."
     },
     {
       "word": "تلطعش",
@@ -1660,12 +1630,6 @@
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[18], cardinal \"تمنطعش\"."
     },
     {
-      "word": "تمنمية",
-      "role": "hundred",
-      "value": "800",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[800], cardinal \"تمنمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[800], cardinal \"تمنمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[800], cardinal \"تمنمية\"."
-    },
-    {
       "word": "تمنية",
       "role": "unit",
       "value": "8",
@@ -1700,12 +1664,6 @@
       "role": "ten",
       "value": "18",
       "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[18], cardinal \"ثمنتعش\"."
-    },
-    {
-      "word": "ثمنمية",
-      "role": "hundred",
-      "value": "800",
-      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[800], cardinal \"ثمنمية\"."
     },
     {
       "word": "جوج",
@@ -1756,12 +1714,6 @@
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[15], cardinal \"خمسطعش\"."
     },
     {
-      "word": "خمسمية",
-      "role": "hundred",
-      "value": "500",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[500], cardinal \"خمسمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[500], cardinal \"خمسمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[500], cardinal \"خمسمية\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[500], cardinal \"خمسمية\"."
-    },
-    {
       "word": "خمصطعش",
       "role": "ten",
       "value": "15",
@@ -1772,12 +1724,6 @@
       "role": "ten",
       "value": "14",
       "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[14], cardinal \"ربعتاش\"."
-    },
-    {
-      "word": "ربعمية",
-      "role": "hundred",
-      "value": "400",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[400], cardinal \"ربعمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[400], cardinal \"ربعمية\"."
     },
     {
       "word": "زيرو",
@@ -1816,12 +1762,6 @@
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[17], cardinal \"سبعطعش\"."
     },
     {
-      "word": "سبعمية",
-      "role": "hundred",
-      "value": "700",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[700], cardinal \"سبعمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[700], cardinal \"سبعمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[700], cardinal \"سبعمية\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[700], cardinal \"سبعمية\"."
-    },
-    {
       "word": "ستاش",
       "role": "ten",
       "value": "16",
@@ -1846,12 +1786,6 @@
       "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[16], cardinal \"ستعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[16], cardinal \"ستعش\"."
     },
     {
-      "word": "ستمية",
-      "role": "hundred",
-      "value": "600",
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[600], cardinal \"ستمية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[600], cardinal \"ستمية\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[600], cardinal \"ستمية\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[600], cardinal \"ستمية\"."
-    },
-    {
       "word": "سطعش",
       "role": "ten",
       "value": "16",
@@ -1868,13 +1802,6 @@
       "role": "ten",
       "value": "12",
       "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[12], cardinal \"طنعش\"."
-    },
-    {
-      "word": "ميتين",
-      "role": "hundred",
-      "value": "200",
-      "ambiguous": true,
-      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[200], cardinal \"ميتين\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[200], cardinal \"ميتين\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[200], cardinal \"ميتين\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[200], cardinal \"ميتين\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[200], cardinal \"ميتين\". en.wiktionary \"ميتين\": \"two hundred\", and also the plural of ميّت (\"dead\")."
     },
     {
       "word": "ميليار",
