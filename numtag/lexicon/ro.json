@@ -28,7 +28,7 @@
     "class_noun": {"value": [], "source": "No Romanian class noun is read."},
     "half_unit": {"value": [], "source": "\"și jumătate\" follows the noun in Romanian (\"un kilogram și jumătate\")."},
     "abbreviation": {"value": [], "source": "No Romanian abbreviation is read."},
-    "lone_decimal_mark": {"value": [","], "source": "CLDR 48 ro number symbols: decimal \",\", so \",5\" is 0.5."},
+    "lone_decimal_mark": {"value": [",", "."], "source": "Structural, no external source: a group mark stands only between digits, so a point right before the first digit marks decimals, as in pt-PT: \".5\" is 0.5. CLDR 48 ro number symbols: decimal \",\", so \",5\" is 0.5."},
     "range_cue": {"value": ["între"], "source": "DEX '09, \"între\": \"6. (Indică o aproximare) Să vii între 12 și 13.\""},
     "count_of": {"value": ["de"], "source": "Wikipedia, \"Romanian numbers\", Preposition de: \"The preposition de is also used within the syntax of the number itself, for stating the number of thousands, millions, billions, etc.: douăzeci de mii [...] it is used when the last two digits of the number of thousands, millions, etc. are 00 or 20–99.\" DOOM 3 shows it in \"o ~ de dolari\"; no national source states the rule as a sentence. Reading also accepts \"de\" after any count."},
     "ordinal_article": {"value": ["a"], "source": "Wikipedia (ro), \"Numeral\": \"numeralele ordinale se formează din articolul posesiv al + numeralul cardinal [...] a doua (încercare), [...] a o sută douăzeci și una (cerere)\"."}

@@ -87,8 +87,11 @@ def _value_from_counts_and_scales(lang: str, parts: tuple[Part, ...]) -> Fractio
     stack: list[tuple[Fraction, Fraction]] = []  # (amount, scale)
     for k, part in enumerate(parts):
         word = fold(part.text)
-        # also behind a clitic prefix of one or two letters ("وألفين", "באלפיים")
-        if any(e.count for w in (word, word[1:], word[2:]) for e in lexicon.readings.get(w, ())):
+        key = lexicon.script.fold(part.text)
+        # also behind a clitic prefix: "وألفين", "באלפיים", "fl-elfejn"
+        clitic_rests = [key[len(p):] for p in lexicon.script.clitic_prefixes if key.startswith(p)]
+        rests = (word, word[1:], word[2:], *clitic_rests)
+        if any(e.count for w in rests for e in lexicon.readings.get(w, ())):
             return None
         if part.role == COUNT and k and parts[k - 1].role == SCALE and word in lexicon.one_after_noun:
             return None
