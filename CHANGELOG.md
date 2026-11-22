@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.18a1](https://github.com/TigreGotico/numtag/tree/0.19.18a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.17a1...0.19.18a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): a vague amount keeps a joined number only where the joiner is required [\#218](https://github.com/TigreGotico/numtag/pull/218) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.17a1](https://github.com/TigreGotico/numtag/tree/0.19.17a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.16a1...0.19.17a1)
@@ -741,10 +749,6 @@
 ## [0.9.2a1](https://github.com/TigreGotico/numtag/tree/0.9.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.1a1...0.9.2a1)
-
-**Merged pull requests:**
-
-- fix: an article before a hyphenated noun gets the article score [\#35](https://github.com/TigreGotico/numtag/pull/35) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.1a1](https://github.com/TigreGotico/numtag/tree/0.9.1a1) (2026-11-16)
 
