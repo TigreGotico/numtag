@@ -58,6 +58,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "les",
+    "la"
+   ],
+   "source": "ca.wikipedia \"Sistema horari de 24 hores\": \"el dia comença a les 00.00, just després de mitjanit i acaba a les 24.00\". \"la\" is the article of one o'clock: the Spanish DPD \"hora\" says \"el artículo debe ir en singular (la una\"; no Catalan quote. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h"
+   ],
+   "source": "ca.wikipedia \"Sistema horari de 24 hores\": \"el dia comença a les 00.00, just després de mitjanit i acaba a les 24.00\". \"la\" is the article of one o'clock: the Spanish DPD \"hora\" says \"el artículo debe ir en singular (la una\"; no Catalan quote. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "i"
@@ -584,14 +597,16 @@
    "role": "ordinal",
    "value": "1",
    "gender": "masculine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "primera",
    "role": "ordinal",
    "value": "1",
    "gender": "feminine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "primers",
@@ -599,7 +614,8 @@
    "value": "1",
    "gender": "masculine",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "primeres",
@@ -607,7 +623,8 @@
    "value": "1",
    "gender": "feminine",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "segon",
@@ -615,7 +632,8 @@
    "value": "2",
    "gender": "masculine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "segona",
@@ -623,7 +641,8 @@
    "value": "2",
    "gender": "feminine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "segons",
@@ -632,7 +651,8 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "segones",
@@ -641,21 +661,24 @@
    "gender": "feminine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "tercer",
    "role": "ordinal",
    "value": "3",
    "gender": "masculine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "tercera",
    "role": "ordinal",
    "value": "3",
    "gender": "feminine",
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "tercers",
@@ -663,7 +686,8 @@
    "value": "3",
    "gender": "masculine",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "terceres",
@@ -671,7 +695,8 @@
    "value": "3",
    "gender": "feminine",
    "plural": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\""
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "quart",
@@ -679,7 +704,8 @@
    "value": "4",
    "gender": "masculine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "quarta",
@@ -687,7 +713,8 @@
    "value": "4",
    "gender": "feminine",
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "quarts",
@@ -696,7 +723,8 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "quartes",
@@ -705,7 +733,8 @@
    "gender": "feminine",
    "plural": true,
    "ambiguous": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous"
+   "standalone": true,
+   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; DIEC2 \"quart\" 2 2: \"Un quart , 1/4. Tres quarts , 3/4.\"; DIEC2 also gives \"quart\" senses with no number (\"Casteller del quart pis d'un castell humà\", \"Volum en quart\"), so it is ambiguous; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "cinquè",

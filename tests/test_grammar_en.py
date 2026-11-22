@@ -677,5 +677,14 @@ class TestMinusAndArticles(unittest.TestCase):
         self.assertEqual([(m.value, m.confidence) for m in mentions], [("1", 1.0)])
 
 
+class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_hundred_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "two point five hundred" is
+        self.assertEqual(en("two point five hundred"), [("two point five hundred", "250", C)])
+        self.assertEqual(en("2 point 5 hundred"), [("2 point 5 hundred", "250", C)])
+        self.assertEqual(en("2.5 hundred"), [("2.5 hundred", "250", C)])
+        self.assertEqual(en("12.5 hundred"), [("12.5 hundred", "1250", C)])
+
+
 if __name__ == "__main__":
     unittest.main()

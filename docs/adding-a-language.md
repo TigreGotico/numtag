@@ -1,5 +1,13 @@
 # Adding a language
 
+<!-- agent-hint
+covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
+source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
+generated: no
+verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
+see: rulings.md, design.md
+-->
+
 A language in numtag is one JSON lexicon file, a gold corpus of real sentences, and tests. The grammar engine is shared. This guide gives the lexicon format, the source rule, the gold format and the gates that a new language must pass.
 
 ## Find the sources first
@@ -34,7 +42,7 @@ The loader reads every setting and every word list below. A file that leaves one
 | Setting | Type | Meaning |
 |---|---|---|
 | `scale` | `"long"` or `"short"` | The default scale of the language |
-| `group_mark` | string | The mark that groups digits: "." in pt, "," in en |
+| `group_mark` | string | The mark that groups digits: "." in pt, "," in en. It is the CLDR group symbol of the language (`tests/test_group_marks.py` checks it against the CLDR table). A language that keeps another mark names the exception in `docs/rulings.md` and in `DOT_EXCEPTIONS` of that test. A new lexicon needs a row in the table, or a name in `NO_CLDR_DATA` when CLDR has no numbers file for it. |
 | `decimal_mark` | string | The mark before the decimals: "," in pt, "." in en |
 | `space_groups` | bool | A single space groups digits ("1 000 000") |
 | `plural_scale_needs_count` | bool | A plural scale word with no count is no number ("milhões de pessoas") |
@@ -58,6 +66,7 @@ Two optional settings tune Roman numerals. `roman_pronoun_letters` (default fals
 | `minus` | The words that make a number negative | "menos" | "minus", "negative" |
 | `minus_idioms` | Phrases where a minus word is no sign | "pelo menos" | empty |
 | `percent_phrase` | Phrases whose last word is the percent sign after a number | empty | empty |
+| `percent_before` | Percent words that stand before the number (tr "yüzde"): the number after one is the amount, with no homograph score | empty | empty |
 | `negative_particle` | Particles after which the word for one means "not a single" and counts nothing (ru "ни одного") | empty | empty |
 | `number_noun` | Nouns that name a number, so the article word after them is the number ("o número um") | "número" | empty |
 | `number_name` | Names and set phrases that start with a number word and hold no number (fa "سه شنبه", Tuesday; ru "одно и то же", the same) | empty | empty |
@@ -84,6 +93,7 @@ Each entry has a `word`, a `role` and a `source`. The role decides the other key
 |---|---|---|
 | `unit`, `ten`, `hundred` | the digit string of the word | "dois" is "2", "vinte" is "20", "cem" is "100" |
 | `collective` | the digit string of the group | "dúzia" is "12" |
+| `article_collective` | the digit string of the group, read only after the indefinite article. A count before the word reads alone | en "couple" is "2" in "a couple"; "one couple" is 1 |
 | `denominator` | the digit string of the denominator; or `scale_of`, a scale word whose power of ten is the denominator | "terço" is "3"; "billionth" has `scale_of` "billion" |
 | `ordinal` | the digit string of the position | "primeiro" is "1" |
 | `hundred_multiplier`, `scale_numeral`, `scale_noun` | a power of ten, as an integer | "mil" is 3 |
@@ -103,7 +113,7 @@ These optional keys hold facts that the word form shows:
 |---|---|
 | `gender` | `"masculine"` or `"feminine"` |
 | `plural` | `true` for a plural form ("dúzias", "milhões") |
-| `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. |
+| `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. An ordinal scale word with this flag has it only with no count before it: sl "tisoče" alone is also the plural noun, and "dvatisoče" is the ordinal 2000. |
 | `weak_at_end` | `true` when the word has another meaning at the end of a clause, or before a joiner: fr "neuf" ("un manteau neuf"). The word gets the confidence 0.4 there. When the word is the whole text, it gets the full score. |
 | `joined_count` | with `weak_at_end`: `true` when a joiner that digits or a cardinal word follow does not end the clause. hu "hat és hét" lists two numbers. fr "neuf" leaves it out, because an adjective also goes before "et deux chapeaux". An article, an ordinal or a word in `ambiguous_forms` after the joiner is no number here. |
 | `weak_after`, `weak_before` | `weak_after` lists the words that come right before the word when it has another meaning, and `weak_before` the words that come right after it. hu "hat" has "nem" in `weak_after` ("nem hat") and "rám", "rá", "rájuk" in `weak_before` ("hat rám"). |
@@ -111,6 +121,8 @@ These optional keys hold facts that the word form shows:
 | `number_after` | the words after which an `ambiguous` or weak word has only its number reading. hu "hat" lists request verbs ("kérek hat", "legyen hat"). Catalan "nou" ("new") lists "els" and "les": the adjective there is "nous" or "noves", so "a les nou" is nine o'clock. |
 | `addend` | `true` when a cardinal may follow the collective after the joiner ("four score and seven") |
 | `bound` | `true` for a form that stands only before the rest of the number ("cento" in "cento e um") |
+| `case` | the grammatical cases of a unit or ten form, as the CLDR rule sets that write it name them. A ten with no `"nominative"` in its list takes only a unit that shares a case with it: ru "двадцати девяти" is 29, and "без двадцати девять" is 20 and 9. A ten with a nominative form takes any unit, so the animate accusative "двадцать одного" stays 21. |
+| `cardinal` | on a `denominator`: the cardinal word that the form ends in when its last word takes a suffix. eu "hamarren" has "hamar", so "hogeita hamarren bat" is one part of 30, at the confidence 0.4 because "-(r)en bat" also means "about". |
 | `weak_alone` | `true` for a denominator that is also one part with no count, no article and no one after it, at the confidence 0.4: eu "laurden" is 1/4 and also starts the compound "final laurden". A number, a decimal marker or a joiner before the word cancels it. |
 
 A scale noun with a `rank` gets its power of ten from the scale: 10^(3 × rank + 3) in the short scale, 10^(6 × rank) in the long scale. A mention with such a word states its `number_scale`.
@@ -154,13 +166,13 @@ A new language needs at least 150 rows. Cover the cardinals 0 to 20, the tens, t
 Check the format of each file. The checker prints the rows in and the rows out, and the two counts must be equal.
 
 ```bash
-python tests/gold/check_gold.py
+python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl
 ```
 
 ```text
-en.jsonl: 420 in, 420 out
-pt-BR.jsonl: 456 in, 456 out
-pt-PT.jsonl: 458 in, 458 out
+en.jsonl: 444 in, 444 out
+pt-BR.jsonl: 470 in, 470 out
+pt-PT.jsonl: 479 in, 479 out
 ```
 
 Add the decimal marks of the language to `DECIMAL_MARKS` in `tests/gold/check_gold.py`, so that the checker can tell a decimal from a fraction.
@@ -184,4 +196,4 @@ A new language passes these gates before it merges.
 Some languages need an engine feature that Portuguese and English do not use. Examples are inverted tens ("einundzwanzig"), vigesimal counting ("quatre-vingts"), compound words ("kaksikymmentä"), case forms, a script other than Latin, or native digits. Add the feature to the engine as a general mechanism. A lexicon setting switches it on, and the default is off. The outputs of the languages that do not set it must not change.
 
 ---
-[← English](languages/en.md) · [Home](index.md) · [Design →](design.md)
+[← Iberian languages and Occitan](languages/ibero.md) · [Home](index.md) · [Design →](design.md)
