@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.14a1](https://github.com/TigreGotico/numtag/tree/0.19.14a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.13a1...0.19.14a1)
+
+**Merged pull requests:**
+
+- fix\(hr, he\): a zero digit count multiplies no counted hundred noun [\#211](https://github.com/TigreGotico/numtag/pull/211) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.13a1](https://github.com/TigreGotico/numtag/tree/0.19.13a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.12a1...0.19.13a1)
@@ -741,10 +749,6 @@
 ## [0.8.3a1](https://github.com/TigreGotico/numtag/tree/0.8.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.2a1...0.8.3a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): the word after "um quinto" decides fraction or ordinal [\#31](https://github.com/TigreGotico/numtag/pull/31) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.2a1](https://github.com/TigreGotico/numtag/tree/0.8.2a1) (2026-11-16)
 
