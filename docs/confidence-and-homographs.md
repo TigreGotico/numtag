@@ -1,5 +1,13 @@
 # Confidence and homographs
 
+<!-- agent-hint
+covers: What a low confidence means, which words get one, and what a caller does with them.
+source: numtag/tagger.py:CONFIDENCE, numtag/grammar.py, the ambiguous and article words of each lexicon
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/confidence-and-homographs.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: getting-started.md, rulings.md
+-->
+
 Some number words have a second meaning. Portuguese "uma" is also the article "a", and "segundo" is also "according to". English "second" is also a unit of time. numtag tags these words and gives them a low confidence. The caller decides what to keep.
 
 ## The scores
