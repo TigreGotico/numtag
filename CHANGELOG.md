@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.3a1](https://github.com/TigreGotico/numtag/tree/0.19.3a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.2a1...0.19.3a1)
+
+**Merged pull requests:**
+
+- fix: a joiner at the end of the text leaves the number before it [\#169](https://github.com/TigreGotico/numtag/pull/169) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.2a1](https://github.com/TigreGotico/numtag/tree/0.19.2a1) (2026-11-21)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.1a2...0.19.2a1)
@@ -741,10 +749,6 @@
 ## [0.7.2a1](https://github.com/TigreGotico/numtag/tree/0.7.2a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.1a1...0.7.2a1)
-
-**Merged pull requests:**
-
-- fix: read an English unit ordinal after a ten as the cardinal does [\#20](https://github.com/TigreGotico/numtag/pull/20) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.1a1](https://github.com/TigreGotico/numtag/tree/0.7.1a1) (2026-11-15)
 
