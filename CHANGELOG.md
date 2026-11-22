@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.12a1](https://github.com/TigreGotico/numtag/tree/0.19.12a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.11a1...0.19.12a1)
+
+**Merged pull requests:**
+
+- fix: eu denominator of several words reads whole and -\(r\)en bat is also about N [\#203](https://github.com/TigreGotico/numtag/pull/203) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.11a1](https://github.com/TigreGotico/numtag/tree/0.19.11a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.10a1...0.19.11a1)
@@ -741,10 +749,6 @@
 ## [0.8.1a1](https://github.com/TigreGotico/numtag/tree/0.8.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.0a1...0.8.1a1)
-
-**Merged pull requests:**
-
-- fix: an article before an ordinal gets the article score [\#29](https://github.com/TigreGotico/numtag/pull/29) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.0a1](https://github.com/TigreGotico/numtag/tree/0.8.0a1) (2026-11-16)
 
