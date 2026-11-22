@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.11a1](https://github.com/TigreGotico/numtag/tree/0.19.11a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.10a1...0.19.11a1)
+
+**Merged pull requests:**
+
+- fix\(sl\): read the clock hour enih and weaken a bare tisoče [\#201](https://github.com/TigreGotico/numtag/pull/201) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.10a1](https://github.com/TigreGotico/numtag/tree/0.19.10a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.9a1...0.19.10a1)
@@ -741,10 +749,6 @@
 ## [0.8.0a1](https://github.com/TigreGotico/numtag/tree/0.8.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.9a1...0.8.0a1)
-
-**Merged pull requests:**
-
-- feat: export ARTICLE\_CONFIDENCE from the package [\#28](https://github.com/TigreGotico/numtag/pull/28) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.9a1](https://github.com/TigreGotico/numtag/tree/0.7.9a1) (2026-11-16)
 
