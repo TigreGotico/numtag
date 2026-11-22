@@ -107,6 +107,14 @@ class TestVagueQuantity(unittest.TestCase):
         self.assertEqual(read("birkaç çeyrek", "tr"), [])
         self.assertEqual([(m.value, m.confidence) for m in tag_numbers("çeyrek", "tr")], [("0.25", 0.4)])
 
+    def test_yuzde_yuz_is_one_hundred_percent(self):
+        # TDK "yüzde", compounds: "yüzde işareti, yüzde yüz"; a lone "yüz" is also the noun "face"
+        self.assertEqual(sure("yüzde yüz", "tr"), [("yüz", "100", 1.0)])
+        self.assertEqual(sure("Yüzde yüz doğru.", "tr"), [("yüz", "100", 1.0)])
+        self.assertEqual(sure("yüzde elli", "tr"), [("elli", "50", 1.0)])
+        self.assertEqual(sure("yüz", "tr"), [("yüz", "100", 0.4)])
+        self.assertEqual(sure("Yüzü güzel.", "tr"), [("Yüzü", "100", 0.4)])
+
     def test_the_vague_words_that_are_also_other_words_are_ambiguous(self):
         # TDK lists "onlarca" also as the adverb "Onlara göre" and "kaç" also as the verb "kaçmak";
         # "birkaç" has one sense only
@@ -166,6 +174,11 @@ class TestInflection(unittest.TestCase):
         self.assertEqual(read("saat beşte geldi", "tr"), [("beşte", "5", C)])
         # "ikide yüz": a hundred is no part of two, so no fraction either
         self.assertEqual(read("ikide yüz kişi", "tr"), [("ikide", "2", C), ("yüz", "100", C)])
+        # a decimal marker at the end of the text is no word before the first one:
+        # "beşdə" still ends the number, 5 and 100, not 500
+        self.assertEqual(read("beşdə yüz tam", "az"), [("beşdə", "5", C), ("yüz", "100", C)])
+        self.assertEqual(read("ikidə yüz tam", "az"), [("ikidə", "2", C), ("yüz", "100", C)])
+        self.assertEqual(read("onda min tam", "az"), read("onda min", "az"))
 
     def test_the_locative_names_the_parts_of_a_fraction(self):
         # "üçte biri" is one of three parts, 1/3; "dörtte bir" 1/4; "beşte iki" 2/5 = 0.4

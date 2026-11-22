@@ -170,5 +170,28 @@ class TestBillion(unittest.TestCase):
         self.assertEqual([m.number_scale.value for m in tag_numbers("un billion", "fr")], ["long"])
 
 
+class TestMinusAfterAnHour(unittest.TestCase):
+    def test_moins_after_an_hour_counts_the_minutes(self):
+        # "midi moins dix" is ten to noon: the minutes are 10, no -10
+        self.assertEqual(read("Il est midi moins dix.", "fr"), [("dix", "10", C)])
+        self.assertEqual(read("minuit moins 10", "fr"), [("10", "10", C)])
+        self.assertEqual(read("Il est 9h moins 10.", "fr"), [("9", "9", C), ("10", "10", C)])
+        self.assertEqual(read("Il est neuf heures moins dix.", "fr"), [("neuf", "9", C), ("dix", "10", C)])
+
+    def test_a_tout_le_moins_is_no_sign(self):
+        self.assertEqual(read("Il faut à tout le moins trois jours.", "fr"), [("trois", "3", C)])
+
+    def test_moins_before_a_number_still_signs(self):
+        # 0 - 3 = -3
+        self.assertEqual(read("Il fait moins trois degrés.", "fr"), [("moins trois", "-3", C)])
+
+
+class TestLonePoint(unittest.TestCase):
+    def test_a_point_before_the_first_digit_marks_decimals(self):
+        # 5/10 = 0.5, and the sign makes it -0.5
+        self.assertEqual(read("-.5", "fr"), [("-.5", "-0.5", "decimal")])
+        self.assertEqual(read("La taxe est de .5 pour cent.", "fr"), [(".5", "0.5", "decimal")])
+
+
 if __name__ == "__main__":
     unittest.main()

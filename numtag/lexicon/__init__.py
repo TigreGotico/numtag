@@ -15,7 +15,7 @@ A class may mark its forms as ordinal or as naming the parts of a fraction
 import json
 from dataclasses import dataclass, field, replace
 from enum import Enum
-from functools import cache
+from functools import cache, cached_property
 from pathlib import Path
 
 from numtag.mention import Scale
@@ -50,9 +50,10 @@ class TensOrder(str, Enum):
 # whole ("puolitoista" is 3/2); a unit-and-half word is its value and a half
 # ("δυόμισι"); a "rational" word is a number that is no whole number
 # ("полтора" is 3/2); a "teen_suffix" adds its value to the unit before it
-# ("dua belas" is 12).
-VALUE_ROLES = ("unit", "ten", "hundred", "collective", "denominator", "ordinal", "fraction", "teen", "decimal_zero",
-               "value_word", "unit_and_half", "rational", "teen_suffix")
+# ("dua belas" is 12); an "article_collective" is a collective that only the
+# article counts ("a couple", never "one couple").
+VALUE_ROLES = ("unit", "ten", "hundred", "collective", "article_collective", "denominator", "ordinal", "fraction",
+               "teen", "decimal_zero", "value_word", "unit_and_half", "rational", "teen_suffix")
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
@@ -140,7 +141,9 @@ class Entry:
     weak_after: frozenset[str] = frozenset()
     weak_before: frozenset[str] = frozenset()
     # An ordinal that is never the last word of a longer ordinal: French
-    # "premier" and "second" ("vingt et unième", "vingt-deuxième").
+    # "premier" and "second" ("vingt et unième", "vingt-deuxième"),
+    # Italian "secondo" ("ventiduesimo"). Only a hyphen joins it to a
+    # number before it: ICU 78 wrote the Catalan 22nd "vint-i-segon".
     standalone: bool = False
     # Words after which the word has only its number reading: after "les"
     # the Catalan adjective "nou" ("new") is "noves", so "a les nou" is
@@ -243,6 +246,8 @@ class Lexicon:
     # "einhalb" in "zweieinhalb": a word that adds a half to the number before it.
     and_a_half: frozenset[str]
     range_cues: frozenset[str]
+    # "yüzde" in "yüzde yüz": a percent word before the number, which then is the amount, never a homograph.
+    percent_before: frozenset[str]
     # "zum" in "zum 1000. Mal": a word before digits that makes their period an ordinal mark.
     period_ordinal_before: frozenset[str]
     # "ein" in "Er lud mich ein.": an article that alone at the end of a
@@ -288,6 +293,17 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # "um" in "um 14.30": a word before an hour and minutes written with a
+    # point, which then read as a time and no number.
+    clock_before: frozenset[str] = frozenset()
+    # "Uhr" in "14.30 Uhr": the same, as a word after them.
+    clock_after: frozenset[str] = frozenset()
+    # "kl" in "kl. 14.30": a clock word that is an abbreviation, so its period
+    # joins it to the digits after it. It is also a clock_before word.
+    clock_abbreviation: frozenset[str] = frozenset()
+    # Spanish: an hour and minutes with a point are a decimal unless a clock
+    # word stands beside them; elsewhere only an hour of "0" is.
+    point_decimal: bool = False
     # A word between a numerator and a denominator cardinal, as "a/b" is
     # read aloud: eu "zati" in "hiru zati lau" (3/4).
     fraction_over: frozenset[str] = frozenset()
@@ -298,6 +314,9 @@ class Lexicon:
     bound_ordinal_values: frozenset[str] = frozenset()
     # A half after any scale word is half of that scale ("אלף וחצי" is 1500).
     half_of_scale: bool = False
+    # A half right before a number names the half hour before that hour:
+    # German "halb drei" is 2:30, so the half is no number of its own.
+    clock_half: bool = False
     script: Script = Script()
     # "petindvajset", "pětadvacet": a unit, then the joiner as this policy
     # says, then a round ten, all parts of one compound word.
@@ -377,7 +396,16 @@ class Lexicon:
     roman_title_case_cue: bool = True
 
     def of(self, word: str, role: str) -> tuple[Entry, ...]:
-        return tuple(e for e in self.readings.get(word, ()) if e.role == role)
+        return self._by_role.get((word, role), ())
+
+    @cached_property
+    def _by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
+        """The entries of each word, by role."""
+        found: dict[tuple[str, str], tuple[Entry, ...]] = {}
+        for word, entries in self.readings.items():
+            for entry in entries:
+                found[word, entry.role] = found.get((word, entry.role), ()) + (entry,)
+        return found
 
     @property
     def number_words(self) -> frozenset[str]:
@@ -395,6 +423,13 @@ class Lexicon:
             return self.number_words
         return frozenset(w for w, entries in self.readings.items()
                          if any(e.role in COMPOUND_ROLES for e in entries)) | self.joiners
+
+    @cached_property
+    def compound_last_parts(self) -> frozenset[str]:
+        """The compound parts that close a number, so they are only the last
+        part of a compound: fy "fiven" is no part of "fiventweintich"."""
+        return frozenset(w for w in self.compound_parts
+                         if (entries := self.readings.get(w)) and all(e.final for e in entries))
 
 
 # Settings and word lists that a lexicon may leave out: each is off by default.
@@ -420,7 +455,7 @@ DEFAULT_SETTINGS = {
 DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
                  "part_noun": [], "percent_phrase": [],
                  "negative_particle": [], "noun_after_count": [],
-                 "number_noun": [], "number_name": []}
+                 "number_noun": [], "number_name": [], "percent_before": []}
 
 
 def _read(lang: str) -> dict:
@@ -595,6 +630,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         lone_decimal_marks=frozenset(words["lone_decimal_mark"]),
         and_a_half=frozenset(w.casefold() for w in words["and_a_half"]),
         range_cues=frozenset(words["range_cue"]),
+        percent_before=frozenset(words["percent_before"]),
         period_ordinal_before=frozenset(w.casefold() for w in words["period_ordinal_before"]),
         article_needs_noun=frozenset(words["article_needs_noun"]),
         partitives=frozenset(words["partitive"]),
@@ -610,12 +646,17 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         dot_ordinal=settings.get("dot_ordinal", False),
         digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
         date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        clock_before=frozenset(w.casefold() for w in (*words.get("clock_before", ()), *words.get("clock_abbreviation", ()))),
+        clock_abbreviation=frozenset(w.casefold() for w in words.get("clock_abbreviation", ())),
+        point_decimal=settings.get("point_decimal", False),
+        clock_after=frozenset(w.casefold() for w in words.get("clock_after", ())),
         ambiguous_words=frozenset(ambiguous_words),
         ordinal_particles=frozenset(words.get("ordinal_particle", ())),
         fraction_over=frozenset(words.get("fraction_over", ())),
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
         half_of_scale=settings.get("half_of_scale", False),
+        clock_half=settings.get("clock_half", False),
         script=script,
         inverted_tens=Joiner(settings["inverted_tens"]) if settings.get("inverted_tens") else None,
         compound_parts_by_role=settings.get("compound_parts_by_role", False),
