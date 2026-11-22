@@ -1,0 +1,2182 @@
+{
+ "settings": {
+  "letter_folds": {
+   "value": {
+    "а": "a",
+    "б": "b",
+    "в": "v",
+    "г": "g",
+    "д": "d",
+    "ђ": "đ",
+    "е": "e",
+    "ж": "ž",
+    "з": "z",
+    "и": "i",
+    "ј": "j",
+    "к": "k",
+    "л": "l",
+    "љ": "lj",
+    "м": "m",
+    "н": "n",
+    "њ": "nj",
+    "о": "o",
+    "п": "p",
+    "р": "r",
+    "с": "s",
+    "т": "t",
+    "ћ": "ć",
+    "у": "u",
+    "ф": "f",
+    "х": "h",
+    "ц": "c",
+    "ч": "č",
+    "џ": "dž",
+    "ш": "š"
+   },
+   "source": "Vikipedija (sr), \"Граматика српског језика\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-gramatika.txt): \"У ћирилици је спроведен фонолошки графијски принцип „један глас — једно слово”\", and \"за ћириличне знаке Љљ, Њњ и Џџ\" Latin writes two letters. Each Cyrillic letter reads as its Latin letter, so one lexicon reads both scripts."
+  },
+  "scale": {
+   "value": "long",
+   "source": "Vikipedija (sr), \"Милијарда\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-milijarda.txt): \"Милијарда је назив за позитиван природан број који се записује као 1.000.000.000\"; Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\": Serbian counts in the long scale."
+  },
+  "group_mark": {
+   "value": ".",
+   "source": "CLDR 49 numbers, cldr-numbers-full/main/sr-Latn/numbers.json (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr49-numbers-sr-Latn.json): the latn group symbol is a dot."
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 49 numbers, cldr-numbers-full/main/sr-Latn/numbers.json (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr49-numbers-sr-Latn.json): the latn decimal symbol is a comma."
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR 49 numbers, cldr-numbers-full/main/sr-Latn/numbers.json (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr49-numbers-sr-Latn.json): the group symbol is a dot, not a space, so a space between digit strings separates two numbers."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural scale noun follows its count; with no count it names an amount, not a number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" Wiktionary (en), \"pet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-pet.txt): \"Nouns following the numbers 5-20 are in genitive plural.\" The scale noun takes the number and case its count governs; the plural flag of a scale_numeral entry carries it."
+  },
+  "joiner_tens_units": {
+   "value": "optional",
+   "source": "CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"dvadeset[ i →→]\" writes \"i\" between the tens and the units; Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"двеста седамдесет пет хиљада осамсто тридесет седми\" writes none."
+  },
+  "joiner_after_hundred": {
+   "value": "optional",
+   "source": "Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"сто педесети\" and CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"sto[ →→]\" write no \"i\" after the hundreds; Vikipedija (sr), \"Хиљаду и једна ноћ\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljadu-i-jedna-noc.txt): \"Хиљаду и једна ноћ\" writes \"i\" before the last part. Reading accepts both."
+  },
+  "joiner_between_groups": {
+   "value": "optional",
+   "source": "Vikipedija (sr), \"Хиљаду и једна ноћ\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljadu-i-jedna-noc.txt): \"Хиљаду и једна ноћ\": \"i\" before the last part after the thousands; Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"двеста седамдесет пет хиљада осамсто тридесет седми\", with no \"i\". Reading accepts both."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"jedna hiljadu sto\" for 1100: no conjunction before a round hundred after the thousands."
+  },
+  "joiner_before_last_group": {
+   "value": "optional",
+   "source": "Vikipedija (sr), \"Хиљаду и једна ноћ\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljadu-i-jedna-noc.txt): \"Хиљаду и једна ноћ\": \"i\" before the last part after the thousands; Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"двеста седамдесет пет хиљада осамсто тридесет седми\", with no \"i\". Reading accepts both."
+  },
+  "hundred_counts_below_thousand": {
+   "value": true,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"dve hiljada sto\" for 2100: the hundred after the thousands starts the next group and counts nothing."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): no rendering puts a comma between two groups of a number."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"сто педесети, милионити, двеста седамдесет пет хиљада осамсто тридесет седми\": only the last word is ordinal."
+  },
+  "bare_noun_counts_one": {
+   "value": true,
+   "source": "Serbian has no article, so a singular collective or fraction noun alone counts one: Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"."
+  },
+  "decimal_fractions": {
+   "value": true,
+   "source": "CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml), rule x.x: \"←← koma →→;\": the digits after the decimal word are the decimals."
+  },
+  "period_ordinals": {
+   "value": true,
+   "source": "Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"Када се редни број пише цифрама тада се иза броја додаје тачка да би се разликовало од обичног броја: 13. страна, 25. август, 3. спрат.\""
+  },
+  "period_ordinal_lowercase": {
+   "value": true,
+   "source": "Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"13. страна, 25. август, 3. спрат\": a lower-case word after the period shows the ordinal; Serbian writes the names of months in lower case."
+  },
+  "inflection_position": {
+   "value": "every",
+   "source": "Structural, no external source: each stem of an entry takes every ending of its classes."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "i"
+   ],
+   "source": "CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"dvadeset[ i →→]\"; Vikipedija (sr), \"Хиљаду и једна ноћ\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljadu-i-jedna-noc.txt): \"Хиљаду и једна ноћ\"; Wiktionary (en), \"po\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-po.txt): \"sat i po ― hour and a half\"."
+  },
+  "decimal_marker": {
+   "value": [
+    "zarez",
+    "koma"
+   ],
+   "source": "Vikipedija (sr), \"Децимални сепаратор\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-decimalni-separator.txt): \"функција сепаратора се претпоставља изговореним именом сепаратора: зарез или тачка у већини случајева\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml), rule x.x: \"←← koma →→;\"."
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml), rule -x: \"minus →→;\"; Wiktionary (en), \"minus\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-minus.txt): \"minus sign\"."
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "This lexicon lists no Serbian idiom that puts \"minus\" before a positive number."
+  },
+  "article_one": {
+   "value": [],
+   "source": "Serbian has no article; \"jedan\" is a numeral."
+  },
+  "of": {
+   "value": [],
+   "source": "Serbian marks the counted noun by case, with no \"of\" word."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "Serbian marks the counted noun by case, with no \"of\" word."
+  },
+  "vague_clitic": {
+   "value": [
+    "sam",
+    "si",
+    "smo",
+    "ste",
+    "su",
+    "bih",
+    "bi",
+    "bismo",
+    "biste",
+    "ću",
+    "ćeš",
+    "će",
+    "ćemo",
+    "ćete",
+    "je"
+   ],
+   "source": "Vikipedija (sr), \"Граматика српског језика\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-gramatika.txt): \"енклитички облици глагола „бити“ осим je (сам, си, смо, сте, су, бих, би, бисмо, бисте), и „хтјети“ (ћу, ћеш, ће, ћемо и ћете)\", \"енклитички облик трећег лица једнине презента глагола „бити“ (je)\", and \"Енклитике морају скоро увек да буду на другој позицији у реченици\"."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "Serbian has no particle after a denominator, like Portuguese avos."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "Serbian names no digit class with a singular noun after a collective."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "Wiktionary (en), \"pola\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-pola.txt): \"pola sata — half an hour\": the half is its own word before the unit, read by the half role."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "No Serbian number word in this lexicon is also an abbreviation with a period."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR 49 numbers, cldr-numbers-full/main/sr-Latn/numbers.json (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr49-numbers-sr-Latn.json): the decimal symbol is a comma."
+  },
+  "range_cue": {
+   "value": [
+    "između"
+   ],
+   "source": "Wiktionary (en), \"između\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-izmedju.txt): \"between\", \"Koja je razlika između muškaraca i žena?\": \"i\" joins the two limits, so it ends the first number."
+  }
+ },
+ "inflection": {
+  "sr.ordinal": {
+   "value": [
+    "a",
+    "e",
+    "i",
+    "ih",
+    "im",
+    "ima",
+    "o",
+    "og",
+    "oga",
+    "oj",
+    "om",
+    "ome",
+    "omu",
+    "u"
+   ],
+   "source": "Wiktionary (en), \"prvi\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-prvi.txt): \"Declension of prvi\" gives each form as the stem \"prv\" and an ending; a letter in brackets may stand or not: \"prvog(a)\", \"prvom(u/e)\". Wiktionary (en), \"drugi\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-drugi.txt) and Wiktionary (en), \"četvrti\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetvrti.txt) show the same table."
+  },
+  "sr.ordinal.soft": {
+   "value": [
+    "a",
+    "e",
+    "eg",
+    "ega",
+    "em",
+    "emu",
+    "i",
+    "ih",
+    "im",
+    "ima",
+    "oj",
+    "om",
+    "u"
+   ],
+   "source": "Wiktionary (en), \"srednji\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-srednji.txt): \"Declension of srednji\" gives each form as the stem \"srednj\" and an ending. \"treći\" ends in the soft \"ć\" and declines so: Wiktionary (en), \"treći\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-treci.txt): \"trȅćī\"."
+  }
+ },
+ "entries": [
+  {
+   "word": "nula",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nula\" is in its declension table."
+  },
+  {
+   "word": "nulama",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nulama\" is in its declension table."
+  },
+  {
+   "word": "nule",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nule\" is in its declension table."
+  },
+  {
+   "word": "nuli",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nuli\" is in its declension table."
+  },
+  {
+   "word": "nulom",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nulom\" is in its declension table."
+  },
+  {
+   "word": "nulu",
+   "role": "unit",
+   "value": "0",
+   "source": "Wiktionary (en), \"nula\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nula.txt): \"zero (0)\"; \"nulu\" is in its declension table."
+  },
+  {
+   "word": "jedan",
+   "role": "unit",
+   "value": "1",
+   "gender": "masculine",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jedan\"."
+  },
+  {
+   "word": "jedna",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jedna\"."
+  },
+  {
+   "word": "jedne",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jedne\"."
+  },
+  {
+   "word": "jedni",
+   "role": "unit",
+   "value": "1",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jedni\"."
+  },
+  {
+   "word": "jednih",
+   "role": "unit",
+   "value": "1",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednih\"."
+  },
+  {
+   "word": "jednim",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednim\"."
+  },
+  {
+   "word": "jednima",
+   "role": "unit",
+   "value": "1",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednim(a)\"."
+  },
+  {
+   "word": "jedno",
+   "role": "unit",
+   "value": "1",
+   "gender": "neuter",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jedno\"."
+  },
+  {
+   "word": "jednog",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednog(a)\"."
+  },
+  {
+   "word": "jednoga",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednog(a)\"."
+  },
+  {
+   "word": "jednoj",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednoj\"."
+  },
+  {
+   "word": "jednom",
+   "role": "unit",
+   "value": "1",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednom\". It is also the adverb \"once\": \"Adverbial: jedanput, jednom\"."
+  },
+  {
+   "word": "jednome",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednom(u/e)\"."
+  },
+  {
+   "word": "jednomu",
+   "role": "unit",
+   "value": "1",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednom(u/e)\"."
+  },
+  {
+   "word": "jednu",
+   "role": "unit",
+   "value": "1",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"jedan\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-jedan.txt): \"one (1)\", \"(as an article) a, one, some\", \"jedni ljudi ― some people\"; its declension tables have \"jednu\"."
+  },
+  {
+   "word": "dva",
+   "role": "unit",
+   "value": "2",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dva\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dvaju",
+   "role": "unit",
+   "value": "2",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dvaju\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dvama",
+   "role": "unit",
+   "value": "2",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dvama\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dvije",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dvije\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dve",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dve\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dviju",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dviju\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dvjema",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dvjema\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "dvema",
+   "role": "unit",
+   "value": "2",
+   "gender": "feminine",
+   "source": "Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"two\"; its declension table has \"dvema\". \"Feminine forms listed in Ijekavian and Ekavian pairs.\""
+  },
+  {
+   "word": "tri",
+   "role": "unit",
+   "value": "3",
+   "source": "Wiktionary (en), \"tri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tri.txt): its declension table has \"tri\"."
+  },
+  {
+   "word": "triju",
+   "role": "unit",
+   "value": "3",
+   "source": "Wiktionary (en), \"tri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tri.txt): its declension table has \"triju\"."
+  },
+  {
+   "word": "trima",
+   "role": "unit",
+   "value": "3",
+   "source": "Wiktionary (en), \"tri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tri.txt): its declension table has \"trima\"."
+  },
+  {
+   "word": "četiri",
+   "role": "unit",
+   "value": "4",
+   "source": "Wiktionary (en), \"četiri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetiri.txt): its declension table has \"četiri\"."
+  },
+  {
+   "word": "četiriju",
+   "role": "unit",
+   "value": "4",
+   "source": "Wiktionary (en), \"četiri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetiri.txt): its declension table has \"četiriju\"."
+  },
+  {
+   "word": "četirima",
+   "role": "unit",
+   "value": "4",
+   "source": "Wiktionary (en), \"četiri\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetiri.txt): its declension table has \"četirima\"."
+  },
+  {
+   "word": "pet",
+   "role": "unit",
+   "value": "5",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"pet\" for 5."
+  },
+  {
+   "word": "šest",
+   "role": "unit",
+   "value": "6",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"šest\" for 6."
+  },
+  {
+   "word": "sedam",
+   "role": "unit",
+   "value": "7",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"sedam\" for 7."
+  },
+  {
+   "word": "osam",
+   "role": "unit",
+   "value": "8",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"osam\" for 8."
+  },
+  {
+   "word": "devet",
+   "role": "unit",
+   "value": "9",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"devet\" for 9."
+  },
+  {
+   "word": "deset",
+   "role": "ten",
+   "value": "10",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"deset\" for 10."
+  },
+  {
+   "word": "jedanaest",
+   "role": "ten",
+   "value": "11",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"jedanaest\" for 11."
+  },
+  {
+   "word": "dvanaest",
+   "role": "ten",
+   "value": "12",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"dvanaest\" for 12."
+  },
+  {
+   "word": "trinaest",
+   "role": "ten",
+   "value": "13",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"trinaest\" for 13."
+  },
+  {
+   "word": "četrnaest",
+   "role": "ten",
+   "value": "14",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"četrnaest\" for 14."
+  },
+  {
+   "word": "petnaest",
+   "role": "ten",
+   "value": "15",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"petnaest\" for 15."
+  },
+  {
+   "word": "šesnaest",
+   "role": "ten",
+   "value": "16",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"šesnaest\" for 16."
+  },
+  {
+   "word": "sedamnaest",
+   "role": "ten",
+   "value": "17",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"sedamnaest\" for 17."
+  },
+  {
+   "word": "osamnaest",
+   "role": "ten",
+   "value": "18",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"osamnaest\" for 18."
+  },
+  {
+   "word": "devetnaest",
+   "role": "ten",
+   "value": "19",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"devetnaest\" for 19."
+  },
+  {
+   "word": "dvadeset",
+   "role": "ten",
+   "value": "20",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"dvadeset\" for 20."
+  },
+  {
+   "word": "trideset",
+   "role": "ten",
+   "value": "30",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"trideset\" for 30."
+  },
+  {
+   "word": "četrdeset",
+   "role": "ten",
+   "value": "40",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"četrdeset\" for 40."
+  },
+  {
+   "word": "pedeset",
+   "role": "ten",
+   "value": "50",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"pedeset\" for 50."
+  },
+  {
+   "word": "šezdeset",
+   "role": "ten",
+   "value": "60",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"šezdeset\" for 60."
+  },
+  {
+   "word": "sedamdeset",
+   "role": "ten",
+   "value": "70",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"sedamdeset\" for 70."
+  },
+  {
+   "word": "osamdeset",
+   "role": "ten",
+   "value": "80",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"osamdeset\" for 80."
+  },
+  {
+   "word": "devedeset",
+   "role": "ten",
+   "value": "90",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"devedeset\" for 90."
+  },
+  {
+   "word": "sto",
+   "role": "hundred",
+   "value": "100",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"sto\" for 100."
+  },
+  {
+   "word": "dvesta",
+   "role": "hundred",
+   "value": "200",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"dvesta\" for 200."
+  },
+  {
+   "word": "trista",
+   "role": "hundred",
+   "value": "300",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"trista\" for 300."
+  },
+  {
+   "word": "četiristo",
+   "role": "hundred",
+   "value": "400",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"četiristo\" for 400."
+  },
+  {
+   "word": "petsto",
+   "role": "hundred",
+   "value": "500",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"petsto\" for 500."
+  },
+  {
+   "word": "šeststo",
+   "role": "hundred",
+   "value": "600",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"šeststo\" for 600."
+  },
+  {
+   "word": "sedamsto",
+   "role": "hundred",
+   "value": "700",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"sedamsto\" for 700."
+  },
+  {
+   "word": "osamsto",
+   "role": "hundred",
+   "value": "800",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"osamsto\" for 800."
+  },
+  {
+   "word": "devetsto",
+   "role": "hundred",
+   "value": "900",
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-cardinal-masculine writes \"devetsto\" for 900."
+  },
+  {
+   "word": "dvesto",
+   "role": "hundred",
+   "value": "200",
+   "source": "Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȅsto (Cyrillic spelling две̏сто) (Ekavian)\", \"two hundred\"."
+  },
+  {
+   "word": "dvjesto",
+   "role": "hundred",
+   "value": "200",
+   "source": "Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"dvjesto (“two hundred”), dvjesta\"; Ijekavian."
+  },
+  {
+   "word": "dvjesta",
+   "role": "hundred",
+   "value": "200",
+   "source": "Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"dvjesto (“two hundred”), dvjesta\"; Ijekavian."
+  },
+  {
+   "word": "tristo",
+   "role": "hundred",
+   "value": "300",
+   "source": "Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"trȉsto (Croatia)\" beside \"trȉsta\", \"three hundred\"."
+  },
+  {
+   "word": "stotinu",
+   "role": "hundred",
+   "value": "100",
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\", accusative \"stotinu\", which stands for 100 alone."
+  },
+  {
+   "word": "stotina",
+   "role": "collective",
+   "value": "100",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\" and \"a hundredth (1/100)\"; \"stotina\" is in its declension table."
+  },
+  {
+   "word": "stotinama",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\" and \"a hundredth (1/100)\"; \"stotinama\" is in its declension table."
+  },
+  {
+   "word": "stotine",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\" and \"a hundredth (1/100)\"; \"stotine\" is in its declension table."
+  },
+  {
+   "word": "stotini",
+   "role": "collective",
+   "value": "100",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\" and \"a hundredth (1/100)\"; \"stotini\" is in its declension table."
+  },
+  {
+   "word": "stotinom",
+   "role": "collective",
+   "value": "100",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"stotina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-stotina.txt): \"a group of one hundred (100)\" and \"a hundredth (1/100)\"; \"stotinom\" is in its declension table."
+  },
+  {
+   "word": "stotine",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "plural": true,
+   "counted": true,
+   "source": "Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȇ stȍtine\"; Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"trȋ stȍtine\"; Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"petsto m (“five hundred”), pet stotina f\": a count times one hundred."
+  },
+  {
+   "word": "stotina",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "plural": true,
+   "counted": true,
+   "source": "Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȇ stȍtine\"; Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"trȋ stȍtine\"; Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"petsto m (“five hundred”), pet stotina f\": a count times one hundred."
+  },
+  {
+   "word": "hiljada",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljada\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "hiljadama",
+   "role": "scale_numeral",
+   "value": 3,
+   "plural": true,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljadama\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "hiljade",
+   "role": "scale_numeral",
+   "value": 3,
+   "plural": true,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljade\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "hiljadi",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljadi\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "hiljadom",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljadom\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "hiljadu",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"hiljadu\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milion",
+   "role": "scale_numeral",
+   "rank": 1,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milion\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "miliona",
+   "role": "scale_numeral",
+   "rank": 1,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"miliona\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milione",
+   "role": "scale_numeral",
+   "rank": 1,
+   "plural": true,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milione\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milioni",
+   "role": "scale_numeral",
+   "rank": 1,
+   "plural": true,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milioni\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milionima",
+   "role": "scale_numeral",
+   "rank": 1,
+   "plural": true,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milionima\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milionom",
+   "role": "scale_numeral",
+   "rank": 1,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milionom\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milionu",
+   "role": "scale_numeral",
+   "rank": 1,
+   "source": "Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt): \"milionu\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijarda",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijarda\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijardama",
+   "role": "scale_numeral",
+   "value": 9,
+   "plural": true,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijardama\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijarde",
+   "role": "scale_numeral",
+   "value": 9,
+   "plural": true,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijarde\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijardi",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijardi\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijardom",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijardom\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "milijardu",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "Wiktionary (en), \"milijarda\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milijarda.txt): \"milijardu\" is in its declension table. Wiktionary (en), \"dva\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dva.txt): \"As a vestige of the Proto-Slavic dual number, nouns following the numbers 2-4 are in genitive singular.\" A plural form needs a count."
+  },
+  {
+   "word": "tisuća",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisuća\" is in its declension table."
+  },
+  {
+   "word": "tisućama",
+   "role": "scale_numeral",
+   "value": 3,
+   "plural": true,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisućama\" is in its declension table."
+  },
+  {
+   "word": "tisuće",
+   "role": "scale_numeral",
+   "value": 3,
+   "plural": true,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisuće\" is in its declension table."
+  },
+  {
+   "word": "tisući",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisući\" is in its declension table."
+  },
+  {
+   "word": "tisućom",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisućom\" is in its declension table."
+  },
+  {
+   "word": "tisuću",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"у српскоме језику се јавља још и као тисућа\"; Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"tisuću\" is in its declension table."
+  },
+  {
+   "word": "bilion",
+   "role": "scale_numeral",
+   "rank": 2,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "biliona",
+   "role": "scale_numeral",
+   "rank": 2,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "bilione",
+   "role": "scale_numeral",
+   "rank": 2,
+   "plural": true,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "bilioni",
+   "role": "scale_numeral",
+   "rank": 2,
+   "plural": true,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "bilionima",
+   "role": "scale_numeral",
+   "rank": 2,
+   "plural": true,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "bilionom",
+   "role": "scale_numeral",
+   "rank": 2,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "bilionu",
+   "role": "scale_numeral",
+   "rank": 2,
+   "source": "Vikipedija (sr), \"Билион\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-bilion.txt): \"Билион је назив за позитиван природан број који се записује као 1.000.000.000.000\"; CLDR 48 RBNF, common/rbnf/sr_Latn.xml (knowledge/wiki/audits/numtag/lexicons/sr/pages/cldr48-rbnf-sr_Latn.xml): \"←%spellout-cardinal-masculine← bilion[ →→]\". The case endings are those of Wiktionary (en), \"milion\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-milion.txt), a noun of the same form."
+  },
+  {
+   "word": "nulti",
+   "role": "ordinal",
+   "value": "0",
+   "stems": {
+    "nult": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"nulti\" for 0; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "prvi",
+   "role": "ordinal",
+   "value": "1",
+   "stems": {
+    "prv": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"prvi\" for 1; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "drugi",
+   "role": "ordinal",
+   "value": "2",
+   "stems": {
+    "drug": [
+     "sr.ordinal"
+    ]
+   },
+   "ambiguous": true,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"drugi\" for 2; the endings are those of the class sr.ordinal. Wiktionary (en), \"drugi\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-drugi.txt): \"second\", \"other\"."
+  },
+  {
+   "word": "treći",
+   "role": "ordinal",
+   "value": "3",
+   "stems": {
+    "treć": [
+     "sr.ordinal.soft"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"treći\" for 3; the endings are those of the class sr.ordinal.soft."
+  },
+  {
+   "word": "četvrta",
+   "role": "ordinal",
+   "value": "4",
+   "stems": {
+    "četvrt": [
+     "sr.ordinal"
+    ]
+   },
+   "excluded_forms": [
+    "četvrti",
+    "četvrtima"
+   ],
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četvrti\" for 4; the endings are those of the class sr.ordinal. \"četvrti\" and \"četvrtima\" are also forms of the noun \"quarter\": Wiktionary (en), \"četvrt\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetvrt.txt)."
+  },
+  {
+   "word": "peti",
+   "role": "ordinal",
+   "value": "5",
+   "stems": {
+    "pet": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"peti\" for 5; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "šesti",
+   "role": "ordinal",
+   "value": "6",
+   "stems": {
+    "šest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"šesti\" for 6; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "sedmi",
+   "role": "ordinal",
+   "value": "7",
+   "stems": {
+    "sedm": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"sedmi\" for 7; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "osmi",
+   "role": "ordinal",
+   "value": "8",
+   "stems": {
+    "osm": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"osmi\" for 8; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "deveti",
+   "role": "ordinal",
+   "value": "9",
+   "stems": {
+    "devet": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"deveti\" for 9; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "deseti",
+   "role": "ordinal",
+   "value": "10",
+   "stems": {
+    "deset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"deseti\" for 10; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "jedanaesti",
+   "role": "ordinal",
+   "value": "11",
+   "stems": {
+    "jedanaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"jedanaesti\" for 11; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "dvanaesti",
+   "role": "ordinal",
+   "value": "12",
+   "stems": {
+    "dvanaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"dvanaesti\" for 12; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "trinaesti",
+   "role": "ordinal",
+   "value": "13",
+   "stems": {
+    "trinaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"trinaesti\" for 13; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "četrnaesti",
+   "role": "ordinal",
+   "value": "14",
+   "stems": {
+    "četrnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četrnaesti\" for 14; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "petnaesti",
+   "role": "ordinal",
+   "value": "15",
+   "stems": {
+    "petnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"petnaesti\" for 15; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "šesnaesti",
+   "role": "ordinal",
+   "value": "16",
+   "stems": {
+    "šesnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"šesnaesti\" for 16; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "sedamnaesti",
+   "role": "ordinal",
+   "value": "17",
+   "stems": {
+    "sedamnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"sedamnaesti\" for 17; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "osamnaesti",
+   "role": "ordinal",
+   "value": "18",
+   "stems": {
+    "osamnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"osamnaesti\" for 18; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "devetnaesti",
+   "role": "ordinal",
+   "value": "19",
+   "stems": {
+    "devetnaest": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"devetnaesti\" for 19; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "dvadeseti",
+   "role": "ordinal",
+   "value": "20",
+   "stems": {
+    "dvadeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"dvadeseti\" for 20; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "trideseti",
+   "role": "ordinal",
+   "value": "30",
+   "stems": {
+    "trideset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"trideseti\" for 30; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "četrdeseti",
+   "role": "ordinal",
+   "value": "40",
+   "stems": {
+    "četrdeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četrdeseti\" for 40; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "pedeseti",
+   "role": "ordinal",
+   "value": "50",
+   "stems": {
+    "pedeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"pedeseti\" for 50; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "šezdeseti",
+   "role": "ordinal",
+   "value": "60",
+   "stems": {
+    "šezdeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"šezdeseti\" for 60; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "sedamdeseti",
+   "role": "ordinal",
+   "value": "70",
+   "stems": {
+    "sedamdeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"sedamdeseti\" for 70; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "osamdeseti",
+   "role": "ordinal",
+   "value": "80",
+   "stems": {
+    "osamdeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"osamdeseti\" for 80; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "devedeseti",
+   "role": "ordinal",
+   "value": "90",
+   "stems": {
+    "devedeset": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"devedeseti\" for 90; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "stoti",
+   "role": "ordinal",
+   "value": "100",
+   "stems": {
+    "stot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"stoti\" for 100; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "četiristoti",
+   "role": "ordinal",
+   "value": "400",
+   "stems": {
+    "četiristot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četiristoti\" for 400; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "petstoti",
+   "role": "ordinal",
+   "value": "500",
+   "stems": {
+    "petstot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"petstoti\" for 500; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "šeststoti",
+   "role": "ordinal",
+   "value": "600",
+   "stems": {
+    "šeststot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"šeststoti\" for 600; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "sedamstoti",
+   "role": "ordinal",
+   "value": "700",
+   "stems": {
+    "sedamstot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"sedamstoti\" for 700; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "osamstoti",
+   "role": "ordinal",
+   "value": "800",
+   "stems": {
+    "osamstot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"osamstoti\" for 800; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "devetstoti",
+   "role": "ordinal",
+   "value": "900",
+   "stems": {
+    "devetstot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"devetstoti\" for 900; the endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "četvrti",
+   "role": "ordinal",
+   "value": "4",
+   "ambiguous": true,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četvrti\" for 4. \"četvrti\" is also a form of the noun \"četvrt\", \"quarter\": Wiktionary (en), \"četvrt\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetvrt.txt)."
+  },
+  {
+   "word": "četvrtima",
+   "role": "ordinal",
+   "value": "4",
+   "ambiguous": true,
+   "source": "ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt): %spellout-ordinal writes \"četvrti\" for 4. \"četvrtima\" is also a form of the noun \"četvrt\", \"quarter\": Wiktionary (en), \"četvrt\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-cetvrt.txt)."
+  },
+  {
+   "word": "dvestoti",
+   "role": "ordinal",
+   "value": "200",
+   "stems": {
+    "dvestot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"tristoti (“three hundredth”)\": the ordinal of a hundred adds -ti to the form in -sto (Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȅsto\"; Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"dvjesto\"), as ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt) writes \"četiristoti\" for 400. The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "dvjestoti",
+   "role": "ordinal",
+   "value": "200",
+   "stems": {
+    "dvjestot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"tristoti (“three hundredth”)\": the ordinal of a hundred adds -ti to the form in -sto (Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȅsto\"; Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"dvjesto\"), as ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt) writes \"četiristoti\" for 400. The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "tristoti",
+   "role": "ordinal",
+   "value": "300",
+   "stems": {
+    "tristot": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Wiktionary (en), \"trista\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-trista.txt): \"tristoti (“three hundredth”)\": the ordinal of a hundred adds -ti to the form in -sto (Wiktionary (en), \"dvesto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-dvesto.txt): \"dvȅsto\"; Wiktionary (en), \"sto\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-sto.txt): \"dvjesto\"), as ICU 78 rendering of the CLDR 48 rules (knowledge/wiki/audits/numtag/lexicons/sr/pages/icu78-sr_Latn-renderings.txt) writes \"četiristoti\" for 400. The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "hiljaditi",
+   "role": "ordinal_scale",
+   "value": "hiljada",
+   "stems": {
+    "hiljadit": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"Редни број | хиљадити\"; Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Ordinal: hiljaditi, tisućiti\". The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "tisućiti",
+   "role": "ordinal_scale",
+   "value": "tisuća",
+   "stems": {
+    "tisućit": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Wiktionary (en), \"tisuća\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tisuca.txt): \"Ordinal: hiljaditi, tisućiti\". The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "milioniti",
+   "role": "ordinal_scale",
+   "value": "milion",
+   "stems": {
+    "milionit": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"на пример први, други, трећи, сто педесети, милионити\". The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "milijarditi",
+   "role": "ordinal_scale",
+   "value": "milijarda",
+   "stems": {
+    "milijardit": [
+     "sr.ordinal"
+    ]
+   },
+   "source": "The ending -iti after the noun, as in Vikipedija (sr), \"Редни број\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-redni-broj.txt): \"милионити\" and Vikipedija (sr), \"Хиљада\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-hiljada.txt): \"хиљадити\": a paraphrase by analogy, with no page quote of the word. The endings are those of the class sr.ordinal."
+  },
+  {
+   "word": "šestina",
+   "role": "denominator",
+   "value": "6",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestinama",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestine",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestini",
+   "role": "denominator",
+   "value": "6",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestinom",
+   "role": "denominator",
+   "value": "6",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestinu",
+   "role": "denominator",
+   "value": "6",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "šestina",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"шестина\" for 6; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestina",
+   "role": "denominator",
+   "value": "11",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestinama",
+   "role": "denominator",
+   "value": "11",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestine",
+   "role": "denominator",
+   "value": "11",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestini",
+   "role": "denominator",
+   "value": "11",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestinom",
+   "role": "denominator",
+   "value": "11",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestinu",
+   "role": "denominator",
+   "value": "11",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "jedanaestina",
+   "role": "denominator",
+   "value": "11",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"једанаестина\" for 11; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovina",
+   "role": "denominator",
+   "value": "2",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovinama",
+   "role": "denominator",
+   "value": "2",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovine",
+   "role": "denominator",
+   "value": "2",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovini",
+   "role": "denominator",
+   "value": "2",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovinom",
+   "role": "denominator",
+   "value": "2",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovinu",
+   "role": "denominator",
+   "value": "2",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "polovina",
+   "role": "denominator",
+   "value": "2",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"половина\" for 2; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedmina",
+   "role": "denominator",
+   "value": "7",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedminama",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedmine",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedmini",
+   "role": "denominator",
+   "value": "7",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedminom",
+   "role": "denominator",
+   "value": "7",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedminu",
+   "role": "denominator",
+   "value": "7",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "sedmina",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"седмина\" for 7; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestina",
+   "role": "denominator",
+   "value": "12",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestinama",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestine",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestini",
+   "role": "denominator",
+   "value": "12",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestinom",
+   "role": "denominator",
+   "value": "12",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestinu",
+   "role": "denominator",
+   "value": "12",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "dvanaestina",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"дванаестина\" for 12; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećina",
+   "role": "denominator",
+   "value": "3",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećinama",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećine",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećini",
+   "role": "denominator",
+   "value": "3",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećinom",
+   "role": "denominator",
+   "value": "3",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećinu",
+   "role": "denominator",
+   "value": "3",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trećina",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"трећина\" for 3; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osmina",
+   "role": "denominator",
+   "value": "8",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osminama",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osmine",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osmini",
+   "role": "denominator",
+   "value": "8",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osminom",
+   "role": "denominator",
+   "value": "8",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osminu",
+   "role": "denominator",
+   "value": "8",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "osmina",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"осмина\" for 8; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestina",
+   "role": "denominator",
+   "value": "13",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestinama",
+   "role": "denominator",
+   "value": "13",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestine",
+   "role": "denominator",
+   "value": "13",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestini",
+   "role": "denominator",
+   "value": "13",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestinom",
+   "role": "denominator",
+   "value": "13",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestinu",
+   "role": "denominator",
+   "value": "13",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "trinaestina",
+   "role": "denominator",
+   "value": "13",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"тринаестина\" for 13; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtina",
+   "role": "denominator",
+   "value": "4",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtinama",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtine",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtini",
+   "role": "denominator",
+   "value": "4",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtinom",
+   "role": "denominator",
+   "value": "4",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtinu",
+   "role": "denominator",
+   "value": "4",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četvrtina",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четвртина\" for 4; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetina",
+   "role": "denominator",
+   "value": "9",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetinama",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetine",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetini",
+   "role": "denominator",
+   "value": "9",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetinom",
+   "role": "denominator",
+   "value": "9",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetinu",
+   "role": "denominator",
+   "value": "9",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "devetina",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"деветина\" for 9; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestina",
+   "role": "denominator",
+   "value": "14",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestinama",
+   "role": "denominator",
+   "value": "14",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestine",
+   "role": "denominator",
+   "value": "14",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestini",
+   "role": "denominator",
+   "value": "14",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestinom",
+   "role": "denominator",
+   "value": "14",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestinu",
+   "role": "denominator",
+   "value": "14",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "četrnaestina",
+   "role": "denominator",
+   "value": "14",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"четрнаестина\" for 14; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petina",
+   "role": "denominator",
+   "value": "5",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petinama",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petine",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petini",
+   "role": "denominator",
+   "value": "5",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petinom",
+   "role": "denominator",
+   "value": "5",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petinu",
+   "role": "denominator",
+   "value": "5",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petina",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петина\" for 5; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "desetina",
+   "role": "denominator",
+   "value": "10",
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetinama",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetine",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetini",
+   "role": "denominator",
+   "value": "10",
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetinom",
+   "role": "denominator",
+   "value": "10",
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetinu",
+   "role": "denominator",
+   "value": "10",
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "desetina",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "ambiguous": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"десетина\" for 10; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\". \"desetine\" also names tens of things."
+  },
+  {
+   "word": "petnaestina",
+   "role": "denominator",
+   "value": "15",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestinama",
+   "role": "denominator",
+   "value": "15",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestine",
+   "role": "denominator",
+   "value": "15",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestini",
+   "role": "denominator",
+   "value": "15",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestinom",
+   "role": "denominator",
+   "value": "15",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestinu",
+   "role": "denominator",
+   "value": "15",
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "petnaestina",
+   "role": "denominator",
+   "value": "15",
+   "plural": true,
+   "source": "Vikipedija (sr), \"Разломак\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/srwp-razlomak.txt): the table of fraction names has \"петнаестина\" for 15; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt), \"one fifth\"."
+  },
+  {
+   "word": "hiljaditina",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditinama",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditine",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditini",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditinom",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditinu",
+   "role": "denominator",
+   "value": "1000",
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "hiljaditina",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "source": "Wiktionary (en), \"hiljada\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-hiljada.txt): \"Fractional: hiljaditina\"; the case endings are those of Wiktionary (en), \"petina\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-petina.txt)."
+  },
+  {
+   "word": "pola",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Wiktionary (en), \"pola\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-pola.txt): \"half [with genitive]\", \"pola sata — half an hour\"; it is also the genitive of \"pol\"."
+  },
+  {
+   "word": "tucet",
+   "role": "collective",
+   "value": "12",
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tucet\" is in its declension table."
+  },
+  {
+   "word": "tuceta",
+   "role": "collective",
+   "value": "12",
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tuceta\" is in its declension table."
+  },
+  {
+   "word": "tucete",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tucete\" is in its declension table."
+  },
+  {
+   "word": "tuceti",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tuceti\" is in its declension table."
+  },
+  {
+   "word": "tucetima",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tucetima\" is in its declension table."
+  },
+  {
+   "word": "tucetom",
+   "role": "collective",
+   "value": "12",
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tucetom\" is in its declension table."
+  },
+  {
+   "word": "tucetu",
+   "role": "collective",
+   "value": "12",
+   "source": "Wiktionary (en), \"tucet\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-tucet.txt): \"(with genitive) dozen\"; \"tucetu\" is in its declension table."
+  },
+  {
+   "word": "nekoliko",
+   "role": "vague_quantifier",
+   "source": "Wiktionary (en), \"nekoliko\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-nekoliko.txt): \"some, several, a few\", \"nȅkoliko godina ― for several years\"."
+  },
+  {
+   "word": "desetak",
+   "role": "vague_quantifier",
+   "source": "Wiktionary (en), \"desetak\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-desetak.txt): \"around ten\", \"a group or collection of around ten\"; \"desetak\" is in its declension table."
+  },
+  {
+   "word": "desetka",
+   "role": "vague_quantifier",
+   "source": "Wiktionary (en), \"desetak\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-desetak.txt): \"around ten\", \"a group or collection of around ten\"; \"desetka\" is in its declension table."
+  },
+  {
+   "word": "desetkom",
+   "role": "vague_quantifier",
+   "source": "Wiktionary (en), \"desetak\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-desetak.txt): \"around ten\", \"a group or collection of around ten\"; \"desetkom\" is in its declension table."
+  },
+  {
+   "word": "desetku",
+   "role": "vague_quantifier",
+   "source": "Wiktionary (en), \"desetak\" (knowledge/wiki/audits/numtag/lexicons/sr/pages/wikt-desetak.txt): \"around ten\", \"a group or collection of around ten\"; \"desetku\" is in its declension table."
+  }
+ ]
+}

@@ -1,5 +1,13 @@
 # Number scale
 
+<!-- agent-hint
+covers: Long and short scale: the scale argument, the lexicon default and the number_scale field.
+source: numtag/tagger.py:tag_numbers, numtag/lexicon/__init__.py:load, the scale setting of each lexicon
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/number-scale.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: values.md, languages/pt.md
+-->
+
 Large scale words have two values. In the short scale, a billion is a thousand millions (10^9). In the long scale, a billion is a million millions (10^12). numtag reads each language in its own scale by default. Every mention states the scale when its value depends on it.
 
 ## The default scale per language

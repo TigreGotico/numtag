@@ -8,6 +8,14 @@ def words(text: str, suffixes=frozenset()) -> list[tuple[str, int, int]]:
 
 
 class TestTokenize(unittest.TestCase):
+    def test_a_last_part_ends_a_compound(self):
+        parts = frozenset({"ien", "ienen", "en", "tweintich"})
+        split = tokenize("ienentweintich", compound_words=parts, compound_inner=frozenset({"en"}))
+        self.assertEqual([t.text for t in split], ["ienen", "tweintich"])
+        split = tokenize("ienentweintich", compound_words=parts, compound_inner=frozenset({"en"}),
+                         compound_last=frozenset({"ienen"}))
+        self.assertEqual([t.text for t in split], ["ien", "en", "tweintich"])
+
     def test_a_word_before_an_apostrophe_and_a_word_notes_the_noun(self):
         tokens = tokenize("di un'ora", number_words=frozenset({"un"}))
         self.assertEqual([(t.text, t.noun_after) for t in tokens], [("di", False), ("un", True), ("ora", False)])

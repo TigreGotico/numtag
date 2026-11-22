@@ -6,6 +6,8 @@ that comment. The sources of the words are in numtag/lexicon/en.json and
 numtag/lexicon/pt-PT.json."""
 import unittest
 
+import pytest
+
 from numtag import (Reason, UnsupportedLanguageError, VagueKind, VagueQuantity, tag_numbers,
                     tag_vague_quantities)
 from numtag.lexicon import SCALE_ROLES, load
@@ -218,11 +220,90 @@ class TestNoVagueQuantity(unittest.TestCase):
         self.assertEqual(vague("The station opened in 2005.", "en"), [])
 
     def test_a_language_with_no_entries_gives_nothing(self):
-        self.assertEqual(vague("Viele Millionen Menschen", "de"), [])
+        self.assertEqual(vague("Des millions de personnes", "fr"), [])
 
     def test_an_unknown_language_raises(self):
         with self.assertRaises(UnsupportedLanguageError):
             tag_vague_quantities("many people", "xx")
+
+
+class TestCoupleAndPaar(unittest.TestCase):
+    """en "a couple (of)" is two at the homograph score; nl "een paar" and de "ein paar" are
+    an amount, and their article is no count of one. Quotes in docs/rulings.md."""
+
+    def test_a_couple_is_two_at_the_homograph_score(self):
+        # Merriam-Webster, "couple", adjective: "two also : few"; Cambridge: "two or a few things"
+        for text in ("take a picture in a couple of seconds", "roll a couple of dice",
+                     "The doctor said my leg should be better in a couple of days.", "a couple drinks"):
+            with self.subTest(text=text):
+                [m] = tag_numbers(text, "en")
+                self.assertEqual((m.text, m.value, m.confidence, m.reasons),
+                                 ("a couple", "2", AMBIGUOUS_CONFIDENCE, frozenset({Reason.HOMOGRAPH})))
+                self.assertEqual(vague(text, "en"), [])
+
+    def test_a_couple_before_a_scale_word_is_a_magnitude(self):
+        # Merriam-Webster, usage guide: "a couple hundred a couple dozen"; the phrase stands where
+        # the count would, as "a few" does: 10^2 = 100, 12, 10^3 = 1000, 10^6 = 1000000
+        for text, words, scale in (("It cost a couple hundred dollars.", "a couple hundred", "100"),
+                                   ("a couple dozen eggs", "a couple dozen", "12"),
+                                   ("a couple of thousand people", "a couple of thousand", "1000"),
+                                   ("a couple of million years", "a couple of million", "1000000")):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "en"), [])
+                self.assertEqual(vague(text, "en"), [at(text, words, M, scale)])
+
+    def test_the_couple_with_no_count_is_no_number(self):
+        # only the article makes "couple" a number; "the couple" names two persons and no count
+        self.assertEqual(numbers("The couple walked in.", "en"), [])
+
+    def test_a_count_before_couple_counts_couples(self):
+        # Merriam-Webster, "couple", noun sense 1a: "two persons married, engaged, or otherwise
+        # romantically paired"; the count counts couples, so the number is the count alone
+        for text, count in (("One couple said they had waited for hours.", ("One", "1")),
+                            ("three couple dances", ("three", "3")),
+                            ("Two couple friends of ours came along.", ("Two", "2"))):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "en"), [count])
+
+    def test_een_paar_is_an_amount_and_een_is_no_one(self):
+        # Onze Taal 72: "een paar" with the sense "een klein aantal" is an indefinite numeral, like "enkele"
+        for text in ("foto in een paar seconden", "Neem jij een paar appels mee?", "Een paar mensen zonder auto."):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "nl"), [])
+                [quantity] = vague(text, "nl")
+                self.assertEqual(quantity, at(text, text[text.casefold().index("een paar"):][:8], A))
+                self.assertEqual((quantity.confidence, quantity.reasons),
+                                 (AMBIGUOUS_CONFIDENCE, frozenset({Reason.HOMOGRAPH})))
+
+    def test_ein_paar_is_an_amount_and_ein_is_no_one(self):
+        # DWDS (eWDG), "ein paar": "bezeichnet eine unbestimmte Anzahl"
+        for text in ("in ein paar Sekunden", "ein paar Schritte gehen"):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "de"), [])
+                [quantity] = vague(text, "de")
+                self.assertEqual(quantity.kind, A)
+                self.assertEqual(quantity.text.casefold(), "ein paar")
+                self.assertEqual(quantity.confidence, AMBIGUOUS_CONFIDENCE)
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/249")
+    def test_ein_paar_with_a_capital_is_one_pair(self):
+        # DWDS lists the noun "Paar" and the pronoun "paar" as two words; the article counts one pair
+        self.assertEqual(numbers("Ein Paar Schuhe.", "de"), [("Ein", "1")])
+
+    def test_een_paar_before_a_scale_word_is_a_magnitude(self):
+        # 10^2 = 100 and 10^3 = 1000; a vague word before a singular scale word gives no lower bound
+        text = "een paar honderd mensen"
+        self.assertEqual(numbers(text, "nl"), [])
+        self.assertEqual(vague(text, "nl"), [at(text, "een paar honderd", M, "100")])
+        text = "ein paar tausend Menschen"
+        self.assertEqual(numbers(text, "de"), [])
+        self.assertEqual(vague(text, "de"), [at(text, "ein paar tausend", M, "1000")])
+
+    def test_a_count_of_pairs_keeps_its_number(self):
+        # "twee paar schoenen" is two pairs; "één" with accents is only the numeral, one pair
+        self.assertEqual(numbers("twee paar schoenen", "nl"), [("twee", "2")])
+        self.assertEqual(numbers("één paar schoenen", "nl"), [("één", "1")])
+        self.assertEqual(numbers("zwei Paar Schuhe", "de"), [("zwei", "2")])
 
 
 class TestLexicon(unittest.TestCase):
