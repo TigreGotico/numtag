@@ -33,8 +33,8 @@
    "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": \"cento un\" takes no \"e\". No source writes a joiner after the hundred, and none reads it as two numbers either. A text that writes one (\"cento e vinte\") means one number, so the joiner is optional when reading: the reading takes it when it is there, and the bound hundred keeps its value. ovos-number-parser numbers_gl.py (a lead) writes \"cento e un\"."
   },
   "joiner_between_groups": {
-   "value": "never",
-   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": the groups stand side by side as the hundreds do (\"cento un\"); RAG does not write \"e\" after \"mil\"."
+   "value": "optional",
+   "source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego (2003), 16.1 Cardinais: \"cero\", \"un/unha\", \"dous/dúas\", \"dezaseis\", \"vinte e un / vinte e unha\", \"trinta e un, trinta e unha\", \"cen\", \"cento un, cento unha\", \"douscentos / duascentas\", \"cincocentos / cincocentas, quiñentos/ -as\", \"mil\": the groups stand side by side as the hundreds do (\"cento un\"); RAG does not write \"e\" after \"mil\". Text also writes \"mil e\" (\"dous mil e vinte e seis\"), and a split reading gives a wrong value. Maintainer ruling: \"be lenient and read 'mil e' as one number\". So the joiner is optional, and both forms read as one number."
   },
   "joiner_before_round_hundred": {
    "value": false,
@@ -45,8 +45,8 @@
    "source": "No source opened shows a comma between two classes of one number, so a comma ends a number."
   },
   "joiner_before_last_group": {
-   "value": "never",
-   "source": "joiner_between_groups is \"never\", with the source quoted there: no joiner stands between two groups, the last group too. RAG e ILG, Normas (2003), 16.1 lists no number above \"mil\", so no saved page shows the last group."
+   "value": "optional",
+   "source": "joiner_between_groups is \"optional\", with the source and the maintainer ruling quoted there: the joiner before the last group is optional too."
   },
   "ordinal_style": {
    "value": "every_word",
@@ -54,6 +54,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "ás",
+    "á"
+   ],
+   "source": "gl.wikipedia \"Hora\", edit note: \"10 de novembro de 2025 ás 16:06\": \"ás\" before a time; \"h\" is the symbol of the hour (\"3 h 25 m 13 s\"). An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h"
+   ],
+   "source": "gl.wikipedia \"Hora\", edit note: \"10 de novembro de 2025 ás 16:06\": \"ás\" before a time; \"h\" is the symbol of the hour (\"3 h 25 m 13 s\"). An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "e"

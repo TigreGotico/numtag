@@ -2,13 +2,17 @@
 and at 8n copies; a linear reader takes about 8 times as long, so the ratio
 must stay below 12. A quadratic split search took 17 to 18 times as long on
 250 and 2000 copies of one number word, and more than 80 times as long on a
-run with joiners."""
+run with joiners. Load on the machine only makes a ratio larger, so the
+lowest of up to ATTEMPTS measures counts."""
 import time
 import unittest
+from unittest import mock
 
 from numtag import tag_numbers
+from numtag.grammar import Grammar
 
 THRESHOLD = 12
+ATTEMPTS = 3
 
 
 def best_time(text: str, lang: str) -> float:
@@ -22,8 +26,10 @@ def best_time(text: str, lang: str) -> float:
 
 class TestGrowth(unittest.TestCase):
     def assert_linear(self, unit: str, lang: str, n: int) -> None:
-        ratio = best_time(unit * 8 * n, lang) / best_time(unit * n, lang)
-        self.assertLess(ratio, THRESHOLD, f"{unit!r} x {n} in {lang}: {ratio:.1f} times as long at 8x")
+        ratios = []
+        while len(ratios) < ATTEMPTS and min(ratios, default=THRESHOLD) >= THRESHOLD:
+            ratios.append(best_time(unit * 8 * n, lang) / best_time(unit * n, lang))
+        self.assertLess(min(ratios), THRESHOLD, f"{unit!r} x {n} in {lang}: {ratios} times as long at 8x")
 
     def test_a_run_of_one_number_word_is_a_list(self):
         # every word is a number of its own
@@ -36,6 +42,14 @@ class TestGrowth(unittest.TestCase):
         for unit, lang in (("um ", "pt-PT"), ("one ", "en"), ("-5 ", "pt-PT")):
             with self.subTest(unit=unit, lang=lang):
                 self.assert_linear(unit, lang, 250)
+
+    def test_each_position_is_read_once(self):
+        # a run of number words with no joiner reads the numbers from each
+        # word once, however often the split search and the reasons ask for them
+        with mock.patch.object(Grammar, "fractions", autospec=True, side_effect=Grammar.fractions) as read:
+            mentions = tag_numbers("um " * 200, "pt-PT")
+        self.assertEqual(" ".join(m.text for m in mentions).split(), ["um"] * 200)
+        self.assertEqual(read.call_count, 200)
 
     def test_a_run_of_number_words_and_joiners(self):
         for unit, lang in (("mil e ", "pt-PT"), ("one and ", "en"), ("dois milhões e ", "pt-PT")):

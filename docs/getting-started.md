@@ -1,5 +1,13 @@
 # Getting started
 
+<!-- agent-hint
+covers: How to make the first call and do the common tasks: filter weak mentions, replace numbers with digits, convert values, choose a scale.
+source: numtag/tagger.py:tag_numbers, numtag/mention.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/getting-started.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: api.md, values.md, number-scale.md
+-->
+
 This guide shows the first call to numtag and the tasks that most callers need. Every example on this page runs as a test, so the output shown is the output that numtag gives.
 
 ## Install
