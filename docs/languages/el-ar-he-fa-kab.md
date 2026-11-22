@@ -45,6 +45,19 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('ħamsa u għoxrin', '25')]
 ```
 
+## Spoken Arabic
+
+The Arabic lexicon also reads the one-word teens, the tens and the hundreds of spoken Egyptian, Levantine, Moroccan and Gulf Arabic. The forms come from the Wiktionary number lists of each lect. A word that is also a Standard Arabic word stays a word: "تنين" is the dragon, "ثمن" the price and "زوج" the spouse. "ميتين" is also the plural of "dead", so it is weak alone.
+
+```python
+>>> read('عمره حداشر سنة', 'ar')
+[('حداشر', '11')]
+>>> read('الف وخمستعش', 'ar')
+[('الف وخمستعش', '1015')]
+>>> read('ثم ظهر التنين', 'ar')
+[]
+```
+
 ## Examples from the gold rows
 
 ```python
