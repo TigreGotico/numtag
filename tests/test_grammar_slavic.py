@@ -482,6 +482,19 @@ class TestCzechMinus(unittest.TestCase):
         self.assertEqual(read("pět mínus dva", "cs"), [("pět", "5", C), ("dva", "2", C)])
 
 
+class TestHundredNounWithAHalfAndAYear(unittest.TestCase):
+    def test_a_half_after_the_count_counts_half_a_hundred_too(self):
+        # 5.5 x 100 = 550, 2.5 x 100 = 250, 3.5 x 100 x 1000 = 350000, and 5.5 x 1000 = 5500
+        self.assertEqual(read("pet i pol stotina", "hr"), [("pet i pol stotina", "550", C)])
+        self.assertEqual(read("dvije i pol stotine", "hr"), [("dvije i pol stotine", "250", C)])
+        self.assertEqual(read("tri i pol stotine tisuća", "hr"), [("tri i pol stotine tisuća", "350000", C)])
+        self.assertEqual(read("pet i pol tisuća", "hr"), [("pet i pol tisuća", "5500", C)])
+
+    def test_a_year_is_no_count_of_a_hundred_noun(self):
+        # a count of a thousand or more takes no hundred noun: the year stays 1995, not 1995 x 100
+        self.assertEqual(read("Godine 1995 stotine ljudi", "hr"), [("1995", "1995", C)])
+
+
 class TestApostrophes(unittest.TestCase):
     def test_ukrainian_apostrophe_spellings_are_one_letter(self):
         for word in ("пʼять", "п'ять", "п’ять"):
