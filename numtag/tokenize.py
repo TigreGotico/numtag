@@ -5,7 +5,7 @@ from dataclasses import dataclass, field, replace
 from functools import cache, cached_property
 
 _LONE_MARK = re.compile(r"[.,][0-9]+")
-_EXPONENT = re.compile(r"[eE][+-]?[0-9]+(?![^\W\d_])")
+_EXPONENT = re.compile(r"[eE][+-]?[0-9]+(?![^\W_])")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
 # A soft hyphen (U+00AD) inside a word marks where a line may break; it
