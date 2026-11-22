@@ -232,16 +232,23 @@ class Grammar:
 
     def _vague_step(self, i: int) -> tuple[bool | None, int]:
         """(True, i) when a vague phrase ends before ``i``; (False, i) when
-        nothing does; (None, j) when the chain goes on at ``j``."""
+        nothing does; (None, j) when the chain goes on at ``j``. A plural
+        scale word ("dezenas") is a vague phrase only before "de" and a scale
+        word, so "dezenas mil" keeps the number "mil"."""
         end = i
+        counted = False
         if 0 < i < len(self.tokens) and self.tokens[i].links_to_previous():
             if self._is_word(i - 1, self.lex.vague_clitics) and self.tokens[i - 1].links_to_previous():
                 end = i - 1
+            elif i > 1 and self._is_word(i - 1, self.lex.of_words) and self.tokens[i - 1].links_to_previous():
+                # "centenas de milhar": the plural counts the scale word after "de"
+                end, counted = i - 1, True
         else:
             return False, i
         for phrase in self.lex.vague_quantifiers:
             start = end - len(phrase)
             if start >= 0 and all(t.norm == w and not t.is_digits for t, w in zip(self.tokens[start:end], phrase)) \
+                    and (len(phrase) > 1 or counted or not self._plural_scale(start)) \
                     and not (start > 0 and self.starts_number(start - 1)
                              and (not self.tokens[start - 1].is_digits or self._plural_scale(start))):
                 return True, i
