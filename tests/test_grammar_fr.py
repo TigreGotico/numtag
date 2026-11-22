@@ -153,6 +153,13 @@ class TestENotation(unittest.TestCase):
         self.assertEqual(fr("le 2e jour"), [("2e", "2", O)])
         self.assertEqual(fr("le 1er mai"), [("1er", "1", O)])
 
+    def test_an_ordinal_range_is_no_exponent(self):
+        # "2e-3e" is the 2nd to the 3rd: a letter after the digits ends the exponent
+        two_three = [("2e", "2", O), ("3e", "3", O)]
+        for text, lang in (("le 2e-3e rang", "fr-FR"), ("en 2e-3e année", "fr-BE"), ("de 2e-3e graad", "nl")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, lang), two_three)
+
 
 class TestSwissDigits(unittest.TestCase):
     def test_an_apostrophe_groups_digits_in_switzerland(self):
