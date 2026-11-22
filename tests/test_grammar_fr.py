@@ -143,6 +143,35 @@ class TestStandaloneOrdinals(unittest.TestCase):
                          [("une", "1", "cardinal"), ("seconde", "2", O)])
 
 
+class TestENotation(unittest.TestCase):
+    def test_a_number_in_e_notation_holds_no_ordinal(self):
+        # "1e5" is 10^5 in E notation: neither the 1st nor 1 and 5
+        for text in ("1e5", "1e309", "5e3", "2,5e-3", "1e-12", "1E5 cellules"):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), [])
+        # the ordinal suffix with no digit after it stays
+        self.assertEqual(fr("le 2e jour"), [("2e", "2", O)])
+        self.assertEqual(fr("le 1er mai"), [("1er", "1", O)])
+
+    def test_an_ordinal_range_is_no_exponent(self):
+        # "2e-3e" is the 2nd to the 3rd: a letter after the digits ends the exponent
+        two_three = [("2e", "2", O), ("3e", "3", O)]
+        for text, lang in (("le 2e-3e rang", "fr-FR"), ("en 2e-3e année", "fr-BE"), ("de 2e-3e graad", "nl")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, lang), two_three)
+
+    def test_an_ordinal_range_with_two_digits_is_no_exponent(self):
+        for text, lang, spans in (
+            ("du 10e-12e siècle", "fr-FR", [("10e", "10", O), ("12e", "12", O)]),
+            ("du 10e-12e siècle", "fr-BE", [("10e", "10", O), ("12e", "12", O)]),
+            ("le 11e-13e siècles", "fr-FR", [("11e", "11", O), ("13e", "13", O)]),
+            ("les 2e-13e rangs", "fr-FR", [("2e", "2", O), ("13e", "13", O)]),
+            ("de 10e-12e eeuw", "nl", [("10e", "10", O), ("12e", "12", O)]),
+        ):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual(read(text, lang), spans)
+
+
 class TestSwissDigits(unittest.TestCase):
     def test_an_apostrophe_groups_digits_in_switzerland(self):
         # 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5
