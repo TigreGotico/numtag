@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a6](https://github.com/TigreGotico/numtag/tree/0.19.22a6) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a5...0.19.22a6)
+
+**Merged pull requests:**
+
+- docs: align docs with the code, STE pass [\#280](https://github.com/TigreGotico/numtag/pull/280) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.22a5](https://github.com/TigreGotico/numtag/tree/0.19.22a5) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a4...0.19.22a5)
@@ -587,10 +595,6 @@
 ## [0.12.6a1](https://github.com/TigreGotico/numtag/tree/0.12.6a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.5a1...0.12.6a1)
-
-**Merged pull requests:**
-
-- fix\(hu\): "hat" after a request verb or alone is six [\#63](https://github.com/TigreGotico/numtag/pull/63) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.5a1](https://github.com/TigreGotico/numtag/tree/0.12.5a1) (2026-11-16)
 
