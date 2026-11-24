@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a5](https://github.com/TigreGotico/numtag/tree/0.19.22a5) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a4...0.19.22a5)
+
+**Merged pull requests:**
+
+- test: strict xfail for ar and he gold spans after a prefix [\#282](https://github.com/TigreGotico/numtag/pull/282) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.22a4](https://github.com/TigreGotico/numtag/tree/0.19.22a4) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a3...0.19.22a4)
@@ -603,10 +611,6 @@
 ## [0.12.3a1](https://github.com/TigreGotico/numtag/tree/0.12.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.2a1...0.12.3a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): cite the corpus for the "a menos" idiom [\#62](https://github.com/TigreGotico/numtag/pull/62) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.2a1](https://github.com/TigreGotico/numtag/tree/0.12.2a1) (2026-11-16)
 
