@@ -2,9 +2,10 @@
 import re
 import unicodedata
 from dataclasses import dataclass, field, replace
-from functools import cache
+from functools import cache, cached_property
 
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+_EXPONENT = re.compile(r"[eE][+-]?[0-9]+(?![^\W_])")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
 # A soft hyphen (U+00AD) inside a word marks where a line may break; it
@@ -186,7 +187,7 @@ class Token:
     noun_before: bool = False
     noun_after: bool = False
 
-    @property
+    @cached_property
     def norm(self) -> str:
         if self.key is not None:
             return self.key
@@ -228,6 +229,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              script: Script = DEFAULT_SCRIPT, *,
              compound_words: frozenset[str] = frozenset(),
              compound_inner: frozenset[str] = frozenset(),
+             compound_last: frozenset[str] = frozenset(),
              shared_letter: bool = False,
              dotted_i: bool = False,
              apostrophes: frozenset[str] = frozenset(),
@@ -255,7 +257,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     Given ``compound_words``, a word that is no compound word itself but
     splits whole into them ("einundzwanzig", "kaksikymmentä") becomes one
     token per part, each glued to the one before. A word in
-    ``compound_inner`` ("und") is never the first or last part. With
+    ``compound_inner`` ("und") is never the first or last part, and a word in
+    ``compound_last`` (fy "fiven") is only the last part. With
     ``shared_letter``, two parts may share a doubled letter ("ettusen").
     ``suffix_marks`` are the marks that may stand between a digit string and
     its ordinal suffix ("" in "21st", ":" in "3:e"). A word after one of
@@ -318,6 +321,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if not is_digits and tokens and tokens[-1].is_digits and not tokens[-1].suffix \
                 and gap in digit_suffix_marks and tokens[-1].end == previous_end:
             continue  # a case ending glued to digits: "5-öt", "5'te"
+        if is_digits and (exponent := _EXPONENT.match(scan, match.end())):
+            previous_end = skip_until = exponent.end()
+            continue  # "1e5" and "2.5e-3" are numbers in E notation, no 1 and no 1st
         end, suffix = match.end(), ""
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]
@@ -347,7 +353,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
                 number_words is None or lookup not in number_words):
             source = fold_dotted_i(letters) if dotted_i else letters.translate(_APOSTROPHES)
             if len(source) == len(offsets):
-                parts = _split_compound(source, compound_words, compound_inner, shared_letter)
+                parts = _split_compound(source, compound_words, compound_inner, shared_letter, compound_last)
         if parts:
             for n, (a, b) in enumerate(parts):
                 first, last = offsets[a], offsets[b - 1] + 1
@@ -462,9 +468,10 @@ def _joiner_split(token: Token, number_words: frozenset[str], script: Script) ->
 
 
 def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
-                    shared_letter: bool = False) -> list[tuple[int, int]]:
+                    shared_letter: bool = False, last: frozenset[str] = frozenset()) -> list[tuple[int, int]]:
     """The offsets of the fewest parts that ``word`` splits into, each one in
-    ``parts`` after case folding and no ``inner`` part at either end; [] when
+    ``parts`` after case folding, no ``inner`` part at either end and no
+    ``last`` part before the end; [] when
     it splits in no way. Among splits with as many parts, the one with the
     longest last part wins. With ``shared_letter``, a part that ends in a
     double letter shares its last letter with the next part ("ettusen" is
@@ -481,7 +488,8 @@ def _split_compound(word: str, parts: frozenset[str], inner: frozenset[str],
         for start in starts:
             for end in range(min(len(word), start + longest), covered, -1):
                 part = word[start:end].casefold()
-                if part not in parts or (part in inner and (start == 0 or end == len(word))):
+                if part not in parts or (part in inner and (start == 0 or end == len(word))) \
+                        or (part in last and end < len(word)):
                     continue
                 split = best[covered] + [(start, end)]
                 if end not in best or len(split) < len(best[end]):

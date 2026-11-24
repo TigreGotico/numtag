@@ -1,16 +1,24 @@
 # Germanic languages
 
+<!-- agent-hint
+covers: What numtag reads in German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk.
+source: numtag/lexicon/{de,nl,fy,da,sv,nb,nn}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/germanic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/germanic.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written forms of Norwegian. German, Dutch, West Frisian and Danish say the unit before the ten: German "einundzwanzig" is 21. Swedish says the ten first, and Norwegian has both orders. German writes a number below a million as one word.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| German | every `de` tag | `numtag/lexicon/de.json` | long | 199 | 199 |
-| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 186 | 186 |
-| West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 150 | 150 |
+| German | every `de` tag | `numtag/lexicon/de.json` | long | 200 | 200 |
+| Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 187 | 187 |
+| West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 156 | 156 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
 | Swedish | every `sv` tag | `numtag/lexicon/sv.json` | long | 176 | 176 |
-| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 176 | 176 |
-| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 154 | 154 |
+| Norwegian Bokmål | `nb`, `no` | `numtag/lexicon/nb.json` | long | 178 | 178 |
+| Norwegian Nynorsk | every `nn` tag | `numtag/lexicon/nn.json` | long | 157 | 157 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -36,7 +44,7 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 
 ## A fraction in the same word as the whole
 
-German writes a whole number and a fraction below one as one word. The fraction keeps its own count, so "zweieinviertel" is 2 + 1/4. Duden gives the digits of "eindreiviertel":
+German writes a whole number and a quarter as one word. The fraction keeps its own count, so "zweieinviertel" is 2 + 1/4. Duden gives the digits of "eindreiviertel":
 
 > "Schreibung in Ziffern 1 ¾"
 
@@ -84,6 +92,37 @@ A count and a part with no whole before them stay one fraction: "zweidrittel" is
 [('tredje', '3')]
 ```
 
+## German "halb" before an hour
+
+German "halb" before an hour names the half hour before that hour, so "um halb drei" is 2:30. The hour is the number, and "halb" is no half of it. The `clock_half` setting holds this rule. A half with no number after it is still a weak half.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value) for m in tag_numbers('weck mich um halb drei', 'de')]
+[('drei', '3')]
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers('halb so viel', 'de')]
+[('halb', '0.5', 0.4)]
+```
+
+> DWDS, "halb", 1c: "es ist halb zwölf Uhr (= elf Uhr dreißig)", "das Essen auf halb eins ansetzen"
+
+## West Frisian clock hours
+
+After "healwei" (half before), "kertier oer" (quarter past) and "kertier foar" (quarter to), West Frisian names the hour with an inflected form: "fiven" for 5, "tolven" for 12. Such a form reads as a sure number only after "healwei", "oer" or "foar". Elsewhere it may be a plural noun, so it gets the score of a homograph. The form ends the number, so it is never the first part of a compound word: "achtenfjirtich" stays 48.
+
+```python
+>>> read('Yn de Greidhoeke begûn men tusken 4 oere en healwei fiven.', 'fy')
+[('4', '4'), ('fiven', '5')]
+>>> read('Koelstra waard om kertier foar trijen moarns eksekutearre.', 'fy')
+[('trijen', '3')]
+>>> read('Hy wie achtenfjirtich jier.', 'fy')
+[('achtenfjirtich', '48')]
+>>> [m.confidence for m in tag_numbers('de achten', 'fy')]
+[0.4]
+```
+
+> Wikipedia (fy), "Haadstjoertiid" (knowledge/wiki/audits/numtag/issue-fixes/fy-143/sources/Haadstjoertiid.wikitext): "fan healwei sânen oant sân oere jûns"
+
 ## The scale
 
 Each lexicon sets its default scale from these sources. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Read [../number-scale.md](../number-scale.md).
@@ -117,3 +156,6 @@ Norwegian Nynorsk, long scale:
 > Norwegian Nynorsk uses the long scale: CLDR RBNF nn (unicode-rbnf 2.4.1 data, nn.xml), %spellout-cardinal-reale: "1000000000: éin milliard[ →→]", "1000000000000: éin billion[ →→]"
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Greek, Arabic, Hebrew, Persian, Kabyle and Maltese](el-ar-he-fa-kab.md) · [Home](../index.md) · [Uralic and Turkic languages →](uralic-turkic.md)

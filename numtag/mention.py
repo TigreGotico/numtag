@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional, Tuple
 
+from numtag.digits import compare
+
 
 class Kind(str, Enum):
     """What the number counts or names."""
@@ -39,6 +41,7 @@ _CANONICAL = re.compile(
     rf"|-?(?:0|[1-9][0-9]*)\.[0-9]*[1-9]"  # decimal, no trailing zero
     rf"|-?[1-9][0-9]*/[1-9][0-9]*")       # fraction
 _NEGATIVE_ZERO = re.compile(r"-0(?:\.0*)?$")
+_POSITIVE_WHOLE = re.compile(r"[1-9][0-9]*")
 
 
 def is_canonical_value(value: str) -> bool:
@@ -168,6 +171,8 @@ class VagueQuantity:
     has a ``scale``, the canonical digit string of its scale word
     ("1000000" for "millions"), and a ``lower_bound`` when the scale word is
     plural: two of the scale ("2000000"). An AMOUNT has neither.
+    The scale is a positive whole digit string, the lower bound is not below
+    it, and the confidence lies from 0 to 1.
     ``confidence`` and the keyword-only ``reasons`` work as in
     ``NumberMention`` and are left out of equality.
     """
@@ -190,7 +195,12 @@ class VagueQuantity:
         if self.kind is VagueKind.MAGNITUDE and self.scale is None:
             raise ValueError("a magnitude takes a scale")
         for value in (self.scale, self.lower_bound):
-            if value is not None and not is_canonical_value(value):
-                raise ValueError(f"value {value!r} is not a canonical digit string")
+            if value is not None and not _POSITIVE_WHOLE.fullmatch(value):
+                raise ValueError(f"value {value!r} is not a positive whole digit string")
+        if self.lower_bound is not None and compare(self.lower_bound, self.scale) < 0:
+            raise ValueError(f"lower_bound {self.lower_bound!r} is below the scale {self.scale!r}")
+        if isinstance(self.confidence, bool) or not isinstance(self.confidence, (int, float)) \
+                or not 0 <= self.confidence <= 1:
+            raise ValueError(f"confidence {self.confidence!r} is not a number from 0 to 1")
         if not isinstance(self.reasons, frozenset) or not all(isinstance(r, Reason) for r in self.reasons):
             raise ValueError(f"reasons {self.reasons!r} is not a frozenset of Reason")

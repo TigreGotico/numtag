@@ -3,6 +3,8 @@ comment beside it; sources are in numtag/lexicon/fr-FR.json, fr-BE.json and
 fr-CH.json."""
 import unittest
 
+import pytest
+
 from helpers import read
 from numtag import tag_numbers
 
@@ -143,6 +145,35 @@ class TestStandaloneOrdinals(unittest.TestCase):
                          [("une", "1", "cardinal"), ("seconde", "2", O)])
 
 
+class TestENotation(unittest.TestCase):
+    def test_a_number_in_e_notation_holds_no_ordinal(self):
+        # "1e5" is 10^5 in E notation: neither the 1st nor 1 and 5
+        for text in ("1e5", "1e309", "5e3", "2,5e-3", "1e-12", "1E5 cellules"):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), [])
+        # the ordinal suffix with no digit after it stays
+        self.assertEqual(fr("le 2e jour"), [("2e", "2", O)])
+        self.assertEqual(fr("le 1er mai"), [("1er", "1", O)])
+
+    def test_an_ordinal_range_is_no_exponent(self):
+        # "2e-3e" is the 2nd to the 3rd: a letter after the digits ends the exponent
+        two_three = [("2e", "2", O), ("3e", "3", O)]
+        for text, lang in (("le 2e-3e rang", "fr-FR"), ("en 2e-3e année", "fr-BE"), ("de 2e-3e graad", "nl")):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, lang), two_three)
+
+    def test_an_ordinal_range_with_two_digits_is_no_exponent(self):
+        for text, lang, spans in (
+            ("du 10e-12e siècle", "fr-FR", [("10e", "10", O), ("12e", "12", O)]),
+            ("du 10e-12e siècle", "fr-BE", [("10e", "10", O), ("12e", "12", O)]),
+            ("le 11e-13e siècles", "fr-FR", [("11e", "11", O), ("13e", "13", O)]),
+            ("les 2e-13e rangs", "fr-FR", [("2e", "2", O), ("13e", "13", O)]),
+            ("de 10e-12e eeuw", "nl", [("10e", "10", O), ("12e", "12", O)]),
+        ):
+            with self.subTest(text=text, lang=lang):
+                self.assertEqual(read(text, lang), spans)
+
+
 class TestSwissDigits(unittest.TestCase):
     def test_an_apostrophe_groups_digits_in_switzerland(self):
         # 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5
@@ -157,6 +188,41 @@ class TestBillion(unittest.TestCase):
         self.assertEqual(read("un billion", "fr"), [("un billion", "1000000000000", C)])
         self.assertEqual(read("un billion", "fr", scale="short"), [("un billion", "1000000000", C)])
         self.assertEqual([m.number_scale.value for m in tag_numbers("un billion", "fr")], ["long"])
+
+
+class TestMinusAfterAnHour(unittest.TestCase):
+    def test_moins_after_an_hour_counts_the_minutes(self):
+        # "midi moins dix" is ten to noon: the minutes are 10, no -10
+        self.assertEqual(read("Il est midi moins dix.", "fr"), [("dix", "10", C)])
+        self.assertEqual(read("minuit moins 10", "fr"), [("10", "10", C)])
+        self.assertEqual(read("Il est 9h moins 10.", "fr"), [("9", "9", C), ("10", "10", C)])
+        self.assertEqual(read("Il est neuf heures moins dix.", "fr"), [("neuf", "9", C), ("dix", "10", C)])
+
+    def test_a_tout_le_moins_is_no_sign(self):
+        self.assertEqual(read("Il faut à tout le moins trois jours.", "fr"), [("trois", "3", C)])
+
+    def test_moins_before_a_number_still_signs(self):
+        # 0 - 3 = -3
+        self.assertEqual(read("Il fait moins trois degrés.", "fr"), [("moins trois", "-3", C)])
+
+
+class TestLonePoint(unittest.TestCase):
+    def test_a_point_before_the_first_digit_marks_decimals(self):
+        # 5/10 = 0.5, and the sign makes it -0.5
+        self.assertEqual(read("-.5", "fr"), [("-.5", "-0.5", "decimal")])
+        self.assertEqual(read("La taxe est de .5 pour cent.", "fr"), [(".5", "0.5", "decimal")])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    def test_fr_digit_before_cents(self):
+        self.assertEqual(read("2 cents", "fr-FR"), [("2 cents", "200", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/275")
+    def test_fr_e_notation_glued_to_a_unit(self):
+        self.assertEqual(read("1e5km", "fr-FR"), [])
 
 
 if __name__ == "__main__":

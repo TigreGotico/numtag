@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/it.json."""
 import unittest
 
+import pytest
 from helpers import read
 from numtag import tag_numbers
 
@@ -51,6 +52,19 @@ class TestOrdinalEnding(unittest.TestCase):
         self.assertEqual(it("ventitreesimo"), [("ventitreesimo", "23", O)])
         self.assertEqual(it("trentottesimo"), [("trentottesimo", "38", O)])
         self.assertEqual(it("centesimo"), [("centesimo", "100", O)])
+
+    def test_a_latin_unit_ordinal_ends_no_longer_ordinal(self):
+        # 22nd is "ventiduesimo" and 103rd "centotreesimo": "dieci secondi"
+        # is 10 and the time unit, never 12
+        for text, count in [("tra dieci secondi", "10"), ("trenta secondi", "30"),
+                            ("cento terzo", "100"), ("venti primi", "20")]:
+            with self.subTest(text=text):
+                found = it(text)
+                self.assertEqual(found[0][1:], (count, C))
+                self.assertEqual(len(found), 2)
+                self.assertEqual(found[1][2], O)
+        # "decimo" ends "centodecimo", so 100 + 10 = 110 still reads
+        self.assertEqual(it("cento decimo"), [("cento decimo", "110", O)])
 
 
 class TestScaleNouns(unittest.TestCase):
@@ -109,6 +123,28 @@ class TestHomographs(unittest.TestCase):
         self.assertEqual(confidence("venti forti", "it"), [("venti", 0.4)])
         self.assertEqual(confidence("ventisei", "it"), [("ventisei", 1.0)])
         self.assertEqual(confidence("seimila", "it"), [("seimila", 1.0)])
+
+
+class TestMinusIdioms(unittest.TestCase):
+    def test_quanto_meno_is_no_sign(self):
+        self.assertEqual(read("Ci vogliono quanto meno tre ore.", "it"), [("tre", "3", C)])
+        self.assertEqual(read("quanto meno 3 ore", "it"), [("3", "3", C)])
+
+    def test_meno_before_a_number_still_signs(self):
+        self.assertEqual(read("Fuori ci sono meno tre gradi.", "it"), [("meno tre", "-3", C)])
+
+    def test_a_point_before_the_first_digit_marks_decimals(self):
+        self.assertEqual(read("-.5", "it"), [("-.5", "-0.5", "decimal")])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('novecentonovantanove sistiliardi', [('novecentonovantanove sistiliardi', '999000000000000000000000000000000000000000', C)]),
+])
+def test_it_sistiliardi_is_10_to_the_39(text, expected):
+    # sistiliardo is 10^39; 999 x 10^39
+    assert read(text, "it") == expected
+
 
 
 if __name__ == "__main__":

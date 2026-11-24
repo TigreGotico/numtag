@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/fa.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -77,6 +79,14 @@ class TestPersian(unittest.TestCase):
         # "هیفده" is "هفده": 17; 100 + 17 = 117
         self.assertEqual(read("صد و هیفده", "fa"), [("صد و هیفده", "117", "cardinal")])
         self.assertEqual(read("هیفده", "fa"), [("هیفده", "17", "cardinal")])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_persian_fiftieth_with_the_am_suffix(self):
+        self.assertEqual(read("پنجاه‌ام", "fa"), [("پنجاه‌ام", "50", O)])
 
 
 if __name__ == "__main__":

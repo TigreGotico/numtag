@@ -1,5 +1,13 @@
 # numtag
 
+<!-- agent-hint
+covers: What numtag does, how to install it, a first example, the supported languages and the way into docs/.
+source: numtag/__init__.py:__all__, numtag/tagger.py:tag_numbers, numtag/lexicon/*.json
+generated: no
+verify: diff <(awk '/^\x60\x60\x60python/{n++;f=(n==1);next} /^\x60\x60\x60/{f=0} f' README.md | python -) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' README.md) && sed '/^\x60\x60\x60/d' README.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: docs/index.md, docs/getting-started.md, AGENTS.md
+-->
+
 numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões").
 
 ```python
@@ -71,11 +79,13 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `pt-BR` | Brazilian Portuguese | short: "bilhão" is 10^9 |
 | every other `pt` tag (`pt`, `pt-PT`, `pt-AO`) | European Portuguese | long: "bilião" is 10^12 |
 | every `en` tag (`en`, `en-US`, `en-GB`) | English | short: "billion" is 10^9 |
-| `el`, `ar`, `he`, `fa`, `kab` | Greek, Arabic, Hebrew, Persian, Kabyle | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
+| `el`, `ar`, `he`, `fa`, `kab`, `mt` | Greek, Arabic, Hebrew, Persian, Kabyle, Maltese | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
 | `de`, `nl`, `fy`, `da`, `sv`, `nb` (and `no`), `nn` | German, Dutch, West Frisian, Danish, Swedish, Norwegian | per lexicon, in [germanic.md](docs/languages/germanic.md) |
 | `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
+| `lt` | Lithuanian | short: "trilijonas" is 10^12, in [baltic.md](docs/languages/baltic.md) |
 | `ru`, `uk`, `bg`, `pl`, `cs`, `sk`, `sl`, `hr` | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian | per lexicon, in [slavic.md](docs/languages/slavic.md) |
-| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id` | French, Italian, Romanian, Basque, Indonesian | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
+| `sr` | Serbian, in the Latin and the Cyrillic script | long: "bilion" is 10^12, in [slavic.md](docs/languages/slavic.md) |
+| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id`, `ms` | French, Italian, Romanian, Basque, Indonesian, Malay | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
 | `es`, `gl`, `ca`, `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
 
 Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
@@ -83,6 +93,8 @@ Each language page gives the default scale of each lexicon. Pass `scale="long"` 
 Each language is one JSON file in `numtag/lexicon/`. Each word and each setting in the file carries the source of its rule.
 
 ## Documentation
+
+Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.md](docs/getting-started.md) for the first calls. Agents that change the repository read [AGENTS.md](AGENTS.md).
 
 | Guide | Content |
 |---|---|
@@ -94,9 +106,9 @@ Each language is one JSON file in `numtag/lexicon/`. Each word and each setting 
 | [docs/confidence-and-homographs.md](docs/confidence-and-homographs.md) | Articles, words with two meanings, low scores |
 | [docs/rulings.md](docs/rulings.md) | The reading rules, each with its source |
 | [docs/languages/](docs/languages/) | What each language reads |
-| [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for a new language |
+| [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for each language |
 | [docs/design.md](docs/design.md) | How the tagger works inside |
-| [docs/benchmarks.md](docs/benchmarks.md) | Accuracy, memory and time against ovos-number-parser |
+| [docs/benchmarks.md](docs/benchmarks.md) | Accuracy against ovos-number-parser |
 | [docs/roadmap.md](docs/roadmap.md) | Planned features |
 
 ## License

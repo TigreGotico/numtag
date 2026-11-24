@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/ar.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import tag_numbers
 
@@ -112,6 +114,85 @@ class TestArabic(unittest.TestCase):
         self.assertEqual(ar("ثلاث مية ريال"), [("ثلاث مية", "300", C)])
         self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
         self.assertEqual(sure("مائة ريال", "ar"), [("مائة", "100", 1.0)])
+
+    def test_the_spoken_hundreds_are_fused_words(self):
+        # 200 to 900, each spelled with ة and with ه (the spelling of ميه)
+        for value, words in [("200", ["ميتين"]), ("300", ["ثلاثمية", "تلتمية"]),
+                             ("400", ["اربعمية", "أربعمية", "ربعمية"]), ("500", ["خمسمية", "خمسميه"]),
+                             ("600", ["ستمية"]), ("700", ["سبعمية"]),
+                             ("800", ["تمنمية", "ثمنمية", "ثمانمية"]), ("900", ["تسعمية", "تسعميه"])]:
+            for word in words:
+                self.assertEqual(ar(word + " كيلو"), [(word, value, C)], word)
+
+    def test_the_spoken_hundreds_join_with_the_joiner(self):
+        # 1000 + 200 = 1200; 300 + 11 = 311; 400 + 50 = 450; 300 + 25 = 325
+        self.assertEqual(ar("الف وميتين"), [("الف وميتين", "1200", C)])
+        self.assertEqual(ar("ثلاثمية وواحد عشر"), [("ثلاثمية وواحد عشر", "311", C)])
+        self.assertEqual(ar("اربعمية وخمسين"), [("اربعمية وخمسين", "450", C)])
+        self.assertEqual(ar("ثلاثمية وخمسة وعشرين"), [("ثلاثمية وخمسة وعشرين", "325", C)])
+        # 600 + 10 x 1000 + 200 = 610200
+        self.assertEqual(ar("ستمية وعشرة الاف وميتين"), [("ستمية وعشرة الاف وميتين", "610200", C)])
+
+    def test_the_homograph_hundred_reads_as_before(self):
+        # water, and a hundred before a number: 100 + 2 = 102
+        self.assertEqual(sure("شربت مية", "ar"), [("مية", "100", 0.4)])
+        self.assertEqual(ar("مية واثنين"), [("مية واثنين", "102", C)])
+        # ميتين is also "dead" (plural): alone it reads 200 at the homograph confidence
+        self.assertEqual(sure("ناس ميتين", "ar"), [("ميتين", "200", 0.4)])
+
+
+class TestSpokenArabic(unittest.TestCase):
+    def test_the_spoken_teens_are_one_word(self):
+        # Egyptian 11, South Levantine 15, North Levantine 13, Moroccan 16
+        for word, value in (("حداشر", "11"), ("خمستعش", "15"), ("تلطعش", "13"), ("ستاش", "16"), ("هدعش", "11")):
+            with self.subTest(word=word):
+                self.assertEqual(ar(word), [(word, value, C)])
+
+    def test_spoken_tens_and_hundreds_join_a_number(self):
+        # 3 + 30 = 33; 1000 + 15 = 1015; 500 with ه for ة; 1000 + 200 = 1200
+        self.assertEqual(ar("ثلاث وتلاتين"), [("ثلاث وتلاتين", "33", C)])
+        self.assertEqual(ar("الف وخمستعش"), [("الف وخمستعش", "1015", C)])
+        self.assertEqual(ar("خمسميه"), [("خمسميه", "500", C)])
+        self.assertEqual(ar("الف وميتين"), [("الف وميتين", "1200", C)])
+
+    def test_two_hundred_alone_is_weak(self):
+        # "ميتين" is also the plural of "dead"
+        self.assertEqual(sure("ناس ميتين", "ar"), [("ميتين", "200", 0.4)])
+
+    def test_standard_arabic_words_stay_words(self):
+        # the dragon, the price, the spouse; Monday and Tuesday
+        for text in ("ثم ظهر التنين", "ثمن السيارة", "زوج أختي", "يوم الاتنين", "ويوم التلاتة"):
+            with self.subTest(text=text):
+                self.assertEqual(ar(text), [])
+
+    def test_illiteracy_and_umayya_read_no_number(self):
+        # "امية" is the plain-alif spelling of "illiteracy" and of the name Umayya
+        for text in ("محو الامية", "نسبة الامية في مصر", "بنو امية", "امية بن ابي الصلت"):
+            with self.subTest(text=text):
+                self.assertEqual(sure(text, "ar"), [])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/238")
+    def test_decimal_comma_before_a_scale_word(self):
+        self.assertEqual(read("55,5 مليار", "ar"), [("55,5 مليار", "55500000000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/267")
+    def test_proclitic_ba_stays_outside_the_span(self):
+        self.assertEqual(read("بخمسمية الف", "ar"), [("خمسمية الف", "500000", C)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('ألفان ومليون', [('ألفان ومليون', '1002000', C)]),
+    ('خمسة آلاف ومليون', [('خمسة آلاف ومليون', '1005000', C)]),
+])
+def test_ar_a_larger_scale_joined_with_and_adds(text, expected):
+    # 2000 + 1000000 = 1002000; 5000 + 1000000 = 1005000
+    assert read(text, "ar") == expected
+
 
 
 if __name__ == "__main__":

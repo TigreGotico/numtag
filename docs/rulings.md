@@ -1,6 +1,14 @@
 # Rulings
 
-A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. Each quote in a block quote on this page is also in a source field of a lexicon file or a gold row, word for word.
+<!-- agent-hint
+covers: Each decided reading of a number phrase, with an example and its source.
+source: numtag/lexicon/*.json, tests/gold/*.jsonl (the source fields)
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/rulings.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: confidence-and-homographs.md, adding-a-language.md
+-->
+
+A ruling is a decided reading of a number phrase. Each ruling below has a rule, example sentences that run as tests, and the source of the rule. A source is a dictionary, a grammar, the CLDR spellout rules, a maintainer ruling, or "structural" where no outside source decides the reading. Each quote in a block quote on this page is word for word in a source field of a lexicon file or a gold row.
 
 All examples on this page use this helper:
 
@@ -12,7 +20,7 @@ All examples on this page use this helper:
 
 ## The joiner before the last group
 
-In Portuguese, "e" joins the tens and the units, and the hundreds to the rest of their class ("trezentos e vinte e um"). Between two classes, "e" is required before a last group that is below a hundred or a round hundred. Without the "e", that group starts a new number. Before any other group, the "e" is optional.
+In Portuguese, "e" joins the tens and the units, and the hundreds to the rest of their class ("trezentos e vinte e um"). Between two classes, "e" is required before a last group that is below a hundred or a round hundred. Without the "e", that group starts another number. Before any other group, the "e" is optional.
 
 ```python
 >>> read("No cheque lia-se mil duzentos euros, sem o e.")
@@ -46,7 +54,7 @@ The same rule holds after every scale word.
 
 > Maintainer ruling: "The 'e' is only required in the final piece; otherwise it is optional."
 
-In Galician, the normative form writes no "e" after "mil" or "cento" ("mil novecentos e noventa", "cento un"). Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
+In Galician, the table of cardinals in RAG Normas 16.1 writes "cento un", with no "e" after "cento". The table ends at "mil", so it shows no form after "mil". Text also writes "dous mil e vinte e seis", and a split reading gives a wrong value, so the "e" between groups is optional. Both forms read as one number.
 
 ```python
 >>> read("A lei entra en vigor en dous mil e vinte e seis.", "gl")
@@ -126,7 +134,7 @@ A scale noun closes its group, so "milhão" counts no larger noun.
 
 ## A scale noun agrees with its count
 
-In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words, so "meio milhões" and "um milhões" are not one number. A lone "meio" keeps its own reading, a fraction with `Reason.HOMOGRAPH`, as in "no meio da sala". "um milhões" gives no mention. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
+In Portuguese, a scale noun agrees in number with its count. A singular "milhão", "bilião" or "bilhão" takes only the count one, so a larger count before it is a separate number. A plural noun takes no count of one or of a half in words. So "meio milhões" and "um milhões" are not one number. A lone "meio" keeps its own reading, a fraction with `Reason.HOMOGRAPH`, as in "no meio da sala". "um milhões" gives no mention. Digits do not agree, so "1 milhões" stays one million. English keeps the singular after any count.
 
 ```python
 >>> read("Doaram cem mil e um milhão de euros.")
@@ -158,7 +166,7 @@ A collective noun ("dúzia", "dezena", "centena", "dozen", "score") takes a coun
 [('uma dúzia', '12'), ('duas mil dúzias', '24000')]
 ```
 
-A collective of a place value ("dezena", "centena") after "mil e" counts only the group after the joiner. Without the joiner, a count and a collective after a scale numeral start a new number.
+A collective of a place value ("dezena", "centena") after "mil e" counts only the group after the joiner. Without the joiner, a count and a collective after a scale numeral start another number.
 
 ```python
 >>> read("Vieram treze mil e duas centenas de pessoas.")
@@ -169,14 +177,14 @@ A collective of a place value ("dezena", "centena") after "mil e" counts only th
 [('mil', '1000'), ('duzentas dúzias', '2400')]
 ```
 
-The count starts a new number also where the joiner rule lets a group follow with no "e". "mil duzentas e três" is one number, 1203, but before a collective the count "duzentas e três" starts a new number.
+The count starts another number also where the joiner rule lets a group follow with no "e". "mil duzentas e três" is one number, 1203, but before a collective the count "duzentas e três" starts another number.
 
 ```python
 >>> read("Compraram mil duzentas e três dúzias de ovos.")
 [('mil', '1000'), ('duzentas e três dúzias', '2436')]
 ```
 
-The joiner rule decides where the number ends before a collective. A round last class such as "duzentos mil" needs "e" after "um milhão". Without the "e", the class and its collective start a new number.
+The joiner rule decides where the number ends before a collective. A round last class such as "duzentos mil" needs "e" after "um milhão". Without the "e", the class and its collective start another number.
 
 ```python
 >>> read("O armazém recebeu um milhão duzentos mil dúzias de ovos.")
@@ -223,6 +231,17 @@ In English, "score" takes a cardinal after "and".
 ```
 
 > Wiktionary, "dozen", noun: "A set of twelve"; "score", noun: "Twenty (20)".
+
+Croatian "jedna stotina" is a homograph. The noun "stȍtina" is a group of a hundred, and "stotìna" is the hundredth part, so "jedna stotina" is 100 or 1/100. The phrase reads the frequent count 100 at the score of a homograph, as "A score" does in English. A count above one keeps the sure reading.
+
+```python
+>>> [(m.text, m.value, m.confidence) for m in tag_numbers("Na skupu je bila jedna stotina ljudi.", "hr")]
+[('jedna stotina', '100', 0.4)]
+>>> read("Na skupu je bilo pet stotina ljudi.", "hr")
+[('pet stotina', '500')]
+```
+
+> Hrvatski jezični portal, "stȍtina": "100 izbrojanih jedinica čega uzetih kao cjelina"; "stotìna": "stoti dio jednog cijelog, ob. u zn. maleni dio čega". Hrvatski pravopis, 5.4.2. Višerječnice: "jedna stotina (1/100)".
 
 ## Halves
 
@@ -340,7 +359,16 @@ A decimal marker ("vírgula", "point") or a decimal mark in digits ("2,5", "2.5"
 
 > Wiktionary, "point", noun sense 1.3: "A decimal point".
 
-Where the comma marks decimals, the word for the point is no decimal marker. So "o artigo 5 ponto 3" is two numbers, and so are "cinco ponto três", Galician "5 punto 3", Mirandese "5 ponto 3", Asturian "5 puntu 3" and German "Artikel 5 Punkt 3". English writes decimals with a point, so "2 point 5" stays one decimal.
+A marker word with no number before it starts no fraction part: it is a noun. So digits after it keep their count of parts. With a number before the marker, the digits are decimal digits and count no parts.
+
+```python
+>>> read("At that point 3 quarters of the votes were counted.", "en")
+[('3 quarters', '0.75')]
+>>> read("two point 5 quarters", "en")
+[('two', '2'), ('5', '5')]
+```
+
+Where the comma marks decimals, the word for the point is no decimal marker. So "o artigo 5 ponto 3" is two numbers. So are "cinco ponto três", Galician "5 punto 3", Mirandese "5 ponto 3", Asturian "5 puntu 3" and German "Artikel 5 Punkt 3". English writes decimals with a point, so "2 point 5" stays one decimal.
 
 ```python
 >>> read("Leia o artigo 5 ponto 3 e o artigo cinco ponto três.")
@@ -377,7 +405,11 @@ Digits after a decimal marker are the decimal digits only when no part word foll
 
 > Slovar slovenskega knjižnega jezika (SSKJ², Fran), "stotinka" (knowledge/wiki/audits/numtag/follow-up-prs/sources/sl/fran-stotinka.txt): "del na sto enakih delov razdeljene merske enote", "mat. ena cela, pet stotink 1,05"
 
-Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point, so an hour from 0 to 23 with minutes from 00 to 59 reads no number, and so does "24.00". A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason. A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. A locale's own group mark before a point decimal reads the same way, whether the mark is a space, a no-break space or an apostrophe: "1 234.5" in Finnish (a plain space, the Finnish lexicon mark), "10 123.5" in Russian (a no-break space) and "1'234.5" in Swiss French read 1234.5, 10123.5 and 1234.5. Where a point is the group mark (Portuguese, German), a second point is no decimal mark, so "1.234.5" reads no number. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group, so "em 2024 123.45 euros" and "entre 10-123.5 kg" read 123.45 and 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
+Where the comma marks decimals, a point between digits groups thousands. A point that cannot group digits marks decimals: the group after it does not have three digits, or the number before it is 0. A time of day also takes a point. So an hour from 0 to 23 with minutes from 00 to 59 reads no number, and "24.00" reads none either. Two cases read as decimals instead. In Spanish the point is an accepted decimal mark, so "cuesta 3.50 pesos" reads 3.5. In every locale an hour written as a bare "0" is a decimal: "0.25" reads 0.25.
+
+Both fall back to a time when a clock word of the locale stands beside the digits. The clock word can come before them ("a las", "a la", "um", "gegen", "às", "alle", "kl") or after them ("h", "Uhr", "uur"). It can also touch them ("11.30h", "14.30Uhr"). So "a las 11.30" and "um 0.30 Uhr" read no number. Other locales read a price with a point ("kostet 3.50 Euro") as no number, because they write the decimal comma. A day and a month with a period after them are a date ("24.12."), and they read no number. A decimal with that shape at the end of a sentence ("Es sind 2.5.") reads no number for the same reason.
+
+A space group before a point and digits is one number, as in SI Brochure 5.4.4 ("43 279.168 29"): "1 234.5" reads 1234.5, "1 234.567" reads 1234.567 and "-1 234.5" reads -1234.5. Two group marks cannot both group thousands, so the point is the decimal. A locale's own group mark before a point decimal reads the same way, whether the mark is a space, a no-break space or an apostrophe: "1 234.5" in Finnish (a plain space, the Finnish lexicon mark) reads 1234.5. "10 123.5" in Russian (a no-break space) reads 10123.5. "1'234.5" in Swiss French reads 1234.5. Where a point is the group mark (Portuguese, German), a second point is no decimal mark, so "1.234.5" reads no number. Without a space group, a point and three digits stay a thousands mark: "1.500" reads 1500. A space group is one to three digits and a single space before the next group. So "em 2024 123.45 euros" reads 123.45, and "entre 10-123.5 kg" reads 123.5. A sign before the first group keeps the group, and a signed number continues no group ("12 -123.5" reads 12 and -123.5). A hyphen joins no group, so "120-160" reads 120 and 160.
 
 ```python
 >>> read("Custa 1.5 milhões, e pi é 3.14159.")
@@ -386,6 +418,10 @@ Where the comma marks decimals, a point between digits groups thousands. A point
 [('0.500', '0.5'), ('1.500', '1500')]
 >>> read("Gegen 11.29 Uhr zog der Protest los.", "de")
 []
+>>> read("Cuesta 3.50 pesos, y llega a las 11.30.", "es")
+[('3.50', '3.5')]
+>>> read("Faktor 0.25, aber um 0.30 Uhr.", "de")
+[('0.25', '0.25')]
 >>> read("Am 24.12. ist Heiligabend.", "de")
 []
 >>> read("Preis: 1'234.5 CHF", "fr-CH")
@@ -395,6 +431,8 @@ Where the comma marks decimals, a point between digits groups thousands. A point
 > Unicode CLDR (cldr-json, cldr-numbers-full/main/<locale>/numbers.json, "symbols-numberSystem-latn"), "group": U+00A0 in bg, et, fi, hu, kab, nb, nn, pl, ru, sk, sv and uk; U+202F in fr and fr-BE; the apostrophe in fr-CH; the decimal symbol is a comma in each. BIPM, SI Brochure, 9th edition, 5.4.4: no dot or comma is ever inserted in the spaces between groups.
 
 > BIPM, SI Brochure, 9th edition, 5.4.4: the decimal marker "shall be either the point on the line or the comma on the line." "The decimal marker chosen should be that which is customary in the language and context concerned." "If the number is between +1 and −1, then the decimal marker is always preceded by a zero."
+
+> RAE and ASALE, Diccionario panhispánico de dudas, "números", 1.1d (https://www.rae.es/dpd/números): "De acuerdo con la normativa internacional, para separar la parte entera de la decimal son válidos tanto la coma como el punto, según las preferencias de cada zona o país: El valor de π es 3,1416… o El valor de π es 3.1416…" "hora", 4a (https://www.rae.es/dpd/hora): "Fuera de textos técnicos, es también válido el uso del punto […]: 13:30, 13.30"; 4c: "17:30 o 17.30 h". The same entry on the article of one o'clock: "el artículo debe ir en singular (la una". de.wikipedia, "Uhrzeit" (https://de.wikipedia.org/wiki/Uhrzeit): "Beispiele: 9 Uhr, 17:30 Uhr, 0.12 Uhr". de.wikipedia, "Dezimaltrennzeichen" (https://de.wikipedia.org/wiki/Dezimaltrennzeichen), quoting DIN EN ISO 80000-1: "Im deutschsprachigen Raum ist das Komma das Dezimalzeichen". Duden, "Komma" (https://www.duden.de/rechtschreibung/Komma), Bedeutung: "Zeichen in Form eines kleinen geschwungenen Strichs, mit dem Sätze oder Satzteile voneinander getrennt oder bei der Ziffernschreibung die Dezimalstellen abgetrennt werden".
 
 > Wikipedia, "Date and time representation by country": "In Finland and Indonesia, the common separator between hours and minutes is a dot (18.45, for example)." de.wikipedia, "Uhrzeit": the Swiss Federal Chancellery says "zwischen den Stunden und den Minuten ein Punkt und kein Doppelpunkt verwendet werden". en.wikipedia, "Date and time notation in Finland": "When the year is not specified, a trailing full stop is used", "20.10 represents 8:10 pm and 20.10. represents 20 October."
 
@@ -407,11 +445,13 @@ The fraction part follows the grammar of the whole part. A hundreds word never f
 [('zero vírgula dois cinco', '0.25')]
 ```
 
-A multiplier after a decimal multiplies it, as a scale word does.
+A multiplier after a decimal multiplies it, as a scale word does. A decimal in digits, with a marker word or a decimal mark, takes it the same way. So "2 point 5 hundred" and "2.5 hundred" are 250.
 
 ```python
 >>> read("one point two hundred", "en")
 [('one point two hundred', '120')]
+>>> read("2 point 5 hundred", "en")
+[('2 point 5 hundred', '250')]
 >>> read("Sales hit one point two million units.", "en")
 [('one point two million', '1200000')]
 >>> read("um vírgula dois mil")
@@ -431,7 +471,7 @@ A mark right before the first digit is a decimal mark, because a group mark stan
 
 ## Ordinals
 
-An ordinal scale word multiplies only the last group of the number before it. The larger groups before that add. Where the product does not fit after the groups before it, the ordinal starts a new number.
+An ordinal scale word multiplies only the last group of the number before it. The larger groups before that add. Where the product does not fit after the groups before it, the ordinal starts another number.
 
 ```python
 >>> read("He was the two million three hundred thousandth customer.", "en")
@@ -470,6 +510,15 @@ In English "one hundredth" is a fraction or an ordinal. After "the" it is the or
 
 > Wikipedia, "English numerals": "In spoken English, ordinal numerals and partitive numerals are identical with a few exceptions. Thus 'fifth' can mean the element between fourth and sixth, or the fraction created by dividing the unit into five pieces".
 
+A number in E notation ("1e5", "2,5e-3") is no number of the reader. Its "e" is no ordinal suffix, so "1e5" is not the 1st, and its digits are no count.
+
+```python
+>>> read("1e5", "fr")
+[]
+>>> read("le 2e jour", "fr")
+[('2e', '2')]
+```
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.
@@ -500,9 +549,11 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 > Priberam, "quinto": "adjectivo numeral e nome masculino 1. Que ou o que numa série vem logo depois do quarto. nome masculino 2. Quinta parte."; "de": "Une ao nome o seu complemento (ex.: folha de papel)". Ciberdúvidas 33764: "No primeiro caso, estamos em presença de um adjetivo numeral que qualifica parte; no segundo caso, em presença de um nome."
 
-A verb after "um quinto" also makes the ordinal, so an ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
+A verb after "um quinto" also makes the ordinal. An ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
-A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product: "háromszázad" is 1/300, as "háromszáz" is 300. hu.wikipedia uses it so in "háromszázad része a klórénak". By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count, so "egy kétszázad" is 1/200 and "3 tízezred" is 3/10000, as "három tízezred" is. A hyphen before it ends a range.
+A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product. "háromszázad" is 1/300, as "háromszáz" is 300. The text "háromszázad része a klórénak" on hu.wikipedia uses it so.
+
+By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count. So "egy kétszázad" is 1/200, and "3 tízezred" is 3/10000, as "három tízezred" is. A hyphen before it ends a range.
 
 ```python
 >>> read("A mennyisége körülbelül háromszázad része a klórénak.", "hu")
@@ -515,7 +566,11 @@ A Hungarian part word of a hundred or more, written as one word with its count a
 
 > hu.wikipedia, Bróm: "háromszázad része a klórénak". hu.wikipedia, Oxigén: "kétezred részét". hu.wikipedia, Atommag: "tízezred része". hu.wikipedia, Izotópos összetétel: "százezred Å-nyi (1 fm)". hu.wikipedia, ETME: "háromezred részével". AkH 12 §293: "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva".
 
-In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator, so "zwei Hundertstel" is 2/100 and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits is the numerator too, so "3 Zweihundertstel" is 3/200. A decimal in words, "ein halbes" or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread. A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel", so it scores as a homograph.
+In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator. So "zwei Hundertstel" is 2/100, and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits is the numerator too, so "3 Zweihundertstel" is 3/200.
+
+Three counts have no reading that folds them into the glued word: a decimal in words, "ein halbes" and a count of a thousand or more. The word stays unread.
+
+A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel". So it scores as a homograph.
 
 ```python
 >>> read("Aber der Grundstoff für Bier mache gerade mal ein Zweihundertstel des Endpreises aus.", "de")
@@ -530,7 +585,7 @@ In German a count written in one word with a part word is part of the denominato
 
 > Wiktionary de, "Zehntausendstel": "der zehntausendste Teil von etwas", "Als Bruchzahl ist ein ''Zehntausendstel'' <sup>1</sup>/<sub>10000</sub> und als Kommazahl 0,0001."; DWDS, "Zehntausendstel": "das sind fünf Zehntausendstel Millimeter".
 
-A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat".
+A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a tenth and "milaren" a thousandth. "erdi", "heren" and "laurden" are the irregular forms for 2, 3 and 4. A count before the word gives the parts, and "bat" after it gives one part. "zati" between two cardinals reads "a/b" aloud. After "milioi", the part word makes one compound noun with it, so "milioi erdi" is half a million with or without "bat". The -(r)en word alone is also a genitive ("bosten artean", among five), so it reads no number with no count and no "bat". A denominator of several words takes the ending on its last word, so the words before it belong to the denominator: "hogeita hamarren bat" is 1/30 and "hamar milaren bat" is 1/10000 (Araua 203, table of fractions with the numerator 1). "-(r)en bat" is also "about N" ("ehunen bat film", about a hundred films). So the reading of an -(r)en word with "bat" has the confidence 0.4. "heren bat" and "laurden bat" have no such sense and stay sure.
 
 ```python
 >>> read("Zortzi hamarren falta dira.", "eu")
@@ -539,11 +594,13 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 [('Hiru zati lau', '0.75')]
 >>> read("Milioi erdi euro eman zituen.", "eu")
 [('Milioi erdi', '500000')]
+>>> read("Hogeita hamarren bat falta da.", "eu")
+[('Hogeita hamarren bat', '1/30')]
 ```
 
 > Euskaltzaindia, 203. araua, EBO (VI), "Zenbakizko adierazpenak", 6: "Zenbakitzailea bat zenbakia denean (a = 1 denean) eratzen diren zenbakiak izendatzeko, -(r)en eransten zaio zenbaki kardinalari"; "7/8: zazpi zortziren", "8/10: zortzi hamarren", "2/100: bi ehunen"; footnote 22: "3/2 = hiru erdi (hiru *biren)"; "(egokia) 3/4 hiru zati lau (edo hiru laurden)"; note 28: "Izendatzailea milioi bat denean, milioi izena erabiltzen da, ondoren bat erantsi gabe, eta izen-izen erako hitz-elkarte arrunta eratzen da (ordu(-)laurden, final(-)laurden hitzetan bezala)".
 
-"laurden" and "heren" with no count, no article and no "bat" are one part, at the low score of a word with a second meaning. "final laurden" is the quarter-final, and "heren" is also the old ordinal "third". A noun before the word is no part of the number, as in "ordu laurden" (a quarter of an hour). After "eta" with no number before it, the word adds a quarter to an hour of the clock, which is no number word, so "hirurak eta laurden" reads no number.
+"laurden" and "heren" with no count, no article and no "bat" are one part, at the low score of a word with a second meaning. "final laurden" is the quarter-final, and "heren" is also the old ordinal "third". A noun before the word is no part of the number, as in "ordu laurden" (a quarter of an hour). After "eta" with no number before it, the word adds a quarter to an hour of the clock. That hour is no number word, so "hirurak eta laurden" reads no number.
 
 ```python
 >>> read("Ordu laurden barru iritsiko da.", "eu")
@@ -554,9 +611,26 @@ A Basque part word takes the ending -(r)en on the cardinal, so "hamarren" is a t
 
 > Euskaltzaindiaren Hiztegia, "laurden": "Lau zati berdinetan banatu den zerbaiten zati bakoitza."; "final laurden": "Finalerdien aurretik jokatzen diren lau partida edo norgehiagoketako bakoitza."; "heren": "Hiru zati berdinetan banatu den zerbaiten zati bakoitza.", "Hirugarrena. Heren egunean piztu zen".
 
+In Russian, Ukrainian and Polish the plural part word has the form of the plural ordinal: "пятых" is "fifths" and also "fifth". A fraction in digits is written with a slash, so digits before such a word count things and the word is the ordinal: "3 пятых класса" is three fifth-grade classes. A count in words keeps the fraction, and a part word that is no ordinal form, as "четверти", keeps the fraction after digits too.
+
+```python
+>>> read("В школе 3 пятых класса.", "ru")
+[('3', '3'), ('пятых', '5')]
+>>> read("W szkole 3 piąte klasy.", "pl")
+[('3', '3'), ('piąte', '5')]
+>>> read("три пятых", "ru")
+[('три пятых', '0.6')]
+>>> read("3 четверти", "ru")
+[('3 четверти', '0.75')]
+```
+
+> Д. Э. Розенталь, "Справочник по правописанию и литературной правке", 4th edition (1985), § 45, item 3: "Дробные числительные пишутся раздельно, например: две пятых (2/5)".
+
 ## A fraction of a scale word
 
-A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure. A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio") gives no product, and so does a count after "de": "um quarto de dois milhões" is two numbers.
+A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure.
+
+A plural scale word gives no product. So does a scale numeral such as "mil", and so does a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio"). A count after "de" gives none either: "um quarto de dois milhões" is two numbers.
 
 ```python
 >>> read("Calcularam um quarto de milhão de euros.")
@@ -598,7 +672,9 @@ In Hebrew and Arabic, the conjunction "and" is one letter, ו in Hebrew and و i
 
 A lexicon's `group_mark` is the CLDR group symbol of its language, and `tests/test_group_marks.py` checks every language against it. Estonian, Finnish, Hungarian, Norwegian and Swedish write a no-break space (U+00A0), and a plain space also reads through `space_groups`.
 
-Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. Written text in these languages groups digits with a dot ("1.500" is 1500), and a no-break space group mark would stop that reading. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR gives U+00A0 for all four. In each of them the comma marks decimals. So a dot before exactly three digits has no decimal reading and groups digits ("1.500" is 1500). A space between groups reads through `space_groups`, so "1 500" is 1500 as well. Brazilian Portuguese needs no exception: CLDR "pt" gives the dot.
+
+The four sources differ in strength. European Portuguese rests on Wikipedia, "Decimal separator", which lists Portugal among the countries that write "1.234.567,89". Galician rests on the reading of ovos-number-parser and on the dot of Spanish and Portuguese. The Czech reference grammar allows the dot only for money amounts in administrative text. The lexicon reads it in every Czech text, because the comma is the only decimal mark. A section number such as "1.500" reads as 1500 for that reason. Occitan rests on the reading of ovos-number-parser alone, and no Occitan grammar in the sources names the dot. A source for the Occitan dot is open.
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
@@ -619,7 +695,7 @@ A scale noun alone, or a plural scale noun with no count, names no number. A sin
 
 > Priberam, "milhão", sense 2: "[Informal, Figurado] Número ou quantidade muito grande".
 
-A word of vague quantity right before a scale word takes the place of its count. In Croatian, "nekoliko", "puno", "više" and "mnogo" govern the genitive plural, so "nekoliko milijuna" is no number, while "milijuna" after "oko" or "više od" is the genitive singular and counts one. The `vague_quantifier` entries of the lexicon hold these words.
+A word of vague quantity right before a scale word takes the place of its count. In Croatian, "nekoliko", "puno", "više" and "mnogo" govern the genitive plural, so "nekoliko milijuna" is no number. After "oko" or "više od", "milijuna" is the genitive singular and counts one. The `vague_quantifier` entries of the lexicon hold these words.
 
 ```python
 >>> read("Prije nekoliko milijuna godina.", "hr")
@@ -636,7 +712,7 @@ A word of vague quantity right before a scale word takes the place of its count.
 
 > Hrvatski jezični portal, "više": "6. (čega) neodređena količina a. ob. veća od četiri, a manja od desetak; nekoliko [više milijuna ljudi]".
 
-A clitic of the `vague_clitic` list may stand between the vague word and the scale word: "nekoliko je tisuća puta dalje" holds no number. The reading follows the vague word and ignores the case of the scale word, so "Puno je milijun eura" also reads no number, although "milijun" there is a singular form that counts one million. This is a known trade-off.
+A clitic of the `vague_clitic` list may stand between the vague word and the scale word: "nekoliko je tisuća puta dalje" holds no number. The reading follows the vague word and ignores the case of the scale word. So "Puno je milijun eura" also reads no number, although "milijun" there is a singular form that counts one million. This is a known trade-off.
 
 ```python
 >>> read("Najbliža zvijezda nekoliko je tisuća puta dalje od posljednjeg planeta.", "hr")
@@ -646,6 +722,29 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 >>> read("Do 2030 nekoliko milijuna ljudi", "hr")
 [('2030', '2030')]
 ```
+
+A joiner and a number after the scale words of a vague amount keep those words in the number. This holds only where the lexicon requires the joiner before the last group. Portuguese requires "e" there, so "alguns mil e cinco" is 1005, as "mil e cinco" is. Croatian and English may leave the joiner out. So "i" and "and" there can join two phrases. The vague amount then names no number, and the number after the joiner reads alone.
+
+```python
+>>> read("alguns mil e cinco")
+[('mil e cinco', '1005')]
+>>> read("nekoliko tisuća i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko milijuna i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko stotina tisuća i pet", "hr")
+[('pet', '5')]
+>>> read("nekoliko tisuća i pet stotina", "hr")
+[('pet stotina', '500')]
+>>> read("nekoliko milijuna i dvjesto tisuća", "hr")
+[('dvjesto tisuća', '200000')]
+>>> read("nekoliko tisuća milijuna i pet", "hr")
+[('pet', '5')]
+>>> read("a few thousand and five", "en")
+[('five', '5')]
+```
+
+Source: maintainer ruling.
 
 Turkish lists "birkaç", "birçok", "kaç", "onlarca", "yüzlerce", "binlerce" and "milyonlarca". Turkish writes the hundred as "yüz", a numeral that is one hundred alone, so "yüz" after a vague word also reads no number. "iki yüz" keeps its count.
 
@@ -686,7 +785,9 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 > Dicio, "Abreviaturas: lista de abreviações": "dezembro - dez.".
 
-The hundred of a percent phrase is the percent sign, not a number: ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde", el "τοις εκατό". It is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros." At the end of the text or before "de", alone or joined to the article ("dels", "du", "degli"), the phrase can also be the percent sign with its number missing, as in "Tant per cent." There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
+The hundred of a percent phrase is the percent sign, not a number. The phrases are ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde" and el "τοις εκατό". The hundred is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. The number after "yüzde" is the amount even when its word is also a noun: "yüzde yüz" is 100 at full confidence, and a lone "yüz" (also "face") keeps the homograph score. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros."
+
+The phrase can also be the percent sign with its number missing. This holds at the end of the text or before "de", as in "Tant per cent." The word "de" may join its article ("dels", "du", "degli"). There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")
@@ -750,6 +851,54 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 ```
 
 > Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
+
+## Two or a few: "a couple", "een paar", "ein paar"
+
+In English, "a couple" and "a couple of" give two at the score of a homograph, 0.4, with `Reason.HOMOGRAPH`. The dictionaries give the phrase two senses: two, and a small number. numtag cannot tell the senses apart from the text. So it gives two and marks the mention as weak. Only the article makes "couple" a number. With a count before it, "couple" is the noun "two persons paired", and the count counts couples: "one couple" is 1, and "three couple dances" is 3. "The couple" names two persons and has no count, so it gives no number.
+
+```python
+>>> read("Roll a couple of dice.", "en")
+[('a couple', '2')]
+>>> [(m.value, m.confidence) for m in tag_numbers("Take a picture in a couple of seconds.", "en")]
+[('2', 0.4)]
+>>> read("The couple walked in.", "en")
+[]
+>>> read("One couple said they had waited for hours.", "en")
+[('One', '1')]
+```
+
+> Merriam-Webster, "couple", adjective: "two also : few"; noun sense 4: "an indefinite small number : few"; noun sense 1a: "two persons married, engaged, or otherwise romantically paired". Cambridge Dictionary, "couple", noun (SOME): "two or a few things that are similar or the same, or two or a few people who are in some way connected".
+
+Before a scale word or a collective, "a couple" and "a couple of" stand where the count would, as "a few" does. The words give no number, and `tag_vague_quantities` gives a magnitude: "a couple hundred" is a magnitude of a hundred. numtag has no weak count before a scale word. So it does not give 200 at the score of a homograph.
+
+```python
+>>> from numtag import tag_vague_quantities
+>>> read("It cost a couple hundred dollars.", "en")
+[]
+>>> [(q.text, q.kind.value, q.scale) for q in tag_vague_quantities("It cost a couple hundred dollars.", "en")]
+[('a couple hundred', 'magnitude', '100')]
+```
+
+> Merriam-Webster, usage guide: "It is most frequently used with periods of time a couple weeks and numbers. a couple hundred a couple dozen".
+
+In Dutch and German, "een paar" and "ein paar" are an amount with no value. The phrase is an indefinite numeral, as "enkele" and "einige" are, and it can name more than two. The article in the phrase is no count of one, so `tag_numbers` gives no number. `tag_vague_quantities` gives an amount at the low score with `Reason.HOMOGRAPH`, because the noun "paar" also names a pair. numtag folds case. So German "ein Paar Schuhe" (a pair of shoes) gives the same amount. That reading is wrong: the capital "Paar" is the noun, and the article counts one pair (issue #249). A count before "paar" keeps its number. Before a scale word the phrase gives a magnitude.
+
+```python
+>>> read("Foto in een paar seconden.", "nl")
+[]
+>>> [(q.text, q.kind.value, q.confidence) for q in tag_vague_quantities("Foto in een paar seconden.", "nl")]
+[('een paar', 'amount', 0.4)]
+>>> read("In ein paar Sekunden.", "de")
+[]
+>>> read("Twee paar schoenen.", "nl")
+[('Twee', '2')]
+>>> [(q.text, q.scale) for q in tag_vague_quantities("een paar honderd mensen", "nl")]
+[('een paar honderd', '100')]
+```
+
+> Onze Taal 72 (2003), "De verandering van een telwoord": "Maar als een paar de betekenis heeft van ‘een klein aantal’ (een paar kinderen, een paar aardappels) krijgt de woordgroep de waarde van een onbepaald telwoord. De betekenis is dan vergelijkbaar met bijvoorbeeld veel en enkele." De Nieuwe Taalgids 57 (1964), "Twee en een paar": "dat het laatste ook wel meer dan twee kan zijn". DWDS, "ein paar": "bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung".
+
+A skill that needs one count can take the weak mention of "a couple" as 2. "een paar", "ein paar" and "a few" give no number: the skill uses its own default or asks the user for a number.
 
 ---
 [← Confidence and homographs](confidence-and-homographs.md) · [Home](index.md) · [Portuguese →](languages/pt.md)

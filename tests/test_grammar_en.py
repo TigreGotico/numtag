@@ -3,6 +3,8 @@ comment beside it; sources are in numtag/lexicon/en.json."""
 import time
 import unittest
 
+import pytest
+
 from helpers import read
 from numtag import Scale, tag_numbers
 
@@ -385,6 +387,13 @@ class TestFractions(unittest.TestCase):
         self.assertEqual(read("2 vírgula 5 terços", "pt-BR"), [("2", "2", C), ("5", "5", C)])
         self.assertEqual(read("2 coma 5 tercios", "es"), [("2", "2", C), ("5", "5", C)])
 
+    def test_a_marker_word_with_no_number_before_it_is_a_noun(self):
+        # "point" with no number before it is no decimal marker: 3/4 = 0.75
+        self.assertEqual(en("At that point 3 quarters of the votes were counted."), [("3 quarters", "0.75", F)])
+        self.assertEqual(en("point 3 quarters"), [("3 quarters", "0.75", F)])
+        # a number right before the marker keeps the digit a decimal digit
+        self.assertEqual(en("two point 5 quarters"), [("two", "2", C), ("5", "5", C)])
+
     def test_a_marker_word_at_the_end_leaves_a_first_digit_its_count(self):
         # short phrases: the digit is the first word, and the marker word at the
         # end is no decimal marker of it; 3/4 = 0.75, 2/3
@@ -668,6 +677,38 @@ class TestMinusAndArticles(unittest.TestCase):
     def test_one_is_a_numeral(self):
         mentions = tag_numbers("one dog", "en")
         self.assertEqual([(m.value, m.confidence) for m in mentions], [("1", 1.0)])
+
+
+class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
+    def test_a_digit_decimal_takes_hundred_as_the_word_decimal_does(self):
+        # 2.5 x 100 = 250, as "two point five hundred" is
+        self.assertEqual(en("two point five hundred"), [("two point five hundred", "250", C)])
+        self.assertEqual(en("2 point 5 hundred"), [("2 point 5 hundred", "250", C)])
+        self.assertEqual(en("2.5 hundred"), [("2.5 hundred", "250", C)])
+        self.assertEqual(en("12.5 hundred"), [("12.5 hundred", "1250", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/228")
+    def test_en_digit_groups_of_thousand_and_hundred(self):
+        self.assertEqual(read("5 thousand 2 hundred", "en"), [("5 thousand 2 hundred", "5200", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    def test_en_digit_before_hundred(self):
+        self.assertEqual(read("2 hundred", "en"), [("2 hundred", "200", C)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/166")
+@pytest.mark.parametrize("text, expected", [
+    ('two point five million three hundred', [('two point five million three hundred', '2500300', C)]),
+    ('one point five million two thousand', [('one point five million two thousand', '1502000', C)]),
+])
+def test_en_a_group_after_a_decimal_scale_adds(text, expected):
+    # 2.5 x 1000000 + 300 = 2500300; 1.5 x 1000000 + 2000 = 1502000
+    assert read(text, "en") == expected
+
 
 
 if __name__ == "__main__":

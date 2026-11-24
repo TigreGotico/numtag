@@ -1,13 +1,21 @@
 # Uralic and Turkic languages
 
+<!-- agent-hint
+covers: What numtag reads in Finnish, Estonian, Hungarian, Turkish and Azerbaijani.
+source: numtag/lexicon/{fi,et,hu,tr,az}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/uralic-turkic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/uralic-turkic.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Finnish, Estonian, Hungarian, Turkish and Azerbaijani. Finnish and Hungarian write a number below a thousand as one word. A period after digits can make an ordinal: "3." is "third".
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
 | Finnish | every `fi` tag | `numtag/lexicon/fi.json` | long | 181 | 181 |
 | Estonian | every `et` tag | `numtag/lexicon/et.json` | long | 170 | 170 |
-| Hungarian | every `hu` tag | `numtag/lexicon/hu.json` | long | 191 | 189 |
-| Turkish | every `tr` tag | `numtag/lexicon/tr.json` | short | 187 | 187 |
+| Hungarian | every `hu` tag | `numtag/lexicon/hu.json` | long | 197 | 195 |
+| Turkish | every `tr` tag | `numtag/lexicon/tr.json` | short | 189 | 189 |
 | Azerbaijani | every `az` tag | `numtag/lexicon/az.json` | short | 176 | 176 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -96,7 +104,9 @@ Hungarian writes a decimal as a whole, "egész", and a count of parts: "három e
 
 > Wiktionary, "milliomod" (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/milliomod.raw): "[[millionth]] {{gloss|one of a million equal parts of a whole}}"
 
-Before a noun, the glued form can also be a count of parts: "háromszázad másodperc" can be 3/100 of a second. A glued part word of a hundred or more with no count before it reads as one part of the product, the multiplier that hu.wikipedia writes: "háromszázad" is 1/300, at the low score of a word with a second meaning, and the count of parts stays the alternative. After a hyphen, the glued count is the second member of a range, and it counts the parts: "egy-kétszázad milliméter" is one or two hundredths of a millimetre.
+Before a noun, the glued form can also be a count of parts: "háromszázad másodperc" can be 3/100 of a second.
+
+A glued part word of a hundred or more with no count before it reads as one part of the product. This is the multiplier that hu.wikipedia writes. "háromszázad" is 1/300, at the low score of a word with a second meaning. The count of parts stays the alternative. After a hyphen, the glued count is the second member of a range, and it counts the parts: "egy-kétszázad milliméter" is one or two hundredths of a millimetre.
 
 ```python
 >>> read('tízezred', 'hu')
@@ -108,3 +118,6 @@ Before a noun, the glued form can also be a count of parts: "háromszázad máso
 > AkH 12 §293 (knowledge/wiki/audits/numtag/follow-up-prs/hu-denominators/render/akh12-293.txt): "Ha azonban a tőszámnévi jelzős törtszámnév egészében jelzői szerepű, a két számnevet egybeírjuk, például: az ország kétharmad része, háromnegyed óra múlva"
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Germanic languages](germanic.md) · [Home](../index.md) · [Baltic languages →](baltic.md)

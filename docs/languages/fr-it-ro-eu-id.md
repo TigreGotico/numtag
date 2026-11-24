@@ -1,16 +1,25 @@
-# French, Italian, Romanian, Basque and Indonesian
+# French, Italian, Romanian, Basque, Indonesian and Malay
 
-numtag reads French, Italian, Romanian, Basque and Indonesian. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
+<!-- agent-hint
+covers: What numtag reads in French, Italian, Romanian, Basque, Indonesian and Malay.
+source: numtag/lexicon/{fr-FR,fr-BE,fr-CH,it,ro,eu,id,ms}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/fr-it-ro-eu-id.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/fr-it-ro-eu-id.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
+numtag reads French, Italian, Romanian, Basque, Indonesian and Malay. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 190 | 189 |
+| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 201 | 199 |
 | French (Belgium) | `fr-BE` | `numtag/lexicon/fr-BE.json` | long | 22 | 22 |
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
-| Italian | every `it` tag | `numtag/lexicon/it.json` | long | 187 | 185 |
+| Italian | every `it` tag | `numtag/lexicon/it.json` | long | 194 | 191 |
 | Romanian | every `ro` tag | `numtag/lexicon/ro.json` | long | 157 | 157 |
 | Basque | every `eu` tag | `numtag/lexicon/eu.json` | long | 168 | 168 |
 | Indonesian | every `id` tag | `numtag/lexicon/id.json` | short | 175 | 174 |
+| Malay | every `ms` tag | `numtag/lexicon/ms.json` | short | 162 | 161 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
 
@@ -34,7 +43,23 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('hogeita bost', '25')]
 >>> read('dua puluh lima', 'id')
 [('dua puluh lima', '25')]
+>>> read('lapan puluh lima', 'ms')
+[('lapan puluh lima', '85')]
 ```
+
+## Italian ordinals from primo to nono
+
+A longer Italian ordinal is one word that ends in "-esimo" ("ventiduesimo", "centotreesimo"). "primo" to "nono" never end a longer ordinal. So a cardinal and one of these words are two numbers: "dieci secondi" is 10 and the time unit "secondi", never 12. "decimo" can end one ("centodecimo"), so "cento decimo" is 110.
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('tra dieci secondi', 'it')]
+[('dieci', '10', 'cardinal'), ('secondi', '2', 'ordinal')]
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers('cento decimo', 'it')]
+[('cento decimo', '110', 'ordinal')]
+```
+
+> CLDR 48 RBNF it: "2: secondo;", "11: undicesimo;". Treccani, "Ordinali": "I primi dieci ordinali presentano una forma propria derivata dal latino: primo, secondo, terzo, quarto, quinto, sesto, settimo, ottavo, nono, decimo."
 
 ## Examples from the gold rows
 
@@ -71,6 +96,30 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('12,5', '12.5')]
 ```
 
+## Minus words that are no sign
+
+French "moins" after an hour counts the minutes before that hour. TLFi, "moins", gives this use: "Dans le décompte de l'heure, précédant le nom de nombre correspondant au nombre des minutes manquant". The hour is "heure", the symbol "h", "midi" or "minuit". French "à tout le moins" and Italian "quanto meno" mean "at least", so the minus word in them is no sign either.
+
+```python
+>>> read('Il est midi moins dix.', 'fr')
+[('dix', '10')]
+>>> read('Il est 9h moins 10.', 'fr')
+[('9', '9'), ('10', '10')]
+>>> read('Il faut à tout le moins trois jours.', 'fr')
+[('trois', '3')]
+>>> read('Ci vogliono quanto meno tre ore.', 'it')
+[('tre', '3')]
+>>> read('Il fait moins trois degrés.', 'fr')
+[('moins trois', '-3')]
+```
+
+A point right before the first digit marks decimals, because a group mark stands only between digits. So "-.5" is -0.5 in French, Italian and Romanian, as ",5" is 0.5.
+
+```python
+>>> read('-.5', 'fr'), read('-.5', 'it'), read('-.5', 'ro')
+([('-.5', '-0.5')], [('-.5', '-0.5')], [('-.5', '-0.5')])
+```
+
 ## Basque ordinals with the article
 
 A Basque ordinal takes the article -a with no space, as any other word does. numtag reads "lehena" as 1 and "hirugarrena" as 3. Euskaltzaindia rule 203 gives the form as a pronoun:
@@ -86,13 +135,13 @@ A Basque ordinal takes the article -a with no space, as any other word does. num
 
 ## Basque fractions with the article
 
-"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads "erdia" as 0.5, "herena" as 1/3 and "laurdena" as 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
+"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads them as 0.5, 1/3 and 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
 
 > artikulua eta kasu-marka zuzenean lotzen zaizkio zenbatzaileari, beste edozein hitzi bezala, bien artean ezer jarri gabe eta bien artean zuriunerik utzi gabe
 
 The rule does not name these three words. The value comes from the noun, and the Euskaltzaindia dictionary gives the forms: "Bizitzaren erdia.", "Liburuaren laurdena ere ez du irakurri.", "Lehen herena." A noun before "erdia" is no part of the number. In "ordu erdia" (half an hour) the number is "erdia".
 
-A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. The bare nouns "laurden" and "heren" with no count also read one part at 0.4, so "ordu laurden" reads "laurden" as 0.25, as "ordu erdi" reads "erdi" as 0.5. A clock phrase such as "hirurak eta laurden" (Euskaltzaindia rule 35) reads no number, because the hour word before "eta" is no number word. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
+A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. The bare nouns "laurden" and "heren" with no count also read one part at 0.4. So "ordu laurden" reads "laurden" as 0.25, as "ordu erdi" reads "erdi" as 0.5. A clock phrase such as "hirurak eta laurden" (Euskaltzaindia rule 35) reads no number, because the hour word before "eta" is no number word. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
 
 ```python
 >>> read('Biribilaren laurdena da.', 'eu')
@@ -131,4 +180,11 @@ Indonesian, short scale:
 
 > KBBI VI Daring, "triliun": "12 nol (000.000.000.000) [...] (di Amerika Serikat dan Prancis, digunakan juga di Indonesia)". "miliar" is 10^9 and "triliun" 10^12 in Indonesia, so the scale changes no value.
 
+Malay, short scale:
+
+> Kamus Dewan Edisi Keempat, "bilion": "1. (di Britain) satu juta juta, ditulis sbg 1 000 000 000 000 atau 1012; 2. (di AS) satu ribu juta, ditulis sbg 1 000 000 000 atau 109"; [...]
+
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Slavic languages](slavic.md) · [Home](../index.md) · [Iberian languages and Occitan →](ibero.md)

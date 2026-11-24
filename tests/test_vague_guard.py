@@ -107,10 +107,69 @@ class TestHundredWordAfterVagueWord(unittest.TestCase):
         self.assertEqual(numbers("1,5 milhões cem mil", "pt-BR"), [("1,5 milhões", "1500000"), ("cem mil", "100000")])
 
 
+class TestPluralScaleWordBeforeAScaleWord(unittest.TestCase):
+    """A plural scale word with no count ("centenas") is a vague word only before "de" and a
+    scale word, where it counts that word. Short phrases; values by hand."""
+
+    def test_a_plural_that_counts_the_scale_word_after_de_reads_no_number(self):
+        # 100 x 1000 = 100000 and 10 x 1000 = 10000: no number of 1000 in either
+        for text in ("centenas de milhar de pessoas", "dezenas de milhar de pessoas", "centenas de milhar",
+                     "várias centenas de milhar de euros", "dezenas de mil pessoas"):
+            for lang in ("pt-PT", "pt-BR"):
+                with self.subTest(text=text, lang=lang):
+                    self.assertEqual(numbers(text, lang), [])
+
+    def test_a_count_before_the_plural_keeps_the_number(self):
+        # 3 x 100 x 1000 = 300000; 20 x 1000 = 20000, as in the lexicon source of "milhar"
+        self.assertEqual(numbers("3 centenas de milhar de euros", "pt-PT"), [("3 centenas de milhar", "300000")])
+        self.assertEqual(numbers("duas dezenas de milhar", "pt-PT"), [("duas dezenas de milhar", "20000")])
+
+    def test_a_number_word_after_a_plural_scale_word_reads_a_number(self):
+        # the five rows of the issue: each number word reads alone, 1000, 60, 70, 100, 3 and 6
+        for lang, text, expected in (
+                ("pt-PT", "dezenas sextilião mil sexagésimo", [("mil", "1000"), ("sexagésimo", "60")]),
+                ("pt-PT", "dúzias mil setuagésimo ponto deciliões e", [("mil", "1000"), ("setuagésimo", "70")]),
+                ("pt-BR", "centilhão septendeciliões centilião ª milhares mil", [("mil", "1000")]),
+                ("pt-BR", "dezenas nonideciliões mil", [("mil", "1000")]),
+                ("pt-BR", "milhares cem terceiras seis", [("cem", "100"), ("terceiras", "3"), ("seis", "6")])):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, lang), expected)
+
+    def test_a_vague_word_before_the_plural_keeps_the_guard(self):
+        # "algumas centenas mil" is some hundreds of thousands, no number
+        self.assertEqual(numbers("algumas centenas mil unidades", "pt-BR"), [])
+
+
 class TestCountBeforeAPluralScaleWord(unittest.TestCase):
     def test_a_count_makes_the_plural_scale_word_a_number(self):
         # short phrase: "3 milhões" is 3 x 1000000 = 3000000, no vague word, so "mil" reads 1000
         self.assertEqual(numbers("3 milhões mil euros", "pt-PT"), [("3 milhões", "3000000"), ("mil", "1000")])
+
+
+
+class TestOptionalJoinerAfterVagueWord(unittest.TestCase):
+    """Where the joiner before the last group is optional (hr, en), it can
+    join two phrases, so the vague amount reads no number and the number
+    after the joiner reads alone. Short phrases; values by hand."""
+
+    def test_croatian_number_after_i_reads_alone(self):
+        for text, words, value in (("nekoliko tisuća i pet", "pet", "5"),
+                                   ("nekoliko milijuna i pet", "pet", "5"),
+                                   ("nekoliko stotina tisuća i pet", "pet", "5"),
+                                   # 5 x 100 = 500
+                                   ("nekoliko tisuća i pet stotina", "pet stotina", "500"),
+                                   # 200 x 1000 = 200000
+                                   ("nekoliko milijuna i dvjesto tisuća", "dvjesto tisuća", "200000"),
+                                   ("nekoliko tisuća milijuna i pet", "pet", "5")):
+            with self.subTest(text=text):
+                self.assertEqual(numbers(text, "hr"), [(words, value)])
+
+    def test_croatian_number_with_no_vague_word_keeps_the_joiner(self):
+        # 1000 + 5 = 1005: "Tisuću i jedna noć" writes "i" before the last group
+        self.assertEqual(numbers("tisuću i pet", "hr"), [("tisuću i pet", "1005")])
+
+    def test_english_number_after_and_reads_alone(self):
+        self.assertEqual(numbers("a few thousand and five", "en"), [("five", "5")])
 
 
 if __name__ == "__main__":

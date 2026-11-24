@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import pytest
+
 GOLD_DIR = Path(__file__).parent / "gold"
 _spec = importlib.util.spec_from_file_location("check_gold", GOLD_DIR / "check_gold.py")
 check_gold = importlib.util.module_from_spec(_spec)
@@ -39,6 +41,16 @@ class TestGoldFiles(unittest.TestCase):
                 lines = (GOLD_DIR / f"{lang}.jsonl").read_text(encoding="utf-8").splitlines()
                 texts = [json.loads(line)["text"] for line in lines]
                 self.assertEqual(len(texts), len(set(texts)))
+
+
+class TestPrefixedSpans(unittest.TestCase):
+    """ar و and he ו are written as a prefix, so a span may start right after them."""
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/281")
+    def test_ar_and_he_gold_files_pass(self):
+        for lang, rows in (("ar", 157), ("he", 160)):
+            n_in, errors = check_gold.check_file(GOLD_DIR / f"{lang}.jsonl")
+            self.assertEqual((n_in, errors), (rows, []))
 
 
 class TestCheckerRefusesBadRows(unittest.TestCase):

@@ -1,5 +1,13 @@
 # Portuguese
 
+<!-- agent-hint
+covers: What numtag reads in European and Brazilian Portuguese.
+source: numtag/lexicon/pt-PT.json, tests/gold/pt-PT.jsonl, numtag/lexicon/pt-BR.json, tests/gold/pt-BR.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/pt.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"has (\\d+) rows, and numtag reads (\\d+)",Path(sys.argv[1]).read_text())\ngot=[(str(s.rows),str(s.correct)) for s in (score_file(Path("tests/gold/"+l+".jsonl")) for l in sys.argv[2:])]\nprint(rows,got)\nsys.exit(0 if rows==got and rows else 1)' docs/languages/pt.md pt-PT pt-BR
+see: ../rulings.md, ../number-scale.md
+-->
+
 numtag reads European Portuguese and Brazilian Portuguese. The tag `pt-BR` reads Brazilian Portuguese. Every other `pt` tag (`pt`, `pt-PT`, `pt-AO`, `pt-MZ`) reads European Portuguese. The lexicon files are `numtag/lexicon/pt-PT.json` and `numtag/lexicon/pt-BR.json`.
 
 ## Two lexicons, one grammar
@@ -69,7 +77,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `joiner_before_round_hundred` | true | Gulbenkian, Cunha & Cintra, Teyssier |
 | `comma_between_classes` | true | Gulbenkian, via Ciberdúvidas 8981 |
 | `plural_scale_needs_count` | true | Priberam, "milhão" and "milhar" |
-| `scale_noun_agrees` | true | Squarisi, Correio Braziliense; Priberam, "milhão" |
+| `scale_noun_agrees` | true | Squarisi, Correio Braziliense, and Priberam, "milhão" |
 | `ordinal_style` | every_word | CLDR 49 RBNF pt %spellout-ordinal-masculine |
 | `fraction_of_scale` | true | Priberam, "quarto", "terço" and "milhão" |
 
@@ -102,7 +110,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 
 ## Known misreadings
 
-The European Portuguese gold corpus has 474 rows, and numtag reads 468 of them right. The Brazilian corpus has 466 rows, and numtag reads 460 right. The same six sentences fail in both.
+The European Portuguese gold corpus has 479 rows, and numtag reads 473 of them right. The Brazilian corpus has 470 rows, and numtag reads 464 right. The same six sentences fail in both.
 
 | Sentence | Gold | numtag |
 |---|---|---|
@@ -120,7 +128,7 @@ The European Portuguese gold corpus has 474 rows, and numtag reads 468 of them r
 
 Five of the six get the low score 0.4, so a caller that drops weak mentions loses the wrong reading. Read [../confidence-and-homographs.md](../confidence-and-homographs.md).
 
-"a menos" before a number is read as the comparing idiom, so a minus sign after it is lost. In CETEMPúblico, 33 of 60 hits of "a menos" and a number compare ("o que corresponde a menos 2243 empresas") and 16 have the sign. A temperature unit after the number marks only 2 of the 16 sign hits.
+"a menos" before a number is read as the comparing idiom, so a minus sign after it is lost. In CETEMPúblico, 33 of 60 hits of "a menos" and a number compare ("o que corresponde a menos 2243 empresas"). 16 have the sign. A temperature unit after the number marks only 2 of the 16 sign hits.
 
 ```python
 >>> read("o que corresponde a menos 2243 empresas")

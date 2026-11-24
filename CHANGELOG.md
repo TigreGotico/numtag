@@ -1,8 +1,312 @@
 # Changelog
 
+## [0.19.22a6](https://github.com/TigreGotico/numtag/tree/0.19.22a6) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a5...0.19.22a6)
+
+**Merged pull requests:**
+
+- docs: align docs with the code, STE pass [\#280](https://github.com/TigreGotico/numtag/pull/280) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.22a5](https://github.com/TigreGotico/numtag/tree/0.19.22a5) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a4...0.19.22a5)
+
+**Merged pull requests:**
+
+- test: strict xfail for ar and he gold spans after a prefix [\#282](https://github.com/TigreGotico/numtag/pull/282) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.22a4](https://github.com/TigreGotico/numtag/tree/0.19.22a4) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a3...0.19.22a4)
+
+**Merged pull requests:**
+
+- test: strict xfails for open issues \(160-274, lexicons\) [\#279](https://github.com/TigreGotico/numtag/pull/279) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.22a3](https://github.com/TigreGotico/numtag/tree/0.19.22a3) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a2...0.19.22a3)
+
+**Merged pull requests:**
+
+- test: strict xfails for open issues \(99-275, readers\) [\#278](https://github.com/TigreGotico/numtag/pull/278) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.22a2](https://github.com/TigreGotico/numtag/tree/0.19.22a2) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a1...0.19.22a2)
+
+**Merged pull requests:**
+
+- test: strict xfails for open issues [\#277](https://github.com/TigreGotico/numtag/pull/277) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.22a1](https://github.com/TigreGotico/numtag/tree/0.19.22a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.21a1...0.19.22a1)
+
+**Merged pull requests:**
+
+- fix: a number in E notation is no ordinal and no count [\#185](https://github.com/TigreGotico/numtag/pull/185) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.21a1](https://github.com/TigreGotico/numtag/tree/0.19.21a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.20a1...0.19.21a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): read the spoken teens, tens and hundreds of the Wiktionary number lists [\#213](https://github.com/TigreGotico/numtag/pull/213) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.20a1](https://github.com/TigreGotico/numtag/tree/0.19.20a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.19a1...0.19.20a1)
+
+**Merged pull requests:**
+
+- fix\(bg\): read the long ordinals of 11 to 19, 20 and 30 [\#195](https://github.com/TigreGotico/numtag/pull/195) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.19a1](https://github.com/TigreGotico/numtag/tree/0.19.19a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.18a1...0.19.19a1)
+
+**Merged pull requests:**
+
+- fix: read no number in "centenas de milhar", and keep a number word after a plural scale word [\#219](https://github.com/TigreGotico/numtag/pull/219) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.18a1](https://github.com/TigreGotico/numtag/tree/0.19.18a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.17a1...0.19.18a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): a vague amount keeps a joined number only where the joiner is required [\#218](https://github.com/TigreGotico/numtag/pull/218) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.17a1](https://github.com/TigreGotico/numtag/tree/0.19.17a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.16a1...0.19.17a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): read "jedna stotina" as a homograph of 100 and 1/100 [\#217](https://github.com/TigreGotico/numtag/pull/217) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.16a1](https://github.com/TigreGotico/numtag/tree/0.19.16a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.15a1...0.19.16a1)
+
+**Merged pull requests:**
+
+- fix\(ru, uk, pl\): digits before a plural ordinal-form part word count things [\#214](https://github.com/TigreGotico/numtag/pull/214) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.15a1](https://github.com/TigreGotico/numtag/tree/0.19.15a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.14a1...0.19.15a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): count a half before stotina and no year as a count of hundreds [\#212](https://github.com/TigreGotico/numtag/pull/212) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.14a1](https://github.com/TigreGotico/numtag/tree/0.19.14a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.13a1...0.19.14a1)
+
+**Merged pull requests:**
+
+- fix\(hr, he\): a zero digit count multiplies no counted hundred noun [\#211](https://github.com/TigreGotico/numtag/pull/211) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.13a1](https://github.com/TigreGotico/numtag/tree/0.19.13a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.12a1...0.19.13a1)
+
+**Merged pull requests:**
+
+- fix\(cs, pl, ru, uk, hr\): read a counted hundreds noun before a scale word [\#207](https://github.com/TigreGotico/numtag/pull/207) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.12a1](https://github.com/TigreGotico/numtag/tree/0.19.12a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.11a1...0.19.12a1)
+
+**Merged pull requests:**
+
+- fix: eu denominator of several words reads whole and -\(r\)en bat is also about N [\#203](https://github.com/TigreGotico/numtag/pull/203) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.11a1](https://github.com/TigreGotico/numtag/tree/0.19.11a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.10a1...0.19.11a1)
+
+**Merged pull requests:**
+
+- fix\(sl\): read the clock hour enih and weaken a bare tisoče [\#201](https://github.com/TigreGotico/numtag/pull/201) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.10a1](https://github.com/TigreGotico/numtag/tree/0.19.10a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.9a1...0.19.10a1)
+
+**Merged pull requests:**
+
+- fix\(cs\): read the bookish ordinal prvý and its case forms [\#199](https://github.com/TigreGotico/numtag/pull/199) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.9a1](https://github.com/TigreGotico/numtag/tree/0.19.9a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.8a1...0.19.9a1)
+
+**Merged pull requests:**
+
+- fix\(cs\): "mínus" before a number is a sign [\#198](https://github.com/TigreGotico/numtag/pull/198) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.8a1](https://github.com/TigreGotico/numtag/tree/0.19.8a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.7a1...0.19.8a1)
+
+**Merged pull requests:**
+
+- fix\(hr\): read the long ordinal genitive and dative with the movable vowel [\#196](https://github.com/TigreGotico/numtag/pull/196) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.7a1](https://github.com/TigreGotico/numtag/tree/0.19.7a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.6a1...0.19.7a1)
+
+**Merged pull requests:**
+
+- fix: VagueQuantity refuses a bad scale, lower bound and confidence [\#193](https://github.com/TigreGotico/numtag/pull/193) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.6a1](https://github.com/TigreGotico/numtag/tree/0.19.6a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.5a1...0.19.6a1)
+
+**Merged pull requests:**
+
+- fix: a decimal in digits takes a hundred word after it [\#190](https://github.com/TigreGotico/numtag/pull/190) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.5a1](https://github.com/TigreGotico/numtag/tree/0.19.5a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.4a1...0.19.5a1)
+
+**Merged pull requests:**
+
+- fix\(kab, mwl\): waḥed stands alone; cite a Mirandese source for abos [\#188](https://github.com/TigreGotico/numtag/pull/188) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.4a1](https://github.com/TigreGotico/numtag/tree/0.19.4a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.3a1...0.19.4a1)
+
+**Merged pull requests:**
+
+- fix\(ru\): keep a genitive ten and a nominative unit apart [\#177](https://github.com/TigreGotico/numtag/pull/177) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.3a1](https://github.com/TigreGotico/numtag/tree/0.19.3a1) (2026-11-22)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.2a1...0.19.3a1)
+
+**Merged pull requests:**
+
+- fix: a joiner at the end of the text leaves the number before it [\#169](https://github.com/TigreGotico/numtag/pull/169) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.2a1](https://github.com/TigreGotico/numtag/tree/0.19.2a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.1a2...0.19.2a1)
+
+**Merged pull requests:**
+
+- fix\(ar\): read the spoken hundreds ميتين and ثلاثمية to تسعمية [\#258](https://github.com/TigreGotico/numtag/pull/258) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.1a2](https://github.com/TigreGotico/numtag/tree/0.19.1a2) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.1a1...0.19.1a2)
+
+**Merged pull requests:**
+
+- docs: README, docs index, navigation and agent hints [\#257](https://github.com/TigreGotico/numtag/pull/257) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.1a1](https://github.com/TigreGotico/numtag/tree/0.19.1a1) (2026-11-21)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.0a1...0.19.1a1)
+
+**Merged pull requests:**
+
+- fix: read a clock-shaped point decimal as a decimal without a clock word [\#255](https://github.com/TigreGotico/numtag/pull/255) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.19.0a1](https://github.com/TigreGotico/numtag/tree/0.19.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.1a1...0.19.0a1)
+
+## [0.18.1a1](https://github.com/TigreGotico/numtag/tree/0.18.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.18.0a1...0.18.1a1)
+
+**Merged pull requests:**
+
+- fix: read en "a couple" as a weak 2, and nl "een paar" and de "ein paar" as an amount [\#247](https://github.com/TigreGotico/numtag/pull/247) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat\(mt\): add a Maltese lexicon [\#243](https://github.com/TigreGotico/numtag/pull/243) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.18.0a1](https://github.com/TigreGotico/numtag/tree/0.18.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.17.0a1...0.18.0a1)
+
+## [0.17.0a1](https://github.com/TigreGotico/numtag/tree/0.17.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.1a1...0.17.0a1)
+
+**Merged pull requests:**
+
+- feat\(sr\): add a Serbian lexicon [\#245](https://github.com/TigreGotico/numtag/pull/245) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat\(lt\): add a Lithuanian lexicon [\#242](https://github.com/TigreGotico/numtag/pull/242) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.16.1a1](https://github.com/TigreGotico/numtag/tree/0.16.1a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.0a1...0.16.1a1)
+
+**Merged pull requests:**
+
+- fix\(fy\): read the inflected clock hours and the digit ordinal "21e" [\#146](https://github.com/TigreGotico/numtag/pull/146) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.16.0a1](https://github.com/TigreGotico/numtag/tree/0.16.0a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.11a1...0.16.0a1)
+
+**Merged pull requests:**
+
+- feat\(ms\): add a Malay lexicon [\#187](https://github.com/TigreGotico/numtag/pull/187) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.15.11a1](https://github.com/TigreGotico/numtag/tree/0.15.11a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.10a1...0.15.11a1)
+
+**Merged pull requests:**
+
+- fix\(nb, nn\): read the ordinals "annen" and "fyrste" [\#147](https://github.com/TigreGotico/numtag/pull/147) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.15.10a1](https://github.com/TigreGotico/numtag/tree/0.15.10a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.9a1...0.15.10a1)
+
+## [0.15.9a1](https://github.com/TigreGotico/numtag/tree/0.15.9a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.8a1...0.15.9a1)
+
+## [0.15.8a1](https://github.com/TigreGotico/numtag/tree/0.15.8a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.7a1...0.15.8a1)
+
+## [0.15.7a1](https://github.com/TigreGotico/numtag/tree/0.15.7a1) (2026-11-19)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.6a1...0.15.7a1)
+
+**Merged pull requests:**
+
+- fix: tr yuzde yuz reads 100 at full confidence [\#208](https://github.com/TigreGotico/numtag/pull/208) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: read a number whose group marks mix spaces, and check every lexicon's marks [\#205](https://github.com/TigreGotico/numtag/pull/205) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(de\): "halb" before an hour is the half hour, no number [\#183](https://github.com/TigreGotico/numtag/pull/183) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(it,ca,oc\): a cardinal before a Latin unit ordinal makes no compound [\#182](https://github.com/TigreGotico/numtag/pull/182) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fr, it, ro\): read "moins" after an hour, "quanto meno" and a lone point [\#175](https://github.com/TigreGotico/numtag/pull/175) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- perf: read each position once and cache the lookup forms [\#153](https://github.com/TigreGotico/numtag/pull/153) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: read no word before the first token, and a marker word as a noun [\#152](https://github.com/TigreGotico/numtag/pull/152) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.6a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.5a1...0.15.6a1)
+
+## [0.15.5a1](https://github.com/TigreGotico/numtag/tree/0.15.5a1) (2026-11-18)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.5a1)
 
 **Merged pull requests:**
 
@@ -24,8 +328,6 @@
 **Merged pull requests:**
 
 - fix: a marker word at the end leaves a first digit its count [\#135](https://github.com/TigreGotico/numtag/pull/135) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- Update astral-sh/setup-uv action to v10 [\#56](https://github.com/TigreGotico/numtag/pull/56) ([renovate[bot]](https://github.com/apps/renovate))
-- Update actions/checkout action to v7 [\#55](https://github.com/TigreGotico/numtag/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [0.15.3a1](https://github.com/TigreGotico/numtag/tree/0.15.3a1) (2026-11-17)
 
@@ -294,10 +596,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.5a1...0.12.6a1)
 
-**Merged pull requests:**
-
-- fix\(hu\): "hat" after a request verb or alone is six [\#63](https://github.com/TigreGotico/numtag/pull/63) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.12.5a1](https://github.com/TigreGotico/numtag/tree/0.12.5a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.4a1...0.12.5a1)
@@ -318,409 +616,205 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.2a1...0.12.3a1)
 
-**Merged pull requests:**
-
-- fix\(pt\): cite the corpus for the "a menos" idiom [\#62](https://github.com/TigreGotico/numtag/pull/62) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.12.2a1](https://github.com/TigreGotico/numtag/tree/0.12.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.1a1...0.12.2a1)
-
-**Merged pull requests:**
-
-- fix\(hu\): "hat" as a verb, "egybe" and "egytől egyig" are no sure number [\#61](https://github.com/TigreGotico/numtag/pull/61) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.1a1](https://github.com/TigreGotico/numtag/tree/0.12.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.0a1...0.12.1a1)
 
-**Merged pull requests:**
-
-- fix: a minus sign negates the whole number its digits start [\#60](https://github.com/TigreGotico/numtag/pull/60) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.12.0a1](https://github.com/TigreGotico/numtag/tree/0.12.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.11.0a1...0.12.0a1)
-
-**Merged pull requests:**
-
-- feat: Roman numerals [\#59](https://github.com/TigreGotico/numtag/pull/59) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.11.0a1](https://github.com/TigreGotico/numtag/tree/0.11.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a4...0.11.0a1)
 
-**Merged pull requests:**
-
-- feat: NumberMention.parts, the pieces of a number [\#58](https://github.com/TigreGotico/numtag/pull/58) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.13a4](https://github.com/TigreGotico/numtag/tree/0.10.13a4) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a3...0.10.13a4)
-
-**Merged pull requests:**
-
-- test: the readings ovos-typed-slots-transformer depends on [\#57](https://github.com/TigreGotico/numtag/pull/57) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.13a3](https://github.com/TigreGotico/numtag/tree/0.10.13a3) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a2...0.10.13a3)
 
-**Merged pull requests:**
-
-- ci: run each consumer's own suite against numtag dev [\#54](https://github.com/TigreGotico/numtag/pull/54) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.13a2](https://github.com/TigreGotico/numtag/tree/0.10.13a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.13a1...0.10.13a2)
-
-**Merged pull requests:**
-
-- test: the readings that numtag's consumers depend on [\#53](https://github.com/TigreGotico/numtag/pull/53) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.13a1](https://github.com/TigreGotico/numtag/tree/0.10.13a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.12a1...0.10.13a1)
 
-**Merged pull requests:**
-
-- fix\(ca, oc, fr, it\): "of" joined to the article is an of-word [\#52](https://github.com/TigreGotico/numtag/pull/52) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.12a1](https://github.com/TigreGotico/numtag/tree/0.10.12a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.11a1...0.10.12a1)
-
-**Merged pull requests:**
-
-- fix\(ru, uk, pl, cs\): "one and the same" holds no number [\#51](https://github.com/TigreGotico/numtag/pull/51) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.11a1](https://github.com/TigreGotico/numtag/tree/0.10.11a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.10a1...0.10.11a1)
 
-**Merged pull requests:**
-
-- fix: a percent phrase with no number before it is weak [\#50](https://github.com/TigreGotico/numtag/pull/50) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.10a1](https://github.com/TigreGotico/numtag/tree/0.10.10a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.9a1...0.10.10a1)
-
-**Merged pull requests:**
-
-- fix: an article before a lone homograph is the article [\#49](https://github.com/TigreGotico/numtag/pull/49) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.9a1](https://github.com/TigreGotico/numtag/tree/0.10.9a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.8a1...0.10.9a1)
 
-**Merged pull requests:**
-
-- fix\(ca\): "nou" after "els" or "les" is the number [\#48](https://github.com/TigreGotico/numtag/pull/48) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.8a1](https://github.com/TigreGotico/numtag/tree/0.10.8a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.7a1...0.10.8a1)
-
-**Merged pull requests:**
-
-- fix\(fr, it\): "premier", "primo" and "prima" are homographs [\#47](https://github.com/TigreGotico/numtag/pull/47) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.7a1](https://github.com/TigreGotico/numtag/tree/0.10.7a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.6a2...0.10.7a1)
 
-**Merged pull requests:**
-
-- fix: number words beside a homograph make it sure [\#46](https://github.com/TigreGotico/numtag/pull/46) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.6a2](https://github.com/TigreGotico/numtag/tree/0.10.6a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.6a1...0.10.6a2)
-
-**Merged pull requests:**
-
-- test: a gold mention with no low\_confidence flag must be sure [\#45](https://github.com/TigreGotico/numtag/pull/45) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.6a1](https://github.com/TigreGotico/numtag/tree/0.10.6a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.5a1...0.10.6a1)
 
-**Merged pull requests:**
-
-- fix\(fr\): one after "le nombre" is the number [\#44](https://github.com/TigreGotico/numtag/pull/44) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.5a1](https://github.com/TigreGotico/numtag/tree/0.10.5a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.4a1...0.10.5a1)
-
-**Merged pull requests:**
-
-- fix: one before a percent phrase is the number [\#43](https://github.com/TigreGotico/numtag/pull/43) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.4a1](https://github.com/TigreGotico/numtag/tree/0.10.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.3a1...0.10.4a1)
 
-**Merged pull requests:**
-
-- fix\(fa\): a weekday name written with a space holds no number [\#42](https://github.com/TigreGotico/numtag/pull/42) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.3a1](https://github.com/TigreGotico/numtag/tree/0.10.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.2a1...0.10.3a1)
-
-**Merged pull requests:**
-
-- fix: one after a noun that names a number is the number [\#41](https://github.com/TigreGotico/numtag/pull/41) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.2a1](https://github.com/TigreGotico/numtag/tree/0.10.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.1a1...0.10.2a1)
 
-**Merged pull requests:**
-
-- fix\(it\): the elided article "un'" gets the article score [\#40](https://github.com/TigreGotico/numtag/pull/40) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.10.1a1](https://github.com/TigreGotico/numtag/tree/0.10.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.10.0a1...0.10.1a1)
-
-**Merged pull requests:**
-
-- fix\(hu, fr\): a count noun after a sure cardinal is no number [\#39](https://github.com/TigreGotico/numtag/pull/39) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.10.0a1](https://github.com/TigreGotico/numtag/tree/0.10.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.4a1...0.10.0a1)
 
-**Merged pull requests:**
-
-- feat: raise UnsupportedLanguageError for a language with no lexicon [\#38](https://github.com/TigreGotico/numtag/pull/38) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.9.4a1](https://github.com/TigreGotico/numtag/tree/0.9.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.3a1...0.9.4a1)
-
-**Merged pull requests:**
-
-- fix: an article that is the whole text gets the article score [\#37](https://github.com/TigreGotico/numtag/pull/37) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.3a1](https://github.com/TigreGotico/numtag/tree/0.9.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.2a1...0.9.3a1)
 
-**Merged pull requests:**
-
-- fix\(ru, pl\): one after a negative particle counts nothing [\#36](https://github.com/TigreGotico/numtag/pull/36) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.9.2a1](https://github.com/TigreGotico/numtag/tree/0.9.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.1a1...0.9.2a1)
-
-**Merged pull requests:**
-
-- fix: an article before a hyphenated noun gets the article score [\#35](https://github.com/TigreGotico/numtag/pull/35) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.9.1a1](https://github.com/TigreGotico/numtag/tree/0.9.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.9.0a1...0.9.1a1)
 
-**Merged pull requests:**
-
-- fix: the hundred of a percent phrase is the percent sign [\#34](https://github.com/TigreGotico/numtag/pull/34) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.9.0a1](https://github.com/TigreGotico/numtag/tree/0.9.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.4a1...0.9.0a1)
-
-**Merged pull requests:**
-
-- feat: a weak mention says why it is weak [\#33](https://github.com/TigreGotico/numtag/pull/33) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.4a1](https://github.com/TigreGotico/numtag/tree/0.8.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.3a1...0.8.4a1)
 
-**Merged pull requests:**
-
-- fix\(en\): a collective after "thousand" counts the whole cardinal [\#32](https://github.com/TigreGotico/numtag/pull/32) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.8.3a1](https://github.com/TigreGotico/numtag/tree/0.8.3a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.2a1...0.8.3a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): the word after "um quinto" decides fraction or ordinal [\#31](https://github.com/TigreGotico/numtag/pull/31) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.2a1](https://github.com/TigreGotico/numtag/tree/0.8.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.1a1...0.8.2a1)
 
-**Merged pull requests:**
-
-- fix: a slash fraction over zero gives no mention [\#30](https://github.com/TigreGotico/numtag/pull/30) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.8.1a1](https://github.com/TigreGotico/numtag/tree/0.8.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.8.0a1...0.8.1a1)
-
-**Merged pull requests:**
-
-- fix: an article before an ordinal gets the article score [\#29](https://github.com/TigreGotico/numtag/pull/29) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.8.0a1](https://github.com/TigreGotico/numtag/tree/0.8.0a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.9a1...0.8.0a1)
 
-**Merged pull requests:**
-
-- feat: export ARTICLE\_CONFIDENCE from the package [\#28](https://github.com/TigreGotico/numtag/pull/28) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.9a1](https://github.com/TigreGotico/numtag/tree/0.7.9a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.8a1...0.7.9a1)
-
-**Merged pull requests:**
-
-- fix\(cs\): "jednou" alone is also the adverb "once" [\#27](https://github.com/TigreGotico/numtag/pull/27) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.8a1](https://github.com/TigreGotico/numtag/tree/0.7.8a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.7a1...0.7.8a1)
 
-**Merged pull requests:**
-
-- fix\(ca\): "nou" and "u" alone are words with a second meaning [\#26](https://github.com/TigreGotico/numtag/pull/26) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.7a1](https://github.com/TigreGotico/numtag/tree/0.7.7a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.6a1...0.7.7a1)
-
-**Merged pull requests:**
-
-- fix\(es, de\): a lone article at the clause end gets the article score [\#25](https://github.com/TigreGotico/numtag/pull/25) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.6a1](https://github.com/TigreGotico/numtag/tree/0.7.6a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.5a1...0.7.6a1)
 
-**Merged pull requests:**
-
-- fix: an article before a number in digits gets the article score [\#24](https://github.com/TigreGotico/numtag/pull/24) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.5a1](https://github.com/TigreGotico/numtag/tree/0.7.5a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.4a1...0.7.5a1)
-
-**Merged pull requests:**
-
-- fix\(eu\): read an ordinal with the article -a [\#23](https://github.com/TigreGotico/numtag/pull/23) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.4a1](https://github.com/TigreGotico/numtag/tree/0.7.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.3a1...0.7.4a1)
 
-**Merged pull requests:**
-
-- fix: read "the one hundredth" as an English ordinal [\#22](https://github.com/TigreGotico/numtag/pull/22) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.3a1](https://github.com/TigreGotico/numtag/tree/0.7.3a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.2a1...0.7.3a1)
-
-**Merged pull requests:**
-
-- fix: link an English class across a comma before a group of a hundred or more [\#21](https://github.com/TigreGotico/numtag/pull/21) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.2a1](https://github.com/TigreGotico/numtag/tree/0.7.2a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.1a1...0.7.2a1)
 
-**Merged pull requests:**
-
-- fix: read an English unit ordinal after a ten as the cardinal does [\#20](https://github.com/TigreGotico/numtag/pull/20) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.1a1](https://github.com/TigreGotico/numtag/tree/0.7.1a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.0a2...0.7.1a1)
-
-**Merged pull requests:**
-
-- fix: read a digit count after a joiner prefix and after the first group [\#19](https://github.com/TigreGotico/numtag/pull/19) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.7.0a2](https://github.com/TigreGotico/numtag/tree/0.7.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.7.0a1...0.7.0a2)
 
-**Merged pull requests:**
-
-- docs: list the ported languages and add a page per language group [\#18](https://github.com/TigreGotico/numtag/pull/18) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.7.0a1](https://github.com/TigreGotico/numtag/tree/0.7.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.6.0a1...0.7.0a1)
-
-**Merged pull requests:**
-
-- feat: read es, gl, ca, ast, an, oc and mwl numbers [\#11](https://github.com/TigreGotico/numtag/pull/11) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.6.0a1](https://github.com/TigreGotico/numtag/tree/0.6.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.5.0a1...0.6.0a1)
 
-**Merged pull requests:**
-
-- feat: read French, Italian, Romanian, Basque and Indonesian numbers [\#8](https://github.com/TigreGotico/numtag/pull/8) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.5.0a1](https://github.com/TigreGotico/numtag/tree/0.5.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.4.0a1...0.5.0a1)
-
-**Merged pull requests:**
-
-- feat: read ru, uk, bg, pl, cs, sk, sl and hr numbers [\#7](https://github.com/TigreGotico/numtag/pull/7) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.4.0a1](https://github.com/TigreGotico/numtag/tree/0.4.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a2...0.4.0a1)
 
-**Merged pull requests:**
-
-- feat: read Finnish, Estonian, Hungarian, Turkish and Azerbaijani numbers [\#9](https://github.com/TigreGotico/numtag/pull/9) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.3.0a2](https://github.com/TigreGotico/numtag/tree/0.3.0a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.3.0a1...0.3.0a2)
-
-**Merged pull requests:**
-
-- test: a count and a collective after a scale numeral start a new number [\#17](https://github.com/TigreGotico/numtag/pull/17) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.3.0a1](https://github.com/TigreGotico/numtag/tree/0.3.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a4...0.3.0a1)
 
-**Merged pull requests:**
-
-- feat: read de, nl, fy, da, sv, nb and nn numbers [\#6](https://github.com/TigreGotico/numtag/pull/6) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.2.0a4](https://github.com/TigreGotico/numtag/tree/0.2.0a4) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a3...0.2.0a4)
 
-**Merged pull requests:**
-
-- docs: fix the claims of the claim audit [\#15](https://github.com/TigreGotico/numtag/pull/15) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.2.0a3](https://github.com/TigreGotico/numtag/tree/0.2.0a3) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.2.0a2...0.2.0a3)
-
-**Merged pull requests:**
-
-- test: a round last class before a collective needs the joiner [\#16](https://github.com/TigreGotico/numtag/pull/16) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.2.0a2](https://github.com/TigreGotico/numtag/tree/0.2.0a2) (2026-11-15)
 
@@ -730,18 +824,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.1.0a1...0.2.0a1)
 
-**Merged pull requests:**
-
-- docs: quote a saved page in every lexicon and gold source field [\#14](https://github.com/TigreGotico/numtag/pull/14) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- feat: read el, ar, he, fa and kab numbers [\#10](https://github.com/TigreGotico/numtag/pull/10) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.1.0a1](https://github.com/TigreGotico/numtag/tree/0.1.0a1) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.0.2a1...0.1.0a1)
-
-**Merged pull requests:**
-
-- feat: tag\_numbers engine for pt-PT, pt-BR and en [\#4](https://github.com/TigreGotico/numtag/pull/4) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.0.2a1](https://github.com/TigreGotico/numtag/tree/0.0.2a1) (2026-11-15)
 
@@ -754,12 +839,6 @@
 ## [0.0.1a2](https://github.com/TigreGotico/numtag/tree/0.0.1a2) (2026-11-15)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/8755566a98e5c6ad921f1edd2a001145180787c6...0.0.1a2)
-
-**Merged pull requests:**
-
-- ci: publish alphas on merge to dev and stable releases from master [\#5](https://github.com/TigreGotico/numtag/pull/5) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- test: the gold checker refuses a cut word, a wrong decimal kind and a repeated text [\#3](https://github.com/TigreGotico/numtag/pull/3) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- test: gold corpus for pt-PT, pt-BR and en [\#2](https://github.com/TigreGotico/numtag/pull/2) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 
 

@@ -54,6 +54,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "ás",
+    "á"
+   ],
+   "source": "gl.wikipedia \"Hora\", edit note: \"10 de novembro de 2025 ás 16:06\": \"ás\" before a time; \"h\" is the symbol of the hour (\"3 h 25 m 13 s\"). An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h"
+   ],
+   "source": "gl.wikipedia \"Hora\", edit note: \"10 de novembro de 2025 ás 16:06\": \"ás\" before a time; \"h\" is the symbol of the hour (\"3 h 25 m 13 s\"). An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "e"

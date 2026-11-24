@@ -4,6 +4,10 @@
    "value": true,
    "source": "Duden, \"eindreiviertel\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/duden-eindreiviertel.html): \"Wortart: ⓘ Zahlwort\", \"Worttrennung ein|drei|vier|tel\", \"Schreibung in Ziffern 1 ¾\", \"eindreiviertel Jahre, in eindreiviertel Jahren\", \"Bruchzahl\". DWDS corpus examples, a whole and a quarter fraction in one word: \"Nach zweieinviertel Stunden verwandelte sie ihren zweiten Matchball\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-zweieinviertel.html), \"Vor eineinviertel Jahren hat ihn das Leben doch zu einer Wende gezwungen.\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-eineinviertel.html), \"Frauen verwenden hierfür mit zweidreiviertel Stunden mehr als doppelt so viel Zeit auf wie die Männer.\" (knowledge/wiki/audits/numtag/issue-fixes/de-142/sources/dwds-zweidreiviertel.html). The fraction keeps its own count (\"ein\", \"drei\") and is below one, so \"zweidrittel\" stays 2/3."
   },
+  "clock_half": {
+   "value": true,
+   "source": "DWDS, \"halb\", 1c: \"es ist halb zwölf Uhr (= elf Uhr dreißig)\", \"das Essen auf halb eins ansetzen\": \"halb\" before an hour names the half hour before it, so \"um halb drei\" is 2:30 and \"halb\" is no number there."
+  },
   "scale": {
    "value": "long",
    "source": "German uses the long scale: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-numbering: \"1000000000: eine Milliarde[ →→]\", \"1000000000000: eine Billion[ →→]\", \"1000000000000000: eine Billiarde[ →→]\""
@@ -14,7 +18,7 @@
   },
   "decimal_mark": {
    "value": ",",
-   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'"
+   "source": "CLDR number symbols for German (Babel 2.18.0): decimal ',', group '.'. de.wikipedia \"Dezimaltrennzeichen\", quoting DIN EN ISO 80000-1: \"Im deutschsprachigen Raum ist das Komma das Dezimalzeichen\". Duden, \"Komma\" (https://www.duden.de/rechtschreibung/Komma), Bedeutung: \"Zeichen in Form eines kleinen geschwungenen Strichs, mit dem Sätze oder Satzteile voneinander getrennt oder bei der Ziffernschreibung die Dezimalstellen abgetrennt werden\""
   },
   "space_groups": {
    "value": true,
@@ -114,6 +118,20 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "um",
+    "gegen"
+   ],
+   "source": "Duden, \"Uhr\", Beispiele: \"es geschah gegen drei Uhr\", \"der Zug fährt [um] elf Uhr sieben/11:07 Uhr\", Zeichen \"h\". de.wikipedia \"Uhrzeit\": \"Ziffern und Punkte werden aber generell ohne Leerzeichen geschrieben. Beispiele: 9 Uhr, 17:30 Uhr, 0.12 Uhr\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "Uhr",
+    "h"
+   ],
+   "source": "Duden, \"Uhr\", Beispiele: \"es geschah gegen drei Uhr\", \"der Zug fährt [um] elf Uhr sieben/11:07 Uhr\", Zeichen \"h\". de.wikipedia \"Uhrzeit\": \"Ziffern und Punkte werden aber generell ohne Leerzeichen geschrieben. Beispiele: 9 Uhr, 17:30 Uhr, 0.12 Uhr\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "period_ordinal_before": {
    "value": [
     "der",
@@ -166,6 +184,7 @@
    ],
    "source": "The indefinite article has the forms of the numeral 1: CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-masculine: \"1: ein\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-feminine: \"1: eine\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-n: \"1: einen\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-r: \"1: einer\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-s: \"1: eines\"; CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-cardinal-m: \"1: einem\""
   },
+  "number_name": {"value": ["ein paar"], "source": "DWDS, \"ein paar\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dwds-ein-paar.txt), Indefinitpronomen, eWDG 1974: \"bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung\"; \"ein paar Schritte gehen\". DWDS, \"paar\" (dwds-paar.txt): \"indeklinables Indef.pron.\"; Etymologisches Wörterbuch (Pfeifer), \"Paar n.\": \"zwei zusammengehörende Dinge von gleicher oder ähnlicher Beschaffenheit\" With the word for one before it, \"paar\" names two or a small number, never one, so the article is no count. The phrase is a vague quantity."},
   "article_needs_noun": {
    "value": [
     "ein",
@@ -1829,6 +1848,12 @@
    "role": "ordinal_scale",
    "value": "milliarde",
    "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 100 → \"einhundertste\", 1000 → \"eintausendste\", 1000000 → \"eine Millionste\", 1000000000 → \"eine Milliardeste\""
+  },
+  {
+   "word": "ein paar",
+   "role": "vague_quantifier",
+   "ambiguous": true,
+   "source": "DWDS, \"ein paar\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dwds-ein-paar.txt), Indefinitpronomen, eWDG 1974: \"bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung\"; \"ein paar Schritte gehen\". DWDS, \"paar\" (dwds-paar.txt): \"indeklinables Indef.pron.\"; Etymologisches Wörterbuch (Pfeifer), \"Paar n.\": \"zwei zusammengehörende Dinge von gleicher oder ähnlicher Beschaffenheit\" The noun \"paar\" also names a pair, two that belong together, which numtag cannot tell from the text."
   }
  ]
 }
