@@ -5,6 +5,7 @@ import unittest
 from dataclasses import replace
 from unittest.mock import patch
 
+import pytest
 from helpers import read, sure
 from numtag import Reason, tag_numbers
 from numtag.lexicon import load
@@ -546,6 +547,27 @@ class TestConfidence(unittest.TestCase):
     def test_an_article_before_a_noun_is_weak(self):
         self.assertEqual(self.confidence("bir elma aldım", "tr"), [("bir", True)])
         self.assertEqual(self.confidence("van egy almám", "hu"), [("egy", True)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/101")
+@pytest.mark.parametrize("text, expected", [
+    ('yüz binlerce kişi', []),
+    ('on binlerce kişi', []),
+    ('birkaç on bin kişi', []),
+])
+def test_tr_a_number_word_before_a_vague_plural_is_no_number(text, expected):
+    # "yüz binlerce" is hundreds of thousands, "on binlerce" is tens of thousands, "birkaç on bin" is a few tens of thousands
+    assert read(text, "tr") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('on iki kvintilyon üç yüz qırx beş', [('on iki kvintilyon üç yüz qırx beş', '12000000000000000345', C)]),
+])
+def test_az_kvintilyon_scales_the_count(text, expected):
+    # kvintilyon is 10^18; 12 x 10^18 + 345 = 12000000000000000345
+    assert read(text, "az") == expected
+
 
 
 if __name__ == "__main__":

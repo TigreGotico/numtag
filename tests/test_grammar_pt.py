@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/pt-PT.json."""
 import unittest
 
+import pytest
 from helpers import read, sure
 from numtag import Form, Scale, tag_numbers
 
@@ -1135,6 +1136,16 @@ class TestArticleAndGender(unittest.TestCase):
         mentions = tag_numbers(text, "pt-PT")
         self.assertEqual([m.char_span for m in mentions], [(7, 8), (19, 38)])
         self.assertEqual([m.value for m in mentions], ["3", "2500000"])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('dois mil milhões trezentos mil', [('dois mil milhões trezentos mil', '2000300000', C)]),
+])
+def test_pt_a_group_after_a_scale_word_adds(text, expected):
+    # 2 x 1000 x 1000000 + 300 x 1000 = 2000300000
+    assert read(text, "pt") == expected
+
 
 
 if __name__ == "__main__":
