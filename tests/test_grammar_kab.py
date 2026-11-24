@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/kab.json."""
 import unittest
 
+import pytest
 from helpers import read, sure
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
@@ -44,6 +45,38 @@ class TestKabyle(unittest.TestCase):
         self.assertEqual(sure("tesɛa", "kab"), [("tesɛa", "9", 0.4)])
         self.assertEqual(sure("tesɛa u ɛecrin", "kab"), [("tesɛa u ɛecrin", "29", 1.0)])
         self.assertEqual(sure("tmanya", "kab"), [("tmanya", "8", 1.0)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/149")
+@pytest.mark.parametrize("text, expected", [
+    ('ɣef lweḥda n tmeddit', [('lweḥda', '1', C)]),
+    ('ɣef ssaɛtin n tmeddit', [('ssaɛtin', '2', C)]),
+    ('ɣef ṛṛebɛa n tmeddit', [('ṛṛebɛa', '4', C)]),
+    ('ɣef lxemsa n tmeddit', [('lxemsa', '5', C)]),
+    ('ɣef ssetta n tmeddit', [('ssetta', '6', C)]),
+    ('ɣef ssebɛa n tmeddit', [('ssebɛa', '7', C)]),
+    ('ɣef ttmanya n tmeddit', [('ttmanya', '8', C)]),
+    ('ɣef ttesɛa n tmeddit', [('ttesɛa', '9', C)]),
+    ('ɣef lɛecṛa n tmeddit', [('lɛecṛa', '10', C)]),
+    ('ɣef leḥdac n tmeddit', [('leḥdac', '11', C)]),
+    ('ɣef ttnac n tmeddit', [('ttnac', '12', C)]),
+])
+def test_kab_the_clock_hours_with_the_arabic_article(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.parametrize("text, expected", [
+    ('mraw d yiwen', [('mraw d yiwen', '11', C)]),
+    ('kradan', [('kradan', '30', C)]),
+    ('nnefṣ', [('nnefṣ', '0.5', F)]),
+    ('mrayan', [('mrayan', '11', C)]),
+    ('ɣur-i mraw d sin n wussan', [('mraw d sin', '12', C)]),
+])
+def test_kab_word_forms_and_the_joiner_d(text, expected):
+    # "mraw d yiwen" is 10 + 1 = 11; "mraw d sin" is 10 + 2 = 12
+    assert read(text, "kab") == expected
+
 
 
 if __name__ == "__main__":

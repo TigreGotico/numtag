@@ -10,6 +10,7 @@ from pathlib import Path
 
 import numtag.lexicon
 from numtag.lexicon import load
+import pytest
 from helpers import read
 
 CLDR = {
@@ -93,3 +94,22 @@ class TestMixedMarks(unittest.TestCase):
                 text = f"1{first}000{second}000,5"
                 with self.subTest(lang=lang, first=first, second=second):
                     self.assertEqual(read(text, lang), [(text, "1000000.5", "decimal")])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/131")
+@pytest.mark.parametrize("lang, text, expected", [
+    ('fr-FR', 'le 10 000e visiteur', [('10 000e', "10000", "ordinal")]),
+    ('fr-FR', 'le 10\u00a0000e visiteur', [('10\u00a0000e', "10000", "ordinal")]),
+    ('ru', '10 000-й посетитель', [('10 000-й', "10000", "ordinal")]),
+    ('ru', '10\u00a0000-й посетитель', [('10\u00a0000-й', "10000", "ordinal")]),
+    ('sv', 'Han var den 10 000:e besökaren.', [('10 000:e', "10000", "ordinal")]),
+    ('sv', 'Han var den 10\u00a0000:e besökaren.', [('10\u00a0000:e', "10000", "ordinal")]),
+    ('fi', 'Hän oli museon 10 000. kävijä.', [('10 000', "10000", "ordinal")]),
+    ('fi', 'Hän oli museon 10\u00a0000. kävijä.', [('10\u00a0000', "10000", "ordinal")]),
+    ('hu', 'a 10 000. látogató', [('10 000', "10000", "ordinal")]),
+    ('hu', 'a 10\u00a0000. látogató', [('10\u00a0000', "10000", "ordinal")]),
+    ('et', '10 000. külastaja', [('10 000', "10000", "ordinal")]),
+    ('et', '10\u00a0000. külastaja', [('10\u00a0000', "10000", "ordinal")]),
+])
+def test_a_grouped_digit_ordinal_is_one_ordinal(lang, text, expected):
+    assert read(text, lang) == expected

@@ -3,6 +3,7 @@ comment beside it; sources are in numtag/lexicon/en.json."""
 import time
 import unittest
 
+import pytest
 from helpers import read
 from numtag import Scale, tag_numbers
 
@@ -684,6 +685,17 @@ class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
         self.assertEqual(en("2 point 5 hundred"), [("2 point 5 hundred", "250", C)])
         self.assertEqual(en("2.5 hundred"), [("2.5 hundred", "250", C)])
         self.assertEqual(en("12.5 hundred"), [("12.5 hundred", "1250", C)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/166")
+@pytest.mark.parametrize("text, expected", [
+    ('two point five million three hundred', [('two point five million three hundred', '2500300', C)]),
+    ('one point five million two thousand', [('one point five million two thousand', '1502000', C)]),
+])
+def test_en_a_group_after_a_decimal_scale_adds(text, expected):
+    # 2.5 x 1000000 + 300 = 2500300; 1.5 x 1000000 + 2000 = 1502000
+    assert read(text, "en") == expected
+
 
 
 if __name__ == "__main__":
