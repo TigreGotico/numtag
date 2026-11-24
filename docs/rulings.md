@@ -568,7 +568,7 @@ By AkH 12 §293 the glued form is also a count of parts before a noun, so "háro
 
 In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator. So "zwei Hundertstel" is 2/100, and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits is the numerator too, so "3 Zweihundertstel" is 3/200.
 
-Two cases have no reading that folds the count into the glued word: a decimal in words ("ein halbes") and a count of a thousand or more. The word stays unread.
+Three counts have no reading that folds them into the glued word: a decimal in words, "ein halbes" and a count of a thousand or more. The word stays unread.
 
 A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel". So it scores as a homograph.
 
