@@ -5,6 +5,7 @@ beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
 import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 from numtag.lexicon import load
@@ -470,6 +471,70 @@ class TestLanguageTags(unittest.TestCase):
         self.assertEqual(read("ettusende", "sv"), [("ettusende", "1000", O)])
         self.assertEqual(read("en miljonte", "sv"), [("en miljonte", "1000000", O)])
         self.assertEqual(read("einundzwanzig", "de-AT"), [("einundzwanzig", "21", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/142")
+    def test_two_and_a_quarter_compound(self):
+        self.assertEqual(read("in zweieinviertel Stunden", "de"), [("zweieinviertel", "2.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/142")
+    def test_one_and_a_quarter_compound(self):
+        self.assertEqual(read("in eineinviertel Stunden", "de"), [("eineinviertel", "1.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/142")
+    def test_ten_and_a_quarter_compound(self):
+        self.assertEqual(read("in zehneinviertel Stunden", "de"), [("zehneinviertel", "10.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/142")
+    def test_two_and_three_quarters_compound(self):
+        self.assertEqual(read("in zweidreiviertel Stunden", "de"), [("zweidreiviertel", "2.75", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_dreizehntel_is_one_thirteenth(self):
+        self.assertEqual(read("dreizehntel", "de"), [("dreizehntel", "1/13", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_neunzehntel_is_one_nineteenth(self):
+        self.assertEqual(read("neunzehntel", "de"), [("neunzehntel", "1/19", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_ein_dreizehntel_is_one_thirteenth(self):
+        self.assertEqual(read("ein Dreizehntel", "de"), [("ein Dreizehntel", "1/13", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    def test_hundred_and_three_quarters_compound(self):
+        self.assertEqual(read("hundertdreiviertel", "de"), [("hundertdreiviertel", "100.75", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/246")
+    def test_norwegian_annet_is_second(self):
+        self.assertEqual(read("annet kvartal", "nb"), [("annet", "2", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_split_four_and_twenty(self):
+        self.assertEqual(read("fire og tyve", "da"), [("fire og tyve", "24", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_two_and_a_half_with_en(self):
+        self.assertEqual(read("to en halv", "da"), [("to en halv", "2.5", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/163")
+    def test_danish_minus_before_units_and_tens(self):
+        self.assertEqual(read("minus fem og tyve", "da"), [("minus fem og tyve", "-25", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_norwegian_nb_zeroth(self):
+        self.assertEqual(read("nulte", "nb"), [("nulte", "0", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_norwegian_nn_millionth(self):
+        self.assertEqual(read("millionte", "nn"), [("millionte", "1000000", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_danish_sixtieth(self):
+        self.assertEqual(read("tressende", "da"), [("tressende", "60", O)])
 
 
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/148")

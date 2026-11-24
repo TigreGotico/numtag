@@ -4,6 +4,7 @@ import time
 import unittest
 
 import pytest
+
 from helpers import read
 from numtag import Scale, tag_numbers
 
@@ -685,6 +686,18 @@ class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
         self.assertEqual(en("2 point 5 hundred"), [("2 point 5 hundred", "250", C)])
         self.assertEqual(en("2.5 hundred"), [("2.5 hundred", "250", C)])
         self.assertEqual(en("12.5 hundred"), [("12.5 hundred", "1250", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/228")
+    def test_en_digit_groups_of_thousand_and_hundred(self):
+        self.assertEqual(read("5 thousand 2 hundred", "en"), [("5 thousand 2 hundred", "5200", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    def test_en_digit_before_hundred(self):
+        self.assertEqual(read("2 hundred", "en"), [("2 hundred", "200", C)])
 
 
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/166")

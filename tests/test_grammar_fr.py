@@ -3,6 +3,8 @@ comment beside it; sources are in numtag/lexicon/fr-FR.json, fr-BE.json and
 fr-CH.json."""
 import unittest
 
+import pytest
+
 from helpers import read
 from numtag import tag_numbers
 
@@ -209,6 +211,18 @@ class TestLonePoint(unittest.TestCase):
         # 5/10 = 0.5, and the sign makes it -0.5
         self.assertEqual(read("-.5", "fr"), [("-.5", "-0.5", "decimal")])
         self.assertEqual(read("La taxe est de .5 pour cent.", "fr"), [(".5", "0.5", "decimal")])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    def test_fr_digit_before_cents(self):
+        self.assertEqual(read("2 cents", "fr-FR"), [("2 cents", "200", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/275")
+    def test_fr_e_notation_glued_to_a_unit(self):
+        self.assertEqual(read("1e5km", "fr-FR"), [])
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ each language under numtag/lexicon/."""
 import unittest
 
 import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -517,6 +518,70 @@ class TestSlovene(unittest.TestCase):
         (counted,) = tag_numbers("dvatisoče leto", "sl")
         self.assertEqual((counted.text, counted.value, counted.kind.value), ("dvatisoče", "2000", O))
         self.assertGreaterEqual(counted.confidence, 0.5)
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/99")
+    def test_slovene_counted_hundreds_before_thousand(self):
+        self.assertEqual(read("pet stotin tisoč", "sl"), [("pet stotin tisoč", "500000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/99")
+    def test_slovak_counted_hundreds_before_thousand(self):
+        self.assertEqual(read("päť stoviek tisíc", "sk"), [("päť stoviek tisíc", "500000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/99")
+    def test_bulgarian_counted_hundreds_before_thousand(self):
+        self.assertEqual(read("пет стотици хиляди", "bg"), [("пет стотици хиляди", "500000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/100")
+    def test_croatian_plural_hundreds_noun_without_count_before_thousand(self):
+        self.assertEqual(read("stotine tisuća ljudi", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/123")
+    def test_croatian_nekoliko_sto_tisuca(self):
+        self.assertEqual(read("nekoliko sto tisuća ljudi", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/123")
+    def test_croatian_nekoliko_sto_milijuna(self):
+        self.assertEqual(read("nekoliko sto milijuna eura", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/123")
+    def test_croatian_nekoliko_sto_tisuca_after_a_verb(self):
+        self.assertEqual(read("Nekoliko je sto tisuća ljudi", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/235")
+    def test_polish_a_quarter_before_a_scale_word(self):
+        self.assertEqual(read("ćwierć miliona", "pl"), [("ćwierć miliona", "250000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/236")
+    def test_croatian_par_before_a_scale_word(self):
+        self.assertEqual(read("par milijuna", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/236")
+    def test_croatian_desetak_before_a_scale_word(self):
+        self.assertEqual(read("desetak milijuna", "hr"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/239")
+    def test_ukrainian_quadrillion(self):
+        self.assertEqual(read("один квадрильйон", "uk"), [("один квадрильйон", "1000000000000000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/270")
+    def test_slovene_eni_is_some(self):
+        self.assertEqual(read("eni ljudje so prišli", "sl"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/270")
+    def test_slovene_enih_is_some(self):
+        self.assertEqual(read("pri enih ljudeh", "sl"), [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_slovak_dvojsty_is_200th(self):
+        self.assertEqual(read("dvojstý", "sk"), [("dvojstý", "200", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_slovak_millionth(self):
+        self.assertEqual(read("miliónty", "sk"), [("miliónty", "1000000", O)])
 
 
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/97")

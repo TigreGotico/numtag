@@ -4,6 +4,7 @@ beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
 import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -576,6 +577,14 @@ class TestRanges(unittest.TestCase):
             with self.subTest(lang=lang):
                 # 20 and 30, not 20 + 30 = 50
                 self.assertEqual(read(text, lang), [(low, "20", C), (high, "30", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_asturian_millionth(self):
+        self.assertEqual(read("millonésima", "ast"), [("millonésima", "1000000", O)])
 
 
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/108")
