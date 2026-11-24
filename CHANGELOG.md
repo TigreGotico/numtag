@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a3](https://github.com/TigreGotico/numtag/tree/0.19.22a3) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a2...0.19.22a3)
+
+**Merged pull requests:**
+
+- test: strict xfails for open issues \(99-275, readers\) [\#278](https://github.com/TigreGotico/numtag/pull/278) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.22a2](https://github.com/TigreGotico/numtag/tree/0.19.22a2) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a1...0.19.22a2)
@@ -603,10 +611,6 @@
 ## [0.12.1a1](https://github.com/TigreGotico/numtag/tree/0.12.1a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.0a1...0.12.1a1)
-
-**Merged pull requests:**
-
-- fix: a minus sign negates the whole number its digits start [\#60](https://github.com/TigreGotico/numtag/pull/60) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.0a1](https://github.com/TigreGotico/numtag/tree/0.12.0a1) (2026-11-16)
 
