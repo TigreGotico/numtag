@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a7](https://github.com/TigreGotico/numtag/tree/0.19.22a7) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a6...0.19.22a7)
+
+**Merged pull requests:**
+
+- docs\(gl\): say what RAG Normas 16.1 shows about "mil" [\#171](https://github.com/TigreGotico/numtag/pull/171) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.22a6](https://github.com/TigreGotico/numtag/tree/0.19.22a6) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a5...0.19.22a6)
@@ -607,10 +615,6 @@
 ## [0.12.4a1](https://github.com/TigreGotico/numtag/tree/0.12.4a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.3a1...0.12.4a1)
-
-**Merged pull requests:**
-
-- fix\(pt\): a comma links only a smaller class [\#64](https://github.com/TigreGotico/numtag/pull/64) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.3a1](https://github.com/TigreGotico/numtag/tree/0.12.3a1) (2026-11-16)
 
