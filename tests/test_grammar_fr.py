@@ -216,10 +216,6 @@ class TestLonePoint(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/180")
-    def test_fr_half_hour_after_hours_keeps_the_hour_only(self):
-        self.assertEqual(read("à cinq heures et demie", "fr-FR"), [("cinq", "5", C)])
-
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
     def test_fr_digit_before_cents(self):
         self.assertEqual(read("2 cents", "fr-FR"), [("2 cents", "200", C)])

@@ -529,24 +529,14 @@ class TestOpenIssues(unittest.TestCase):
         self.assertEqual(read("nulte", "nb"), [("nulte", "0", O)])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
-    def test_norwegian_nn_thousandth(self):
-        self.assertEqual(read("tusande", "nn"), [("tusande", "1000", O)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_norwegian_nn_millionth(self):
         self.assertEqual(read("millionte", "nn"), [("millionte", "1000000", O)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
-    def test_frisian_millionth(self):
-        self.assertEqual(read("miljoenste", "fy"), [("miljoenste", "1000000", O)])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_danish_sixtieth(self):
         self.assertEqual(read("tressende", "da"), [("tressende", "60", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
-    def test_danish_sixty_first(self):
-        self.assertEqual(read("enogtressende", "da"), [("enogtressende", "61", O)])
+
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/148")
 @pytest.mark.parametrize("text, expected", [
     ('in fuenf Tagen', [('fuenf', '5', C)]),

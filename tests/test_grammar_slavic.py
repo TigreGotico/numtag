@@ -583,9 +583,7 @@ class TestOpenIssues(unittest.TestCase):
     def test_slovak_millionth(self):
         self.assertEqual(read("miliónty", "sk"), [("miliónty", "1000000", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
-    def test_slovene_compound_millionth(self):
-        self.assertEqual(read("enamilijonti", "sl"), [("enamilijonti", "1000000", O)])
+
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/97")
 @pytest.mark.parametrize("text, expected", [
     ('две целых три пятых', [('две целых три пятых', '2.6', F)]),

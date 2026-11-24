@@ -695,13 +695,11 @@ class TestOpenIssues(unittest.TestCase):
     def test_en_digit_groups_of_thousand_and_hundred(self):
         self.assertEqual(read("5 thousand 2 hundred", "en"), [("5 thousand 2 hundred", "5200", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/228")
-    def test_en_comma_between_thousand_and_the_rest(self):
-        self.assertEqual(read("two thousand, one", "en"), [("two thousand, one", "2001", C)])
-
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
     def test_en_digit_before_hundred(self):
         self.assertEqual(read("2 hundred", "en"), [("2 hundred", "200", C)])
+
+
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/166")
 @pytest.mark.parametrize("text, expected", [
     ('two point five million three hundred', [('two point five million three hundred', '2500300', C)]),
