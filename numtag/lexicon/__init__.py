@@ -385,6 +385,9 @@ class Lexicon:
     # A fraction word after a scale word takes a part of it ("milioi erdi
     # bat" is 500000, "hiru milioi laurden" 750000).
     fraction_after_scale: bool = False
+    # A fraction below one, with its own count, glued to the whole number
+    # before it adds to it ("zweieinviertel" is 2.25).
+    part_glued_to_whole: bool = False
     # A fraction before "de" and a scale noun takes that part of it ("um
     # quarto de milhão" is 250000, "a quarter of a million" the same).
     fraction_of_scale: bool = False
@@ -694,6 +697,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_articles=frozenset(words.get("ordinal_article", ())),
         article_after_noun=settings.get("article_after_noun", False),
         fraction_after_scale=settings.get("fraction_after_scale", False),
+        part_glued_to_whole=settings.get("part_glued_to_whole", False),
         fraction_of_scale=settings.get("fraction_of_scale", False),
         compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
         roman_series_nouns=frozenset(words.get("roman_series_noun", ())),

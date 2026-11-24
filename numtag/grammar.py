@@ -1107,6 +1107,14 @@ class Grammar:
                 found += [Parse(j + 1, _sum(run) + Rational("1", e.value),
                                 parts=parts + _piece(Role.DENOMINATOR, j, j + 1, Rational(e.value)))
                           for e in self._readings(j, "denominator") if not e.plural]
+        # "zweieinviertel": the whole and a quarter glued into one word (Duden,
+        # DWDS); the sources show only "einviertel" and "dreiviertel", so "zweieinzehntel" stays unread
+        if self.lex.part_glued_to_whole and last.end not in starts and last.end < len(self.tokens) \
+                and self.tokens[last.end].glued:
+            found += [replace(f, value=_sum(run) + f.value, parts=_run_parts(run) + f.parts)
+                      for f in self.fractions(last.end)
+                      if [p[0] for p in f.parts] == [Role.COUNT, Role.DENOMINATOR]
+                      and _whole(f.parts[1][3]) == "4" and _whole(f.parts[0][3]) in ("1", "3")]
         return found
 
     def case_fraction_tail(self, run: tuple[Group, ...]) -> list[Parse]:

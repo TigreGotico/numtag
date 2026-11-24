@@ -12,7 +12,7 @@ numtag reads German, Dutch, West Frisian, Danish, Swedish and the two written fo
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| German | every `de` tag | `numtag/lexicon/de.json` | long | 196 | 196 |
+| German | every `de` tag | `numtag/lexicon/de.json` | long | 200 | 200 |
 | Dutch | every `nl` tag | `numtag/lexicon/nl.json` | long | 187 | 187 |
 | West Frisian | every `fy` tag | `numtag/lexicon/fy.json` | long | 156 | 156 |
 | Danish | every `da` tag | `numtag/lexicon/da.json` | long | 181 | 181 |
@@ -40,6 +40,23 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('enogtyve', '21')]
 >>> read('Det kostet tusen og to kroner.', 'no')
 [('tusen og to', '1002')]
+```
+
+## A fraction in the same word as the whole
+
+German writes a whole number and a quarter as one word. The fraction keeps its own count, so "zweieinviertel" is 2 + 1/4. Duden gives the digits of "eindreiviertel":
+
+> "Schreibung in Ziffern 1 ¾"
+
+A count and a part with no whole before them stay one fraction: "zweidrittel" is 2/3. The lexicon setting `part_glued_to_whole` turns this reading on, and only the German lexicon sets it.
+
+```python
+>>> read('Die Züge brausen in zweieinviertel Stunden von der Spree an die Elbe.', 'de')
+[('zweieinviertel', '2.25')]
+>>> read('In eindreiviertel Stunden dreht sich das Restaurant.', 'de')
+[('eindreiviertel', '1.75')]
+>>> read('Das Glas ist zweidrittel voll.', 'de')
+[('zweidrittel', '2/3')]
 ```
 
 ## Examples from the gold rows
