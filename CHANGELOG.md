@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.22a4](https://github.com/TigreGotico/numtag/tree/0.19.22a4) (2026-11-24)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a3...0.19.22a4)
+
+**Merged pull requests:**
+
+- test: strict xfails for open issues \(160-274, lexicons\) [\#279](https://github.com/TigreGotico/numtag/pull/279) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.22a3](https://github.com/TigreGotico/numtag/tree/0.19.22a3) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a2...0.19.22a3)
@@ -603,10 +611,6 @@
 ## [0.12.2a1](https://github.com/TigreGotico/numtag/tree/0.12.2a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.1a1...0.12.2a1)
-
-**Merged pull requests:**
-
-- fix\(hu\): "hat" as a verb, "egybe" and "egytől egyig" are no sure number [\#61](https://github.com/TigreGotico/numtag/pull/61) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.1a1](https://github.com/TigreGotico/numtag/tree/0.12.1a1) (2026-11-16)
 
