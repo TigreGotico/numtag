@@ -77,7 +77,7 @@ The words are case-insensitive. Digits use "." to group and "," for decimals: "1
 | `joiner_before_round_hundred` | true | Gulbenkian, Cunha & Cintra, Teyssier |
 | `comma_between_classes` | true | Gulbenkian, via Ciberdúvidas 8981 |
 | `plural_scale_needs_count` | true | Priberam, "milhão" and "milhar" |
-| `scale_noun_agrees` | true | Squarisi, Correio Braziliense; Priberam, "milhão" |
+| `scale_noun_agrees` | true | Squarisi, Correio Braziliense, and Priberam, "milhão" |
 | `ordinal_style` | every_word | CLDR 49 RBNF pt %spellout-ordinal-masculine |
 | `fraction_of_scale` | true | Priberam, "quarto", "terço" and "milhão" |
 
@@ -128,7 +128,7 @@ The European Portuguese gold corpus has 479 rows, and numtag reads 473 of them r
 
 Five of the six get the low score 0.4, so a caller that drops weak mentions loses the wrong reading. Read [../confidence-and-homographs.md](../confidence-and-homographs.md).
 
-"a menos" before a number is read as the comparing idiom, so a minus sign after it is lost. In CETEMPúblico, 33 of 60 hits of "a menos" and a number compare ("o que corresponde a menos 2243 empresas") and 16 have the sign. A temperature unit after the number marks only 2 of the 16 sign hits.
+"a menos" before a number is read as the comparing idiom, so a minus sign after it is lost. In CETEMPúblico, 33 of 60 hits of "a menos" and a number compare ("o que corresponde a menos 2243 empresas"). 16 have the sign. A temperature unit after the number marks only 2 of the 16 sign hits.
 
 ```python
 >>> read("o que corresponde a menos 2243 empresas")

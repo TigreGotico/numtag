@@ -12,14 +12,14 @@ numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croa
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 191 | 190 |
-| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 180 | 180 |
-| Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 156 | 156 |
-| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 163 | 163 |
-| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 176 | 175 |
+| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 195 | 194 |
+| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 184 | 184 |
+| Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 163 | 163 |
+| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 167 | 167 |
+| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 185 | 184 |
 | Slovak | every `sk` tag | `numtag/lexicon/sk.json` | long | 154 | 154 |
-| Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 162 | 162 |
-| Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 169 | 168 |
+| Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 166 | 166 |
+| Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 183 | 182 |
 | Serbian | every `sr` tag | `numtag/lexicon/sr.json` | long | 149 | 149 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -102,15 +102,25 @@ Czech "jednou" is the instrumental of "jedna" and also the adverb "once". Alone,
 
 > SSJČ, "jednou": "jednou čísl. nás. příslovečná 1. k jeden; jedenkrát: j. dvě jsou dvě; j. za den"; "4. kdysi; někdy: byl j. jeden král"
 
-## Croatian "stotina"
+## Counted hundreds nouns
 
-A count and the noun "stotina" write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. "stotinu" is the hundred "sto".
+A count and the noun for a group of a hundred write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. This holds for Croatian "stotina", Czech "stovka", Polish "setka", Russian "сотня", Ukrainian "сотня" and Serbian "stotina", in each case form that takes a count. Croatian "stotinu" is the hundred "sto". A half after the count adds half a hundred, so "pet i pol stotina" is 550. A count of a thousand or more takes no hundreds noun, so a year before "stotine ljudi" stays a year.
 
 ```python
 >>> read('pet stotina tisuća', 'hr')
 [('pet stotina tisuća', '500000')]
 >>> read('stotinu tisuća ljudi', 'hr')
 [('stotinu tisuća', '100000')]
+>>> read('pet i pol stotina ljudi', 'hr')
+[('pet i pol stotina', '550')]
+>>> read('Godine 1995 stotine ljudi', 'hr')
+[('1995', '1995')]
+>>> read('pět stovek tisíc', 'cs')
+[('pět stovek tisíc', '500000')]
+>>> read('пять сотен тысяч', 'ru')
+[('пять сотен тысяч', '500000')]
+>>> read('pet stotina hiljada', 'sr')
+[('pet stotina hiljada', '500000')]
 ```
 
 > Hrvatski pravopis (Institut za hrvatski jezik i jezikoslovlje), 5.4.1. Jednorječnice: "glavni brojevi stotice do 1000: sto ili stotinu"; "Stotice do 1000 mogu se pisati i kao sveza glavnoga broja i imenice stotina: četiri stotine, devet stotina."

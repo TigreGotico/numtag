@@ -106,7 +106,7 @@ Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.
 | [docs/confidence-and-homographs.md](docs/confidence-and-homographs.md) | Articles, words with two meanings, low scores |
 | [docs/rulings.md](docs/rulings.md) | The reading rules, each with its source |
 | [docs/languages/](docs/languages/) | What each language reads |
-| [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for a new language |
+| [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for each language |
 | [docs/design.md](docs/design.md) | How the tagger works inside |
 | [docs/benchmarks.md](docs/benchmarks.md) | Accuracy against ovos-number-parser |
 | [docs/roadmap.md](docs/roadmap.md) | Planned features |

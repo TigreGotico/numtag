@@ -14,7 +14,7 @@ This page compares numtag with ovos-number-parser on accuracy. Both libraries re
 
 | Item | Value |
 |---|---|
-| numtag | 0.19.1a1 |
+| numtag | 0.19.22a4 |
 | ovos-number-parser | 0.24.62a1 from PyPI, `extract_number_spans(text, lang, ordinals=True)` |
 | Corpus | `tests/gold/`: 479 pt-PT rows, 470 pt-BR rows, 444 en rows |
 | Python | 3.14.6, the uv interpreter of the laptop |

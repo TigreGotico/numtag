@@ -55,7 +55,9 @@ A fraction in digits with a slash is one FRACTION mention. Its value follows the
 [('3/4', '0.75'), ('1/3', '1/3'), ('6/8', '0.75'), ('2 1/2', '2.5'), ('-5 1/3', '-16/3')]
 ```
 
-Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date. A whole part is a cardinal with only spaces before the fraction, so a decimal, a line break or a word between them gives two numbers. Four digits with no group mark are no whole part, because they are mostly a year. For a mixed number above one thousand, write the whole number with the group mark of the language: "1,500 1/2" in English, "1.500 1/2" in Portuguese.
+Only a fraction below one reads, and each term has no leading zero. Every other digit group with a slash keeps its numbers, because it is a ratio, a score or a date.
+
+A whole part is a cardinal with only spaces before the fraction. A decimal, a line break or a word between them gives two numbers. Four digits with no group mark are no whole part, because they are mostly a year. For a mixed number above one thousand, write the whole number with the group mark of the language: "1,500 1/2" in English, "1.500 1/2" in Portuguese.
 
 | Text | Result | Reason |
 |---|---|---|
@@ -73,7 +75,7 @@ Only a fraction below one reads, and each term has no leading zero. Every other 
 [('2023', '2023'), ('1/3', '1/3')]
 ```
 
-Where a language groups digits with a space, as Norwegian and Swedish do, a group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.
+Languages that group digits with a space, such as Norwegian, Swedish and Finnish, follow one rule. A group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.
 
 ## Convert a value
 
@@ -99,7 +101,7 @@ Convert a value at the point where your code needs a number. Python reads the th
 (24, Decimal('2.5'))
 ```
 
-The `kind` does not tell the form of the value. A FRACTION mention can have a decimal value ("três quartos" is `"0.75"`), and a CARDINAL mention can come from a decimal ("2,5 milhões" is `"2500000"`). Test the string, or convert with `Fraction`.
+The `kind` does not tell the form of the value. A FRACTION mention can have a decimal value ("três quartos" is `"0.75"`). A CARDINAL mention can come from a decimal ("2,5 milhões" is `"2500000"`). Test the string, or convert with `Fraction`.
 
 ## No length limit
 
