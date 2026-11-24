@@ -3,6 +3,7 @@ and Mirandese. Each expected value is worked out by hand in the comment
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
+import pytest
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -575,6 +576,64 @@ class TestRanges(unittest.TestCase):
             with self.subTest(lang=lang):
                 # 20 and 30, not 20 + 30 = 50
                 self.assertEqual(read(text, lang), [(low, "20", C), (high, "30", C)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/108")
+@pytest.mark.parametrize("text, expected", [
+    ('cien por cien y cinco por ciento', [('cien', '100', C), ('cinco', '5', C)]),
+])
+def test_es_a_number_after_a_percent_phrase_starts_a_new_number(text, expected):
+    # "cien por cien" is 100 and "cinco por ciento" is 5, so "cien y cinco" does not join across them
+    assert read(text, "es") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/111")
+@pytest.mark.parametrize("text, expected", [
+    ('Llegó a casa a las mil y quinientas.', []),
+])
+def test_es_las_mil_y_quinientas_is_an_idiom_with_no_number(text, expected):
+    # DLE gives "las mil y quinientas" as "Hora demasiado tardía"
+    assert read(text, "es") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/111")
+@pytest.mark.parametrize("text, expected", [
+    ('entre los mil y quinientos euros', [('mil', '1000', C), ('quinientos', '500', C)]),
+])
+def test_es_the_range_guard_skips_an_article_after_entre(text, expected):
+    # "entre mil y quinientos" reads two numbers; an article between "entre" and "mil" changes nothing
+    assert read(text, "es") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/139")
+@pytest.mark.parametrize("text, expected", [
+    ('el decimonono mes', [('decimonono', '19', O)]),
+    ('el decimonona mes', [('decimonona', '19', O)]),
+    ('el vigesimotercer mes', [('vigesimotercer', '23', O)]),
+    ('el trigesimoprimero mes', [('trigesimoprimero', '31', O)]),
+    ('el trigesimoprimera mes', [('trigesimoprimera', '31', O)]),
+    ('el trigesimoprimer mes', [('trigesimoprimer', '31', O)]),
+    ('el trigesimosegundo mes', [('trigesimosegundo', '32', O)]),
+    ('el trigesimosegunda mes', [('trigesimosegunda', '32', O)]),
+    ('el trigesimotercero mes', [('trigesimotercero', '33', O)]),
+    ('el trigesimotercera mes', [('trigesimotercera', '33', O)]),
+    ('el trigesimotercer mes', [('trigesimotercer', '33', O)]),
+    ('el trigesimocuarto mes', [('trigesimocuarto', '34', O)]),
+    ('el trigesimocuarta mes', [('trigesimocuarta', '34', O)]),
+    ('el trigesimoquinto mes', [('trigesimoquinto', '35', O)]),
+    ('el trigesimoquinta mes', [('trigesimoquinta', '35', O)]),
+    ('el trigesimosexto mes', [('trigesimosexto', '36', O)]),
+    ('el trigesimosexta mes', [('trigesimosexta', '36', O)]),
+    ('el trigesimoséptimo mes', [('trigesimoséptimo', '37', O)]),
+    ('el trigesimoséptima mes', [('trigesimoséptima', '37', O)]),
+    ('el trigesimoctavo mes', [('trigesimoctavo', '38', O)]),
+    ('el trigesimoctava mes', [('trigesimoctava', '38', O)]),
+    ('el trigesimonoveno mes', [('trigesimonoveno', '39', O)]),
+    ('el trigesimonovena mes', [('trigesimonovena', '39', O)]),
+])
+def test_es_the_fused_ordinals_of_19_23_and_31_to_39(text, expected):
+    assert read(text, "es") == expected
+
 
 
 if __name__ == "__main__":

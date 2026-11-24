@@ -3,6 +3,7 @@ worked out by hand in the comment beside it; sources are in the lexicon of
 each language under numtag/lexicon/."""
 import unittest
 
+import pytest
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -516,6 +517,40 @@ class TestSlovene(unittest.TestCase):
         (counted,) = tag_numbers("dvatisoče leto", "sl")
         self.assertEqual((counted.text, counted.value, counted.kind.value), ("dvatisoče", "2000", O))
         self.assertGreaterEqual(counted.confidence, 0.5)
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/97")
+@pytest.mark.parametrize("text, expected", [
+    ('две целых три пятых', [('две целых три пятых', '2.6', F)]),
+    ('две целых одна треть', [('две целых одна треть', '7/3', F)]),
+])
+def test_ru_a_count_before_a_part_word_after_tselykh_adds_the_whole_part(text, expected):
+    # 2 + 3/5 = 13/5 = 2.6; 2 + 1/3 = 7/3
+    assert read(text, "ru") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('dvanáct trilionů tři sta čtyřicet pět', [('dvanáct trilionů tři sta čtyřicet pět', '12000000000000000345', C)]),
+    ('jeden trilion jedna', [('jeden trilion jedna', '1000000000000000001', C)]),
+])
+def test_cs_a_scale_word_above_million_scales_the_count(text, expected):
+    # cs long scale: trilion is 10^18; 12 x 10^18 + 345 = 12000000000000000345; 10^18 + 1 = 1000000000000000001
+    assert read(text, "cs") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/162")
+@pytest.mark.parametrize("text, expected", [
+    ('pięćdziesiąty', [('pięćdziesiąty', '50', O)]),
+    ('sześćdziesiątego', [('sześćdziesiątego', '60', O)]),
+    ('dziewięćdziesiąty', [('dziewięćdziesiąty', '90', O)]),
+    ('rok tysiąc dziewięćset dziewięćdziesiąty pierwszy', [('tysiąc dziewięćset dziewięćdziesiąty pierwszy', '1991', O)]),
+    ('tysiąc dziewięćset dziewięćdziesiątym', [('tysiąc dziewięćset dziewięćdziesiątym', '1990', O)]),
+])
+def test_pl_the_ordinals_of_50_60_and_90(text, expected):
+    # 900 + 90 + 1000 + 1 = 1991; 1000 + 900 + 90 = 1990
+    assert read(text, "pl") == expected
+
 
 
 if __name__ == "__main__":

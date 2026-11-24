@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/id.json."""
 import unittest
 
+import pytest
 from helpers import read
 from numtag import tag_numbers
 
@@ -98,6 +99,17 @@ class TestKeBeforeAWord(unittest.TestCase):
         self.assertEqual(confidence("kota terbesar kedua di Indonesia", "id"), [("kedua", 1.0)])
         self.assertEqual(confidence("Kedua, kami pulang.", "id"), [("Kedua", 1.0)])
         self.assertEqual(confidence("peringkat ke-2 di dunia", "id"), [("ke-2", 1.0)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('satu juta triliun', [('satu juta triliun', '1000000000000000000', C)]),
+    ('dua belas juta triliun tiga ratus empat puluh lima', [('dua belas juta triliun tiga ratus empat puluh lima', '12000000000000000345', C)]),
+])
+def test_id_a_scale_word_after_a_scale_word_multiplies(text, expected):
+    # juta is 10^6 and triliun is 10^12: 10^18; 12 x 10^18 + 345 = 12000000000000000345
+    assert read(text, "id") == expected
+
 
 
 if __name__ == "__main__":
