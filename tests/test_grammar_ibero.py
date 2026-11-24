@@ -3,6 +3,8 @@ and Mirandese. Each expected value is worked out by hand in the comment
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 
@@ -575,6 +577,34 @@ class TestRanges(unittest.TestCase):
             with self.subTest(lang=lang):
                 # 20 and 30, not 20 + 30 = 50
                 self.assertEqual(read(text, lang), [(low, "20", C), (high, "30", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/180")
+    def test_galician_two_hours_and_a_half_keeps_the_hour_only(self):
+        self.assertEqual(read("dentro de dúas horas e media", "gl"), [("dúas", "2", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_galician_seventh(self):
+        self.assertEqual(read("séptimo", "gl"), [("séptimo", "7", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_asturian_two_hundredth(self):
+        self.assertEqual(read("doscientesima", "ast"), [("doscientesima", "200", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_asturian_millionth(self):
+        self.assertEqual(read("millonésima", "ast"), [("millonésima", "1000000", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_mirandese_millionth(self):
+        self.assertEqual(read("milionésima", "mwl"), [("milionésima", "1000000", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_occitan_millionth(self):
+        self.assertEqual(read("milionen", "oc"), [("milionen", "1000000", O)])
 
 
 if __name__ == "__main__":

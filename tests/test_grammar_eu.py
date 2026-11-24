@@ -289,5 +289,29 @@ class TestAraua203Gaps(unittest.TestCase):
         self.assertEqual(eu(text), [(text, "0.27", D)])
 
 
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/231")
+    def test_plural_article_on_the_denominator_herenak(self):
+        self.assertEqual(read("bi herenak", "eu"), [("bi herenak", "2/3", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/231")
+    def test_plural_article_on_the_denominator_laurdenek(self):
+        self.assertEqual(read("hiru laurdenek", "eu"), [("hiru laurdenek", "0.75", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    def test_clock_hour_in_the_plural_absolutive(self):
+        self.assertEqual(read("bostak", "eu"), [("bostak", "5", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    def test_clock_hour_in_the_plural_absolutive_hirurak(self):
+        self.assertEqual(read("hirurak", "eu"), [("hirurak", "3", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    def test_clock_hour_in_the_inessive(self):
+        self.assertEqual(read("hiruretan", "eu"), [("hiruretan", "3", C)])
+
+
 if __name__ == "__main__":
     unittest.main()
