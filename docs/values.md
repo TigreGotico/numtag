@@ -75,7 +75,7 @@ A whole part is a cardinal with only spaces before the fraction. A decimal, a li
 [('2023', '2023'), ('1/3', '1/3')]
 ```
 
-Norwegian and Swedish group digits with a space. A group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.
+Languages that group digits with a space, such as Norwegian, Swedish and Finnish, follow one rule. A group before a slash reads as a group only when it has three digits: "12 345 1/2" is 12345.5, and "5 1/2" is 5.5.
 
 ## Convert a value
 

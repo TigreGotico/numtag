@@ -551,7 +551,7 @@ A count and a denominator make a fraction. "avos" joins only a denominator above
 
 A verb after "um quinto" also makes the ordinal. An ordinal read this way has the low score of a word with a second meaning: "Um décimo sobreviveu." reads the ordinal 10 at that score.
 
-A Hungarian part word of a hundred or more, written as one word with no count before it, is one part of the product. "háromszázad" is 1/300, as "háromszáz" is 300. The text "háromszázad része a klórénak" on hu.wikipedia uses it so.
+A Hungarian part word of a hundred or more, written as one word with its count and with no count before it, is one part of the product. "háromszázad" is 1/300, as "háromszáz" is 300. The text "háromszázad része a klórénak" on hu.wikipedia uses it so.
 
 By AkH 12 §293 the glued form is also a count of parts before a noun, so "háromszázad másodperc" can be 3/100. That reading is the documented alternative. The reader gives the frequent multiplier reading at the low score of a word with a second meaning. A number or "egész" before the word leaves the word to the readings that take that count. So "egy kétszázad" is 1/200, and "3 tízezred" is 3/10000, as "három tízezred" is. A hyphen before it ends a range.
 
@@ -568,7 +568,7 @@ By AkH 12 §293 the glued form is also a count of parts before a noun, so "háro
 
 In German a count written in one word with a part word is part of the denominator: "Zweihundertstel" is the 200th part, 1/200, as "zehntausendstel" is 1/10000. A count written apart is the numerator. So "zwei Hundertstel" is 2/100, and "drei Zweihundertstel" is 3/200. A value with no finite decimal form stays a fraction: "ein Dreitausendstel" is "1/3000". A number in digits is the numerator too, so "3 Zweihundertstel" is 3/200.
 
-A decimal in words, "ein halbes" or a count of a thousand or more before the glued word has no reading that folds it in, so the word stays unread.
+Two cases have no reading that folds the count into the glued word: a decimal in words ("ein halbes") and a count of a thousand or more. The word stays unread.
 
 A glued part word with no count before it can be a plural with no determiner, as in "wertvolle Hundertstel". So it scores as a homograph.
 
@@ -630,7 +630,7 @@ In Russian, Ukrainian and Polish the plural part word has the form of the plural
 
 A fraction word, "de" or "of", and a singular scale noun make that part of the scale noun. "um quarto de milhão" is a quarter of 1000000, so it is one number, 250000. The article of the scale word may stand before it. A part that is no whole number reads as a fraction. "um quarto" alone keeps the low score of a word with a second meaning (a room), but before "de milhão" it is sure.
 
-A plural scale word, a scale numeral such as "mil", or a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio") gives no product. A count after "de" gives none either: "um quarto de dois milhões" is two numbers.
+A plural scale word gives no product. So does a scale numeral such as "mil", and so does a scale word that starts a longer number ("mil milhões", "milhar de milhões", "um milhão e meio"). A count after "de" gives none either: "um quarto de dois milhões" is two numbers.
 
 ```python
 >>> read("Calcularam um quarto de milhão de euros.")
@@ -723,7 +723,7 @@ A clitic of the `vague_clitic` list may stand between the vague word and the sca
 [('2030', '2030')]
 ```
 
-After the scale words of a vague amount, a joiner and a number keep the scale words in the number only where the lexicon requires the joiner before the last group. Portuguese requires "e" there, so "alguns mil e cinco" is 1005, as "mil e cinco" is. Croatian and English may leave the joiner out. So "i" and "and" there can join two phrases. The vague amount then names no number, and the number after the joiner reads alone.
+A joiner and a number after the scale words of a vague amount keep those words in the number. This holds only where the lexicon requires the joiner before the last group. Portuguese requires "e" there, so "alguns mil e cinco" is 1005, as "mil e cinco" is. Croatian and English may leave the joiner out. So "i" and "and" there can join two phrases. The vague amount then names no number, and the number after the joiner reads alone.
 
 ```python
 >>> read("alguns mil e cinco")
@@ -787,7 +787,7 @@ A hyphenated compound with a word that is not a number word is one noun, so "seg
 
 The hundred of a percent phrase is the percent sign, not a number. The phrases are ca "per cent", fr "pour cent", it "per cento", oc "per cent", tr "yüzde" and el "τοις εκατό". The hundred is the sign after a number, after a `{slot}` that holds a number, and when the phrase stands alone. In tr the percent word comes before the number: "yüzde elli sekiz" is 58 %. The number after "yüzde" is the amount even when its word is also a noun: "yüzde yüz" is 100 at full confidence, and a lone "yüz" (also "face") keeps the homograph score. With no number before it, "per" can mean "for", and the hundred counts: "Ho he venut per cent euros."
 
-At the end of the text or before "de", the phrase can also be the percent sign with its number missing, as in "Tant per cent." The article may join it ("dels", "du", "degli"). There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
+The phrase can also be the percent sign with its number missing. This holds at the end of the text or before "de", as in "Tant per cent." The word "de" may join its article ("dels", "du", "degli"). There the hundred counts with `Reason.HOMOGRAPH` and the confidence 0.4. Spanish differs: a hundred is "cien" there, and "ciento" stays in percentages and idioms only, so "por ciento" has no "for a hundred" reading. With no number before it, the phrase holds no number.
 
 ```python
 >>> read("Posa el volum al cinquanta per cent.", "ca")

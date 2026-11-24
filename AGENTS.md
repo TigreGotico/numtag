@@ -50,11 +50,11 @@ The full suite takes several minutes. `tests/test_docs.py` runs every example in
 3. A reading rule lives in [docs/rulings.md](docs/rulings.md) with its example and its source.
 4. A gold value comes from hand arithmetic or a quoted source, never from a run of numtag or another parser ([adding-a-language.md](docs/adding-a-language.md#gold-rows)).
 5. A value is a canonical digit string ([values.md](docs/values.md)).
-6. Each language has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
+6. A language that you add has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
 7. Every example in the docs runs as a test and shows the output it gives.
 8. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
 
 ## Before you push
 
 1. Run the full test suite.
-2. If you added, removed or renamed a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.
+2. If you added, removed, renamed or moved a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.

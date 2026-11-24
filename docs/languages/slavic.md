@@ -104,7 +104,7 @@ Czech "jednou" is the instrumental of "jedna" and also the adverb "once". Alone,
 
 ## Counted hundreds nouns
 
-A count and the noun for a group of a hundred write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. This holds for Croatian "stotina", Czech "stovka", Polish "setka", Russian "сотня" and Ukrainian "сотня", in each case form that takes a count. Croatian "stotinu" is the hundred "sto". A half after the count adds half a hundred, so "pet i pol stotina" is 550. A count of a thousand or more takes no hundreds noun, so a year before "stotine ljudi" stays a year.
+A count and the noun for a group of a hundred write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. This holds for Croatian "stotina", Czech "stovka", Polish "setka", Russian "сотня", Ukrainian "сотня" and Serbian "stotina", in each case form that takes a count. Croatian "stotinu" is the hundred "sto". A half after the count adds half a hundred, so "pet i pol stotina" is 550. A count of a thousand or more takes no hundreds noun, so a year before "stotine ljudi" stays a year.
 
 ```python
 >>> read('pet stotina tisuća', 'hr')
@@ -119,6 +119,8 @@ A count and the noun for a group of a hundred write the hundreds of a cardinal, 
 [('pět stovek tisíc', '500000')]
 >>> read('пять сотен тысяч', 'ru')
 [('пять сотен тысяч', '500000')]
+>>> read('pet stotina hiljada', 'sr')
+[('pet stotina hiljada', '500000')]
 ```
 
 > Hrvatski pravopis (Institut za hrvatski jezik i jezikoslovlje), 5.4.1. Jednorječnice: "glavni brojevi stotice do 1000: sto ili stotinu"; "Stotice do 1000 mogu se pisati i kao sveza glavnoga broja i imenice stotina: četiri stotine, devet stotina."

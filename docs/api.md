@@ -47,7 +47,7 @@ ValueError: 'medium' is not a valid Scale
 <Scale.SHORT: 'short'>
 ```
 
-At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"). In Portuguese, one exception holds: a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
+At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"). In Portuguese and English, one exception holds: a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
 
 numtag loads the lexicon of a language on the first call for that language and scale, and keeps it in memory for later calls.
 
@@ -244,7 +244,7 @@ A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "
 - a series noun before it ("World War I", "Part I")
 - a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
 
-A name alone, two names and a list are no cue. So these give no mention for the pronoun: "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come", "After World War I, I moved". A capital letter before a name is an initial, not a numeral: "General D K Arya".
+A name alone, two names and a list are no cue. So these give no mention for the pronoun: "Can I get a math fact", "Play CD", "Give IV fluids" and "Henry I died". "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give none either. A capital letter before a name is an initial, not a numeral: "General D K Arya".
 
 A word in the `roman_lower_word` list is a word only in lower case. So pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
 

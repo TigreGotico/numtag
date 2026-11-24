@@ -119,7 +119,7 @@ These optional keys hold facts that the word form shows:
 |---|---|
 | `gender` | `"masculine"` or `"feminine"` |
 | `plural` | `true` for a plural form ("dúzias", "milhões") |
-| `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. An ordinal scale word has this flag only with no count before it. sl "tisoče" alone is also the plural noun. "dvatisoče" is the ordinal 2000. |
+| `ambiguous` | `true` when the word has a common meaning that is not a number. A number that rests on the word gets the confidence 0.4. An ordinal scale word with this flag is weak only when no count stands before it. sl "tisoče" alone is also the plural noun. "dvatisoče" is the ordinal 2000. |
 | `weak_at_end` | `true` when the word has another meaning at the end of a clause, or before a joiner: fr "neuf" ("un manteau neuf"). The word gets the confidence 0.4 there. When the word is the whole text, it gets the full score. |
 | `joined_count` | with `weak_at_end`: `true` when a joiner before digits or a cardinal word does not end the clause. hu "hat és hét" lists two numbers. fr "neuf" leaves it out, because an adjective can also stand before "et deux chapeaux". An article, an ordinal or a word in `ambiguous_forms` after the joiner is no number here. |
 | `weak_after`, `weak_before` | `weak_after` lists the words right before the word when it has another meaning. `weak_before` lists the words right after it. hu "hat" has "nem" in `weak_after` ("nem hat"). It has "rám", "rá" and "rájuk" in `weak_before` ("hat rám"). |
