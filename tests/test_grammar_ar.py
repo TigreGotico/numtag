@@ -3,6 +3,7 @@ comment beside it; sources are in numtag/lexicon/ar.json."""
 import unittest
 
 import pytest
+
 from helpers import read, sure
 from numtag import tag_numbers
 
@@ -169,6 +170,18 @@ class TestSpokenArabic(unittest.TestCase):
         for text in ("محو الامية", "نسبة الامية في مصر", "بنو امية", "امية بن ابي الصلت"):
             with self.subTest(text=text):
                 self.assertEqual(sure(text, "ar"), [])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/238")
+    def test_decimal_comma_before_a_scale_word(self):
+        self.assertEqual(read("55,5 مليار", "ar"), [("55,5 مليار", "55500000000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/267")
+    def test_proclitic_ba_stays_outside_the_span(self):
+        self.assertEqual(read("بخمسمية الف", "ar"), [("خمسمية الف", "500000", C)])
 
 
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
