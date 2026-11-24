@@ -58,7 +58,7 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 [('twelve hundred', '1200'), ('a hundred', '100'), ('a dozen', '12')]
 ```
 
-Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits after "point" stand alone, so a word after them starts a new number. After the first group, digits take no "point", as they take no group: "2 million and 3 point 5" is two numbers.
+Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits after "point" stand alone, so a word after them starts another number. After the first group, digits take no "point", as they take no group: "2 million and 3 point 5" is two numbers.
 
 ```python
 >>> read("Turn it up 2 point 5, then 2 point 5 five, then 2 million and 3 point 5.")
@@ -70,11 +70,11 @@ Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits 
 | Setting | Value | Source |
 |---|---|---|
 | `joiner_tens_units` | never | Wikipedia, "English numerals" |
-| `joiner_after_hundred` | optional | CLDR 49 RBNF en; Wikipedia, "English numerals" |
+| `joiner_after_hundred` | optional | CLDR 49 RBNF en and Wikipedia, "English numerals" |
 | `joiner_between_groups` | optional | the same |
 | `joiner_before_last_group` | optional | the same |
 | `joiner_before_round_hundred` | false | CLDR 49 RBNF en %spellout-cardinal-verbose |
-| `comma_between_classes` | true | Wikipedia, "English numerals"; CLDR 49 RBNF en |
+| `comma_between_classes` | true | Wikipedia, "English numerals" and CLDR 49 RBNF en |
 | `plural_scale_needs_count` | true | Wiktionary, "million" |
 | `scale_noun_agrees` | false | Wiktionary, "million", usage notes |
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |

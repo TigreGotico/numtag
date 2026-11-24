@@ -65,7 +65,7 @@ Read [confidence-and-homographs.md](confidence-and-homographs.md) for the full r
 
 ## Replace number words with digits
 
-The span of each mention slices the original text. Build a new text from the pieces between the spans.
+The span of each mention slices the original text. Build the output text from the pieces between the spans.
 
 ```python
 >>> def to_digits(text, lang):

@@ -27,7 +27,7 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | Argument | Meaning |
 |---|---|
 | `text` | The text to read. numtag never changes it. |
-| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons, every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
+| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons. Every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
 
 `tag_numbers` raises `UnsupportedLanguageError` for a language with no lexicon. It is a subclass of `ValueError`, so a caller can catch it alone and skip the text, or catch `ValueError` for every bad argument. A `scale` that is not a scale raises a plain `ValueError`. An empty value reads the default scale.
@@ -47,7 +47,7 @@ ValueError: 'medium' is not a valid Scale
 <Scale.SHORT: 'short'>
 ```
 
-At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"), with one exception: in Portuguese a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
+At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"). In Portuguese, one exception holds: a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
 
 numtag loads the lexicon of a language on the first call for that language and scale, and keeps it in memory for later calls.
 
@@ -81,7 +81,7 @@ The gender comes from the last word of the number that shows one. Portuguese wor
 [('duas dúzias', 'feminine'), ('2.º', 'masculine')]
 ```
 
-A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, when `reasons` is not a frozenset of `Reason`, or when a part is not inside the mention or not in reading order.
+A mention checks its own fields when it is made. It raises `ValueError` in these cases. The span does not fit the text, or the value is not canonical. `number_scale` is not a `Scale` or `None`, or `reasons` is not a frozenset of `Reason`. A part is not inside the mention or not in reading order.
 
 ```python
 >>> from numtag import NumberMention, Kind, Form
@@ -116,7 +116,7 @@ A `Part` is a frozen dataclass. It is one piece of a mention: a word or a phrase
 | `text` | `str` | The exact words: `text[start:end]` of the original text |
 | `value` | `str` or `None` | The canonical value of the words of the part alone. `None` for a joiner, "of", a minus word or a decimal mark |
 
-The mention value is the one exact answer. A caller does not add up the parts. A part value is the number that its words name alone: the half of "um milhão e meio" has the value 0.5, and the mention has 1500000. Deep time divides the mention value by the value of the last scale part:
+The mention value is the one exact answer. A caller does not add up the parts. A part value is the number that its words name alone. The half of "um milhão e meio" has the value 0.5, and the mention has 1500000. Deep time divides the mention value by the value of the last scale part:
 
 ```python
 >>> m = tag_numbers("Há sessenta e seis milhões de anos.", "pt-PT")[0]
@@ -142,7 +142,7 @@ The parts are flat, and they do not show the scope of a collective: "dois mil e 
 [('count', 'one', '1'), ('decimal_mark', 'point', None), ('decimals', 'two', '0.2'), ('scale', 'million', '1000000')]
 ```
 
-A part checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, or when a role that names no number has a value.
+A part checks its own fields when it is made. It raises `ValueError` in three cases. The span does not fit the text, the value is not canonical, or a role that names no number has a value.
 
 ```python
 >>> from numtag import Part, Role
@@ -208,7 +208,7 @@ A minus word before digits does not change the form.
 
 ## Roman numerals
 
-A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention, and the numeral is one count part. numtag reads a numeral only where no number word or digit string stands, so pt "MIL" and fr "DIX" keep their word reading.
+A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention. The numeral is one count part. numtag reads a numeral only where no number word or digit string stands. So pt "MIL" and fr "DIX" keep their word reading.
 
 ```python
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Luís XIV morreu em 1715.", "pt-PT")]
@@ -235,18 +235,18 @@ German writes every noun in title case, so in German a title-case word is no cue
 
 A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
 
-With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
+With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"). It gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
 
 A single letter is a numeral only as I, V or X. L, C, D and M alone are labels ("Part D", "Vitamin C"), and give no mention.
 
 A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
 
-- a series noun before it: "World War I", "Part I";
+- a series noun before it ("World War I", "Part I")
 - a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
 
-A name alone, two names and a list are no cue. So "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give no mention for the pronoun. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+A name alone, two names and a list are no cue. So these give no mention for the pronoun: "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come", "After World War I, I moved". A capital letter before a name is an initial, not a numeral: "General D K Arya".
 
-A word in the `roman_lower_word` list is a word only in lower case: pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
+A word in the `roman_lower_word` list is a word only in lower case. So pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
 
 In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
 
@@ -312,7 +312,7 @@ A `VagueQuantity` is a frozen dataclass.
 | `confidence` | `float` | A fixed score from 0 to 1, not part of equality |
 | `reasons` | `frozenset[Reason]` | Keyword only, not part of equality. Why the confidence is low |
 
-A `VagueQuantity` checks its fields when it is made. It raises `ValueError` when the span does not fit the text, when an amount has a scale or a bound, when a magnitude has no scale, when a scale or bound is not a positive whole digit string, when the bound is below the scale, or when the confidence is not a number from 0 to 1.
+A `VagueQuantity` checks its fields when it is made. It raises `ValueError` in these cases. The span does not fit the text. An amount has a scale or a bound, or a magnitude has no scale. A scale or bound is not a positive whole digit string, or the bound is below the scale. The confidence is not a number from 0 to 1.
 
 ```python
 >>> from numtag import VagueQuantity

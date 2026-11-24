@@ -140,7 +140,7 @@ Catalan "nou" is nine and also "new", and "u" is one and also the name of a lett
 
 > DIEC2 "nou" 2 1: "Vuit més un. Aviat farà nou anys."; DIEC2 "nou" 3 1 1: "Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou."
 
-## The first ordinals end no longer ordinal
+## Longer ordinals and the time unit "segons"
 
 A longer Catalan ordinal ends in "-unè", "-dosè", "-tresè" or "-quatrè", never in "primer", "segon", "tercer" or "quart". The Occitan ones end in "-unen" and "-dosen". So a cardinal and one of these words after a space are two numbers. "vint segons" is 20 and the time unit "segons", and "deu segons" is 10. A hyphen still joins them, because ICU 78 wrote the Catalan 22nd "vint-i-segon".
 

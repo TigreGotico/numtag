@@ -18,7 +18,7 @@ The confidence is a fixed score in (0, 1]. It is not a probability. The same tex
 |---|---|
 | 1.0 | The words are a number for certain. |
 | 0.4 | The number rests on a word with a common meaning that is not a number ("segundo", "quarto", "meio", "second", "half", "score"). |
-| 0.3 | An article stands alone before its noun phrase: a word that starts no number, a number in digits, an ordinal or a lone word with a second meaning. Portuguese "um" or "uma" in "comprei uma casa". |
+| 0.3 | An article stands alone before its noun phrase. The next word starts no number, or it is a number in digits, an ordinal or a lone word with a second meaning. Portuguese "um" or "uma" in "comprei uma casa". |
 
 The gold corpus and its tests use 0.5 as the line between a weak mention and a clear number. A caller that wants only clear numbers keeps the mentions at 0.5 or above.
 
@@ -44,7 +44,7 @@ In Portuguese, "um" and "uma" are both the number one and the indefinite article
 [('um milhão', '1000000', 1.0)]
 ```
 
-The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. Before a word such as "ou", the article gets the low score, also when a number comes next. Before a number in digits or an ordinal, the article also gets the low score: the number is part of its noun phrase, as in "un 20 por ciento" and "um segundo facto".
+The low score needs a word after the article. An article before punctuation or at the end of the text keeps the full score, because no noun follows it. Before a word such as "ou", the article gets the low score, also when a number comes next. Before a number in digits or an ordinal, the article also gets the low score. The number is part of its noun phrase, as in "un 20 por ciento" and "um segundo facto".
 
 ```python
 >>> read("Quantos filhos tens? Tenho um.", "pt-PT")
@@ -75,7 +75,7 @@ English "a" and "an" count one only before a word that takes a count: a multipli
 [('a dozen', '12', 1.0), ('a third', '1/3', 1.0)]
 ```
 
-German and Spanish count with a form that is not the article: "eins" and "uno". A lone article at the end of a clause is the article or a pronoun, so "ein", "eines", "un" and "una" get the low score there. The counting form keeps the full score.
+German and Spanish count with a form that is not the article: "eins" and "uno". A lone article at the end of a clause is the article or a pronoun. So "ein", "eines", "un" and "una" get the low score there. The counting form keeps the full score.
 
 ```python
 >>> read("Muéstrame una.", "es")
@@ -92,7 +92,7 @@ German and Spanish count with a form that is not the article: "eins" and "uno". 
 
 A lexicon entry can carry `"ambiguous": true`. In Portuguese these are "meio", "meia", and "quarto" and "quartos" as a fraction. The ordinals "segundo", "quarto", "quinto" and "sexto" are ambiguous in every gender and number. In English they are "half", "second" and "score". In French, "premier" is also "prime" and "original" in every gender and number. In Italian, "primo" is also "prime", and "prima" is also "before".
 
-Such a word gives 0.4 when the number rests on it: the word alone, a fraction with it as the denominator, or an article or the word for one with it as the collective. When other number words make the reading clear, the number gets 1.0.
+Such a word gives 0.4 when the number rests on it. That means the word alone, a fraction with it as the denominator, or an article or the word for one with it as the collective. When other number words make the reading clear, the number gets 1.0.
 
 ```python
 >>> read("Chegou em segundo lugar.", "pt-PT")
@@ -120,11 +120,15 @@ A word before the homograph can also make the reading clear when it agrees only 
 [('nou', '9', 0.4)]
 ```
 
-A word next to the homograph can also make the other meaning likely. Hungarian "hat" is six and the verb "to take effect". The verb ends a clause ("A gyógyszer nem hat."), follows "nem" ("not"), and stands before the -ra pronoun of what it acts on ("hat rám"). There "hat" gives 0.4. Before a noun, "hat" counts the noun. The case form "hatkor" ("at six") is no verb form.
+A word next to the homograph can also make the other meaning likely. Hungarian "hat" is six and the verb "to take effect". The verb ends a clause ("A gyógyszer nem hat."). It also follows "nem" ("not") and stands before the -ra pronoun of what it acts on ("hat rám"). There "hat" gives 0.4.
+
+Before a noun, "hat" counts the noun. The case form "hatkor" ("at six") is no verb form.
 
 The cues look only at the words next to "hat". After "nem", "hat" gives 0.4 also before a noun: "nem hat perc" ("not six minutes"). A joiner after "hat" ends the clause when no number follows it: "hat és működik" gives 0.4, and "hat és hét" stays sure. The value stays 6, and the caller decides.
 
-Right after a request verb, "hat" is no verb, because a finite verb does not follow another finite verb in one clause. So it is six: "kérek hat", "legyen hat", "állítsd hat". A word that is weak only at the end of a clause is sure when it is the whole text with no punctuation, because a one-word text with no punctuation is a spoken answer: "hat", fr "neuf" and ro "nouă" give the full score alone. With a full stop ("Hat.") or inside a clause, they give 0.4.
+Right after a request verb, "hat" is no verb, because a finite verb does not follow another finite verb in one clause. So it is six: "kérek hat", "legyen hat", "állítsd hat".
+
+A word that is weak only at the end of a clause is sure when it is the whole text with no punctuation. Such a one-word text is a spoken answer: "hat", fr "neuf" and ro "nouă" give the full score alone. With a full stop ("Hat.") or inside a clause, they give 0.4.
 
 ```python
 >>> read("A gyógyszer nem hat.", "hu")
@@ -148,7 +152,7 @@ The score does not tell which meaning is right. In "Chegou em segundo lugar" the
 
 ## Readings that a low score marks
 
-The gold corpus holds sentences where the word is not a number. numtag tags the word in most of them at 0.4, and a threshold of 0.5 drops these mentions. A collective with no count, as "score" in "The final score was seven.", gives no mention.
+The gold corpus holds sentences where the word is not a number. numtag tags the word in most of them at 0.4. A threshold of 0.5 drops these mentions. A collective with no count, as "score" in "The final score was seven.", gives no mention.
 
 ```python
 >>> read("The final score was seven.", "en")
@@ -166,7 +170,7 @@ The gold corpus holds sentences where the word is not a number. numtag tags the 
 [('one hundredth', '0.01', 1.0), ('second', '2', 0.4)]
 ```
 
-A threshold also drops a real number when the weak word joins it. In "O apartamento tem três quartos e uma sala", "três quartos" means three bedrooms. numtag reads the fraction 0.75 at 0.4, and a threshold of 0.5 loses the count three.
+A threshold also drops a real number when the weak word joins it. In "O apartamento tem três quartos e uma sala", "três quartos" means three bedrooms. numtag reads the fraction 0.75 at 0.4. A threshold of 0.5 loses the count three.
 
 ```python
 >>> read("O apartamento tem três quartos e uma sala.", "pt-PT")

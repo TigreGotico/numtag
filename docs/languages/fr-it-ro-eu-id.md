@@ -135,13 +135,13 @@ A Basque ordinal takes the article -a with no space, as any other word does. num
 
 ## Basque fractions with the article
 
-"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads "erdia" as 0.5, "herena" as 1/3 and "laurdena" as 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
+"erdi" (half), "heren" (third) and "laurden" (quarter) take the article -a. The lexicon lists "erdia", "herena" and "laurdena" as words of their own. numtag reads them as 0.5, 1/3 and 0.25. Euskaltzaindia rule 203 says that the article joins the word with no space:
 
 > artikulua eta kasu-marka zuzenean lotzen zaizkio zenbatzaileari, beste edozein hitzi bezala, bien artean ezer jarri gabe eta bien artean zuriunerik utzi gabe
 
 The rule does not name these three words. The value comes from the noun, and the Euskaltzaindia dictionary gives the forms: "Bizitzaren erdia.", "Liburuaren laurdena ere ez du irakurri.", "Lehen herena." A noun before "erdia" is no part of the number. In "ordu erdia" (half an hour) the number is "erdia".
 
-A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. The bare nouns "laurden" and "heren" with no count also read one part at 0.4, so "ordu laurden" reads "laurden" as 0.25, as "ordu erdi" reads "erdi" as 0.5. A clock phrase such as "hirurak eta laurden" (Euskaltzaindia rule 35) reads no number, because the hour word before "eta" is no number word. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
+A lone article form is a weak number. "erdi" is also "middle" ("Erdiko bideari nagokio."), and "laurden" is also the quarter-final, so these words score 0.4, as "erdi" does. The bare nouns "laurden" and "heren" with no count also read one part at 0.4. So "ordu laurden" reads "laurden" as 0.25, as "ordu erdi" reads "erdi" as 0.5. A clock phrase such as "hirurak eta laurden" (Euskaltzaindia rule 35) reads no number, because the hour word before "eta" is no number word. A count of two or more takes the plural -ak in Basque ("Europaren bi herenak."). numtag does not read the plural forms of these nouns.
 
 ```python
 >>> read('Biribilaren laurdena da.', 'eu')

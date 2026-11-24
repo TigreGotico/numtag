@@ -8,7 +8,7 @@ verify: sed '/^\x60\x60\x60/d' docs/languages/baltic.md | python -m doctest -o N
 see: ../rulings.md, ../adding-a-language.md
 -->
 
-numtag reads Lithuanian. Lithuanian declines its numbers: a cardinal takes the case and gender of the noun it counts, and the hundreds and thousands are nouns with their own case forms. A date names its day with the pronominal ordinal, and a year ends in an ordinal.
+numtag reads Lithuanian. Lithuanian declines its numbers. A cardinal takes the case and gender of the noun it counts. The hundreds and thousands are nouns with their own case forms. A date names its day with the pronominal ordinal, and a year ends in an ordinal.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|

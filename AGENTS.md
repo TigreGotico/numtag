@@ -1,8 +1,16 @@
 # numtag: agent guide
 
+<!-- agent-hint
+covers: The repository map, the setup, the hard rules and the checks to run before a push.
+source: numtag/, tests/, tests/gold_floor.json, docs/index.md, .github/workflows/build-tests.yml
+generated: no
+verify: for p in $(grep -P '^\| \x60' AGENTS.md | cut -d'|' -f2 | grep -oP '\x60[^\x60]*\x60' | tr -d '\140' | sed 's#<lang>#en#'); do ls -d $p >/dev/null || exit 1; done
+see: docs/index.md, docs/adding-a-language.md, docs/rulings.md
+-->
+
 Read this file before you change anything in the repository. It gives the map, the setup, the hard rules and the checks to run before a push. The documentation index is [docs/index.md](docs/index.md).
 
-numtag finds every number in a text and returns one mention per number, with the exact words, the character span, an exact value as a digit string, the kind and the form. It reads numbers only and has no runtime dependencies.
+numtag finds every number in a text and returns one mention per number. A mention holds the exact words, the character span, an exact value as a digit string, the kind and the form. The tagger reads numbers only and has no runtime dependencies.
 
 ## Repository map
 
@@ -42,11 +50,11 @@ The full suite takes several minutes. `tests/test_docs.py` runs every example in
 3. A reading rule lives in [docs/rulings.md](docs/rulings.md) with its example and its source.
 4. A gold value comes from hand arithmetic or a quoted source, never from a run of numtag or another parser ([adding-a-language.md](docs/adding-a-language.md#gold-rows)).
 5. A value is a canonical digit string ([values.md](docs/values.md)).
-6. A new language has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
+6. Each language has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
 7. Every example in the docs runs as a test and shows the output it gives.
 8. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
 
 ## Before you push
 
 1. Run the full test suite.
-2. If you added, removed or moved a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.
+2. If you added, removed or renamed a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.
