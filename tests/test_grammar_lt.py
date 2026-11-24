@@ -6,7 +6,6 @@ import pytest
 
 from numtag import tag_vague_quantities
 from helpers import read, sure
-from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 

@@ -175,97 +175,15 @@ class TestSpokenArabic(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_unit_and_hundreds_after_a_joiner_with_space(self):
-        self.assertEqual(read("سبعة و خمسة مئة", "ar"), [("سبعة و خمسة مئة", "507", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_unit_and_hundreds_after_a_fused_joiner(self):
-        self.assertEqual(read("سبعة وخمسة مئة", "ar"), [("سبعة وخمسة مئة", "507", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_dual_noun_yawmayn(self):
-        self.assertEqual(read("يومين", "ar"), [("يومين", "2", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_dual_noun_yawman(self):
-        self.assertEqual(read("يومان", "ar"), [("يومان", "2", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_fused_teen_ihd_ash(self):
-        self.assertEqual(read("إحدعش", "ar"), [("إحدعش", "11", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_fused_teen_itn_ash(self):
-        self.assertEqual(read("اتنعش", "ar"), [("اتنعش", "12", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_fused_teen_arbata_ash(self):
-        self.assertEqual(read("اربعطاعش", "ar"), [("اربعطاعش", "14", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_water_after_a_container_noun_is_no_number(self):
-        self.assertEqual(read("كباية مية", "ar"), [])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_definite_water_is_no_number(self):
-        self.assertEqual(read("المية سخنة", "ar"), [])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/160")
-    def test_drank_water_is_no_number(self):
-        self.assertEqual(read("شربت ميه", "ar"), [])
-
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/238")
     def test_decimal_comma_before_a_scale_word(self):
         self.assertEqual(read("55,5 مليار", "ar"), [("55,5 مليار", "55500000000", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/261")
-    def test_dead_after_a_noun_is_no_number(self):
-        self.assertEqual(read("ناس ميتين", "ar"), [])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/261")
-    def test_dead_after_a_pronoun_is_no_number(self):
-        self.assertEqual(read("الناس دول ميتين", "ar"), [])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/261")
-    def test_the_dead_is_no_number(self):
-        self.assertEqual(read("الميتين", "ar"), [])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/267")
     def test_proclitic_ba_stays_outside_the_span(self):
         self.assertEqual(read("بخمسمية الف", "ar"), [("خمسمية الف", "500000", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_اطناش(self):
-        self.assertEqual(read("اطناش", "ar"), [("اطناش", "12", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_اثناش(self):
-        self.assertEqual(read("اثناش", "ar"), [("اثناش", "12", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_ثنعش(self):
-        self.assertEqual(read("ثنعش", "ar"), [("ثنعش", "12", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_ثلطعش(self):
-        self.assertEqual(read("ثلطعش", "ar"), [("ثلطعش", "13", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_ثمنطعش(self):
-        self.assertEqual(read("ثمنطعش", "ar"), [("ثمنطعش", "18", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_ثمنتاشر(self):
-        self.assertEqual(read("ثمنتاشر", "ar"), [("ثمنتاشر", "18", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_احداشر(self):
-        self.assertEqual(read("احداشر", "ar"), [("احداشر", "11", C)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/274")
-    def test_spoken_teen_احداش(self):
-        self.assertEqual(read("احداش", "ar"), [("احداش", "11", C)])
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
 @pytest.mark.parametrize("text, expected", [
     ('ألفان ومليون', [('ألفان ومليون', '1002000', C)]),

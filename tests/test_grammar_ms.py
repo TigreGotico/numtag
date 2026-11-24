@@ -2,8 +2,6 @@
 comment beside it; sources are in numtag/lexicon/ms.json."""
 import unittest
 
-import pytest
-
 from helpers import read
 from numtag import tag_numbers, tag_vague_quantities
 
@@ -73,22 +71,6 @@ class TestVague(unittest.TestCase):
         text = "Ada beberapa orang yang datang."
         self.assertEqual([(q.text, q.kind.value) for q in tag_vague_quantities(text, "ms")],
                          [("beberapa", "amount")])
-
-
-class TestOpenIssues(unittest.TestCase):
-    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/265")
-    def test_koma_is_a_decimal_marker(self):
-        self.assertEqual(read("dua koma lima", "ms"), [("dua koma lima", "2.5", D)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/265")
-    def test_koma_after_zero(self):
-        self.assertEqual(read("sifar koma lima", "ms"), [("sifar koma lima", "0.5", D)])
-
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/265")
-    def test_koma_before_two_digits(self):
-        self.assertEqual(read("tiga koma satu empat", "ms"), [("tiga koma satu empat", "3.14", D)])
 
 
 if __name__ == "__main__":

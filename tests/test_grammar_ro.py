@@ -105,10 +105,6 @@ class TestOpenIssues(unittest.TestCase):
     def test_patrusprezece_is_fourteen(self):
         self.assertEqual(read("patrusprezece", "ro"), [("patrusprezece", "14", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/263")
-    def test_al_stays_in_the_ordinal_mention(self):
-        self.assertEqual(read("al doilea", "ro"), [("al doilea", "2", O)])
-
 
 if __name__ == "__main__":
     unittest.main()

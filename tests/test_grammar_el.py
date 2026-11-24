@@ -6,7 +6,6 @@ import unittest
 import pytest
 
 from helpers import read, sure
-from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
