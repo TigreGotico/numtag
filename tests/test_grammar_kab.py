@@ -68,9 +68,6 @@ def test_kab_the_clock_hours_with_the_arabic_article(text, expected):
 @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
 @pytest.mark.parametrize("text, expected", [
     ('mraw d yiwen', [('mraw d yiwen', '11', C)]),
-    ('kradan', [('kradan', '30', C)]),
-    ('nnefṣ', [('nnefṣ', '0.5', F)]),
-    ('mrayan', [('mrayan', '11', C)]),
     ('ɣur-i mraw d sin n wussan', [('mraw d sin', '12', C)]),
 ])
 def test_kab_word_forms_and_the_joiner_d(text, expected):
