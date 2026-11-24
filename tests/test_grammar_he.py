@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/he.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import tag_numbers
 
@@ -106,6 +108,14 @@ class TestHebrew(unittest.TestCase):
         self.assertEqual(sure("יום שני", "he"), [("שני", "2", 0.4)])
         self.assertEqual(sure("מאה שקלים", "he"), [("מאה", "100", 1.0)])
         self.assertEqual(sure("שני מיליון", "he"), [("שני מיליון", "2000000", 1.0)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/263")
+    def test_definite_article_ordinal_is_an_ordinal(self):
+        self.assertEqual(read("השני", "he"), [("השני", "2", O)])
 
 
 if __name__ == "__main__":

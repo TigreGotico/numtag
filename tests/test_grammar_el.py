@@ -3,7 +3,10 @@ comment beside it; sources are in numtag/lexicon/el.json."""
 import unicodedata
 import unittest
 
+import pytest
+
 from helpers import read, sure
+from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -104,6 +107,14 @@ class TestGreek(unittest.TestCase):
         self.assertEqual(sure("ΕΚΤΟΣ ΑΠΟ ΑΥΤΟ", "el"), [("ΕΚΤΟΣ", "6", 0.4)])
         self.assertEqual(sure("ο τρίτος όροφος", "el"), [("τρίτος", "3", 1.0)])
         self.assertEqual(sure("η έκτη θέση", "el"), [("έκτη", "6", 1.0)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_greek_nine_hundred_ninety_ninth(self):
+        self.assertEqual(read("εννιακοσιοστός ενενηκοστός ένατος", "el"), [("εννιακοσιοστός ενενηκοστός ένατος", "999", O)])
 
 
 if __name__ == "__main__":

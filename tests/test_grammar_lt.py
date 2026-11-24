@@ -2,8 +2,11 @@
 comment beside it; sources are in numtag/lexicon/lt.json."""
 import unittest
 
+import pytest
+
 from numtag import tag_vague_quantities
 from helpers import read, sure
+from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -115,6 +118,22 @@ class TestLithuanian(unittest.TestCase):
         self.assertEqual(lt("po keleto metų"), [])
         self.assertEqual([q.text for q in tag_vague_quantities("keli tūkstančiai žmonių", "lt")],
                          ["keli tūkstančiai"])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    def test_collective_dveji(self):
+        self.assertEqual(read("dveji metai", "lt"), [("dveji", "2", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    def test_collective_dvejus(self):
+        self.assertEqual(read("prieš dvejus metus", "lt"), [("dvejus", "2", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    def test_collective_treji(self):
+        self.assertEqual(read("treji metai", "lt"), [("treji", "3", C)])
 
 
 if __name__ == "__main__":

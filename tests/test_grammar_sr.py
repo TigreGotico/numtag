@@ -2,8 +2,11 @@
 comment beside it; sources are in numtag/lexicon/sr.json."""
 import unittest
 
+import pytest
+
 from numtag import tag_vague_quantities
 from helpers import read, sure
+from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -104,6 +107,34 @@ class TestSerbian(unittest.TestCase):
         self.assertEqual(sr("desetak hiljada ljudi"), [])
         self.assertEqual([q.text for q in tag_vague_quantities("nekoliko hiljada ljudi", "sr")],
                          ["nekoliko hiljada"])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/250")
+    def test_bilijarda_is_ten_to_the_fifteenth(self):
+        self.assertEqual(read("jedan bilijarda", "sr"), [("jedan bilijarda", "1000000000000000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/250")
+    def test_three_bilijarde(self):
+        self.assertEqual(read("tri bilijarde", "sr"), [("tri bilijarde", "3000000000000000", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/251")
+    def test_quarter_noun_after_a_whole(self):
+        self.assertEqual(read("tri i četvrt", "sr"), [("tri i četvrt", "3.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/251")
+    def test_quarter_noun_before_a_unit(self):
+        self.assertEqual(read("četvrt sata", "sr"), [("četvrt", "0.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/251")
+    def test_collective_dvojica(self):
+        self.assertEqual(read("Došla su dvojica ljudi.", "sr"), [("dvojica", "2", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/251")
+    def test_collective_troje(self):
+        self.assertEqual(read("troje dece", "sr"), [("troje", "3", C)])
 
 
 if __name__ == "__main__":
