@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/ar.json."""
 import unittest
 
+import pytest
 from helpers import read, sure
 from numtag import tag_numbers
 
@@ -168,6 +169,17 @@ class TestSpokenArabic(unittest.TestCase):
         for text in ("محو الامية", "نسبة الامية في مصر", "بنو امية", "امية بن ابي الصلت"):
             with self.subTest(text=text):
                 self.assertEqual(sure(text, "ar"), [])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('ألفان ومليون', [('ألفان ومليون', '1002000', C)]),
+    ('خمسة آلاف ومليون', [('خمسة آلاف ومليون', '1005000', C)]),
+])
+def test_ar_a_larger_scale_joined_with_and_adds(text, expected):
+    # 2000 + 1000000 = 1002000; 5000 + 1000000 = 1005000
+    assert read(text, "ar") == expected
+
 
 
 if __name__ == "__main__":

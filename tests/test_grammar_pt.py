@@ -1161,6 +1161,14 @@ class TestOpenIssues(unittest.TestCase):
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/227")
     def test_digit_group_after_the_decimal_point_pt_pt(self):
         self.assertEqual(read("43 279.168 29", "pt-PT"), [("43 279.168 29", "43279.16829", D)])
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('dois mil milhões trezentos mil', [('dois mil milhões trezentos mil', '2000300000', C)]),
+])
+def test_pt_a_group_after_a_scale_word_adds(text, expected):
+    # 2 x 1000 x 1000000 + 300 x 1000 = 2000300000
+    assert read(text, "pt") == expected
+
 
 
 if __name__ == "__main__":

@@ -547,6 +547,37 @@ class TestOpenIssues(unittest.TestCase):
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_danish_sixty_first(self):
         self.assertEqual(read("enogtressende", "da"), [("enogtressende", "61", O)])
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/148")
+@pytest.mark.parametrize("text, expected", [
+    ('in fuenf Tagen', [('fuenf', '5', C)]),
+    ('in zwoelf Tagen', [('zwoelf', '12', C)]),
+    ('in fuenfzehn Tagen', [('fuenfzehn', '15', C)]),
+    ('in fuenfzig Tagen', [('fuenfzig', '50', C)]),
+    ('der fuenfte Tag', [('fuenfte', '5', O)]),
+    ('der zwoelfte Tag', [('zwoelfte', '12', O)]),
+])
+def test_de_the_ascii_spellings_of_the_umlaut_number_words(text, expected):
+    assert read(text, "de") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.parametrize("text, expected", [
+    ('Er hat es außer Acht gelassen', []),
+    ('Nimm dich in Acht', []),
+    ('Der Elf Legolas', []),
+    ('Tausend Dank', []),
+])
+def test_de_a_capitalised_number_word_in_an_idiom_or_a_name_is_no_number(text, expected):
+    assert read(text, "de") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.parametrize("text, expected", [
+    ('sechtjin', [('sechtjin', '16', C)]),
+])
+def test_fy_sechtjin_is_16(text, expected):
+    assert read(text, "fy") == expected
+
 
 
 if __name__ == "__main__":
