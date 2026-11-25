@@ -57,6 +57,8 @@ VALUE_ROLES = ("unit", "ten", "hundred", "collective", "article_collective", "de
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
+# Roles of the words that count a quantity of ten's powers or of things.
+AMOUNT_ROLES = SCALE_ROLES + ("collective",)
 # Roles of the words a cardinal is made of.
 CARDINAL_ROLES = ("unit", "ten", "hundred", "teen") + SCALE_ROLES
 # Roles of the parts of a compound number word where the lexicon splits by
@@ -412,24 +414,25 @@ class Lexicon:
     # language writes every noun in title case ("Größe XIV").
     roman_title_case_cue: bool = True
 
-    def of(self, word: str, role: str) -> tuple[Entry, ...]:
-        return self._by_role.get((word, role), ())
+    def of(self, word: str, role: str, parts: bool = True) -> tuple[Entry, ...]:
+        """The entries of ``word`` with ``role``; with ``parts`` False, only
+        those that are no piece of a longer word."""
+        return (self._by_role if parts else self._whole_by_role).get((word, role), ())
 
     @cached_property
     def _by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
-        """The entries of each word, by role."""
-        found: dict[tuple[str, str], tuple[Entry, ...]] = {}
-        for word, entries in self.readings.items():
-            for entry in entries:
-                found[word, entry.role] = found.get((word, entry.role), ()) + (entry,)
-        return found
+        return _group_by_role(self.readings, skip_parts=False)
 
-    @property
+    @cached_property
+    def _whole_by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
+        return _group_by_role(self.readings, skip_parts=True)
+
+    @cached_property
     def number_words(self) -> frozenset[str]:
         """Every word that may be part of a number."""
         return frozenset(self.readings) | self.joiners | self.and_a_half
 
-    @property
+    @cached_property
     def compound_parts(self) -> frozenset[str]:
         """The words a compound number word splits into: with
         compound_parts_by_role, every word with a role inside a cardinal or
@@ -449,7 +452,16 @@ class Lexicon:
                          if (entries := self.readings.get(w)) and all(e.final for e in entries))
 
 
-# Settings and word lists that a lexicon may leave out: each is off by default.
+def _group_by_role(readings: dict[str, tuple[Entry, ...]], skip_parts: bool) -> dict[tuple[str, str], tuple[Entry, ...]]:
+    found: dict[tuple[str, str], list[Entry]] = {}
+    for word, entries in readings.items():
+        for entry in entries:
+            if not (skip_parts and entry.part):
+                found.setdefault((word, entry.role), []).append(entry)
+    return {key: tuple(entries) for key, entries in found.items()}
+
+
+# Settings and word lists that a lexicon may leave out, with the value each then has.
 DEFAULT_SETTINGS = {
     "tens_order": TensOrder.TEN_UNIT.value,
     "joiner_unit_ten": Joiner.REQUIRED.value,
@@ -468,11 +480,63 @@ DEFAULT_SETTINGS = {
     "ordinal_suffix_marks": ["", "."],
     "roman_pronoun_letters": False,
     "roman_title_case_cue": True,
+    "dotted_i": False,
+    "fraction_agreement": True,
+    "decimal_fraction": False,
+    "glued_denominators": False,
+    "glued_denominator_alone": False,
+    "glued_denominator_alone_ambiguous": False,
+    "dot_ordinal": False,
+    "point_decimal": False,
+    "half_of_scale": False,
+    "clock_half": False,
+    "compound_parts_by_role": False,
+    "bare_noun_counts_one": False,
+    "decimal_fractions": False,
+    "joiner_after_decimal_marker": Joiner.NEVER.value,
+    "joiner_before_half": Joiner.REQUIRED.value,
+    "part_after_joiner_needs_article": False,
+    "ordinal_form_part_takes_no_digits": False,
+    "joiner_thousand_one_only": False,
+    "joiner_thousand_hundreds": False,
+    "percent_phrase_is_no_number": False,
+    "article_after_noun": False,
+    "fraction_after_scale": False,
+    "part_glued_to_whole": False,
+    "fraction_of_scale": False,
+    "inverted_tens": None,
+    "inflection_position": "every",
 }
-DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
-                 "part_noun": [], "percent_phrase": [],
-                 "negative_particle": [], "noun_after_count": [],
-                 "number_noun": [], "number_name": [], "percent_before": []}
+DEFAULT_WORDS = {
+    "and_a_half": [],
+    "period_ordinal_before": [],
+    "article_needs_noun": [],
+    "partitive": [],
+    "part_noun": [],
+    "percent_phrase": [],
+    "negative_particle": [],
+    "noun_after_count": [],
+    "number_noun": [],
+    "number_name": [],
+    "percent_before": [],
+    "digit_suffix_mark": [],
+    "date_month": [],
+    "clock_before": [],
+    "clock_abbreviation": [],
+    "clock_after": [],
+    "ordinal_particle": [],
+    "fraction_over": [],
+    "word_apostrophe": [],
+    "count_of": [],
+    "one_after_noun": [],
+    "vague_clitic": [],
+    "ordinal_article": [],
+    "roman_series_noun": [],
+    "roman_title": [],
+    "roman_word": [],
+    "roman_lower_word": [],
+    "ordinal_suffix_mark": [],
+}
 
 
 def _read(lang: str) -> dict:
@@ -530,7 +594,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
     inflection = data.get("inflection", {})
-    suffix_ends = settings.get("inflection_position", "every") == "last"
+    suffix_ends = settings["inflection_position"] == "last"
 
     ambiguous_words: set[str] = set()
     vague_quantifiers: dict[tuple[str, ...], bool] = {}
@@ -629,7 +693,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         period_ordinals=settings["period_ordinals"],
         period_ordinal_lowercase=settings["period_ordinal_lowercase"],
         period_ordinal_free_digits=settings["period_ordinal_free_digits"],
-        ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]) | frozenset(words.get("ordinal_suffix_mark", ())),
+        ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]) | frozenset(words["ordinal_suffix_mark"]),
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),
         decimal_markers=frozenset(words["decimal_marker"]),
@@ -656,54 +720,54 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         part_nouns=frozenset(words["part_noun"]),
         nouns_after_count=frozenset(words["noun_after_count"]),
         ordinal_suffixes=suffixes,
-        dotted_i=settings.get("dotted_i", False),
-        fraction_agreement=settings.get("fraction_agreement", True),
-        decimal_fraction=settings.get("decimal_fraction", False),
-        glued_denominators=settings.get("glued_denominators", False),
-        glued_denominator_alone=settings.get("glued_denominator_alone", False),
-        glued_denominator_alone_ambiguous=settings.get("glued_denominator_alone_ambiguous", False),
-        dot_ordinal=settings.get("dot_ordinal", False),
-        digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
-        date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
-        clock_before=frozenset(w.casefold() for w in (*words.get("clock_before", ()), *words.get("clock_abbreviation", ()))),
-        clock_abbreviation=frozenset(w.casefold() for w in words.get("clock_abbreviation", ())),
-        point_decimal=settings.get("point_decimal", False),
-        clock_after=frozenset(w.casefold() for w in words.get("clock_after", ())),
+        dotted_i=settings["dotted_i"],
+        fraction_agreement=settings["fraction_agreement"],
+        decimal_fraction=settings["decimal_fraction"],
+        glued_denominators=settings["glued_denominators"],
+        glued_denominator_alone=settings["glued_denominator_alone"],
+        glued_denominator_alone_ambiguous=settings["glued_denominator_alone_ambiguous"],
+        dot_ordinal=settings["dot_ordinal"],
+        digit_suffix_marks=frozenset(words["digit_suffix_mark"]),
+        date_months=frozenset(w.casefold() for w in words["date_month"]),
+        clock_before=frozenset(w.casefold() for w in (*words["clock_before"], *words["clock_abbreviation"])),
+        clock_abbreviation=frozenset(w.casefold() for w in words["clock_abbreviation"]),
+        point_decimal=settings["point_decimal"],
+        clock_after=frozenset(w.casefold() for w in words["clock_after"]),
         ambiguous_words=frozenset(ambiguous_words),
-        ordinal_particles=frozenset(words.get("ordinal_particle", ())),
-        fraction_over=frozenset(words.get("fraction_over", ())),
+        ordinal_particles=frozenset(words["ordinal_particle"]),
+        fraction_over=frozenset(words["fraction_over"]),
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
-        half_of_scale=settings.get("half_of_scale", False),
-        clock_half=settings.get("clock_half", False),
+        half_of_scale=settings["half_of_scale"],
+        clock_half=settings["clock_half"],
         script=script,
-        inverted_tens=Joiner(settings["inverted_tens"]) if settings.get("inverted_tens") else None,
-        compound_parts_by_role=settings.get("compound_parts_by_role", False),
-        bare_noun_counts_one=settings.get("bare_noun_counts_one", False),
-        decimal_fractions=settings.get("decimal_fractions", False),
-        joiner_after_decimal_marker=Joiner(settings.get("joiner_after_decimal_marker", Joiner.NEVER)),
-        word_apostrophes=frozenset(words.get("word_apostrophe", ())),
-        joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
-        part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
-        ordinal_form_part_takes_no_digits=settings.get("ordinal_form_part_takes_no_digits", False),
-        joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
-        joiner_thousand_hundreds=settings.get("joiner_thousand_hundreds", False),
-        percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
+        inverted_tens=Joiner(settings["inverted_tens"]) if settings["inverted_tens"] else None,
+        compound_parts_by_role=settings["compound_parts_by_role"],
+        bare_noun_counts_one=settings["bare_noun_counts_one"],
+        decimal_fractions=settings["decimal_fractions"],
+        joiner_after_decimal_marker=Joiner(settings["joiner_after_decimal_marker"]),
+        word_apostrophes=frozenset(words["word_apostrophe"]),
+        joiner_before_half=Joiner(settings["joiner_before_half"]),
+        part_after_joiner_needs_article=settings["part_after_joiner_needs_article"],
+        ordinal_form_part_takes_no_digits=settings["ordinal_form_part_takes_no_digits"],
+        joiner_thousand_one_only=settings["joiner_thousand_one_only"],
+        joiner_thousand_hundreds=settings["joiner_thousand_hundreds"],
+        percent_phrase_is_no_number=settings["percent_phrase_is_no_number"],
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
-        count_of=frozenset(words.get("count_of", ())),
-        one_after_noun=frozenset(words.get("one_after_noun", ())),
+        count_of=frozenset(words["count_of"]),
+        one_after_noun=frozenset(words["one_after_noun"]),
         vague_quantifiers=vague_quantifiers,
-        vague_clitics=frozenset(fold(w) for w in words.get("vague_clitic", ())),
-        ordinal_articles=frozenset(words.get("ordinal_article", ())),
-        article_after_noun=settings.get("article_after_noun", False),
-        fraction_after_scale=settings.get("fraction_after_scale", False),
-        part_glued_to_whole=settings.get("part_glued_to_whole", False),
-        fraction_of_scale=settings.get("fraction_of_scale", False),
+        vague_clitics=frozenset(fold(w) for w in words["vague_clitic"]),
+        ordinal_articles=frozenset(words["ordinal_article"]),
+        article_after_noun=settings["article_after_noun"],
+        fraction_after_scale=settings["fraction_after_scale"],
+        part_glued_to_whole=settings["part_glued_to_whole"],
+        fraction_of_scale=settings["fraction_of_scale"],
         compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
-        roman_series_nouns=frozenset(words.get("roman_series_noun", ())),
-        roman_titles=frozenset(words.get("roman_title", ())),
-        roman_words=frozenset(words.get("roman_word", ())),
-        roman_lower_words=frozenset(words.get("roman_lower_word", ())),
+        roman_series_nouns=frozenset(words["roman_series_noun"]),
+        roman_titles=frozenset(words["roman_title"]),
+        roman_words=frozenset(words["roman_word"]),
+        roman_lower_words=frozenset(words["roman_lower_word"]),
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
     )
@@ -724,6 +788,5 @@ def _script(settings: dict, words: dict) -> Script:
                     bidi_controls=settings.get("bidi_controls", False),
                     native_digits=tuple(digits),
                     clitic_min_rest=settings.get("clitic_min_rest", 1))
-    return Script(**{**script.__dict__,
-                     "joiner_prefixes": tuple(script.fold(p) for p in words.get("joiner_prefix", ())),
-                     "clitic_prefixes": tuple(script.fold(p) for p in words.get("clitic_prefix", ()))})
+    return replace(script, joiner_prefixes=tuple(script.fold(p) for p in words.get("joiner_prefix", ())),
+                   clitic_prefixes=tuple(script.fold(p) for p in words.get("clitic_prefix", ())))

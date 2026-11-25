@@ -9,7 +9,7 @@ word right after one of them from reading a number (grammar ``_after_vague``).
 from bisect import bisect_left
 
 from numtag import digits
-from numtag.lexicon import SCALE_ROLES, Entry, Lexicon, load
+from numtag.lexicon import AMOUNT_ROLES, Entry, Lexicon, load
 from numtag.mention import Reason, VagueKind, VagueQuantity
 from numtag.tagger import CONFIDENCE, _runs, _tokenize, lexicon_name, tag_numbers
 from numtag.tokenize import Token
@@ -29,11 +29,12 @@ def tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]:
         k = bisect_left(starts, token.end) - 1
         return k < 0 or numbers[k][1] <= token.start
 
+    longest = max(map(len, lexicon.vague_quantifiers))
     found = []
     for run in _runs(_tokenize(text, lexicon), lexicon):
         i = 0
         while i < len(run):
-            phrase = _phrase(lexicon, run, i)
+            phrase = _phrase(lexicon, run, i, longest)
             end = i + len(phrase)
             if not phrase or not all(free(t) for t in run[i:end]):
                 i += 1
@@ -67,12 +68,10 @@ def tag_vague_quantities(text: str, lang: str) -> list[VagueQuantity]:
     return found
 
 
-def _phrase(lexicon: Lexicon, run: list[Token], i: int) -> tuple[str, ...]:
-    """The longest vague phrase that starts at ``i``, or an empty tuple."""
-    longest = max(map(len, lexicon.vague_quantifiers))
-    words = tuple(t.norm if not t.is_digits else None for t in run[i:i + longest])
-    phrases = [p for p in lexicon.vague_quantifiers if words[:len(p)] == p]
-    return max(phrases, key=len, default=())
+def _phrase(lexicon: Lexicon, run: list[Token], i: int, longest: int) -> tuple[str, ...]:
+    """The longest vague phrase of at most ``longest`` words that starts at ``i``, or an empty tuple."""
+    words = tuple(None if t.is_digits else t.norm for t in run[i:i + longest])
+    return next((words[:n] for n in range(len(words), 0, -1) if words[:n] in lexicon.vague_quantifiers), ())
 
 
 def _scale(lexicon: Lexicon, token: Token) -> Entry | None:
@@ -80,4 +79,4 @@ def _scale(lexicon: Lexicon, token: Token) -> Entry | None:
     if token.is_digits:
         return None
     return next((e for e in lexicon.readings.get(token.norm, ())
-                 if e.role in SCALE_ROLES or e.role == "collective"), None)
+                 if e.role in AMOUNT_ROLES), None)
