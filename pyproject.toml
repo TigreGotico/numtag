@@ -28,6 +28,9 @@ Issues = "https://github.com/TigreGotico/numtag/issues"
 [project.optional-dependencies]
 test = ["pytest", "jsonschema"]
 
+[tool.setuptools]
+license-files = ["LICENSE", "LICENSE-CLDR"]
+
 [tool.setuptools.packages.find]
 include = ["numtag*"]
 

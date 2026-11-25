@@ -131,6 +131,27 @@ class NumberMention:
     number_scale: Optional[Scale] = field(default=None, kw_only=True)
     reasons: frozenset[Reason] = field(default=frozenset(), compare=False, kw_only=True)
     parts: Tuple[Part, ...] = field(default=(), compare=False, kw_only=True)
+    lang: Optional[str] = field(default=None, compare=False, repr=False, kw_only=True)
+
+    def spoken(self, lang: Optional[str] = None, *, form=None, gender: Optional[str] = None,
+               case: Optional[str] = None, scale=None, places: Optional[int] = None) -> tuple:
+        """The value as words, as a tuple of ``Spelling`` objects, best first.
+
+        ``lang`` is the language tag of the words, by default the one that
+        ``tag_numbers`` read. ``form`` is the ordinal for an ordinal mention
+        and the cardinal for every other kind. ``gender`` is the gender of the
+        mention. A fraction mention speaks as a fraction in lowest terms, also
+        when its value is a finite decimal ("setengah" has the value 0.5).
+        Read ``numtag.spell``.
+        """
+        from numtag.writer import SpokenForm, as_fraction, spell
+        lang = lang or self.lang
+        if lang is None:
+            raise ValueError("this mention has no language: pass lang")
+        form = form or (SpokenForm.ORDINAL if self.kind is Kind.ORDINAL else SpokenForm.CARDINAL)
+        value = as_fraction(self.value) if self.kind is Kind.FRACTION else self.value
+        return spell(value, lang, form=form, gender=gender or self.gender, case=case, scale=scale,
+                     places=places)
 
     def __post_init__(self):
         start, end = self.char_span

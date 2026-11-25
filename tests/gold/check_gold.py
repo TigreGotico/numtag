@@ -36,7 +36,7 @@ DECIMAL_MARKS = {"pt-PT": (",", "vírgula", "virgula"), "pt-BR": (",", "vírgula
                  "sr": (",", "zarez", "koma"),
                  "fr-FR": (",", "virgule"), "fr-BE": (",", "virgule"), "fr-CH": (",", "virgule"),
                  "it": (",", "virgola"), "ro": (",", "virgulă", "virgula"), "eu": (",", "koma"),
-                 "id": (",", "koma", "titik"), "sq": (",", "presje"), "hi": (".", "दशमलव"),
+                 "id": (",", "koma", "titik"), "sq": (",", "presje"), "eo": (",", "komo"), "hi": (".", "दशमलव"),
                  "ms": (".", "perpuluhan"),
                  "es": (",", "coma", "punto"), "gl": (",", "coma"), "ca": (",", "coma"),
                  "ast": (",", "coma", "puntu"), "an": (",", "coma"), "oc": (",", "virgula"),

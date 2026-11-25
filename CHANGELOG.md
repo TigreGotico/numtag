@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.22.0a1](https://github.com/TigreGotico/numtag/tree/0.22.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.21.0a1...0.22.0a1)
+
+**Merged pull requests:**
+
+- feat\(eo\): add an Esperanto lexicon [\#287](https://github.com/TigreGotico/numtag/pull/287) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.21.0a1](https://github.com/TigreGotico/numtag/tree/0.21.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.20.0a2...0.21.0a1)
@@ -570,10 +578,6 @@
 ## [0.12.14a1](https://github.com/TigreGotico/numtag/tree/0.12.14a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.13a1...0.12.14a1)
-
-**Merged pull requests:**
-
-- fix\(en\): "a billionth" and "a trillionth" are fractions [\#70](https://github.com/TigreGotico/numtag/pull/70) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
 
