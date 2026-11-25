@@ -58,8 +58,12 @@
    "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"21: इक्कीस;\": every compound is a word of the table."
   },
   "fold_marks": {
-   "value": "unmarked",
-   "source": "structural, no external source: Devanagari vowel signs are combining marks. A word written with every mark is read as written; folding them all would make सौ (100) the same as सो (sleep)."
+   "value": true,
+   "source": "structural, no external source: a Devanagari vowel sign or nasal sign belongs to the word it follows."
+  },
+  "kept_marks": {
+   "value": "ऀँंःऺऻ़ािीुूृॄॅॆेैॉॊोौ्ॎॏ॒॑॓॔ॕॖॗॢॣ",
+   "source": "structural, no external source: every Devanagari mark stays part of the word on lookup. Folding any of them would read तरह (way) as तेरह (13) and सो (sleep) as सौ (100). hi.wikipedia, «प्राचीन भारत»: \"इस तरह के कुछ लोग तो आधुनिक काल तक पर्वतों और गुफाओं में रहते आए हैं।\""
   }
  },
  "words": {
@@ -84,8 +88,10 @@
    "source": "structural, no external source: no idiom with the word ऋण is listed in the cited pages."
   },
   "article_one": {
-   "value": [],
-   "source": "structural, no external source: the cited pages name no indefinite article; एक reads as the number one wherever it stands."
+   "value": [
+    "एक"
+   ],
+   "source": "en.wiktionary, \"एक\", Hindi, article: \"indefinite article (used largely to mean \"a certain\", but can be used more generally to refer to a noun in its first mention in a conversation)\""
   },
   "of": {
    "value": [],
@@ -749,15 +755,15 @@
   },
   {
    "word": "अरब",
-   "role": "scale_numeral",
+   "role": "scale_noun",
    "value": 9,
-   "source": "en.wikipedia, \"Indian numbering system\": \"arab (100 crore, 109)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000000000: << अरब[ >>];\""
+   "source": "en.wikipedia, \"Indian numbering system\": \"arab (100 crore, 109)\"; hi.wikipedia, «अरब सागर»: \"अरब सागर जिसका भारतीय नाम सिंधु सागर है\"; hi.wikipedia, «सऊदी अरब»: \"सऊदी अरब (अरबी:\": the word also names the Arabs, so it reads only after a count. CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000000000: << अरब[ >>];\""
   },
   {
    "word": "खरब",
-   "role": "scale_numeral",
+   "role": "scale_noun",
    "value": 11,
-   "source": "en.wikipedia, \"Indian numbering system\": \"kharab (100 arab, 1011)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000000000: << खरब[ >>];\""
+   "source": "en.wikipedia, \"Indian numbering system\": \"kharab (100 arab, 1011)\"; hi.wikipedia, «अरब सागर»: \"अरब सागर जिसका भारतीय नाम सिंधु सागर है\"; hi.wikipedia, «सऊदी अरब»: \"सऊदी अरब (अरबी:\": the word also names the Arabs, so it reads only after a count. CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000000000: << खरब[ >>];\""
   },
   {
    "word": "शून्यवाँ",
@@ -2558,6 +2564,54 @@
    "role": "ordinal",
    "value": "99",
    "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"99: निन्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पांच",
+   "role": "unit",
+   "value": "5",
+   "source": "hi.wikipedia, «गंगासागर»: \"२००८ में पांच लाख श्रद्धालुओं ने सागर द्वीप में स्नान किया।\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"5: पाँच;\""
+  },
+  {
+   "word": "हजार",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "hi.wikipedia, «कोलंबो»: \"कोलम्बो का इतिहास दो हजार साल से भी पुराना है।\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000: << हज़ार[ >>];\""
+  },
+  {
+   "word": "करोड",
+   "role": "scale_numeral",
+   "value": 7,
+   "source": "hi.wikipedia, «2010 राष्ट्रमण्डल खेल»: \"कुल 8324 करोड रुपये की बजट पास हुआ है\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"10000000: << करोड़[ >>];\""
+  },
+  {
+   "word": "निन्यानवे",
+   "role": "unit",
+   "value": "99",
+   "source": "hi.wikipedia, «अंक»: \"निन्यानवे ९९\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"99: निन्यानबे;\""
+  },
+  {
+   "word": "छः",
+   "role": "unit",
+   "value": "6",
+   "source": "hi.wikipedia, «प्राचीन भारत»: \"फाहइयान ने अशोक के छः स्तंभ के बारे जानकारी ले\"; en.wiktionary, \"छह\", Hindi: \"Alternative forms छः (chaḥ), छै (chai)\""
+  },
+  {
+   "word": "पंद्रह",
+   "role": "unit",
+   "value": "15",
+   "source": "hi.wikipedia, «१५ (संख्या)»: \"१५ (उच्चारण: पंद्रह) एक प्राकृतिक संख्या है।\"; en.wiktionary, \"पन्द्रह\", Hindi: \"alternative spelling of पंद्रह (pandrah)\""
+  },
+  {
+   "word": "दसवां",
+   "role": "ordinal",
+   "value": "10",
+   "source": "hi.wikipedia, «दसवां संशोधन (भारत का संविधान)»: \"दसवां संविधान संशोधन अधिनियम, १९६१\"; en.wiktionary, \"दसवाँ\", Hindi: \"Ordinal: दसवाँ (dasvā̃)\""
+  },
+  {
+   "word": "दसवीं",
+   "role": "ordinal",
+   "value": "10",
+   "source": "hi.wikipedia, «प्राचीन भारत»: \"मानव के उदय से लेकर दसवीं सदी तक के भारत का इतिहास\"; en.wiktionary, \"दसवाँ\", Hindi, declension, feminine singular direct: \"दसवीं\""
   }
  ]
 }

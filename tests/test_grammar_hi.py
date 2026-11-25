@@ -3,6 +3,7 @@ comment beside it; sources are in numtag/lexicon/hi.json."""
 import unittest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O, D = "cardinal", "ordinal", "decimal"
 
@@ -73,3 +74,43 @@ class TestDecimals(unittest.TestCase):
 
     def test_rin_makes_a_number_negative(self):
         self.assertEqual(hi("ऋण पाँच"), [("ऋण पाँच", "-5", C)])
+
+
+class TestCommonSpellings(unittest.TestCase):
+    def test_the_anusvara_and_the_missing_nukta_read_as_the_cldr_spelling(self):
+        # 5 x 100000
+        self.assertEqual(hi("पांच लाख"), [("पांच लाख", "500000", C)])
+        # 2 x 100 + 5
+        self.assertEqual(hi("दो सौ पांच"), [("दो सौ पांच", "205", C)])
+        # 2 x 1000
+        self.assertEqual(hi("दो हजार"), [("दो हजार", "2000", C)])
+        # 10 x 10^7
+        self.assertEqual(hi("दस करोड रुपये"), [("दस करोड", "100000000", C)])
+
+    def test_other_spellings(self):
+        for word, value in (("निन्यानवे", "99"), ("छः", "6"), ("पंद्रह", "15")):
+            self.assertEqual(hi(word), [(word, value, C)])
+        self.assertEqual(hi("दसवां"), [("दसवां", "10", O)])
+        self.assertEqual(hi("दसवीं"), [("दसवीं", "10", O)])
+
+
+class TestWordsThatHoldNoNumber(unittest.TestCase):
+    def test_a_word_with_other_vowel_signs_is_no_number(self):
+        # तरह (way), बस (bus), सत (true), चर (variable), सठ (rogue) differ from तेरह 13, बीस 20, सात 7, चार 4, साठ 60 by a vowel sign
+        for word in ("तरह", "बस", "सत", "चर", "सठ", "तस", "बरह", "पचस"):
+            self.assertEqual(hi(word), [], word)
+
+    def test_arab_needs_a_count_to_be_a_milliard(self):
+        self.assertEqual(hi("सऊदी अरब"), [])
+        self.assertEqual(hi("अरब सागर"), [])
+        # 3 x 10^9
+        self.assertEqual(hi("तीन अरब"), [("तीन अरब", "3000000000", C)])
+
+    def test_kharab_needs_a_count_too(self):
+        self.assertEqual(hi("खरब"), [])
+        # 2 x 10^11
+        self.assertEqual(hi("दो खरब"), [("दो खरब", "200000000000", C)])
+
+    def test_ek_before_a_noun_is_the_indefinite_article(self):
+        self.assertEqual(hi("यह एक अच्छा दिन है"), [("एक", "1", C)])
+        self.assertLess(tag_numbers("यह एक अच्छा दिन है", "hi")[0].confidence, 0.5)
