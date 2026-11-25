@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.23.0a1](https://github.com/TigreGotico/numtag/tree/0.23.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.22.0a1...0.23.0a1)
+
+**Merged pull requests:**
+
+- feat: write numbers as words from a writer block of the lexicon [\#288](https://github.com/TigreGotico/numtag/pull/288) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.22.0a1](https://github.com/TigreGotico/numtag/tree/0.22.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.21.0a1...0.22.0a1)
@@ -614,10 +622,6 @@
 ## [0.12.9a1](https://github.com/TigreGotico/numtag/tree/0.12.9a1) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.8a1...0.12.9a1)
-
-**Merged pull requests:**
-
-- fix: only a real space group before a point decimal keeps it unread [\#71](https://github.com/TigreGotico/numtag/pull/71) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.8a1](https://github.com/TigreGotico/numtag/tree/0.12.8a1) (2026-11-16)
 

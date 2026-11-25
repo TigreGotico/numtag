@@ -1,10 +1,15 @@
 """The writer: the golden file, the round trip, the interpreter and the API."""
 import json
 import random
+import subprocess
+import sys
 import tempfile
 import unittest
+from fractions import Fraction
 from pathlib import Path
 from unittest import mock
+
+import pytest
 
 import numtag
 from numtag import Kind, SpokenForm, SpellingReason, UnsupportedLanguageError, spell, tag_numbers
@@ -131,6 +136,31 @@ class TestRoundTrip(unittest.TestCase):
     def test_the_reader_reads_every_decimal_back_in_ms(self):
         """The writer says "koma", which the Malay lexicon does not read as a decimal mark: it says "perpuluhan"."""
         self.assertEqual(self.decimal_failures("ms"), [])
+
+    @pytest.mark.xfail(strict=True, reason="a denominator over 20 is written as a cardinal and an ordinal that the reader "
+                       "splits https://github.com/TigreGotico/numtag/issues/295")
+    def test_the_reader_reads_a_fraction_with_a_denominator_over_20_back_as_one_mention(self):
+        failures = []
+        for lang in WRITERS:
+            for numerator, denominator in ((1, 21), (3, 25), (1, 100)):
+                text = spell(f"{numerator}/{denominator}", lang)[0].text
+                found = [(m.text, Fraction(m.value)) for m in tag_numbers(text, lang)]
+                if found != [(text, Fraction(numerator, denominator))]:
+                    failures.append((lang, numerator, denominator, text, found))
+        self.assertEqual(failures, [])
+
+    @pytest.mark.xfail(strict=True, reason="a whole part before a fraction reads back as another value, 31/3 as 11/3 and "
+                       "32/3 as 4 https://github.com/TigreGotico/numtag/issues/295")
+    def test_a_mixed_fraction_reads_as_its_parts_or_as_its_whole_value(self):
+        # Whether the reader joins the whole part and the fraction is open in the issue; any other value is wrong.
+        failures = []
+        for lang in WRITERS:
+            for value, allowed in (("31/3", {"10", "1/3", "31/3"}), ("32/3", {"10", "2/3", "32/3"})):
+                text = spell(value, lang)[0].text
+                values = [m.value for m in tag_numbers(text, lang)]
+                if not values or set(values) - allowed:
+                    failures.append((lang, value, text, values))
+        self.assertEqual(failures, [])
 
     def test_every_literal_word_of_a_rule_is_a_form_of_the_reader(self):
         for lang in WRITERS:
@@ -275,6 +305,12 @@ class TestInterpreter(unittest.TestCase):
         rules = [{"value": "0", "text": "a­b  c;"}]
         self.assertEqual(self.read(rules, "0"), "ab c")
 
+    @pytest.mark.xfail(strict=True, reason="the apostrophe that opens a rule text stays in the words "
+                       "https://github.com/TigreGotico/numtag/issues/293")
+    def test_an_apostrophe_that_opens_a_rule_text_is_no_part_of_the_words(self):
+        # ICU rule text format: a leading apostrophe keeps the space after it and is not output.
+        self.assertEqual(self.read([{"value": "0", "text": "' nol;"}], "0").split(), ["nol"])
+
     def test_a_rule_set_with_no_rule_for_a_number_raises(self):
         rules = [{"value": "5", "text": "five;"}]
         with self.assertRaisesRegex(ValueError, "no rule for 3"):
@@ -297,6 +333,28 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell("8", "ms")[0].text, "lapan")
         self.assertEqual(spell("8", "ms-MY")[0].text, "lapan")
         self.assertEqual(spell("8", "id_ID")[0].text, "delapan")
+
+    def test_two_variants_with_the_same_words_give_one_spelling(self):
+        variants = Variants(self)
+        data = _tiny([{"value": "0", "text": "nol;"}])
+        data["writer"]["forms"]["cardinal"]["variants"] = [{"ruleset": "cardinal", "reason": "standard"},
+                                                           {"ruleset": "cardinal", "reason": "variant_spelling"}]
+        variants.write("variant", data)
+        self.assertEqual([(s.text, s.reason, s.rank) for s in spell("0", "variant")],
+                         [("nol", SpellingReason.STANDARD, 0)])
+
+    def test_the_sign_of_zero_is_no_minus_word(self):
+        self.assertEqual(spell("-0", "id")[0].text, "nol")
+        self.assertEqual(spell("-0", "ms")[0].text, "sifar")
+        self.assertEqual(spell("-0.0", "id")[0].text, "nol")
+
+    def test_a_program_that_only_reads_never_loads_the_writer(self):
+        code = ("import sys; sys.path.insert(0, sys.argv[1]); import numtag; "
+                "assert numtag.__file__.startswith(sys.argv[1]), numtag.__file__; "
+                "assert 'numtag.writer' not in sys.modules; numtag.tag_numbers('dua', 'id'); "
+                "assert 'numtag.writer' not in sys.modules; numtag.spell('2', 'id'); "
+                "assert 'numtag.writer' in sys.modules")
+        subprocess.run([sys.executable, "-I", "-c", code, str(PACKAGE.parent)], check=True, cwd=tempfile.gettempdir())
 
     def test_a_value_that_is_no_digit_string_raises(self):
         for value in ("", "x", "1e3", "١٢", "--5", "5.", ".5", "-", "1 2"):
@@ -338,6 +396,27 @@ class TestFraction(unittest.TestCase):
     def test_a_decimal_is_a_fraction_in_lowest_terms(self):
         self.assertEqual([writer_module.as_fraction(v) for v in ("0.75", "-0.5", "5.5", "0.125", "7", "-3")],
                          ["3/4", "-1/2", "11/2", "1/8", "7", "-3"])
+
+
+class TestNamedDenominator(unittest.TestCase):
+    @pytest.mark.xfail(strict=True, reason="a named denominator drops the numerator also where it is more than 1 "
+                       "https://github.com/TigreGotico/numtag/issues/294")
+    def test_a_named_denominator_keeps_a_numerator_other_than_one(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"]["fraction"]["named"]["4"] = "seperempat"
+        variants.write("variant", data)
+        # 3/4 is three of the four parts and 7/4 is 1 + 3/4, the way id.wikipedia "Pecahan" writes 3 3/4.
+        self.assertEqual([spell(value, "variant")[0].text for value in ("1/4", "3/4", "7/4")],
+                         ["seperempat", "tiga perempat", "satu tiga perempat"])
+
+
+class TestZeroFraction(unittest.TestCase):
+    @pytest.mark.xfail(strict=True, reason="-0/5 is written with a minus word although its value is zero "
+                       "https://github.com/TigreGotico/numtag/issues/295")
+    def test_a_fraction_of_a_zero_numerator_has_no_minus_word(self):
+        self.assertEqual([spell("-0/5", lang)[0].text for lang in WRITERS],
+                         [spell("0/5", lang)[0].text for lang in WRITERS])
 
 
 class TestMention(unittest.TestCase):
