@@ -2612,6 +2612,330 @@
    "role": "ordinal",
    "value": "10",
    "source": "hi.wikipedia, «प्राचीन भारत»: \"मानव के उदय से लेकर दसवीं सदी तक के भारत का इतिहास\"; en.wiktionary, \"दसवाँ\", Hindi, declension, feminine singular direct: \"दसवीं\""
+  },
+  {
+   "word": "दश",
+   "role": "unit",
+   "value": "10",
+   "source": "hi.wikipedia, «अंक»: \"दश १०\""
+  },
+  {
+   "word": "बाइस",
+   "role": "unit",
+   "value": "22",
+   "source": "hi.wikipedia, «अंक»: \"बाइस २२\""
+  },
+  {
+   "word": "तेइस",
+   "role": "unit",
+   "value": "23",
+   "source": "hi.wikipedia, «अंक»: \"तेइस २३\""
+  },
+  {
+   "word": "सत्ताइस",
+   "role": "unit",
+   "value": "27",
+   "source": "hi.wikipedia, «अंक»: \"सत्ताइस २७\""
+  },
+  {
+   "word": "अट्ठाइस",
+   "role": "unit",
+   "value": "28",
+   "source": "hi.wikipedia, «अंक»: \"अट्ठाइस २८\""
+  },
+  {
+   "word": "इक्कतीस",
+   "role": "unit",
+   "value": "31",
+   "source": "hi.wikipedia, «अंक»: \"इक्कतीस ३१\""
+  },
+  {
+   "word": "अँड़तीस",
+   "role": "unit",
+   "value": "38",
+   "source": "hi.wikipedia, «अंक»: \"अँड़तीस ३८\""
+  },
+  {
+   "word": "उंचालीस",
+   "role": "unit",
+   "value": "39",
+   "source": "hi.wikipedia, «अंक»: \"उंचालीस ३९\""
+  },
+  {
+   "word": "चौवालिस",
+   "role": "unit",
+   "value": "44",
+   "source": "hi.wikipedia, «अंक»: \"चौवालिस ४४\""
+  },
+  {
+   "word": "पैंतालिस",
+   "role": "unit",
+   "value": "45",
+   "source": "hi.wikipedia, «अंक»: \"पैंतालिस ४५\""
+  },
+  {
+   "word": "छयालिस",
+   "role": "unit",
+   "value": "46",
+   "source": "hi.wikipedia, «अंक»: \"छयालिस ४६\""
+  },
+  {
+   "word": "सैंतालिस",
+   "role": "unit",
+   "value": "47",
+   "source": "hi.wikipedia, «अंक»: \"सैंतालिस ४७\""
+  },
+  {
+   "word": "उंचास",
+   "role": "unit",
+   "value": "49",
+   "source": "hi.wikipedia, «अंक»: \"उंचास ४९\""
+  },
+  {
+   "word": "उन्सठ",
+   "role": "unit",
+   "value": "59",
+   "source": "hi.wikipedia, «अंक»: \"उन्सठ ५९\""
+  },
+  {
+   "word": "उन्नहत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "hi.wikipedia, «अंक»: \"उन्नहत्तर ६९\""
+  },
+  {
+   "word": "पिचहत्तर",
+   "role": "unit",
+   "value": "75",
+   "source": "hi.wikipedia, «अंक»: \"पिचहत्तर ७५\""
+  },
+  {
+   "word": "पिच्चासी",
+   "role": "unit",
+   "value": "85",
+   "source": "hi.wikipedia, «अंक»: \"पिच्चासी ८५\""
+  },
+  {
+   "word": "सतासी",
+   "role": "unit",
+   "value": "87",
+   "source": "hi.wikipedia, «अंक»: \"सतासी ८७\""
+  },
+  {
+   "word": "अठासी",
+   "role": "unit",
+   "value": "88",
+   "source": "hi.wikipedia, «अंक»: \"अठासी ८८\""
+  },
+  {
+   "word": "इक्यानवे",
+   "role": "unit",
+   "value": "91",
+   "source": "hi.wikipedia, «अंक»: \"इक्यानवे ९१\""
+  },
+  {
+   "word": "बानवे",
+   "role": "unit",
+   "value": "92",
+   "source": "hi.wikipedia, «अंक»: \"बानवे ९२\""
+  },
+  {
+   "word": "तिरानवे",
+   "role": "unit",
+   "value": "93",
+   "source": "hi.wikipedia, «अंक»: \"तिरानवे ९३\""
+  },
+  {
+   "word": "चौरानवे",
+   "role": "unit",
+   "value": "94",
+   "source": "hi.wikipedia, «अंक»: \"चौरानवे ९४\""
+  },
+  {
+   "word": "पिच्चानवे",
+   "role": "unit",
+   "value": "95",
+   "source": "hi.wikipedia, «अंक»: \"पिच्चानवे ९५\""
+  },
+  {
+   "word": "छियानवे",
+   "role": "unit",
+   "value": "96",
+   "source": "hi.wikipedia, «अंक»: \"छियानवे ९६\""
+  },
+  {
+   "word": "सत्तानवे",
+   "role": "unit",
+   "value": "97",
+   "source": "hi.wikipedia, «अंक»: \"सत्तानवे ९७\""
+  },
+  {
+   "word": "अठानवे",
+   "role": "unit",
+   "value": "98",
+   "source": "hi.wikipedia, «अंक»: \"अठानवे ९८\""
+  },
+  {
+   "word": "तिरपन",
+   "role": "unit",
+   "value": "53",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"५३ - तिरपन\""
+  },
+  {
+   "word": "तिरसठ",
+   "role": "unit",
+   "value": "63",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"६३ - तिरसठ\""
+  },
+  {
+   "word": "उन्यासी",
+   "role": "unit",
+   "value": "79",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"७९ - उन्यासी\""
+  },
+  {
+   "word": "पंचानवे",
+   "role": "unit",
+   "value": "95",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"९५ - पंचानवे\""
+  },
+  {
+   "word": "अट्ठानवे",
+   "role": "unit",
+   "value": "98",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"९८ - अट्ठानवे\""
+  },
+  {
+   "word": "निन्यान्वे",
+   "role": "unit",
+   "value": "99",
+   "source": "hi.wikipedia, «हिन्दी की गिनती»: \"९९ - निन्यान्वे\""
+  },
+  {
+   "word": "चौतीस",
+   "role": "unit",
+   "value": "34",
+   "source": "hi.wikipedia, «बनासकांठा जिला»: \"गुजरात राज्य के चौतीस जिलों में से एक है\""
+  },
+  {
+   "word": "पैतीस",
+   "role": "unit",
+   "value": "35",
+   "source": "hi.wikipedia, «जीनोम परियोजना»: \"चार हज़ार छः सौ पैतीस है\""
+  },
+  {
+   "word": "तैतीस",
+   "role": "unit",
+   "value": "33",
+   "source": "hi.wikipedia, «हिन्दू देवी देवताओं की सूची»: \"सनातन धर्म में तैतीस कोटि(प्रकार) देवताओं का वर्णन है\""
+  },
+  {
+   "word": "सैतीस",
+   "role": "unit",
+   "value": "37",
+   "source": "hi.wikipedia, «देवानंप्रिय»: \"इन्होंने सैतीस (३७) वर्ष तक राज्य किया\""
+  },
+  {
+   "word": "पैतालीस",
+   "role": "unit",
+   "value": "45",
+   "source": "hi.wikipedia, «लिपिड प्रोफाइल»: \"पारिवारिक इतिहास है तो पैतालीस साल की उम्र\""
+  },
+  {
+   "word": "चौसठ",
+   "role": "unit",
+   "value": "64",
+   "source": "hi.wikipedia, «चौसठ योगिनी मंदिर, मुरैना»: \"मुरैना का चौसठ योगिनी मंदिर मध्य प्रदेश के मुरैना जिले\""
+  },
+  {
+   "word": "पैसठ",
+   "role": "unit",
+   "value": "65",
+   "source": "hi.wikipedia, «दौसा लोक सभा निर्वाचन क्षेत्र»: \"तीन लाख पैसठ हजार मीणा\""
+  },
+  {
+   "word": "अठावन",
+   "role": "unit",
+   "value": "58",
+   "source": "hi.wikipedia, «भारत में 2020 कोरोनावायरस महामारी की समयरेखा»: \"दिल्ली में अठावन नए मामले सामने आए\""
+  },
+  {
+   "word": "पचानवे",
+   "role": "unit",
+   "value": "95",
+   "source": "hi.wikipedia, «न्यूर्क, न्यू जर्सी»: \"उनके पचानवे प्रतिशत से अधिक स्नातक\""
+  },
+  {
+   "word": "अठाईस",
+   "role": "unit",
+   "value": "28",
+   "source": "hi.wikipedia, «भारतीय राज्यों के वर्तमान मुख्यमंत्रियों की सूची»: \"भारतीय गणराज्य में अठाईस राज्यों और आठ में से\""
+  },
+  {
+   "word": "इकत्तीस",
+   "role": "unit",
+   "value": "31",
+   "source": "en.wiktionary, \"इकतीस\", Hindi, Alternative forms: \"इकत्तीस (ikattīs)\""
+  },
+  {
+   "word": "तेंतीस",
+   "role": "unit",
+   "value": "33",
+   "source": "en.wiktionary, \"तैंतीस\", Hindi, Alternative forms: \"तेंतीस (tẽtīs)\""
+  },
+  {
+   "word": "तेतीस",
+   "role": "unit",
+   "value": "33",
+   "source": "en.wiktionary, \"तैंतीस\", Hindi, Alternative forms: \"तेतीस (tetīs)\""
+  },
+  {
+   "word": "चव्वन",
+   "role": "unit",
+   "value": "54",
+   "source": "en.wiktionary, \"चौवन\", Hindi, Alternative forms: \"चव्वन (cavvan)\""
+  },
+  {
+   "word": "सरसठ",
+   "role": "unit",
+   "value": "67",
+   "source": "en.wiktionary, \"सड़सठ\", Hindi, Alternative forms: \"सरसठ (sarsaṭh)\""
+  },
+  {
+   "word": "पछत्तर",
+   "role": "unit",
+   "value": "75",
+   "source": "en.wiktionary, \"पचहत्तर\", Hindi, Alternative forms: \"पछत्तर (pachattar)\""
+  },
+  {
+   "word": "इकानवे",
+   "role": "unit",
+   "value": "91",
+   "source": "en.wiktionary, \"इक्यानवे\", Hindi, Alternative forms: \"इकानवे (ikānve)\""
+  },
+  {
+   "word": "इकासी",
+   "role": "unit",
+   "value": "81",
+   "source": "en.wiktionary, \"इक्यासी\", Hindi, Alternative forms: \"इकासी (ikāsī)\""
+  },
+  {
+   "word": "इकावन",
+   "role": "unit",
+   "value": "51",
+   "source": "en.wiktionary, \"इक्यावन\", Hindi, Alternative forms: \"इकावन (ikāvan)\""
+  },
+  {
+   "word": "नव्वे",
+   "role": "unit",
+   "value": "90",
+   "source": "en.wiktionary, \"नब्बे\", Hindi, Alternative forms: \"नव्वे (navve)\""
+  },
+  {
+   "word": "सत्तरह",
+   "role": "unit",
+   "value": "17",
+   "source": "en.wiktionary, \"सत्रह\", Hindi, Alternative forms: \"सत्तरह (sattarah)\""
   }
  ]
 }
