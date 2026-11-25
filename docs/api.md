@@ -423,7 +423,7 @@ A `Spelling` is a frozen dataclass of `text`, `reason` and `rank`. The `rank` is
 NumberMention.spoken(lang=None, *, form=None, gender=None, case=None, scale=None, places=None) -> tuple[Spelling, ...]
 ```
 
-`spoken` writes the value of a mention as words. It calls `spell` with the value. `lang` defaults to the lexicon that read the mention. `form` defaults to the ordinal for an ordinal mention and to the cardinal for every other kind, and `gender` defaults to the gender of the mention. A digit mention gives its words, and a word mention gives the canonical words of its value.
+`spoken` writes the value of a mention as words. It calls `spell` with the value. `lang` defaults to the lexicon that read the mention. `form` defaults to the ordinal for an ordinal mention and to the cardinal for every other kind, and `gender` defaults to the gender of the mention. A digit mention gives its words, and a word mention gives the canonical words of its value. A fraction mention speaks as a fraction in lowest terms, also when its value is a finite decimal: "setengah" has the value 0.5 and speaks "setengah".
 
 ```python
 >>> tag_numbers("dua puluh satu orang", "id")[0].spoken()[0].text
@@ -432,6 +432,8 @@ NumberMention.spoken(lang=None, *, form=None, gender=None, case=None, scale=None
 'dua puluh satu'
 >>> tag_numbers("kedua", "id")[0].spoken("ms", form=SpokenForm.CARDINAL)[0].text
 'dua'
+>>> [tag_numbers(text, "id")[0].spoken()[0].text for text in ("setengah", "tiga perempat")]
+['setengah', 'tiga perempat']
 ```
 
 ## revision

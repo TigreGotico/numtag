@@ -61,9 +61,9 @@
     {"word": "ke", "role": "ordinal_prefix", "ambiguous": true, "source": "KBBI VI Daring, \"ke-\": \"prefiks pembentuk numeralia tingkat atau urutan: ketiga; kelima; kesebelas\" and \"prefiks pembentuk numeralia kumpulan: kedua (buku); ketiga (orang)\"; \"kedua\": \"num nomor dua: anaknya yang ~ lahir kemarin\" and \"num kelompok yang terdiri atas dua (orang dan barang): ~ mobilnya disita kejaksaan\". The group sense starts its phrase before a noun, the ordinal follows a word (\"anaknya yang ~\", \"juara ~\"), so a ke- word that starts a phrase and has a word after it is a weak ordinal. EYD V, \"Angka dan Bilangan\", G.9: \"abad ke-7 [...] Perang Dunia Ke-2\"."}
   ],
   "writer": {
-    "source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1); rules changed from it carry their own source",
+    "source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1); a rule changed from it carries its own source, and the source of a rule set names the CLDR rules that are left out",
     "rulesets": {
-      "spellout-cardinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal", "rules": [
+      "spellout-cardinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal. Left out: the rules x.x and x,x, and the rules for 10^15 (kuadriliun) and 10^18 (=#,##0.#=). ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_int, has a scale table that ends at \"triliun\", so it writes 10^15 as \"seribu triliun\" and 10^18 as \"satu juta triliun\", and the golden file of its writer holds that output.", "rules": [
           {"value": "0", "text": "nol;"},
           {"value": "1", "text": "satu;"},
           {"value": "2", "text": "dua;"},
@@ -87,7 +87,7 @@
           {"value": "1000000000000", "text": "←← triliun[ →→];"},
           {"value": "-x", "text": "minus →→;", "source": "ovos-number-parser 0.31.4a8 numbers_id.py _pronounce_number (id): \"minus \" before the reading; the CLDR rule says \"negatif\"."}
       ]},
-      "spellout-ordinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal", "rules": [
+      "spellout-ordinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal. Left out: the rules -x and x.x. The ordinal form takes whole numbers from 1 (minimum), as ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_ordinal, does: it raises ValueError for any other number.", "rules": [
           {"value": "0", "text": "ke=%spellout-cardinal=;"},
           {"value": "1", "text": "pertama;"},
           {"value": "2", "text": "ke=%spellout-cardinal=;"}

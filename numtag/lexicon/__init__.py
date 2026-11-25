@@ -642,6 +642,10 @@ def _check_writer(lang: str, writer: dict) -> None:
         _refuse(lang, f"rule set {name!r}", ruleset, RULESET_KEYS)
         for rule in ruleset["rules"]:
             _refuse(lang, f"a rule of {name!r}", rule, RULE_KEYS)
+            value = rule["value"]
+            if value != "-x" and not (value.isascii() and value.isdigit() and (value == "0" or value[0] != "0")):
+                raise ValueError(f"{lang}: the value {value!r} of a rule of {name!r} is not '-x' or a whole number "
+                                 "with no leading zero")
     for name, form in writer["forms"].items():
         _refuse(lang, f"form {name!r}", form, FORM_KEYS)
         lists = [form["variants"], *form.get("gender", {}).values(), *form.get("case", {}).values()]

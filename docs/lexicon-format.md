@@ -264,7 +264,7 @@ A `writer` block makes the lexicon write numbers as words. `numtag.spell` runs i
 
 ### Rules
 
-A rule is an object with `value`, `text`, and optionally `radix` and `source`. The `value` is a base value as a digit string, or `-x` for the rule that reads a negative number. The `text` is the rule text. The loader refuses any other key.
+A rule is an object with `value`, `text`, and optionally `radix` and `source`. The `value` is a base value as a whole number with no leading zero, or `-x` for the rule that reads a negative number. The `text` is the rule text. The loader refuses at once any other key and any other `value`, such as `x.x`, `Inf` or `010`.
 
 The interpreter reads a whole number in a rule set like this. It picks the rule with the largest base value that is not above the number. The divisor is the radix (10 when the rule has none) raised to the largest exponent that keeps the divisor not above the base value. The quotient and the remainder of the number by the divisor fill the slots of the rule text. A rule set holds no rule for a number below its smallest base value, so it has a rule for 0.
 
@@ -278,7 +278,7 @@ The interpreter reads a whole number in a rule set like this. It picks the rule 
 | `[...]` | Text that stays out when the remainder is 0 |
 | any other character | Itself |
 
-The soft hyphen U+00AD is dropped from the words, runs of spaces become one space, and the ends are trimmed. The loader refuses a rule text that holds any of the characters `$ # < >`, which belong to other parts of the ICU syntax that this version does not read, and it refuses a quotient or remainder slot that names no `%` rule set.
+The soft hyphen U+00AD is dropped from the words, runs of spaces become one space, and the ends are trimmed. The writer of a lexicon is built on the first `spell` call for it, and it refuses then a rule text that holds any of the characters `$ # < >`, which belong to other parts of the ICU syntax that this version does not read, a quotient or remainder slot that names no `%` rule set, and a call to a rule set that the block lacks. The error names the rule set and the rule. A leading apostrophe is no part of this version and reads as text.
 
 ### Forms
 
@@ -290,7 +290,7 @@ A form can also hold `gender`, an object from `masculine`, `feminine` or `neuter
 
 A negative number reads with the `-x` rule of the rule set. A number with decimals reads as the whole part, the `decimal` word and one cardinal for each of the first `places` digits of the rounded decimals. The rounding goes half away from zero to `places` decimals. With `places` of 0 or less, a value under one half reads as 0. A value that would round to 0 at `places` decimals reads up to its first digit that is not 0, and the rounding goes to that digit.
 
-With `scientific` set, a number with a mantissa and an exponent other than 0 reads as the mantissa, the `times` words and the exponent, each with the minus word where it is negative. The mantissa keeps `places` decimals, rounded half away from zero. A whole number of more than 15 digits reads the same way when its reading in the rule set repeats a word that is no digit word, or holds a run of seven digits, and the lexicon has `scientific`.
+With `scientific` set, a number with a mantissa and an exponent other than 0 reads as the mantissa, the `times` words and the exponent, each with the minus word where it is negative. The mantissa keeps `places` decimals, rounded half away from zero. A whole number of more than 15 digits reads the same way when its reading in the rule set repeats a word that is no digit word, and the lexicon has `scientific`.
 
 ### Fractions
 

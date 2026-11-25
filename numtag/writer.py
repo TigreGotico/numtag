@@ -213,10 +213,14 @@ def _writer(name: str) -> Writer:
 def _split(value: str) -> tuple[bool, str, str]:
     """The sign, whole digits and fraction digits of a decimal digit string."""
     negative = value.startswith("-")
-    whole, _, fraction = value.lstrip("-").partition(".")
-    if not whole.isascii() or not whole.isdigit() or (fraction and not (fraction.isascii() and fraction.isdigit())):
+    whole, point, fraction = value.removeprefix("-").partition(".")
+    if not _is_digits(whole) or point and not _is_digits(fraction):
         raise ValueError(f"{value!r} is not a digit string")
     return negative, digits.normalise(whole), fraction.rstrip("0")
+
+
+def _is_digits(text: str) -> bool:
+    return text.isascii() and text.isdigit()
 
 
 def _round(whole: str, fraction: str, places: int) -> tuple[str, str]:
@@ -272,7 +276,7 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
     else:
         whole, fraction = _round(whole, fraction, max(places, 0))
     text = _plain(writer, ruleset, negative, whole, fraction, places)
-    if not fraction and len(whole) > BIG and (_padded(writer, ruleset, text) or _unread(text)):
+    if not fraction and len(whole) > BIG and _padded(writer, ruleset, text):
         return _exponent(writer, ruleset, negative, whole, fraction, places) or text
     return text
 
@@ -314,15 +318,6 @@ def _padded(writer: Writer, ruleset: str, text: str) -> bool:
     return any(a == b and a not in digit_words for a, b in zip(words, words[1:]))
 
 
-def _unread(text: str) -> bool:
-    run = 0
-    for char in text:
-        run = run + 1 if char.isdigit() else 0
-        if run >= 7:
-            return True
-    return False
-
-
 def _exponent(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str, places: int) -> str | None:
     """The scientific reading, or None when the exponent is 0 or the lexicon has no such form."""
     spec = writer.block.get("scientific")
@@ -350,8 +345,11 @@ def _exponent(writer: Writer, ruleset: str, negative: bool, whole: str, fraction
 def _fraction(writer: Writer, ruleset: str, value: str) -> str:
     spec = writer.block.get("fraction")
     top, _, bottom = value.partition("/")
+    terms = top.removeprefix("-"), bottom.removeprefix("-")
+    if not all(map(_is_digits, terms)):
+        raise ValueError(f"{value!r} is not a fraction of two whole numbers")
     negative = top.startswith("-") != bottom.startswith("-")
-    top, bottom = digits.normalise(top.lstrip("-")), digits.normalise(bottom.lstrip("-"))
+    top, bottom = map(digits.normalise, terms)
     if bottom == "0":
         raise ZeroDivisionError(f"denominator is zero: {value}")
     whole, rest = digits.divide_whole(top, bottom)
@@ -375,3 +373,17 @@ def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str,
     if numerator == "1" and not lead:
         return spec["single"].replace("{denominator}", word)
     return " ".join([*lead, writer.render(ruleset, numerator), word])
+
+
+def as_fraction(value: str) -> str:
+    """A decimal digit string as the fraction in lowest terms: "0.75" is "3/4".
+    A whole number and a fraction stay as they are."""
+    if "/" in value:
+        return value
+    negative, whole, fraction = _split(value)
+    if not fraction:
+        return value
+    top, bottom = digits.normalise(whole + fraction), "1" + "0" * len(fraction)
+    divisor = digits.gcd(top, bottom)
+    top, bottom = digits.divide_whole(top, divisor)[0], digits.divide_whole(bottom, divisor)[0]
+    return f"{'-' if negative else ''}{top}/{bottom}"

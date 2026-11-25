@@ -140,14 +140,17 @@ class NumberMention:
         ``lang`` is the language tag of the words, by default the one that
         ``tag_numbers`` read. ``form`` is the ordinal for an ordinal mention
         and the cardinal for every other kind. ``gender`` is the gender of the
-        mention. Read ``numtag.spell``.
+        mention. A fraction mention speaks as a fraction in lowest terms, also
+        when its value is a finite decimal ("setengah" has the value 0.5).
+        Read ``numtag.spell``.
         """
-        from numtag.writer import SpokenForm, spell
+        from numtag.writer import SpokenForm, as_fraction, spell
         lang = lang or self.lang
         if lang is None:
             raise ValueError("this mention has no language: pass lang")
         form = form or (SpokenForm.ORDINAL if self.kind is Kind.ORDINAL else SpokenForm.CARDINAL)
-        return spell(self.value, lang, form=form, gender=gender or self.gender, case=case, scale=scale,
+        value = as_fraction(self.value) if self.kind is Kind.FRACTION else self.value
+        return spell(value, lang, form=form, gender=gender or self.gender, case=case, scale=scale,
                      places=places)
 
     def __post_init__(self):

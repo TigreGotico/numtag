@@ -8,6 +8,7 @@ from unittest import mock
 
 import numtag
 from numtag import Kind, SpokenForm, SpellingReason, UnsupportedLanguageError, spell, tag_numbers
+from numtag.lexicon import load
 from numtag import lexicon as lexicon_module
 from numtag import writer as writer_module
 import golden_writers
@@ -112,6 +113,48 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
 
+    DECIMALS = ("0.5", "2.5", "3.14", "12.75", "100.25", "0.001")
+
+    def decimal_failures(self, lang: str) -> list:
+        failures = []
+        for value in self.DECIMALS:
+            words = spell(value, lang)[0].text
+            found = [(m.text, m.value) for m in tag_numbers(words, lang)]
+            if found != [(words, value)]:
+                failures.append((value, words, found))
+        return failures
+
+    def test_the_reader_reads_every_decimal_back_in_id(self):
+        self.assertEqual(self.decimal_failures("id"), [])
+
+    @unittest.expectedFailure
+    def test_the_reader_reads_every_decimal_back_in_ms(self):
+        """The writer says "koma", which the Malay lexicon does not read as a decimal mark: it says "perpuluhan"."""
+        self.assertEqual(self.decimal_failures("ms"), [])
+
+    def test_every_literal_word_of_a_rule_is_a_form_of_the_reader(self):
+        for lang in WRITERS:
+            lexicon = load(lang)
+            known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners
+            words = set()
+            for spec in _file(lang)["writer"]["rulesets"].values():
+                for rule in spec["rules"]:
+                    words |= {word.casefold() for text in self.literals(writer_module._parse(rule["text"], lang))
+                              for word in text.replace("\u00ad", " ").split()}
+            with self.subTest(lang=lang):
+                self.assertTrue(words)
+                unread = [word for word in sorted(words - known)
+                          if [m.text for m in tag_numbers(word, lang)] != [word]]
+                self.assertEqual(unread, [])
+
+    @classmethod
+    def literals(cls, tokens: tuple):
+        for kind, value in tokens:
+            if kind == "lit":
+                yield value
+            elif kind == "opt":
+                yield from cls.literals(value)
+
     def test_the_reader_reads_every_ordinal_back(self):
         for lang in WRITERS:
             failures = []
@@ -152,6 +195,19 @@ class TestRevisions(unittest.TestCase):
         self.assertNotEqual(numtag.lexicon.revision("id"), before)
 
 
+class TestExtends(unittest.TestCase):
+    def test_a_lexicon_with_no_writer_inherits_the_writer_of_its_base(self):
+        variants = Variants(self)
+        variants.write("variant", {"format_version": 1, "extends": "id"})
+        self.assertEqual(spell("21", "variant")[0].text, "dua puluh satu")
+        self.assertEqual(writer_module.writer_block("variant"), _file("id")["writer"])
+
+    def test_a_writer_of_the_file_replaces_the_writer_of_its_base(self):
+        variants = Variants(self)
+        variants.write("variant", {"format_version": 2, "extends": "id", "writer": _file("ms")["writer"]})
+        self.assertEqual(spell("0", "variant")[0].text, "sifar")
+
+
 class TestLoader(unittest.TestCase):
     def refused(self, data: dict, message: str) -> None:
         variants = Variants(self)
@@ -175,6 +231,12 @@ class TestLoader(unittest.TestCase):
         data = _tiny([{"value": "0", "text": "nol;"}])
         data["writer"]["forms"]["cardinal"]["variants"][0]["ruleset"] = "none"
         self.refused(data, "form 'cardinal' names the unknown rule set 'none'")
+
+    def test_a_rule_value_that_is_no_whole_number_is_refused_at_once(self):
+        for value in ("x.x", "Inf", "NaN", "010", "1,5", "", "-1", "x"):
+            with self.subTest(value=value):
+                self.refused(_tiny([{"value": "0", "text": "nol;"}, {"value": value, "text": "x;"}]),
+                             "is not '-x' or a whole number with no leading zero")
 
     def test_a_rule_text_that_the_interpreter_does_not_read_is_refused(self):
         for text in ("$(cardinal,one{a}other{b})$;", "=#,##0=;", "<<a;", "←x←;"):
@@ -236,9 +298,16 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell("8", "id_ID")[0].text, "delapan")
 
     def test_a_value_that_is_no_digit_string_raises(self):
-        for value in ("", "x", "1e3", "١٢"):
+        for value in ("", "x", "1e3", "١٢", "--5", "5.", ".5", "-", "1 2"):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 spell(value, "id")
+
+    def test_a_fraction_with_a_term_that_is_no_whole_number_raises_value_error(self):
+        for value in ("٣/٤", "1/ 2", "1.5/2", "1/2.5", "1/2/3", "a/b", "/2", "--1/2", "1/", "/", "1/-"):
+            with self.subTest(value=value), self.assertRaises(ValueError) as caught:
+                spell(value, "id")
+            self.assertNotIsInstance(caught.exception, ZeroDivisionError)
+        self.assertEqual(spell("-1/2", "id")[0].text, spell("1/-2", "id")[0].text)
 
     def test_the_forms(self):
         self.assertEqual(spell("1999", "id", form=SpokenForm.YEAR)[0].text, spell("1999", "id")[0].text)
@@ -264,7 +333,20 @@ class TestSpell(unittest.TestCase):
             spell("1/0", "id")
 
 
+class TestFraction(unittest.TestCase):
+    def test_a_decimal_is_a_fraction_in_lowest_terms(self):
+        self.assertEqual([writer_module.as_fraction(v) for v in ("0.75", "-0.5", "5.5", "0.125", "7", "-3")],
+                         ["3/4", "-1/2", "11/2", "1/8", "7", "-3"])
+
+
 class TestMention(unittest.TestCase):
+    def test_a_fraction_mention_speaks_as_a_fraction_also_when_its_value_is_a_decimal(self):
+        for text, spoken in (("setengah", "setengah"), ("tiga perempat", "tiga perempat"), ("sepertiga", "sepertiga")):
+            mention = tag_numbers(text, "id")[0]
+            with self.subTest(text=text):
+                self.assertEqual(mention.kind, Kind.FRACTION)
+                self.assertEqual(mention.spoken()[0].text, spoken)
+
     def test_a_mention_names_the_lexicon_that_read_it(self):
         self.assertEqual(tag_numbers("dua", "id-ID")[0].lang, "id")
         self.assertEqual(tag_numbers("duas", "pt")[0].lang, "pt-PT")
