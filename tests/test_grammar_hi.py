@@ -1,0 +1,177 @@
+"""Hindi grammar rules. Each expected value is worked out by hand in the
+comment beside it; sources are in numtag/lexicon/hi.json."""
+import unittest
+
+import pytest
+
+from helpers import read
+from numtag import tag_numbers
+
+C, O, D = "cardinal", "ordinal", "decimal"
+
+
+def hi(text: str) -> list[tuple[str, str, str]]:
+    return read(text, "hi")
+
+
+class TestCardinals(unittest.TestCase):
+    def test_each_number_below_a_hundred_is_one_word(self):
+        # 42 and 99 have no tens-and-units rule
+        self.assertEqual(hi("बयालीस"), [("बयालीस", "42", C)])
+        self.assertEqual(hi("निन्यानबे"), [("निन्यानबे", "99", C)])
+
+    def test_two_words_below_a_hundred_stay_two_numbers(self):
+        # "बीस" 20 and "पाँच" 5 never join, because 25 is "पच्चीस"
+        self.assertEqual(hi("बीस पाँच"), [("बीस", "20", C), ("पाँच", "5", C)])
+
+    def test_a_count_before_sau_multiplies_it(self):
+        # 2 x 100 + 50
+        self.assertEqual(hi("दो सौ पचास"), [("दो सौ पचास", "250", C)])
+        # 25 x 100
+        self.assertEqual(hi("पच्चीस सौ"), [("पच्चीस सौ", "2500", C)])
+
+    def test_sau_alone_is_no_number(self):
+        self.assertEqual(hi("सौ"), [])
+
+    def test_so_is_not_sau(self):
+        # "सो" (sleep) has another vowel sign
+        self.assertEqual(hi("वह सो गया।"), [])
+
+
+class TestIndianScale(unittest.TestCase):
+    def test_lakh_is_ten_to_the_fifth(self):
+        # 1 x 10^5 + 25 x 1000
+        self.assertEqual(hi("एक लाख पच्चीस हज़ार"), [("एक लाख पच्चीस हज़ार", "125000", C)])
+
+    def test_crore_is_ten_to_the_seventh(self):
+        # 2 x 10^7 + 1 x 10^5
+        self.assertEqual(hi("दो करोड़ एक लाख"), [("दो करोड़ एक लाख", "20100000", C)])
+
+    def test_arab_and_kharab(self):
+        # 3 x 10^9, 12 x 10^9, 10^11
+        self.assertEqual(hi("तीन अरब"), [("तीन अरब", "3000000000", C)])
+        self.assertEqual(hi("एक खरब"), [("एक खरब", "100000000000", C)])
+
+
+class TestOrdinals(unittest.TestCase):
+    def test_one_to_six_are_irregular(self):
+        self.assertEqual(hi("पहला"), [("पहला", "1", O)])
+        self.assertEqual(hi("छठा"), [("छठा", "6", O)])
+
+    def test_from_seven_the_ending_goes_on_the_cardinal(self):
+        # सात 7, इक्कीस 21
+        self.assertEqual(hi("सातवाँ"), [("सातवाँ", "7", O)])
+        self.assertEqual(hi("इक्कीसवें"), [("इक्कीसवें", "21", O)])
+        self.assertEqual(hi("पचासवी"), [("पचासवी", "50", O)])
+
+    def test_the_oblique_and_feminine_forms(self):
+        self.assertEqual(hi("दूसरे"), [("दूसरे", "2", O)])
+        self.assertEqual(hi("तीसरी"), [("तीसरी", "3", O)])
+
+
+class TestDecimals(unittest.TestCase):
+    def test_dashamlav_and_the_point(self):
+        self.assertEqual(hi("तीन दशमलव पाँच"), [("तीन दशमलव पाँच", "3.5", D)])
+        self.assertEqual(hi("2.75 रुपये"), [("2.75", "2.75", D)])
+
+    def test_rin_makes_a_number_negative(self):
+        self.assertEqual(hi("ऋण पाँच"), [("ऋण पाँच", "-5", C)])
+
+
+class TestCommonSpellings(unittest.TestCase):
+    def test_the_anusvara_and_the_missing_nukta_read_as_the_cldr_spelling(self):
+        # 5 x 100000
+        self.assertEqual(hi("पांच लाख"), [("पांच लाख", "500000", C)])
+        # 2 x 100 + 5
+        self.assertEqual(hi("दो सौ पांच"), [("दो सौ पांच", "205", C)])
+        # 2 x 1000
+        self.assertEqual(hi("दो हजार"), [("दो हजार", "2000", C)])
+        # 10 x 10^7
+        self.assertEqual(hi("दस करोड रुपये"), [("दस करोड", "100000000", C)])
+
+    def test_other_spellings(self):
+        for word, value in (("निन्यानवे", "99"), ("छः", "6"), ("पंद्रह", "15")):
+            self.assertEqual(hi(word), [(word, value, C)])
+        self.assertEqual(hi("दसवां"), [("दसवां", "10", O)])
+        self.assertEqual(hi("दसवीं"), [("दसवीं", "10", O)])
+
+
+class TestWordsThatHoldNoNumber(unittest.TestCase):
+    def test_a_word_with_other_vowel_signs_is_no_number(self):
+        # तरह (way), बस (bus), सत (true), चर (variable), सठ (rogue) differ from तेरह 13, बीस 20, सात 7, चार 4, साठ 60 by a vowel sign
+        for word in ("तरह", "बस", "सत", "चर", "सठ", "तस", "बरह", "पचस"):
+            self.assertEqual(hi(word), [], word)
+
+    def test_arab_needs_a_count_to_be_a_milliard(self):
+        self.assertEqual(hi("सऊदी अरब"), [])
+        self.assertEqual(hi("अरब सागर"), [])
+        # 3 x 10^9
+        self.assertEqual(hi("तीन अरब"), [("तीन अरब", "3000000000", C)])
+
+    def test_kharab_needs_a_count_too(self):
+        self.assertEqual(hi("खरब"), [])
+        # 2 x 10^11
+        self.assertEqual(hi("दो खरब"), [("दो खरब", "200000000000", C)])
+
+    def test_ek_before_a_noun_is_the_indefinite_article(self):
+        self.assertEqual(hi("यह एक अच्छा दिन है"), [("एक", "1", C)])
+        self.assertLess(tag_numbers("यह एक अच्छा दिन है", "hi")[0].confidence, 0.5)
+
+
+class TestSpellingsOfOneToNinetyNine(unittest.TestCase):
+    def test_a_spelling_that_a_cited_page_writes_is_one_number(self):
+        # 1 x 100 + 69, 27 x 1000, 99 x 100000, 82 x 1000
+        self.assertEqual(hi("एक सौ उनसत्तर"), [("एक सौ उनसत्तर", "169", C)])
+        self.assertEqual(hi("सताइस हजार"), [("सताइस हजार", "27000", C)])
+        self.assertEqual(hi("निनानवे लाख"), [("निनानवे लाख", "9900000", C)])
+        self.assertEqual(hi("बिरासी हजार"), [("बिरासी हजार", "82000", C)])
+
+    def test_chhai_is_no_number_because_it_is_also_a_copula(self):
+        # "छै" is 6 in one text and "is" in another, so no entry holds it
+        self.assertEqual(hi("देखै छै"), [])
+
+
+class TestDevanagariDigits(unittest.TestCase):
+    def test_a_count_in_devanagari_digits_takes_its_scale_word(self):
+        # 8 x 10^7, 5 x 10^5, 4.10 x 10^7
+        self.assertEqual(hi("८ करोड़"), [("८ करोड़", "80000000", C)])
+        self.assertEqual(hi("५ लाख लोग"), [("५ लाख", "500000", C)])
+        self.assertEqual(hi("४.१० करोड़"), [("४.१० करोड़", "41000000", C)])
+
+
+class TestTraditionalScaleWords(unittest.TestCase):
+    def test_sahasra_is_a_thousand(self):
+        # 10 x 1000
+        self.assertEqual(hi("दश सहस्र"), [("दश सहस्र", "10000", C)])
+
+    def test_nil_padma_and_shankh_are_no_numbers(self):
+        for word in ("नील", "पद्म", "शंख"):
+            self.assertEqual(hi(word), [], word)
+
+    def test_a_count_before_nil_padma_or_shankh_stays_the_count(self):
+        # the article एक counts as one before नील, पद्म or शंख, so those words are no scale words
+        self.assertEqual(hi("एक शंख"), [("एक", "1", C)])
+        self.assertEqual(hi("दो नील"), [("दो", "2", C)])
+        # 2, and the year 2019
+        self.assertEqual(hi("दो शंख बजाता है"), [("दो", "2", C)])
+        self.assertEqual(hi("2019 पद्म पुरस्कार"), [("2019", "2019", C)])
+
+    def test_mahashankh_is_10_to_the_19(self):
+        # महाशंख 10^19
+        self.assertEqual(hi("गिनती महाशंख तक"), [("महाशंख", "1" + "0" * 19, C)])
+
+
+class TestArabSenseOfArab(unittest.TestCase):
+    # A count before अरब reads 10^9 in number text. The format has no data setting that tells it from the Arabs.
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_ek_arab_is_an_arab_before_a_noun(self):
+        self.assertEqual(hi("पश्चिमी एशिया में एक अरब संप्रभु राज्य है"), [("एक", "1", C)])
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_a_number_before_arab_tribes(self):
+        self.assertEqual(hi("बारह अरब जनजातियां"), [("बारह", "12", C)])
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_a_year_before_the_arab_league(self):
+        self.assertEqual(hi("1970 अरब लीग शिखर सम्मेलन"), [("1970", "1970", C)])

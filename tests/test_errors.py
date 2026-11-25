@@ -10,13 +10,13 @@ LEXICONS = Path(numtag.__file__).parent / "lexicon"
 
 
 def test_a_language_with_no_lexicon_raises_unsupported_language_error():
-    with pytest.raises(UnsupportedLanguageError, match="no lexicon for language 'hi'"):
-        tag_numbers("मेरे पास दो किताबें हैं", "hi")
+    with pytest.raises(UnsupportedLanguageError, match="no lexicon for language 'ja'"):
+        tag_numbers("私は二冊の本を持っています", "ja")
 
 
 def test_unsupported_language_error_is_a_value_error():
     with pytest.raises(ValueError):
-        tag_numbers("two", "hi")
+        tag_numbers("two", "ja")
 
 
 def test_a_bad_scale_is_no_unsupported_language():
