@@ -17,6 +17,7 @@ from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, FORMAT_
 from numtag.tagger import BASE_LEXICON
 
 PACKAGE = Path(numtag.__file__).parent
+ROOT = Path(__file__).parent.parent
 LEXICONS = PACKAGE / "lexicon"
 SCHEMA = json.loads((PACKAGE / "lexicon.schema.json").read_text(encoding="utf-8"))
 NAMES = sorted(path.stem for path in LEXICONS.glob("*.json"))
@@ -111,7 +112,7 @@ class TestSchema(unittest.TestCase):
 
 class TestSpecPage(unittest.TestCase):
     def test_the_spec_page_names_every_key_and_every_role(self):
-        page = (PACKAGE.parent / "docs" / "lexicon-format.md").read_text(encoding="utf-8")
+        page = (ROOT / "docs" / "lexicon-format.md").read_text(encoding="utf-8")
         entry = SCHEMA["properties"]["entries"]["items"]["properties"]
         for key in sorted(TOP_KEYS | SETTINGS | WORDS | INFLECTION_KEYS | set(entry) | set(ENTRY_KEYS)):
             with self.subTest(key=key):
