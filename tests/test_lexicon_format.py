@@ -420,6 +420,22 @@ class TestLanguageTags(unittest.TestCase):
                 self.assertEqual(lexicon_name(tag), name)
                 self.assertEqual(numtag.revision(tag), numtag.revision(name))
 
+    def test_a_language_that_linguatag_places_near_a_lexicon_reads_it(self):
+        for tag, name in [("bs", "hr"), ("gsw", "de"), ("hbs", "sr"), ("sh", "sr"), ("arz", "ar"), ("ars", "ar"),
+                          ("arb", "ar"), ("ajp", "ar"), ("azj", "az"), ("ekk", "et"), ("pes", "fa")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_an_unknown_region_and_a_trailing_separator_read_the_language(self):
+        for tag in ("pt-ZZ", "PT_zz", "pt-BR-", "pt_BR_", "pt-BR--"):
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), "pt-PT")
+
+    def test_a_script_before_the_region_reads_the_region(self):
+        for tag in ("pt-Latn-BR", "pt_Latn_BR", "pt-Latn_BR"):
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), "pt-BR")
+
     def test_a_region_without_a_lexicon_reads_the_language(self):
         for tag, name in [("de-AT", "de"), ("fr-CA", "fr-FR"), ("pt-AO", "pt-PT"), ("en-AU", "en"), ("ar-EG", "ar")]:
             with self.subTest(tag=tag):

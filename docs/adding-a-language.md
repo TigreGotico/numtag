@@ -22,7 +22,7 @@ ovos-number-parser (`numbers_<lang>.py` and its tests) and the number modules of
 
 ## The lexicon file
 
-The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` passes the language tag to `lexicon_name` in `numtag/tagger.py`, which asks linguatag for the closest file. A tag whose region has a file of its own loads that file: `pt-BR` loads `pt-BR.json` and `fr-BE` loads `fr-BE.json`. Any other tag loads the file closest to its language. So `de-AT` loads `de.json`, `pt` loads `pt-PT.json`, `fr` and `fr-CA` load `fr-FR.json`, and `no` loads `nb.json`. Spelling does not matter: `PT_br`, `por` and `pt-Latn-BR` read like `pt-BR`. A language with regional files needs no entry anywhere else. linguatag picks the file named by the default region of the bare tag.
+The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` passes the language tag to `lexicon_name` in `numtag/tagger.py`, which asks linguatag for the closest file. A tag whose region has a file of its own loads that file: `pt-BR` loads `pt-BR.json` and `fr-BE` loads `fr-BE.json`. Any other tag loads the file closest to its language. So `de-AT` loads `de.json`, `pt` loads `pt-PT.json`, `fr` and `fr-CA` load `fr-FR.json`, and `no` loads `nb.json`. Spelling does not matter: `PT_br` and `pt-Latn-BR` read like `pt-BR`, and `por` reads like `pt-PT`. A language with regional files needs no entry anywhere else. linguatag picks the file named by the default region of the bare tag.
 
 [lexicon-format.md](lexicon-format.md) defines every key, its type, its default and its effect. The file is a JSON object with these keys:
 

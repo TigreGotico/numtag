@@ -1,7 +1,7 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
 from functools import lru_cache
 
-from linguatag import closest_lang, standardize_lang
+from linguatag import closest_lang, default_region, standardize_lang
 
 from numtag import digits
 from numtag.digits import Rational
@@ -29,7 +29,11 @@ def lexicon_name(lang: str) -> str:
     reads pt-BR, "fr_be" fr-BE), else the closest file to its language ("pt" reads pt-PT, "no"
     reads Bokmål, nb, "de-AT" reads de)."""
     tag = standardize_lang(lang)
-    name = closest_lang(tag, LEXICONS, max_distance=0) or closest_lang(tag.partition("-")[0], LEXICONS)
+    if tag in LEXICONS:
+        return tag
+    name = closest_lang(tag, LEXICONS, max_distance=0)
+    if name is None or default_region(name) != default_region(tag):
+        name = closest_lang(tag.partition("-")[0], LEXICONS)
     if name is None:
         raise UnsupportedLanguageError(f"no lexicon for language {lang!r}")
     return name
