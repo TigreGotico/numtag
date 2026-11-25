@@ -574,9 +574,9 @@ RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
-DECIMAL_KEYS = frozenset(("word", "places", "source"))
+DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "plural", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -646,7 +646,7 @@ def _check_writer(lang: str, writer: dict) -> None:
             if value != "-x" and not (value.isascii() and value.isdigit() and (value == "0" or value[0] != "0")):
                 raise ValueError(f"{lang}: the value {value!r} of a rule of {name!r} is not '-x' or a whole number "
                                  "with no leading zero")
-    forms = [(name, form) for name, form in writer["forms"].items()]
+    forms = list(writer["forms"].items())
     for name, form in writer["forms"].items():
         for scale, sub in form.get("scale", {}).items():
             if scale not in ("short", "long") or "scale" in sub:

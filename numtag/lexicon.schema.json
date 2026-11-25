@@ -185,7 +185,7 @@
         },
         "decimal": {
           "type": "object",
-          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "source": {"type": "string"}},
+          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
           "required": ["word", "places", "source"],
           "additionalProperties": false
         },
@@ -202,6 +202,8 @@
             "named": {"type": "object", "additionalProperties": {"type": "string"}},
             "denominator": {"type": "string"},
             "single": {"type": "string"},
+            "mixed": {"type": "boolean"},
+            "plural": {"type": "string"},
             "source": {"type": "string"}
           },
           "required": ["limit", "named", "denominator", "single", "source"],

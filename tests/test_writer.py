@@ -415,6 +415,33 @@ class TestSpell(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "scale 'metric'"):
             spell("2", "id")
 
+    def test_decimals_read_as_one_number_where_the_lexicon_or_the_call_says_so(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"]["decimal"]["read"] = "number"
+        variants.write("id", data)
+        self.assertEqual(spell("2.25", "id")[0].text, "dua koma dua puluh lima")
+        self.assertEqual(spell("0.05", "id")[0].text, "nol koma nol lima")
+        self.assertEqual(spell("2.25", "id", decimals="digits")[0].text, "dua koma dua lima")
+
+    def test_a_negative_ordinal_reads_with_the_minus_rule_of_its_rule_set(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"]["rulesets"]["spellout-ordinal"]["rules"].append({"value": "-x", "text": "minus →→;"})
+        variants.write("id", data)
+        self.assertEqual(spell("-2", "id", form=SpokenForm.ORDINAL)[0].text, "minus kedua")
+        with self.assertRaises(ValueError):
+            spell("-2.5", "id", form=SpokenForm.ORDINAL)
+
+    def test_a_fraction_with_no_mixed_number_counts_its_denominator(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"]["fraction"] = {"mixed": False, "limit": 10, "named": {"2": "half"}, "plural": "s",
+                                      "denominator": "{cardinal} parts", "single": "{denominator}", "source": "test"}
+        variants.write("id", data)
+        self.assertEqual([spell(v, "id")[0].text for v in ("1/2", "3/2", "3/20", "3/21", "1/1000")],
+                         ["satu half", "tiga halfs", "tiga kedua puluhs", "tiga dua puluh satu parts", "satu keseribu"])
+
     def test_the_fraction_of_a_zero_denominator_raises(self):
         with self.assertRaises(ZeroDivisionError):
             spell("1/0", "id")

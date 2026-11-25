@@ -2964,6 +2964,10 @@
         "source": "CLDR 38 RBNF pt_PT (common/rbnf/pt_PT.xml as shipped in unicode-rbnf 2.5.1)",
         "rules": [
           {
+            "value": "-x",
+            "text": "menos →→;"
+          },
+          {
             "value": "0",
             "text": "zero;"
           },
@@ -3610,6 +3614,10 @@
       "ordinal-f-long": {
         "source": "CLDR 38 RBNF pt_PT (common/rbnf/pt_PT.xml as shipped in unicode-rbnf 2.5.1)",
         "rules": [
+          {
+            "value": "-x",
+            "text": "menos →→;"
+          },
           {
             "value": "0",
             "text": "zero;"
@@ -4258,6 +4266,10 @@
         "source": "CLDR 38 RBNF pt_PT (common/rbnf/pt_PT.xml as shipped in unicode-rbnf 2.5.1)",
         "rules": [
           {
+            "value": "-x",
+            "text": "menos →→;"
+          },
+          {
             "value": "0",
             "text": "zero;"
           },
@@ -4905,6 +4917,10 @@
         "source": "CLDR 38 RBNF pt_PT (common/rbnf/pt_PT.xml as shipped in unicode-rbnf 2.5.1)",
         "rules": [
           {
+            "value": "-x",
+            "text": "menos →→;"
+          },
+          {
             "value": "0",
             "text": "zero;"
           },
@@ -5306,15 +5322,30 @@
     "decimal": {
       "word": "vírgula",
       "places": 3,
+      "read": "number",
       "source": "CLDR 38 RBNF pt_PT (common/rbnf/pt_PT.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine x.x: \"←← vírgula →→\""
     },
+    "scientific": {
+      "times": "vezes dez elevado a",
+      "source": "draft"
+    },
     "fraction": {
+      "mixed": false,
       "limit": 10,
+      "single": "um {denominator}",
+      "plural": "s",
       "named": {
-        "2": "meio"
+        "2": "meio",
+        "3": "terço",
+        "4": "quarto",
+        "5": "quinto",
+        "6": "sexto",
+        "7": "sétimo",
+        "8": "oitavo",
+        "9": "nono",
+        "10": "décimo"
       },
       "denominator": "{cardinal} avos",
-      "single": "um {denominator}",
       "source": "draft"
     }
   }
