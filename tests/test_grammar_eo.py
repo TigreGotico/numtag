@@ -134,3 +134,12 @@ class TestSmallWords(unittest.TestCase):
     def test_biliardo_is_no_esperanto_number(self):
         # PMEG 23.2: only "du" reads
         self.assertEqual(eo("du biliardoj"), [("du", "2", C)])
+
+    def test_kaj_inside_a_hyphenated_word_joins_nothing(self):
+        # "kaj" is the conjunction "and", which no number holds
+        self.assertEqual(eo("dek-kaj-unu"), [])
+
+    def test_the_ranks_of_the_large_scale_nouns(self):
+        # 10^(6 x rank), PMEG 23.2: kvadriliono has 24 zeros, deciliono 60
+        self.assertEqual(eo("unu kvadriliono"), [("unu kvadriliono", "1" + "0" * 24, C)])
+        self.assertEqual(eo("du decilionoj"), [("du decilionoj", "2" + "0" * 60, C)])
