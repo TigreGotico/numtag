@@ -49,13 +49,14 @@ The full suite takes several minutes. `tests/test_docs.py` runs every example in
 ## Hard rules
 
 1. Language facts are data. A lexicon carries each word and each setting with a `source` ([adding-a-language.md](docs/adding-a-language.md)).
-2. Every quote in a block quote of `docs/` comes from a `source` field of a lexicon or a gold file. `tests/test_docs.py` checks it. Keep every quote and citation as the source writes it.
-3. A reading rule lives in [docs/rulings.md](docs/rulings.md) with its example and its source.
-4. A gold value comes from hand arithmetic or a quoted source, never from a run of numtag or another parser ([adding-a-language.md](docs/adding-a-language.md#gold-rows)).
-5. A value is a canonical digit string ([values.md](docs/values.md)).
-6. A language that you add has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
-7. Every example in the docs runs as a test and shows the output it gives.
-8. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
+2. No module, function or branch is keyed on a language, a script or a language family. A language that needs new behaviour extends the lexicon format. The same PR bumps the format version and changes the page that specifies the format ([lexicon-format.md](docs/lexicon-format.md)).
+3. Every quote in a block quote of `docs/` comes from a `source` field of a lexicon or a gold file. `tests/test_docs.py` checks it. Keep every quote and citation as the source writes it.
+4. A reading rule lives in [docs/rulings.md](docs/rulings.md) with its example and its source.
+5. A gold value comes from hand arithmetic or a quoted source, never from a run of numtag or another parser ([adding-a-language.md](docs/adding-a-language.md#gold-rows)).
+6. A value is a canonical digit string ([values.md](docs/values.md)).
+7. A language that you add has a floor in `tests/gold_floor.json`, at least 150 gold rows, and grammar tests that fail before the change and pass after it.
+8. Every example in the docs runs as a test and shows the output it gives.
+9. `numtag/version.py` is never edited by hand. The release workflow bumps it from the conventional-commit prefix.
 
 ## Before you push
 
