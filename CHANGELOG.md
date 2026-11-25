@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.25.1a1](https://github.com/TigreGotico/numtag/tree/0.25.1a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.0a1...0.25.1a1)
+
+**Merged pull requests:**
+
+- fix: decimals as one number keep the written trailing zeros [\#307](https://github.com/TigreGotico/numtag/pull/307) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.25.0a1](https://github.com/TigreGotico/numtag/tree/0.25.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.1a1...0.25.0a1)
@@ -602,10 +610,6 @@
 ## [0.13.0a1](https://github.com/TigreGotico/numtag/tree/0.13.0a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.16a1...0.13.0a1)
-
-**Merged pull requests:**
-
-- feat\(en\): read "googol" as 10^100 [\#79](https://github.com/TigreGotico/numtag/pull/79) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.16a1](https://github.com/TigreGotico/numtag/tree/0.12.16a1) (2026-11-17)
 
