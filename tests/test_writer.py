@@ -465,6 +465,17 @@ class TestSpell(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "above 999"):
             spell("1000", "id", form=SpokenForm.ORDINAL)
 
+    def test_decimals_as_one_number_keep_the_written_trailing_zeros(self):
+        self.assertEqual([spell(v, "pt-PT", decimals="number", places=2)[0].text for v in ("1.80", "12.50", "100.10")],
+                         ["um vírgula oitenta", "doze vírgula cinquenta", "cem vírgula dez"])
+        self.assertEqual(spell("1.80", "pt-PT", decimals="digits")[0].text, "um vírgula oito")
+        self.assertEqual([spell(v, "pt-PT", decimals="number", places=2)[0].text for v in ("5.0", "1.00", "0.00")],
+                         ["cinco", "um", "zero"])
+
+    def test_a_decimals_value_other_than_digits_or_number_raises(self):
+        with self.assertRaisesRegex(ValueError, "'bogus'"):
+            spell("2.5", "pt-PT", decimals="bogus")
+
     def test_a_negative_ordinal_reads_with_the_minus_rule_of_its_rule_set(self):
         variants = Variants(self)
         data = _file("id")

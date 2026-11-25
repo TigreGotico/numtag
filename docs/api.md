@@ -379,7 +379,7 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 | `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
 | `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
 | `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
-| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"). The default is the lexicon's |
+| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). Another value raises `ValueError`. The default is the lexicon's |
 
 ```python
 >>> from numtag import SpokenForm, spell, tag_numbers
