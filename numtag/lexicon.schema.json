@@ -176,6 +176,7 @@
               "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
               "case": {"type": "object", "additionalProperties": {"$ref": "#/$defs/variants"}},
               "minimum": {"type": "string", "pattern": "^[0-9]+$"},
+              "maximum": {"type": "string", "pattern": "^[0-9]+$"},
               "scale": {"type": "object", "propertyNames": {"enum": ["short", "long"]}, "additionalProperties": {"type": "object", "required": ["variants"]}}
             },
             "required": ["variants"],

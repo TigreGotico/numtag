@@ -82,8 +82,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"id", "ms"})
-        self.assertEqual(len(rows), 22698)
+        self.assertEqual({row["lang"] for row in rows}, {"id", "ms", "pt-PT"})
+        self.assertEqual(len(rows), 34047)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -455,6 +455,15 @@ class TestSpell(unittest.TestCase):
         self.assertEqual(spell("2.25", "id")[0].text, "dua koma dua puluh lima")
         self.assertEqual(spell("0.05", "id")[0].text, "nol koma nol lima")
         self.assertEqual(spell("2.25", "id", decimals="digits")[0].text, "dua koma dua lima")
+
+    def test_an_ordinal_above_the_maximum_of_the_form_raises(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"]["forms"]["ordinal"]["maximum"] = "999"
+        variants.write("id", data)
+        self.assertEqual(spell("999", "id", form=SpokenForm.ORDINAL)[0].text, "kesembilan ratus sembilan puluh sembilan")
+        with self.assertRaisesRegex(ValueError, "above 999"):
+            spell("1000", "id", form=SpokenForm.ORDINAL)
 
     def test_a_negative_ordinal_reads_with_the_minus_rule_of_its_rule_set(self):
         variants = Variants(self)

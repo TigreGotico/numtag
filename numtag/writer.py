@@ -324,6 +324,9 @@ def _ordinal(writer: Writer, ruleset: str, negative: bool, whole: str, fraction:
         return writer.render(ruleset, whole, negative=True)
     if negative or fraction or digits.compare(whole, minimum) < 0:
         raise ValueError(f"ordinals must be whole numbers from {minimum}")
+    maximum = writer.forms["ordinal"].get("maximum")
+    if maximum and digits.compare(whole, maximum) > 0:
+        raise ValueError(f"{writer.name}: no ordinal words name a number above {maximum}")
     return writer.render(ruleset, whole)
 
 
