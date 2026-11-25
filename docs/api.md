@@ -8,12 +8,12 @@ verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHIT
 see: getting-started.md, values.md
 -->
 
-The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity` and `VagueKind`. This page describes each of them. Every other module is internal.
+The package `numtag` exports fifteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind` and `revision`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'tag_numbers', 'tag_vague_quantities']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'revision', 'tag_numbers', 'tag_vague_quantities']
 ```
 
 ## tag_numbers
@@ -360,6 +360,20 @@ ValueError: an amount takes no scale and no lower bound
 >>> from numtag import is_canonical_value
 >>> [is_canonical_value(v) for v in ("1200", "-2.5", "1/3", "007", "2.50", "-0")]
 [True, True, True, False, False, False]
+```
+
+## revision
+
+```text
+revision(lang: str) -> str
+```
+
+`revision` returns the revision of the lexicon that `lang` reads: the sha256, as 64 hex digits, of the canonical bytes of that lexicon after its base lexicon is merged in. `lang` works as in `tag_numbers`, and a language with no lexicon raises `UnsupportedLanguageError`. The revision changes when any word, setting or source of the lexicon or of its base changes. A package that records which rules it ran with adds the revision of each lexicon it read to its own. Read [lexicon-format.md](lexicon-format.md).
+
+```python
+>>> from numtag import revision
+>>> len(revision("pt")), revision("pt") == revision("pt-PT"), revision("pt") == revision("pt-BR")
+(64, True, False)
 ```
 
 ## ARTICLE_CONFIDENCE

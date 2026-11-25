@@ -1,8 +1,12 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
+import json
+from pathlib import Path
+
 from numtag import digits
 from numtag.digits import Rational
 from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
+from numtag.lexicon import revision as lexicon_revision
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
 from numtag.roman import roman_numerals
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
@@ -20,7 +24,8 @@ CONFIDENCE = {None: 1.0, Reason.ARTICLE: ARTICLE_CONFIDENCE, Reason.HOMOGRAPH: A
 
 # The lexicon of a language tag with no region, or with a region that has no
 # lexicon of its own.
-BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"}
+BASE_LEXICON = {tag: item["value"] for tag, item in
+                json.loads(Path(__file__).with_name("bare_tags.json").read_text(encoding="utf-8")).items()}
 
 
 def lexicon_name(lang: str) -> str:
@@ -33,6 +38,12 @@ def lexicon_name(lang: str) -> str:
     if region and exists(f"{primary}-{region}"):
         return f"{primary}-{region}"
     return BASE_LEXICON.get(primary, primary)
+
+
+def revision(lang: str) -> str:
+    """The sha256 of the canonical bytes of the lexicon that ``lang`` reads, with its base lexicon
+    merged in. It changes when any word or setting of the lexicon changes."""
+    return lexicon_revision(lexicon_name(lang))
 
 
 def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:

@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "short", "source": "CLDR RBNF mt (unicode-org/cldr release-49, common/rbnf/mt.xml): \"1000000000: biljun[ u >>];\" names 10^9, the short scale."},
     "group_mark": {"value": ",", "source": "Malta Standards Authority, DMS 200:2009, Maltese Data and Information Requirements on Information and Communication Technology (Technical Committee MSA/TC/200), 4.3 Numeric formatting: \"The thousands separator is the COMMA (,)\"; CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/mt/numbers.json, symbols-numberSystem-latn: \"group\": \",\"."},

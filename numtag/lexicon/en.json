@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "short", "source": "Wikipedia, \"Long and short scales\": \"Use of the short scale is found in most English-speaking and Arabic-speaking countries\"; Wikipedia, \"English numerals\": the short scale is \"always used in American English and almost always in British English\". Wiktionary, \"billion\": \"(US, modern British & Australian, short scale) a thousand million\"."},
     "group_mark": {"value": ",", "source": "English writes 1,000,000.5: the comma groups digits. CLDR 49 numbers, en (latn): \"'symbols-numberSystem-latn': { 'decimal': '.', 'group': ','\"; Wikipedia, \"English numerals\": \"larger numbers are written for example 10 000 or 10,000 for ease of reading\"."},

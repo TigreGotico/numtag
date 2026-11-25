@@ -17,7 +17,7 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | Guide | Content |
 |---|---|
 | [getting-started.md](getting-started.md) | The first call, then common tasks: filter weak mentions, replace numbers with digits, convert values |
-| [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `Part`, `Role`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind` |
+| [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `Part`, `Role`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind`, `revision` |
 
 ## The contract
 
@@ -41,7 +41,8 @@ numtag only reads numbers. It does not write numbers as words, and it reads no u
 | [languages/slavic.md](languages/slavic.md) | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian |
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |
-| [adding-a-language.md](adding-a-language.md) | The lexicon JSON format, the source rule, gold rows and the test gates |
+| [adding-a-language.md](adding-a-language.md) | How to add a language: the source rule, gold rows and the test gates |
+| [lexicon-format.md](lexicon-format.md) | The lexicon format, version 1: every key with its type, default and effect, the schema, and the revision |
 
 ## Inside the library
 

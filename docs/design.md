@@ -109,4 +109,4 @@ The time to tag a text grows in a straight line with its length. The split searc
 numtag holds no model and no random state. The output depends only on the text, the language and the scale. The confidence is a fixed score from rules, not a probability. Two mentions compare equal when all fields but the confidence are equal, so a test can compare readings without a score.
 
 ---
-[← Adding a language](adding-a-language.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)
+[← The lexicon format](lexicon-format.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)

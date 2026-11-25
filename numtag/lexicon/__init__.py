@@ -1,5 +1,10 @@
 """Load a language's number words from its JSON file.
 
+The file format is specified in docs/lexicon-format.md and by
+lexicon.schema.json. Every file names its ``format_version``. The loader
+refuses a file with a version it does not know, and a key that it does not
+read, by name.
+
 Each entry names a word, its role and its value, with the facts the form
 shows (gender, plural, ambiguous) and the source of the rule. Each setting
 and word list is an object with its value and its source. A file may name a
@@ -12,6 +17,7 @@ classes into one more form of the entry ("kahde" and "lle" make "kahdelle").
 A class may mark its forms as ordinal or as naming the parts of a fraction
 ("fraction_case": "üç" and "te" make "üçte", as in "üçte bir").
 """
+import hashlib
 import json
 from dataclasses import dataclass, field, replace
 from enum import Enum
@@ -22,6 +28,8 @@ from numtag.mention import Scale
 from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
+
+FORMAT_VERSION = 1
 
 
 class UnsupportedLanguageError(ValueError):
@@ -506,6 +514,13 @@ DEFAULT_SETTINGS = {
     "fraction_of_scale": False,
     "inverted_tens": None,
     "inflection_position": "every",
+    "native_digits": None,
+    "fold_marks": False,
+    "kept_marks": "",
+    "letter_folds": {},
+    "word_chars": "",
+    "bidi_controls": False,
+    "clitic_min_rest": 1,
 }
 DEFAULT_WORDS = {
     "and_a_half": [],
@@ -536,7 +551,70 @@ DEFAULT_WORDS = {
     "roman_word": [],
     "roman_lower_word": [],
     "ordinal_suffix_mark": [],
+    "joiner_prefix": [],
+    "clitic_prefix": [],
 }
+# Settings and word lists that every lexicon without "extends" must hold.
+REQUIRED_SETTINGS = frozenset((
+    "scale", "group_mark", "decimal_mark", "space_groups", "plural_scale_needs_count", "scale_noun_agrees",
+    "joiner_tens_units", "joiner_after_hundred", "joiner_between_groups", "joiner_before_round_hundred",
+    "joiner_before_last_group", "comma_between_classes", "ordinal_style"))
+REQUIRED_WORDS = frozenset((
+    "joiner", "decimal_marker", "minus", "minus_idioms", "article_one", "of", "denominator_particle",
+    "fraction_of", "class_noun", "half_unit", "abbreviation", "lone_decimal_mark", "range_cue"))
+SETTINGS = REQUIRED_SETTINGS | frozenset(DEFAULT_SETTINGS)
+WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
+
+TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries"))
+ITEM_KEYS = frozenset(("value", "source"))
+INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
+NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
+
+# The keys of an entry that the loader reads, by role. Every entry holds the
+# keys that name and cite it and the keys that make its forms.
+_FORM_KEYS = frozenset(("word", "role", "source", "stems", "excluded_forms", "ambiguous_forms", "weak_forms",
+                        "ordinal", "final", "gender", "plural", "ambiguous", "part"))
+_VALUE_KEYS = _FORM_KEYS | {"value", "addend", "bound", "takes_unit", "takes_units", "case", "ordinal_unit",
+                            "numerator", "weak_alone", "invariant", "cardinal", "teens", "after_article",
+                            "weak_at_end", "joined_count", "weak_after", "weak_before", "standalone",
+                            "number_after"}
+# A denominator that names a scale word takes its value from that word.
+SCALE_OF_KEYS = _FORM_KEYS | {"scale_of"}
+ENTRY_KEYS = {
+    **dict.fromkeys(VALUE_ROLES, _VALUE_KEYS),
+    **dict.fromkeys(SCALE_ROLES, _FORM_KEYS | {"value", "rank", "count", "counted"}),
+    **dict.fromkeys(MARK_ROLES, _FORM_KEYS),
+    "half": _FORM_KEYS | {"bound"},
+    "ordinal_scale": _FORM_KEYS | {"value", "after_article"},
+    "ordinal_suffix": frozenset(("word", "role", "source", "gender")),
+    "vague_quantifier": frozenset(("word", "role", "source", "ambiguous")),
+}
+
+
+def _refuse(lang: str, where: str, found, allowed) -> None:
+    if unknown := sorted(set(found) - allowed):
+        raise ValueError(f"{lang}: unknown key {', '.join(map(repr, unknown))} in {where}")
+
+
+def _check(lang: str, data: dict) -> None:
+    """Refuse a file with an unknown format version or a key that the loader does not read."""
+    if data.get("format_version") != FORMAT_VERSION:
+        raise ValueError(f"{lang}: format_version {data.get('format_version')!r} is unknown; "
+                         f"this loader reads version {FORMAT_VERSION}")
+    _refuse(lang, "the lexicon", data, TOP_KEYS)
+    for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
+        _refuse(lang, section, data.get(section, ()), allowed)
+        for name, item in data.get(section, {}).items():
+            _refuse(lang, f"{section} {name!r}", item, ITEM_KEYS)
+    for name, item in data.get("inflection", {}).items():
+        _refuse(lang, f"inflection {name!r}", item, INFLECTION_KEYS)
+    if native := data.get("settings", {}).get("native_digits"):
+        _refuse(lang, "setting 'native_digits'", native["value"], NATIVE_DIGITS_KEYS)
+    for spec in data.get("entries", ()):
+        role = spec["role"]
+        allowed = SCALE_OF_KEYS if role == "denominator" and "scale_of" in spec else ENTRY_KEYS.get(role)
+        if allowed and not spec.keys() <= allowed:
+            _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
 
 
 def _read(lang: str) -> dict:
@@ -544,15 +622,25 @@ def _read(lang: str) -> dict:
     if not path.is_file():
         raise UnsupportedLanguageError(f"no lexicon for language {lang!r}")
     data = json.loads(path.read_text(encoding="utf-8"))
+    _check(lang, data)
     if "extends" not in data:
         return data
     base = _read(data["extends"])
     entries = {(e["word"], e["role"]): e for e in base.get("entries", [])}
     entries.update({(e["word"], e["role"]): e for e in data.get("entries", [])})
-    return {"settings": {**base["settings"], **data.get("settings", {})},
+    return {"format_version": FORMAT_VERSION,
+            "settings": {**base["settings"], **data.get("settings", {})},
             "words": {**base["words"], **data.get("words", {})},
             "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
             "entries": list(entries.values())}
+
+
+@cache
+def revision(lang: str) -> str:
+    """The sha256 of the canonical bytes of the lexicon ``lang`` names, with
+    its base merged in: sorted keys, no spaces, UTF-8."""
+    canonical = json.dumps(_read(lang), sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def _forms(spec: dict, inflection: dict, suffix_ends: bool) -> list[tuple[str, bool, bool, bool]]:
@@ -775,18 +863,18 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
 
 def _script(settings: dict, words: dict) -> Script:
     """The script settings of a lexicon; a language that sets none reads as pt and en do."""
-    native = settings.get("native_digits")
+    native = settings["native_digits"]
     digits: list[tuple[str, str]] = []
     if native:
         for run in native["digits"]:
             digits += [(char, str(n)) for n, char in enumerate(run)]
         digits += [(native["decimal_mark"], settings["decimal_mark"]), (native["group_mark"], settings["group_mark"])]
-    script = Script(fold_marks=settings.get("fold_marks", False),
-                    kept_marks=settings.get("kept_marks", ""),
-                    letter_folds=tuple(settings.get("letter_folds", {}).items()),
-                    word_chars=settings.get("word_chars", ""),
-                    bidi_controls=settings.get("bidi_controls", False),
+    script = Script(fold_marks=settings["fold_marks"],
+                    kept_marks=settings["kept_marks"],
+                    letter_folds=tuple(settings["letter_folds"].items()),
+                    word_chars=settings["word_chars"],
+                    bidi_controls=settings["bidi_controls"],
                     native_digits=tuple(digits),
-                    clitic_min_rest=settings.get("clitic_min_rest", 1))
-    return replace(script, joiner_prefixes=tuple(script.fold(p) for p in words.get("joiner_prefix", ())),
-                   clitic_prefixes=tuple(script.fold(p) for p in words.get("clitic_prefix", ())))
+                    clitic_min_rest=settings["clitic_min_rest"])
+    return replace(script, joiner_prefixes=tuple(script.fold(p) for p in words["joiner_prefix"]),
+                   clitic_prefixes=tuple(script.fold(p) for p in words["clitic_prefix"]))

@@ -1,0 +1,5 @@
+{
+  "pt": {"value": "pt-PT", "source": "linguatag default_region(\"pt\") is PT: a bare tag reads the region where the language first appeared (ovos-spec-tools language, re-exported from linguatag)"},
+  "fr": {"value": "fr-FR", "source": "linguatag default_region(\"fr\") is FR: a bare tag reads the region where the language first appeared (ovos-spec-tools language, re-exported from linguatag)"},
+  "no": {"value": "nb", "source": "ISO 639-3 \"nor\" (ISO 639-1 \"no\") is a macrolanguage of Norwegian Bokmål (nb) and Norwegian Nynorsk (nn); numtag reads it as Bokmål, the written standard of most Norwegians, so this is a choice of language and no region rule"}
+}

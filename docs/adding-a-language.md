@@ -2,7 +2,7 @@
 
 <!-- agent-hint
 covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
-source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
+source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, numtag/bare_tags.json, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
 generated: no
 verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
 see: rulings.md, design.md
@@ -22,12 +22,13 @@ ovos-number-parser (`numbers_<lang>.py` and its tests) and the number modules of
 
 ## The lexicon file
 
-The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` reads the primary subtag of a language tag ("de" for "de-AT") and loads `<primary>.json`. A region with a file of its own loads that file. So `pt-BR` loads `pt-BR.json`, and `fr-BE` loads `fr-BE.json`. `BASE_LEXICON` in `numtag/tagger.py` names the file for every other tag of such a language. There `pt` loads `pt-PT.json` and `fr` loads `fr-FR.json`. It also maps `no` to `nb.json`. A language with regional files needs an entry there.
+The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` reads the primary subtag of a language tag ("de" for "de-AT") and loads `<primary>.json`. A region with a file of its own loads that file. So `pt-BR` loads `pt-BR.json`, and `fr-BE` loads `fr-BE.json`. `BASE_LEXICON` in `numtag/tagger.py` names the file for every other tag of such a language. It reads the data file `numtag/bare_tags.json`, where each entry has a source. There `pt` loads `pt-PT.json` and `fr` loads `fr-FR.json`. It also maps `no` to `nb.json`. A language with regional files needs an entry in that file.
 
-The file is a JSON object with these keys:
+[lexicon-format.md](lexicon-format.md) defines every key, its type, its default and its effect. The file is a JSON object with these keys:
 
 | Key | Content |
 |---|---|
+| `format_version` | The integer `1`. Required. The loader refuses any other version, and any key it does not read. |
 | `extends` | Optional. The name of a base lexicon. The file then holds only what differs from the base. |
 | `settings` | An object. Each key is a setting, and each value is an object with `value` and `source`. |
 | `words` | An object. Each key is a word list, and each value is an object with `value` (a list of words) and `source`. |
@@ -202,4 +203,4 @@ A language passes these gates before it merges.
 Some languages need an engine feature that Portuguese and English do not use. Examples are inverted tens ("einundzwanzig"), vigesimal counting ("quatre-vingts"), compound words ("kaksikymmentä"), case forms, a script other than Latin, or native digits. Add the feature to the engine as a general mechanism. A lexicon setting switches it on, and the default is off. The outputs of the languages that do not set it must not change.
 
 ---
-[← Iberian languages and Occitan](languages/ibero.md) · [Home](index.md) · [Design →](design.md)
+[← Iberian languages and Occitan](languages/ibero.md) · [Home](index.md) · [The lexicon format →](lexicon-format.md)

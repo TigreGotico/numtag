@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TigreGotico/numtag/blob/dev/numtag/lexicon.schema.json",
+  "title": "numtag lexicon, format version 1",
+  "type": "object",
+  "properties": {
+    "format_version": {
+      "const": 1
+    },
+    "extends": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "article_after_noun": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "bare_hundred_after_scale": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "bare_noun_counts_one": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "bidi_controls": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clitic_min_rest": {"properties": {"value": {"type": "integer", "minimum": 0, "default": 1}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clock_half": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "comma_between_classes": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "compound_parts_by_role": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "compound_shared_letter": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "compound_words": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "decimal_fraction": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "decimal_fractions": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "decimal_mark": {"properties": {"value": {"type": "string"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "dot_ordinal": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "dotted_i": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fold_marks": {"properties": {"value": {"enum": [true, false, "unmarked"], "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fraction_after_scale": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fraction_agreement": {"properties": {"value": {"type": "boolean", "default": true}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fraction_of_scale": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "glued_denominator_alone": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "glued_denominator_alone_ambiguous": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "glued_denominators": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "group_mark": {"properties": {"value": {"type": "string"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "half_of_scale": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "hundred_counts_below_thousand": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "inflection_position": {"properties": {"value": {"enum": ["every", "last"], "default": "every"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "inverted_tens": {"properties": {"value": {"enum": [null, "required", "optional", "never"], "default": null}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_after_decimal_marker": {"properties": {"value": {"enum": ["required", "optional", "never"], "default": "never"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_after_hundred": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_before_half": {"properties": {"value": {"enum": ["required", "optional", "never"], "default": "required"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_before_last_group": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_before_round_hundred": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_between_groups": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_tens_units": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_thousand_hundreds": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_thousand_one_only": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_unit_ten": {"properties": {"value": {"enum": ["required", "optional", "never"], "default": "required"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "kept_marks": {"properties": {"value": {"type": "string", "default": ""}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "letter_folds": {"properties": {"value": {"type": "object", "additionalProperties": {"type": "string"}, "default": {}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "native_digits": {"properties": {"value": {"type": ["object", "null"], "properties": {"digits": {"type": "array", "items": {"type": "string"}}, "decimal_mark": {"type": "string"}, "group_mark": {"type": "string"}}, "required": ["digits", "decimal_mark", "group_mark"], "additionalProperties": false, "default": null}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "one_before_ordinal_scale_is_fraction": {"properties": {"value": {"type": "boolean", "default": true}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_form_part_takes_no_digits": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_joiner_by_place": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_style": {"properties": {"value": {"enum": ["every_word", "first_word", "last_word", "tail_words"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_suffix_marks": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": ["", "."]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "part_after_joiner_needs_article": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "part_glued_to_whole": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "percent_phrase_is_no_number": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "period_ordinal_free_digits": {"properties": {"value": {"type": "integer", "minimum": 0, "default": 0}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "period_ordinal_lowercase": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "period_ordinals": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "plural_scale_needs_count": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "point_decimal": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_pronoun_letters": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_title_case_cue": {"properties": {"value": {"type": "boolean", "default": true}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "scale": {"properties": {"value": {"enum": ["long", "short"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "scale_noun_agrees": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "small_multiplier_starts_group": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "space_groups": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ten_joins_unit_ordinal": {"properties": {"value": {"type": "boolean", "default": true}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "tens_order": {"properties": {"value": {"enum": ["ten_unit", "unit_ten", "both"], "default": "ten_unit"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "unit_ten_one_word": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "word_chars": {"properties": {"value": {"type": "string", "default": ""}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false}
+      },
+      "additionalProperties": false
+    },
+    "words": {
+      "type": "object",
+      "properties": {
+        "abbreviation": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "and_a_half": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "article_needs_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "article_one": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "class_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clitic_prefix": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clock_abbreviation": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clock_after": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "clock_before": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "count_of": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "date_month": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "decimal_marker": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "denominator_particle": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "digit_suffix_mark": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fraction_of": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "fraction_over": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "half_unit": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_prefix": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "lone_decimal_mark": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "minus": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "minus_idioms": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "negative_particle": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "noun_after_count": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "number_name": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "number_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "of": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "one_after_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_article": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_particle": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "ordinal_suffix_mark": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "part_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "partitive": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "percent_before": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "percent_phrase": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "period_ordinal_before": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "range_cue": {"properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_lower_word": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_series_noun": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_title": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_word": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "vague_clitic": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "word_apostrophe": {"properties": {"value": {"type": "array", "items": {"type": "string"}, "default": []}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false}
+      },
+      "additionalProperties": false
+    },
+    "inflection": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {"value": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}, "ordinal": {"type": "boolean", "default": false}, "fraction_case": {"type": "boolean", "default": false}},
+        "required": ["value", "source"],
+        "additionalProperties": false
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {"word": {"type": "string"}, "role": {"enum": ["article_collective", "collective", "decimal_zero", "denominator", "denominator_prefix", "fraction", "half", "hundred", "hundred_multiplier", "ordinal", "ordinal_ending", "ordinal_prefix", "ordinal_scale", "ordinal_suffix", "rational", "scale_noun", "scale_numeral", "teen", "teen_suffix", "ten", "ten_multiplier", "unit", "unit_and_half", "vague_quantifier", "value_word"]}, "source": {"type": "string"}, "value": {"type": ["string", "integer"]}, "rank": {"type": "integer", "minimum": 1}, "stems": {"type": "object", "additionalProperties": {"type": "array", "items": {"type": "string"}}}, "excluded_forms": {"type": "array", "items": {"type": "string"}}, "ambiguous_forms": {"type": "array", "items": {"type": "string"}}, "weak_forms": {"type": "array", "items": {"type": "string"}}, "gender": {"enum": ["feminine", "masculine", "neuter"]}, "count": {"type": "string"}, "numerator": {"type": "string"}, "cardinal": {"type": "string"}, "scale_of": {"type": "string"}, "takes_units": {"type": "array", "items": {"type": "string"}}, "case": {"type": "array", "items": {"type": "string"}}, "weak_after": {"type": "array", "items": {"type": "string"}}, "weak_before": {"type": "array", "items": {"type": "string"}}, "number_after": {"type": "array", "items": {"type": "string"}}, "addend": {"type": "boolean"}, "weak_alone": {"type": "boolean"}, "teens": {"type": "boolean"}, "weak_at_end": {"type": "boolean"}, "standalone": {"type": "boolean"}, "part": {"type": "boolean"}, "plural": {"type": "boolean"}, "joined_count": {"type": "boolean"}, "ordinal_unit": {"type": "boolean"}, "ambiguous": {"type": "boolean"}, "bound": {"type": "boolean"}, "after_article": {"type": "boolean"}, "invariant": {"type": "boolean"}, "counted": {"type": "boolean"}, "ordinal": {"type": "boolean"}, "final": {"type": "boolean"}, "takes_unit": {"type": "boolean"}},
+        "required": ["word", "role", "source"],
+        "allOf": [{"if": {"properties": {"role": {"enum": ["article_collective", "collective", "decimal_zero", "fraction", "hundred", "ordinal", "rational", "teen", "teen_suffix", "ten", "unit", "unit_and_half", "value_word"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["addend", "after_article", "ambiguous", "ambiguous_forms", "bound", "cardinal", "case", "excluded_forms", "final", "gender", "invariant", "joined_count", "number_after", "numerator", "ordinal", "ordinal_unit", "part", "plural", "role", "source", "standalone", "stems", "takes_unit", "takes_units", "teens", "value", "weak_after", "weak_alone", "weak_at_end", "weak_before", "weak_forms", "word"]}}}, {"if": {"properties": {"role": {"enum": ["hundred_multiplier", "scale_noun", "scale_numeral", "ten_multiplier"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["ambiguous", "ambiguous_forms", "count", "counted", "excluded_forms", "final", "gender", "ordinal", "part", "plural", "rank", "role", "source", "stems", "value", "weak_forms", "word"]}}}, {"if": {"properties": {"role": {"enum": ["denominator_prefix", "ordinal_ending", "ordinal_prefix"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["ambiguous", "ambiguous_forms", "excluded_forms", "final", "gender", "ordinal", "part", "plural", "role", "source", "stems", "weak_forms", "word"]}}}, {"if": {"properties": {"role": {"enum": ["half"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["ambiguous", "ambiguous_forms", "bound", "excluded_forms", "final", "gender", "ordinal", "part", "plural", "role", "source", "stems", "weak_forms", "word"]}}}, {"if": {"properties": {"role": {"enum": ["ordinal_scale"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["after_article", "ambiguous", "ambiguous_forms", "excluded_forms", "final", "gender", "ordinal", "part", "plural", "role", "source", "stems", "value", "weak_forms", "word"]}}}, {"if": {"properties": {"role": {"enum": ["ordinal_suffix"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["gender", "role", "source", "word"]}}}, {"if": {"properties": {"role": {"enum": ["vague_quantifier"]}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["ambiguous", "role", "source", "word"]}}}, {"if": {"properties": {"role": {"const": "denominator"}}, "required": ["role", "scale_of"]}, "then": {"propertyNames": {"enum": ["ambiguous", "ambiguous_forms", "excluded_forms", "final", "gender", "ordinal", "part", "plural", "role", "scale_of", "source", "stems", "weak_forms", "word"]}}, "else": {"if": {"properties": {"role": {"const": "denominator"}}, "required": ["role"]}, "then": {"propertyNames": {"enum": ["addend", "after_article", "ambiguous", "ambiguous_forms", "bound", "cardinal", "case", "excluded_forms", "final", "gender", "invariant", "joined_count", "number_after", "numerator", "ordinal", "ordinal_unit", "part", "plural", "role", "source", "standalone", "stems", "takes_unit", "takes_units", "teens", "value", "weak_after", "weak_alone", "weak_at_end", "weak_before", "weak_forms", "word"]}}}}]
+      }
+    }
+  },
+  "required": [
+    "format_version"
+  ],
+  "if": {
+    "required": [
+      "extends"
+    ]
+  },
+  "else": {
+    "required": [
+      "settings",
+      "words",
+      "entries"
+    ],
+    "properties": {
+      "settings": {
+        "required": ["comma_between_classes", "decimal_mark", "group_mark", "joiner_after_hundred", "joiner_before_last_group", "joiner_before_round_hundred", "joiner_between_groups", "joiner_tens_units", "ordinal_style", "plural_scale_needs_count", "scale", "scale_noun_agrees", "space_groups"]
+      },
+      "words": {
+        "required": ["abbreviation", "article_one", "class_noun", "decimal_marker", "denominator_particle", "fraction_of", "half_unit", "joiner", "lone_decimal_mark", "minus", "minus_idioms", "of", "range_cue"]
+      }
+    }
+  }
+}

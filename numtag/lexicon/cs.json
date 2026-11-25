@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR RBNF cs renders 10^9 as \"jedna miliarda\" and 10^12 as \"jeden bilión\": Czech counts in the long scale. Internetová jazyková příručka (ÚJČ AV ČR), \"bilion\": \"milion milionů\"."},
     "group_mark": {"value": ".", "source": "Internetová jazyková příručka (ÚJČ AV ČR), \"Členění čísel, víceslovné číslovkové výrazy (typ 365, 2 582) a desetinná čísla\": \"Při psaní peněžních částek v textech administrativní povahy lze skupiny tří číslic oddělit místo mezer tečkami: 604.351,50 Kč; 1.000.000 Kč\"."},

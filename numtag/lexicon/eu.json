@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "Euskaltzaindia, 203. araua, EBO (VI), \"Zenbakizko adierazpenak\": \"Euskaraz, eskala luzea erabiltzen da, gaztelaniaz eta frantsesez bezala.\""},
     "group_mark": {"value": ".", "source": "CLDR 48 eu number symbols (ICU 78 formats 1234567.5 as \"1.234.567,5\"): the dot groups digits.; Euskaltzaindia, 203. araua, EBO (VI), \"Zenbakizko adierazpenak\": \"talde horiek bata bestetik bereizteko, zuriune bat erabiltzea da gomendioa\"; footnote 8: \"Ohitura hedatua eta errotua da Hego Euskal Herrian zuriunearen ordez puntua erabiltzea\". Both read."},

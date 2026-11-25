@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR 48 RBNF et %spellout-cardinal, ICU 78 rendering of 1000000000000: \"üks biljon\"; CLDR 48 RBNF et %spellout-cardinal, ICU 78 rendering of 1000000000000000: \"üks biljard\": 'biljon' is 10^12, a million millions, so Estonian counts in the long scale."},
     "group_mark": {"value": "\u00a0", "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/et/numbers.json, main.et.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space), \"decimal\": \",\". A plain space between groups reads through space_groups."},
