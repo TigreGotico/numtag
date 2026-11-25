@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.25.2a1](https://github.com/TigreGotico/numtag/tree/0.25.2a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.1a1...0.25.2a1)
+
+**Merged pull requests:**
+
+- fix: a counted fraction over 1 raises ValueError [\#308](https://github.com/TigreGotico/numtag/pull/308) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.25.1a1](https://github.com/TigreGotico/numtag/tree/0.25.1a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.0a1...0.25.1a1)
@@ -602,10 +610,6 @@
 ## [0.13.1a1](https://github.com/TigreGotico/numtag/tree/0.13.1a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.0a1...0.13.1a1)
-
-**Merged pull requests:**
-
-- fix\(en\): name the -illion words of ranks 21 to 99 and 101 [\#80](https://github.com/TigreGotico/numtag/pull/80) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.13.0a1](https://github.com/TigreGotico/numtag/tree/0.13.0a1) (2026-11-17)
 
