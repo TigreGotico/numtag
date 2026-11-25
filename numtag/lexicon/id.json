@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "short", "source": "KBBI VI Daring, \"triliun\": \"12 nol (000.000.000.000) [...] (di Amerika Serikat dan Prancis, digunakan juga di Indonesia)\". \"miliar\" is 10^9 and \"triliun\" 10^12 in Indonesia, so the scale changes no value."},
     "group_mark": {"value": ".", "source": "EYD V, \"Tanda Titik\", rule 8: \"Tanda titik digunakan untuk memisahkan bilangan ribuan atau kelipatannya\" (\"13.000 pulau\")."},

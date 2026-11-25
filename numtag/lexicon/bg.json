@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "short", "source": "CLDR RBNF bg renders 10^9 as \"един милиард\" and 10^12 as \"един трилион\": Bulgarian names 10^9 \"милиард\" and counts the -illions in the short scale."},
     "group_mark": {"value": " ", "source": "CLDR common/main/bg.xml (unicode-org/cldr c0b65ae), number symbols: the group symbol is U+00A0, a no-break space. No dot groups digits."},

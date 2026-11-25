@@ -16,14 +16,17 @@ numtag finds every number in a text and returns one mention per number. A mentio
 
 | Path | Holds |
 |---|---|
-| `numtag/tagger.py` | `tag_numbers`, the confidence constants and the choice of lexicon (`BASE_LEXICON`) |
+| `numtag/tagger.py` | `tag_numbers`, `revision`, the confidence constants and the choice of lexicon (`BASE_LEXICON`) |
 | `numtag/tokenize.py`, `numtag/grammar.py`, `numtag/roman.py` | Tokens, the number grammar and Roman numerals |
 | `numtag/digits.py` | Arithmetic on digit strings. No value passes through `int` or `float` |
 | `numtag/mention.py` | `NumberMention`, `Kind`, `Form`, `Scale`, `Reason`, `is_canonical_value` |
 | `numtag/vague.py` | `tag_vague_quantities` |
 | `numtag/lexicon/*.json` | One lexicon per language. This is the language data |
+| `numtag/lexicon.schema.json` | The JSON Schema of a lexicon. [docs/lexicon-format.md](docs/lexicon-format.md) specifies the format |
+| `numtag/bare_tags.json` | The lexicon that a bare tag reads ("pt" reads pt-PT, "no" reads nb) |
 | `tests/gold/<lang>.jsonl` | Gold rows of real sentences, one file per lexicon |
 | `tests/gold_floor.json` | The lowest accepted gold score of each language |
+| `tests/golden/readings.jsonl.gz` | Every field of every mention of every gold and consumer text, at both scales. `python tests/golden.py` writes it |
 | `tests/consumers/` | The readings that each consumer of numtag depends on |
 | `benchmarks/bench.py` | The accuracy, memory and time script |
 | `docs/` | The documentation. `docs/index.md` sets the reading order |
@@ -58,3 +61,4 @@ The full suite takes several minutes. `tests/test_docs.py` runs every example in
 
 1. Run the full test suite.
 2. If you added, removed, renamed or moved a page of `docs/`, list it in `docs/index.md` and fix the navigation footers of its neighbours.
+3. If a change moves a reading on purpose, write the golden file again with `python tests/golden.py` and name the changed rows in the commit.

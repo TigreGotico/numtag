@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "extends": "fr-FR",
   "entries": [
     {"word": "septante", "role": "ten", "value": "70", "source": "Académie 9e éd., SEPTANTE: \"En Belgique et en Suisse romande. S’emploie pour soixante-dix.\"; CLDR 48 RBNF (ICU 78) fr_BE %spellout-cardinal-masculine: \"70: septante;\", \"71: septante->%%et-un>;\""},

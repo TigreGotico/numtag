@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR RBNF pl renders 10^9 as \"miliard\" and 10^12 as \"bilion\": Polish counts in the long scale. Wiktionary (en), \"bilion\": \"trillion\", 10^12."},
     "group_mark": {"value": " ", "source": "CLDR common/main/pl.xml (unicode-org/cldr c0b65ae), number symbols: the group symbol is U+00A0, a no-break space. No dot groups digits."},

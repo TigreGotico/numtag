@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR 48 RBNF hu %spellout-cardinal, ICU 78 rendering of 1000000000: \"egymilliárd\"; CLDR 48 RBNF hu %spellout-cardinal, ICU 78 rendering of 1000000000000: \"egybillió\"; CLDR 48 RBNF hu %spellout-cardinal, ICU 78 rendering of 1000000000000000: \"egybilliárd\": 'milliárd' is 10^9 and 'billió' 10^12, the long scale."},
     "group_mark": {"value": "\u00a0", "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hu/numbers.json, main.hu.numbers.symbols-numberSystem-latn: \"group\": \"\u00a0\" (U+00A0, no-break space), \"decimal\": \",\". A plain space between groups reads through space_groups."},

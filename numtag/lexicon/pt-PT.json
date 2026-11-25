@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "Priberam, \"bilião\", sense 1: a million millions; pt-PT counts in the long scale, so \"mil milhões\" is 10^9."},
     "fraction_of_scale": {"value": true, "source": "Priberam, \"quarto\", nome masculino, sense 2: \"Cada uma das quatro partes iguais em que se divide a unidade; quarta parte de um todo.\" Priberam, \"terço\", sense 1: \"Cada parte de um todo dividido em três partes.\" Priberam, \"milhão\", sense 1: \"Mil vezes mil\". So a fraction word, \"de\" and a singular scale noun, with or without \"um\", name that part of the scale noun: \"um quarto de milhão\" is 250000. Structural, no external source: \"mil\" is a numeral and no noun, so \"um quarto de mil euros\" keeps the quarter and the thousand apart."},
