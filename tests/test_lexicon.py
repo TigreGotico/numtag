@@ -113,8 +113,7 @@ class TestLexiconFiles(unittest.TestCase):
         data = deepcopy(lexicon_module._read("hr"))
         data["entries"] += [{"word": "jako puno", "role": "vague_quantifier", "source": "test entry"},
                             {"word": "Više", "role": "vague_quantifier", "ambiguous": True, "source": "test entry"}]
-        with mock.patch.object(lexicon_module, "_read", lambda lang: data), \
-                mock.patch.object(lexicon_module, "exists", lambda lang: True):
+        with mock.patch.object(lexicon_module, "_read", lambda lang: data):
             phrases = lexicon_module.load("hr-test").vague_quantifiers
             lexicon_module.load.cache_clear()
         self.assertEqual(phrases[("jako", "puno")], False)
@@ -125,8 +124,7 @@ class TestLexiconFiles(unittest.TestCase):
         data = deepcopy(lexicon_module._read("hr"))
         data["entries"] = [e for e in data["entries"] if e["role"] != "vague_quantifier"] + [
             {"word": "jako puno", "role": "vague_quantifier", "source": "test entry"}]
-        with mock.patch.object(lexicon_module, "_read", lambda lang: data), \
-                mock.patch.object(lexicon_module, "exists", lambda lang: True):
+        with mock.patch.object(lexicon_module, "_read", lambda lang: data):
             lexicon_module.load.cache_clear()
             vague = [(m.text, m.value) for m in tag_numbers("jako puno tisuća", "hr")]
             alone = [(m.text, m.value) for m in tag_numbers("puno tisuća", "hr")]

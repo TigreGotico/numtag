@@ -2,7 +2,7 @@
 
 <!-- agent-hint
 covers: How to add a language: the lexicon JSON format, the source rule, the gold rows and the test gates.
-source: numtag/lexicon/__init__.py:load, numtag/tagger.py:BASE_LEXICON, numtag/bare_tags.json, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
+source: numtag/lexicon/__init__.py:load, numtag/tagger.py:lexicon_name, tests/test_lexicon.py, tests/test_gold.py, tests/test_group_marks.py
 generated: no
 verify: diff <(python tests/gold/check_gold.py tests/gold/en.jsonl tests/gold/pt-BR.jsonl tests/gold/pt-PT.jsonl) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' docs/adding-a-language.md)
 see: rulings.md, design.md
@@ -22,7 +22,7 @@ ovos-number-parser (`numbers_<lang>.py` and its tests) and the number modules of
 
 ## The lexicon file
 
-The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` reads the primary subtag of a language tag ("de" for "de-AT") and loads `<primary>.json`. A region with a file of its own loads that file. So `pt-BR` loads `pt-BR.json`, and `fr-BE` loads `fr-BE.json`. `BASE_LEXICON` in `numtag/tagger.py` names the file for every other tag of such a language. It reads the data file `numtag/bare_tags.json`, where each entry has a source. There `pt` loads `pt-PT.json` and `fr` loads `fr-FR.json`. It also maps `no` to `nb.json`. A language with regional files needs an entry in that file.
+The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `tag_numbers` passes the language tag to `lexicon_name` in `numtag/tagger.py`, which asks linguatag for the closest file. A tag whose region has a file of its own loads that file: `pt-BR` loads `pt-BR.json` and `fr-BE` loads `fr-BE.json`. Any other tag loads the file closest to its language. So `de-AT` loads `de.json`, `pt` loads `pt-PT.json`, `fr` and `fr-CA` load `fr-FR.json`, and `no` loads `nb.json`. Spelling does not matter: `PT_br`, `por` and `pt-Latn-BR` read like `pt-BR`. A language with regional files needs no entry anywhere else. linguatag picks the file named by the default region of the bare tag.
 
 [lexicon-format.md](lexicon-format.md) defines every key, its type, its default and its effect. The file is a JSON object with these keys:
 

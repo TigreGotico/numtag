@@ -666,8 +666,7 @@ def _illion_exponent(rank: int, scale: Scale) -> int:
     return 3 * rank + 3 if scale == Scale.SHORT else 6 * rank
 
 
-def exists(lang: str) -> bool:
-    return (_HERE / f"{lang}.json").is_file()
+LEXICONS = tuple(sorted(path.stem for path in _HERE.glob("*.json")))
 
 
 @cache

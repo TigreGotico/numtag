@@ -1,11 +1,12 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
-import json
-from pathlib import Path
+from functools import lru_cache
+
+from linguatag import closest_lang, standardize_lang
 
 from numtag import digits
 from numtag.digits import Rational
 from numtag.grammar import Grammar, Parse, Pieces
-from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
+from numtag.lexicon import CARDINAL_ROLES, LEXICONS, Lexicon, Scale, UnsupportedLanguageError, load
 from numtag.lexicon import revision as lexicon_revision
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
 from numtag.roman import roman_numerals
@@ -22,22 +23,16 @@ AMBIGUOUS_CONFIDENCE = 0.4
 CONFIDENCE = {None: 1.0, Reason.ARTICLE: ARTICLE_CONFIDENCE, Reason.HOMOGRAPH: AMBIGUOUS_CONFIDENCE}
 
 
-# The lexicon of a language tag with no region, or with a region that has no
-# lexicon of its own.
-BASE_LEXICON = {tag: item["value"] for tag, item in
-                json.loads(Path(__file__).with_name("bare_tags.json").read_text(encoding="utf-8")).items()}
-
-
+@lru_cache(maxsize=4096)
 def lexicon_name(lang: str) -> str:
-    """The lexicon file for a language tag: the region's file when there is
-    one ("pt-br" reads pt-BR, "fr-be" fr-BE), else the language's base file:
-    every other "pt" tag reads pt-PT, "no" (Norwegian) reads Bokmål, nb, and
-    every other tag its primary language ("de-AT" reads de)."""
-    parts = lang.replace("_", "-").split("-")
-    primary, region = parts[0].lower(), (parts[1].upper() if len(parts) > 1 else "")
-    if region and exists(f"{primary}-{region}"):
-        return f"{primary}-{region}"
-    return BASE_LEXICON.get(primary, primary)
+    """The lexicon file for a language tag: the file of the whole tag when there is one ("pt-BR"
+    reads pt-BR, "fr_be" fr-BE), else the closest file to its language ("pt" reads pt-PT, "no"
+    reads Bokmål, nb, "de-AT" reads de)."""
+    tag = standardize_lang(lang)
+    name = closest_lang(tag, LEXICONS, max_distance=0) or closest_lang(tag.partition("-")[0], LEXICONS)
+    if name is None:
+        raise UnsupportedLanguageError(f"no lexicon for language {lang!r}")
+    return name
 
 
 def revision(lang: str) -> str:

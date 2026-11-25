@@ -14,7 +14,7 @@ from numtag import lexicon as lexicon_module
 from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, FORMAT_VERSION, INFLECTION_KEYS,
                             REQUIRED_SETTINGS, REQUIRED_WORDS, SCALE_OF_KEYS, SETTINGS, TOP_KEYS, WORDS,
                             UnsupportedLanguageError, load)
-from numtag.tagger import BASE_LEXICON
+from numtag.tagger import lexicon_name
 
 PACKAGE = Path(numtag.__file__).parent
 ROOT = Path(__file__).parent.parent
@@ -400,12 +400,32 @@ class TestRevision(unittest.TestCase):
             numtag.revision("xx")
 
 
-class TestBareTags(unittest.TestCase):
-    def test_the_bare_tags_are_data_with_a_source(self):
-        data = json.loads((PACKAGE / "bare_tags.json").read_text(encoding="utf-8"))
-        self.assertEqual(BASE_LEXICON, {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"})
-        self.assertEqual(BASE_LEXICON, {tag: item["value"] for tag, item in data.items()})
-        for tag, item in data.items():
+class TestLanguageTags(unittest.TestCase):
+    def test_a_bare_tag_reads_the_default_region_of_its_language(self):
+        for tag, name in [("pt", "pt-PT"), ("fr", "fr-FR"), ("no", "nb")]:
             with self.subTest(tag=tag):
-                self.assertTrue(item["source"])
-                self.assertIn(item["value"], NAMES)
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_every_lexicon_is_read_by_its_name_in_every_spelling(self):
+        for name in NAMES:
+            for spelling in (name, name.upper(), name.replace("-", "_"), name.lower().replace("-", "_")):
+                with self.subTest(spelling=spelling):
+                    self.assertEqual(lexicon_name(spelling), name)
+
+    def test_a_code_that_names_a_language_another_way_reads_its_lexicon(self):
+        for tag, name in [("deu", "de"), ("eng", "en"), ("fra", "fr-FR"), ("por", "pt-PT"), ("spa", "es"),
+                          ("iw", "he"), ("in", "id"), ("nob", "nb"), ("nno", "nn"), ("nor", "nb"), ("zlm", "ms"),
+                          ("pt-Latn-BR", "pt-BR")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+                self.assertEqual(numtag.revision(tag), numtag.revision(name))
+
+    def test_a_region_without_a_lexicon_reads_the_language(self):
+        for tag, name in [("de-AT", "de"), ("fr-CA", "fr-FR"), ("pt-AO", "pt-PT"), ("en-AU", "en"), ("ar-EG", "ar")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_a_language_without_a_lexicon_is_refused_in_every_spelling(self):
+        for tag in ("xx", "XX_US", "", " ", " pt "):
+            with self.subTest(tag=tag), self.assertRaises(UnsupportedLanguageError):
+                numtag.tag_numbers("21", tag)

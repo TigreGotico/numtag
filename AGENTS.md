@@ -10,20 +10,19 @@ see: docs/index.md, docs/adding-a-language.md, docs/rulings.md
 
 Read this file before you change anything in the repository. It gives the map, the setup, the hard rules and the checks to run before a push. The documentation index is [docs/index.md](docs/index.md).
 
-numtag finds every number in a text and returns one mention per number. A mention holds the exact words, the character span, an exact value as a digit string, the kind and the form. The tagger reads numbers only and has no runtime dependencies.
+numtag finds every number in a text and returns one mention per number. A mention holds the exact words, the character span, an exact value as a digit string, the kind and the form. The tagger reads numbers only and has one runtime dependency, linguatag, which reads language tags.
 
 ## Repository map
 
 | Path | Holds |
 |---|---|
-| `numtag/tagger.py` | `tag_numbers`, `revision`, the confidence constants and the choice of lexicon (`BASE_LEXICON`) |
+| `numtag/tagger.py` | `tag_numbers`, `revision`, the confidence constants and the choice of lexicon (`lexicon_name`) |
 | `numtag/tokenize.py`, `numtag/grammar.py`, `numtag/roman.py` | Tokens, the number grammar and Roman numerals |
 | `numtag/digits.py` | Arithmetic on digit strings. No value passes through `int` or `float` |
 | `numtag/mention.py` | `NumberMention`, `Kind`, `Form`, `Scale`, `Reason`, `is_canonical_value` |
 | `numtag/vague.py` | `tag_vague_quantities` |
 | `numtag/lexicon/*.json` | One lexicon per language. This is the language data |
 | `numtag/lexicon.schema.json` | The JSON Schema of a lexicon. [docs/lexicon-format.md](docs/lexicon-format.md) specifies the format |
-| `numtag/bare_tags.json` | The lexicon that a bare tag reads ("pt" reads pt-PT, "no" reads nb) |
 | `tests/gold/<lang>.jsonl` | Gold rows of real sentences, one file per lexicon |
 | `tests/gold_floor.json` | The lowest accepted gold score of each language |
 | `tests/golden/readings.jsonl.gz` | Every field of every mention of every gold and consumer text, at both scales. `python tests/golden.py` writes it |
