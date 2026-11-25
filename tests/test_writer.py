@@ -476,6 +476,11 @@ class TestSpell(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "'bogus'"):
             spell("2.5", "pt-PT", decimals="bogus")
 
+    def test_a_counted_fraction_over_one_raises(self):
+        for value in ("3/1", "1/1", "-2/1"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                spell(value, "pt-PT")
+
     def test_a_negative_ordinal_reads_with_the_minus_rule_of_its_rule_set(self):
         variants = Variants(self)
         data = _file("id")

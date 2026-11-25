@@ -379,6 +379,8 @@ def _fraction(writer: Writer, ruleset: str, value: str) -> str:
     whole, rest = digits.divide_whole(top, bottom)
     text = None
     if spec and spec.get("mixed") is False:
+        if bottom == "1":
+            raise ValueError(f"{writer.name}: a fraction over 1 has no counted reading: {value}")
         text = _counted(writer, ruleset, spec, top, bottom)
     elif spec and rest != "0" and digits.compare("2", bottom) <= 0 and digits.compare(bottom, str(spec["limit"])) <= 0:
         text = _mixed(writer, ruleset, spec, whole, rest, bottom)
