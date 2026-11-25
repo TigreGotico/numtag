@@ -11,9 +11,9 @@ import jsonschema
 
 import numtag
 from numtag import lexicon as lexicon_module
-from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, FORMAT_VERSION, INFLECTION_KEYS,
+from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, INFLECTION_KEYS, READABLE_VERSIONS,
                             REQUIRED_SETTINGS, REQUIRED_WORDS, SCALE_OF_KEYS, SETTINGS, TOP_KEYS, WORDS,
-                            UnsupportedLanguageError, load)
+                            UnsupportedLanguageError, WRITER_VERSION, load)
 from numtag.tagger import BASE_LEXICON
 
 PACKAGE = Path(numtag.__file__).parent
@@ -70,7 +70,7 @@ class TestSchema(unittest.TestCase):
         self.assertEqual(set(top["inflection"]["additionalProperties"]["properties"]), INFLECTION_KEYS)
         self.assertEqual(set(SCHEMA["else"]["properties"]["settings"]["required"]), REQUIRED_SETTINGS)
         self.assertEqual(set(SCHEMA["else"]["properties"]["words"]["required"]), REQUIRED_WORDS)
-        self.assertEqual(top["format_version"], {"const": FORMAT_VERSION})
+        self.assertEqual(top["format_version"], {"enum": list(READABLE_VERSIONS)})
 
     def test_the_schema_gives_the_default_that_the_loader_uses(self):
         for section, defaults in (("settings", DEFAULT_SETTINGS), ("words", DEFAULT_WORDS)):
@@ -103,7 +103,10 @@ class TestSchema(unittest.TestCase):
         bad["entries"] = [{"word": "x", "role": "unit", "value": "1", "rank": 3, "source": "s"}]
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("en")
-        bad["format_version"] = 2
+        bad["format_version"] = 3
+        self.assertTrue(list(validator.iter_errors(bad)))
+        bad = _file("en")
+        bad["writer"] = _file("id")["writer"]
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("en")
         del bad["settings"]["scale"]
@@ -123,11 +126,12 @@ class TestVersion(unittest.TestCase):
     def test_every_lexicon_names_the_version(self):
         for name in NAMES:
             with self.subTest(lexicon=name):
-                self.assertEqual(_file(name)["format_version"], FORMAT_VERSION)
+                data = _file(name)
+                self.assertEqual(data["format_version"], WRITER_VERSION if "writer" in data else 1)
 
     def test_a_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
-        for version in (2, 0, "1", None):
+        for version in (3, 0, "1", None):
             data = _file("en")
             data["format_version"] = version
             variants.write("variant", data)
@@ -146,10 +150,10 @@ class TestVersion(unittest.TestCase):
     def test_a_base_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
         base = _file("pt-PT")
-        base["format_version"] = 2
+        base["format_version"] = 3
         variants.write("base", base)
         variants.write("variant", {**_file("pt-BR"), "extends": "base"})
-        with self.assertRaisesRegex(ValueError, "base: format_version 2 is unknown"):
+        with self.assertRaisesRegex(ValueError, "base: format_version 3 is unknown"):
             load.__wrapped__("variant")
 
 
@@ -358,7 +362,7 @@ class TestRevision(unittest.TestCase):
 
     def test_the_revision_of_a_lexicon_with_a_base_covers_the_base(self):
         base, derived = _file("pt-PT"), _file("pt-BR")
-        merged = {"format_version": FORMAT_VERSION,
+        merged = {"format_version": base["format_version"],
                   "settings": {**base["settings"], **derived["settings"]},
                   "words": {**base["words"], **derived.get("words", {})},
                   "inflection": {},
