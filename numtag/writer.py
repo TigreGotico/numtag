@@ -213,13 +213,14 @@ def _writer(name: str) -> Writer:
     return Writer(name, block, load(name).scale.value)
 
 
-def _split(value: str) -> tuple[bool, str, str]:
-    """The sign, whole digits and fraction digits of a decimal digit string."""
+def _split(value: str, keep_zeros: bool = False) -> tuple[bool, str, str]:
+    """The sign, whole digits and fraction digits of a decimal digit string; ``keep_zeros`` keeps the
+    trailing zeros of the written decimals."""
     negative = value.startswith("-")
     whole, point, fraction = value.removeprefix("-").partition(".")
     if not _is_digits(whole) or point and not _is_digits(fraction):
         raise ValueError(f"{value!r} is not a digit string")
-    return negative, digits.normalise(whole), fraction.rstrip("0")
+    return negative, digits.normalise(whole), fraction if keep_zeros else fraction.rstrip("0")
 
 
 def _is_digits(text: str) -> bool:
@@ -250,10 +251,13 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     the lexicon has no such case. ``places`` is the count of decimals read,
     default the lexicon's. ``scientific`` reads the exponent form where the
     lexicon has one. ``decimals`` is "digits" (one word per decimal) or
-    "number" (the decimals as one number), default the lexicon's.
+    "number" (the decimals as one number, with the trailing zeros as
+    written: "1.80" reads eighty), default the lexicon's.
     """
     writer = _writer(lexicon_name(lang))
     form = SpokenForm(form)
+    if decimals not in (None, "digits", "number"):
+        raise ValueError(f"decimals is 'digits' or 'number', not {decimals!r}")
     spellings: list[Spelling] = []
     for variant in writer.variants(form, gender, case, scale and Scale(scale).value):
         text = _speak(writer, variant["ruleset"], value, form, places, scientific,
@@ -267,7 +271,7 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
            decimals: str) -> str:
     if "/" in value:
         return _fraction(writer, ruleset, value)
-    negative, whole, fraction = _split(value)
+    negative, whole, fraction = _split(value, keep_zeros=decimals == "number")
     places = writer.decimal["places"] if places is None else places
     if form is SpokenForm.ORDINAL:
         return _ordinal(writer, ruleset, negative, whole, fraction)
