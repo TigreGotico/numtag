@@ -170,9 +170,10 @@ class TestRoundTrip(unittest.TestCase):
 
 
 class TestRevisions(unittest.TestCase):
-    def test_a_lexicon_with_no_writer_keeps_its_revision(self):
+    def test_every_lexicon_with_no_writer_has_a_stored_revision_and_keeps_it(self):
         stored = json.loads((Path(__file__).parent / "golden" / "revisions.json").read_text(encoding="utf-8"))
-        self.assertEqual(len(stored), 44)
+        names = sorted(path.stem for path in LEXICONS.glob("*.json") if path.stem not in WRITERS)
+        self.assertEqual(sorted(stored), names)
         for name, revision in stored.items():
             with self.subTest(lexicon=name):
                 self.assertEqual(numtag.revision(name), revision)

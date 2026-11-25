@@ -66,7 +66,7 @@
   "writer": {
     "source": "CLDR 44 RBNF ms (common/rbnf/ms.xml as shipped in unicode-rbnf 2.5.1); a rule changed from it carries its own source, and the source of a rule set names the CLDR rules that are left out",
     "rulesets": {
-      "spellout-cardinal": {"source": "CLDR 44 RBNF ms (common/rbnf/ms.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal. Left out: the rules x.x and x,x, and the rules for 10^15 (kuadrilion) and 10^18 (=#,##0=), and the rules for 1000000 (\"sejuta\") and 2000000, which the rule for 1000000 below replaces. ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_int, has a scale table that ends at \"triliun\", so it writes 10^15 as \"seribu triliun\" and 10^18 as \"satu juta triliun\", and the golden file of its writer holds that output.", "rules": [
+      "spellout-cardinal": {"source": "CLDR 44 RBNF ms (common/rbnf/ms.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal. Left out: the rules x.x and x,x, and the rules for 10^15 (kuadrilion) and 10^18 (=#,##0=), and the rules for 1000000 (\"sejuta\") and 2000000, which the rule for 1000000 below replaces. ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_int (the Malay trillion word is \"trilion\" in _MS), has a scale table that ends at \"trilion\", so it writes 10^15 as \"seribu trilion\" and 10^18 as \"satu juta trilion\", and the golden file of its writer holds that output.", "rules": [
           {"value": "0", "text": "sifar;", "source": "ovos-number-parser 0.31.4a8 numbers_id.py _pronounce_number (ms): \"sifar\"; the CLDR rule says \"kosong\"."},
           {"value": "1", "text": "satu;"},
           {"value": "2", "text": "dua;"},

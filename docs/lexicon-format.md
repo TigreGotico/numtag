@@ -266,7 +266,7 @@ A `writer` block makes the lexicon write numbers as words. `numtag.spell` runs i
 
 A rule is an object with `value`, `text`, and optionally `radix` and `source`. The `value` is a base value as a whole number with no leading zero, or `-x` for the rule that reads a negative number. The `text` is the rule text. The loader refuses at once any other key and any other `value`, such as `x.x`, `Inf` or `010`.
 
-The interpreter reads a whole number in a rule set like this. It picks the rule with the largest base value that is not above the number. The divisor is the radix (10 when the rule has none) raised to the largest exponent that keeps the divisor not above the base value. The quotient and the remainder of the number by the divisor fill the slots of the rule text. A rule set holds no rule for a number below its smallest base value, so it has a rule for 0.
+The interpreter reads a whole number in a rule set like this. It picks the rule with the largest base value that is not above the number. The divisor is the radix (10 when the rule has none) raised to the largest exponent that keeps the divisor not above the base value. The quotient and the remainder of the number by the divisor fill the slots of the rule text. A rule set holds no rule for a number below its smallest base value, so it has a rule for 0, or the form sets a `minimum` that keeps the number out.
 
 | Text | Meaning |
 |---|---|
