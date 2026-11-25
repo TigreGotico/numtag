@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/hi.json."""
 import unittest
 
+import pytest
+
 from helpers import read
 from numtag import tag_numbers
 
@@ -114,3 +116,54 @@ class TestWordsThatHoldNoNumber(unittest.TestCase):
     def test_ek_before_a_noun_is_the_indefinite_article(self):
         self.assertEqual(hi("यह एक अच्छा दिन है"), [("एक", "1", C)])
         self.assertLess(tag_numbers("यह एक अच्छा दिन है", "hi")[0].confidence, 0.5)
+
+
+class TestSpellingsOfOneToNinetyNine(unittest.TestCase):
+    def test_a_spelling_that_a_cited_page_writes_is_one_number(self):
+        # 1 x 100 + 69, 27 x 1000, 99 x 100000, 82 x 1000
+        self.assertEqual(hi("एक सौ उनसत्तर"), [("एक सौ उनसत्तर", "169", C)])
+        self.assertEqual(hi("सताइस हजार"), [("सताइस हजार", "27000", C)])
+        self.assertEqual(hi("निनानवे लाख"), [("निनानवे लाख", "9900000", C)])
+        self.assertEqual(hi("बिरासी हजार"), [("बिरासी हजार", "82000", C)])
+
+    def test_chhai_is_no_number_because_it_is_also_a_copula(self):
+        # "छै" is 6 in one text and "is" in another, so no entry holds it
+        self.assertEqual(hi("देखै छै"), [])
+
+
+class TestDevanagariDigits(unittest.TestCase):
+    def test_a_count_in_devanagari_digits_takes_its_scale_word(self):
+        # 8 x 10^7, 5 x 10^5, 4.10 x 10^7
+        self.assertEqual(hi("८ करोड़"), [("८ करोड़", "80000000", C)])
+        self.assertEqual(hi("५ लाख लोग"), [("५ लाख", "500000", C)])
+        self.assertEqual(hi("४.१० करोड़"), [("४.१० करोड़", "41000000", C)])
+
+
+class TestTraditionalScaleWords(unittest.TestCase):
+    def test_sahasra_is_a_thousand(self):
+        # 10 x 1000
+        self.assertEqual(hi("दश सहस्र"), [("दश सहस्र", "10000", C)])
+
+    def test_nil_padma_and_shankh_need_a_count(self):
+        for word in ("नील", "पद्म", "शंख"):
+            self.assertEqual(hi(word), [], word)
+        # 10 x 10^13, 10 x 10^15, 10 x 10^17
+        self.assertEqual(hi("दश नील"), [("दश नील", "1" + "0" * 14, C)])
+        self.assertEqual(hi("दश पद्म"), [("दश पद्म", "1" + "0" * 16, C)])
+        self.assertEqual(hi("दश शंख"), [("दश शंख", "1" + "0" * 18, C)])
+
+
+class TestArabSenseOfArab(unittest.TestCase):
+    # A count before अरब reads 10^9 in number text. The format has no data setting that tells it from the Arabs.
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_ek_arab_is_an_arab_before_a_noun(self):
+        self.assertEqual(hi("पश्चिमी एशिया में एक अरब संप्रभु राज्य है"), [("एक", "1", C)])
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_a_number_before_arab_tribes(self):
+        self.assertEqual(hi("बारह अरब जनजातियां"), [("बारह", "12", C)])
+
+    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    def test_a_year_before_the_arab_league(self):
+        self.assertEqual(hi("1970 अरब लीग शिखर सम्मेलन"), [("1970", "1970", C)])

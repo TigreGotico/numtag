@@ -57,6 +57,16 @@
    "value": false,
    "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"21: इक्कीस;\": every compound is a word of the table."
   },
+  "native_digits": {
+   "value": {
+    "digits": [
+     "०१२३४५६७८९"
+    ],
+    "decimal_mark": ".",
+    "group_mark": ","
+   },
+   "source": "hi.wikipedia, «अंक»: \"शून्य से लेकर नौ तक (० से ९ तक) कुल दस अंक प्रयोग किये जाते हैं\"; \"(एक) लाख १,००,०००\"; CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hi/numbers.json, symbols-numberSystem-latn: \"decimal\": \".\", \"group\": \",\""
+  },
   "fold_marks": {
    "value": true,
    "source": "structural, no external source: a Devanagari vowel sign or nasal sign belongs to the word it follows."
@@ -764,6 +774,36 @@
    "role": "scale_noun",
    "value": 11,
    "source": "en.wikipedia, \"Indian numbering system\": \"kharab (100 arab, 1011)\"; hi.wikipedia, «अरब सागर»: \"अरब सागर जिसका भारतीय नाम सिंधु सागर है\"; hi.wikipedia, «सऊदी अरब»: \"सऊदी अरब (अरबी:\": the word also names the Arabs, so it reads only after a count. CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000000000: << खरब[ >>];\""
+  },
+  {
+   "word": "सहस्र",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "hi.wikipedia, «अंक»: \"(एक) हज़ार/(एक) सहस्र १,०००\""
+  },
+  {
+   "word": "नील",
+   "role": "scale_noun",
+   "value": 13,
+   "source": "hi.wikipedia, «अंक»: \"(एक) नील १,००,००,००,००,००,०००\""
+  },
+  {
+   "word": "पद्म",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "hi.wikipedia, «अंक»: \"(एक) पद्म १,००,००,००,००,००,००,०००\""
+  },
+  {
+   "word": "शंख",
+   "role": "scale_noun",
+   "value": 17,
+   "source": "hi.wikipedia, «अंक»: \"(एक) शंख १,००,००,००,००,००,००,००,०००\""
+  },
+  {
+   "word": "महाशंख",
+   "role": "scale_numeral",
+   "value": 19,
+   "source": "hi.wikipedia, «अंक»: \"महाशंख १,००,००,००,००,००,००,००,००,०००\""
   },
   {
    "word": "शून्यवाँ",
@@ -2866,6 +2906,42 @@
    "source": "hi.wikipedia, «न्यूर्क, न्यू जर्सी»: \"उनके पचानवे प्रतिशत से अधिक स्नातक\""
   },
   {
+   "word": "उनसत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "hi.wikipedia, «भारत में 2020 कोरोनावायरस महामारी की समयरेखा»: \"मरने वालों की संख्या बढ़कर एक सौ उनसत्तर हुई\""
+  },
+  {
+   "word": "चवालीस",
+   "role": "unit",
+   "value": "44",
+   "source": "hi.wikipedia, «भारत में 2020 कोरोनावायरस महामारी की समयरेखा»: \"उत्तर प्रदेश में चवालीस मामले सामने आए\""
+  },
+  {
+   "word": "चियालीस",
+   "role": "unit",
+   "value": "46",
+   "source": "hi.wikipedia, «भारत में 2020 कोरोनावायरस महामारी की समयरेखा»: \"राजस्थान में चियालीस नए मामले दर्ज किए गए\""
+  },
+  {
+   "word": "अठ्ठारह",
+   "role": "unit",
+   "value": "18",
+   "source": "hi.wikipedia, «जीनोम परियोजना»: \"अठ्ठारह देशों की लगभग 250 प्रयोगशालाएं\""
+  },
+  {
+   "word": "अट्ठारह",
+   "role": "unit",
+   "value": "18",
+   "source": "hi.wikipedia, «देवानंप्रिय»: \"दो सौ अट्ठारह (२१८) वर्ष बाद\""
+  },
+  {
+   "word": "पंदरह",
+   "role": "unit",
+   "value": "15",
+   "source": "hi.wikipedia, «१५ (संख्या)»: \"अर्थात् पंदरह १४ से एक अधिक होता है\""
+  },
+  {
    "word": "अठाईस",
    "role": "unit",
    "value": "28",
@@ -2936,6 +3012,30 @@
    "role": "unit",
    "value": "17",
    "source": "en.wiktionary, \"सत्रह\", Hindi, Alternative forms: \"सत्तरह (sattarah)\""
+  },
+  {
+   "word": "सताईस",
+   "role": "unit",
+   "value": "27",
+   "source": "en.wiktionary, \"सत्ताईस\", Hindi, Alternative forms: \"सताईस (satāīs)\""
+  },
+  {
+   "word": "सताइस",
+   "role": "unit",
+   "value": "27",
+   "source": "en.wiktionary, \"सत्ताईस\", Hindi, Alternative forms: \"सताइस (satāis)\""
+  },
+  {
+   "word": "निनानवे",
+   "role": "unit",
+   "value": "99",
+   "source": "en.wiktionary, \"निनानवे\", Hindi, Numeral: \"निनानवे • (ninānve)\""
+  },
+  {
+   "word": "बिरासी",
+   "role": "unit",
+   "value": "82",
+   "source": "en.wiktionary, \"बिरासी\", Hindi, Numeral: \"बिरासी • (birāsī)\""
   }
  ]
 }
