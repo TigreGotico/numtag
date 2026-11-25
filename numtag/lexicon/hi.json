@@ -1,0 +1,2563 @@
+{
+ "format_version": 1,
+ "settings": {
+  "scale": {
+   "value": "short",
+   "source": "structural, no external source: no word of the lexicon is a power of a million, so the scale is never read."
+  },
+  "group_mark": {
+   "value": ",",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hi/numbers.json, symbols-numberSystem-latn: \"group\": \",\""
+  },
+  "decimal_mark": {
+   "value": ".",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hi/numbers.json, symbols-numberSystem-latn: \"decimal\": \".\""
+  },
+  "space_groups": {
+   "value": false,
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hi/numbers.json, symbols-numberSystem-latn: \"group\": \",\": a comma, not a space, groups the digits."
+  },
+  "plural_scale_needs_count": {
+   "value": false,
+   "source": "structural, no external source: a scale word of hi.json is a numeral, which the count of a scale numeral needs by the rule below."
+  },
+  "scale_noun_agrees": {
+   "value": false,
+   "source": "structural, no external source: the lexicon holds no scale noun."
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"21: इक्कीस;\": every number below 100 is one word."
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100: << सौ[ >>];\": no word joins the hundred and the rest."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000: << हज़ार[ >>];\": no word joins two groups."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000: << हज़ार[ >>];\""
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000: << लाख[ >>];\""
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "structural, no external source: the cited pages show no comma between classes."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\": an ordinal is one word."
+  },
+  "compound_words": {
+   "value": false,
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"21: इक्कीस;\": every compound is a word of the table."
+  },
+  "fold_marks": {
+   "value": "unmarked",
+   "source": "structural, no external source: Devanagari vowel signs are combining marks. A word written with every mark is read as written; folding them all would make सौ (100) the same as सो (sleep)."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [],
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100: << सौ[ >>];\""
+  },
+  "decimal_marker": {
+   "value": [
+    "दशमलव"
+   ],
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"x.x: << दशमलव >>;\""
+  },
+  "minus": {
+   "value": [
+    "ऋण"
+   ],
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"-x: ऋण >>;\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "structural, no external source: no idiom with the word ऋण is listed in the cited pages."
+  },
+  "article_one": {
+   "value": [],
+   "source": "structural, no external source: the cited pages name no indefinite article; एक reads as the number one wherever it stands."
+  },
+  "of": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no such word."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "structural, no external source: the lexicon lists no fraction word."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "structural, no external source: the lexicon lists no denominator."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no class noun."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no unit that a half halves."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no abbreviation of a number word."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    "."
+   ],
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/hi/numbers.json, symbols-numberSystem-latn: \"decimal\": \".\""
+  },
+  "range_cue": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no word that opens a range."
+  }
+ },
+ "entries": [
+  {
+   "word": "शून्य",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"0: शून्य;\""
+  },
+  {
+   "word": "एक",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1: एक;\""
+  },
+  {
+   "word": "दो",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"2: दो;\""
+  },
+  {
+   "word": "तीन",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"3: तीन;\""
+  },
+  {
+   "word": "चार",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"4: चार;\""
+  },
+  {
+   "word": "पाँच",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"5: पाँच;\""
+  },
+  {
+   "word": "छह",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"6: छह;\""
+  },
+  {
+   "word": "सात",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"7: सात;\""
+  },
+  {
+   "word": "आठ",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"8: आठ;\""
+  },
+  {
+   "word": "नौ",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"9: नौ;\""
+  },
+  {
+   "word": "दस",
+   "role": "unit",
+   "value": "10",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"10: दस;\""
+  },
+  {
+   "word": "ग्यारह",
+   "role": "unit",
+   "value": "11",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"11: ग्यारह;\""
+  },
+  {
+   "word": "बारह",
+   "role": "unit",
+   "value": "12",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"12: बारह;\""
+  },
+  {
+   "word": "तेरह",
+   "role": "unit",
+   "value": "13",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"13: तेरह;\""
+  },
+  {
+   "word": "चौदह",
+   "role": "unit",
+   "value": "14",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"14: चौदह;\""
+  },
+  {
+   "word": "पन्द्रह",
+   "role": "unit",
+   "value": "15",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"15: पन्द्रह;\""
+  },
+  {
+   "word": "सोलह",
+   "role": "unit",
+   "value": "16",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"16: सोलह;\""
+  },
+  {
+   "word": "सत्रह",
+   "role": "unit",
+   "value": "17",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"17: सत्रह;\""
+  },
+  {
+   "word": "अठारह",
+   "role": "unit",
+   "value": "18",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"18: अठारह;\""
+  },
+  {
+   "word": "उन्नीस",
+   "role": "unit",
+   "value": "19",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"19: उन्नीस;\""
+  },
+  {
+   "word": "बीस",
+   "role": "unit",
+   "value": "20",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"20: बीस;\""
+  },
+  {
+   "word": "इक्कीस",
+   "role": "unit",
+   "value": "21",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"21: इक्कीस;\""
+  },
+  {
+   "word": "बाईस",
+   "role": "unit",
+   "value": "22",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"22: बाईस;\""
+  },
+  {
+   "word": "तेईस",
+   "role": "unit",
+   "value": "23",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"23: तेईस;\""
+  },
+  {
+   "word": "चौबीस",
+   "role": "unit",
+   "value": "24",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"24: चौबीस;\""
+  },
+  {
+   "word": "पच्चीस",
+   "role": "unit",
+   "value": "25",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"25: पच्चीस;\""
+  },
+  {
+   "word": "छब्बीस",
+   "role": "unit",
+   "value": "26",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"26: छब्बीस;\""
+  },
+  {
+   "word": "सत्ताईस",
+   "role": "unit",
+   "value": "27",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"27: सत्ताईस;\""
+  },
+  {
+   "word": "अट्ठाईस",
+   "role": "unit",
+   "value": "28",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"28: अट्ठाईस;\""
+  },
+  {
+   "word": "उनतीस",
+   "role": "unit",
+   "value": "29",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"29: उनतीस;\""
+  },
+  {
+   "word": "तीस",
+   "role": "unit",
+   "value": "30",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"30: तीस;\""
+  },
+  {
+   "word": "इकतीस",
+   "role": "unit",
+   "value": "31",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"31: इकतीस;\""
+  },
+  {
+   "word": "बत्तीस",
+   "role": "unit",
+   "value": "32",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"32: बत्तीस;\""
+  },
+  {
+   "word": "तैंतीस",
+   "role": "unit",
+   "value": "33",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"33: तैंतीस;\""
+  },
+  {
+   "word": "चौंतीस",
+   "role": "unit",
+   "value": "34",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"34: चौंतीस;\""
+  },
+  {
+   "word": "पैंतीस",
+   "role": "unit",
+   "value": "35",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"35: पैंतीस;\""
+  },
+  {
+   "word": "छत्तीस",
+   "role": "unit",
+   "value": "36",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"36: छत्तीस;\""
+  },
+  {
+   "word": "सैंतीस",
+   "role": "unit",
+   "value": "37",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"37: सैंतीस;\""
+  },
+  {
+   "word": "अड़तीस",
+   "role": "unit",
+   "value": "38",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"38: अड़तीस;\""
+  },
+  {
+   "word": "उनतालीस",
+   "role": "unit",
+   "value": "39",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"39: उनतालीस;\""
+  },
+  {
+   "word": "चालीस",
+   "role": "unit",
+   "value": "40",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"40: चालीस;\""
+  },
+  {
+   "word": "इकतालीस",
+   "role": "unit",
+   "value": "41",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"41: इकतालीस;\""
+  },
+  {
+   "word": "बयालीस",
+   "role": "unit",
+   "value": "42",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"42: बयालीस;\""
+  },
+  {
+   "word": "तैंतालीस",
+   "role": "unit",
+   "value": "43",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"43: तैंतालीस;\""
+  },
+  {
+   "word": "चौवालीस",
+   "role": "unit",
+   "value": "44",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"44: चौवालीस;\""
+  },
+  {
+   "word": "पैंतालीस",
+   "role": "unit",
+   "value": "45",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"45: पैंतालीस;\""
+  },
+  {
+   "word": "छियालीस",
+   "role": "unit",
+   "value": "46",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"46: छियालीस;\""
+  },
+  {
+   "word": "सैंतालीस",
+   "role": "unit",
+   "value": "47",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"47: सैंतालीस;\""
+  },
+  {
+   "word": "अड़तालीस",
+   "role": "unit",
+   "value": "48",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"48: अड़तालीस;\""
+  },
+  {
+   "word": "उनचास",
+   "role": "unit",
+   "value": "49",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"49: उनचास;\""
+  },
+  {
+   "word": "पचास",
+   "role": "unit",
+   "value": "50",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"50: पचास;\""
+  },
+  {
+   "word": "इक्यावन",
+   "role": "unit",
+   "value": "51",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"51: इक्यावन;\""
+  },
+  {
+   "word": "बावन",
+   "role": "unit",
+   "value": "52",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"52: बावन;\""
+  },
+  {
+   "word": "तिरेपन",
+   "role": "unit",
+   "value": "53",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"53: तिरेपन;\""
+  },
+  {
+   "word": "चौवन",
+   "role": "unit",
+   "value": "54",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"54: चौवन;\""
+  },
+  {
+   "word": "पचपन",
+   "role": "unit",
+   "value": "55",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"55: पचपन;\""
+  },
+  {
+   "word": "छप्पन",
+   "role": "unit",
+   "value": "56",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"56: छप्पन;\""
+  },
+  {
+   "word": "सत्तावन",
+   "role": "unit",
+   "value": "57",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"57: सत्तावन;\""
+  },
+  {
+   "word": "अट्ठावन",
+   "role": "unit",
+   "value": "58",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"58: अट्ठावन;\""
+  },
+  {
+   "word": "उनसठ",
+   "role": "unit",
+   "value": "59",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"59: उनसठ;\""
+  },
+  {
+   "word": "साठ",
+   "role": "unit",
+   "value": "60",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"60: साठ;\""
+  },
+  {
+   "word": "इकसठ",
+   "role": "unit",
+   "value": "61",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"61: इकसठ;\""
+  },
+  {
+   "word": "बासठ",
+   "role": "unit",
+   "value": "62",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"62: बासठ;\""
+  },
+  {
+   "word": "तिरेसठ",
+   "role": "unit",
+   "value": "63",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"63: तिरेसठ;\""
+  },
+  {
+   "word": "चौंसठ",
+   "role": "unit",
+   "value": "64",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"64: चौंसठ;\""
+  },
+  {
+   "word": "पैंसठ",
+   "role": "unit",
+   "value": "65",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"65: पैंसठ;\""
+  },
+  {
+   "word": "छियासठ",
+   "role": "unit",
+   "value": "66",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"66: छियासठ;\""
+  },
+  {
+   "word": "सड़सठ",
+   "role": "unit",
+   "value": "67",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"67: सड़सठ;\""
+  },
+  {
+   "word": "अड़सठ",
+   "role": "unit",
+   "value": "68",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"68: अड़सठ;\""
+  },
+  {
+   "word": "उनहत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"69: उनहत्तर;\""
+  },
+  {
+   "word": "सत्तर",
+   "role": "unit",
+   "value": "70",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"70: सत्तर;\""
+  },
+  {
+   "word": "इकहत्तर",
+   "role": "unit",
+   "value": "71",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"71: इकहत्तर;\""
+  },
+  {
+   "word": "बहत्तर",
+   "role": "unit",
+   "value": "72",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"72: बहत्तर;\""
+  },
+  {
+   "word": "तिहत्तर",
+   "role": "unit",
+   "value": "73",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"73: तिहत्तर;\""
+  },
+  {
+   "word": "चौहत्तर",
+   "role": "unit",
+   "value": "74",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"74: चौहत्तर;\""
+  },
+  {
+   "word": "पचहत्तर",
+   "role": "unit",
+   "value": "75",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"75: पचहत्तर;\""
+  },
+  {
+   "word": "छिहत्तर",
+   "role": "unit",
+   "value": "76",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"76: छिहत्तर;\""
+  },
+  {
+   "word": "सतहत्तर",
+   "role": "unit",
+   "value": "77",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"77: सतहत्तर;\""
+  },
+  {
+   "word": "अठहत्तर",
+   "role": "unit",
+   "value": "78",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"78: अठहत्तर;\""
+  },
+  {
+   "word": "उनासी",
+   "role": "unit",
+   "value": "79",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"79: उनासी;\""
+  },
+  {
+   "word": "अस्सी",
+   "role": "unit",
+   "value": "80",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"80: अस्सी;\""
+  },
+  {
+   "word": "इक्यासी",
+   "role": "unit",
+   "value": "81",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"81: इक्यासी;\""
+  },
+  {
+   "word": "बयासी",
+   "role": "unit",
+   "value": "82",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"82: बयासी;\""
+  },
+  {
+   "word": "तिरासी",
+   "role": "unit",
+   "value": "83",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"83: तिरासी;\""
+  },
+  {
+   "word": "चौरासी",
+   "role": "unit",
+   "value": "84",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"84: चौरासी;\""
+  },
+  {
+   "word": "पचासी",
+   "role": "unit",
+   "value": "85",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"85: पचासी;\""
+  },
+  {
+   "word": "छियासी",
+   "role": "unit",
+   "value": "86",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"86: छियासी;\""
+  },
+  {
+   "word": "सत्तासी",
+   "role": "unit",
+   "value": "87",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"87: सत्तासी;\""
+  },
+  {
+   "word": "अट्ठासी",
+   "role": "unit",
+   "value": "88",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"88: अट्ठासी;\""
+  },
+  {
+   "word": "नवासी",
+   "role": "unit",
+   "value": "89",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"89: नवासी;\""
+  },
+  {
+   "word": "नब्बे",
+   "role": "unit",
+   "value": "90",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"90: नब्बे;\""
+  },
+  {
+   "word": "इक्यानबे",
+   "role": "unit",
+   "value": "91",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"91: इक्यानबे;\""
+  },
+  {
+   "word": "बानबे",
+   "role": "unit",
+   "value": "92",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"92: बानबे;\""
+  },
+  {
+   "word": "तिरानबे",
+   "role": "unit",
+   "value": "93",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"93: तिरानबे;\""
+  },
+  {
+   "word": "चौरानबे",
+   "role": "unit",
+   "value": "94",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"94: चौरानबे;\""
+  },
+  {
+   "word": "पंचानबे",
+   "role": "unit",
+   "value": "95",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"95: पंचानबे;\""
+  },
+  {
+   "word": "छियानबे",
+   "role": "unit",
+   "value": "96",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"96: छियानबे;\""
+  },
+  {
+   "word": "सत्तानबे",
+   "role": "unit",
+   "value": "97",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"97: सत्तानबे;\""
+  },
+  {
+   "word": "अट्ठानबे",
+   "role": "unit",
+   "value": "98",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"98: अट्ठानबे;\""
+  },
+  {
+   "word": "निन्यानबे",
+   "role": "unit",
+   "value": "99",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"99: निन्यानबे;\""
+  },
+  {
+   "word": "सौ",
+   "role": "hundred_multiplier",
+   "value": 2,
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100: << सौ[ >>];\""
+  },
+  {
+   "word": "हज़ार",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000: << हज़ार[ >>];\""
+  },
+  {
+   "word": "लाख",
+   "role": "scale_numeral",
+   "value": 5,
+   "source": "en.wikipedia, \"Indian numbering system\": \"lakh (one hundred thousand, 105)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000: << लाख[ >>];\""
+  },
+  {
+   "word": "करोड़",
+   "role": "scale_numeral",
+   "value": 7,
+   "source": "en.wikipedia, \"Indian numbering system\": \"crore (ten million, 107)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"10000000: << करोड़[ >>];\""
+  },
+  {
+   "word": "अरब",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "en.wikipedia, \"Indian numbering system\": \"arab (100 crore, 109)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"1000000000: << अरब[ >>];\""
+  },
+  {
+   "word": "खरब",
+   "role": "scale_numeral",
+   "value": 11,
+   "source": "en.wikipedia, \"Indian numbering system\": \"kharab (100 arab, 1011)\"; CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-cardinal: \"100000000000: << खरब[ >>];\""
+  },
+  {
+   "word": "शून्यवाँ",
+   "role": "ordinal",
+   "value": "0",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"0: शून्यवाँ;\""
+  },
+  {
+   "word": "पहला",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"1: पहला;\""
+  },
+  {
+   "word": "दूसरा",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"2: दूसरा;\""
+  },
+  {
+   "word": "तीसरा",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"3: तीसरा;\""
+  },
+  {
+   "word": "चौथा",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"4: चौथा;\""
+  },
+  {
+   "word": "पाँचवाँ",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"5: पाँचवाँ;\""
+  },
+  {
+   "word": "छठा",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"6: छठा;\""
+  },
+  {
+   "word": "सातवाँ",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"7: सात;\" in %spellout-cardinal"
+  },
+  {
+   "word": "आठवाँ",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"8: आठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नौवाँ",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"9: नौ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "दसवाँ",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"10: दस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "ग्यारहवाँ",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"11: ग्यारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बारहवाँ",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"12: बारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेरहवाँ",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"13: तेरह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौदहवाँ",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"14: चौदह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पन्द्रहवाँ",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"15: पन्द्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सोलहवाँ",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"16: सोलह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्रहवाँ",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"17: सत्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठारहवाँ",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"18: अठारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उन्नीसवाँ",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"19: उन्नीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बीसवाँ",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"20: बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्कीसवाँ",
+   "role": "ordinal",
+   "value": "21",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"21: इक्कीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बाईसवाँ",
+   "role": "ordinal",
+   "value": "22",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"22: बाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेईसवाँ",
+   "role": "ordinal",
+   "value": "23",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"23: तेईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौबीसवाँ",
+   "role": "ordinal",
+   "value": "24",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"24: चौबीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पच्चीसवाँ",
+   "role": "ordinal",
+   "value": "25",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"25: पच्चीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छब्बीसवाँ",
+   "role": "ordinal",
+   "value": "26",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"26: छब्बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्ताईसवाँ",
+   "role": "ordinal",
+   "value": "27",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"27: सत्ताईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठाईसवाँ",
+   "role": "ordinal",
+   "value": "28",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"28: अट्ठाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतीसवाँ",
+   "role": "ordinal",
+   "value": "29",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"29: उनतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तीसवाँ",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"30: तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतीसवाँ",
+   "role": "ordinal",
+   "value": "31",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"31: इकतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बत्तीसवाँ",
+   "role": "ordinal",
+   "value": "32",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"32: बत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतीसवाँ",
+   "role": "ordinal",
+   "value": "33",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"33: तैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंतीसवाँ",
+   "role": "ordinal",
+   "value": "34",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"34: चौंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतीसवाँ",
+   "role": "ordinal",
+   "value": "35",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"35: पैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छत्तीसवाँ",
+   "role": "ordinal",
+   "value": "36",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"36: छत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतीसवाँ",
+   "role": "ordinal",
+   "value": "37",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"37: सैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तीसवाँ",
+   "role": "ordinal",
+   "value": "38",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"38: अड़तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतालीसवाँ",
+   "role": "ordinal",
+   "value": "39",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"39: उनतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चालीसवाँ",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"40: चालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतालीसवाँ",
+   "role": "ordinal",
+   "value": "41",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"41: इकतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयालीसवाँ",
+   "role": "ordinal",
+   "value": "42",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"42: बयालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतालीसवाँ",
+   "role": "ordinal",
+   "value": "43",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"43: तैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवालीसवाँ",
+   "role": "ordinal",
+   "value": "44",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"44: चौवालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतालीसवाँ",
+   "role": "ordinal",
+   "value": "45",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"45: पैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियालीसवाँ",
+   "role": "ordinal",
+   "value": "46",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"46: छियालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतालीसवाँ",
+   "role": "ordinal",
+   "value": "47",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"47: सैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तालीसवाँ",
+   "role": "ordinal",
+   "value": "48",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"48: अड़तालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनचासवाँ",
+   "role": "ordinal",
+   "value": "49",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"49: उनचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासवाँ",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"50: पचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यावनवाँ",
+   "role": "ordinal",
+   "value": "51",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"51: इक्यावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बावनवाँ",
+   "role": "ordinal",
+   "value": "52",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"52: बावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेपनवाँ",
+   "role": "ordinal",
+   "value": "53",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"53: तिरेपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवनवाँ",
+   "role": "ordinal",
+   "value": "54",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"54: चौवन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचपनवाँ",
+   "role": "ordinal",
+   "value": "55",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"55: पचपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छप्पनवाँ",
+   "role": "ordinal",
+   "value": "56",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"56: छप्पन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तावनवाँ",
+   "role": "ordinal",
+   "value": "57",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"57: सत्तावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठावनवाँ",
+   "role": "ordinal",
+   "value": "58",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"58: अट्ठावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनसठवाँ",
+   "role": "ordinal",
+   "value": "59",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"59: उनसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "साठवाँ",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"60: साठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकसठवाँ",
+   "role": "ordinal",
+   "value": "61",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"61: इकसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बासठवाँ",
+   "role": "ordinal",
+   "value": "62",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"62: बासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेसठवाँ",
+   "role": "ordinal",
+   "value": "63",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"63: तिरेसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंसठवाँ",
+   "role": "ordinal",
+   "value": "64",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"64: चौंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंसठवाँ",
+   "role": "ordinal",
+   "value": "65",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"65: पैंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासठवाँ",
+   "role": "ordinal",
+   "value": "66",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"66: छियासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सड़सठवाँ",
+   "role": "ordinal",
+   "value": "67",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"67: सड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़सठवाँ",
+   "role": "ordinal",
+   "value": "68",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"68: अड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनहत्तरवाँ",
+   "role": "ordinal",
+   "value": "69",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"69: उनहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तरवाँ",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"70: सत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकहत्तरवाँ",
+   "role": "ordinal",
+   "value": "71",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"71: इकहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बहत्तरवाँ",
+   "role": "ordinal",
+   "value": "72",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"72: बहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिहत्तरवाँ",
+   "role": "ordinal",
+   "value": "73",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"73: तिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौहत्तरवाँ",
+   "role": "ordinal",
+   "value": "74",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"74: चौहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचहत्तरवाँ",
+   "role": "ordinal",
+   "value": "75",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"75: पचहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छिहत्तरवाँ",
+   "role": "ordinal",
+   "value": "76",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"76: छिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सतहत्तरवाँ",
+   "role": "ordinal",
+   "value": "77",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"77: सतहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठहत्तरवाँ",
+   "role": "ordinal",
+   "value": "78",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"78: अठहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनासीवाँ",
+   "role": "ordinal",
+   "value": "79",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"79: उनासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अस्सीवाँ",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"80: अस्सी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यासीवाँ",
+   "role": "ordinal",
+   "value": "81",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"81: इक्यासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयासीवाँ",
+   "role": "ordinal",
+   "value": "82",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"82: बयासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरासीवाँ",
+   "role": "ordinal",
+   "value": "83",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"83: तिरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरासीवाँ",
+   "role": "ordinal",
+   "value": "84",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"84: चौरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासीवाँ",
+   "role": "ordinal",
+   "value": "85",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"85: पचासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासीवाँ",
+   "role": "ordinal",
+   "value": "86",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"86: छियासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तासीवाँ",
+   "role": "ordinal",
+   "value": "87",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"87: सत्तासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठासीवाँ",
+   "role": "ordinal",
+   "value": "88",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"88: अट्ठासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नवासीवाँ",
+   "role": "ordinal",
+   "value": "89",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"89: नवासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नब्बेवाँ",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"90: नब्बे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यानबेवाँ",
+   "role": "ordinal",
+   "value": "91",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"91: इक्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बानबेवाँ",
+   "role": "ordinal",
+   "value": "92",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"92: बानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरानबेवाँ",
+   "role": "ordinal",
+   "value": "93",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"93: तिरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरानबेवाँ",
+   "role": "ordinal",
+   "value": "94",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"94: चौरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पंचानबेवाँ",
+   "role": "ordinal",
+   "value": "95",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"95: पंचानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियानबेवाँ",
+   "role": "ordinal",
+   "value": "96",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"96: छियानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तानबेवाँ",
+   "role": "ordinal",
+   "value": "97",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"97: सत्तानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठानबेवाँ",
+   "role": "ordinal",
+   "value": "98",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"98: अट्ठानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "निन्यानबेवाँ",
+   "role": "ordinal",
+   "value": "99",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine: \"7: =%spellout-cardinal=वाँ;\"; \"99: निन्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "शून्यवें",
+   "role": "ordinal",
+   "value": "0",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"0: शून्यवें;\""
+  },
+  {
+   "word": "पहले",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"1: पहले;\""
+  },
+  {
+   "word": "दूसरे",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"2: दूसरे;\""
+  },
+  {
+   "word": "तीसरे",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"3: तीसरे;\""
+  },
+  {
+   "word": "चौथे",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"4: चौथे;\""
+  },
+  {
+   "word": "पाँचवें",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"5: पाँचवें;\""
+  },
+  {
+   "word": "छठे",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"6: छठे;\""
+  },
+  {
+   "word": "सातवें",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"7: सात;\" in %spellout-cardinal"
+  },
+  {
+   "word": "आठवें",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"8: आठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नौवें",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"9: नौ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "दसवें",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"10: दस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "ग्यारहवें",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"11: ग्यारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बारहवें",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"12: बारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेरहवें",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"13: तेरह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौदहवें",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"14: चौदह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पन्द्रहवें",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"15: पन्द्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सोलहवें",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"16: सोलह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्रहवें",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"17: सत्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठारहवें",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"18: अठारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उन्नीसवें",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"19: उन्नीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बीसवें",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"20: बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्कीसवें",
+   "role": "ordinal",
+   "value": "21",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"21: इक्कीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बाईसवें",
+   "role": "ordinal",
+   "value": "22",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"22: बाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेईसवें",
+   "role": "ordinal",
+   "value": "23",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"23: तेईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौबीसवें",
+   "role": "ordinal",
+   "value": "24",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"24: चौबीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पच्चीसवें",
+   "role": "ordinal",
+   "value": "25",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"25: पच्चीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छब्बीसवें",
+   "role": "ordinal",
+   "value": "26",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"26: छब्बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्ताईसवें",
+   "role": "ordinal",
+   "value": "27",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"27: सत्ताईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठाईसवें",
+   "role": "ordinal",
+   "value": "28",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"28: अट्ठाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतीसवें",
+   "role": "ordinal",
+   "value": "29",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"29: उनतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तीसवें",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"30: तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतीसवें",
+   "role": "ordinal",
+   "value": "31",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"31: इकतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बत्तीसवें",
+   "role": "ordinal",
+   "value": "32",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"32: बत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतीसवें",
+   "role": "ordinal",
+   "value": "33",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"33: तैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंतीसवें",
+   "role": "ordinal",
+   "value": "34",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"34: चौंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतीसवें",
+   "role": "ordinal",
+   "value": "35",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"35: पैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छत्तीसवें",
+   "role": "ordinal",
+   "value": "36",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"36: छत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतीसवें",
+   "role": "ordinal",
+   "value": "37",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"37: सैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तीसवें",
+   "role": "ordinal",
+   "value": "38",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"38: अड़तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतालीसवें",
+   "role": "ordinal",
+   "value": "39",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"39: उनतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चालीसवें",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"40: चालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतालीसवें",
+   "role": "ordinal",
+   "value": "41",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"41: इकतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयालीसवें",
+   "role": "ordinal",
+   "value": "42",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"42: बयालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतालीसवें",
+   "role": "ordinal",
+   "value": "43",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"43: तैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवालीसवें",
+   "role": "ordinal",
+   "value": "44",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"44: चौवालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतालीसवें",
+   "role": "ordinal",
+   "value": "45",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"45: पैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियालीसवें",
+   "role": "ordinal",
+   "value": "46",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"46: छियालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतालीसवें",
+   "role": "ordinal",
+   "value": "47",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"47: सैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तालीसवें",
+   "role": "ordinal",
+   "value": "48",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"48: अड़तालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनचासवें",
+   "role": "ordinal",
+   "value": "49",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"49: उनचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासवें",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"50: पचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यावनवें",
+   "role": "ordinal",
+   "value": "51",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"51: इक्यावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बावनवें",
+   "role": "ordinal",
+   "value": "52",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"52: बावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेपनवें",
+   "role": "ordinal",
+   "value": "53",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"53: तिरेपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवनवें",
+   "role": "ordinal",
+   "value": "54",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"54: चौवन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचपनवें",
+   "role": "ordinal",
+   "value": "55",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"55: पचपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छप्पनवें",
+   "role": "ordinal",
+   "value": "56",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"56: छप्पन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तावनवें",
+   "role": "ordinal",
+   "value": "57",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"57: सत्तावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठावनवें",
+   "role": "ordinal",
+   "value": "58",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"58: अट्ठावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनसठवें",
+   "role": "ordinal",
+   "value": "59",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"59: उनसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "साठवें",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"60: साठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकसठवें",
+   "role": "ordinal",
+   "value": "61",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"61: इकसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बासठवें",
+   "role": "ordinal",
+   "value": "62",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"62: बासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेसठवें",
+   "role": "ordinal",
+   "value": "63",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"63: तिरेसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंसठवें",
+   "role": "ordinal",
+   "value": "64",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"64: चौंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंसठवें",
+   "role": "ordinal",
+   "value": "65",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"65: पैंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासठवें",
+   "role": "ordinal",
+   "value": "66",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"66: छियासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सड़सठवें",
+   "role": "ordinal",
+   "value": "67",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"67: सड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़सठवें",
+   "role": "ordinal",
+   "value": "68",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"68: अड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनहत्तरवें",
+   "role": "ordinal",
+   "value": "69",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"69: उनहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तरवें",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"70: सत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकहत्तरवें",
+   "role": "ordinal",
+   "value": "71",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"71: इकहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बहत्तरवें",
+   "role": "ordinal",
+   "value": "72",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"72: बहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिहत्तरवें",
+   "role": "ordinal",
+   "value": "73",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"73: तिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौहत्तरवें",
+   "role": "ordinal",
+   "value": "74",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"74: चौहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचहत्तरवें",
+   "role": "ordinal",
+   "value": "75",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"75: पचहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छिहत्तरवें",
+   "role": "ordinal",
+   "value": "76",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"76: छिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सतहत्तरवें",
+   "role": "ordinal",
+   "value": "77",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"77: सतहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठहत्तरवें",
+   "role": "ordinal",
+   "value": "78",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"78: अठहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनासीवें",
+   "role": "ordinal",
+   "value": "79",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"79: उनासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अस्सीवें",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"80: अस्सी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यासीवें",
+   "role": "ordinal",
+   "value": "81",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"81: इक्यासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयासीवें",
+   "role": "ordinal",
+   "value": "82",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"82: बयासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरासीवें",
+   "role": "ordinal",
+   "value": "83",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"83: तिरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरासीवें",
+   "role": "ordinal",
+   "value": "84",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"84: चौरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासीवें",
+   "role": "ordinal",
+   "value": "85",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"85: पचासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासीवें",
+   "role": "ordinal",
+   "value": "86",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"86: छियासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तासीवें",
+   "role": "ordinal",
+   "value": "87",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"87: सत्तासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठासीवें",
+   "role": "ordinal",
+   "value": "88",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"88: अट्ठासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नवासीवें",
+   "role": "ordinal",
+   "value": "89",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"89: नवासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नब्बेवें",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"90: नब्बे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यानबेवें",
+   "role": "ordinal",
+   "value": "91",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"91: इक्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बानबेवें",
+   "role": "ordinal",
+   "value": "92",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"92: बानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरानबेवें",
+   "role": "ordinal",
+   "value": "93",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"93: तिरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरानबेवें",
+   "role": "ordinal",
+   "value": "94",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"94: चौरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पंचानबेवें",
+   "role": "ordinal",
+   "value": "95",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"95: पंचानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियानबेवें",
+   "role": "ordinal",
+   "value": "96",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"96: छियानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तानबेवें",
+   "role": "ordinal",
+   "value": "97",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"97: सत्तानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठानबेवें",
+   "role": "ordinal",
+   "value": "98",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"98: अट्ठानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "निन्यानबेवें",
+   "role": "ordinal",
+   "value": "99",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-masculine-oblique: \"7: =%spellout-cardinal=वें;\"; \"99: निन्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "शून्यवी",
+   "role": "ordinal",
+   "value": "0",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"0: शून्यवी;\""
+  },
+  {
+   "word": "पहली",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"1: पहली;\""
+  },
+  {
+   "word": "दूसरी",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"2: दूसरी;\""
+  },
+  {
+   "word": "तीसरी",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"3: तीसरी;\""
+  },
+  {
+   "word": "चौथी",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"4: चौथी;\""
+  },
+  {
+   "word": "पाँचवी",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"5: पाँचवी;\""
+  },
+  {
+   "word": "छठी",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"6: छठी;\""
+  },
+  {
+   "word": "सातवी",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"7: सात;\" in %spellout-cardinal"
+  },
+  {
+   "word": "आठवी",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"8: आठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नौवी",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"9: नौ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "दसवी",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"10: दस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "ग्यारहवी",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"11: ग्यारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बारहवी",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"12: बारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेरहवी",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"13: तेरह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौदहवी",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"14: चौदह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पन्द्रहवी",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"15: पन्द्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सोलहवी",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"16: सोलह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्रहवी",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"17: सत्रह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठारहवी",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"18: अठारह;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उन्नीसवी",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"19: उन्नीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बीसवी",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"20: बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्कीसवी",
+   "role": "ordinal",
+   "value": "21",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"21: इक्कीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बाईसवी",
+   "role": "ordinal",
+   "value": "22",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"22: बाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तेईसवी",
+   "role": "ordinal",
+   "value": "23",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"23: तेईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौबीसवी",
+   "role": "ordinal",
+   "value": "24",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"24: चौबीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पच्चीसवी",
+   "role": "ordinal",
+   "value": "25",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"25: पच्चीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छब्बीसवी",
+   "role": "ordinal",
+   "value": "26",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"26: छब्बीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्ताईसवी",
+   "role": "ordinal",
+   "value": "27",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"27: सत्ताईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठाईसवी",
+   "role": "ordinal",
+   "value": "28",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"28: अट्ठाईस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतीसवी",
+   "role": "ordinal",
+   "value": "29",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"29: उनतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तीसवी",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"30: तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतीसवी",
+   "role": "ordinal",
+   "value": "31",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"31: इकतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बत्तीसवी",
+   "role": "ordinal",
+   "value": "32",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"32: बत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतीसवी",
+   "role": "ordinal",
+   "value": "33",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"33: तैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंतीसवी",
+   "role": "ordinal",
+   "value": "34",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"34: चौंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतीसवी",
+   "role": "ordinal",
+   "value": "35",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"35: पैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छत्तीसवी",
+   "role": "ordinal",
+   "value": "36",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"36: छत्तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतीसवी",
+   "role": "ordinal",
+   "value": "37",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"37: सैंतीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तीसवी",
+   "role": "ordinal",
+   "value": "38",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"38: अड़तीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनतालीसवी",
+   "role": "ordinal",
+   "value": "39",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"39: उनतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चालीसवी",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"40: चालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकतालीसवी",
+   "role": "ordinal",
+   "value": "41",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"41: इकतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयालीसवी",
+   "role": "ordinal",
+   "value": "42",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"42: बयालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तैंतालीसवी",
+   "role": "ordinal",
+   "value": "43",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"43: तैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवालीसवी",
+   "role": "ordinal",
+   "value": "44",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"44: चौवालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंतालीसवी",
+   "role": "ordinal",
+   "value": "45",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"45: पैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियालीसवी",
+   "role": "ordinal",
+   "value": "46",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"46: छियालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सैंतालीसवी",
+   "role": "ordinal",
+   "value": "47",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"47: सैंतालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़तालीसवी",
+   "role": "ordinal",
+   "value": "48",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"48: अड़तालीस;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनचासवी",
+   "role": "ordinal",
+   "value": "49",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"49: उनचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासवी",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"50: पचास;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यावनवी",
+   "role": "ordinal",
+   "value": "51",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"51: इक्यावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बावनवी",
+   "role": "ordinal",
+   "value": "52",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"52: बावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेपनवी",
+   "role": "ordinal",
+   "value": "53",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"53: तिरेपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौवनवी",
+   "role": "ordinal",
+   "value": "54",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"54: चौवन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचपनवी",
+   "role": "ordinal",
+   "value": "55",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"55: पचपन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छप्पनवी",
+   "role": "ordinal",
+   "value": "56",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"56: छप्पन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तावनवी",
+   "role": "ordinal",
+   "value": "57",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"57: सत्तावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठावनवी",
+   "role": "ordinal",
+   "value": "58",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"58: अट्ठावन;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनसठवी",
+   "role": "ordinal",
+   "value": "59",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"59: उनसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "साठवी",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"60: साठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकसठवी",
+   "role": "ordinal",
+   "value": "61",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"61: इकसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बासठवी",
+   "role": "ordinal",
+   "value": "62",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"62: बासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरेसठवी",
+   "role": "ordinal",
+   "value": "63",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"63: तिरेसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौंसठवी",
+   "role": "ordinal",
+   "value": "64",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"64: चौंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पैंसठवी",
+   "role": "ordinal",
+   "value": "65",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"65: पैंसठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासठवी",
+   "role": "ordinal",
+   "value": "66",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"66: छियासठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सड़सठवी",
+   "role": "ordinal",
+   "value": "67",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"67: सड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अड़सठवी",
+   "role": "ordinal",
+   "value": "68",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"68: अड़सठ;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनहत्तरवी",
+   "role": "ordinal",
+   "value": "69",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"69: उनहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तरवी",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"70: सत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इकहत्तरवी",
+   "role": "ordinal",
+   "value": "71",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"71: इकहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बहत्तरवी",
+   "role": "ordinal",
+   "value": "72",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"72: बहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिहत्तरवी",
+   "role": "ordinal",
+   "value": "73",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"73: तिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौहत्तरवी",
+   "role": "ordinal",
+   "value": "74",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"74: चौहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचहत्तरवी",
+   "role": "ordinal",
+   "value": "75",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"75: पचहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छिहत्तरवी",
+   "role": "ordinal",
+   "value": "76",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"76: छिहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सतहत्तरवी",
+   "role": "ordinal",
+   "value": "77",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"77: सतहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अठहत्तरवी",
+   "role": "ordinal",
+   "value": "78",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"78: अठहत्तर;\" in %spellout-cardinal"
+  },
+  {
+   "word": "उनासीवी",
+   "role": "ordinal",
+   "value": "79",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"79: उनासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अस्सीवी",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"80: अस्सी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यासीवी",
+   "role": "ordinal",
+   "value": "81",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"81: इक्यासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बयासीवी",
+   "role": "ordinal",
+   "value": "82",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"82: बयासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरासीवी",
+   "role": "ordinal",
+   "value": "83",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"83: तिरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरासीवी",
+   "role": "ordinal",
+   "value": "84",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"84: चौरासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पचासीवी",
+   "role": "ordinal",
+   "value": "85",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"85: पचासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियासीवी",
+   "role": "ordinal",
+   "value": "86",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"86: छियासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तासीवी",
+   "role": "ordinal",
+   "value": "87",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"87: सत्तासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठासीवी",
+   "role": "ordinal",
+   "value": "88",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"88: अट्ठासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नवासीवी",
+   "role": "ordinal",
+   "value": "89",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"89: नवासी;\" in %spellout-cardinal"
+  },
+  {
+   "word": "नब्बेवी",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"90: नब्बे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "इक्यानबेवी",
+   "role": "ordinal",
+   "value": "91",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"91: इक्यानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "बानबेवी",
+   "role": "ordinal",
+   "value": "92",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"92: बानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "तिरानबेवी",
+   "role": "ordinal",
+   "value": "93",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"93: तिरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "चौरानबेवी",
+   "role": "ordinal",
+   "value": "94",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"94: चौरानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "पंचानबेवी",
+   "role": "ordinal",
+   "value": "95",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"95: पंचानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "छियानबेवी",
+   "role": "ordinal",
+   "value": "96",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"96: छियानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "सत्तानबेवी",
+   "role": "ordinal",
+   "value": "97",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"97: सत्तानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "अट्ठानबेवी",
+   "role": "ordinal",
+   "value": "98",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"98: अट्ठानबे;\" in %spellout-cardinal"
+  },
+  {
+   "word": "निन्यानबेवी",
+   "role": "ordinal",
+   "value": "99",
+   "source": "CLDR 49 RBNF hi (unicode-org/cldr release-49, common/rbnf/hi.xml), %spellout-ordinal-feminine: \"7: =%spellout-cardinal=वी;\"; \"99: निन्यानबे;\" in %spellout-cardinal"
+  }
+ ]
+}
