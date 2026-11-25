@@ -151,13 +151,15 @@ class TestRoundTrip(unittest.TestCase):
 
     @pytest.mark.xfail(strict=True, reason="a whole part before a fraction reads back as another value, 31/3 as 11/3 and "
                        "32/3 as 4 https://github.com/TigreGotico/numtag/issues/295")
-    def test_no_mention_of_a_mixed_fraction_has_a_value_it_was_not_written_from(self):
+    def test_a_mixed_fraction_reads_as_its_parts_or_as_its_whole_value(self):
+        # Whether the reader joins the whole part and the fraction is open in the issue; any other value is wrong.
         failures = []
         for lang in WRITERS:
-            for value, wrong in (("31/3", "11/3"), ("32/3", "4")):
+            for value, allowed in (("31/3", {"10", "1/3", "31/3"}), ("32/3", {"10", "2/3", "32/3"})):
                 text = spell(value, lang)[0].text
-                if wrong in [m.value for m in tag_numbers(text, lang)]:
-                    failures.append((lang, value, text, wrong))
+                values = [m.value for m in tag_numbers(text, lang)]
+                if not values or set(values) - allowed:
+                    failures.append((lang, value, text, values))
         self.assertEqual(failures, [])
 
     def test_every_literal_word_of_a_rule_is_a_form_of_the_reader(self):
@@ -404,7 +406,7 @@ class TestNamedDenominator(unittest.TestCase):
         data = _file("id")
         data["writer"]["fraction"]["named"]["4"] = "seperempat"
         variants.write("variant", data)
-        # 3/4 is three of the four parts; 7/4 is 1 + 3/4. The shipped id lexicon writes the same.
+        # 3/4 is three of the four parts and 7/4 is 1 + 3/4, the way id.wikipedia "Pecahan" writes 3 3/4.
         self.assertEqual([spell(value, "variant")[0].text for value in ("1/4", "3/4", "7/4")],
                          ["seperempat", "tiga perempat", "satu tiga perempat"])
 
