@@ -11,7 +11,8 @@ from enum import Enum
 from functools import cache
 
 from numtag import digits
-from numtag.lexicon import UnsupportedLanguageError, writer_block
+from numtag.mention import Scale
+from numtag.lexicon import UnsupportedLanguageError, load, writer_block
 from numtag.tagger import lexicon_name
 
 SOFT_HYPHEN = "­"
@@ -146,7 +147,7 @@ def _tidy(text: str) -> str:
 class Writer:
     """The writer of one lexicon."""
 
-    def __init__(self, name: str, block: dict):
+    def __init__(self, name: str, block: dict, scale: str):
         self.name = name
         self.block = block
         self.rulesets = {key: _Ruleset(key, spec["rules"]) for key, spec in block["rulesets"].items()}
@@ -157,6 +158,7 @@ class Writer:
                         raise ValueError(f"{self.name}: rule set {ruleset.name!r} calls the unknown rule set {name!r}")
         self.forms = block["forms"]
         self.decimal = block["decimal"]
+        self.scale = scale
 
     def render(self, ruleset: str, number: str, negative: bool = False) -> str:
         """The words of a whole number (digits, no sign) in a rule set; ``negative`` applies its minus rule."""
@@ -189,12 +191,13 @@ class Writer:
         """The minus word of a rule set: the text of its minus rule apart from the number."""
         return _tidy("".join(value for kind, value in self.rulesets[ruleset].negative if kind == "lit"))
 
-    def variants(self, form: SpokenForm, gender: str | None, case: str | None) -> list[dict]:
+    def variants(self, form: SpokenForm, gender: str | None, case: str | None, scale: str | None = None) -> list[dict]:
         spec = self.forms.get(form.value)
         if spec is None and form in (SpokenForm.YEAR, SpokenForm.DIGITS):
             spec = self.forms["cardinal"]
         if spec is None:
             raise ValueError(f"{self.name}: no {form.value} form")
+        spec = spec.get("scale", {}).get(scale or self.scale, spec)
         if case is not None:
             if case not in spec.get("case", {}):
                 raise ValueError(f"{self.name}: no case {case!r}; it has {sorted(spec.get('case', {}))}")
@@ -207,7 +210,7 @@ def _writer(name: str) -> Writer:
     block = writer_block(name)
     if block is None:
         raise UnsupportedLanguageError(f"no writer for language {name!r}")
-    return Writer(name, block)
+    return Writer(name, block, load(name).scale.value)
 
 
 def _split(value: str) -> tuple[bool, str, str]:
@@ -241,7 +244,8 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
 
     ``value`` is a canonical digit string ("21", "-2.5") or a fraction "n/m".
     ``gender`` and ``scale`` select a reading only where the lexicon lists one,
-    and any other lexicon ignores them. ``case`` raises ``ValueError`` where
+    and any other lexicon ignores them. With no ``scale`` the form reads at
+    the lexicon's ``scale`` setting. ``case`` raises ``ValueError`` where
     the lexicon has no such case. ``places`` is the count of decimals read,
     default the lexicon's. ``scientific`` reads the exponent form where the
     lexicon has one.
@@ -249,7 +253,7 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     writer = _writer(lexicon_name(lang))
     form = SpokenForm(form)
     spellings: list[Spelling] = []
-    for variant in writer.variants(form, gender, case):
+    for variant in writer.variants(form, gender, case, scale and Scale(scale).value):
         text = _speak(writer, variant["ruleset"], value, form, places, scientific)
         if all(text != seen.text for seen in spellings):
             spellings.append(Spelling(text, SpellingReason(variant["reason"]), len(spellings)))
