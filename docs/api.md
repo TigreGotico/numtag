@@ -8,12 +8,12 @@ verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHIT
 see: getting-started.md, values.md
 -->
 
-The package `numtag` exports fifteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind` and `revision`. This page describes each of them. Every other module is internal.
+The package `numtag` exports nineteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind`, `revision`, `spell`, `Spelling`, `SpellingReason` and `SpokenForm`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'revision', 'tag_numbers', 'tag_vague_quantities']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'Spelling', 'SpellingReason', 'SpokenForm', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'revision', 'spell', 'tag_numbers', 'tag_vague_quantities']
 ```
 
 ## tag_numbers
@@ -67,6 +67,7 @@ A `NumberMention` is a frozen dataclass. It describes one number in the text.
 | `number_scale` | `Scale` or `None` | Keyword only. The scale that gave the value, set only when the value depends on the scale |
 | `reasons` | `frozenset[Reason]` | Keyword only. Why the confidence is low. Empty for a sure number |
 | `parts` | `tuple[Part, ...]` | Keyword only. The pieces of the mention in reading order. Read [Part](#part). |
+| `lang` | `str` or `None` | Keyword only, left out of equality and of the representation. The name of the lexicon that read the mention ("pt-PT" for a "pt" call). `spoken` uses it |
 
 ```python
 >>> m = tag_numbers("Recebeu 2,5 milhões de euros.", "pt-PT")[0]
@@ -360,6 +361,77 @@ ValueError: an amount takes no scale and no lower bound
 >>> from numtag import is_canonical_value
 >>> [is_canonical_value(v) for v in ("1200", "-2.5", "1/3", "007", "2.50", "-0")]
 [True, True, True, False, False, False]
+```
+
+## spell
+
+```text
+spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None, scale=None, places=None, scientific=False) -> tuple[Spelling, ...]
+```
+
+`spell` writes a number as words. It returns every accepted spelling of `value` in the language, best first. The first spelling is the default one. `value` is a canonical digit string ("21", "-2.5") or a fraction "n/m". `lang` works as in `tag_numbers`. A language whose lexicon has no `writer` block raises `UnsupportedLanguageError`. [lexicon-format.md](lexicon-format.md#the-writer-block) says what a block holds and how its rules run.
+
+| Argument | Meaning |
+|---|---|
+| `form` | A `SpokenForm`: `CARDINAL` ("twenty-one"), `ORDINAL`, `YEAR` (the cardinal where the lexicon has no year rules) or `DIGITS` (each digit alone) |
+| `gender` | `"masculine"`, `"feminine"` or `"neuter"`. It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
+| `case` | A case name that the lexicon lists. Any other case raises `ValueError` |
+| `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
+| `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
+| `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
+
+```python
+>>> from numtag import SpokenForm, spell, tag_numbers
+>>> [s.text for s in spell("21", "id")]
+['dua puluh satu']
+>>> spell("2.25", "ms")[0].text, spell("-1500", "id")[0].text
+('dua koma dua lima', 'minus seribu lima ratus')
+>>> spell("2", "id", form=SpokenForm.ORDINAL)[0].text, spell("1", "id", form=SpokenForm.ORDINAL)[0].text
+('kedua', 'pertama')
+>>> spell("21", "id", form=SpokenForm.DIGITS)[0].text
+'dua satu'
+>>> spell("2/3", "id")[0].text, spell("-1/4", "id")[0].text
+('dua pertiga', 'minus seperempat')
+>>> spell("1500000000", "ms", scientific=True)[0].text
+'satu koma lima kali sepuluh pangkat sembilan'
+```
+
+An ordinal below its minimum raises `ValueError`, and so does a case that the lexicon lacks. A fraction with a denominator of 0 raises `ZeroDivisionError`.
+
+```python
+>>> spell("0", "id", form=SpokenForm.ORDINAL)
+Traceback (most recent call last):
+  ...
+ValueError: ordinals must be whole numbers from 1
+>>> spell("1", "id", case="genitive")
+Traceback (most recent call last):
+  ...
+ValueError: id: no case 'genitive'; it has []
+>>> spell("1", "en")
+Traceback (most recent call last):
+  ...
+numtag.lexicon.UnsupportedLanguageError: no writer for language 'en'
+```
+
+## Spelling
+
+A `Spelling` is a frozen dataclass of `text`, `reason` and `rank`. The `rank` is the place in the list of the lexicon, from 0. The `reason` is a `SpellingReason`: `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting` or `variant_spelling`. A lexicon lists the spellings of a form in the order that its sources set, and numtag computes no score. A difference of region ("dezasseis" and "dezesseis") is a different lexicon and not a rank.
+
+## NumberMention.spoken
+
+```text
+NumberMention.spoken(lang=None, *, form=None, gender=None, case=None, scale=None, places=None) -> tuple[Spelling, ...]
+```
+
+`spoken` writes the value of a mention as words. It calls `spell` with the value. `lang` defaults to the lexicon that read the mention. `form` defaults to the ordinal for an ordinal mention and to the cardinal for every other kind, and `gender` defaults to the gender of the mention. A digit mention gives its words, and a word mention gives the canonical words of its value.
+
+```python
+>>> tag_numbers("dua puluh satu orang", "id")[0].spoken()[0].text
+'dua puluh satu'
+>>> tag_numbers("21 orang", "ms")[0].spoken()[0].text
+'dua puluh satu'
+>>> tag_numbers("kedua", "id")[0].spoken("ms", form=SpokenForm.CARDINAL)[0].text
+'dua'
 ```
 
 ## revision

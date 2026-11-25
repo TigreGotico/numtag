@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/TigreGotico/numtag/blob/dev/numtag/lexicon.schema.json",
-  "title": "numtag lexicon, format version 1",
+  "title": "numtag lexicon, format versions 1 and 2",
   "type": "object",
   "properties": {
     "format_version": {
-      "const": 1
+      "enum": [1, 2]
     },
     "extends": {
       "type": "string"
@@ -137,6 +137,79 @@
         "additionalProperties": false
       }
     },
+    "writer": {
+      "type": "object",
+      "properties": {
+        "source": {"type": "string"},
+        "rulesets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "source": {"type": "string"},
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {"type": "string", "pattern": "^(-x|[0-9]+)$"},
+                    "radix": {"type": "integer", "minimum": 2},
+                    "text": {"type": "string"},
+                    "source": {"type": "string"}
+                  },
+                  "required": ["value", "text"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["source", "rules"],
+            "additionalProperties": false
+          }
+        },
+        "forms": {
+          "type": "object",
+          "propertyNames": {"enum": ["cardinal", "ordinal", "year"]},
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "variants": {"$ref": "#/$defs/variants"},
+              "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
+              "case": {"type": "object", "additionalProperties": {"$ref": "#/$defs/variants"}},
+              "minimum": {"type": "string", "pattern": "^[0-9]+$"}
+            },
+            "required": ["variants"],
+            "additionalProperties": false
+          },
+          "required": ["cardinal"]
+        },
+        "decimal": {
+          "type": "object",
+          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "source": {"type": "string"}},
+          "required": ["word", "places", "source"],
+          "additionalProperties": false
+        },
+        "scientific": {
+          "type": "object",
+          "properties": {"times": {"type": "string"}, "source": {"type": "string"}},
+          "required": ["times", "source"],
+          "additionalProperties": false
+        },
+        "fraction": {
+          "type": "object",
+          "properties": {
+            "limit": {"type": "integer", "minimum": 2},
+            "named": {"type": "object", "additionalProperties": {"type": "string"}},
+            "denominator": {"type": "string"},
+            "single": {"type": "string"},
+            "source": {"type": "string"}
+          },
+          "required": ["limit", "named", "denominator", "single", "source"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["source", "rulesets", "forms", "decimal"],
+      "additionalProperties": false
+    },
     "entries": {
       "type": "array",
       "items": {
@@ -147,9 +220,28 @@
       }
     }
   },
+  "$defs": {
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "ruleset": {"type": "string"},
+          "reason": {"enum": ["standard", "no_conjunction", "year_pairs", "plain", "counting", "variant_spelling"]},
+          "source": {"type": "string"}
+        },
+        "required": ["ruleset", "reason"],
+        "additionalProperties": false
+      }
+    }
+  },
   "required": [
     "format_version"
   ],
+  "dependentSchemas": {
+    "writer": {"properties": {"format_version": {"const": 2}}}
+  },
   "if": {
     "required": [
       "extends"

@@ -29,7 +29,10 @@ from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
 
-FORMAT_VERSION = 1
+FORMAT_VERSION = 2
+# A version 1 file stays valid; only a version 2 file may hold a ``writer`` block.
+READABLE_VERSIONS = (1, 2)
+WRITER_VERSION = 2
 
 
 class UnsupportedLanguageError(ValueError):
@@ -565,7 +568,15 @@ REQUIRED_WORDS = frozenset((
 SETTINGS = REQUIRED_SETTINGS | frozenset(DEFAULT_SETTINGS)
 WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
 
-TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries"))
+TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
+WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
+RULESET_KEYS = frozenset(("source", "rules"))
+RULE_KEYS = frozenset(("value", "radix", "text", "source"))
+FORM_KEYS = frozenset(("variants", "gender", "case", "minimum"))
+VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
+DECIMAL_KEYS = frozenset(("word", "places", "source"))
+SCIENTIFIC_KEYS = frozenset(("times", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -598,10 +609,14 @@ def _refuse(lang: str, where: str, found, allowed) -> None:
 
 def _check(lang: str, data: dict) -> None:
     """Refuse a file with an unknown format version or a key that the loader does not read."""
-    if data.get("format_version") != FORMAT_VERSION:
+    if data.get("format_version") not in READABLE_VERSIONS:
         raise ValueError(f"{lang}: format_version {data.get('format_version')!r} is unknown; "
-                         f"this loader reads version {FORMAT_VERSION}")
+                         f"this loader reads versions {', '.join(map(str, READABLE_VERSIONS))}")
     _refuse(lang, "the lexicon", data, TOP_KEYS)
+    if "writer" in data:
+        if data["format_version"] < WRITER_VERSION:
+            raise ValueError(f"{lang}: a writer block needs format_version {WRITER_VERSION}")
+        _check_writer(lang, data["writer"])
     for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
         _refuse(lang, section, data.get(section, ()), allowed)
         for name, item in data.get(section, {}).items():
@@ -617,6 +632,29 @@ def _check(lang: str, data: dict) -> None:
             _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
 
 
+def _check_writer(lang: str, writer: dict) -> None:
+    """Refuse a key of the writer block that the writer does not read, and a rule set or form that is missing."""
+    _refuse(lang, "the writer block", writer, WRITER_KEYS)
+    for key in ("source", "rulesets", "forms", "decimal"):
+        if key not in writer:
+            raise ValueError(f"{lang}: the writer block has no {key!r}")
+    for name, ruleset in writer["rulesets"].items():
+        _refuse(lang, f"rule set {name!r}", ruleset, RULESET_KEYS)
+        for rule in ruleset["rules"]:
+            _refuse(lang, f"a rule of {name!r}", rule, RULE_KEYS)
+    for name, form in writer["forms"].items():
+        _refuse(lang, f"form {name!r}", form, FORM_KEYS)
+        lists = [form["variants"], *form.get("gender", {}).values(), *form.get("case", {}).values()]
+        for variants in lists:
+            for variant in variants:
+                _refuse(lang, f"a variant of form {name!r}", variant, VARIANT_KEYS)
+                if variant["ruleset"] not in writer["rulesets"]:
+                    raise ValueError(f"{lang}: form {name!r} names the unknown rule set {variant['ruleset']!r}")
+    _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
+    _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
+    _refuse(lang, "fraction", writer.get("fraction", {}), FRACTION_KEYS)
+
+
 def _read(lang: str) -> dict:
     path = _HERE / f"{lang}.json"
     if not path.is_file():
@@ -628,11 +666,19 @@ def _read(lang: str) -> dict:
     base = _read(data["extends"])
     entries = {(e["word"], e["role"]): e for e in base.get("entries", [])}
     entries.update({(e["word"], e["role"]): e for e in data.get("entries", [])})
-    return {"format_version": FORMAT_VERSION,
-            "settings": {**base["settings"], **data.get("settings", {})},
-            "words": {**base["words"], **data.get("words", {})},
-            "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
-            "entries": list(entries.values())}
+    merged = {"format_version": max(data["format_version"], base["format_version"]),
+              "settings": {**base["settings"], **data.get("settings", {})},
+              "words": {**base["words"], **data.get("words", {})},
+              "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
+              "entries": list(entries.values())}
+    if writer := {**base.get("writer", {}), **data.get("writer", {})}:
+        merged["writer"] = writer
+    return merged
+
+
+def writer_block(lang: str) -> dict | None:
+    """The ``writer`` block of the lexicon ``lang`` names, or None when it has none."""
+    return _read(lang).get("writer")
 
 
 @cache

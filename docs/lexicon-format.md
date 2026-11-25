@@ -1,14 +1,14 @@
 # The lexicon format
 
 <!-- agent-hint
-covers: The format of a lexicon JSON file, version 1: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
+covers: The format of a lexicon JSON file, versions 1 and 2: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
 source: numtag/lexicon/__init__.py:load, numtag/lexicon/__init__.py:revision, numtag/lexicon.schema.json, tests/test_lexicon_format.py
 generated: no
 verify: for k in $(grep -oP '^ +"\K[a-z_]+(?=": \{"properties")' numtag/lexicon.schema.json); do grep -qF "$k" docs/lexicon-format.md || exit 1; done
 see: adding-a-language.md, design.md
 -->
 
-A lexicon is one JSON file that holds the words and the settings of one language. This page defines the format of version 1 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
+A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1 and 2 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
 
 The engine has no code for a language. A language that needs new behaviour gets a new key or a new role here, and the format version goes up in the same change.
 
@@ -18,20 +18,21 @@ A file is a JSON object with these keys.
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1`. Required. |
+| `format_version` | The integer `1` or `2`. Required. Only version 2 holds `writer`. |
 | `extends` | The name of a base lexicon. Optional. |
 | `settings` | An object. Each key is a setting, and each value is `{"value": ..., "source": ...}`. |
 | `words` | An object. Each key is a word list, and each value is `{"value": [...], "source": ...}`. |
 | `inflection` | An object. Each key is the name of a class of suffixes. Optional. |
 | `entries` | A list of word entries. |
+| `writer` | An object that tells how to write a number as words. Optional. Version 2 only. Read [The writer block](#the-writer-block). |
 
 A file with no `extends` holds `settings`, `words` and `entries`. It holds every setting and word list that this page marks as required. A file with `extends` holds only what differs from its base.
 
 ### Version and refusal
 
-The loader reads `format_version` first. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1 and 2. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
-A change to this format that adds a key, a role or a value, or that changes what a key does, raises `FORMAT_VERSION`, changes this page and changes the schema in the same commit.
+A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. The loader refuses a `writer` block in a version 1 file.
 
 ### Base lexicons
 
@@ -39,7 +40,7 @@ The loader reads the base first, then the file. A setting or a word list of the 
 
 ### Revision
 
-`numtag.revision(lang)` returns the revision of the lexicon that a language tag reads: the sha256, as 64 lower-case hex digits, of the document that the loader reads. The document is the file, or, for a file with `extends`, the merged document with the keys `format_version`, `settings`, `words`, `inflection` and `entries`. It is written as canonical JSON: sorted keys, `,` and `:` with no spaces, non-ASCII characters as UTF-8. The revision changes when any word, setting or source changes, and when the base of the lexicon changes. A consumer that records which rules it ran with adds the revision to its own.
+`numtag.revision(lang)` returns the revision of the lexicon that a language tag reads: the sha256, as 64 lower-case hex digits, of the document that the loader reads. The document is the file, or, for a file with `extends`, the merged document with the keys `format_version`, `settings`, `words`, `inflection`, `entries` and, when a file of the chain has one, `writer`. The merged `format_version` is the highest version of the chain. It is written as canonical JSON: sorted keys, `,` and `:` with no spaces, non-ASCII characters as UTF-8. The revision changes when any word, setting or source changes, and when the base of the lexicon changes. A consumer that records which rules it ran with adds the revision to its own.
 
 ## Settings
 
@@ -247,6 +248,59 @@ Every role that makes forms (all but `ordinal_suffix` and `vague_quantifier`) re
 | `counted` | boolean | `false` | A plural multiplier that a count takes, in words or in digits below a thousand (he "מאות"). | ru: `{"word": "сотни", "role": "hundred_multiplier", "counted": true}` |
 
 A role that gives a value (`unit`, `ten`, `hundred`, `collective`, `article_collective`, `denominator`, `ordinal`, `fraction`, `decimal_zero`, `value_word`, `unit_and_half`, `rational`, `teen`, `teen_suffix`) reads `value`, `addend`, `bound`, `takes_unit`, `takes_units`, `case`, `ordinal_unit`, `numerator`, `weak_alone`, `invariant`, `cardinal`, `teens`, `after_article`, `weak_at_end`, `joined_count`, `weak_after`, `weak_before`, `standalone` and `number_after`. A scale role reads `value`, `rank`, `count` and `counted`. `half` reads `bound`. `ordinal_scale` reads `value` and `after_article`. A mark role reads no key besides those that make forms.
+
+## The writer block
+
+A `writer` block makes the lexicon write numbers as words. `numtag.spell` runs it. The block holds rule sets that follow the text syntax of rule-based number formatting in ICU, the form of the CLDR files `common/rbnf/<lang>.xml`, and it says which rule set speaks each form. The rules of a lexicon come from CLDR where CLDR has them and carry a `source`. The CLDR data is under the Unicode License v3 (`LICENSE-CLDR`).
+
+| Key | Content |
+|---|---|
+| `source` | The quote and the file that give the rule sets. Required. |
+| `rulesets` | An object. Each key is the name of a rule set, and each value is `{"source": ..., "rules": [...]}`. Required. |
+| `forms` | An object. Each key is a form: `cardinal`, `ordinal` or `year`. Required, and it holds `cardinal`. |
+| `decimal` | `{"word": ..., "places": ..., "source": ...}`. Required. The word between the whole part and the decimals, and the count of decimals that a reading keeps when the caller names none. The decimals read one digit at a time. |
+| `scientific` | `{"times": ..., "source": ...}`. Optional. The words between the mantissa and the exponent: "kali sepuluh pangkat". A lexicon with no `scientific` has no exponent reading. |
+| `fraction` | Optional. How a fraction "n/m" reads. See below. |
+
+### Rules
+
+A rule is an object with `value`, `text`, and optionally `radix` and `source`. The `value` is a base value as a digit string, or `-x` for the rule that reads a negative number. The `text` is the rule text. The loader refuses any other key.
+
+The interpreter reads a whole number in a rule set like this. It picks the rule with the largest base value that is not above the number. The divisor is the radix (10 when the rule has none) raised to the largest exponent that keeps the divisor not above the base value. The quotient and the remainder of the number by the divisor fill the slots of the rule text. A rule set holds no rule for a number below its smallest base value, so it has a rule for 0.
+
+| Text | Meaning |
+|---|---|
+| `←←` | The quotient, read by the same rule set |
+| `←%name←` | The quotient, read by the rule set `name` |
+| `→→` | The remainder, read by the same rule set. In a `-x` rule it is the number with no sign |
+| `→%name→` | The remainder, read by the rule set `name` |
+| `=%name=` | The whole number, read by the rule set `name` |
+| `[...]` | Text that stays out when the remainder is 0 |
+| any other character | Itself |
+
+The soft hyphen U+00AD is dropped from the words, runs of spaces become one space, and the ends are trimmed. The loader refuses a rule text that holds any of the characters `$ # < >`, which belong to other parts of the ICU syntax that this version does not read, and it refuses a quotient or remainder slot that names no `%` rule set.
+
+### Forms
+
+A form has `variants`, a list of `{"ruleset": ..., "reason": ..., "source": ...}`. The list is in rank order: the first is the default reading. A `reason` is one of `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting` or `variant_spelling`. Two variants with the same words count once. A difference of region or standard is no variant: it is another lexicon.
+
+A form can also hold `gender`, an object from `masculine`, `feminine` or `neuter` to a list of variants, and `case`, an object from a case name to a list of variants. A call that names a gender that the form does not list reads the `variants`. A call that names a case that the form does not list raises `ValueError`, and the message names the cases that the form has. A case takes the place of the gender. The `ordinal` form can hold `minimum`, a digit string: a call for a number below it, for a negative number or for a number with decimals raises `ValueError`. The `year` form is optional: a lexicon with no `year` reads the cardinal. The form `digits` of `numtag.spell` uses the cardinal rule set for each digit.
+
+### Decimals, negatives and size
+
+A negative number reads with the `-x` rule of the rule set. A number with decimals reads as the whole part, the `decimal` word and one cardinal for each of the first `places` digits of the rounded decimals. The rounding goes half away from zero to `places` decimals. With `places` of 0 or less, a value under one half reads as 0. A value that would round to 0 at `places` decimals reads up to its first digit that is not 0, and the rounding goes to that digit.
+
+With `scientific` set, a number with a mantissa and an exponent other than 0 reads as the mantissa, the `times` words and the exponent, each with the minus word where it is negative. The mantissa keeps `places` decimals, rounded half away from zero. A whole number of more than 15 digits reads the same way when its reading in the rule set repeats a word that is no digit word, or holds a run of seven digits, and the lexicon has `scientific`.
+
+### Fractions
+
+The `fraction` object holds `limit`, `named`, `denominator`, `single` and `source`. A fraction "n/m" with a denominator from 2 to `limit` reads as a mixed number: the whole part, if it is not 0, then the rest. A fraction with a rest of 0 reads as in the last case below. When `named` holds the denominator, its word follows the whole part and the numerator is left out. For another denominator the rest is the cardinal of the numerator and the `denominator` text, where `{cardinal}` stands for the cardinal of the denominator. The text `single` stands for a numerator of 1 with no whole part, and `{denominator}` stands for the denominator text. Every other fraction reads as the cardinal of the numerator and the ordinal of the denominator. A negative fraction starts with the minus word. A denominator of 0 raises `ZeroDivisionError`.
+
+```json
+{"fraction": {"limit": 20, "named": {"2": "setengah"}, "denominator": "per{cardinal}", "single": "se{denominator}", "source": "..."}}
+```
+
+With this object, 1/4 reads "seperempat", 2/3 reads "dua pertiga" and 3/2 reads "satu setengah".
 
 ---
 [← Adding a language](adding-a-language.md) · [Home](index.md) · [Design →](design.md)

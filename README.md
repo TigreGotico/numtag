@@ -114,3 +114,5 @@ Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.
 ## License
 
 Apache-2.0.
+
+The `writer` blocks of the lexicons hold rules from the Unicode CLDR rule-based number formats (CLDR 44), copyright Unicode, Inc., under the Unicode License v3. The text is in [LICENSE-CLDR](LICENSE-CLDR).

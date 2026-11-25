@@ -10,7 +10,7 @@ see: docs/index.md, docs/adding-a-language.md, docs/rulings.md
 
 Read this file before you change anything in the repository. It gives the map, the setup, the hard rules and the checks to run before a push. The documentation index is [docs/index.md](docs/index.md).
 
-numtag finds every number in a text and returns one mention per number. A mention holds the exact words, the character span, an exact value as a digit string, the kind and the form. The tagger reads numbers only and has no runtime dependencies.
+numtag finds every number in a text and returns one mention per number. A mention holds the exact words, the character span, an exact value as a digit string, the kind and the form. The tagger reads numbers, `spell` writes a value as words from the `writer` block of a lexicon, and the package has no runtime dependencies.
 
 ## Repository map
 
@@ -22,11 +22,14 @@ numtag finds every number in a text and returns one mention per number. A mentio
 | `numtag/mention.py` | `NumberMention`, `Kind`, `Form`, `Scale`, `Reason`, `is_canonical_value` |
 | `numtag/vague.py` | `tag_vague_quantities` |
 | `numtag/lexicon/*.json` | One lexicon per language. This is the language data |
+| `numtag/writer.py` | `spell`, `Spelling`, `SpokenForm` and the interpreter of the `writer` block. It names no language |
 | `numtag/lexicon.schema.json` | The JSON Schema of a lexicon. [docs/lexicon-format.md](docs/lexicon-format.md) specifies the format |
 | `numtag/bare_tags.json` | The lexicon that a bare tag reads ("pt" reads pt-PT, "no" reads nb) |
 | `tests/gold/<lang>.jsonl` | Gold rows of real sentences, one file per lexicon |
 | `tests/gold_floor.json` | The lowest accepted gold score of each language |
 | `tests/golden/readings.jsonl.gz` | Every field of every mention of every gold and consumer text, at both scales. `python tests/golden.py` writes it |
+| `tests/golden/onp-writers.jsonl.gz` | What the ovos-number-parser writers said, row by row: 488,631 calls over 43 tags. `tests/golden_writers.py` runs the rows of each lexicon with a `writer` block through `numtag.spell`. `tests/golden/onp-writers-allow.json` lists the rows where the stored words are a known defect, each with a source |
+| `tests/golden/revisions.json` | The revision of every lexicon that has no `writer` block. It never changes |
 | `tests/consumers/` | The readings that each consumer of numtag depends on |
 | `benchmarks/bench.py` | The accuracy, memory and time script |
 | `docs/` | The documentation. `docs/index.md` sets the reading order |

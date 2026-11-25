@@ -19,7 +19,7 @@ numtag has one reader. It turns a text into tokens and splits the tokens into ru
 | A value is a digit string | numtag builds each value by arithmetic on strings of digits. No value passes through `int`, `float`, `Decimal` or `Fraction` inside the package. |
 | The grammar decides where a number ends | A number ends where no rule takes the next word. "twenty one twenty" is 21 and 20, because "twenty" cannot follow a unit. |
 | Language facts are data | Each language is one JSON lexicon. Each word and setting carries the source of its rule. |
-| Reader only | numtag does not write numbers as words. |
+| Reader and writer | numtag reads numbers. It writes a value as words from the `writer` block of a lexicon, with one interpreter and no code for a language. |
 | Deterministic | The same text, language and scale always give the same mentions, with the same scores. |
 
 ## The steps
