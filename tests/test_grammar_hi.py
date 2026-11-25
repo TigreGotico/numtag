@@ -164,14 +164,14 @@ class TestTraditionalScaleWords(unittest.TestCase):
 class TestArabSenseOfArab(unittest.TestCase):
     # A count before अरब reads 10^9 in number text. The format has no data setting that tells it from the Arabs.
 
-    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/302")
     def test_ek_arab_is_an_arab_before_a_noun(self):
         self.assertEqual(hi("पश्चिमी एशिया में एक अरब संप्रभु राज्य है"), [("एक", "1", C)])
 
-    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/302")
     def test_a_number_before_arab_tribes(self):
         self.assertEqual(hi("बारह अरब जनजातियां"), [("बारह", "12", C)])
 
-    @pytest.mark.xfail(strict=True, reason="known limit: hi has no data setting to tell अरब (Arabs) from अरब (10^9)")
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/302")
     def test_a_year_before_the_arab_league(self):
         self.assertEqual(hi("1970 अरब लीग शिखर सम्मेलन"), [("1970", "1970", C)])
