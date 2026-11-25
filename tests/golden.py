@@ -30,6 +30,11 @@ def _inputs() -> list[tuple[str, str]]:
     return found
 
 
+def _fields(mention) -> dict:
+    """Every field of a mention but ``lang``, which the golden rows name already."""
+    return {key: value for key, value in asdict(mention).items() if key != "lang"}
+
+
 def _line(row: dict) -> str:
     return json.dumps(row, ensure_ascii=False, sort_keys=True, default=sorted)
 
@@ -39,10 +44,10 @@ def rows() -> list[str]:
     lines = []
     for lang, text in _inputs():
         lines.append(_line({"lang": lang, "scale": "default", "text": text,
-                            "mentions": [asdict(m) for m in tag_numbers(text, lang)],
+                            "mentions": [_fields(m) for m in tag_numbers(text, lang)],
                             "vague": [asdict(v) for v in tag_vague_quantities(text, lang)]}))
         lines.append(_line({"lang": lang, "scale": "long", "text": text,
-                            "mentions": [asdict(m) for m in tag_numbers(text, lang, scale=Scale.LONG)]}))
+                            "mentions": [_fields(m) for m in tag_numbers(text, lang, scale=Scale.LONG)]}))
     return lines
 
 

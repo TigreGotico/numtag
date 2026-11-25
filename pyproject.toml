@@ -18,7 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Text Processing :: Linguistic",
 ]
-dependencies = ["linguatag>=0.4.2a4"]
+dependencies = ["linguatag>=0.4.4a3"]
 
 [project.urls]
 Homepage = "https://github.com/TigreGotico/numtag"
@@ -27,6 +27,9 @@ Issues = "https://github.com/TigreGotico/numtag/issues"
 
 [project.optional-dependencies]
 test = ["pytest", "jsonschema"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "LICENSE-CLDR"]
 
 [tool.setuptools.packages.find]
 include = ["numtag*"]

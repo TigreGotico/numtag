@@ -83,7 +83,10 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
             span, token.text, value, kind, Form.ROMAN, None, CONFIDENCE[reason],
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=(Part(Role.COUNT, span, token.text, value),)))
-    return sorted(mentions, key=lambda m: m.char_span)
+    mentions.sort(key=lambda m: m.char_span)
+    for mention in mentions:
+        object.__setattr__(mention, "lang", lexicon.lang)  # a frozen mention takes its language here, once
+    return mentions
 
 
 def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMention],
