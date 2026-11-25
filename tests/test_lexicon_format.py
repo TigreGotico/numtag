@@ -453,10 +453,13 @@ class TestLanguageTags(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual(lexicon_name(tag), name)
 
-    def test_a_padded_tag_reads_the_language(self):
-        for tag in (" pt ", " pt-BR", "pt-BR "):
-            with self.subTest(tag=tag):
-                self.assertEqual(lexicon_name(tag), "pt-PT")
+    def test_a_padded_bare_tag_reads_the_default_region(self):
+        self.assertEqual(lexicon_name(" pt "), "pt-PT")
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/linguatag/issues/78")
+    def test_a_padded_region_tag_reads_its_region(self):
+        for tag in (" pt-BR", "pt-BR "):
+            self.assertEqual(lexicon_name(tag), "pt-BR")
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
     def test_bosnian_reads_a_thousand_of_hiljada(self):
