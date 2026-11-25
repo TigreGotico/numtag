@@ -165,6 +165,13 @@
 {"text": "Ni renkontiĝis je la 3-a de Julio.", "mentions": [{"start": 21, "end": 24, "value": "3", "kind": "ordinal"}], "source": "arithmetic; PMEG 23.1.2 (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""}
 {"text": "Li venis la 5-an fojon al la kunsido.", "mentions": [{"start": 12, "end": 16, "value": "5", "kind": "ordinal"}], "source": "arithmetic; PMEG 23.1.2 (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""}
 {"text": "Tio okazis en la 20-aj jaroj.", "mentions": [{"start": 17, "end": 22, "value": "20", "kind": "ordinal"}], "source": "arithmetic; PMEG 23.1.2 (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""}
+{"text": "Mi vidis unudek birdojn en la ĝardeno.", "mentions": [], "source": "PMEG 23.1.1 (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Oni ne diras *unudek* aŭ *unucent*, sed nur dek kaj cent.\""}
+{"text": "Ili havis unucent ŝafojn en la kamparo.", "mentions": [], "source": "PMEG 23.1.1 (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Oni ne diras *unudek* aŭ *unucent*, sed nur dek kaj cent.\""}
+{"text": "Ni iros al la centro de la urbo.", "mentions": [], "source": "structural, no external source: \"centro\" holds the letters of \"cent\" and names no number"}
+{"text": "La milito finiĝis en la printempo.", "mentions": [], "source": "structural, no external source: \"milito\" holds the letters of \"mil\" and names no number"}
+{"text": "Liaj okuloj estas bluaj.", "mentions": [], "source": "structural, no external source: \"okuloj\" holds the letters of \"ok\" and names no number"}
+{"text": "Li iris dekstren kaj ŝi iris maldekstren.", "mentions": [], "source": "structural, no external source: \"dekstren\" holds the letters of \"dek\" and names no number"}
+{"text": "Mi vidis du biliardojn.", "mentions": [{"start": 9, "end": 11, "value": "2", "kind": "cardinal"}], "source": "PMEG 23.2 (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"tute ne ekzistas en Esperanto\": biliardo is no Esperanto number, so only \"du\" reads"}
 {"text": "La kato dormas sur la tablo.", "mentions": [], "source": "structural, no external source: the sentence holds no number word"}
 {"text": "Mi ŝatas legi librojn en la vespero.", "mentions": [], "source": "structural, no external source: the sentence holds no number word"}
 {"text": "Kiel vi fartas hodiaŭ?", "mentions": [], "source": "structural, no external source: the sentence holds no number word"}

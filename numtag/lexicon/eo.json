@@ -67,7 +67,7 @@
   },
   "compound_words": {
    "value": true,
-   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni kunmetas, oni por klareco prefere skribu dividostrekojn tie, kie estas spacetoj en la origina plurvorta nombro\"; \"dudeksepa\" and \"du-mil-kvincento\" are one written word."
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni kunmetas, oni por klareco prefere skribu dividostrekojn tie, kie estas spacetoj en la origina plurvorta nombro\"; PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"du-mil-kvincento (prefere ne dumilkvincento)\": a numeral is one written word with hyphens."
   }
  },
  "words": {
@@ -79,7 +79,7 @@
    "value": [
     "komo"
    ],
-   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"x.x: << komo >>;\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"0,5 = nul komo kvin\""
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"x.x: << komo >>;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"0,5 = nul komo kvin\""
   },
   "minus": {
    "value": [
@@ -1238,7 +1238,7 @@
      "eo.a"
     ]
    },
-   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\"; \"la jaro 2010 kiel la jaro du-mil-deka\""
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"la jaro 2010 kiel la jaro du-mil-deka\""
   },
   {
    "word": "nula",

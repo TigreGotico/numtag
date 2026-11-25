@@ -49,6 +49,8 @@ class TestLargeNumbers(unittest.TestCase):
         # biliono has twelve zeros, miliardo nine
         self.assertEqual(eo("du bilionoj"), [("du bilionoj", "2000000000000", C)])
         self.assertEqual(eo("tri miliardoj"), [("tri miliardoj", "3000000000", C)])
+        # 1 x 10^9
+        self.assertEqual(eo("unu miliardo"), [("unu miliardo", "1000000000", C)])
 
     def test_a_plural_scale_noun_with_no_count_is_no_number(self):
         self.assertEqual(eo("El multaj milonoj fariĝas milionoj."), [])
@@ -105,3 +107,30 @@ class TestDigits(unittest.TestCase):
     def test_a_narrow_no_break_space_and_a_space_group_digits(self):
         for mark in (" ", " "):
             self.assertEqual(eo(f"10{mark}000 homoj"), [(f"10{mark}000", "10000", C)])
+
+
+class TestSmallWords(unittest.TestCase):
+    def test_nul_and_nulo_are_zero(self):
+        # the cipher 0
+        self.assertEqual(eo("nul gradoj"), [("nul", "0", C)])
+        self.assertEqual(eo("nulo"), [("nulo", "0", C)])
+
+    def test_a_tenth_and_a_dozen(self):
+        # 1 x 1/10
+        self.assertEqual(eo("unu dekono"), [("unu dekono", "0.1", F)])
+        # one group of 12
+        self.assertEqual(eo("Mi aĉetis dekduon da kuleroj."), [("dekduon", "12", C)])
+
+    def test_a_milliard_is_ten_to_the_ninth(self):
+        # 3 x 10^9
+        self.assertEqual(eo("tri miliardoj"), [("tri miliardoj", "3000000000", C)])
+        # 1 x 10^9
+        self.assertEqual(eo("unu miliardo"), [("unu miliardo", "1000000000", C)])
+
+    def test_a_word_that_holds_the_letters_of_a_number_word_is_no_number(self):
+        for text in ("centro", "milito", "okuloj", "dekstren"):
+            self.assertEqual(eo(text), [])
+
+    def test_biliardo_is_no_esperanto_number(self):
+        # PMEG 23.2: only "du" reads
+        self.assertEqual(eo("du biliardoj"), [("du", "2", C)])
