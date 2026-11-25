@@ -230,7 +230,7 @@ def _parts(text: str, run: list[Token], pieces: Pieces) -> tuple[Part, ...]:
 
 
 def _signed(token: Token) -> bool:
-    return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in "-\u2212"
+    return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in SIGNS
 
 
 def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:

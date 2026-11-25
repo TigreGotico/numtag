@@ -27,7 +27,7 @@ from dataclasses import dataclass, field, replace
 
 from numtag import digits
 from numtag.digits import Rational
-from numtag.lexicon import CARDINAL_ROLES, MARK_ROLES, SCALE_ROLES, Entry, Joiner, Lexicon, TensOrder
+from numtag.lexicon import AMOUNT_ROLES, CARDINAL_ROLES, MARK_ROLES, SCALE_ROLES, Entry, Joiner, Lexicon, TensOrder
 from numtag.mention import Kind, Role
 from numtag.tokenize import Token
 
@@ -206,8 +206,8 @@ class Grammar:
     def _readings(self, i: int, role: str) -> tuple[Entry, ...]:
         if not 0 <= i < len(self.tokens) or self.tokens[i].is_digits:
             return ()
-        entries = self.lex.of(self.tokens[i].norm, role)
-        return entries if self.tokens[i].part else tuple(e for e in entries if not e.part)
+        token = self.tokens[i]
+        return self.lex.of(token.norm, role, parts=token.part)
 
     def _is_word(self, i: int, words: frozenset[str]) -> bool:
         return 0 <= i < len(self.tokens) and not self.tokens[i].is_digits and self.tokens[i].norm in words
@@ -254,7 +254,7 @@ class Grammar:
                 return True, i
         before = end - 1
         if before >= 0 and not self.tokens[before].is_digits and any(
-                e.role in SCALE_ROLES or e.role == "collective"
+                e.role in AMOUNT_ROLES
                 for e in self.lex.readings.get(self.tokens[before].norm, ())):
             return None, before
         return False, i
@@ -263,7 +263,7 @@ class Grammar:
         """"milhões": a plural scale word or collective. With a count before it
         ("3 milhões") it is a number, not a vague quantity."""
         return not self.tokens[i].is_digits and any(
-            (e.role in SCALE_ROLES or e.role == "collective") and e.plural
+            e.role in AMOUNT_ROLES and e.plural
             for e in self.lex.readings.get(self.tokens[i].norm, ()))
 
     def _goes_on(self, i: int, hundred: Entry) -> bool:
@@ -1659,8 +1659,9 @@ class Grammar:
 
     def _number_word(self, i: int) -> bool:
         token = self.tokens[i]
-        return token.is_digits or token.norm in self.lex.readings or token.norm in (
-            self.lex.joiners | self.lex.of_words | self.lex.decimal_markers | self.lex.articles)
+        lex = self.lex
+        return (token.is_digits or token.norm in lex.readings or token.norm in lex.joiners
+                or token.norm in lex.of_words or token.norm in lex.decimal_markers or token.norm in lex.articles)
 
     def _numbers(self, i: int) -> list[Parse]:
         if i in self._parses:
@@ -1681,7 +1682,7 @@ class Grammar:
             # count of the scale word would, as "a few" does in "a few hundred"
             if collectives and not any(
                     tuple(t.norm for t in self.tokens[i:i + len(phrase)]) == phrase
-                    and any(self._readings(i + len(phrase), role) for role in (*SCALE_ROLES, "collective"))
+                    and any(self._readings(i + len(phrase), role) for role in AMOUNT_ROLES)
                     for phrase in self.lex.vague_quantifiers):
                 for entry in collectives:
                     found += [replace(p, ambiguous=entry.ambiguous) for p in
