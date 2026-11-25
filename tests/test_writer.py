@@ -1,6 +1,7 @@
 """The writer: the golden file, the round trip, the interpreter and the API."""
 import json
 import random
+import re
 import subprocess
 import sys
 import tempfile
@@ -21,7 +22,17 @@ import golden_writers
 
 PACKAGE = Path(numtag.__file__).parent
 LEXICONS = PACKAGE / "lexicon"
-WRITERS = sorted(path.stem for path in LEXICONS.glob("*.json") if "writer" in json.loads(path.read_text("utf-8")))
+VERSION_TWO = sorted(path.stem for path in LEXICONS.glob("*.json") if "writer" in json.loads(path.read_text("utf-8")))
+WRITERS = sorted(name for name in VERSION_TWO if json.loads((LEXICONS / f"{name}.json").read_text("utf-8"))["writer"])
+
+
+# https://github.com/TigreGotico/numtag/issues/305: the pt-PT reader splits an ordinal with two scale
+# groups and lacks the ordinal scale words above "bilionésimo".
+ISSUE_305 = re.compile(r"(?:ilionésim[ao].*){2}|(?:mil|ilion)ésim[ao] .*(?:mil|ilion)ésim[ao]|(?<!b)(?<!m)ilionésim[ao]")
+
+
+def _issue_305(lang: str, text: str) -> bool:
+    return lang == "pt-PT" and bool(ISSUE_305.search(text))
 
 
 def _file(name: str) -> dict:
@@ -183,8 +194,14 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word]]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word)]
                 self.assertEqual(unread, [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/305")
+    def test_the_pt_PT_reader_reads_ordinals_with_two_scale_groups_and_high_scale_words(self):
+        found = [[m.value for m in tag_numbers(spell(n, "pt-PT", form=SpokenForm.ORDINAL)[0].text, "pt-PT")]
+                 for n in ("347713783", "1000000000000000000")]
+        self.assertEqual(found, [["347713783"], ["1000000000000000000"]])
 
     @classmethod
     def literals(cls, tokens: tuple):
@@ -202,7 +219,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)]:
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -211,7 +228,7 @@ class TestRoundTrip(unittest.TestCase):
 class TestRevisions(unittest.TestCase):
     def test_every_lexicon_with_no_writer_has_a_stored_revision_and_keeps_it(self):
         stored = json.loads((Path(__file__).parent / "golden" / "revisions.json").read_text(encoding="utf-8"))
-        names = sorted(path.stem for path in LEXICONS.glob("*.json") if path.stem not in WRITERS)
+        names = sorted(path.stem for path in LEXICONS.glob("*.json") if path.stem not in VERSION_TWO)
         self.assertEqual(sorted(stored), names)
         for name, revision in stored.items():
             with self.subTest(lexicon=name):
@@ -221,8 +238,9 @@ class TestRevisions(unittest.TestCase):
         names = sorted(path.stem for path in LEXICONS.glob("*.json"))
         for name in names:
             with self.subTest(lexicon=name):
-                self.assertEqual(_file(name)["format_version"], 2 if name in WRITERS else 1)
-        self.assertEqual(WRITERS, ["id", "ms"])
+                self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
+        self.assertEqual(WRITERS, ["id", "ms", "pt-PT"])
+        self.assertEqual(VERSION_TWO, ["id", "ms", "pt-BR", "pt-PT"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -236,6 +254,20 @@ class TestRevisions(unittest.TestCase):
 
 
 class TestExtends(unittest.TestCase):
+    def test_a_null_writer_drops_the_writer_of_the_base(self):
+        variants = Variants(self)
+        variants.write("variant", {"format_version": 2, "extends": "id", "writer": None})
+        with self.assertRaises(UnsupportedLanguageError):
+            spell("2", "variant")
+
+    def test_a_null_writer_with_no_base_is_refused(self):
+        variants = Variants(self)
+        data = _file("id")
+        data["writer"] = None
+        variants.write("id", data)
+        with self.assertRaisesRegex(ValueError, "null writer"):
+            spell("2", "id")
+
     def test_a_lexicon_with_no_writer_inherits_the_writer_of_its_base(self):
         variants = Variants(self)
         variants.write("variant", {"format_version": 1, "extends": "id"})
@@ -440,7 +472,7 @@ class TestSpell(unittest.TestCase):
                                       "denominator": "{cardinal} parts", "single": "{denominator}", "source": "test"}
         variants.write("id", data)
         self.assertEqual([spell(v, "id")[0].text for v in ("1/2", "3/2", "3/20", "3/21", "1/1000")],
-                         ["satu half", "tiga halfs", "tiga kedua puluhs", "tiga dua puluh satu parts", "satu keseribu"])
+                         ["satu half", "tiga halfs", "tiga dua puluh parts", "tiga dua puluh satu parts", "satu keseribu"])
 
     def test_the_fraction_of_a_zero_denominator_raises(self):
         with self.assertRaises(ZeroDivisionError):

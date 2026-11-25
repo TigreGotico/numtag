@@ -616,7 +616,10 @@ def _check(lang: str, data: dict) -> None:
     if "writer" in data:
         if data["format_version"] < WRITER_VERSION:
             raise ValueError(f"{lang}: a writer block needs format_version {WRITER_VERSION}")
-        _check_writer(lang, data["writer"])
+        if data["writer"] is not None:
+            _check_writer(lang, data["writer"])
+        elif "extends" not in data:
+            raise ValueError(f"{lang}: a null writer block drops the writer of a base, and this file has no base")
     for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
         _refuse(lang, section, data.get(section, ()), allowed)
         for name, item in data.get(section, {}).items():
@@ -682,6 +685,8 @@ def _read(lang: str) -> dict:
               "words": {**base["words"], **data.get("words", {})},
               "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
               "entries": list(entries.values())}
+    if "writer" in data and data["writer"] is None:
+        return merged
     if writer := {**base.get("writer", {}), **data.get("writer", {})}:
         merged["writer"] = writer
     return merged

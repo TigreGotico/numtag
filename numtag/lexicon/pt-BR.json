@@ -1,5 +1,6 @@
 {
-  "format_version": 1,
+  "format_version": 2,
+  "writer": null,
   "extends": "pt-PT",
   "settings": {
     "scale": {"value": "short", "source": "Priberam, \"bilião\", sense 2: \"[Brasil] Mil milhões (10^9)\": pt-BR counts in the short scale."},

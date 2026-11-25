@@ -381,14 +381,13 @@ def _fraction(writer: Writer, ruleset: str, value: str) -> str:
 
 
 def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) -> str:
-    """The numerator and the word of the denominator: a named word or, for a number with one digit
-    that is not 0, its ordinal, each with the plural ending after a numerator other than 1; else the
-    ``denominator`` text."""
-    if bottom in spec["named"] or bottom.rstrip("0") == bottom[0]:
-        word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
-        word += spec["plural"] if top != "1" else ""
-    else:
+    """The numerator and the word of the denominator: a named word or a one-word ordinal, each with
+    the plural ending after a numerator other than 1; else the ``denominator`` text."""
+    word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
+    if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
+    elif top != "1":
+        word += spec["plural"]
     return f"{writer.render(ruleset, top)} {word}"
 
 

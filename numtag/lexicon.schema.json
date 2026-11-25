@@ -138,7 +138,7 @@
       }
     },
     "writer": {
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "source": {"type": "string"},
         "rulesets": {
