@@ -469,6 +469,8 @@ class TestSpell(unittest.TestCase):
         self.assertEqual([spell(v, "pt-PT", decimals="number", places=2)[0].text for v in ("1.80", "12.50", "100.10")],
                          ["um vírgula oitenta", "doze vírgula cinquenta", "cem vírgula dez"])
         self.assertEqual(spell("1.80", "pt-PT", decimals="digits")[0].text, "um vírgula oito")
+        self.assertEqual([spell(v, "pt-PT", decimals="number", places=2)[0].text for v in ("5.0", "1.00", "0.00")],
+                         ["cinco", "um", "zero"])
 
     def test_a_decimals_value_other_than_digits_or_number_raises(self):
         with self.assertRaisesRegex(ValueError, "'bogus'"):

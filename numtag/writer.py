@@ -215,12 +215,12 @@ def _writer(name: str) -> Writer:
 
 def _split(value: str, keep_zeros: bool = False) -> tuple[bool, str, str]:
     """The sign, whole digits and fraction digits of a decimal digit string; ``keep_zeros`` keeps the
-    trailing zeros of the written decimals."""
+    trailing zeros of written decimals that are not all zeros."""
     negative = value.startswith("-")
     whole, point, fraction = value.removeprefix("-").partition(".")
     if not _is_digits(whole) or point and not _is_digits(fraction):
         raise ValueError(f"{value!r} is not a digit string")
-    return negative, digits.normalise(whole), fraction if keep_zeros else fraction.rstrip("0")
+    return negative, digits.normalise(whole), fraction if keep_zeros and fraction.strip("0") else fraction.rstrip("0")
 
 
 def _is_digits(text: str) -> bool:
