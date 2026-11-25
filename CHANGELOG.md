@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.24.0a2](https://github.com/TigreGotico/numtag/tree/0.24.0a2) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a1...0.24.0a2)
+
+**Merged pull requests:**
+
+- test: the hi Arab-sense xfails cite \#302 [\#303](https://github.com/TigreGotico/numtag/pull/303) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- refactor: read language tags through linguatag [\#286](https://github.com/TigreGotico/numtag/pull/286) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.24.0a1](https://github.com/TigreGotico/numtag/tree/0.24.0a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.23.0a2...0.24.0a1)
@@ -428,7 +437,6 @@
 **Merged pull requests:**
 
 - fix\(en\): digits around a spoken "point" make one decimal [\#78](https://github.com/TigreGotico/numtag/pull/78) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: digits before a denominator word count its parts [\#75](https://github.com/TigreGotico/numtag/pull/75) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
 
@@ -618,10 +626,6 @@
 ## [0.12.10a1](https://github.com/TigreGotico/numtag/tree/0.12.10a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.9a1...0.12.10a1)
-
-**Merged pull requests:**
-
-- fix\(tagger\): a joiner prefix before a number is no part of its span [\#76](https://github.com/TigreGotico/numtag/pull/76) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.9a1](https://github.com/TigreGotico/numtag/tree/0.12.9a1) (2026-11-16)
 
