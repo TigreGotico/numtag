@@ -572,7 +572,7 @@ TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflect
 WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
 RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "source"))
-FORM_KEYS = frozenset(("variants", "gender", "case", "minimum"))
+FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_KEYS = frozenset(("word", "places", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
@@ -646,7 +646,14 @@ def _check_writer(lang: str, writer: dict) -> None:
             if value != "-x" and not (value.isascii() and value.isdigit() and (value == "0" or value[0] != "0")):
                 raise ValueError(f"{lang}: the value {value!r} of a rule of {name!r} is not '-x' or a whole number "
                                  "with no leading zero")
+    forms = [(name, form) for name, form in writer["forms"].items()]
     for name, form in writer["forms"].items():
+        for scale, sub in form.get("scale", {}).items():
+            if scale not in ("short", "long") or "scale" in sub:
+                raise ValueError(f"{lang}: form {name!r} has the scale {scale!r}; a scale is 'short' or 'long' "
+                                 "and holds no scale")
+            forms.append((f"{name} {scale}", sub))
+    for name, form in forms:
         _refuse(lang, f"form {name!r}", form, FORM_KEYS)
         lists = [form["variants"], *form.get("gender", {}).values(), *form.get("case", {}).values()]
         for variants in lists:

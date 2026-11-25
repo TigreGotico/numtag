@@ -46,6 +46,7 @@ class Variants:
         test.addCleanup(tagger_module.lexicon_name.cache_clear)
         writer_module._writer.cache_clear()
         test.addCleanup(writer_module._writer.cache_clear)
+        test.addCleanup(load.cache_clear)
 
     def write(self, name: str, data: dict) -> None:
         target = self.path / f"{name}.json"
@@ -53,6 +54,7 @@ class Variants:
         target.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
         tagger_module.LEXICONS = tuple(sorted({*tagger_module.LEXICONS, name}))
         tagger_module.lexicon_name.cache_clear()
+        load.cache_clear()
 
 
 def _tiny(rules: list[dict], **forms) -> dict:
@@ -393,6 +395,25 @@ class TestSpell(unittest.TestCase):
 
     def test_gender_and_scale_change_nothing_where_a_lexicon_lists_no_reading(self):
         self.assertEqual(spell("2", "id", gender="feminine", scale="long"), spell("2", "id"))
+
+    def test_scale_selects_the_form_of_that_scale_and_the_setting_is_the_default(self):
+        variants = Variants(self)
+        data = _tiny([{"value": "0", "text": "short;"}])
+        data["writer"]["rulesets"]["long"] = {"source": "test", "rules": [{"value": "0", "text": "long;"}]}
+        data["writer"]["forms"]["cardinal"]["scale"] = {
+            "long": {"variants": [{"ruleset": "long", "reason": "standard"}]}}
+        data["settings"]["scale"] = {"value": "long", "source": "test"}
+        variants.write("id", data)
+        self.assertEqual([spell("2", "id", scale=s)[0].text for s in (None, "long", "short")],
+                         ["long", "long", "short"])
+
+    def test_a_scale_form_that_names_another_scale_is_refused(self):
+        variants = Variants(self)
+        data = _tiny([{"value": "0", "text": "nol;"}])
+        data["writer"]["forms"]["cardinal"]["scale"] = {"metric": {"variants": []}}
+        variants.write("id", data)
+        with self.assertRaisesRegex(ValueError, "scale 'metric'"):
+            spell("2", "id")
 
     def test_the_fraction_of_a_zero_denominator_raises(self):
         with self.assertRaises(ZeroDivisionError):
