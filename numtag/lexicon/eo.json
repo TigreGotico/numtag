@@ -1,0 +1,1275 @@
+{
+ "format_version": 1,
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\"; \"biliono 1 000 000 000 000 (= dek du nuloj)\""
+  },
+  "group_mark": {
+   "value": " ",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/eo/numbers.json, symbols-numberSystem-latn: \"group\": \" \"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Miloj 1000 mil 10 000 dek mil\" writes a space between the groups."
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/eo/numbers.json, symbols-numberSystem-latn: \"decimal\": \",\"."
+  },
+  "space_groups": {
+   "value": true,
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"88 888 okdek ok mil okcent okdek ok\", \"999 999 naŭcent naŭdek naŭ mil naŭcent naŭdek naŭ\": a single space groups the digits."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"El multaj milonoj fariĝas milionoj.\": a plural scale noun with no count names no number."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"1000000: miliono[ >>];\", \"2000000: << milionoj[ >>];\": the singular follows the count one, the plural every count from two."
+  },
+  "joiner_tens_units": {
+   "value": "never",
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"21 dudek unu\", \"432 kvarcent tridek du\": no word joins a ten and a unit."
+  },
+  "joiner_after_hundred": {
+   "value": "never",
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"110 cent dek\", \"111 cent dek unu\": no word follows the hundred."
+  },
+  "joiner_between_groups": {
+   "value": "never",
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"1234 mil ducent tridek kvar\", \"2678 du mil sescent sepdek ok\": the groups follow each other with no word between."
+  },
+  "joiner_before_round_hundred": {
+   "value": false,
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"1234 mil ducent tridek kvar\": the round hundred follows the thousand directly."
+  },
+  "joiner_before_last_group": {
+   "value": "never",
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"1011 mil dek unu\", \"1001 mil unu\"."
+  },
+  "small_multiplier_starts_group": {
+   "value": false,
+   "source": "structural, no external source: no hundred or ten multiplier stands apart from its count in Esperanto, so the setting keeps its default."
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"1111 mil cent dek unu\": no comma stands between two classes."
+  },
+  "joiner_before_half": {
+   "value": "never",
+   "source": "structural, no external source: the half is the noun \"duono\"; no joiner word is listed in PMEG 23.1.2: \"Kvin kaj sep faras dek du.\" uses \"kaj\" only between two numbers."
+  },
+  "bare_noun_counts_one": {
+   "value": true,
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Mi aĉetis dekon da ovoj.\"; \"Tiu ĉi urbo havas milionon da loĝantoj.\": the accusative singular of a collective or a scale noun with no count is one group."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"La A-finaĵon oni aldonas fine.\"; \"la dudek sepa (tago) de Marto\""
+  },
+  "compound_words": {
+   "value": true,
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni kunmetas, oni por klareco prefere skribu dividostrekojn tie, kie estas spacetoj en la origina plurvorta nombro\"; \"dudeksepa\" and \"du-mil-kvincento\" are one written word."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [],
+   "source": "PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Kvin kaj sep faras dek du.\": \"kaj\" joins two numbers and no part of one."
+  },
+  "decimal_marker": {
+   "value": [
+    "komo"
+   ],
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"x.x: << komo >>;\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"0,5 = nul komo kvin\""
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"-x: minus >>;\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "structural, no external source: no idiom with the word minus is listed in the cited pages."
+  },
+  "article_one": {
+   "value": [],
+   "source": "structural, no external source: Esperanto has no indefinite article: PMEG 23.1.2 \"Mi havas nur unu buŝon\" counts with \"unu\" only."
+  },
+  "of": {
+   "value": [
+    "da"
+   ],
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Normale oni uzas da, sed ankaŭ ekz. de kaj el povas aperi.\"; \"Li havas du miliardojn da dolaroj.\""
+  },
+  "fraction_of": {
+   "value": [
+    "de"
+   ],
+   "source": "PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Tri estas duono de ses.\""
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "structural, no external source: no particle follows a denominator in the cited pages."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "structural, no external source: no class noun follows a collective in the cited pages."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no unit that a half halves."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "structural, no external source: no number word becomes an abbreviation with a period in the cited pages."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/eo/numbers.json, symbols-numberSystem-latn: \"decimal\": \",\"."
+  },
+  "range_cue": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no word that opens a range."
+  }
+ },
+ "inflection": {
+  "eo.o": {
+   "value": [
+    "",
+    "n"
+   ],
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"O-vortaj nombrovortoj ricevas la finaĵojn J kaj N laŭ la samaj reguloj kiel aliaj O-vortoj\"; \"Li havas du miliardojn da dolaroj.\""
+  },
+  "eo.a": {
+   "value": [
+    "",
+    "n",
+    "j",
+    "jn"
+   ],
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Vicordaj nombrovortoj ricevas J-finaĵon kaj N-finaĵon same kiel ordinaraj A-vortoj\"; \"La sepan tagon de la semajno\"; \"ses unuaj tagoj\""
+  }
+ },
+ "entries": [
+  {
+   "word": "nul",
+   "role": "unit",
+   "value": "0",
+   "source": "PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Nul kiel rekta nombra priskribo\"; \"La frostopunkto de akvo estas nul gradoj.\""
+  },
+  {
+   "word": "unu",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"1: unu;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "du",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"2: du;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "tri",
+   "role": "unit",
+   "value": "3",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"3: tri;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "kvar",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"4: kvar;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "kvin",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"5: kvin;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "ses",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"6: ses;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "sep",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"7: sep;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "ok",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"8: ok;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "naŭ",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"9: naŭ;\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ekzistas dek tri nombraj vortetoj\""
+  },
+  {
+   "word": "nulo",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"0: nulo;\"; PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"La O-vorto nulo estas nomo de la cifero 0\""
+  },
+  {
+   "word": "dek",
+   "role": "ten",
+   "value": "10",
+   "takes_unit": true,
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"10: dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Post dek 11 dek unu 16 dek ses\""
+  },
+  {
+   "word": "dudek",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "tridek",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "kvardek",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "kvindek",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "sesdek",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "sepdek",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "okdek",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "naŭdek",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"20: <<dek[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "cent",
+   "role": "hundred",
+   "value": "100",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"100: cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Oni ne diras *unudek* aŭ *unucent*, sed nur dek kaj cent.\""
+  },
+  {
+   "word": "ducent",
+   "role": "hundred",
+   "value": "200",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "tricent",
+   "role": "hundred",
+   "value": "300",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "kvarcent",
+   "role": "hundred",
+   "value": "400",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "kvincent",
+   "role": "hundred",
+   "value": "500",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "sescent",
+   "role": "hundred",
+   "value": "600",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "sepcent",
+   "role": "hundred",
+   "value": "700",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "okcent",
+   "role": "hundred",
+   "value": "800",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "naŭcent",
+   "role": "hundred",
+   "value": "900",
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"200: <<cent[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Dekoj kaj centoj kunmetiĝas al unu vorto: dudek, tridek, ducent, tricent k.t.p.\""
+  },
+  {
+   "word": "mil",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"1000: mil[ >>];\", \"2000: << mil[ >>];\"; PMEG 23.1.1 Nombraj vortetoj – formoj (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html): \"Ĉio alia estu skribata kiel apartaj vortoj, ankaŭ miloj.\""
+  },
+  {
+   "word": "miliono",
+   "role": "scale_noun",
+   "rank": 1,
+   "stems": {
+    "miliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "milionoj",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "stems": {
+    "milionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "biliono",
+   "role": "scale_noun",
+   "rank": 2,
+   "stems": {
+    "biliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "bilionoj",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "stems": {
+    "bilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "triliono",
+   "role": "scale_noun",
+   "rank": 3,
+   "stems": {
+    "triliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "trilionoj",
+   "role": "scale_noun",
+   "rank": 3,
+   "plural": true,
+   "stems": {
+    "trilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "kvadriliono",
+   "role": "scale_noun",
+   "rank": 4,
+   "stems": {
+    "kvadriliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "kvadrilionoj",
+   "role": "scale_noun",
+   "rank": 4,
+   "plural": true,
+   "stems": {
+    "kvadrilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "kvintiliono",
+   "role": "scale_noun",
+   "rank": 5,
+   "stems": {
+    "kvintiliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "kvintilionoj",
+   "role": "scale_noun",
+   "rank": 5,
+   "plural": true,
+   "stems": {
+    "kvintilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "sekstiliono",
+   "role": "scale_noun",
+   "rank": 6,
+   "stems": {
+    "sekstiliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "sekstilionoj",
+   "role": "scale_noun",
+   "rank": 6,
+   "plural": true,
+   "stems": {
+    "sekstilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "septiliono",
+   "role": "scale_noun",
+   "rank": 7,
+   "stems": {
+    "septiliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "septilionoj",
+   "role": "scale_noun",
+   "rank": 7,
+   "plural": true,
+   "stems": {
+    "septilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "oktiliono",
+   "role": "scale_noun",
+   "rank": 8,
+   "stems": {
+    "oktiliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "oktilionoj",
+   "role": "scale_noun",
+   "rank": 8,
+   "plural": true,
+   "stems": {
+    "oktilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "noniliono",
+   "role": "scale_noun",
+   "rank": 9,
+   "stems": {
+    "noniliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "nonilionoj",
+   "role": "scale_noun",
+   "rank": 9,
+   "plural": true,
+   "stems": {
+    "nonilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "deciliono",
+   "role": "scale_noun",
+   "rank": 10,
+   "stems": {
+    "deciliono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "decilionoj",
+   "role": "scale_noun",
+   "rank": 10,
+   "plural": true,
+   "stems": {
+    "decilionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliono 1 000 000 (ses nuloj)\"; \"La valoroj de la vortoj biliono, triliono k.t.p. montrataj ĉi-antaŭe sekvas la tiel nomatan “longan skalon”\""
+  },
+  {
+   "word": "miliardo",
+   "role": "scale_noun",
+   "value": 9,
+   "stems": {
+    "miliardo": [
+     "eo.o"
+    ]
+   },
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"1000000000: miliardo[ >>];\"; PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"miliardo 1 000 000 000 (= naŭ nuloj)\""
+  },
+  {
+   "word": "miliardoj",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "stems": {
+    "miliardoj": [
+     "eo.o"
+    ]
+   },
+   "source": "CLDR 49 RBNF eo (unicode-org/cldr release-49, common/rbnf/eo.xml), %spellout-cardinal: \"2000000000: << miliardoj[ >>];\"; PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"La malprofito atingis sumon de kvardek sep miliardoj.\""
+  },
+  {
+   "word": "duono",
+   "role": "denominator",
+   "value": "2",
+   "stems": {
+    "duono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "duonoj",
+   "role": "denominator",
+   "value": "2",
+   "plural": true,
+   "stems": {
+    "duonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "triono",
+   "role": "denominator",
+   "value": "3",
+   "stems": {
+    "triono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "trionoj",
+   "role": "denominator",
+   "value": "3",
+   "plural": true,
+   "stems": {
+    "trionoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "kvarono",
+   "role": "denominator",
+   "value": "4",
+   "stems": {
+    "kvarono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "kvaronoj",
+   "role": "denominator",
+   "value": "4",
+   "plural": true,
+   "stems": {
+    "kvaronoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "kvinono",
+   "role": "denominator",
+   "value": "5",
+   "stems": {
+    "kvinono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "kvinonoj",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "stems": {
+    "kvinonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "sesono",
+   "role": "denominator",
+   "value": "6",
+   "stems": {
+    "sesono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "sesonoj",
+   "role": "denominator",
+   "value": "6",
+   "plural": true,
+   "stems": {
+    "sesonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "sepono",
+   "role": "denominator",
+   "value": "7",
+   "stems": {
+    "sepono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "seponoj",
+   "role": "denominator",
+   "value": "7",
+   "plural": true,
+   "stems": {
+    "seponoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "okono",
+   "role": "denominator",
+   "value": "8",
+   "stems": {
+    "okono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "okonoj",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "stems": {
+    "okonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "naŭono",
+   "role": "denominator",
+   "value": "9",
+   "stems": {
+    "naŭono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "naŭonoj",
+   "role": "denominator",
+   "value": "9",
+   "plural": true,
+   "stems": {
+    "naŭonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "dekono",
+   "role": "denominator",
+   "value": "10",
+   "stems": {
+    "dekono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "dekonoj",
+   "role": "denominator",
+   "value": "10",
+   "plural": true,
+   "stems": {
+    "dekonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "dekduono",
+   "role": "denominator",
+   "value": "12",
+   "stems": {
+    "dekduono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "dekduonoj",
+   "role": "denominator",
+   "value": "12",
+   "plural": true,
+   "stems": {
+    "dekduonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "centono",
+   "role": "denominator",
+   "value": "100",
+   "stems": {
+    "centono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "centonoj",
+   "role": "denominator",
+   "value": "100",
+   "plural": true,
+   "stems": {
+    "centonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "milono",
+   "role": "denominator",
+   "value": "1000",
+   "stems": {
+    "milono": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "milonoj",
+   "role": "denominator",
+   "value": "1000",
+   "plural": true,
+   "stems": {
+    "milonoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"Nombrovortoj kun la sufikso ON montras partajn nombrojn.\"; \"duono = 1/2\", \"triono = 1/3\", \"dekono = 1/10\""
+  },
+  {
+   "word": "deko",
+   "role": "collective",
+   "value": "10",
+   "stems": {
+    "deko": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "dekoj",
+   "role": "collective",
+   "value": "10",
+   "plural": true,
+   "stems": {
+    "dekoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "dekduo",
+   "role": "collective",
+   "value": "12",
+   "stems": {
+    "dekduo": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "dekduoj",
+   "role": "collective",
+   "value": "12",
+   "plural": true,
+   "stems": {
+    "dekduoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "cento",
+   "role": "collective",
+   "value": "100",
+   "stems": {
+    "cento": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "centoj",
+   "role": "collective",
+   "value": "100",
+   "plural": true,
+   "stems": {
+    "centoj": [
+     "eo.o"
+    ]
+   },
+   "source": "PMEG 23.2 O-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/o-vortoj.html): \"dek du → dek-duo aŭ dekduo = la nombro 12, grupo de 12 aferoj\"; \"Mi aĉetis dekon da ovoj.\"; \"Mi havas centon da pomoj.\""
+  },
+  {
+   "word": "unua",
+   "role": "ordinal",
+   "value": "1",
+   "stems": {
+    "unua": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "dua",
+   "role": "ordinal",
+   "value": "2",
+   "stems": {
+    "dua": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "tria",
+   "role": "ordinal",
+   "value": "3",
+   "stems": {
+    "tria": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvara",
+   "role": "ordinal",
+   "value": "4",
+   "stems": {
+    "kvara": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvina",
+   "role": "ordinal",
+   "value": "5",
+   "stems": {
+    "kvina": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sesa",
+   "role": "ordinal",
+   "value": "6",
+   "stems": {
+    "sesa": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sepa",
+   "role": "ordinal",
+   "value": "7",
+   "stems": {
+    "sepa": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "oka",
+   "role": "ordinal",
+   "value": "8",
+   "stems": {
+    "oka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "naŭa",
+   "role": "ordinal",
+   "value": "9",
+   "stems": {
+    "naŭa": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "deka",
+   "role": "ordinal",
+   "value": "10",
+   "stems": {
+    "deka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "dudeka",
+   "role": "ordinal",
+   "value": "20",
+   "stems": {
+    "dudeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "trideka",
+   "role": "ordinal",
+   "value": "30",
+   "stems": {
+    "trideka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvardeka",
+   "role": "ordinal",
+   "value": "40",
+   "stems": {
+    "kvardeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvindeka",
+   "role": "ordinal",
+   "value": "50",
+   "stems": {
+    "kvindeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sesdeka",
+   "role": "ordinal",
+   "value": "60",
+   "stems": {
+    "sesdeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sepdeka",
+   "role": "ordinal",
+   "value": "70",
+   "stems": {
+    "sepdeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "okdeka",
+   "role": "ordinal",
+   "value": "80",
+   "stems": {
+    "okdeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "naŭdeka",
+   "role": "ordinal",
+   "value": "90",
+   "stems": {
+    "naŭdeka": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "centa",
+   "role": "ordinal",
+   "value": "100",
+   "stems": {
+    "centa": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "ducenta",
+   "role": "ordinal",
+   "value": "200",
+   "stems": {
+    "ducenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "tricenta",
+   "role": "ordinal",
+   "value": "300",
+   "stems": {
+    "tricenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvarcenta",
+   "role": "ordinal",
+   "value": "400",
+   "stems": {
+    "kvarcenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "kvincenta",
+   "role": "ordinal",
+   "value": "500",
+   "stems": {
+    "kvincenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sescenta",
+   "role": "ordinal",
+   "value": "600",
+   "stems": {
+    "sescenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "sepcenta",
+   "role": "ordinal",
+   "value": "700",
+   "stems": {
+    "sepcenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "okcenta",
+   "role": "ordinal",
+   "value": "800",
+   "stems": {
+    "okcenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "naŭcenta",
+   "role": "ordinal",
+   "value": "900",
+   "stems": {
+    "naŭcenta": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\""
+  },
+  {
+   "word": "mila",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "stems": {
+    "mila": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Se oni aldonas la finaĵon A al nombra vorteto, oni kreas A-vorton, kiu montras pozicion en vicordo.\"; \"unua = en pozicio numero unu en vicordo\"; \"la jaro 2010 kiel la jaro du-mil-deka\""
+  },
+  {
+   "word": "nula",
+   "role": "ordinal",
+   "value": "0",
+   "stems": {
+    "nula": [
+     "eo.a"
+    ]
+   },
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Tio okazis je la nula horo kaj tridek minutoj. Vicorda signifo.\""
+  },
+  {
+   "word": "-a",
+   "role": "ordinal_suffix",
+   "source": "PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Tiel oni iafoje skribas la tagon de monato en datoj: 1 Majo = la unua (tago) de Majo. Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""
+  },
+  {
+   "word": "-an",
+   "role": "ordinal_suffix",
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Vicordaj nombrovortoj ricevas J-finaĵon kaj N-finaĵon same kiel ordinaraj A-vortoj\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""
+  },
+  {
+   "word": "-aj",
+   "role": "ordinal_suffix",
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Vicordaj nombrovortoj ricevas J-finaĵon kaj N-finaĵon same kiel ordinaraj A-vortoj\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""
+  },
+  {
+   "word": "-ajn",
+   "role": "ordinal_suffix",
+   "source": "PMEG 23.4 A-vortaj nombrovortoj (bertilow.com/pmeg/gramatiko/nombroj/a-vortoj.html): \"Vicordaj nombrovortoj ricevas J-finaĵon kaj N-finaĵon same kiel ordinaraj A-vortoj\"; PMEG 23.1.2 Nombraj vortetoj – uzado (bertilow.com/pmeg/gramatiko/nombroj/vortetoj/uzado.html): \"Sed multe pli ofte oni uzas la skribon 1-a de Majo.\""
+  }
+ ]
+}
