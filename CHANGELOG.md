@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.21.0a1](https://github.com/TigreGotico/numtag/tree/0.21.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.20.0a2...0.21.0a1)
+
+**Merged pull requests:**
+
+- feat\(sq\): add an Albanian lexicon [\#289](https://github.com/TigreGotico/numtag/pull/289) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.20.0a2](https://github.com/TigreGotico/numtag/tree/0.20.0a2) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.20.0a1...0.20.0a2)
+
+**Merged pull requests:**
+
+- docs: no per-language code; behaviour extends the lexicon format [\#284](https://github.com/TigreGotico/numtag/pull/284) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.20.0a1](https://github.com/TigreGotico/numtag/tree/0.20.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.23a2...0.20.0a1)
+
+**Merged pull requests:**
+
+- feat: versioned lexicon format with schema and revision [\#285](https://github.com/TigreGotico/numtag/pull/285) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.19.23a2](https://github.com/TigreGotico/numtag/tree/0.19.23a2) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.23a1...0.19.23a2)
@@ -550,7 +574,6 @@
 **Merged pull requests:**
 
 - fix\(en\): "a billionth" and "a trillionth" are fractions [\#70](https://github.com/TigreGotico/numtag/pull/70) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(en\): digits before "and a half" count a scale word [\#67](https://github.com/TigreGotico/numtag/pull/67) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
 
@@ -596,17 +619,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a2...0.12.8a1)
 
-**Merged pull requests:**
-
-- fix\(hu\): a count glued to a part word of a hundred or more multiplies it [\#69](https://github.com/TigreGotico/numtag/pull/69) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.12.7a2](https://github.com/TigreGotico/numtag/tree/0.12.7a2) (2026-11-16)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.7a1...0.12.7a2)
-
-**Merged pull requests:**
-
-- docs: a lone "meio" before a plural scale noun keeps its own reading [\#68](https://github.com/TigreGotico/numtag/pull/68) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.7a1](https://github.com/TigreGotico/numtag/tree/0.12.7a1) (2026-11-16)
 

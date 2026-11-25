@@ -1,0 +1,415 @@
+{
+ "format_version": 1,
+ "settings": {
+  "scale": {
+   "value": "long",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000000: një miliar[ e >>];\", \"1000000000000: një bilion[ e >>];\": a milliard is 10^9 and a bilion 10^12."
+  },
+  "group_mark": {
+   "value": " ",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/sq/numbers.json, symbols-numberSystem-latn: \"group\": \" \""
+  },
+  "decimal_mark": {
+   "value": ",",
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/sq/numbers.json, symbols-numberSystem-latn: \"decimal\": \",\""
+  },
+  "space_groups": {
+   "value": true,
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/sq/numbers.json, symbols-numberSystem-latn: \"group\": \" \": a space groups the digits."
+  },
+  "plural_scale_needs_count": {
+   "value": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2000000: <%spellout-cardinal-feminine< milionë[ e >>];\": the plural follows a count."
+  },
+  "scale_noun_agrees": {
+   "value": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000: një milion[ e >>];\", \"2000000: <%spellout-cardinal-feminine< milionë[ e >>];\": the singular follows një, the plural every count from two."
+  },
+  "joiner_tens_units": {
+   "value": "required",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"20: njëzet[ e >>];\""
+  },
+  "joiner_after_hundred": {
+   "value": "required",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\""
+  },
+  "joiner_between_groups": {
+   "value": "required",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000: <%spellout-cardinal-masculine< mijë[ e >>];\""
+  },
+  "joiner_before_round_hundred": {
+   "value": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000: <%spellout-cardinal-masculine< mijë[ e >>];\": the rest after the thousands, a round hundred included, follows e."
+  },
+  "joiner_before_last_group": {
+   "value": "required",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000: <%spellout-cardinal-masculine< mijë[ e >>];\""
+  },
+  "comma_between_classes": {
+   "value": false,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000: <%spellout-cardinal-masculine< mijë[ e >>];\": e, not a comma, links the classes."
+  },
+  "ordinal_style": {
+   "value": "last_word",
+   "source": "structural, no external source: this lexicon lists cardinals only, so the ordinal setting keeps its value for the engine and no ordinal word exists."
+  },
+  "compound_words": {
+   "value": false,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\", \"100: <%spellout-cardinal-masculine<qind[ e >>];\": every fused word is an entry."
+  }
+ },
+ "words": {
+  "joiner": {
+   "value": [
+    "e"
+   ],
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"20: njëzet[ e >>];\""
+  },
+  "decimal_marker": {
+   "value": [
+    "presje"
+   ],
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"x.x: << presje >>;\""
+  },
+  "minus": {
+   "value": [
+    "minus"
+   ],
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"-x: minus >>;\""
+  },
+  "minus_idioms": {
+   "value": [],
+   "source": "structural, no external source: no idiom with the word minus is listed in the cited pages."
+  },
+  "article_one": {
+   "value": [
+    "një"
+   ],
+   "source": "en.wiktionary, \"një\", Albanian: \"the indefinite article; a, an\"; \"Dua një gotë ujë.\""
+  },
+  "of": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no word after which a plural noun multiplies a scale noun."
+  },
+  "fraction_of": {
+   "value": [],
+   "source": "structural, no external source: the lexicon lists no fraction word."
+  },
+  "denominator_particle": {
+   "value": [],
+   "source": "structural, no external source: the lexicon lists no denominator."
+  },
+  "class_noun": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no class noun."
+  },
+  "half_unit": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no unit that a half halves."
+  },
+  "abbreviation": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no abbreviation of a number word."
+  },
+  "lone_decimal_mark": {
+   "value": [
+    ","
+   ],
+   "source": "CLDR 49.0.0 (unicode-org/cldr-json), cldr-numbers-full/main/sq/numbers.json, symbols-numberSystem-latn: \"decimal\": \",\""
+  },
+  "range_cue": {
+   "value": [],
+   "source": "structural, no external source: the cited pages list no word that opens a range."
+  }
+ },
+ "entries": [
+  {
+   "word": "zero",
+   "role": "unit",
+   "value": "0",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"0: zero;\""
+  },
+  {
+   "word": "një",
+   "role": "unit",
+   "value": "1",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1: një;\""
+  },
+  {
+   "word": "dy",
+   "role": "unit",
+   "value": "2",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2: dy;\""
+  },
+  {
+   "word": "tre",
+   "role": "unit",
+   "value": "3",
+   "gender": "masculine",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"3: tre;\""
+  },
+  {
+   "word": "katër",
+   "role": "unit",
+   "value": "4",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"4: katër;\""
+  },
+  {
+   "word": "pesë",
+   "role": "unit",
+   "value": "5",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"5: pesë;\""
+  },
+  {
+   "word": "gjashtë",
+   "role": "unit",
+   "value": "6",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"6: gjashtë;\""
+  },
+  {
+   "word": "shtatë",
+   "role": "unit",
+   "value": "7",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"7: shtatë;\""
+  },
+  {
+   "word": "tetë",
+   "role": "unit",
+   "value": "8",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"8: tetë;\""
+  },
+  {
+   "word": "nëntë",
+   "role": "unit",
+   "value": "9",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"9: nëntë;\""
+  },
+  {
+   "word": "tri",
+   "role": "unit",
+   "value": "3",
+   "gender": "feminine",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"3: tri;\""
+  },
+  {
+   "word": "dhjetë",
+   "role": "ten",
+   "value": "10",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"10: dhjetë;\""
+  },
+  {
+   "word": "njëmbëdhjetë",
+   "role": "ten",
+   "value": "11",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1: një;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "dymbëdhjetë",
+   "role": "ten",
+   "value": "12",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2: dy;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "trembëdhjetë",
+   "role": "ten",
+   "value": "13",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"3: tre;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "katërmbëdhjetë",
+   "role": "ten",
+   "value": "14",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"4: katër;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "pesëmbëdhjetë",
+   "role": "ten",
+   "value": "15",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"5: pesë;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "gjashtëmbëdhjetë",
+   "role": "ten",
+   "value": "16",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"6: gjashtë;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "shtatëmbëdhjetë",
+   "role": "ten",
+   "value": "17",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"7: shtatë;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "tetëmbëdhjetë",
+   "role": "ten",
+   "value": "18",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"8: tetë;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "nëntëmbëdhjetë",
+   "role": "ten",
+   "value": "19",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"11: >%spellout-cardinal-masculine>mbëdhjetë;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"9: nëntë;\"; en.wiktionary, \"një\", Albanian: the derived terms list \"njëmbëdhjetë\"."
+  },
+  {
+   "word": "njëzet",
+   "role": "ten",
+   "value": "20",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"20: njëzet[ e >>];\""
+  },
+  {
+   "word": "tridhjetë",
+   "role": "ten",
+   "value": "30",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"30: tridhjetë[ e >>];\""
+  },
+  {
+   "word": "dyzet",
+   "role": "ten",
+   "value": "40",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"40: dyzet[ e >>];\""
+  },
+  {
+   "word": "pesëdhjetë",
+   "role": "ten",
+   "value": "50",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"50: <%spellout-cardinal-feminine<dhjetë[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"4: =%spellout-cardinal-masculine=;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"5: pesë;\""
+  },
+  {
+   "word": "gjashtëdhjetë",
+   "role": "ten",
+   "value": "60",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"50: <%spellout-cardinal-feminine<dhjetë[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"4: =%spellout-cardinal-masculine=;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"6: gjashtë;\""
+  },
+  {
+   "word": "shtatëdhjetë",
+   "role": "ten",
+   "value": "70",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"50: <%spellout-cardinal-feminine<dhjetë[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"4: =%spellout-cardinal-masculine=;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"7: shtatë;\""
+  },
+  {
+   "word": "tetëdhjetë",
+   "role": "ten",
+   "value": "80",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"50: <%spellout-cardinal-feminine<dhjetë[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"4: =%spellout-cardinal-masculine=;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"8: tetë;\""
+  },
+  {
+   "word": "nëntëdhjetë",
+   "role": "ten",
+   "value": "90",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"50: <%spellout-cardinal-feminine<dhjetë[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-feminine: \"4: =%spellout-cardinal-masculine=;\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"9: nëntë;\""
+  },
+  {
+   "word": "njëqind",
+   "role": "hundred",
+   "value": "100",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1: një;\""
+  },
+  {
+   "word": "dyqind",
+   "role": "hundred",
+   "value": "200",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2: dy;\""
+  },
+  {
+   "word": "treqind",
+   "role": "hundred",
+   "value": "300",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"3: tre;\""
+  },
+  {
+   "word": "katërqind",
+   "role": "hundred",
+   "value": "400",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"4: katër;\""
+  },
+  {
+   "word": "pesëqind",
+   "role": "hundred",
+   "value": "500",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"5: pesë;\""
+  },
+  {
+   "word": "gjashtëqind",
+   "role": "hundred",
+   "value": "600",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"6: gjashtë;\""
+  },
+  {
+   "word": "shtatëqind",
+   "role": "hundred",
+   "value": "700",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"7: shtatë;\""
+  },
+  {
+   "word": "tetëqind",
+   "role": "hundred",
+   "value": "800",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"8: tetë;\""
+  },
+  {
+   "word": "nëntëqind",
+   "role": "hundred",
+   "value": "900",
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"100: <%spellout-cardinal-masculine<qind[ e >>];\"; CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"9: nëntë;\""
+  },
+  {
+   "word": "mijë",
+   "role": "scale_numeral",
+   "value": 3,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000: <%spellout-cardinal-masculine< mijë[ e >>];\""
+  },
+  {
+   "word": "milion",
+   "role": "scale_noun",
+   "rank": 1,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000: një milion[ e >>];\""
+  },
+  {
+   "word": "milionë",
+   "role": "scale_noun",
+   "rank": 1,
+   "plural": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2000000: <%spellout-cardinal-feminine< milionë[ e >>];\""
+  },
+  {
+   "word": "miliar",
+   "role": "scale_noun",
+   "value": 9,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000000: një miliar[ e >>];\""
+  },
+  {
+   "word": "miliarë",
+   "role": "scale_noun",
+   "value": 9,
+   "plural": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2000000000: <%spellout-cardinal-feminine< miliarë[ e >>];\""
+  },
+  {
+   "word": "bilion",
+   "role": "scale_noun",
+   "rank": 2,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000000000: një bilion[ e >>];\""
+  },
+  {
+   "word": "bilionë",
+   "role": "scale_noun",
+   "rank": 2,
+   "plural": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2000000000000: <%spellout-cardinal-feminine< bilionë[ e >>];\""
+  },
+  {
+   "word": "biliar",
+   "role": "scale_noun",
+   "value": 15,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"1000000000000000: një biliar[ e >>];\""
+  },
+  {
+   "word": "biliarë",
+   "role": "scale_noun",
+   "value": 15,
+   "plural": true,
+   "source": "CLDR 49 RBNF sq (unicode-org/cldr release-49, common/rbnf/sq.xml), %spellout-cardinal-masculine: \"2000000000000000: <%spellout-cardinal-feminine< biliarë[ e >>];\""
+  }
+ ]
+}
