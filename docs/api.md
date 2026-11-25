@@ -35,10 +35,10 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 ```python
 >>> from numtag import UnsupportedLanguageError, tag_numbers, Scale
 >>> try:
-...     tag_numbers("दो", "hi")
+...     tag_numbers("二", "ja")
 ... except UnsupportedLanguageError as error:
 ...     print(error)
-no lexicon for language 'hi'
+no lexicon for language 'ja'
 >>> tag_numbers("one", "en", scale="medium")
 Traceback (most recent call last):
   ...
