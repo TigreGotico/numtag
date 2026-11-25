@@ -1,8 +1,20 @@
 # Changelog
 
+## [0.24.1a1](https://github.com/TigreGotico/numtag/tree/0.24.1a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a3...0.24.1a1)
+
+**Merged pull requests:**
+
+- fix: spell reads the scale a caller names [\#304](https://github.com/TigreGotico/numtag/pull/304) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.24.0a3](https://github.com/TigreGotico/numtag/tree/0.24.0a3) (2026-11-25)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a1...0.24.0a3)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a2...0.24.0a3)
+
+## [0.24.0a2](https://github.com/TigreGotico/numtag/tree/0.24.0a2) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a1...0.24.0a2)
 
 **Merged pull requests:**
 
@@ -614,10 +626,6 @@
 ## [0.12.12a1](https://github.com/TigreGotico/numtag/tree/0.12.12a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.11a1...0.12.12a1)
-
-**Merged pull requests:**
-
-- fix: add the large scale names that ten lexicons lacked [\#77](https://github.com/TigreGotico/numtag/pull/77) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.11a1](https://github.com/TigreGotico/numtag/tree/0.12.11a1) (2026-11-17)
 
