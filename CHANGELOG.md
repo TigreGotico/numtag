@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.25.0a1](https://github.com/TigreGotico/numtag/tree/0.25.0a1) (2026-11-25)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.1a1...0.25.0a1)
+
+**Merged pull requests:**
+
+- feat: numtag.spell speaks pt-PT [\#306](https://github.com/TigreGotico/numtag/pull/306) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.24.1a1](https://github.com/TigreGotico/numtag/tree/0.24.1a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.24.0a3...0.24.1a1)
@@ -445,10 +453,6 @@
 ## [0.15.1a1](https://github.com/TigreGotico/numtag/tree/0.15.1a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.0a1...0.15.1a1)
-
-**Merged pull requests:**
-
-- fix\(en\): digits around a spoken "point" make one decimal [\#78](https://github.com/TigreGotico/numtag/pull/78) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
 
