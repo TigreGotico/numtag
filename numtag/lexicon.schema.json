@@ -138,7 +138,7 @@
       }
     },
     "writer": {
-      "type": "object",
+      "type": ["object", "null"],
       "properties": {
         "source": {"type": "string"},
         "rulesets": {
@@ -176,6 +176,7 @@
               "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
               "case": {"type": "object", "additionalProperties": {"$ref": "#/$defs/variants"}},
               "minimum": {"type": "string", "pattern": "^[0-9]+$"},
+              "maximum": {"type": "string", "pattern": "^[0-9]+$"},
               "scale": {"type": "object", "propertyNames": {"enum": ["short", "long"]}, "additionalProperties": {"type": "object", "required": ["variants"]}}
             },
             "required": ["variants"],
@@ -185,7 +186,7 @@
         },
         "decimal": {
           "type": "object",
-          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "source": {"type": "string"}},
+          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
           "required": ["word", "places", "source"],
           "additionalProperties": false
         },
@@ -202,6 +203,8 @@
             "named": {"type": "object", "additionalProperties": {"type": "string"}},
             "denominator": {"type": "string"},
             "single": {"type": "string"},
+            "mixed": {"type": "boolean"},
+            "plural": {"type": "string"},
             "source": {"type": "string"}
           },
           "required": ["limit", "named", "denominator", "single", "source"],

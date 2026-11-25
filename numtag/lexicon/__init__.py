@@ -572,11 +572,11 @@ TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflect
 WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
 RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "source"))
-FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "scale"))
+FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
-DECIMAL_KEYS = frozenset(("word", "places", "source"))
+DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "plural", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -616,7 +616,10 @@ def _check(lang: str, data: dict) -> None:
     if "writer" in data:
         if data["format_version"] < WRITER_VERSION:
             raise ValueError(f"{lang}: a writer block needs format_version {WRITER_VERSION}")
-        _check_writer(lang, data["writer"])
+        if data["writer"] is not None:
+            _check_writer(lang, data["writer"])
+        elif "extends" not in data:
+            raise ValueError(f"{lang}: a null writer block drops the writer of a base, and this file has no base")
     for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
         _refuse(lang, section, data.get(section, ()), allowed)
         for name, item in data.get(section, {}).items():
@@ -646,7 +649,7 @@ def _check_writer(lang: str, writer: dict) -> None:
             if value != "-x" and not (value.isascii() and value.isdigit() and (value == "0" or value[0] != "0")):
                 raise ValueError(f"{lang}: the value {value!r} of a rule of {name!r} is not '-x' or a whole number "
                                  "with no leading zero")
-    forms = [(name, form) for name, form in writer["forms"].items()]
+    forms = list(writer["forms"].items())
     for name, form in writer["forms"].items():
         for scale, sub in form.get("scale", {}).items():
             if scale not in ("short", "long") or "scale" in sub:
@@ -682,6 +685,8 @@ def _read(lang: str) -> dict:
               "words": {**base["words"], **data.get("words", {})},
               "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
               "entries": list(entries.values())}
+    if "writer" in data and data["writer"] is None:
+        return merged
     if writer := {**base.get("writer", {}), **data.get("writer", {})}:
         merged["writer"] = writer
     return merged
