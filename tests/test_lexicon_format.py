@@ -8,13 +8,15 @@ from pathlib import Path
 from unittest import mock
 
 import jsonschema
+import pytest
 
 import numtag
 from numtag import lexicon as lexicon_module
 from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, INFLECTION_KEYS, READABLE_VERSIONS,
                             REQUIRED_SETTINGS, REQUIRED_WORDS, SCALE_OF_KEYS, SETTINGS, TOP_KEYS, WORDS,
                             UnsupportedLanguageError, WRITER_VERSION, load)
-from numtag.tagger import BASE_LEXICON
+from numtag import tagger as tagger_module
+from numtag.tagger import lexicon_name
 
 PACKAGE = Path(numtag.__file__).parent
 ROOT = Path(__file__).parent.parent
@@ -39,11 +41,17 @@ class Variants:
         patch = mock.patch.object(lexicon_module, "_HERE", self.path)
         patch.start()
         test.addCleanup(patch.stop)
+        self._names = mock.patch.object(tagger_module, "LEXICONS", tuple(NAMES))
+        self._names.start()
+        test.addCleanup(self._names.stop)
+        test.addCleanup(tagger_module.lexicon_name.cache_clear)
 
     def write(self, name: str, data: dict) -> None:
         target = self.path / f"{name}.json"
         target.unlink(missing_ok=True)
         target.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        tagger_module.LEXICONS = tuple(sorted({*tagger_module.LEXICONS, name}))
+        tagger_module.lexicon_name.cache_clear()
 
     def load(self, name: str, data: dict, base: str):
         """The lexicon that ``data`` makes, named as ``base`` is, so that it compares with it."""
@@ -404,12 +412,70 @@ class TestRevision(unittest.TestCase):
             numtag.revision("xx")
 
 
-class TestBareTags(unittest.TestCase):
-    def test_the_bare_tags_are_data_with_a_source(self):
-        data = json.loads((PACKAGE / "bare_tags.json").read_text(encoding="utf-8"))
-        self.assertEqual(BASE_LEXICON, {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"})
-        self.assertEqual(BASE_LEXICON, {tag: item["value"] for tag, item in data.items()})
-        for tag, item in data.items():
+class TestLanguageTags(unittest.TestCase):
+    def test_a_bare_tag_reads_the_default_region_of_its_language(self):
+        for tag, name in [("pt", "pt-PT"), ("fr", "fr-FR"), ("no", "nb")]:
             with self.subTest(tag=tag):
-                self.assertTrue(item["source"])
-                self.assertIn(item["value"], NAMES)
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_every_lexicon_is_read_by_its_name_in_every_spelling(self):
+        for name in NAMES:
+            for spelling in (name, name.upper(), name.replace("-", "_"), name.lower().replace("-", "_")):
+                with self.subTest(spelling=spelling):
+                    self.assertEqual(lexicon_name(spelling), name)
+
+    def test_a_code_that_names_a_language_another_way_reads_its_lexicon(self):
+        for tag, name in [("deu", "de"), ("eng", "en"), ("fra", "fr-FR"), ("por", "pt-PT"), ("spa", "es"),
+                          ("iw", "he"), ("in", "id"), ("nob", "nb"), ("nno", "nn"), ("nor", "nb"), ("zlm", "ms"),
+                          ("pt-Latn-BR", "pt-BR")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+                self.assertEqual(numtag.revision(tag), numtag.revision(name))
+
+    def test_a_language_that_linguatag_places_near_a_lexicon_reads_it(self):
+        for tag, name in [("bs", "hr"), ("gsw", "de"), ("hbs", "sr"), ("sh", "sr"), ("arz", "ar"), ("ars", "ar"),
+                          ("arb", "ar"), ("ajp", "ar"), ("azj", "az"), ("ekk", "et"), ("pes", "fa")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_an_unknown_region_and_a_trailing_separator_read_the_language(self):
+        for tag in ("pt-ZZ", "PT_zz", "pt-BR-", "pt_BR_", "pt-BR--"):
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), "pt-PT")
+
+    def test_a_script_before_the_region_reads_the_region(self):
+        for tag in ("pt-Latn-BR", "pt_Latn_BR", "pt-Latn_BR"):
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), "pt-BR")
+
+    def test_a_region_without_a_lexicon_reads_the_language(self):
+        for tag, name in [("de-AT", "de"), ("fr-CA", "fr-FR"), ("pt-AO", "pt-PT"), ("en-AU", "en"), ("ar-EG", "ar")]:
+            with self.subTest(tag=tag):
+                self.assertEqual(lexicon_name(tag), name)
+
+    def test_a_padded_bare_tag_reads_the_default_region(self):
+        self.assertEqual(lexicon_name(" pt "), "pt-PT")
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/linguatag/issues/78")
+    def test_a_padded_region_tag_reads_its_region(self):
+        for tag in (" pt-BR", "pt-BR "):
+            self.assertEqual(lexicon_name(tag), "pt-BR")
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    def test_bosnian_reads_a_thousand_of_hiljada(self):
+        self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("dvije hiljade i petsto", "bs")],
+                         [("dvije hiljade i petsto", "2500")])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    def test_swiss_german_reads_its_twenty(self):
+        self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("zwänzg", "gsw")], [("zwänzg", "20")])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    def test_egyptian_arabic_reads_its_twenty_two(self):
+        self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("اتنين وعشرين", "arz")],
+                         [("اتنين وعشرين", "22")])
+
+    def test_a_language_without_a_lexicon_is_refused_in_every_spelling(self):
+        for tag in ("xx", "XX_US", "", " "):
+            with self.subTest(tag=tag), self.assertRaises(UnsupportedLanguageError):
+                numtag.tag_numbers("21", tag)

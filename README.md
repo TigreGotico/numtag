@@ -24,7 +24,7 @@ for m in tag_numbers("Comprou duas dúzias de ovos e ganhou um milhão de euros.
 
 ## Install
 
-numtag needs Python 3.11 or later and has no dependencies.
+numtag needs Python 3.11 or later and depends on linguatag, which reads language tags.
 
 ```bash
 uv pip install --prerelease=allow numtag

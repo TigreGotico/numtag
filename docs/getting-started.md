@@ -12,7 +12,7 @@ This guide shows the first call to numtag and the tasks that most callers need. 
 
 ## Install
 
-numtag needs Python 3.11 or later. It has no dependencies.
+numtag needs Python 3.11 or later. Its one dependency is linguatag, which reads language tags.
 
 ```bash
 uv pip install --prerelease=allow numtag

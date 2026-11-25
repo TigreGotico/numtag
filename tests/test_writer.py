@@ -15,6 +15,7 @@ import numtag
 from numtag import Kind, SpokenForm, SpellingReason, UnsupportedLanguageError, spell, tag_numbers
 from numtag.lexicon import load
 from numtag import lexicon as lexicon_module
+from numtag import tagger as tagger_module
 from numtag import writer as writer_module
 import golden_writers
 
@@ -39,6 +40,10 @@ class Variants:
         patch = mock.patch.object(lexicon_module, "_HERE", self.path)
         patch.start()
         test.addCleanup(patch.stop)
+        names = mock.patch.object(tagger_module, "LEXICONS", tagger_module.LEXICONS)
+        names.start()
+        test.addCleanup(names.stop)
+        test.addCleanup(tagger_module.lexicon_name.cache_clear)
         writer_module._writer.cache_clear()
         test.addCleanup(writer_module._writer.cache_clear)
 
@@ -46,6 +51,8 @@ class Variants:
         target = self.path / f"{name}.json"
         target.unlink(missing_ok=True)
         target.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        tagger_module.LEXICONS = tuple(sorted({*tagger_module.LEXICONS, name}))
+        tagger_module.lexicon_name.cache_clear()
 
 
 def _tiny(rules: list[dict], **forms) -> dict:
