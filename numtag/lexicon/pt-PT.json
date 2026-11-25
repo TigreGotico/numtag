@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "Priberam, \"bilião\", sense 1: a million millions; pt-PT counts in the long scale, so \"mil milhões\" is 10^9."},
     "fraction_of_scale": {"value": true, "source": "Priberam, \"quarto\", nome masculino, sense 2: \"Cada uma das quatro partes iguais em que se divide a unidade; quarta parte de um todo.\" Priberam, \"terço\", sense 1: \"Cada parte de um todo dividido em três partes.\" Priberam, \"milhão\", sense 1: \"Mil vezes mil\". So a fraction word, \"de\" and a singular scale noun, with or without \"um\", name that part of the scale noun: \"um quarto de milhão\" is 250000. Structural, no external source: \"mil\" is a numeral and no noun, so \"um quarto de mil euros\" keeps the quarter and the thousand apart."},
@@ -16,6 +17,8 @@
     "ordinal_style": {"value": "every_word", "source": "Every word of an ordinal is ordinal (\"vigésimo primeiro\"); Teyssier, Manual de Língua Portuguesa, p. 183, writes 2000.º as \"dois milésimo\", with a cardinal count."}
   },
   "words": {
+    "clock_before": {"value": ["às", "à"], "source": "pt.wikipedia \"Sistema horário de 24 horas\", edit note: \"às 21h57min\": \"às\" before a time and \"h\" after its hour. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."},
+    "clock_after": {"value": ["h"], "source": "pt.wikipedia \"Sistema horário de 24 horas\", edit note: \"às 21h57min\": \"às\" before a time and \"h\" after its hour. An hour and minutes written with a point next to one of these words are a time of day, not a decimal."},
     "joiner": {"value": ["e"], "source": "Gramática do Português (Fundação Calouste Gulbenkian, 2013-2020, p. 932/933), quoted in Ciberdúvidas 8981: \"a conjunção e liga os numerais que denotam as diferentes ordens (centenas, dezenas e unidades) de uma mesma classe [ex. 321 – trezentos e vinte e um]\"."},
     "decimal_marker": {"value": ["vírgula", "virgula"], "source": "Priberam, \"vírgula\", [matemática]: \"sinal gráfico (,) que serve para separar os números inteiros das fracções decimais\". Manual de Comunicação do Senado Federal, \"Números\" (knowledge/wiki/audits/numtag/follow-up-prs/sources/pt/senado-manual-numeros.html): \"Use vírgula para o decimal.\" The comma marks the decimals, so \"ponto\" is no decimal marker: \"o artigo 5 ponto 3\" is two numbers (docs/rulings.md, \"Decimals\")."},
     "minus": {"value": ["menos"], "source": "Priberam, \"negativo\", [matemática]: \"diz-se do sinal menos (-) e das quantidades por ele precedidas\". So \"menos\" before a number makes it negative. ovos-number-parser numbers_pt.py: \"NEGATIVE_SIGN=['menos'], NEGATIVE_IDIOMS\"."},

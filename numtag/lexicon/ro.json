@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR 48 RBNF (ICU 78) ro %spellout-cardinal-masculine: \"1000000000: <%spellout-cardinal-neuter< miliard;\", \"1000000000000: <%spellout-cardinal-neuter< bilion;\": Romanian counts in the long scale.; DEX '09, \"bilion\": \"Număr egal cu o mie de miliarde sau (în unele țări) cu un miliard.\"; the first sense, 10^12, is the long scale."},
     "group_mark": {"value": ".", "source": "CLDR 48 ro number symbols (ICU 78 formats 1234567.5 as \"1.234.567,5\"): the dot groups digits."},

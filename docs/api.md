@@ -1,11 +1,19 @@
 # API reference
 
-The package `numtag` exports fourteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity` and `VagueKind`. This page describes each of them. Every other module is internal.
+<!-- agent-hint
+covers: Every public name of the package with its signature, fields and defaults.
+source: numtag/__init__.py:__all__, numtag/tagger.py, numtag/mention.py, numtag/vague.py:tag_vague_quantities, numtag/roman.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/api.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: getting-started.md, values.md
+-->
+
+The package `numtag` exports nineteen names: `tag_numbers`, `NumberMention`, `Part`, `Role`, `Kind`, `Form`, `Reason`, `Scale`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind`, `revision`, `spell`, `Spelling`, `SpellingReason` and `SpokenForm`. This page describes each of them. Every other module is internal.
 
 ```python
 >>> import numtag
 >>> sorted(numtag.__all__)
-['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'tag_numbers', 'tag_vague_quantities']
+['ARTICLE_CONFIDENCE', 'Form', 'Kind', 'NumberMention', 'Part', 'Reason', 'Role', 'Scale', 'Spelling', 'SpellingReason', 'SpokenForm', 'UnsupportedLanguageError', 'VagueKind', 'VagueQuantity', 'is_canonical_value', 'revision', 'spell', 'tag_numbers', 'tag_vague_quantities']
 ```
 
 ## tag_numbers
@@ -19,7 +27,7 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | Argument | Meaning |
 |---|---|
 | `text` | The text to read. numtag never changes it. |
-| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons, every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
+| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE` and `fr-CH` read their own lexicons. Every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
 
 `tag_numbers` raises `UnsupportedLanguageError` for a language with no lexicon. It is a subclass of `ValueError`, so a caller can catch it alone and skip the text, or catch `ValueError` for every bad argument. A `scale` that is not a scale raises a plain `ValueError`. An empty value reads the default scale.
@@ -27,10 +35,10 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 ```python
 >>> from numtag import UnsupportedLanguageError, tag_numbers, Scale
 >>> try:
-...     tag_numbers("दो", "hi")
+...     tag_numbers("二", "ja")
 ... except UnsupportedLanguageError as error:
 ...     print(error)
-no lexicon for language 'hi'
+no lexicon for language 'ja'
 >>> tag_numbers("one", "en", scale="medium")
 Traceback (most recent call last):
   ...
@@ -39,7 +47,7 @@ ValueError: 'medium' is not a valid Scale
 <Scale.SHORT: 'short'>
 ```
 
-At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"), with one exception: in Portuguese a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
+At each position, numtag takes the longest number that its grammar can read, from left to right. A number never crosses punctuation other than a hyphen ("twenty-one"). In Portuguese and English, one exception holds: a comma after a scale word can join two classes of one number. Read [rulings.md](rulings.md).
 
 numtag loads the lexicon of a language on the first call for that language and scale, and keeps it in memory for later calls.
 
@@ -59,6 +67,7 @@ A `NumberMention` is a frozen dataclass. It describes one number in the text.
 | `number_scale` | `Scale` or `None` | Keyword only. The scale that gave the value, set only when the value depends on the scale |
 | `reasons` | `frozenset[Reason]` | Keyword only. Why the confidence is low. Empty for a sure number |
 | `parts` | `tuple[Part, ...]` | Keyword only. The pieces of the mention in reading order. Read [Part](#part). |
+| `lang` | `str` or `None` | Keyword only, left out of equality and of the representation. The name of the lexicon that read the mention ("pt-PT" for a "pt" call). `spoken` uses it |
 
 ```python
 >>> m = tag_numbers("Recebeu 2,5 milhões de euros.", "pt-PT")[0]
@@ -73,7 +82,7 @@ The gender comes from the last word of the number that shows one. Portuguese wor
 [('duas dúzias', 'feminine'), ('2.º', 'masculine')]
 ```
 
-A mention checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, when `number_scale` is not a `Scale` or `None`, when `reasons` is not a frozenset of `Reason`, or when a part is not inside the mention or not in reading order.
+A mention checks its own fields when it is made. It raises `ValueError` in these cases. The span does not fit the text, or the value is not canonical. `number_scale` is not a `Scale` or `None`, or `reasons` is not a frozenset of `Reason`. A part is not inside the mention or not in reading order.
 
 ```python
 >>> from numtag import NumberMention, Kind, Form
@@ -108,7 +117,7 @@ A `Part` is a frozen dataclass. It is one piece of a mention: a word or a phrase
 | `text` | `str` | The exact words: `text[start:end]` of the original text |
 | `value` | `str` or `None` | The canonical value of the words of the part alone. `None` for a joiner, "of", a minus word or a decimal mark |
 
-The mention value is the one exact answer. A caller does not add up the parts. A part value is the number that its words name alone: the half of "um milhão e meio" has the value 0.5, and the mention has 1500000. Deep time divides the mention value by the value of the last scale part:
+The mention value is the one exact answer. A caller does not add up the parts. A part value is the number that its words name alone. The half of "um milhão e meio" has the value 0.5, and the mention has 1500000. Deep time divides the mention value by the value of the last scale part:
 
 ```python
 >>> m = tag_numbers("Há sessenta e seis milhões de anos.", "pt-PT")[0]
@@ -134,7 +143,7 @@ The parts are flat, and they do not show the scope of a collective: "dois mil e 
 [('count', 'one', '1'), ('decimal_mark', 'point', None), ('decimals', 'two', '0.2'), ('scale', 'million', '1000000')]
 ```
 
-A part checks its own fields when it is made. It raises `ValueError` when the span does not fit the text, when the value is not canonical, or when a role that names no number has a value.
+A part checks its own fields when it is made. It raises `ValueError` in three cases. The span does not fit the text, the value is not canonical, or a role that names no number has a value.
 
 ```python
 >>> from numtag import Part, Role
@@ -200,7 +209,7 @@ A minus word before digits does not change the form.
 
 ## Roman numerals
 
-A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention, and the numeral is one count part. numtag reads a numeral only where no number word or digit string stands, so pt "MIL" and fr "DIX" keep their word reading.
+A Roman numeral is a mention with `Form.ROMAN`. Its value is a digit string, as for any other mention. The numeral is one count part. numtag reads a numeral only where no number word or digit string stands. So pt "MIL" and fr "DIX" keep their word reading.
 
 ```python
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Luís XIV morreu em 1715.", "pt-PT")]
@@ -227,18 +236,18 @@ German writes every noun in title case, so in German a title-case word is no cue
 
 A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
 
-With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"), and gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
+With no cue, an upper-case numeral is a cardinal with `Reason.HOMOGRAPH` ("XIV" alone, "page XXI"). A lower-case numeral with no cue reads only as a list item at the start of a line (pt "ii)", "(iv)"). It gives no mention elsewhere, because most lower-case numerals are words ("mi", "vi").
 
 A single letter is a numeral only as I, V or X. L, C, D and M alone are labels ("Part D", "Vitamin C"), and give no mention.
 
 A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
 
-- a series noun before it: "World War I", "Part I";
+- a series noun before it ("World War I", "Part I")
 - a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
 
-A name alone, two names and a list are no cue. So "Can I get a math fact", "Play CD", "Give IV fluids", "Henry I died", "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give no mention for the pronoun. A capital letter before a name is an initial, not a numeral: "General D K Arya".
+A name alone, two names and a list are no cue. So these give no mention for the pronoun: "Can I get a math fact", "Play CD", "Give IV fluids" and "Henry I died". "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give none either. A capital letter before a name is an initial, not a numeral: "General D K Arya".
 
-A word in the `roman_lower_word` list is a word only in lower case: pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
+A word in the `roman_lower_word` list is a word only in lower case. So pt, es and it "vi" give no mention, and "Felipe VI" or "Paolo VI" read like any other numeral. All-caps text such as "EU VI UMA CENA" gives a cardinal with `Reason.HOMOGRAPH`, because an all-caps word is no title-case cue.
 
 In English "I" is a pronoun, so a series noun before a single letter or a listed word counts only in title case (setting `roman_pronoun_letters`): "Part I" reads, "the part I like" and "which chapter I should read" do not. Other languages keep the lower-case noun: "século I", "siglo V".
 
@@ -299,12 +308,12 @@ A `VagueQuantity` is a frozen dataclass.
 | `char_span` | `tuple[int, int]` | The half-open character range of the words, as in `NumberMention` |
 | `text` | `str` | The exact words |
 | `kind` | `VagueKind` | `MAGNITUDE` or `AMOUNT` |
-| `scale` | `str` or `None` | The canonical digit string of the scale word of a magnitude |
+| `scale` | `str` or `None` | The digit string of the scale of a magnitude, a positive whole number |
 | `lower_bound` | `str` or `None` | Two of the scale, when the scale word is plural |
-| `confidence` | `float` | A fixed score in (0, 1], not part of equality |
+| `confidence` | `float` | A fixed score from 0 to 1, not part of equality |
 | `reasons` | `frozenset[Reason]` | Keyword only, not part of equality. Why the confidence is low |
 
-A `VagueQuantity` checks its fields when it is made. It raises `ValueError` when the span does not fit the text, when an amount has a scale or a bound, when a magnitude has no scale, or when a scale or bound is not a canonical digit string.
+A `VagueQuantity` checks its fields when it is made. It raises `ValueError` in these cases. The span does not fit the text. An amount has a scale or a bound, or a magnitude has no scale. A scale or bound is not a positive whole digit string, or the bound is below the scale. The confidence is not a number from 0 to 1.
 
 ```python
 >>> from numtag import VagueQuantity
@@ -352,6 +361,93 @@ ValueError: an amount takes no scale and no lower bound
 >>> from numtag import is_canonical_value
 >>> [is_canonical_value(v) for v in ("1200", "-2.5", "1/3", "007", "2.50", "-0")]
 [True, True, True, False, False, False]
+```
+
+## spell
+
+```text
+spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None, scale=None, places=None, scientific=False) -> tuple[Spelling, ...]
+```
+
+`spell` writes a number as words. It returns every accepted spelling of `value` in the language, best first. The first spelling is the default one. `value` is a canonical digit string ("21", "-2.5") or a fraction "n/m". `lang` works as in `tag_numbers`. A language whose lexicon has no `writer` block raises `UnsupportedLanguageError`. [lexicon-format.md](lexicon-format.md#the-writer-block) says what a block holds and how its rules run.
+
+| Argument | Meaning |
+|---|---|
+| `form` | A `SpokenForm`: `CARDINAL` ("twenty-one"), `ORDINAL`, `YEAR` (the cardinal where the lexicon has no year rules) or `DIGITS` (each digit alone) |
+| `gender` | `"masculine"`, `"feminine"` or `"neuter"`. It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
+| `case` | A case name that the lexicon lists. Any other case raises `ValueError` |
+| `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
+| `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
+| `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
+
+```python
+>>> from numtag import SpokenForm, spell, tag_numbers
+>>> [s.text for s in spell("21", "id")]
+['dua puluh satu']
+>>> spell("2.25", "ms")[0].text, spell("-1500", "id")[0].text
+('dua koma dua lima', 'minus seribu lima ratus')
+>>> spell("2", "id", form=SpokenForm.ORDINAL)[0].text, spell("1", "id", form=SpokenForm.ORDINAL)[0].text
+('kedua', 'pertama')
+>>> spell("21", "id", form=SpokenForm.DIGITS)[0].text
+'dua satu'
+>>> spell("2/3", "id")[0].text, spell("-1/4", "id")[0].text
+('dua pertiga', 'minus seperempat')
+>>> spell("1500000000", "ms", scientific=True)[0].text
+'satu koma lima kali sepuluh pangkat sembilan'
+```
+
+An ordinal below its minimum raises `ValueError`, and so does a case that the lexicon lacks. A fraction with a denominator of 0 raises `ZeroDivisionError`.
+
+```python
+>>> spell("0", "id", form=SpokenForm.ORDINAL)
+Traceback (most recent call last):
+  ...
+ValueError: ordinals must be whole numbers from 1
+>>> spell("1", "id", case="genitive")
+Traceback (most recent call last):
+  ...
+ValueError: id: no case 'genitive'; it has []
+>>> spell("1", "en")
+Traceback (most recent call last):
+  ...
+numtag.lexicon.UnsupportedLanguageError: no writer for language 'en'
+```
+
+## Spelling
+
+A `Spelling` is a frozen dataclass of `text`, `reason` and `rank`. The `rank` is the place in the list of the lexicon, from 0. The `reason` is a `SpellingReason`: `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting` or `variant_spelling`. A lexicon lists the spellings of a form in the order that its sources set, and numtag computes no score. A difference of region ("dezasseis" and "dezesseis") is a different lexicon and not a rank.
+
+## NumberMention.spoken
+
+```text
+NumberMention.spoken(lang=None, *, form=None, gender=None, case=None, scale=None, places=None) -> tuple[Spelling, ...]
+```
+
+`spoken` writes the value of a mention as words. It calls `spell` with the value. `lang` defaults to the lexicon that read the mention. `form` defaults to the ordinal for an ordinal mention and to the cardinal for every other kind, and `gender` defaults to the gender of the mention. A digit mention gives its words, and a word mention gives the canonical words of its value. A fraction mention speaks as a fraction in lowest terms, also when its value is a finite decimal: "setengah" has the value 0.5 and speaks "setengah".
+
+```python
+>>> tag_numbers("dua puluh satu orang", "id")[0].spoken()[0].text
+'dua puluh satu'
+>>> tag_numbers("21 orang", "ms")[0].spoken()[0].text
+'dua puluh satu'
+>>> tag_numbers("kedua", "id")[0].spoken("ms", form=SpokenForm.CARDINAL)[0].text
+'dua'
+>>> [tag_numbers(text, "id")[0].spoken()[0].text for text in ("setengah", "tiga perempat")]
+['setengah', 'tiga perempat']
+```
+
+## revision
+
+```text
+revision(lang: str) -> str
+```
+
+`revision` returns the revision of the lexicon that `lang` reads: the sha256, as 64 hex digits, of the canonical bytes of that lexicon after its base lexicon is merged in. `lang` works as in `tag_numbers`, and a language with no lexicon raises `UnsupportedLanguageError`. The revision changes when any word, setting or source of the lexicon or of its base changes. A package that records which rules it ran with adds the revision of each lexicon it read to its own. Read [lexicon-format.md](lexicon-format.md).
+
+```python
+>>> from numtag import revision
+>>> len(revision("pt")), revision("pt") == revision("pt-PT"), revision("pt") == revision("pt-BR")
+(64, True, False)
 ```
 
 ## ARTICLE_CONFIDENCE

@@ -1,6 +1,14 @@
 # Baltic languages
 
-numtag reads Lithuanian. Lithuanian declines its numbers: a cardinal takes the case and gender of the noun it counts, and the hundreds and thousands are nouns with their own case forms. A date names its day with the pronominal ordinal, and a year ends in an ordinal.
+<!-- agent-hint
+covers: What numtag reads in Lithuanian.
+source: numtag/lexicon/lt.json, tests/gold/lt.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/baltic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/baltic.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
+numtag reads Lithuanian. Lithuanian declines its numbers. A cardinal takes the case and gender of the noun it counts. The hundreds and thousands are nouns with their own case forms. A date names its day with the pronominal ordinal, and a year ends in an ordinal.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
@@ -55,3 +63,6 @@ Lithuanian counts in the short scale: "trilijonas" is 10^12. Pass `scale="long"`
 > Vikipedija (lt), "Trilijonas" (knowledge/wiki/audits/numtag/lexicons/lt/pages/ltwp-trilijonas.txt): "Lietuvoje naudojama trumpoji skalė, todėl trilijono vertė laikoma" 10^12.
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Uralic and Turkic languages](uralic-turkic.md) · [Home](../index.md) · [Slavic languages →](slavic.md)

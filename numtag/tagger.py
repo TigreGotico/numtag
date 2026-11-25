@@ -1,8 +1,12 @@
 """Find the numbers of a text: the leftmost longest reading at each position."""
+import json
+from pathlib import Path
+
 from numtag import digits
 from numtag.digits import Rational
 from numtag.grammar import Grammar, Parse, Pieces
 from numtag.lexicon import CARDINAL_ROLES, Lexicon, Scale, exists, load
+from numtag.lexicon import revision as lexicon_revision
 from numtag.mention import Form, Kind, NumberMention, Part, Reason, Role
 from numtag.roman import roman_numerals
 from numtag.tokenize import PeriodCues, Token, fold, tokenize
@@ -20,7 +24,8 @@ CONFIDENCE = {None: 1.0, Reason.ARTICLE: ARTICLE_CONFIDENCE, Reason.HOMOGRAPH: A
 
 # The lexicon of a language tag with no region, or with a region that has no
 # lexicon of its own.
-BASE_LEXICON = {"pt": "pt-PT", "fr": "fr-FR", "no": "nb"}
+BASE_LEXICON = {tag: item["value"] for tag, item in
+                json.loads(Path(__file__).with_name("bare_tags.json").read_text(encoding="utf-8")).items()}
 
 
 def lexicon_name(lang: str) -> str:
@@ -33,6 +38,12 @@ def lexicon_name(lang: str) -> str:
     if region and exists(f"{primary}-{region}"):
         return f"{primary}-{region}"
     return BASE_LEXICON.get(primary, primary)
+
+
+def revision(lang: str) -> str:
+    """The sha256 of the canonical bytes of the lexicon that ``lang`` reads, with its base lexicon
+    merged in. It changes when any word or setting of the lexicon changes."""
+    return lexicon_revision(lexicon_name(lang))
 
 
 def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
@@ -73,7 +84,10 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
             span, token.text, value, kind, Form.ROMAN, None, CONFIDENCE[reason],
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=(Part(Role.COUNT, span, token.text, value),)))
-    return sorted(mentions, key=lambda m: m.char_span)
+    mentions.sort(key=lambda m: m.char_span)
+    for mention in mentions:
+        object.__setattr__(mention, "lang", lexicon.lang)  # a frozen mention takes its language here, once
+    return mentions
 
 
 def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMention],
@@ -129,16 +143,26 @@ def _slash_fractions(text: str, tokens: list[Token], mentions: list[NumberMentio
 
 def _runs(tokens: list[Token], lexicon: Lexicon) -> list[list[Token]]:
     """Stretches of tokens with only spaces or hyphens between them: a
-    number never crosses punctuation. Where the lexicon allows it, a comma
-    after a scale word links a number word: "dois milhões, duzentos e
-    trinta e seis mil" is one number."""
+    number never crosses punctuation. A clock word joins the digits it touches
+    or follows with a period ("14.30h", "kl. 14.30"). Where the lexicon allows
+    it, a comma after a scale word links a number word: "dois milhões,
+    duzentos e trinta e seis mil" is one number."""
     runs: list[list[Token]] = []
     for token in tokens:
-        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)):
+        if runs and (token.links_to_previous() or _comma_between_classes(lexicon, runs[-1][-1], token)
+                     or _clock_word_joins(lexicon, runs[-1][-1], token)):
             runs[-1].append(token)
         else:
             runs.append([token])
     return runs
+
+
+def _clock_word_joins(lexicon: Lexicon, previous: Token, token: Token) -> bool:
+    """A clock word that touches the digits ("14.30h", "14.30Uhr"), and the
+    digits after an abbreviated clock word and its period ("kl. 14.30")."""
+    if token.is_digits:
+        return token.gap.startswith(".") and token.gap[1:].isspace() and previous.norm in lexicon.clock_abbreviation
+    return previous.is_digits and token.gap == "" and token.norm in lexicon.clock_after
 
 
 def _comma_between_classes(lexicon: Lexicon, previous: Token, token: Token) -> bool:
@@ -220,7 +244,7 @@ def _parts(text: str, run: list[Token], pieces: Pieces) -> tuple[Part, ...]:
 
 
 def _signed(token: Token) -> bool:
-    return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in "-\u2212"
+    return token.is_digits and not token.suffix and not token.period_ordinal and token.latin[:1] in SIGNS
 
 
 def _not_a_single(lexicon: Lexicon, run: list[Token], start: int, parse: Parse) -> bool:

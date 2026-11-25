@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
  "settings": {
   "scale": {
    "value": "long",
@@ -94,6 +95,12 @@
   }
  },
  "words": {
+  "clock_abbreviation": {
+   "value": [
+    "kl"
+   ],
+   "source": "Språkrådet, \"Tall, tid og dato\", Klokkeslett (https://sprakradet.no/godt-og-korrekt-sprak/rettskriving-og-grammatikk/tall-tid-dato/): \"Klokkeslett kan skrives slik: kl. 13 kl. 1300 kl. 13.00 kl. 13:00 kl. 9.05 kl. 0905 kl. 09.05 kl. 09:05 Firesifrede klokkeslett kan skrives enten med punktum eller med kolon mellom timer og minutter.\" An hour and minutes written with a point after \"kl\" are a time of day, not a decimal."
+  },
   "period_ordinal_before": {
    "value": [
     "den"

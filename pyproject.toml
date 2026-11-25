@@ -26,7 +26,10 @@ Repository = "https://github.com/TigreGotico/numtag"
 Issues = "https://github.com/TigreGotico/numtag/issues"
 
 [project.optional-dependencies]
-test = ["pytest"]
+test = ["pytest", "jsonschema"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "LICENSE-CLDR"]
 
 [tool.setuptools.packages.find]
 include = ["numtag*"]
@@ -35,4 +38,4 @@ include = ["numtag*"]
 version = { attr = "numtag.version.VERSION_STR" }
 
 [tool.setuptools.package-data]
-numtag = ["py.typed", "lexicon/*.json"]
+numtag = ["py.typed", "*.json", "lexicon/*.json"]

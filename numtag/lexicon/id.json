@@ -1,4 +1,5 @@
 {
+  "format_version": 2,
   "settings": {
     "scale": {"value": "short", "source": "KBBI VI Daring, \"triliun\": \"12 nol (000.000.000.000) [...] (di Amerika Serikat dan Prancis, digunakan juga di Indonesia)\". \"miliar\" is 10^9 and \"triliun\" 10^12 in Indonesia, so the scale changes no value."},
     "group_mark": {"value": ".", "source": "EYD V, \"Tanda Titik\", rule 8: \"Tanda titik digunakan untuk memisahkan bilangan ribuan atau kelipatannya\" (\"13.000 pulau\")."},
@@ -58,5 +59,43 @@
     {"word": "per", "role": "denominator_prefix", "part": true, "source": "EYD V, \"Angka dan Bilangan\", G.8.b: \"Bilangan pecahan ditulis dengan per- yang dilekatkan pada bilangan penyebut yang mengikutinya. [...] seperenam belas (⅟16) tiga perempat (¾) dua persepuluh (²∕₁₀) tiga dua-pertiga (3⅔)\": \"per-\" makes the whole number after it the denominator."},
     {"word": "pertama", "role": "ordinal", "value": "1", "source": "KBBI VI Daring, \"pertama\": \"num kesatu\"."},
     {"word": "ke", "role": "ordinal_prefix", "ambiguous": true, "source": "KBBI VI Daring, \"ke-\": \"prefiks pembentuk numeralia tingkat atau urutan: ketiga; kelima; kesebelas\" and \"prefiks pembentuk numeralia kumpulan: kedua (buku); ketiga (orang)\"; \"kedua\": \"num nomor dua: anaknya yang ~ lahir kemarin\" and \"num kelompok yang terdiri atas dua (orang dan barang): ~ mobilnya disita kejaksaan\". The group sense starts its phrase before a noun, the ordinal follows a word (\"anaknya yang ~\", \"juara ~\"), so a ke- word that starts a phrase and has a word after it is a weak ordinal. EYD V, \"Angka dan Bilangan\", G.9: \"abad ke-7 [...] Perang Dunia Ke-2\"."}
-  ]
+  ],
+  "writer": {
+    "source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1); a rule changed from it carries its own source, and the source of a rule set names the CLDR rules that are left out",
+    "rulesets": {
+      "spellout-cardinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal. Left out: the rules x.x and x,x, and the rules for 10^15 (kuadriliun) and 10^18 (=#,##0.#=). ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_int, has a scale table that ends at \"triliun\", so it writes 10^15 as \"seribu triliun\" and 10^18 as \"satu juta triliun\", and the golden file of its writer holds that output.", "rules": [
+          {"value": "0", "text": "nol;"},
+          {"value": "1", "text": "satu;"},
+          {"value": "2", "text": "dua;"},
+          {"value": "3", "text": "tiga;"},
+          {"value": "4", "text": "empat;"},
+          {"value": "5", "text": "lima;"},
+          {"value": "6", "text": "enam;"},
+          {"value": "7", "text": "tujuh;"},
+          {"value": "8", "text": "delapan;"},
+          {"value": "9", "text": "sembilan;"},
+          {"value": "10", "text": "sepuluh;"},
+          {"value": "11", "text": "sebelas;"},
+          {"value": "12", "text": "→→ belas;"},
+          {"value": "20", "text": "←← puluh[ →→];"},
+          {"value": "100", "text": "seratus[ →→];"},
+          {"value": "200", "text": "←← ratus[ →→];"},
+          {"value": "1000", "text": "seribu[ →→];"},
+          {"value": "2000", "text": "←← ribu[ →→];"},
+          {"value": "1000000", "text": "←← juta[ →→];"},
+          {"value": "1000000000", "text": "←← miliar[ →→];"},
+          {"value": "1000000000000", "text": "←← triliun[ →→];"},
+          {"value": "-x", "text": "minus →→;", "source": "ovos-number-parser 0.31.4a8 numbers_id.py _pronounce_number (id): \"minus \" before the reading; the CLDR rule says \"negatif\"."}
+      ]},
+      "spellout-ordinal": {"source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal. Left out: the rules -x and x.x. The ordinal form takes whole numbers from 1 (minimum), as ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_ordinal, does: it raises ValueError for any other number.", "rules": [
+          {"value": "0", "text": "ke=%spellout-cardinal=;"},
+          {"value": "1", "text": "pertama;"},
+          {"value": "2", "text": "ke=%spellout-cardinal=;"}
+      ]}
+    },
+    "forms": {"cardinal": {"variants": [{"ruleset": "spellout-cardinal", "reason": "standard"}]}, "ordinal": {"variants": [{"ruleset": "spellout-ordinal", "reason": "standard"}], "minimum": "1"}},
+    "decimal": {"word": "koma", "places": 3, "source": "CLDR 44 RBNF id (common/rbnf/id.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal x,x: \"←← koma →→\". The digits after the word read one by one, as ovos-number-parser 0.31.4a8 numbers_id.py reads them."},
+    "scientific": {"times": "kali sepuluh pangkat", "source": "ovos-number-parser 0.31.4a8 numbers_id.py, _pronounce_number: \"kali sepuluh pangkat\"."},
+    "fraction": {"limit": 20, "named": {"2": "setengah"}, "denominator": "per{cardinal}", "single": "se{denominator}", "source": "ovos-number-parser 0.31.4a8 numbers_id.py, _nice_number: \"setengah\" is 1/2, \"per\" and the cardinal make the other denominators, \"se\" replaces the numerator one (\"seperempat\"). Denominators above 20 read as the cardinal numerator and the ordinal denominator."}
+  }
 }

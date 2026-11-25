@@ -4,6 +4,8 @@ tens by twenties, the two Norwegian counting orders, ordinals in digits and
 beside it; sources are in numtag/lexicon/<lang>.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import Scale, tag_numbers
 from numtag.lexicon import load
@@ -245,6 +247,36 @@ class TestHalvesAndFractionWords(unittest.TestCase):
         self.assertEqual(read("zweieinhalb Stunden", "de"), [("zweieinhalb", "2.5", F)])
         self.assertEqual(read("viereinhalb Milliarden", "de"), [("viereinhalb Milliarden", "4500000000", C)])
 
+    def test_a_quarter_fraction_glued_to_the_whole(self):
+        # 2 + 1/4 = 2.25; 1 + 1/4 = 1.25; 10 + 1/4 = 10.25; 2 + 3/4 = 2.75; 1 + 3/4 = 1.75
+        self.assertEqual(read("in zweieinviertel Stunden", "de"), [("zweieinviertel", "2.25", F)])
+        self.assertEqual(read("in eineinviertel Stunden", "de"), [("eineinviertel", "1.25", F)])
+        self.assertEqual(read("in zehneinviertel Stunden", "de"), [("zehneinviertel", "10.25", F)])
+        self.assertEqual(read("in zweidreiviertel Stunden", "de"), [("zweidreiviertel", "2.75", F)])
+        self.assertEqual(read("eindreiviertel Jahre", "de"), [("eindreiviertel", "1.75", F)])
+        # 21 + 1/4 = 21.25
+        self.assertEqual(read("einundzwanzigeinviertel", "de"), [("einundzwanzigeinviertel", "21.25", F)])
+
+    def test_a_glued_count_and_part_with_no_whole_stay_one_fraction(self):
+        # "zweidrittel" is 2/3, not 2 + 1/3: the part has no count of its own
+        self.assertEqual(read("zweidrittel", "de"), [("zweidrittel", "2/3", F)])
+        self.assertEqual(read("zweieinhalb", "de"), [("zweieinhalb", "2.5", F)])
+        # a part word of a hundred or more after a count is a glued denominator,
+        # never a part after the whole: no 2 + 10/10000 or 2 + 1/100
+        self.assertEqual(read("zweizehntausendstel", "de"), [])
+        self.assertEqual(read("zweieinhundertstel", "de"), [])
+
+    def test_only_a_quarter_glues_to_the_whole(self):
+        # Duden and DWDS show "ein|drei|vier|tel" and "einviertel" only; a count
+        # glued to any other part word stays a count and a fraction, not a whole plus a part
+        self.assertEqual(read("zweieinzehntel", "de"), [])
+        self.assertEqual(read("zweieinsechstel", "de"), [])
+        self.assertEqual(read("zweizweiviertel", "de"), [])
+
+    def test_a_part_glued_to_the_whole_is_only_german(self):
+        # no lexicon but German turns the setting on
+        self.assertEqual(read("tvåtrekvart", "sv"), [])
+
     def test_a_word_whose_value_is_a_fraction(self):
         # 3/2 = 1.5; 3/2 x 10^6 = 1500000
         self.assertEqual(read("anderthalb Liter", "de"), [("anderthalb", "1.5", F)])
@@ -469,6 +501,97 @@ class TestLanguageTags(unittest.TestCase):
         self.assertEqual(read("ettusende", "sv"), [("ettusende", "1000", O)])
         self.assertEqual(read("en miljonte", "sv"), [("en miljonte", "1000000", O)])
         self.assertEqual(read("einundzwanzig", "de-AT"), [("einundzwanzig", "21", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_dreizehntel_is_one_thirteenth(self):
+        self.assertEqual(read("dreizehntel", "de"), [("dreizehntel", "1/13", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_neunzehntel_is_one_nineteenth(self):
+        self.assertEqual(read("neunzehntel", "de"), [("neunzehntel", "1/19", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    def test_ein_dreizehntel_is_one_thirteenth(self):
+        self.assertEqual(read("ein Dreizehntel", "de"), [("ein Dreizehntel", "1/13", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    def test_hundred_and_three_quarters_compound(self):
+        self.assertEqual(read("hundertdreiviertel", "de"), [("hundertdreiviertel", "100.75", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    def test_two_hundred_and_a_quarter_compound(self):
+        # 200 + 1/4 = 200.25
+        self.assertEqual(read("zweihunderteinviertel", "de"), [("zweihunderteinviertel", "200.25", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    def test_one_hundred_and_three_quarters_compound(self):
+        # 100 + 3/4 = 100.75
+        self.assertEqual(read("einhundertdreiviertel", "de"), [("einhundertdreiviertel", "100.75", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/246")
+    def test_norwegian_annet_is_second(self):
+        self.assertEqual(read("annet kvartal", "nb"), [("annet", "2", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_split_four_and_twenty(self):
+        self.assertEqual(read("fire og tyve", "da"), [("fire og tyve", "24", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_two_and_a_half_with_en(self):
+        self.assertEqual(read("to en halv", "da"), [("to en halv", "2.5", F)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/163")
+    def test_danish_minus_before_units_and_tens(self):
+        self.assertEqual(read("minus fem og tyve", "da"), [("minus fem og tyve", "-25", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_norwegian_nb_zeroth(self):
+        self.assertEqual(read("nulte", "nb"), [("nulte", "0", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_norwegian_nn_millionth(self):
+        self.assertEqual(read("millionte", "nn"), [("millionte", "1000000", O)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    def test_danish_sixtieth(self):
+        self.assertEqual(read("tressende", "da"), [("tressende", "60", O)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/148")
+@pytest.mark.parametrize("text, expected", [
+    ('in fuenf Tagen', [('fuenf', '5', C)]),
+    ('in zwoelf Tagen', [('zwoelf', '12', C)]),
+    ('in fuenfzehn Tagen', [('fuenfzehn', '15', C)]),
+    ('in fuenfzig Tagen', [('fuenfzig', '50', C)]),
+    ('der fuenfte Tag', [('fuenfte', '5', O)]),
+    ('der zwoelfte Tag', [('zwoelfte', '12', O)]),
+])
+def test_de_the_ascii_spellings_of_the_umlaut_number_words(text, expected):
+    assert read(text, "de") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.parametrize("text, expected", [
+    ('Er hat es außer Acht gelassen', []),
+    ('Nimm dich in Acht', []),
+    ('Der Elf Legolas', []),
+    ('Tausend Dank', []),
+])
+def test_de_a_capitalised_number_word_in_an_idiom_or_a_name_is_no_number(text, expected):
+    assert read(text, "de") == expected
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.parametrize("text, expected", [
+    ('sechtjin', [('sechtjin', '16', C)]),
+])
+def test_fy_sechtjin_is_16(text, expected):
+    assert read(text, "fy") == expected
+
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"1000000000: un miliardo;\", \"1000000000000: un bilione;\": Italian counts in the long scale.; Treccani, \"bilione\": \"corrispondente a un milione di milioni, cioè a mille miliardi\"."},
     "group_mark": {"value": ".", "source": "CLDR 48 it number symbols (ICU 78 formats 1234567.5 as \"1.234.567,5\"): the dot groups digits."},
@@ -17,6 +18,7 @@
     "compound_words": {"value": true, "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"2001: <%%msc-no-final<­mila­>%spellout-cardinal-masculine>;\": the words of a number below a million are one word (\"duemilacinquecento\"), so a word splits into number words.; Treccani, \"mille\": \"milleuno, milledue... millecento [...] millecentouno, millecentocinquanta\"."}
   },
   "words": {
+    "clock_before": {"value": ["alle"], "source": "it.wikipedia \"Sistema orario a 24 ore\": \"quello corrispondente alle 23:59\". An hour and minutes written with a point next to \"alle\" are a time of day, not a decimal."},
     "joiner": {"value": ["e"], "source": "\"e\" joins a half (\"due e mezzo\", \"un milione e mezzo\") and, in speech, the groups (\"un milione e duecentomila\")."},
     "decimal_marker": {"value": ["virgola"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgola >%spellout-cardinal-masculine>;\""},
     "minus": {"value": ["meno"], "source": "CLDR 48 RBNF (ICU 78) it %spellout-cardinal-masculine: \"-x: meno >%spellout-cardinal-masculine>;\""},

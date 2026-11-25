@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/ro.json."""
 import unittest
 
+import pytest
+
 from helpers import read
 from numtag import tag_numbers
 
@@ -94,6 +96,14 @@ class TestLonePoint(unittest.TestCase):
         self.assertEqual(read("-.5", "ro"), [("-.5", "-0.5", "decimal")])
         # the point between digits still groups thousands
         self.assertEqual(read("1.500", "ro"), [("1.500", "1500", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/220")
+    def test_patrusprezece_is_fourteen(self):
+        self.assertEqual(read("patrusprezece", "ro"), [("patrusprezece", "14", C)])
 
 
 if __name__ == "__main__":

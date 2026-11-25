@@ -1,6 +1,14 @@
 # Design
 
-numtag has one reader. It turns a text into tokens, splits the tokens into runs, parses the longest number at each position of a run, and computes each value with arithmetic on digit strings. This page describes each step and the principles behind it.
+<!-- agent-hint
+covers: How the tagger works inside: tokenizer, lexicon, grammar and string arithmetic.
+source: numtag/tokenize.py, numtag/grammar.py, numtag/tagger.py, numtag/digits.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/design.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: adding-a-language.md, benchmarks.md
+-->
+
+numtag has one reader. It turns a text into tokens and splits the tokens into runs. It parses the longest number at each position of a run. It computes each value with arithmetic on digit strings. This page describes each step and the principles behind it.
 
 ## Principles
 
@@ -11,7 +19,7 @@ numtag has one reader. It turns a text into tokens, splits the tokens into runs,
 | A value is a digit string | numtag builds each value by arithmetic on strings of digits. No value passes through `int`, `float`, `Decimal` or `Fraction` inside the package. |
 | The grammar decides where a number ends | A number ends where no rule takes the next word. "twenty one twenty" is 21 and 20, because "twenty" cannot follow a unit. |
 | Language facts are data | Each language is one JSON lexicon. Each word and setting carries the source of its rule. |
-| Reader only | numtag does not write numbers as words. |
+| Reader and writer | numtag reads numbers. It writes a value as words from the `writer` block of a lexicon, with one interpreter and no code for a language. |
 | Deterministic | The same text, language and scale always give the same mentions, with the same scores. |
 
 ## The steps
@@ -69,7 +77,7 @@ tail        := collective-tail | of-tail | half-tail | fraction-tail | decimal-t
              | half-collective-tail                              "cem e meia dúzia"
 ```
 
-The settings of the lexicon decide where a joiner is required, optional or never, whether a scale noun agrees with its count, and whether every word of an ordinal is ordinal. The grammar has no language name in it.
+The settings of the lexicon decide where a joiner is required, optional or never. They also decide whether a scale noun agrees with its count and whether every word of an ordinal is ordinal. The grammar has no language name in it.
 
 ### 5. The choice of reading
 
@@ -77,8 +85,8 @@ The tagger (`numtag/tagger.py`) walks each run from left to right. At each posit
 
 | Rule | Example |
 |---|---|
-| After a range cue, the first number ends at a joiner that splits the words into two numbers, the first smaller. | "entre cem mil e um milhão" is 100000 and 1000000 |
-| Where the same words split into two numbers at more than one joiner, the split with the fewest significant digits wins, then the longest first number. | "mil milhões e mil e quinhentos milhões" is 10^9 and 1500000000 |
+| After a range cue, the first number ends at a joiner that splits the words into two numbers. The first is smaller. | "entre cem mil e um milhão" is 100000 and 1000000 |
+| The same words can split into two numbers at more than one joiner. The split with the fewest significant digits wins. A tie goes to the longest first number. | "mil milhões e mil e quinhentos milhões" is 10^9 and 1500000000 |
 
 [rulings.md](rulings.md) gives the sources and more examples.
 
@@ -94,11 +102,11 @@ The tests of `digits.py` compare each operation with Python's own `int` and `Fra
 
 ## Time
 
-The time to tag a text grows in a straight line with its length. The split search after a joiner stops at the end of the longest reading. So a run of number words with no joiner ("um um um") stays linear. `tests/test_growth.py` reads each test text at n and at 8n copies, and fails when the time grows more than 12 times.
+The time to tag a text grows in a straight line with its length. The split search after a joiner stops at the end of the longest reading. So a run of number words with no joiner ("um um um") stays linear. `tests/test_growth.py` reads each test text at n and at 8n copies. It fails when the time grows more than 12 times.
 
 ## Determinism
 
 numtag holds no model and no random state. The output depends only on the text, the language and the scale. The confidence is a fixed score from rules, not a probability. Two mentions compare equal when all fields but the confidence are equal, so a test can compare readings without a score.
 
 ---
-[← Adding a language](adding-a-language.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)
+[← The lexicon format](lexicon-format.md) · [Home](index.md) · [Benchmarks →](benchmarks.md)

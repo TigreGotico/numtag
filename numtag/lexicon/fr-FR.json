@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {"value": "long", "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"1000000000: un milliard;\", \"1000000000000: un billion;\": French counts in the long scale, so \"billion\" is 10^12.; TLFi, BILLION: \"B. — Un million de millions (10^12).\"; Académie 9e éd., BILLION: \"Rare. Mille millions. Synonyme vieilli de Milliard. Selon un décret de 1961, le mot Billion a reçu une nouvelle valeur, à savoir un million de millions (10^12), qui n'est pas entrée dans l'usage.\" The two dictionaries disagree on the use of \"billion\", so a number with \"billion\" carries its scale, and the short scale reads it as \"mille millions\"."},
     "group_mark": {"value": " ", "source": "CLDR 48 fr number symbols (ICU 78 formats 1234567.5 as \"1 234 567,5\"): the narrow no-break space groups digits."},
@@ -16,6 +17,7 @@
     "ordinal_style": {"value": "last_word", "source": "CLDR 48 RBNF (ICU 78) fr %%spellout-ordinal: \"21: vingt->%%et-unieme>;\": only the last word of an ordinal is ordinal."}
   },
   "words": {
+    "clock_after": {"value": ["h"], "source": "fr.wikipedia \"Système horaire sur 24 heures\": \"mercredi à 0 h 56\": \"h\" after the hour. \"à\" is no clock word here: \"à 0.25\" also sets a value. An hour and minutes written with a point before one of these words are a time of day, not a decimal."},
     "joiner": {"value": ["et"], "source": "CLDR 48 RBNF (ICU 78) fr %%et-un: \"1: et-un;\", \"11: et-onze;\"; \"et\" also joins \"mille et un\"."},
     "decimal_marker": {"value": ["virgule"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"x.x: <%spellout-cardinal-masculine< virgule >%spellout-cardinal-masculine>;\"; TLFi, VIRGULE: \"[Dans la lecture d'un nombre; indique la présence de ce signe] [...] 494 virgule 39 par jour\"."},
     "minus": {"value": ["moins"], "source": "CLDR 48 RBNF (ICU 78) fr %spellout-cardinal-masculine: \"-x: moins >%spellout-cardinal-masculine>;\""},

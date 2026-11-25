@@ -1,5 +1,13 @@
 # English
 
+<!-- agent-hint
+covers: What numtag reads in English.
+source: numtag/lexicon/en.json, tests/gold/en.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/en.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"has (\\d+) rows, and numtag reads (\\d+)",Path(sys.argv[1]).read_text())\ngot=[(str(s.rows),str(s.correct)) for s in (score_file(Path("tests/gold/"+l+".jsonl")) for l in sys.argv[2:])]\nprint(rows,got)\nsys.exit(0 if rows==got and rows else 1)' docs/languages/en.md en
+see: ../rulings.md, ../number-scale.md
+-->
+
 numtag reads every `en` tag (`en`, `en-US`, `en-GB`, `en-AU`) with one lexicon, `numtag/lexicon/en.json`. English reads in the short scale: "billion" is 10^9.
 
 ```python
@@ -50,7 +58,7 @@ The words are case-insensitive. Tens and units join with a hyphen or a space. Di
 [('twelve hundred', '1200'), ('a hundred', '100'), ('a dozen', '12')]
 ```
 
-Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits after "point" stand alone, so a word after them starts a new number. After the first group, digits take no "point", as they take no group: "2 million and 3 point 5" is two numbers.
+Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits after "point" stand alone, so a word after them starts another number. After the first group, digits take no "point", as they take no group: "2 million and 3 point 5" is two numbers.
 
 ```python
 >>> read("Turn it up 2 point 5, then 2 point 5 five, then 2 million and 3 point 5.")
@@ -62,11 +70,11 @@ Digits around a spoken "point" make one decimal: "2 point 5" is 2.5. The digits 
 | Setting | Value | Source |
 |---|---|---|
 | `joiner_tens_units` | never | Wikipedia, "English numerals" |
-| `joiner_after_hundred` | optional | CLDR 49 RBNF en; Wikipedia, "English numerals" |
+| `joiner_after_hundred` | optional | CLDR 49 RBNF en and Wikipedia, "English numerals" |
 | `joiner_between_groups` | optional | the same |
 | `joiner_before_last_group` | optional | the same |
 | `joiner_before_round_hundred` | false | CLDR 49 RBNF en %spellout-cardinal-verbose |
-| `comma_between_classes` | true | Wikipedia, "English numerals"; CLDR 49 RBNF en |
+| `comma_between_classes` | true | Wikipedia, "English numerals" and CLDR 49 RBNF en |
 | `plural_scale_needs_count` | true | Wiktionary, "million" |
 | `scale_noun_agrees` | false | Wiktionary, "million", usage notes |
 | `ordinal_style` | last_word | CLDR 49 RBNF en %spellout-ordinal |
@@ -127,7 +135,7 @@ numtag reads "nineteen ninety nine" as two numbers, 19 and 99. A year grammar jo
 
 ## Known misreadings
 
-The English gold corpus has 420 rows, and numtag reads 419 of them right. The miss is "second" as a time unit.
+The English gold corpus has 444 rows, and numtag reads 442 of them right. One miss is "second" as a time unit. The other is the second "X" of a papal name.
 
 ```python
 >>> [(m.text, m.value, m.confidence) for m in tag_numbers("The error was one hundredth of a second.", "en")]
@@ -136,5 +144,14 @@ The English gold corpus has 420 rows, and numtag reads 419 of them right. The mi
 
 The gold row has one mention, 0.01. numtag also gives "second" as the ordinal 2, at the low score 0.4. Read [../confidence-and-homographs.md](../confidence-and-homographs.md).
 
+The Roman numeral after a name needs a cue. numtag reads the "X" after "Pius" and leaves the "X" after "Pio" in the same sentence:
+
+```python
+>>> [(m.text, m.value, m.kind.value) for m in tag_numbers("Pope Pius X (Italian: Pio X; born Giuseppe Melchiorre Sarto)", "en")]
+[('X', '10', 'ordinal')]
+```
+
+The gold row expects both, as 10 and 10.
+
 ---
-[← Portuguese](pt.md) · [Home](../index.md) · [Adding a language →](../adding-a-language.md)
+[← Portuguese](pt.md) · [Home](../index.md) · [Greek, Arabic, Hebrew, Persian, Kabyle and Maltese →](el-ar-he-fa-kab.md)

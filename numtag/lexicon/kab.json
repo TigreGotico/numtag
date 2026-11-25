@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {
       "value": "short",
@@ -345,8 +346,7 @@
       "word": "waḥed",
       "role": "unit",
       "value": "1",
-      "bound": true,
-      "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1]\", \"tnayn [2]\", \"waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary \"tnayen u ɛecrin\": \"Cardinal : tnayen u ɛecrin\", \"Alternative forms tnayn u ɛecrin tnin u ɛecrin\"."
+      "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"the units one and two are replaced by Arabic loanwords : waḥed [1]\", \"tnayn [2]\", \"waḥed u ɛecrin [21], tnayn u tlatin [32]\"; en.wiktionary \"tnayen u ɛecrin\": \"Cardinal : tnayen u ɛecrin\", \"Alternative forms tnayn u ɛecrin tnin u ɛecrin\". The word also stands alone: en.wiktionary \"waḥed\" (after Dallet 1982): \"one\", \"used in listing\": \"waḥed, sin, tlata...\" (\"one, two, tree...\")."
     },
     {
       "word": "tnayn",

@@ -1,17 +1,25 @@
 # Slavic languages
 
+<!-- agent-hint
+covers: What numtag reads in Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian.
+source: numtag/lexicon/{ru,uk,bg,pl,cs,sk,sl,hr,sr}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/slavic.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/slavic.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian. The number words decline, and each lexicon lists each case form as a word.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 187 | 186 |
-| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 178 | 178 |
-| Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 156 | 156 |
-| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 161 | 161 |
-| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 175 | 174 |
+| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 195 | 194 |
+| Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 184 | 184 |
+| Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 163 | 163 |
+| Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 167 | 167 |
+| Czech | every `cs` tag | `numtag/lexicon/cs.json` | long | 185 | 184 |
 | Slovak | every `sk` tag | `numtag/lexicon/sk.json` | long | 154 | 154 |
-| Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 162 | 162 |
-| Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 169 | 168 |
+| Slovene | every `sl` tag | `numtag/lexicon/sl.json` | long | 166 | 166 |
+| Croatian | every `hr` tag | `numtag/lexicon/hr.json` | long | 183 | 182 |
 | Serbian | every `sr` tag | `numtag/lexicon/sr.json` | long | 149 | 149 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -32,6 +40,17 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('pětadvacet', '25')]
 >>> read('petindvajset', 'sl')
 [('petindvajset', '25')]
+```
+
+Every word of a Russian cardinal declines, so a ten in the genitive, dative or another oblique case takes a unit in the same case. "двадцати девяти" is 29. In the clock "без двадцати девять" (twenty to nine), the genitive "двадцати" and the nominative "девять" are two numbers. A ten in the nominative takes any unit after it.
+
+```python
+>>> read('двадцати девяти', 'ru')
+[('двадцати девяти', '29')]
+>>> read('без двадцати девять', 'ru')
+[('двадцати', '20'), ('девять', '9')]
+>>> read('без двадцати пяти девять', 'ru')
+[('двадцати пяти', '25'), ('девять', '9')]
 ```
 
 ## Examples from the gold rows
@@ -83,15 +102,25 @@ Czech "jednou" is the instrumental of "jedna" and also the adverb "once". Alone,
 
 > SSJČ, "jednou": "jednou čísl. nás. příslovečná 1. k jeden; jedenkrát: j. dvě jsou dvě; j. za den"; "4. kdysi; někdy: byl j. jeden král"
 
-## Croatian "stotina"
+## Counted hundreds nouns
 
-A count and the noun "stotina" write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. "stotinu" is the hundred "sto".
+A count and the noun for a group of a hundred write the hundreds of a cardinal, as "petsto" does. A scale word after them counts them. This holds for Croatian "stotina", Czech "stovka", Polish "setka", Russian "сотня", Ukrainian "сотня" and Serbian "stotina", in each case form that takes a count. Croatian "stotinu" is the hundred "sto". A half after the count adds half a hundred, so "pet i pol stotina" is 550. A count of a thousand or more takes no hundreds noun, so a year before "stotine ljudi" stays a year.
 
 ```python
 >>> read('pet stotina tisuća', 'hr')
 [('pet stotina tisuća', '500000')]
 >>> read('stotinu tisuća ljudi', 'hr')
 [('stotinu tisuća', '100000')]
+>>> read('pet i pol stotina ljudi', 'hr')
+[('pet i pol stotina', '550')]
+>>> read('Godine 1995 stotine ljudi', 'hr')
+[('1995', '1995')]
+>>> read('pět stovek tisíc', 'cs')
+[('pět stovek tisíc', '500000')]
+>>> read('пять сотен тысяч', 'ru')
+[('пять сотен тысяч', '500000')]
+>>> read('pet stotina hiljada', 'sr')
+[('pet stotina hiljada', '500000')]
 ```
 
 > Hrvatski pravopis (Institut za hrvatski jezik i jezikoslovlje), 5.4.1. Jednorječnice: "glavni brojevi stotice do 1000: sto ili stotinu"; "Stotice do 1000 mogu se pisati i kao sveza glavnoga broja i imenice stotina: četiri stotine, devet stotina."
@@ -154,3 +183,6 @@ Serbian, long scale:
 > Vikipedija (sr), "Билион": "Билион је назив за позитиван природан број који се записује као 1.000.000.000.000".
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← Baltic languages](baltic.md) · [Home](../index.md) · [French, Italian, Romanian, Basque, Indonesian and Malay →](fr-it-ro-eu-id.md)

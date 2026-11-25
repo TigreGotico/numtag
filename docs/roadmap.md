@@ -1,5 +1,13 @@
 # Roadmap
 
+<!-- agent-hint
+covers: The planned features, stated as plans, and the readings that wait for a ruling.
+source: numtag/__init__.py:__all__, numtag/mention.py
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/roadmap.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+see: api.md, rulings.md
+-->
+
 This page lists planned features. None of them is built. The API names on this page do not exist in the package, and no code may depend on them. Each feature comes as its own change, with tests and a documentation update.
 
 ```python
@@ -35,7 +43,7 @@ A mention with alternatives will get a lower confidence than one without. A date
 
 ## Named numbers (planned)
 
-Some numbers have a name of their own. A named number with a finite value will be an ordinary CARDINAL mention: "googol" is 10^100, and "dois googols" is 2 × 10^100. A named constant with no finite digit string will get a new kind, `Kind.CONSTANT`. Its value will be the name of the constant ("pi", "e", "googolplex"), not digits. The value contract will then have a fourth form for this kind. A bare "pi" will get a low confidence, because the word has other meanings. The constant e will read only from a phrase that names it ("número de Euler", "Euler's number"), never from the letter alone. Each word needs a source in the lexicon.
+Some numbers have a name of their own. A named number with a finite value will be an ordinary CARDINAL mention: "googol" is 10^100, and "dois googols" is 2 × 10^100. A named constant with no finite digit string will get its own kind, `Kind.CONSTANT`. Its value will be the name of the constant ("pi", "e", "googolplex"), not digits. The value contract will then have a fourth form for this kind. A bare "pi" will get a low confidence, because the word has other meanings. The constant e will read only from a phrase that names it ("número de Euler", "Euler's number"), never from the letter alone. Each word needs a source in the lexicon.
 
 "googol" is not in the lexicon, so numtag reads only the article before it:
 

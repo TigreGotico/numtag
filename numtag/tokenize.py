@@ -5,6 +5,7 @@ from dataclasses import dataclass, field, replace
 from functools import cache, cached_property
 
 _LONE_MARK = re.compile(r"[.,][0-9]+")
+_EXPONENT = re.compile(r"[eE][+-]?[0-9]+(?![^\W_])")
 _TRAILING_MARK = re.compile(r"\D+$")
 _WORD = re.compile(r"[^\W\d_]+")
 # A soft hyphen (U+00AD) inside a word marks where a line may break; it
@@ -320,6 +321,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
         if not is_digits and tokens and tokens[-1].is_digits and not tokens[-1].suffix \
                 and gap in digit_suffix_marks and tokens[-1].end == previous_end:
             continue  # a case ending glued to digits: "5-öt", "5'te"
+        if is_digits and (exponent := _EXPONENT.match(scan, match.end())):
+            previous_end = skip_until = exponent.end()
+            continue  # "1e5" and "2.5e-3" are numbers in E notation, no 1 and no 1st
         end, suffix = match.end(), ""
         if is_digits and index + 1 < len(matches):
             following = matches[index + 1]

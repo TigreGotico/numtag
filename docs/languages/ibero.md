@@ -1,15 +1,23 @@
 # Iberian languages and Occitan
 
+<!-- agent-hint
+covers: What numtag reads in Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese.
+source: numtag/lexicon/{es,gl,ca,ast,an,oc,mwl}.json, the same names under tests/gold/*.jsonl
+generated: no
+verify: sed '/^\x60\x60\x60/d' docs/languages/ibero.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin && PYTHONPATH=tests python -c $'import re,sys\nfrom pathlib import Path\nfrom test_gold import score_file\nrows=re.findall(r"lexicon/([\\w-]+)\\.json\\x60 \\| \\w+ \\| (\\d+) \\| (\\d+) \\|",Path(sys.argv[1]).read_text())\ngot=[(r[0],str(s.rows),str(s.correct)) for r in rows for s in [score_file(Path("tests/gold/"+r[0]+".jsonl"))]]\nbad=[r for r,g in zip(rows,got) if r!=g]\nn=len(re.findall(r"^\\|.*lexicon/",Path(sys.argv[1]).read_text(),re.M))\nprint(len(rows),"rows",n,"table rows",len(bad),"wrong",bad)\nsys.exit(1 if bad or not rows or n!=len(rows) else 0)' docs/languages/ibero.md
+see: ../rulings.md, ../adding-a-language.md
+-->
+
 numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese. All of them count in the long scale: "billón" and its cognates are 10^12.
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 235 | 232 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 237 | 234 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
-| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 214 | 211 |
+| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 228 | 225 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
-| Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 173 | 173 |
+| Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 174 | 174 |
 | Mirandese | every `mwl` tag | `numtag/lexicon/mwl.json` | long | 162 | 162 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
@@ -132,7 +140,7 @@ Catalan "nou" is nine and also "new", and "u" is one and also the name of a lett
 
 > DIEC2 "nou" 2 1: "Vuit més un. Aviat farà nou anys."; DIEC2 "nou" 3 1 1: "Originat o ocorregut fa poc, aparegut de poc, que apareix per primera vegada. Una moda nova. Un règim nou."
 
-## The first ordinals end no longer ordinal
+## Longer ordinals and the time unit "segons"
 
 A longer Catalan ordinal ends in "-unè", "-dosè", "-tresè" or "-quatrè", never in "primer", "segon", "tercer" or "quart". The Occitan ones end in "-unen" and "-dosen". So a cardinal and one of these words after a space are two numbers. "vint segons" is 20 and the time unit "segons", and "deu segons" is 10. A hyphen still joins them, because ICU 78 wrote the Catalan 22nd "vint-i-segon".
 
@@ -181,3 +189,6 @@ Mirandese, long scale:
 > ovos-number-parser numbers_mwl.py (a lead): DEFAULT_SCALE=Scale.LONG, DECIMAL_MARKER=["bírgula", "ponto", "birgula", ...], NEGATIVE_SIGN=["menos"], fractions "meio", "tércio", "quarto", "meia" ("ũa i meia -> 1.5") [...]
 
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
+
+---
+[← French, Italian, Romanian, Basque, Indonesian and Malay](fr-it-ro-eu-id.md) · [Home](../index.md) · [Adding a language →](../adding-a-language.md)

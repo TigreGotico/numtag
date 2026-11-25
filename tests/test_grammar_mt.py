@@ -5,6 +5,7 @@ import unittest
 import pytest
 
 from helpers import read
+from numtag import tag_numbers
 
 C, O, F, D = "cardinal", "ordinal", "fraction", "decimal"
 
@@ -104,6 +105,22 @@ class TestFractionsAndDecimals(unittest.TestCase):
     def test_the_decimal_mark_is_a_point_and_the_group_mark_a_comma(self):
         self.assertEqual(mt("2.5"), [("2.5", "2.5", D)])
         self.assertEqual(mt("1,000"), [("1,000", "1000", C)])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    def test_weekday_it_tnejn_is_no_sure_number(self):
+        self.assertEqual([m.text for m in tag_numbers("Nhar it-Tnejn immur l-iskola.", "mt") if m.confidence >= 1.0], [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    def test_weekday_it_tlieta_is_no_sure_number(self):
+        self.assertEqual([m.text for m in tag_numbers("Nhar it-Tlieta immur l-iskola.", "mt") if m.confidence >= 1.0], [])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    def test_weekday_l_erbgha_is_no_sure_number(self):
+        self.assertEqual([m.text for m in tag_numbers("Nhar l-Erbgħa immur l-iskola.", "mt") if m.confidence >= 1.0], [])
 
 
 if __name__ == "__main__":

@@ -1,5 +1,10 @@
 {
+  "format_version": 1,
  "settings": {
+  "point_decimal": {
+   "value": true,
+   "source": "RAE, DPD \"números\", 1.1d: \"De acuerdo con la normativa internacional, para separar la parte entera de la decimal son válidos tanto la coma como el punto, según las preferencias de cada zona o país: El valor de π es 3,1416… o El valor de π es 3.1416…\" An hour and minutes written with a point read as a decimal unless a clock word stands beside them."
+  },
   "scale": {
    "value": "long",
    "source": "DPD \"billón\": \"'un millón de millones (10 12)' [...] no se recomienda su empleo en español con el sentido de 'mil millones'\"; DPD \"cardinales\" §1 table: \"10 18 un trillón\", \"10 24 un cuatrillón\", \"10 72 un duodecillón\""
@@ -66,6 +71,19 @@
   }
  },
  "words": {
+  "clock_before": {
+   "value": [
+    "las",
+    "la"
+   ],
+   "source": "RAE, DPD \"hora\", 4a: \"Fuera de textos técnicos, es también válido el uso del punto […]: 13:30, 13.30\"; 4c: \"17:30 o 17.30 h\"; \"a las 7 h\"; \"suele evitarse esta fórmula para la una y sus fracciones, pues el artículo debe ir en singular (la una\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
+  "clock_after": {
+   "value": [
+    "h"
+   ],
+   "source": "RAE, DPD \"hora\", 4a: \"Fuera de textos técnicos, es también válido el uso del punto […]: 13:30, 13.30\"; 4c: \"17:30 o 17.30 h\"; \"a las 7 h\"; \"suele evitarse esta fórmula para la una y sus fracciones, pues el artículo debe ir en singular (la una\". An hour and minutes written with a point next to one of these words are a time of day, not a decimal."
+  },
   "joiner": {
    "value": [
     "y"

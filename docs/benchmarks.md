@@ -1,33 +1,41 @@
 # Benchmarks
 
-This page compares numtag with ovos-number-parser on accuracy, memory and time. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
+<!-- agent-hint
+covers: Accuracy of numtag against ovos-number-parser, with the commands that produce them.
+source: benchmarks/bench.py, tests/gold/
+generated: no
+verify: diff <(python -c "import json,subprocess as s; n,p=[json.loads(s.check_output([c,'benchmarks/bench.py',k,'tests/gold','/dev/null'])) for c,k in (('.venv/bin/python','numtag'),('.venv-parser/bin/python','parser'))]; [print('| %s | %d | %d | %d | %d | %d | %d |'%(l,n['accuracy'][l]['rows'],n['accuracy'][l]['rows_right'],p['accuracy'][l]['rows_right'],n['accuracy'][l]['gold_mentions'],n['accuracy'][l]['mentions_found'],p['accuracy'][l]['mentions_found'])) for l in ('pt-PT','pt-BR','en')]") <(grep -E '^\| (pt-PT|pt-BR|en) \| [0-9]' docs/benchmarks.md)
+see: design.md
+-->
+
+This page compares numtag with ovos-number-parser on accuracy. Both libraries read the same gold corpus, `tests/gold/`, in their own process. The script is `benchmarks/bench.py`, and every number on this page comes from one run of it per library.
 
 ## What was measured
 
 | Item | Value |
 |---|---|
-| numtag | commit ef3a883, the pt-PT, pt-BR and en engine |
+| numtag | 0.19.22a4 |
 | ovos-number-parser | 0.24.62a1 from PyPI, `extract_number_spans(text, lang, ordinals=True)` |
-| Corpus | `tests/gold/`: 458 pt-PT rows, 456 pt-BR rows, 420 en rows |
-| Python | 3.14.6, the uv interpreter of the laptop (the JSON reports do not record it) |
+| Corpus | `tests/gold/`: 479 pt-PT rows, 470 pt-BR rows, 444 en rows |
+| Python | 3.14.6, the uv interpreter of the laptop |
 | Machine | a laptop with an Intel Core i9-11900H |
 
 The parser runs with ordinals on, because that mode finds more of the gold mentions.
 
 ## Commands
 
-Each library gets its own virtual environment, so that the memory numbers belong to one library.
+Each library gets its own virtual environment, so that each run loads one library.
 
 ```bash
 uv venv .venv
 uv pip install --python .venv/bin/python -e .
 uv venv .venv-parser
-uv pip install --python .venv-parser/bin/python --prerelease=allow ovos-number-parser
+uv pip install --python .venv-parser/bin/python --prerelease=allow "ovos-number-parser==0.24.62a1"
 .venv/bin/python benchmarks/bench.py numtag tests/gold numtag.json
 .venv-parser/bin/python benchmarks/bench.py parser tests/gold parser.json
 ```
 
-Each run writes a JSON report and prints it.
+Each run writes a JSON report and prints it. The parser version is pinned because ovos-number-parser reads numbers with numtag from 0.31.0a1, which requires `numtag>=0.19.0a1`. A run of such a version gives the numtag scores in both columns.
 
 ## Accuracy
 
@@ -35,36 +43,11 @@ A row is right when the set of (start, end, value) that the library gives equals
 
 | Language | Rows | numtag rows right | parser rows right | Gold mentions | numtag found | parser found |
 |---|---|---|---|---|---|---|
-| pt-PT | 458 | 452 | 384 | 493 | 491 | 400 |
-| pt-BR | 456 | 450 | 386 | 492 | 490 | 404 |
-| en | 420 | 419 | 353 | 440 | 440 | 373 |
+| pt-PT | 479 | 473 | 388 | 530 | 528 | 414 |
+| pt-BR | 470 | 464 | 390 | 513 | 511 | 410 |
+| en | 444 | 442 | 358 | 486 | 485 | 400 |
 
 The rows that numtag misses are in [languages/pt.md](languages/pt.md) and [languages/en.md](languages/en.md). The gold values come from sources and hand arithmetic, not from either library.
-
-## Memory
-
-| Measure | numtag | parser |
-|---|---|---|
-| Resident memory of the bare interpreter | 17.9 MiB | 17.7 MiB |
-| Resident memory after the import | 20.6 MiB | 28.4 MiB |
-| Resident memory after the whole run | 23.4 MiB | 29.6 MiB |
-| Python allocations in the first call per language (tracemalloc peak) | 736 KiB | 65 KiB |
-
-numtag loads the JSON lexicon of a language on the first call for that language. The parser builds its tables when it is imported, and its import also loads its dependencies.
-
-## Time
-
-| Measure | numtag | parser |
-|---|---|---|
-| Import | 0.018 s | 0.062 s |
-| Per gold sentence, median (pt-PT / pt-BR / en) | 0.31 / 0.32 / 0.34 ms | 3.13 / 3.13 / 2.09 ms |
-| Per gold sentence, 95th percentile (pt-PT / pt-BR / en) | 0.87 / 0.89 / 0.82 ms | 7.01 / 6.95 / 6.58 ms |
-| Short command, median (pt-PT / pt-BR / en) | 0.56 / 0.59 / 0.53 ms | 7.59 / 8.01 / 5.16 ms |
-| 2000 words of pt-PT text, best of 3 | 0.103 s | 1.077 s |
-
-The per-sentence times come from 5 passes over each corpus after a first call. The short command is read 200 times. It is "quanto é vinte e três mais quarenta e cinco" in Portuguese and "what is twenty three plus forty five" in English. The long text is the first 2000 words of the pt-PT gold sentences, joined.
-
-Times depend on the machine and its load. Compare the two columns of one run, not numbers from different runs.
 
 ---
 [← Design](design.md) · [Home](index.md) · [Roadmap →](roadmap.md)

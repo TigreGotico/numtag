@@ -1,4 +1,5 @@
 {
+  "format_version": 1,
   "settings": {
     "scale": {
       "value": "short",
@@ -696,6 +697,85 @@
       "source": "en.wiktionary page ثلثمائة: \"ثَلَثُمِائَة • ( ṯalāṯumiʔah ) ? alternative spelling of ثَلَاثُمِئَة ( ṯalāṯumiʔa )\"."
     },
     {
+      "word": "ميتين",
+      "role": "hundred",
+      "value": "200",
+      "ambiguous": true,
+      "source": "en.wiktionary \"ميتين\", Egyptian Arabic: \"{{numberbox|arz|200}}\" with the numeral entry \"two hundred\" and alternative spelling متين, Moroccan Arabic \"مِيتِين\" \"two hundred\", South Levantine Arabic \"مية ... two hundred\"; Etymology 2 of the same entry is the plural of ميّت, \"dead\". Alone it is low confidence, as مية is."
+    },
+    {
+      "word": "ثلاثمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), pp. 293-306: θalaθmiya 300, 'arbaʕmiya 400, xamsmiya 500, sitmiya 600, sabaʕmiya 700, θamanmiya 800, tisiʕmiya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تلتمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "en.wiktionary, Moroccan Arabic numeral entries تلتمية \"{{number box|ary|300}} ... three hundred\" and ربعمية. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "اربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "أربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ربعمية",
+      "role": "hundred",
+      "value": "400",
+      "source": "en.wiktionary, Moroccan Arabic numeral entries تلتمية \"{{number box|ary|300}} ... three hundred\" and ربعمية. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "خمسمية",
+      "role": "hundred",
+      "value": "500",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ستمية",
+      "role": "hundred",
+      "value": "600",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "سبعمية",
+      "role": "hundred",
+      "value": "700",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تمنمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ثمنمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), pp. 293-306: θalaθmiya 300, 'arbaʕmiya 400, xamsmiya 500, sitmiya 600, sabaʕmiya 700, θamanmiya 800, tisiʕmiya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "ثمانمية",
+      "role": "hundred",
+      "value": "800",
+      "source": "Hamdi A. Qafisheh, Basic Gulf Arabic (1970), lesson table of the hundreds: θamaanmiya 800. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
+      "word": "تسعمية",
+      "role": "hundred",
+      "value": "900",
+      "source": "Margaret K. Omar, Saudi Arabic Basic Course: Urban Hijazi Dialect (1975), p. 69: \"/miyyat/\", talatmiyya 300, arba9miyya 400, xamsmiyya 500, sittmiyya 600, sab9miyya 700, tamanmiyya 800, tis9miyya 900. The fused colloquial hundred, a unit stem and مية."
+    },
+    {
       "word": "ألف",
       "role": "scale_numeral",
       "value": 3,
@@ -1363,6 +1443,444 @@
       "value": "1",
       "gender": "feminine",
       "source": "CLDR RBNF, common/rbnf/ar.xml (unicode-org/cldr, cldrVersion 50), spellout-ordinal-masculine \"1: الأول;\" and -feminine \"1: الأولى;\"; en.wikipedia \"Arabic grammar\", Numerals: \"They are adjectives, hence there is agreement in gender with the noun\"; the article is written joined to the word. Written with plain alif: en.wiktionary page Wiktionary:About Arabic: \"Words spelled with a plain ʔalif ( ا ) are incorrect, though such spellings can be retained as alternative lemmas\"; en.wiktionary \"ا\": \"the colloquial language uses these word-initial forms with the hamza interchangeably\"."
+    },
+    {
+      "word": "أربعتاشر",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[14], cardinal \"أربعتاشر\"."
+    },
+    {
+      "word": "أربعتعش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[14], cardinal \"أربعتعش\"."
+    },
+    {
+      "word": "أربعطعش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[14], cardinal \"أربعطعش\"."
+    },
+    {
+      "word": "إدعش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[11], cardinal \"إدعش\"."
+    },
+    {
+      "word": "اتناشر",
+      "role": "ten",
+      "value": "12",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[12], cardinal \"اتناشر\"."
+    },
+    {
+      "word": "اثنعش",
+      "role": "ten",
+      "value": "12",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[12], cardinal \"اثنعش\"."
+    },
+    {
+      "word": "اثنينه",
+      "role": "unit",
+      "value": "2",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[2], cardinal \"اثنينه\"."
+    },
+    {
+      "word": "احدعش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[11], cardinal \"احدعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[11], cardinal \"احدعش\"."
+    },
+    {
+      "word": "اربطعش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[14], cardinal \"اربطعش\"."
+    },
+    {
+      "word": "اربعتعش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[14], cardinal \"اربعتعش\"."
+    },
+    {
+      "word": "اهدعش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[11], cardinal \"اهدعش\"."
+    },
+    {
+      "word": "بيليون",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[1000000000], cardinal \"بيليون\"."
+    },
+    {
+      "word": "تستطعش",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[19], cardinal \"تستطعش\"."
+    },
+    {
+      "word": "تسعتاش",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[19], cardinal \"تسعتاش\"."
+    },
+    {
+      "word": "تسعتاشر",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[19], cardinal \"تسعتاشر\"."
+    },
+    {
+      "word": "تسعتعش",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[19], cardinal \"تسعتعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[19], cardinal \"تسعتعش\"."
+    },
+    {
+      "word": "تسعطعش",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[19], cardinal \"تسعطعش\"."
+    },
+    {
+      "word": "تلاتاشر",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[13], cardinal \"تلاتاشر\"."
+    },
+    {
+      "word": "تلاتمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[300], cardinal \"تلاتمية\"."
+    },
+    {
+      "word": "تلاتين",
+      "role": "ten",
+      "value": "30",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[30], cardinal \"تلاتين\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[30], cardinal \"تلاتين\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[30], cardinal \"تلاتين\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[30], cardinal \"تلاتين\"."
+    },
+    {
+      "word": "تلتاش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[13], cardinal \"تلتاش\"."
+    },
+    {
+      "word": "تلتطعش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[13], cardinal \"تلتطعش\"."
+    },
+    {
+      "word": "تلتعش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[13], cardinal \"تلتعش\"."
+    },
+    {
+      "word": "تلطعش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[13], cardinal \"تلطعش\"."
+    },
+    {
+      "word": "تمانة",
+      "role": "unit",
+      "value": "8",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[8], cardinal \"تمانة\"."
+    },
+    {
+      "word": "تمانية",
+      "role": "unit",
+      "value": "8",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[8], cardinal \"تمانية\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[8], cardinal \"تمانية\"."
+    },
+    {
+      "word": "تمانين",
+      "role": "ten",
+      "value": "80",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[80], cardinal \"تمانين\"; en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[80], cardinal \"تمانين\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[80], cardinal \"تمانين\"; en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[80], cardinal \"تمانين\"."
+    },
+    {
+      "word": "تمنتاش",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[18], cardinal \"تمنتاش\"."
+    },
+    {
+      "word": "تمنتاشر",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[18], cardinal \"تمنتاشر\"."
+    },
+    {
+      "word": "تمنتعش",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[18], cardinal \"تمنتعش\"."
+    },
+    {
+      "word": "تمنطعش",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[18], cardinal \"تمنطعش\"."
+    },
+    {
+      "word": "تمنية",
+      "role": "unit",
+      "value": "8",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[8], cardinal \"تمنية\"."
+    },
+    {
+      "word": "تناش",
+      "role": "ten",
+      "value": "12",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[12], cardinal \"تناش\"."
+    },
+    {
+      "word": "ثلاتين",
+      "role": "ten",
+      "value": "30",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[30], cardinal \"ثلاتين\"."
+    },
+    {
+      "word": "ثلثتعش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[13], cardinal \"ثلثتعش\"."
+    },
+    {
+      "word": "ثلثمية",
+      "role": "hundred",
+      "value": "300",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[300], cardinal \"ثلثمية\"."
+    },
+    {
+      "word": "ثمنتعش",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[18], cardinal \"ثمنتعش\"."
+    },
+    {
+      "word": "جوج",
+      "role": "unit",
+      "value": "2",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[2], cardinal \"جوج\"."
+    },
+    {
+      "word": "حداش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[11], cardinal \"حداش\"."
+    },
+    {
+      "word": "حداشر",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[11], cardinal \"حداشر\"."
+    },
+    {
+      "word": "حدعش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[11], cardinal \"حدعش\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[11], cardinal \"حدعش\"."
+    },
+    {
+      "word": "خمستاش",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[15], cardinal \"خمستاش\"."
+    },
+    {
+      "word": "خمستاشر",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[15], cardinal \"خمستاشر\"."
+    },
+    {
+      "word": "خمستعش",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[15], cardinal \"خمستعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[15], cardinal \"خمستعش\"."
+    },
+    {
+      "word": "خمسطعش",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[15], cardinal \"خمسطعش\"."
+    },
+    {
+      "word": "خمصطعش",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[15], cardinal \"خمصطعش\"."
+    },
+    {
+      "word": "ربعتاش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[14], cardinal \"ربعتاش\"."
+    },
+    {
+      "word": "زيرو",
+      "role": "unit",
+      "value": "0",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[0], cardinal \"زيرو\"."
+    },
+    {
+      "word": "سبطعش",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[17], cardinal \"سبطعش\"."
+    },
+    {
+      "word": "سبعتاش",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[17], cardinal \"سبعتاش\"."
+    },
+    {
+      "word": "سبعتاشر",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[17], cardinal \"سبعتاشر\"."
+    },
+    {
+      "word": "سبعتعش",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[17], cardinal \"سبعتعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[17], cardinal \"سبعتعش\"."
+    },
+    {
+      "word": "سبعطعش",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[17], cardinal \"سبعطعش\"."
+    },
+    {
+      "word": "ستاش",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary, Module:number list/data/ary (Moroccan Arabic): numbers[16], cardinal \"ستاش\"."
+    },
+    {
+      "word": "ستاشر",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary, Module:number list/data/arz (Egyptian Arabic): numbers[16], cardinal \"ستاشر\"."
+    },
+    {
+      "word": "ستطعش",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[16], cardinal \"ستطعش\"."
+    },
+    {
+      "word": "ستعش",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[16], cardinal \"ستعش\"; en.wiktionary, Module:number list/data/afb (Gulf Arabic): numbers[16], cardinal \"ستعش\"."
+    },
+    {
+      "word": "سطعش",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[16], cardinal \"سطعش\"."
+    },
+    {
+      "word": "طلطعش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[13], cardinal \"طلطعش\"."
+    },
+    {
+      "word": "طنعش",
+      "role": "ten",
+      "value": "12",
+      "source": "en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[12], cardinal \"طنعش\"."
+    },
+    {
+      "word": "ميليار",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[1000000000], cardinal \"ميليار\"."
+    },
+    {
+      "word": "ميليون",
+      "role": "scale_numeral",
+      "rank": 1,
+      "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[1000000], cardinal \"ميليون\"."
+    },
+    {
+      "word": "أربعتاش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary \"ربعتاش\" (Moroccan Arabic, 14), alternative forms: \"أربعتاش\"."
+    },
+    {
+      "word": "أربعطاش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary \"ربعتاش\" (Moroccan Arabic, 14), alternative forms: \"أربعطاش\"."
+    },
+    {
+      "word": "تسعطاش",
+      "role": "ten",
+      "value": "19",
+      "source": "en.wiktionary \"تسعتاش\" (Moroccan Arabic, 19), alternative forms: \"تسعطاش\"."
+    },
+    {
+      "word": "تلطاش",
+      "role": "ten",
+      "value": "13",
+      "source": "en.wiktionary \"تلتاش\" (Moroccan Arabic, 13), alternative forms: \"تلطاش\"."
+    },
+    {
+      "word": "تمنطاش",
+      "role": "ten",
+      "value": "18",
+      "source": "en.wiktionary \"تمنتاش\" (Moroccan Arabic, 18), alternative forms: \"تمنطاش\"."
+    },
+    {
+      "word": "تمنين",
+      "role": "ten",
+      "value": "80",
+      "source": "en.wiktionary \"تمانين\" (Egyptian Arabic, 80), alternative forms: \"تمنين\"."
+    },
+    {
+      "word": "خمسطاش",
+      "role": "ten",
+      "value": "15",
+      "source": "en.wiktionary \"خمستاش\" (Moroccan Arabic, 15), alternative forms: \"خمسطاش\"."
+    },
+    {
+      "word": "ربعطاش",
+      "role": "ten",
+      "value": "14",
+      "source": "en.wiktionary \"ربعتاش\" (Moroccan Arabic, 14), alternative forms: \"ربعطاش\"."
+    },
+    {
+      "word": "سبعطاش",
+      "role": "ten",
+      "value": "17",
+      "source": "en.wiktionary \"سبعتاش\" (Moroccan Arabic, 17), alternative forms: \"سبعطاش\"."
+    },
+    {
+      "word": "سطاش",
+      "role": "ten",
+      "value": "16",
+      "source": "en.wiktionary \"ستاش\" (Moroccan Arabic, 16), alternative forms: \"سطاش\"."
+    },
+    {
+      "word": "هدعش",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wiktionary \"حدعش\" (South Levantine Arabic, 11), alternative forms: \"هدعش\"."
     }
   ]
 }

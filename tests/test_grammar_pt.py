@@ -2,6 +2,8 @@
 comment beside it; sources are in numtag/lexicon/pt-PT.json."""
 import unittest
 
+import pytest
+
 from helpers import read, sure
 from numtag import Form, Scale, tag_numbers
 
@@ -1135,6 +1137,28 @@ class TestArticleAndGender(unittest.TestCase):
         mentions = tag_numbers(text, "pt-PT")
         self.assertEqual([m.char_span for m in mentions], [(7, 8), (19, 38)])
         self.assertEqual([m.value for m in mentions], ["3", "2500000"])
+
+
+class TestOpenIssues(unittest.TestCase):
+    # Rows each open issue lists. The expected value is the issue's, worked out by hand.
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/163")
+    def test_minus_word_before_a_number_after_a_verb(self):
+        self.assertEqual(read("desceu a menos três graus", "pt"), [("menos três", "-3", C)])
+
+    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/227")
+    def test_digit_group_after_the_decimal_point_pt_pt(self):
+        self.assertEqual(read("43 279.168 29", "pt-PT"), [("43 279.168 29", "43279.16829", D)])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('dois mil milhões trezentos mil', [('dois mil milhões trezentos mil', '2000300000', C)]),
+])
+def test_pt_a_group_after_a_scale_word_adds(text, expected):
+    # 2 x 1000 x 1000000 + 300 x 1000 = 2000300000
+    assert read(text, "pt") == expected
+
 
 
 if __name__ == "__main__":

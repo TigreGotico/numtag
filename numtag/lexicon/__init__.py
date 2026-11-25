@@ -1,5 +1,10 @@
 """Load a language's number words from its JSON file.
 
+The file format is specified in docs/lexicon-format.md and by
+lexicon.schema.json. Every file names its ``format_version``. The loader
+refuses a file with a version it does not know, and a key that it does not
+read, by name.
+
 Each entry names a word, its role and its value, with the facts the form
 shows (gender, plural, ambiguous) and the source of the rule. Each setting
 and word list is an object with its value and its source. A file may name a
@@ -12,6 +17,7 @@ classes into one more form of the entry ("kahde" and "lle" make "kahdelle").
 A class may mark its forms as ordinal or as naming the parts of a fraction
 ("fraction_case": "üç" and "te" make "üçte", as in "üçte bir").
 """
+import hashlib
 import json
 from dataclasses import dataclass, field, replace
 from enum import Enum
@@ -22,6 +28,11 @@ from numtag.mention import Scale
 from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
+
+FORMAT_VERSION = 2
+# A version 1 file stays valid; only a version 2 file may hold a ``writer`` block.
+READABLE_VERSIONS = (1, 2)
+WRITER_VERSION = 2
 
 
 class UnsupportedLanguageError(ValueError):
@@ -57,6 +68,8 @@ VALUE_ROLES = ("unit", "ten", "hundred", "collective", "article_collective", "de
 # Roles whose value is a power of ten. A "ten_multiplier" counts tens
 # ("kaksi" "kymmentä" is 20), as a hundred multiplier counts hundreds.
 SCALE_ROLES = ("hundred_multiplier", "scale_numeral", "scale_noun", "ten_multiplier")
+# Roles of the words that count a quantity of ten's powers or of things.
+AMOUNT_ROLES = SCALE_ROLES + ("collective",)
 # Roles of the words a cardinal is made of.
 CARDINAL_ROLES = ("unit", "ten", "hundred", "teen") + SCALE_ROLES
 # Roles of the parts of a compound number word where the lexicon splits by
@@ -93,6 +106,10 @@ class Entry:
     numerator: str = ""
     # A denominator with one form for every numerator ("سوم" in "دو سوم").
     invariant: bool = False
+    # The cardinal word that a denominator ends in when its last word takes
+    # a suffix: eu "hamarren" is the cardinal "hamar" with -(r)en, so
+    # "hogeita hamarren" is the denominator 30.
+    cardinal: str = ""
     # A denominator that also names one part alone, with no count, no
     # article and no one after it, at the score of a homograph: eu
     # "laurden" is 1/4, and also starts the compound "final laurden".
@@ -111,6 +128,12 @@ class Entry:
     # A ten that takes only these units after it, past the joiner: the old
     # spelling "diez y seis" is 16, and "diez y uno" is no number.
     takes_units: frozenset[str] = frozenset()
+    # The grammatical cases the form stands in. Every word of a cardinal
+    # declines, so a ten with no nominative form takes only a unit that
+    # shares a case with it: Russian "двадцати девяти" is 29, and
+    # "без двадцати девять" is 20 and 9. A ten with a nominative form takes
+    # any unit: the animate accusative "двадцать одного" is 21.
+    case: frozenset[str] = frozenset()
     # A case form that names the parts when a count follows it: Turkish
     # "üçte bir" is one third.
     fraction_case: bool = False
@@ -293,6 +316,17 @@ class Lexicon:
     # Every form an entry lists as having a common meaning that is no
     # number, also a number written as one word ("üksteist", each other).
     ambiguous_words: frozenset[str] = frozenset()
+    # "um" in "um 14.30": a word before an hour and minutes written with a
+    # point, which then read as a time and no number.
+    clock_before: frozenset[str] = frozenset()
+    # "Uhr" in "14.30 Uhr": the same, as a word after them.
+    clock_after: frozenset[str] = frozenset()
+    # "kl" in "kl. 14.30": a clock word that is an abbreviation, so its period
+    # joins it to the digits after it. It is also a clock_before word.
+    clock_abbreviation: frozenset[str] = frozenset()
+    # Spanish: an hour and minutes with a point are a decimal unless a clock
+    # word stands beside them; elsewhere only an hour of "0" is.
+    point_decimal: bool = False
     # A word between a numerator and a denominator cardinal, as "a/b" is
     # read aloud: eu "zati" in "hiru zati lau" (3/4).
     fraction_over: frozenset[str] = frozenset()
@@ -335,6 +369,10 @@ class Lexicon:
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.
     percent_phrase_is_no_number: bool = False
+    # A plural part word that is also a plural ordinal form takes no count
+    # in digits: "3 пятых класса" is three fifth-grade classes, and a
+    # fraction in digits is written "3/5".
+    ordinal_form_part_takes_no_digits: bool = False
     # A part word after the joiner takes an article: "six and a quarter",
     # never "six and quarter" ("forty and eighth" is 40 and 8th).
     part_after_joiner_needs_article: bool = False
@@ -360,6 +398,9 @@ class Lexicon:
     # A fraction word after a scale word takes a part of it ("milioi erdi
     # bat" is 500000, "hiru milioi laurden" 750000).
     fraction_after_scale: bool = False
+    # A fraction below one, with its own count, glued to the whole number
+    # before it adds to it ("zweieinviertel" is 2.25).
+    part_glued_to_whole: bool = False
     # A fraction before "de" and a scale noun takes that part of it ("um
     # quarto de milhão" is 250000, "a quarter of a million" the same).
     fraction_of_scale: bool = False
@@ -384,24 +425,25 @@ class Lexicon:
     # language writes every noun in title case ("Größe XIV").
     roman_title_case_cue: bool = True
 
-    def of(self, word: str, role: str) -> tuple[Entry, ...]:
-        return self._by_role.get((word, role), ())
+    def of(self, word: str, role: str, parts: bool = True) -> tuple[Entry, ...]:
+        """The entries of ``word`` with ``role``; with ``parts`` False, only
+        those that are no piece of a longer word."""
+        return (self._by_role if parts else self._whole_by_role).get((word, role), ())
 
     @cached_property
     def _by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
-        """The entries of each word, by role."""
-        found: dict[tuple[str, str], tuple[Entry, ...]] = {}
-        for word, entries in self.readings.items():
-            for entry in entries:
-                found[word, entry.role] = found.get((word, entry.role), ()) + (entry,)
-        return found
+        return _group_by_role(self.readings, skip_parts=False)
 
-    @property
+    @cached_property
+    def _whole_by_role(self) -> dict[tuple[str, str], tuple[Entry, ...]]:
+        return _group_by_role(self.readings, skip_parts=True)
+
+    @cached_property
     def number_words(self) -> frozenset[str]:
         """Every word that may be part of a number."""
         return frozenset(self.readings) | self.joiners | self.and_a_half
 
-    @property
+    @cached_property
     def compound_parts(self) -> frozenset[str]:
         """The words a compound number word splits into: with
         compound_parts_by_role, every word with a role inside a cardinal or
@@ -421,7 +463,16 @@ class Lexicon:
                          if (entries := self.readings.get(w)) and all(e.final for e in entries))
 
 
-# Settings and word lists that a lexicon may leave out: each is off by default.
+def _group_by_role(readings: dict[str, tuple[Entry, ...]], skip_parts: bool) -> dict[tuple[str, str], tuple[Entry, ...]]:
+    found: dict[tuple[str, str], list[Entry]] = {}
+    for word, entries in readings.items():
+        for entry in entries:
+            if not (skip_parts and entry.part):
+                found.setdefault((word, entry.role), []).append(entry)
+    return {key: tuple(entries) for key, entries in found.items()}
+
+
+# Settings and word lists that a lexicon may leave out, with the value each then has.
 DEFAULT_SETTINGS = {
     "tens_order": TensOrder.TEN_UNIT.value,
     "joiner_unit_ten": Joiner.REQUIRED.value,
@@ -440,11 +491,172 @@ DEFAULT_SETTINGS = {
     "ordinal_suffix_marks": ["", "."],
     "roman_pronoun_letters": False,
     "roman_title_case_cue": True,
+    "dotted_i": False,
+    "fraction_agreement": True,
+    "decimal_fraction": False,
+    "glued_denominators": False,
+    "glued_denominator_alone": False,
+    "glued_denominator_alone_ambiguous": False,
+    "dot_ordinal": False,
+    "point_decimal": False,
+    "half_of_scale": False,
+    "clock_half": False,
+    "compound_parts_by_role": False,
+    "bare_noun_counts_one": False,
+    "decimal_fractions": False,
+    "joiner_after_decimal_marker": Joiner.NEVER.value,
+    "joiner_before_half": Joiner.REQUIRED.value,
+    "part_after_joiner_needs_article": False,
+    "ordinal_form_part_takes_no_digits": False,
+    "joiner_thousand_one_only": False,
+    "joiner_thousand_hundreds": False,
+    "percent_phrase_is_no_number": False,
+    "article_after_noun": False,
+    "fraction_after_scale": False,
+    "part_glued_to_whole": False,
+    "fraction_of_scale": False,
+    "inverted_tens": None,
+    "inflection_position": "every",
+    "native_digits": None,
+    "fold_marks": False,
+    "kept_marks": "",
+    "letter_folds": {},
+    "word_chars": "",
+    "bidi_controls": False,
+    "clitic_min_rest": 1,
 }
-DEFAULT_WORDS = {"and_a_half": [], "period_ordinal_before": [], "article_needs_noun": [], "partitive": [],
-                 "part_noun": [], "percent_phrase": [],
-                 "negative_particle": [], "noun_after_count": [],
-                 "number_noun": [], "number_name": [], "percent_before": []}
+DEFAULT_WORDS = {
+    "and_a_half": [],
+    "period_ordinal_before": [],
+    "article_needs_noun": [],
+    "partitive": [],
+    "part_noun": [],
+    "percent_phrase": [],
+    "negative_particle": [],
+    "noun_after_count": [],
+    "number_noun": [],
+    "number_name": [],
+    "percent_before": [],
+    "digit_suffix_mark": [],
+    "date_month": [],
+    "clock_before": [],
+    "clock_abbreviation": [],
+    "clock_after": [],
+    "ordinal_particle": [],
+    "fraction_over": [],
+    "word_apostrophe": [],
+    "count_of": [],
+    "one_after_noun": [],
+    "vague_clitic": [],
+    "ordinal_article": [],
+    "roman_series_noun": [],
+    "roman_title": [],
+    "roman_word": [],
+    "roman_lower_word": [],
+    "ordinal_suffix_mark": [],
+    "joiner_prefix": [],
+    "clitic_prefix": [],
+}
+# Settings and word lists that every lexicon without "extends" must hold.
+REQUIRED_SETTINGS = frozenset((
+    "scale", "group_mark", "decimal_mark", "space_groups", "plural_scale_needs_count", "scale_noun_agrees",
+    "joiner_tens_units", "joiner_after_hundred", "joiner_between_groups", "joiner_before_round_hundred",
+    "joiner_before_last_group", "comma_between_classes", "ordinal_style"))
+REQUIRED_WORDS = frozenset((
+    "joiner", "decimal_marker", "minus", "minus_idioms", "article_one", "of", "denominator_particle",
+    "fraction_of", "class_noun", "half_unit", "abbreviation", "lone_decimal_mark", "range_cue"))
+SETTINGS = REQUIRED_SETTINGS | frozenset(DEFAULT_SETTINGS)
+WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
+
+TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
+WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
+RULESET_KEYS = frozenset(("source", "rules"))
+RULE_KEYS = frozenset(("value", "radix", "text", "source"))
+FORM_KEYS = frozenset(("variants", "gender", "case", "minimum"))
+VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
+DECIMAL_KEYS = frozenset(("word", "places", "source"))
+SCIENTIFIC_KEYS = frozenset(("times", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "source"))
+ITEM_KEYS = frozenset(("value", "source"))
+INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
+NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
+
+# The keys of an entry that the loader reads, by role. Every entry holds the
+# keys that name and cite it and the keys that make its forms.
+_FORM_KEYS = frozenset(("word", "role", "source", "stems", "excluded_forms", "ambiguous_forms", "weak_forms",
+                        "ordinal", "final", "gender", "plural", "ambiguous", "part"))
+_VALUE_KEYS = _FORM_KEYS | {"value", "addend", "bound", "takes_unit", "takes_units", "case", "ordinal_unit",
+                            "numerator", "weak_alone", "invariant", "cardinal", "teens", "after_article",
+                            "weak_at_end", "joined_count", "weak_after", "weak_before", "standalone",
+                            "number_after"}
+# A denominator that names a scale word takes its value from that word.
+SCALE_OF_KEYS = _FORM_KEYS | {"scale_of"}
+ENTRY_KEYS = {
+    **dict.fromkeys(VALUE_ROLES, _VALUE_KEYS),
+    **dict.fromkeys(SCALE_ROLES, _FORM_KEYS | {"value", "rank", "count", "counted"}),
+    **dict.fromkeys(MARK_ROLES, _FORM_KEYS),
+    "half": _FORM_KEYS | {"bound"},
+    "ordinal_scale": _FORM_KEYS | {"value", "after_article"},
+    "ordinal_suffix": frozenset(("word", "role", "source", "gender")),
+    "vague_quantifier": frozenset(("word", "role", "source", "ambiguous")),
+}
+
+
+def _refuse(lang: str, where: str, found, allowed) -> None:
+    if unknown := sorted(set(found) - allowed):
+        raise ValueError(f"{lang}: unknown key {', '.join(map(repr, unknown))} in {where}")
+
+
+def _check(lang: str, data: dict) -> None:
+    """Refuse a file with an unknown format version or a key that the loader does not read."""
+    if data.get("format_version") not in READABLE_VERSIONS:
+        raise ValueError(f"{lang}: format_version {data.get('format_version')!r} is unknown; "
+                         f"this loader reads versions {', '.join(map(str, READABLE_VERSIONS))}")
+    _refuse(lang, "the lexicon", data, TOP_KEYS)
+    if "writer" in data:
+        if data["format_version"] < WRITER_VERSION:
+            raise ValueError(f"{lang}: a writer block needs format_version {WRITER_VERSION}")
+        _check_writer(lang, data["writer"])
+    for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
+        _refuse(lang, section, data.get(section, ()), allowed)
+        for name, item in data.get(section, {}).items():
+            _refuse(lang, f"{section} {name!r}", item, ITEM_KEYS)
+    for name, item in data.get("inflection", {}).items():
+        _refuse(lang, f"inflection {name!r}", item, INFLECTION_KEYS)
+    if native := data.get("settings", {}).get("native_digits"):
+        _refuse(lang, "setting 'native_digits'", native["value"], NATIVE_DIGITS_KEYS)
+    for spec in data.get("entries", ()):
+        role = spec["role"]
+        allowed = SCALE_OF_KEYS if role == "denominator" and "scale_of" in spec else ENTRY_KEYS.get(role)
+        if allowed and not spec.keys() <= allowed:
+            _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
+
+
+def _check_writer(lang: str, writer: dict) -> None:
+    """Refuse a key of the writer block that the writer does not read, and a rule set or form that is missing."""
+    _refuse(lang, "the writer block", writer, WRITER_KEYS)
+    for key in ("source", "rulesets", "forms", "decimal"):
+        if key not in writer:
+            raise ValueError(f"{lang}: the writer block has no {key!r}")
+    for name, ruleset in writer["rulesets"].items():
+        _refuse(lang, f"rule set {name!r}", ruleset, RULESET_KEYS)
+        for rule in ruleset["rules"]:
+            _refuse(lang, f"a rule of {name!r}", rule, RULE_KEYS)
+            value = rule["value"]
+            if value != "-x" and not (value.isascii() and value.isdigit() and (value == "0" or value[0] != "0")):
+                raise ValueError(f"{lang}: the value {value!r} of a rule of {name!r} is not '-x' or a whole number "
+                                 "with no leading zero")
+    for name, form in writer["forms"].items():
+        _refuse(lang, f"form {name!r}", form, FORM_KEYS)
+        lists = [form["variants"], *form.get("gender", {}).values(), *form.get("case", {}).values()]
+        for variants in lists:
+            for variant in variants:
+                _refuse(lang, f"a variant of form {name!r}", variant, VARIANT_KEYS)
+                if variant["ruleset"] not in writer["rulesets"]:
+                    raise ValueError(f"{lang}: form {name!r} names the unknown rule set {variant['ruleset']!r}")
+    _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
+    _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
+    _refuse(lang, "fraction", writer.get("fraction", {}), FRACTION_KEYS)
 
 
 def _read(lang: str) -> dict:
@@ -452,15 +664,33 @@ def _read(lang: str) -> dict:
     if not path.is_file():
         raise UnsupportedLanguageError(f"no lexicon for language {lang!r}")
     data = json.loads(path.read_text(encoding="utf-8"))
+    _check(lang, data)
     if "extends" not in data:
         return data
     base = _read(data["extends"])
     entries = {(e["word"], e["role"]): e for e in base.get("entries", [])}
     entries.update({(e["word"], e["role"]): e for e in data.get("entries", [])})
-    return {"settings": {**base["settings"], **data.get("settings", {})},
-            "words": {**base["words"], **data.get("words", {})},
-            "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
-            "entries": list(entries.values())}
+    merged = {"format_version": max(data["format_version"], base["format_version"]),
+              "settings": {**base["settings"], **data.get("settings", {})},
+              "words": {**base["words"], **data.get("words", {})},
+              "inflection": {**base.get("inflection", {}), **data.get("inflection", {})},
+              "entries": list(entries.values())}
+    if writer := {**base.get("writer", {}), **data.get("writer", {})}:
+        merged["writer"] = writer
+    return merged
+
+
+def writer_block(lang: str) -> dict | None:
+    """The ``writer`` block of the lexicon ``lang`` names, or None when it has none."""
+    return _read(lang).get("writer")
+
+
+@cache
+def revision(lang: str) -> str:
+    """The sha256 of the canonical bytes of the lexicon ``lang`` names, with
+    its base merged in: sorted keys, no spaces, UTF-8."""
+    canonical = json.dumps(_read(lang), sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def _forms(spec: dict, inflection: dict, suffix_ends: bool) -> list[tuple[str, bool, bool, bool]]:
@@ -502,7 +732,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
     inflection = data.get("inflection", {})
-    suffix_ends = settings.get("inflection_position", "every") == "last"
+    suffix_ends = settings["inflection_position"] == "last"
 
     ambiguous_words: set[str] = set()
     vague_quantifiers: dict[tuple[str, ...], bool] = {}
@@ -536,8 +766,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
             put(spec, Entry(role, spec["value"], addend=spec.get("addend", False),
                             bound=spec.get("bound", False), takes_unit=spec.get("takes_unit", False),
                             takes_units=frozenset(spec.get("takes_units", ())),
+                            case=frozenset(spec.get("case", ())),
                             ordinal_unit=spec.get("ordinal_unit", False), numerator=spec.get("numerator", ""),
                             weak_alone=spec.get("weak_alone", False), invariant=spec.get("invariant", False),
+                            cardinal=spec.get("cardinal", ""),
                             teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False), joined_count=spec.get("joined_count", False),
@@ -599,7 +831,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         period_ordinals=settings["period_ordinals"],
         period_ordinal_lowercase=settings["period_ordinal_lowercase"],
         period_ordinal_free_digits=settings["period_ordinal_free_digits"],
-        ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]) | frozenset(words.get("ordinal_suffix_mark", ())),
+        ordinal_suffix_marks=frozenset(settings["ordinal_suffix_marks"]) | frozenset(words["ordinal_suffix_mark"]),
         readings={w: tuple(e) for w, e in readings.items()},
         joiners=frozenset(words["joiner"]),
         decimal_markers=frozenset(words["decimal_marker"]),
@@ -626,48 +858,54 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         part_nouns=frozenset(words["part_noun"]),
         nouns_after_count=frozenset(words["noun_after_count"]),
         ordinal_suffixes=suffixes,
-        dotted_i=settings.get("dotted_i", False),
-        fraction_agreement=settings.get("fraction_agreement", True),
-        decimal_fraction=settings.get("decimal_fraction", False),
-        glued_denominators=settings.get("glued_denominators", False),
-        glued_denominator_alone=settings.get("glued_denominator_alone", False),
-        glued_denominator_alone_ambiguous=settings.get("glued_denominator_alone_ambiguous", False),
-        dot_ordinal=settings.get("dot_ordinal", False),
-        digit_suffix_marks=frozenset(words.get("digit_suffix_mark", [])),
-        date_months=frozenset(w.casefold() for w in words.get("date_month", [])),
+        dotted_i=settings["dotted_i"],
+        fraction_agreement=settings["fraction_agreement"],
+        decimal_fraction=settings["decimal_fraction"],
+        glued_denominators=settings["glued_denominators"],
+        glued_denominator_alone=settings["glued_denominator_alone"],
+        glued_denominator_alone_ambiguous=settings["glued_denominator_alone_ambiguous"],
+        dot_ordinal=settings["dot_ordinal"],
+        digit_suffix_marks=frozenset(words["digit_suffix_mark"]),
+        date_months=frozenset(w.casefold() for w in words["date_month"]),
+        clock_before=frozenset(w.casefold() for w in (*words["clock_before"], *words["clock_abbreviation"])),
+        clock_abbreviation=frozenset(w.casefold() for w in words["clock_abbreviation"]),
+        point_decimal=settings["point_decimal"],
+        clock_after=frozenset(w.casefold() for w in words["clock_after"]),
         ambiguous_words=frozenset(ambiguous_words),
-        ordinal_particles=frozenset(words.get("ordinal_particle", ())),
-        fraction_over=frozenset(words.get("fraction_over", ())),
+        ordinal_particles=frozenset(words["ordinal_particle"]),
+        fraction_over=frozenset(words["fraction_over"]),
         bound_ordinal_values=frozenset(e.value for es in readings.values() for e in es
                                        if e.role == "ordinal" and e.bound),
-        half_of_scale=settings.get("half_of_scale", False),
-        clock_half=settings.get("clock_half", False),
+        half_of_scale=settings["half_of_scale"],
+        clock_half=settings["clock_half"],
         script=script,
-        inverted_tens=Joiner(settings["inverted_tens"]) if settings.get("inverted_tens") else None,
-        compound_parts_by_role=settings.get("compound_parts_by_role", False),
-        bare_noun_counts_one=settings.get("bare_noun_counts_one", False),
-        decimal_fractions=settings.get("decimal_fractions", False),
-        joiner_after_decimal_marker=Joiner(settings.get("joiner_after_decimal_marker", Joiner.NEVER)),
-        word_apostrophes=frozenset(words.get("word_apostrophe", ())),
-        joiner_before_half=Joiner(settings.get("joiner_before_half", Joiner.REQUIRED)),
-        part_after_joiner_needs_article=settings.get("part_after_joiner_needs_article", False),
-        joiner_thousand_one_only=settings.get("joiner_thousand_one_only", False),
-        joiner_thousand_hundreds=settings.get("joiner_thousand_hundreds", False),
-        percent_phrase_is_no_number=settings.get("percent_phrase_is_no_number", False),
+        inverted_tens=Joiner(settings["inverted_tens"]) if settings["inverted_tens"] else None,
+        compound_parts_by_role=settings["compound_parts_by_role"],
+        bare_noun_counts_one=settings["bare_noun_counts_one"],
+        decimal_fractions=settings["decimal_fractions"],
+        joiner_after_decimal_marker=Joiner(settings["joiner_after_decimal_marker"]),
+        word_apostrophes=frozenset(words["word_apostrophe"]),
+        joiner_before_half=Joiner(settings["joiner_before_half"]),
+        part_after_joiner_needs_article=settings["part_after_joiner_needs_article"],
+        ordinal_form_part_takes_no_digits=settings["ordinal_form_part_takes_no_digits"],
+        joiner_thousand_one_only=settings["joiner_thousand_one_only"],
+        joiner_thousand_hundreds=settings["joiner_thousand_hundreds"],
+        percent_phrase_is_no_number=settings["percent_phrase_is_no_number"],
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
-        count_of=frozenset(words.get("count_of", ())),
-        one_after_noun=frozenset(words.get("one_after_noun", ())),
+        count_of=frozenset(words["count_of"]),
+        one_after_noun=frozenset(words["one_after_noun"]),
         vague_quantifiers=vague_quantifiers,
-        vague_clitics=frozenset(fold(w) for w in words.get("vague_clitic", ())),
-        ordinal_articles=frozenset(words.get("ordinal_article", ())),
-        article_after_noun=settings.get("article_after_noun", False),
-        fraction_after_scale=settings.get("fraction_after_scale", False),
-        fraction_of_scale=settings.get("fraction_of_scale", False),
+        vague_clitics=frozenset(fold(w) for w in words["vague_clitic"]),
+        ordinal_articles=frozenset(words["ordinal_article"]),
+        article_after_noun=settings["article_after_noun"],
+        fraction_after_scale=settings["fraction_after_scale"],
+        part_glued_to_whole=settings["part_glued_to_whole"],
+        fraction_of_scale=settings["fraction_of_scale"],
         compounds=frozenset(w for w in readings if COMPOUND_MARK.search(w)),
-        roman_series_nouns=frozenset(words.get("roman_series_noun", ())),
-        roman_titles=frozenset(words.get("roman_title", ())),
-        roman_words=frozenset(words.get("roman_word", ())),
-        roman_lower_words=frozenset(words.get("roman_lower_word", ())),
+        roman_series_nouns=frozenset(words["roman_series_noun"]),
+        roman_titles=frozenset(words["roman_title"]),
+        roman_words=frozenset(words["roman_word"]),
+        roman_lower_words=frozenset(words["roman_lower_word"]),
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
     )
@@ -675,19 +913,18 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
 
 def _script(settings: dict, words: dict) -> Script:
     """The script settings of a lexicon; a language that sets none reads as pt and en do."""
-    native = settings.get("native_digits")
+    native = settings["native_digits"]
     digits: list[tuple[str, str]] = []
     if native:
         for run in native["digits"]:
             digits += [(char, str(n)) for n, char in enumerate(run)]
         digits += [(native["decimal_mark"], settings["decimal_mark"]), (native["group_mark"], settings["group_mark"])]
-    script = Script(fold_marks=settings.get("fold_marks", False),
-                    kept_marks=settings.get("kept_marks", ""),
-                    letter_folds=tuple(settings.get("letter_folds", {}).items()),
-                    word_chars=settings.get("word_chars", ""),
-                    bidi_controls=settings.get("bidi_controls", False),
+    script = Script(fold_marks=settings["fold_marks"],
+                    kept_marks=settings["kept_marks"],
+                    letter_folds=tuple(settings["letter_folds"].items()),
+                    word_chars=settings["word_chars"],
+                    bidi_controls=settings["bidi_controls"],
                     native_digits=tuple(digits),
-                    clitic_min_rest=settings.get("clitic_min_rest", 1))
-    return Script(**{**script.__dict__,
-                     "joiner_prefixes": tuple(script.fold(p) for p in words.get("joiner_prefix", ())),
-                     "clitic_prefixes": tuple(script.fold(p) for p in words.get("clitic_prefix", ()))})
+                    clitic_min_rest=settings["clitic_min_rest"])
+    return replace(script, joiner_prefixes=tuple(script.fold(p) for p in words["joiner_prefix"]),
+                   clitic_prefixes=tuple(script.fold(p) for p in words["clitic_prefix"]))

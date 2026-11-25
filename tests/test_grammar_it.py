@@ -2,6 +2,7 @@
 comment beside it; sources are in numtag/lexicon/it.json."""
 import unittest
 
+import pytest
 from helpers import read
 from numtag import tag_numbers
 
@@ -134,6 +135,16 @@ class TestMinusIdioms(unittest.TestCase):
 
     def test_a_point_before_the_first_digit_marks_decimals(self):
         self.assertEqual(read("-.5", "it"), [("-.5", "-0.5", "decimal")])
+
+
+@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.parametrize("text, expected", [
+    ('novecentonovantanove sistiliardi', [('novecentonovantanove sistiliardi', '999000000000000000000000000000000000000000', C)]),
+])
+def test_it_sistiliardi_is_10_to_the_39(text, expected):
+    # sistiliardo is 10^39; 999 x 10^39
+    assert read(text, "it") == expected
+
 
 
 if __name__ == "__main__":

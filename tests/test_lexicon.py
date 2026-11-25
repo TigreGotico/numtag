@@ -15,15 +15,15 @@ SLAVIC = ("ru", "uk", "bg", "pl", "cs", "sk", "sl", "hr")
 
 ROOT = Path(__file__).parent.parent
 LEXICONS = sorted((ROOT / "numtag" / "lexicon").glob("*.json"))
-#: each language's word for a million
+#: each language's word for a million (hi has none, and lists lākh, 10^5)
 MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "million", "nl": "miljoen",
            "fy": "miljoen", "da": "million", "sv": "miljon", "nb": "million", "nn": "million",
            "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
            "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun",
            "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
-           "sl": "milijon", "hr": "milijun", "sr": "milion", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
+           "sl": "milijon", "hr": "milijun", "hi": "लाख", "sq": "milion", "sr": "milion", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
            "fr-FR": "million", "id": "juta", "ms": "juta", "it": "milione", "mt": "miljun", "ro": "milion",
-           "es": "millón", "gl": "millón", "ca": "milió", "ast": "millón", "an": "millón",
+           "eo": "miliono", "es": "millón", "gl": "millón", "ca": "milió", "ast": "millón", "an": "millón",
            "oc": "milion", "mwl": "milhon", "lt": "milijonas"}
 
 
