@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.29.1a1](https://github.com/TigreGotico/numtag/tree/0.29.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.29.0a2...0.29.1a1)
+
+**Merged pull requests:**
+
+- fix: fr writes "cent et unième" and "mille et unième" [\#328](https://github.com/TigreGotico/numtag/pull/328) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.29.0a2](https://github.com/TigreGotico/numtag/tree/0.29.0a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.29.0a1...0.29.0a2)
@@ -609,10 +617,6 @@
 ## [0.14.4a1](https://github.com/TigreGotico/numtag/tree/0.14.4a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.3a1...0.14.4a1)
-
-**Merged pull requests:**
-
-- fix\(tr\): a vague word before a scale word makes no number [\#90](https://github.com/TigreGotico/numtag/pull/90) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.3a1](https://github.com/TigreGotico/numtag/tree/0.14.3a1) (2026-11-17)
 
