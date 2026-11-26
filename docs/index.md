@@ -38,6 +38,7 @@ numtag reads numbers, and it writes the value of a number as words in the langua
 | [languages/germanic.md](languages/germanic.md) | German, Dutch, West Frisian, Danish, Swedish, Norwegian Bokmål and Nynorsk |
 | [languages/uralic-turkic.md](languages/uralic-turkic.md) | Finnish, Estonian, Hungarian, Turkish and Azerbaijani |
 | [languages/baltic.md](languages/baltic.md) | Lithuanian |
+| [languages/bn.md](languages/bn.md) | Bengali |
 | [languages/slavic.md](languages/slavic.md) | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian |
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |

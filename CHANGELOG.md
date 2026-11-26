@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.41.0a1](https://github.com/TigreGotico/numtag/tree/0.41.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.40.0a1...0.41.0a1)
+
+**Merged pull requests:**
+
+- feat: Danish writer [\#355](https://github.com/TigreGotico/numtag/pull/355) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.40.0a1](https://github.com/TigreGotico/numtag/tree/0.40.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.39.0a1...0.40.0a1)
+
+## [0.39.0a1](https://github.com/TigreGotico/numtag/tree/0.39.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.1a1...0.39.0a1)
+
+**Merged pull requests:**
+
+- feat: Bengali reader [\#372](https://github.com/TigreGotico/numtag/pull/372) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Norwegian Nynorsk writer; nb compounds take gender [\#354](https://github.com/TigreGotico/numtag/pull/354) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.38.1a1](https://github.com/TigreGotico/numtag/tree/0.38.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.0a1...0.38.1a1)
+
+**Merged pull requests:**
+
+- fix: allow-list labels for it spacing, en and+hyphen, ro DOOM [\#353](https://github.com/TigreGotico/numtag/pull/353) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.38.0a1](https://github.com/TigreGotico/numtag/tree/0.38.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.1a2...0.38.0a1)
@@ -610,7 +639,6 @@
 - fix\(de\): "halb" before an hour is the half hour, no number [\#183](https://github.com/TigreGotico/numtag/pull/183) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(it,ca,oc\): a cardinal before a Latin unit ordinal makes no compound [\#182](https://github.com/TigreGotico/numtag/pull/182) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(fr, it, ro\): read "moins" after an hour, "quanto meno" and a lone point [\#175](https://github.com/TigreGotico/numtag/pull/175) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- perf: read each position once and cache the lookup forms [\#153](https://github.com/TigreGotico/numtag/pull/153) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
@@ -619,10 +647,6 @@
 ## [0.15.5a1](https://github.com/TigreGotico/numtag/tree/0.15.5a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.5a1)
-
-**Merged pull requests:**
-
-- fix\(gl\): read "mil e" and the next group as one number [\#154](https://github.com/TigreGotico/numtag/pull/154) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.4a3](https://github.com/TigreGotico/numtag/tree/0.15.4a3) (2026-11-18)
 
