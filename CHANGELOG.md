@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.26.0a1](https://github.com/TigreGotico/numtag/tree/0.26.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.2a1...0.26.0a1)
+
+**Merged pull requests:**
+
+- feat: pt-BR writer [\#310](https://github.com/TigreGotico/numtag/pull/310) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.25.2a1](https://github.com/TigreGotico/numtag/tree/0.25.2a1) (2026-11-25)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.1a1...0.25.2a1)
@@ -630,10 +638,6 @@
 ## [0.12.13a1](https://github.com/TigreGotico/numtag/tree/0.12.13a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.12.12a1...0.12.13a1)
-
-**Merged pull requests:**
-
-- fix: a space group before a point decimal reads as one SI number [\#81](https://github.com/TigreGotico/numtag/pull/81) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.12.12a1](https://github.com/TigreGotico/numtag/tree/0.12.12a1) (2026-11-17)
 
