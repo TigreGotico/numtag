@@ -1,12 +1,20 @@
 # Changelog
 
+## [0.32.1a1](https://github.com/TigreGotico/numtag/tree/0.32.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.0a1...0.32.1a1)
+
+**Merged pull requests:**
+
+- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.32.0a1](https://github.com/TigreGotico/numtag/tree/0.32.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.31.0a1...0.32.0a1)
 
 **Merged pull requests:**
 
-- fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.31.0a1](https://github.com/TigreGotico/numtag/tree/0.31.0a1) (2026-11-26)
@@ -578,10 +586,6 @@
 ## [0.15.0a1](https://github.com/TigreGotico/numtag/tree/0.15.0a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.10a1...0.15.0a1)
-
-**Merged pull requests:**
-
-- feat: tag vague quantities in en and pt [\#110](https://github.com/TigreGotico/numtag/pull/110) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.10a1](https://github.com/TigreGotico/numtag/tree/0.14.10a1) (2026-11-17)
 
