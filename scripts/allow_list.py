@@ -50,6 +50,34 @@ def category_es(row, got):
         if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
         if int(top) >= int(bottom) and " y " in out: return "es_improper"
     return None
+CLDR_IT = "CLDR 38 RBNF it, %spellout-ordinal-masculine: an ordinal is one word, the cardinal and \"-esimo\" (1001 \"milleunesimo\", 110 \"centodecimo\")."
+TRECCANI_FRAZIONARI = "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\": the numerator is a cardinal, \"un\" before the denominator, and the denominator agrees with it."
+SRC.update({
+ "it_short": "numtag/lexicon/it.json, the setting scale: Italian counts in the long scale only (CLDR 38 RBNF it: \"1000000000000: un bilione\"), so a call for the short scale reads the long one.",
+ "it_apocope": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound before a noun «uno» \"può essere apocopato ... ottantun votanti ... quarantun anni\"; gender=masculine reads the form before a noun, as CLDR 38 RBNF it %spellout-cardinal-masculine.",
+ "it_ordinal": CLDR_IT,
+ "it_mille": "CLDR 38 RBNF it, %spellout-numbering: \"1000: mille\"; \"mila\" is the plural after a count (\"2000: ←←mila\"), so -1000 is \"meno mille\".",
+ "it_count": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: «uno» in a compound \"può essere apocopato\". Both forms are correct, and the writer prints the full form, \"ventuno\".",
+ "it_fraction": TRECCANI_FRAZIONARI,
+ "it_big": "numtag/lexicon/it.json, the scale_noun entries: milione 10^6, miliardo 10^9, bilione 10^12, biliardo 10^15, trilione 10^18, quadrilione 10^24 (CLDR 38 RBNF it names up to biliardo). The lexicon has no \"triliardo\" or \"quintilione\", so 10^21 reads \"mille trilioni\" and 10^30 reads the exponent form.",
+})
+def category_it(row, got):
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if out == "NotImplementedError": return "onp_error"
+    if re.search(r"triliard|quadriliard|quintilion", out): return "it_big"
+    if out == "meno mila" and mine == "meno mille": return "it_mille"
+    if row["fn"] == "fraction":
+        top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
+        if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "it_fraction"
+    if kw.get("scale") == "short" and out != mine: return "it_short"
+    if kw.get("gender") == "masculine" and re.sub(r"un\b", "uno", mine) == out: return "it_apocope"
+    if row["fn"] == "ordinal" and " " not in mine.removeprefix("meno ") and " " in out.removeprefix("meno "): return "it_ordinal"
+    if mine.replace("uno", "un") == out.replace("uno", "un"): return "it_count"
+    return None
 def category_digits(row, got):
     return "digits_number" if row.get("kw", {}).get("digits") == "number" else None
 def category(row, got):
@@ -71,7 +99,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }

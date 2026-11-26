@@ -13,6 +13,12 @@ CLDR = "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)"
 CRUSCA_108 = ("Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final "
               "vowel of «cento» stays before «otto» and «uno»")
 ONP = "ovos-number-parser 0.31.5a2 numbers_it.py"
+CRUSCA_1077 = ("Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri "
+               "in lettere»")
+TRECCANI_FRAZIONARI = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un "
+                       "aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\"")
+CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer "
+                "prints the full form, as " + ONP + " does: \"ventunomila\", \"ventuno milioni\"")
 
 UNITS = ("zero uno due tre quattro cinque sei sette otto nove dieci undici dodici tredici quattordici quindici "
          "sedici diciassette diciotto diciannove").split()
@@ -55,7 +61,7 @@ def cardinal(name, one, three="tré"):
         rules += [R(1000, "mille[→→]"), R(2000, "←%count-mila←mila[→→]")]
     for exponent, singular, plural in SCALES:
         rules += [R(10 ** exponent, f"un {singular}[ →→]"),
-                  R(2 * 10 ** exponent, f"←%cardinal-m← {plural}[ →→]")]
+                  R(2 * 10 ** exponent, f"←%numbering← {plural}[ →→]", CRUSCA_COUNT)]
     return [(name, rules)] + sets
 
 
@@ -70,7 +76,7 @@ def ordinal(name, e):
               R(1000, f"mill→%{name}-mille→"), R(2000, f"←%count-mila←mil→%{name}-mila→")]
     for exponent, singular, _ in SCALES:
         stem, joined = singular[:-1], f"{name}-mille" if singular.endswith("e") else f"{name}-o"
-        rules += [R(10 ** exponent, f"{stem}→%{joined}→"), R(2 * 10 ** exponent, f"←%cardinal-m←{stem}→%{joined}→")]
+        rules += [R(10 ** exponent, f"{stem}→%{joined}→"), R(2 * 10 ** exponent, f"←%count-mila←{stem}→%{joined}→")]
     sets = [(name, rules)]
     for v in "iao":
         tails = [R(0, esim("esimo"))] + [R(n, (v if n != 1 and (n != 8 or v == "o") else "") + esim(w)) for n, w in ORD_TAIL.items()]
@@ -85,13 +91,16 @@ def ordinal(name, e):
     return sets
 
 
-sets = (cardinal("numbering", "uno") + cardinal("cardinal-m", "un") + cardinal("cardinal-f", "una")
-        + cardinal("count-mila", "un", three="tre") + ordinal("ordinal-m", "o") + ordinal("ordinal-f", "a"))
+sets = (cardinal("numbering", "uno") + cardinal("cardinal-m", "un") + [("cardinal-f", [R("-x", "meno →→"), R(0, "zero"), R(1, "una"), R(2, "=%numbering=")])]
+        + cardinal("count-mila", "uno", three="tre") + ordinal("ordinal-m", "o") + ordinal("ordinal-f", "a"))
 SOURCES = {
     "numbering": CLDR + ", %spellout-numbering, with the scale words of this lexicon. " + CRUSCA_108,
     "cardinal-m": CLDR + ", %spellout-cardinal-masculine: \"un\" and \"ventun\" before a noun",
-    "cardinal-f": CLDR + ", %spellout-cardinal-feminine: \"una\" and \"ventuna\"",
-    "count-mila": CLDR + ", %%msc-no-final: the count before \"mila\" ends in \"tre\" with no accent (\"ventitremila\")",
+    "cardinal-f": CLDR + ", %spellout-cardinal-feminine, with \"una\" for a bare 1 only. " + CRUSCA_1077
+                  + ": \"In passato era normale femminilizzare anche i composti di uno, mentre oggi questo è meno "
+                  "comune\", so 21 is \"ventuno\"",
+    "count-mila": CLDR + ", %%msc-no-final: the count before \"mila\" ends in \"tre\" with no accent (\"ventitremila\"). "
+                  + CRUSCA_COUNT,
     "ordinal-m": CLDR + ", %spellout-ordinal-masculine, with the count of thousands fused as " + ONP
                  + " writes it (\"duemillesimo\"), and \"centoottesimo\" as it writes it, after the cardinal \"centootto\". "
                  + CRUSCA_108,
@@ -119,7 +128,6 @@ block = {
     "fraction": {"mixed": False, "limit": 10, "single": "un {denominator}", "plural": {"o": "i", "a": "e"},
                  "named": dict(zip(map(str, range(2, 11)), ["mezzo"] + ORDINALS[3:])),
                  "denominator": "{cardinal}esimi", "ruleset": "ordinal-m", "numerator": "cardinal-m",
-                 "source": "Treccani, «frazione»: the numerator is a cardinal and the denominator an ordinal, "
-                           "\"tre quarti\", \"un mezzo\". " + ONP + " writes \"un terzo\" and \"due terzi\"."},
+                 "source": TRECCANI_FRAZIONARI + ". " + ONP + " writes \"un terzo\" and \"due terzi\"."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)

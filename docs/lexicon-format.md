@@ -300,7 +300,7 @@ The `fraction` object holds `limit`, `named`, `denominator`, `single` and `sourc
 
 With `"mixed": false` a fraction reads no whole part. It reads as the cardinal of the numerator and the word of the denominator. That word is the `named` word of the denominator, or the ordinal of the denominator when the ordinal is one word (20, 300, 1000), and it takes the `plural` ending after a numerator other than 1. Every other denominator reads as the `denominator` text. A denominator of 1 raises `ValueError`, because the form has no word for it. So 2/3 reads "dois terços", 3/20 "três vigésimos", 5/11 "cinco onze avos" and 1/10000 "um dez mil avos".
 
-Two optional keys change the `"mixed": false` reading. `ruleset` names a rule set that spells each denominator that `named` does not hold, with the `plural` ending after a numerator other than 1: in es, 3/56 reads "tres cincuentaiseisavos". `numerator` names the rule set of the numerator, in place of the cardinal: in es, `cardinal-m` reads 21/50 as "veintiún cincuentavos".
+Two optional keys change the `"mixed": false` reading. `ruleset` names a rule set that spells each denominator that `named` does not hold, with the `plural` ending after a numerator other than 1: in es, 3/56 reads "tres cincuentaiseisavos". `numerator` names the rule set of the numerator, in place of the cardinal: in es, `cardinal-m` reads 21/50 as "veintiún cincuentavos". `plural` is a suffix ("s") or a map from a word ending to its plural ending: in it, `{"o": "i", "a": "e"}` reads 2/3 as "due terzi".
 
 ```json
 {"fraction": {"limit": 20, "named": {"2": "setengah"}, "denominator": "per{cardinal}", "single": "se{denominator}", "source": "..."}}
