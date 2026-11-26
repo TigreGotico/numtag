@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.27.0a1](https://github.com/TigreGotico/numtag/tree/0.27.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.26.0a3...0.27.0a1)
+
+**Merged pull requests:**
+
+- feat: Spanish writer [\#316](https://github.com/TigreGotico/numtag/pull/316) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.26.0a3](https://github.com/TigreGotico/numtag/tree/0.26.0a3) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.26.0a2...0.26.0a3)
@@ -577,10 +585,6 @@
 ## [0.14.2a1](https://github.com/TigreGotico/numtag/tree/0.14.2a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.1a1...0.14.2a1)
-
-**Merged pull requests:**
-
-- fix\(de\): a count glued to a part word names one denominator [\#84](https://github.com/TigreGotico/numtag/pull/84) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.1a1](https://github.com/TigreGotico/numtag/tree/0.14.1a1) (2026-11-17)
 
