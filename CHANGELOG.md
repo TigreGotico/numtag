@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.28.0a1](https://github.com/TigreGotico/numtag/tree/0.28.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.27.0a1...0.28.0a1)
+
+**Merged pull requests:**
+
+- feat: Italian writer [\#319](https://github.com/TigreGotico/numtag/pull/319) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.27.0a1](https://github.com/TigreGotico/numtag/tree/0.27.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.26.0a3...0.27.0a1)
@@ -601,10 +609,6 @@
 ## [0.13.6a1](https://github.com/TigreGotico/numtag/tree/0.13.6a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.5a1...0.13.6a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): a word of vague quantity before a scale word makes no number [\#85](https://github.com/TigreGotico/numtag/pull/85) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.13.5a1](https://github.com/TigreGotico/numtag/tree/0.13.5a1) (2026-11-17)
 
