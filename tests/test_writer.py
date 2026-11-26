@@ -140,8 +140,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 136188)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 147537)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -336,8 +336,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -473,6 +473,29 @@ class TestGalician(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "1/16", "2/29", "7/345", "3/1000")],
                          ["un medio", "tres medios", "dous terzos", "un dezaseisavo", "dous vinte e noveavos",
                           "sete trescentos corenta e cincoavos", "tres milésimos"])
+class TestDutch(unittest.TestCase):
+    """Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "nl", **kw)[0].text
+
+    def test_one_word_up_to_duizend_then_a_space(self):
+        self.assertEqual([self.say(n) for n in ("21", "43", "101", "6028", "271850", "3000000", "5200000000")],
+                         ["eenentwintig", "drieënveertig", "honderdeen", "zesduizend achtentwintig",
+                          "tweehonderdeenenzeventigduizend achthonderdvijftig", "drie miljoen",
+                          "vijf miljard tweehonderd miljoen"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "3", "20", "100", "102", "135", "3220", "4000000", "4400000")],
+                         ["eerste", "derde", "twintigste", "honderdste", "honderdentweede", "honderdvijfendertigste",
+                          "drieduizend tweehonderdtwintigste", "vier miljoenste", "vier miljoen vierhonderdduizendste"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("2/3", "4/13", "47/10000", "15/827000")],
+                         ["twee derde", "vier dertiende", "zevenenveertig tienduizendste",
+                          "vijftien achthonderdzevenentwintigduizendste"])
+
+
 class TestCatalan(unittest.TestCase):
     """IEC, GIEC §17.2 and OIEC §4.4.2.2."""
 
