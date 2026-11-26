@@ -54,6 +54,8 @@ def category_es(row, got):
 CLDR_IT = "CLDR RBNF it (unicode-rbnf 2.5.1), %spellout-ordinal-masculine: an ordinal is one word, the cardinal and \"-esimo\" (1001 \"milleunesimo\", 110 \"centodecimo\")."
 TRECCANI_FRAZIONARI = "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\": the numerator is a cardinal, \"un\" before the denominator, and the denominator agrees with it."
 SRC.update({
+ "it_joined": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali» (Papers/Languages/Romance/Italian/treccani_enciclopedia_italiano_numerali.html): \"di milione , miliardo , bilione , ecc., che hanno un regolare plurale e che, per indicare una quantità determinata, devono essere necessariamente preceduti da un altro cardinale\", with \"cinquanta milioni\" and \"quattro miliardi di persone\": the scale word is a noun and stands as a word of its own; ovos-number-parser joins it to the count (\"seicentoventottomilioni\").",
+ "it_one_plural": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali» (Papers/Languages/Romance/Italian/treccani_enciclopedia_italiano_numerali.html): \"di milione , miliardo , bilione , ecc., che hanno un regolare plurale\": a count of one takes the singular (\"un miliardo\"); ovos-number-parser writes the plural (\"unomiliardi\", \"bilioni\").",
  "it_short": "numtag/lexicon/it.json, the setting scale: Italian counts in the long scale only (CLDR RBNF it (unicode-rbnf 2.5.1): \"1000000000000: un bilione\"), so a call for the short scale reads the long one.",
  "it_apocope": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound before a noun «uno» \"può essere apocopato ... ottantun votanti ... quarantun anni\"; gender=masculine reads the form before a noun, as CLDR RBNF it (unicode-rbnf 2.5.1) %spellout-cardinal-masculine.",
  "it_ordinal": CLDR_IT,
@@ -76,7 +78,14 @@ def category_it(row, got):
         top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
         if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
         return "it_mezzi" if bottom == "2" and top not in ("0", "1") else "it_fraction"
-    if kw.get("scale") == "short" and out != mine: return "it_short"
+    if kw.get("scale") == "short" and out != mine:  # the long-scale reason of the row, else spacing, else the scale
+        long = category_it({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        if long: return long
+        flat = lambda t: t.replace(" ", "").replace("uno", "un").replace("tré", "tre")
+        if flat(out) == flat(mine): return "it_joined"
+        one = lambda t: re.sub(r"(milion|miliard|bilion|biliard|trilion)[ieo]", r"\1", flat(t)).replace("unun", "un")
+        return "it_one_plural" if one(out) == one(mine) or one("un" + out) == one(mine) else "it_short"
+    if out != mine and out.replace(" ", "") == mine.replace(" ", "") and re.search(r"(milion|miliard|bilion|biliard|trilion)[ei]", mine): return "it_joined"
     if kw.get("gender") == "masculine" and re.sub(r"un\b", "uno", mine) == out: return "it_apocope"
     if row["fn"] == "ordinal" and " " not in mine.removeprefix("meno ") and " " in out.removeprefix("meno "): return "it_ordinal"
     if row["fn"] == "ordinal" and re.search(r"centesim[oa] decim[oa]$", mine) and mine.replace("esimo decimo", "odecimo").replace("esima decima", "odecima") == out: return "it_split"
@@ -95,7 +104,7 @@ SRC.update({
 })
 RO_DOOM = "DOOM 3 (2021), as quoted by dexonline (Papers/Languages/Romance/Romanian/)"
 SRC.update({
- "ro_ordinal": RO_DOOM + ": \"sutălea (al o ~) ... f. a suta/a o suta\", \"mielea (al ~/al o ~) ... f. a mia/a o mia\", \"miilea (al + num. + ~)\"; ovos-number-parser writes \"al sutălea primul\" for 101 and \"al doi miliardulea\".",
+ "ro_ordinal": RO_DOOM + ": \"sutălea (al o ~) ... f. a suta/a o suta\", \"mielea (al ~/al o ~) ... f. a mia/a o mia\", \"miilea (al + num. + ~)\", \"milioanelea (al + num. + ~) (referitor la milioane)\" (dexonline_milioanelea.html), \"milionulea (al ~/al un ~) (referitor la un milion)\" (dexonline_milionulea.html); ovos-number-parser writes \"al sutălea primul\" for 101 and \"al doi miliardulea\".",
  "ro_article": RO_DOOM + ": \"locul doi, parcela doi = al doilea/a doua\"; the article \"al\" is part of the ordinal, and ovos-number-parser drops it in the neuter.",
  "ro_zero": "numtag/lexicon/ro.json, the ro writer: an ordinal starts at 1, and no saved source gives an ordinal of 0.",
  "ro_gender": RO_DOOM + ": \"doi2 num. m., f. două\", \"!unu2 num. m., g.-d. unuia; f. una\"; the last word agrees with the gender of the call, also after a scale word (\"o mie una\", \"două milioane două\"); ovos-number-parser writes the masculine there.",
@@ -250,6 +259,7 @@ SRC.update({
  "en_one_hundredth": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal: \"100: ←%spellout-numbering← hundred→%%th→;\", so 100th reads \"one hundredth\"; ovos-number-parser writes \"hundredth\".",
  "en_fraction_scale": "SILVER: a denominator 10^n drops its count (\"seven millionths\"; CLDR RBNF en %spellout-ordinal: \"1000000: ←%spellout-numbering← million→%%th→;\" gives the ordinal \"one millionth\"); no saved example; ovos-number-parser writes \"seven one millionths\".",
 })
+SRC["en_and_last_hyphen"] = "Both rules: " + SRC["en_and_last"] + " " + SRC["en_hyphen"]
 def category_en(row, got, out=None):
     if row["fn"] == "ordinal" and row.get("kw", {}).get("scale") == "long":
         short = spell(str(row["arg"]), "en", form=SpokenForm.ORDINAL, scale="short")[0].text
@@ -267,7 +277,8 @@ def category_en(row, got, out=None):
     if flat == out.replace("-", " ") and "-" in mine: return "en_hyphen"
     theirs = out.replace("-", " ")
     if re.sub(r", (?=((twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)( \w+)?|\w+)( \w+ths?)?$)", " and ", theirs).replace(",", "") == flat \
-            and not re.search(r"hundred", flat.rsplit(" and ", 1)[-1]): return "en_and_last"
+            and not re.search(r"hundred", flat.rsplit(" and ", 1)[-1]):
+        return "en_and_last_hyphen" if "-" in mine and "-" not in out else "en_and_last"
     if "," in out:
         reason = category_en(row, {"out": mine}, out.replace(",", ""))
         return reason or ("en_no_comma" if out.replace(",", "") == mine else None)
