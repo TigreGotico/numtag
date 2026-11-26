@@ -201,14 +201,14 @@ def category_ca(row, got):
     return None
 NL_TA = "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/taaladvies-aaneenschrijven-telwoorden.html)"
 SRC.update({
- "nl_een": "Taaladvies.net, «Een of één» (Papers/Languages/Germanic/Dutch/taaladvies-een-of-een-van-de.html): \"Er komen alleen uitspraaktekens op een als het een telwoord is en het ten onrechte als lidwoord zou kunnen worden gelezen.\"; numtag writes \"een\", ovos-number-parser \"één\".",
+ "nl_one_scale": "SILVER: a round scale ordinal has no count, \"miljoenste\", as \"honderdste\" and \"duizendste\", by the pattern of \"vier miljoenste\" (Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)»); ovos-number-parser writes \"één miljoenste\" after a higher scale word.",
+ "nl_een": "Taaladvies.net, «Eén / een van de» (Papers/Languages/Germanic/Dutch/taaladvies-een-of-een-van-de.html): \"komen er bijvoorbeeld uitspraaktekens op een als men een precies aantal bedoelt: Hij heeft nog één rekening (en geen twee rekeningen) te betalen\"; numtag writes \"één\" for a 1 that is a word of its own and \"een\" inside a word; ovos-number-parser places the accent elsewhere.",
  "nl_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"nul\" to three places.",
  "nl_negative": "numtag/lexicon/nl.json, the nl writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
  "nl_range": "numtag/lexicon/nl.json, the nl writer: a number goes up to 10^24 - 1, the last scale word of this lexicon (triljard), and outside it spell() raises.",
  "nl_ordinals": "ovos-number-parser 0.31.5a2 numbers_nl.py: pronounce_number reads ordinals=True as a cardinal; numtag reads the ordinal.",
  "nl_improper": NL_TA + ": \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", so 4/3 reads \"vier derde\"; ovos-number-parser reads an improper fraction as a mixed number (\"één en één derde\").",
  "nl_half": "SILVER: numtag reads n/2 with \"halve\" (\"vier halve\"), ovos-number-parser with the ordinal \"tweede\"; no saved rule for either.",
- "nl_one_scale": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\" (Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)»); ovos-number-parser writes \"miljoenste\".",
  "nl_short": "numtag/lexicon/nl.json, the setting scale: Dutch counts in the long scale only (Onze Taal 70 (2001): \"duizend miljoen is een miljard\"), so a call for the short scale reads the long one.",
 })
 def nl_fixed(out):
@@ -234,10 +234,10 @@ def category_nl(row, got):
         sign = "min " if row["arg"].startswith("-") else ""
         word = mine.split()[-1].replace("halve", "half")
         mixed = f"{sign}{spell(str(whole), 'nl')[0].text} en {spell(str(rest), 'nl')[0].text} {word}"
-        if top > bottom and rest and fixed == mixed: return "nl_improper"
-    if re.fullmatch(r"(min )?een \w+(joen|jard)ste", mine) and fixed == mine.replace("een ", "", 1): return "nl_one_scale"
-    if fixed == mine: return "nl_decimal" if row["fn"] == "number" and isinstance(row["arg"], float) else "nl_een"
-    if row["fn"] == "fraction" and fixed.endswith(" tweede") and fixed[:-len("tweede")] + "halve" == mine: return "nl_half"
+        if top > bottom and rest and fixed == mixed.replace("één", "een"): return "nl_improper"
+    if re.sub(r"\been (?=\w+(joen|jard)ste\b)", "", fixed) == mine.replace("één", "een") and re.search(r"\been \w+(joen|jard)ste\b", fixed): return "nl_one_scale"
+    if fixed == mine.replace("één", "een"): return "nl_decimal" if row["fn"] == "number" and isinstance(row["arg"], float) else "nl_een"
+    if row["fn"] == "fraction" and fixed.endswith(" tweede") and fixed[:-len("tweede")] + "halve" == mine.replace("één", "een"): return "nl_half"
     return None
 EN_GPO = "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf)"
 SRC.update({
