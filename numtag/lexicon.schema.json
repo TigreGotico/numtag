@@ -174,7 +174,7 @@
             "properties": {
               "variants": {"$ref": "#/$defs/variants"},
               "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
-              "case": {"type": "object", "additionalProperties": {"$ref": "#/$defs/variants"}},
+              "case": {"type": "object", "additionalProperties": {"anyOf": [{"$ref": "#/$defs/variants"}, {"type": "object", "propertyNames": {"enum": ["feminine", "masculine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}}]}},
               "minimum": {"type": "string", "pattern": "^[0-9]+$"},
               "maximum": {"type": "string", "pattern": "^[0-9]+$"},
               "scale": {"type": "object", "propertyNames": {"enum": ["short", "long"]}, "additionalProperties": {"type": "object", "required": ["variants"]}}
@@ -235,7 +235,7 @@
         "type": "object",
         "properties": {
           "ruleset": {"type": "string"},
-          "reason": {"enum": ["standard", "no_conjunction", "year_pairs", "plain", "counting", "variant_spelling"]},
+          "reason": {"enum": ["standard", "no_conjunction", "year_pairs", "plain", "counting", "variant_spelling", "strong"]},
           "source": {"type": "string"}
         },
         "required": ["ruleset", "reason"],

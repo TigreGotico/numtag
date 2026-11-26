@@ -37,6 +37,7 @@ class SpellingReason(str, Enum):
     PLAIN = "plain"                        # the cardinal reading of a form that has a special one
     COUNTING = "counting"                  # the form that counts with no noun after it
     VARIANT_SPELLING = "variant_spelling"  # a second spelling of the same word
+    STRONG = "strong"                      # the declension with no article before the number
 
 
 @dataclass(frozen=True)
@@ -205,7 +206,12 @@ class Writer:
         if case is not None:
             if case not in spec.get("case", {}):
                 raise ValueError(f"{self.name}: no case {case!r}; it has {sorted(spec.get('case', {}))}")
-            return spec["case"][case]
+            by_case = spec["case"][case]
+            if isinstance(by_case, list):
+                return by_case
+            if gender not in by_case:
+                raise ValueError(f"{self.name}: case {case!r} needs a gender of {sorted(by_case)}, not {gender!r}")
+            return by_case[gender]
         return spec.get("gender", {}).get(gender, spec["variants"])
 
 

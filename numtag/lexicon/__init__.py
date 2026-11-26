@@ -658,7 +658,9 @@ def _check_writer(lang: str, writer: dict) -> None:
             forms.append((f"{name} {scale}", sub))
     for name, form in forms:
         _refuse(lang, f"form {name!r}", form, FORM_KEYS)
-        lists = [form["variants"], *form.get("gender", {}).values(), *form.get("case", {}).values()]
+        lists = [form["variants"], *form.get("gender", {}).values()]
+        for by_case in form.get("case", {}).values():  # a list, or a list for each gender
+            lists += by_case.values() if isinstance(by_case, dict) else [by_case]
         for variants in lists:
             for variant in variants:
                 _refuse(lang, f"a variant of form {name!r}", variant, VARIANT_KEYS)

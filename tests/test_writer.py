@@ -594,6 +594,21 @@ class TestGerman(unittest.TestCase):
                          ["ein Drittel", "ein Fünftel", "neun Zehntel", "drei Viertel", "fünf Hundertstel"])
 
 
+    def test_case_and_gender(self):
+        """Duden online, «hundertundein»: "hundertundeinen Krimi lesen"; «tausendundein»: "Tausendundeiner Nacht"."""
+        self.assertEqual([spell(n, "de", case=c, gender=g)[0].text for n, c, g in
+                          (("1", "dative", "feminine"), ("101", "accusative", "masculine"), ("1001", "dative", "feminine"),
+                           ("1", "genitive", "neuter"), ("21", "dative", "masculine"))],
+                         ["einer", "einhunderteinen", "eintausendeiner", "eines", "einundzwanzig"])
+        self.assertEqual([(x.text, x.reason.value) for x in spell("3", "de", form=SpokenForm.ORDINAL, case="dative",
+                                                                  gender="masculine")],
+                         [("dritten", "standard"), ("drittem", "strong")])
+        self.assertEqual(spell("20", "de", form=SpokenForm.ORDINAL, case="nominative", gender="neuter")[1].text,
+                         "zwanzigstes")
+        with self.assertRaises(ValueError):
+            spell("3", "de", form=SpokenForm.ORDINAL, case="dative")
+
+
 class TestValencian(unittest.TestCase):
     """AVL, Diccionari normatiu valencià: the main form of each entry."""
 
