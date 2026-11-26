@@ -24,6 +24,8 @@ PACKAGE = Path(numtag.__file__).parent
 LEXICONS = PACKAGE / "lexicon"
 VERSION_TWO = sorted(path.stem for path in LEXICONS.glob("*.json") if "writer" in json.loads(path.read_text("utf-8")))
 WRITERS = sorted(name for name in VERSION_TWO if json.loads((LEXICONS / f"{name}.json").read_text("utf-8"))["writer"])
+FRACTION_WRITERS = [name for name in WRITERS
+                    if json.loads((LEXICONS / f"{name}.json").read_text("utf-8"))["writer"].get("fraction", {}) is not None]
 
 
 # https://github.com/TigreGotico/numtag/issues/305: the pt-PT reader splits an ordinal with two scale
@@ -198,15 +200,17 @@ class TestRoundTrip(unittest.TestCase):
     """What the writer says, the reader reads back as the same number."""
 
     @staticmethod
-    def numbers() -> list[int]:
+    def numbers(lang: str, form: str = "cardinal") -> list[int]:
         rng = random.Random(7)
         round_numbers = {d * 10 ** k for k in range(1, 13) for d in range(1, 10)} | {10 ** k + 1 for k in range(3, 13)}
-        return list(range(0, 1001)) + sorted(round_numbers) + [rng.randint(1001, 10 ** 9) for _ in range(500)]
+        numbers = list(range(0, 1001)) + sorted(round_numbers) + [rng.randint(1001, 10 ** 9) for _ in range(500)]
+        maximum = int(_file(lang)["writer"]["forms"][form].get("maximum") or 10 ** 13)
+        return [number for number in numbers if number <= maximum]
 
     def test_the_reader_reads_every_cardinal_back(self):
         for lang in WRITERS:
             failures = []
-            for number in self.numbers():
+            for number in self.numbers(lang):
                 words = spell(str(number), lang)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
                 if found != [(words, str(number), Kind.CARDINAL)]:
@@ -237,7 +241,7 @@ class TestRoundTrip(unittest.TestCase):
                        "splits https://github.com/TigreGotico/numtag/issues/295")
     def test_the_reader_reads_a_fraction_with_a_denominator_over_20_back_as_one_mention(self):
         failures = []
-        for lang in WRITERS:
+        for lang in FRACTION_WRITERS:
             for numerator, denominator in ((1, 21), (3, 25), (1, 100)):
                 text = spell(f"{numerator}/{denominator}", lang)[0].text
                 found = [(m.text, Fraction(m.value)) for m in tag_numbers(text, lang)]
@@ -250,7 +254,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_a_mixed_fraction_reads_as_its_parts_or_as_its_whole_value(self):
         # Whether the reader joins the whole part and the fraction is open in the issue; any other value is wrong.
         failures = []
-        for lang in WRITERS:
+        for lang in FRACTION_WRITERS:
             for value, allowed in (("31/3", {"10", "1/3", "31/3"}), ("32/3", {"10", "2/3", "32/3"})):
                 text = spell(value, lang)[0].text
                 values = [m.value for m in tag_numbers(text, lang)]
@@ -329,7 +333,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_the_reader_reads_every_ordinal_back(self):
         for lang in WRITERS:
             failures = []
-            for number in self.numbers():
+            for number in self.numbers(lang, "ordinal"):
                 if number == 0:
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
@@ -354,8 +358,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["bn", "ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["bn", "ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -566,6 +570,48 @@ class TestNorwegianNynorsk(unittest.TestCase):
 
     def test_fractions_take_the_cardinal(self):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13")], ["ein tredel", "to tredelar", "åtte trettendelar"])
+
+
+class TestBengali(unittest.TestCase):
+    """en.wiktionary «Appendix:Bengali numerals» (oldid 95460450) and Thompson, Bengali (2012), Appendix II."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "bn", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("0", "5", "21", "99", "1000", "100000", "10000000")],
+                         ["শূন্য", "পাঁচ", "একুশ", "নিরানব্বই", "এক হাজার", "এক লাখ", "এক কোটি"])
+
+    def test_the_indian_scale_counts_up_to_99_before_lakh_and_above_before_koti(self):
+        self.assertEqual([self.say(n) for n in ("1500000", "1000000000", "10000000000")],
+                         ["পনেরো লাখ", "এক শ কোটি", "এক হাজার কোটি"])
+
+    def test_the_hundreds(self):
+        self.assertEqual([self.say(n) for n in ("200", "999")], ["দুই শ", "নয় শ নিরানব্বই"])
+
+    def test_ordinals_from_one_to_ten(self):
+        self.assertEqual([self.say(str(n), form=SpokenForm.ORDINAL) for n in range(1, 11)],
+                         ["প্রথম", "দ্বিতীয়", "তৃতীয়", "চতুর্থ", "পঞ্চম", "ষষ্ঠ", "সপ্তম", "অষ্টম", "নবম", "দশম"])
+
+    def test_no_decimal_minus_fraction_or_ordinal_past_ten(self):
+        for value, kw in (("1.5", {}), ("-3", {}), ("1/2", {}), ("11", {"form": SpokenForm.ORDINAL})):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                spell(value, "bn", **kw)
+
+    @pytest.mark.xfail(strict=True, raises=ValueError, reason="no saved source gives the bn decimal or minus word "
+                       "https://github.com/TigreGotico/numtag/issues/366")
+    def test_decimals_and_negatives_have_a_reading(self):
+        self.assertTrue(self.say("1.5") and self.say("-3"))
+
+    def test_the_reader_reads_a_sample_of_cardinals_back(self):
+        rng = random.Random(366)
+        failures = []
+        for number in [rng.randint(0, 10 ** 9) for _ in range(2000)]:
+            words = self.say(str(number))
+            found = [(m.text, m.value) for m in tag_numbers(words, "bn")]
+            if found != [(words, str(number))]:
+                failures.append((number, words, found))
+        self.assertEqual(failures[:5], [])
 
 
 class TestNorwegianBokmal(unittest.TestCase):
@@ -1034,8 +1080,8 @@ class TestZeroFraction(unittest.TestCase):
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="-0/5 is written with a minus word although its value is zero "
                        "https://github.com/TigreGotico/numtag/issues/295")
     def test_a_fraction_of_a_zero_numerator_has_no_minus_word(self):
-        self.assertEqual([spell("-0/5", lang)[0].text for lang in WRITERS],
-                         [spell("0/5", lang)[0].text for lang in WRITERS])
+        self.assertEqual([spell("-0/5", lang)[0].text for lang in FRACTION_WRITERS],
+                         [spell("0/5", lang)[0].text for lang in FRACTION_WRITERS])
 
 
 class TestMention(unittest.TestCase):

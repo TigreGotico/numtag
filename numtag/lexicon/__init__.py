@@ -668,9 +668,10 @@ def _check_writer(lang: str, writer: dict) -> None:
                     raise ValueError(f"{lang}: form {name!r} names the unknown rule set {variant['ruleset']!r}")
     _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
     _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
-    _refuse(lang, "fraction", writer.get("fraction", {}), FRACTION_KEYS)
+    fraction = writer.get("fraction") or {}
+    _refuse(lang, "fraction", fraction, FRACTION_KEYS)
     for key in ("ruleset", "numerator"):
-        if (name := writer.get("fraction", {}).get(key)) is not None and name not in writer["rulesets"]:
+        if (name := fraction.get(key)) is not None and name not in writer["rulesets"]:
             raise ValueError(f"{lang}: the fraction names the unknown rule set {name!r}")
 
 

@@ -186,7 +186,7 @@
         },
         "decimal": {
           "type": "object",
-          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
+          "properties": {"word": {"type": ["string", "null"]}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
           "required": ["word", "places", "source"],
           "additionalProperties": false
         },
@@ -197,7 +197,7 @@
           "additionalProperties": false
         },
         "fraction": {
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "limit": {"type": "integer", "minimum": 2},
             "named": {"type": "object", "additionalProperties": {"type": "string"}},

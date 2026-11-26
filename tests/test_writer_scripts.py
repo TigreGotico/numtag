@@ -36,6 +36,9 @@ class TestWriterScripts(unittest.TestCase):
     def test_the_norwegian_nynorsk_writer_block_is_what_the_script_writes(self):
         self.check("writer_nn.py", "")
 
+    def test_the_bengali_writer_block_is_what_the_script_writes(self):
+        self.check("writer_bn.py", "")
+
     def test_the_norwegian_bokmal_writer_block_is_what_the_script_writes(self):
         self.check("writer_nb.py", "")
 
