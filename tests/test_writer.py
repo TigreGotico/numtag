@@ -1063,6 +1063,20 @@ class TestRussian(unittest.TestCase):
         self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["один", "одна", "одно"])
         self.assertEqual(self.say("21000", case="genitive", gender="masculine"), "двадцати одной тысячи")
 
+    def test_the_yo_spelling_comes_first_and_the_e_spelling_second(self):
+        """Русская грамматика (1980), § 1374: "тр - ёх четыр - ёх", "тр - ём четыр - ём"."""
+        def both(value, **kw):
+            return [(s.text, s.reason.value) for s in spell(value, "ru", **kw)]
+        self.assertEqual(both("3", case="genitive", gender="masculine"),
+                         [("трёх", "standard"), ("трех", "variant_spelling")])
+        self.assertEqual(both("400", case="dative", gender="masculine"),
+                         [("четырёмстам", "standard"), ("четыремстам", "variant_spelling")])
+        self.assertEqual(both("4", form=SpokenForm.ORDINAL),
+                         [("четвёртый", "standard"), ("четвертый", "variant_spelling")])
+        self.assertEqual(both("300", form=SpokenForm.ORDINAL),
+                         [("трёхсотый", "standard"), ("трехсотый", "variant_spelling")])
+        self.assertEqual([m.value for m in tag_numbers("трёмстам четырёмстам", "ru")], ["300", "400"])
+
     def test_ordinals_from_rosental(self):
         """§ 45, п. 4 and 5: "три тысячи пятнадцатый", "двадцатипятитысячный", "стосорокашестимиллионный"."""
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in

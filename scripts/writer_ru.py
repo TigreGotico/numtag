@@ -29,6 +29,13 @@ ORDINAL = (ROSENTAL + ", п. 4: \"П о р я д к о в ы е числител
 ENDINGS = (CLDR + ", %spellout-ordinal-masculine, -feminine, -neuter and their case sets: the endings of the ordinals "
            "0 to 199 (\"второй\", \"вторую\", \"третью\", \"сотыми\"). CLDR ru breaks from 200 (\"200: "
            "←%spellout-cardinal-feminine←сти[ →→];\"), so the ordinals here use its endings on the stems of " + ROSENTAL)
+YO = ("Русская грамматика (1980), § 1374 (Papers/Languages/Slavic/russkaya_grammatika_1980_rusgram_html.zip, "
+      "1366-1383.html): \"Р. дв - ух тр - ёх четыр - ёх Д. дв - ум тр - ём четыр - ём\". Правила русской орфографии и "
+      "пунктуации (2006), § 5 (Papers/Languages/Slavic/Russian/lopatin2006_pravila_orfografii_s5_yo_orthographia.html): "
+      "\"Для предупреждения неправильного опознания слова\", \"Для указания правильного произношения слова\", and "
+      "Примечание 2: \"любая книга может быть напечатана последовательно с буквой ё\". So ё is permitted and "
+      "recommended, and the writer writes it for speech (\"трёх\", \"четырёх\", \"трём\"); the е spelling is the "
+      "second reading. SILVER: \"четвёртый\" and its forms, by the same rule; no saved example writes it")
 SILVER = ("SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\") and \"умножить на десять в "
           "степени\"; no saved example")
 
@@ -124,6 +131,25 @@ def count(exponent, forms):
     return f"count-{one}", [R(1, f"=%{cardinal}= $(cardinal,one{{{one}}}few{{{few}}}other{{{other}}})$")]
 
 
+def yo(text):
+    """The ё spelling of a rule text: "трех" and "четырех" (also inside "трехсот"), "трем", "четырем", "четверт"."""
+    text = text.replace("трех", "трёх").replace("четырех", "четырёх").replace("четверт", "четвёрт")
+    return re.sub(r"\b(тр|четыр)ем\b", r"\1ём", text)
+
+
+def with_yo(rulesets):
+    """The rule sets in the ё spelling under their names, and in the е spelling under name + "-e"."""
+    names = set(rulesets)
+    rename = lambda text: re.sub(r"%([\w-]+)", lambda m: "%" + m.group(1) + ("-e" if m.group(1) in names else ""), text)
+    out = {}
+    for name, spec in rulesets.items():
+        out[name] = {"source": spec["source"] + ". " + YO,
+                     "rules": [{**rule, "text": yo(rule["text"])} for rule in spec["rules"]]}
+        out[name + "-e"] = {"source": spec["source"] + ": the е spelling",
+                            "rules": [{**rule, "text": rename(rule["text"])} for rule in spec["rules"]]}
+    return out
+
+
 def main():
     path, check = Path(__file__).parent / "cldr/ru.xml", "--check" in sys.argv
     sets = cldr_sets(path)
@@ -141,14 +167,18 @@ def main():
             name, rules = ordinal(g, case)
             rulesets[name] = {"source": ORDINAL + ". " + ENDINGS, "rules": rules}
 
+    rulesets = with_yo(rulesets)
+
+    def pair(name):
+        return [{"ruleset": name, "reason": "standard"}, {"ruleset": name + "-e", "reason": "variant_spelling"}]
+
     def by_case(kind):
-        table = {case: {gender: [{"ruleset": f"{kind}-{g}" + (CASES[case] if kind == "cardinal" else f"-{case}"),
-                                  "reason": "standard"}] for gender, g in GENDERS.items()} for case in CASES}
+        table = {case: {gender: pair(f"{kind}-{g}" + (CASES[case] if kind == "cardinal" else f"-{case}"))
+                        for gender, g in GENDERS.items()} for case in CASES}
         return table | {alias: table[case] for alias, case in ALIAS.items()}
 
     def by_gender(kind):
-        return {gender: [{"ruleset": f"{kind}-{g}" + ("" if kind == "cardinal" else "-nominative"), "reason": "standard"}]
-                for gender, g in GENDERS.items()}
+        return {gender: pair(f"{kind}-{g}" + ("" if kind == "cardinal" else "-nominative")) for gender, g in GENDERS.items()}
 
     block = {
         "source": CLDR + ". Russian counts in the short scale of this lexicon: \"миллиард\" for 10^9, \"триллион\" for "
@@ -157,9 +187,9 @@ def main():
                    {"category": "few", "mod10": [2, 3, 4], "not_mod100": [12, 13, 14], "source": PLURAL}],
         "rulesets": rulesets,
         "forms": {
-            "cardinal": {"variants": [{"ruleset": "cardinal-m", "reason": "standard"}], "gender": by_gender("cardinal"),
+            "cardinal": {"variants": pair("cardinal-m"), "gender": by_gender("cardinal"),
                          "case": by_case("cardinal"), "maximum": "9" * 18},
-            "ordinal": {"variants": [{"ruleset": "ordinal-m-nominative", "reason": "standard"}],
+            "ordinal": {"variants": pair("ordinal-m-nominative"),
                         "gender": by_gender("ordinal"), "case": by_case("ordinal"), "minimum": "0", "maximum": "9" * 15},
         },
         "decimal": {"word": "запятая", "places": 3, "source": SILVER + "."},

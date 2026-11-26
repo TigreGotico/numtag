@@ -136,7 +136,6 @@ def category_ro(row, got):
 RU_CLDR = "CLDR RBNF ru (common/rbnf/ru.xml as shipped in unicode-rbnf 2.5.1)"
 RU_ROSENTAL = "Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 45 (Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf)"
 SRC.update({
- "ru_yo": RU_CLDR + ", %spellout-ordinal-masculine: \"4: четвертый;\": the writer writes е, as CLDR; ovos-number-parser writes ё (\"четвёртый\", \"трёх\"). The reader reads both.",
  "ru_one_scale": RU_CLDR + ", %spellout-cardinal-masculine: \"1000: ←%spellout-cardinal-feminine← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$[ →→];\" and \"1000000: ←%spellout-cardinal-masculine← $(cardinal,one{миллион}…)$\": a scale noun keeps its count (\"одна тысяча\", \"один миллион\"); ovos-number-parser drops it.",
  "ru_decimal": "SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\"); ovos-number-parser writes \"точка\" and pads the decimals with \"ноль\".",
  "ru_long": "numtag/lexicon/ru.json, the setting scale: Russian counts in the short scale (CLDR RBNF ru: \"миллиард\", \"триллион\"); the writer has no long-scale reading, and ovos-number-parser writes \"биллион\".",
@@ -161,7 +160,6 @@ def category_ru(row, got):
     if row["fn"] == "fraction":
         return "ru_fraction" if re.search(r"(ая|ых|ьих|ья)$", mine) else None
     if " запятая " in mine and flat(re.sub(r"( ноль)+$", "", out.replace(" точка ", " запятая "))) == flat(mine): return "ru_decimal"
-    if out.replace("ё", "е") == mine: return "ru_yo"
     if flat(out) == flat(mine): return "ru_one_scale"
     return None
 GL_NORMAS = "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16 (Papers/Languages/Iberian/Galician/)"
