@@ -35,7 +35,8 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_de.py", "")
 
     def test_the_catalan_writer_block_is_what_the_script_writes(self):
-        self.check("writer_ca.py", "")
+        for variety in ("ca", "ca-ES-valencia"):
+            self.check("writer_ca.py", variety)
 
     def test_the_romanian_writer_block_is_what_the_script_writes(self):
         self.check("writer_ro.py", "")

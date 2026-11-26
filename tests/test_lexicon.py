@@ -23,13 +23,13 @@ MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "milli
            "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
            "sl": "milijon", "hr": "milijun", "hi": "लाख", "sq": "milion", "sr": "milion", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
            "fr-FR": "million", "id": "juta", "ms": "juta", "it": "milione", "mt": "miljun", "ro": "milion",
-           "eo": "miliono", "es": "millón", "gl": "millón", "ca": "milió", "ast": "millón", "an": "millón",
+           "eo": "miliono", "es": "millón", "gl": "millón", "ca": "milió", "ca-ES-valencia": "milió", "ast": "millón", "an": "millón",
            "oc": "milion", "mwl": "milhon", "lt": "milijonas"}
 
 
 class TestLexiconFiles(unittest.TestCase):
     def test_every_language_is_there(self):
-        self.assertEqual([p.stem for p in LEXICONS], sorted(MILLION))
+        self.assertEqual(sorted(p.stem for p in LEXICONS), sorted(MILLION))  # "ca-ES-valencia.json" sorts before "ca.json"
 
     def test_package_data_ships_every_lexicon(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))

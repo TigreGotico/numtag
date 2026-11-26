@@ -1,0 +1,823 @@
+{
+ "format_version": 2,
+ "extends": "ca",
+ "entries": [
+  {
+   "word": "huit",
+   "role": "unit",
+   "value": "8",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «huit» (Papers/Languages/Iberian/Catalan/dnv_huit.html): \"huit … 1. adj. Set més u, 8.\""
+  },
+  {
+   "word": "dèsset",
+   "role": "ten",
+   "value": "17",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «dèsset» (Papers/Languages/Iberian/Catalan/dnv_dèsset.html): \"dèsset … 1. adj. Setze més u, 17.\""
+  },
+  {
+   "word": "díhuit",
+   "role": "ten",
+   "value": "18",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «díhuit» (Papers/Languages/Iberian/Catalan/dnv_díhuit.html): \"díhuit … 1. adj. Dèsset més u, 18.\""
+  },
+  {
+   "word": "dènou",
+   "role": "ten",
+   "value": "19",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «dènou» (Papers/Languages/Iberian/Catalan/dnv_dènou.html): \"dènou … 1. adj. Díhuit més u, 19.\""
+  },
+  {
+   "word": "huitanta",
+   "role": "ten",
+   "value": "80",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «huit» (Papers/Languages/Iberian/Catalan/dnv_huit.html): \"huit … 1. adj. Set més u, 8.\""
+  },
+  {
+   "word": "cinqué",
+   "role": "ordinal",
+   "value": "5",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "sisé",
+   "role": "ordinal",
+   "value": "6",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "seté",
+   "role": "ordinal",
+   "value": "7",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huité",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitena",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitens",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitenes",
+   "role": "ordinal",
+   "value": "8",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "nové",
+   "role": "ordinal",
+   "value": "9",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "desé",
+   "role": "ordinal",
+   "value": "10",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "onzé",
+   "role": "ordinal",
+   "value": "11",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dotzé",
+   "role": "ordinal",
+   "value": "12",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "tretzé",
+   "role": "ordinal",
+   "value": "13",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "catorzé",
+   "role": "ordinal",
+   "value": "14",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quinzé",
+   "role": "ordinal",
+   "value": "15",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "setzé",
+   "role": "ordinal",
+   "value": "16",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "desseté",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dessetena",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dessetens",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dessetenes",
+   "role": "ordinal",
+   "value": "17",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dihuité",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dihuitena",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dihuitens",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dihuitenes",
+   "role": "ordinal",
+   "value": "18",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "denové",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "denovena",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "denovens",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "denovenes",
+   "role": "ordinal",
+   "value": "19",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "vinté",
+   "role": "ordinal",
+   "value": "20",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "trenté",
+   "role": "ordinal",
+   "value": "30",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quaranté",
+   "role": "ordinal",
+   "value": "40",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "cinquanté",
+   "role": "ordinal",
+   "value": "50",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "seixanté",
+   "role": "ordinal",
+   "value": "60",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "setanté",
+   "role": "ordinal",
+   "value": "70",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitanté",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitantena",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitantens",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitantenes",
+   "role": "ordinal",
+   "value": "80",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "noranté",
+   "role": "ordinal",
+   "value": "90",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "centé",
+   "role": "ordinal",
+   "value": "100",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "uné",
+   "role": "ordinal",
+   "value": "1",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dosé",
+   "role": "ordinal",
+   "value": "2",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "tresé",
+   "role": "ordinal",
+   "value": "3",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quatré",
+   "role": "ordinal",
+   "value": "4",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "cinqué",
+   "role": "denominator",
+   "value": "5",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "sisé",
+   "role": "denominator",
+   "value": "6",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "seté",
+   "role": "denominator",
+   "value": "7",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huité",
+   "role": "denominator",
+   "value": "8",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huitens",
+   "role": "denominator",
+   "value": "8",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "nové",
+   "role": "denominator",
+   "value": "9",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "desé",
+   "role": "denominator",
+   "value": "10",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "milé",
+   "role": "ordinal_scale",
+   "value": "mil",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "milioné",
+   "role": "ordinal_scale",
+   "value": "milió",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "miliardé",
+   "role": "ordinal_scale",
+   "value": "miliard",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "bilioné",
+   "role": "ordinal_scale",
+   "value": "bilió",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "trilioné",
+   "role": "ordinal_scale",
+   "value": "trilió",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quadrilioné",
+   "role": "ordinal_scale",
+   "value": "quadrilió",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quintilioné",
+   "role": "ordinal_scale",
+   "value": "quintilió",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "dos-centé",
+   "role": "ordinal",
+   "value": "200",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "tres-centé",
+   "role": "ordinal",
+   "value": "300",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quatre-centé",
+   "role": "ordinal",
+   "value": "400",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "cinc-centé",
+   "role": "ordinal",
+   "value": "500",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "sis-centé",
+   "role": "ordinal",
+   "value": "600",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "set-centé",
+   "role": "ordinal",
+   "value": "700",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huit-centé",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huit-centena",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huit-centens",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "masculine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "huit-centenes",
+   "role": "ordinal",
+   "value": "800",
+   "gender": "feminine",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "nou-centé",
+   "role": "ordinal",
+   "value": "900",
+   "gender": "masculine",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\"; AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\": the ordinal ends in -é, -ena"
+  },
+  {
+   "word": "quint",
+   "role": "denominator",
+   "value": "5",
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «quint» (Papers/Languages/Iberian/Catalan/dnv_quint.html): \"Un quint, 1/5. Quatre quints, 4/5.\""
+  },
+  {
+   "word": "quints",
+   "role": "denominator",
+   "value": "5",
+   "plural": true,
+   "source": "AVL, Diccionari normatiu valencià (v2.2.9), «quint» (Papers/Languages/Iberian/Catalan/dnv_quint.html): \"Un quint, 1/5. Quatre quints, 4/5.\""
+  }
+ ],
+ "writer": {},
+  "writer": {
+    "source": "CLDR RBNF ca (common/rbnf/ca.xml as shipped in unicode-rbnf 2.5.1). Catalan counts in the long scale of this lexicon: \"miliard\" for 10^9, \"bilió\" for 10^12 (DIEC2, «bilió»: \"Milió de milions.\").",
+    "rulesets": {
+      "cardinal-m": {"source": "CLDR RBNF ca (common/rbnf/ca.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine, with the scale words of this lexicon. IEC, Gramàtica de la llengua catalana (2016), §17.2.1.1: \"el guionet uneix els numerals que representen les desenes i les unitats, tant quan estan coordinats (vint-i-dos, vint-i-tres) com quan estan juxtaposats (trenta-dos, trenta-tres), i els que representen les unitats i les centenes (dos-cents, tres-centes), però no en la resta de casos (cent dos, dos mil, dos milions cent mil).\" CLDR ca writes \"cent-dos\"; the writer follows the IEC. IEC, Gramàtica de la llengua catalana (2016): the names of the numbers \"prenen en la majoria de contextos la forma masculina dels cardinals, i en el cas de un adopta de vegades la forma u\"; the writer reads the masculine \"un\". AVL, Diccionari normatiu valencià (v2.2.9), «huit» (Papers/Languages/Iberian/Catalan/dnv_huit.html): \"huit [wít] 1. adj. Set més u, 8.\". AVL, Diccionari normatiu valencià (v2.2.9), «dèsset» (Papers/Languages/Iberian/Catalan/dnv_dèsset.html): \"dèsset [dɛ́sɛ̀t] 1. adj. Setze més u, 17.\". AVL, Diccionari normatiu valencià (v2.2.9), «díhuit» (Papers/Languages/Iberian/Catalan/dnv_díhuit.html): \"díhuit [díwit] 1. adj. Dèsset més u, 18.\". AVL, Diccionari normatiu valencià (v2.2.9), «dènou» (Papers/Languages/Iberian/Catalan/dnv_dènou.html): \"dènou [dɛ́nɔ̀w] o [dɛ́nɛ̀w] 1. adj. Díhuit més u, 19.\". AVL, Diccionari normatiu valencià (v2.2.9), «huitanta» (Papers/Languages/Iberian/Catalan/dnv_huitanta.html): \"huitanta [witánta] 1. adj. Huit vegades deu, setanta-nou més u, 80.\"", "rules": [
+        {"value": "-x", "text": "menys →→;"},
+        {"value": "0", "text": "zero;"},
+        {"value": "1", "text": "un;"},
+        {"value": "2", "text": "dos;"},
+        {"value": "3", "text": "tres;"},
+        {"value": "4", "text": "quatre;"},
+        {"value": "5", "text": "cinc;"},
+        {"value": "6", "text": "sis;"},
+        {"value": "7", "text": "set;"},
+        {"value": "8", "text": "huit;"},
+        {"value": "9", "text": "nou;"},
+        {"value": "10", "text": "deu;"},
+        {"value": "11", "text": "onze;"},
+        {"value": "12", "text": "dotze;"},
+        {"value": "13", "text": "tretze;"},
+        {"value": "14", "text": "catorze;"},
+        {"value": "15", "text": "quinze;"},
+        {"value": "16", "text": "setze;"},
+        {"value": "17", "text": "dèsset;"},
+        {"value": "18", "text": "díhuit;"},
+        {"value": "19", "text": "dènou;"},
+        {"value": "20", "text": "vint[-i-→→];", "source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.1.1: \"el guionet uneix els numerals que representen les desenes i les unitats, tant quan estan coordinats (vint-i-dos, vint-i-tres) com quan estan juxtaposats (trenta-dos, trenta-tres), i els que representen les unitats i les centenes (dos-cents, tres-centes), però no en la resta de casos (cent dos, dos mil, dos milions cent mil).\" CLDR ca writes \"cent-dos\"; the writer follows the IEC"},
+        {"value": "30", "text": "trenta[-→→];"},
+        {"value": "40", "text": "quaranta[-→→];"},
+        {"value": "50", "text": "cinquanta[-→→];"},
+        {"value": "60", "text": "seixanta[-→→];"},
+        {"value": "70", "text": "setanta[-→→];"},
+        {"value": "80", "text": "huitanta[-→→];"},
+        {"value": "90", "text": "noranta[-→→];"},
+        {"value": "100", "text": "cent[ →→];"},
+        {"value": "200", "text": "dos-cents[ →→];", "source": "IEC, Gramàtica de la llengua catalana (2016), quadre 17.1: \"1 un una 2 dos dues 21 vint-i-un vint-i-una\", \"200 dos-cents dues-centes\", and \"2.000 dos mil/dues mil\""},
+        {"value": "300", "text": "tres-cents[ →→];"},
+        {"value": "400", "text": "quatre-cents[ →→];"},
+        {"value": "500", "text": "cinc-cents[ →→];"},
+        {"value": "600", "text": "sis-cents[ →→];"},
+        {"value": "700", "text": "set-cents[ →→];"},
+        {"value": "800", "text": "huit-cents[ →→];"},
+        {"value": "900", "text": "nou-cents[ →→];"},
+        {"value": "1000", "text": "mil[ →→];"},
+        {"value": "2000", "text": "←← mil[ →→];"},
+        {"value": "1000000", "text": "un milió[ →→];"},
+        {"value": "2000000", "text": "←%cardinal-m← milions[ →→];"},
+        {"value": "1000000000", "text": "un miliard[ →→];"},
+        {"value": "2000000000", "text": "←%cardinal-m← miliards[ →→];"},
+        {"value": "1000000000000", "text": "un bilió[ →→];"},
+        {"value": "2000000000000", "text": "←%cardinal-m← bilions[ →→];"},
+        {"value": "1000000000000000000", "text": "un trilió[ →→];"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m← trilions[ →→];"},
+        {"value": "1000000000000000000000000", "text": "un quadrilió[ →→];"},
+        {"value": "2000000000000000000000000", "text": "←%cardinal-m← quadrilions[ →→];"},
+        {"value": "1000000000000000000000000000000", "text": "un quintilió[ →→];"},
+        {"value": "2000000000000000000000000000000", "text": "←%cardinal-m← quintilions[ →→];"}
+      ]},
+      "cardinal-f": {"source": "CLDR RBNF ca (common/rbnf/ca.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine. IEC, Gramàtica de la llengua catalana (2016), quadre 17.1: \"1 un una 2 dos dues 21 vint-i-un vint-i-una\", \"200 dos-cents dues-centes\", and \"2.000 dos mil/dues mil\". AVL, Diccionari normatiu valencià (v2.2.9), «huit» (Papers/Languages/Iberian/Catalan/dnv_huit.html): \"huit [wít] 1. adj. Set més u, 8.\". AVL, Diccionari normatiu valencià (v2.2.9), «dèsset» (Papers/Languages/Iberian/Catalan/dnv_dèsset.html): \"dèsset [dɛ́sɛ̀t] 1. adj. Setze més u, 17.\". AVL, Diccionari normatiu valencià (v2.2.9), «díhuit» (Papers/Languages/Iberian/Catalan/dnv_díhuit.html): \"díhuit [díwit] 1. adj. Dèsset més u, 18.\". AVL, Diccionari normatiu valencià (v2.2.9), «dènou» (Papers/Languages/Iberian/Catalan/dnv_dènou.html): \"dènou [dɛ́nɔ̀w] o [dɛ́nɛ̀w] 1. adj. Díhuit més u, 19.\". AVL, Diccionari normatiu valencià (v2.2.9), «huitanta» (Papers/Languages/Iberian/Catalan/dnv_huitanta.html): \"huitanta [witánta] 1. adj. Huit vegades deu, setanta-nou més u, 80.\". AVL, Diccionari normatiu valencià (v2.2.9), «dos-cents» (Papers/Languages/Iberian/Catalan/dnv_dos-cents.html): \"dos-cents dos-centes (o dos-cents dues-centes)\"; AVL, Diccionari normatiu valencià (v2.2.9), «dos» (Papers/Languages/Iberian/Catalan/dnv_dos.html): \"dos (o dos dues)\": the main form of 2 does not inflect", "rules": [
+        {"value": "-x", "text": "menys →→;"},
+        {"value": "0", "text": "zero;"},
+        {"value": "1", "text": "una;"},
+        {"value": "2", "text": "dos;"},
+        {"value": "3", "text": "tres;"},
+        {"value": "4", "text": "quatre;"},
+        {"value": "5", "text": "cinc;"},
+        {"value": "6", "text": "sis;"},
+        {"value": "7", "text": "set;"},
+        {"value": "8", "text": "huit;"},
+        {"value": "9", "text": "nou;"},
+        {"value": "10", "text": "deu;"},
+        {"value": "11", "text": "onze;"},
+        {"value": "12", "text": "dotze;"},
+        {"value": "13", "text": "tretze;"},
+        {"value": "14", "text": "catorze;"},
+        {"value": "15", "text": "quinze;"},
+        {"value": "16", "text": "setze;"},
+        {"value": "17", "text": "dèsset;"},
+        {"value": "18", "text": "díhuit;"},
+        {"value": "19", "text": "dènou;"},
+        {"value": "20", "text": "vint[-i-→→];", "source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.1.1: \"el guionet uneix els numerals que representen les desenes i les unitats, tant quan estan coordinats (vint-i-dos, vint-i-tres) com quan estan juxtaposats (trenta-dos, trenta-tres), i els que representen les unitats i les centenes (dos-cents, tres-centes), però no en la resta de casos (cent dos, dos mil, dos milions cent mil).\" CLDR ca writes \"cent-dos\"; the writer follows the IEC"},
+        {"value": "30", "text": "trenta[-→→];"},
+        {"value": "40", "text": "quaranta[-→→];"},
+        {"value": "50", "text": "cinquanta[-→→];"},
+        {"value": "60", "text": "seixanta[-→→];"},
+        {"value": "70", "text": "setanta[-→→];"},
+        {"value": "80", "text": "huitanta[-→→];"},
+        {"value": "90", "text": "noranta[-→→];"},
+        {"value": "100", "text": "cent[ →→];"},
+        {"value": "200", "text": "dos-centes[ →→];", "source": "IEC, Gramàtica de la llengua catalana (2016), quadre 17.1: \"1 un una 2 dos dues 21 vint-i-un vint-i-una\", \"200 dos-cents dues-centes\", and \"2.000 dos mil/dues mil\""},
+        {"value": "300", "text": "tres-centes[ →→];"},
+        {"value": "400", "text": "quatre-centes[ →→];"},
+        {"value": "500", "text": "cinc-centes[ →→];"},
+        {"value": "600", "text": "sis-centes[ →→];"},
+        {"value": "700", "text": "set-centes[ →→];"},
+        {"value": "800", "text": "huit-centes[ →→];"},
+        {"value": "900", "text": "nou-centes[ →→];"},
+        {"value": "1000", "text": "mil[ →→];"},
+        {"value": "2000", "text": "←← mil[ →→];"},
+        {"value": "1000000", "text": "un milió[ →→];"},
+        {"value": "2000000", "text": "←%cardinal-m← milions[ →→];"},
+        {"value": "1000000000", "text": "un miliard[ →→];"},
+        {"value": "2000000000", "text": "←%cardinal-m← miliards[ →→];"},
+        {"value": "1000000000000", "text": "un bilió[ →→];"},
+        {"value": "2000000000000", "text": "←%cardinal-m← bilions[ →→];"},
+        {"value": "1000000000000000000", "text": "un trilió[ →→];"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m← trilions[ →→];"},
+        {"value": "1000000000000000000000000", "text": "un quadrilió[ →→];"},
+        {"value": "2000000000000000000000000", "text": "←%cardinal-m← quadrilions[ →→];"},
+        {"value": "1000000000000000000000000000000", "text": "un quintilió[ →→];"},
+        {"value": "2000000000000000000000000000000", "text": "←%cardinal-m← quintilions[ →→];"}
+      ]},
+      "ordinal-m": {"source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.5: \"Els quatre primers ordinals tenen formes bàsiques específiques: primer, segon, tercer i quart\"; the others \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè), llevat del cas de deu, en què per raons històriques tenim desè, desena\"; \"no en la resta de casos (cent dosè, cent tresè, dos milè)\"; and \"En general, són preferibles els ordinals en ‑er/‑er(a) i en ‑è/‑en(a) a les formes simples corresponents, mentre que els ordinals en ‑èsim/‑èsim(a) són d’ús poc freqüent\". SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example. AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\". AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\". AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\". AVL, Diccionari normatiu valencià (v2.2.9), «dihuité» (Papers/Languages/Iberian/Catalan/dnv_dihuité.html): \"dihuité -ena (o dihuitè)\". AVL, Diccionari normatiu valencià (v2.2.9), «denové» (Papers/Languages/Iberian/Catalan/dnv_denové.html): \"denové -ena (o denovè)\"", "rules": [
+        {"value": "-x", "text": "menys →→;"},
+        {"value": "1", "text": "primer;", "source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.5: \"Els quatre primers ordinals tenen formes bàsiques específiques: primer, segon, tercer i quart\"; the others \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè), llevat del cas de deu, en què per raons històriques tenim desè, desena\"; \"no en la resta de casos (cent dosè, cent tresè, dos milè)\"; and \"En general, són preferibles els ordinals en ‑er/‑er(a) i en ‑è/‑en(a) a les formes simples corresponents, mentre que els ordinals en ‑èsim/‑èsim(a) són d’ús poc freqüent\""},
+        {"value": "2", "text": "segon;"},
+        {"value": "3", "text": "tercer;"},
+        {"value": "4", "text": "quart;"},
+        {"value": "5", "text": "=%ordinal-m-part=;"}
+      ]},
+      "ordinal-m-part": {"source": "a part of ordinal-m", "rules": [
+        {"value": "1", "text": "uné;"},
+        {"value": "2", "text": "dosé;"},
+        {"value": "3", "text": "tresé;"},
+        {"value": "4", "text": "quatré;"},
+        {"value": "5", "text": "cinqué;"},
+        {"value": "6", "text": "sisé;"},
+        {"value": "7", "text": "seté;"},
+        {"value": "8", "text": "huité;"},
+        {"value": "9", "text": "nové;"},
+        {"value": "10", "text": "desé;"},
+        {"value": "11", "text": "onzé;"},
+        {"value": "12", "text": "dotzé;"},
+        {"value": "13", "text": "tretzé;"},
+        {"value": "14", "text": "catorzé;"},
+        {"value": "15", "text": "quinzé;"},
+        {"value": "16", "text": "setzé;"},
+        {"value": "17", "text": "desseté;"},
+        {"value": "18", "text": "dihuité;"},
+        {"value": "19", "text": "denové;"},
+        {"value": "20", "text": "vinté;"},
+        {"value": "21", "text": "vint-i-→%ordinal-m-part→;"},
+        {"value": "30", "text": "trenté;"},
+        {"value": "31", "text": "trenta-→%ordinal-m-part→;"},
+        {"value": "40", "text": "quaranté;"},
+        {"value": "41", "text": "quaranta-→%ordinal-m-part→;"},
+        {"value": "50", "text": "cinquanté;"},
+        {"value": "51", "text": "cinquanta-→%ordinal-m-part→;"},
+        {"value": "60", "text": "seixanté;"},
+        {"value": "61", "text": "seixanta-→%ordinal-m-part→;"},
+        {"value": "70", "text": "setanté;"},
+        {"value": "71", "text": "setanta-→%ordinal-m-part→;"},
+        {"value": "80", "text": "huitanté;"},
+        {"value": "81", "text": "huitanta-→%ordinal-m-part→;"},
+        {"value": "90", "text": "noranté;"},
+        {"value": "91", "text": "noranta-→%ordinal-m-part→;"},
+        {"value": "100", "text": "centé;"},
+        {"value": "101", "text": "cent →%ordinal-m-part→;"},
+        {"value": "200", "text": "dos-cent→%ordinal-m-part-cents→;"},
+        {"value": "300", "text": "tres-cent→%ordinal-m-part-cents→;"},
+        {"value": "400", "text": "quatre-cent→%ordinal-m-part-cents→;"},
+        {"value": "500", "text": "cinc-cent→%ordinal-m-part-cents→;"},
+        {"value": "600", "text": "sis-cent→%ordinal-m-part-cents→;"},
+        {"value": "700", "text": "set-cent→%ordinal-m-part-cents→;"},
+        {"value": "800", "text": "huit-cent→%ordinal-m-part-cents→;"},
+        {"value": "900", "text": "nou-cent→%ordinal-m-part-cents→;"},
+        {"value": "1000", "text": "mil→%ordinal-m-part-mil→;"},
+        {"value": "2000", "text": "←%cardinal-m← mil→%ordinal-m-part-mil→;"},
+        {"value": "1000000", "text": "milioné;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000001", "text": "un milió →%ordinal-m-part→;"},
+        {"value": "2000000", "text": "←%cardinal-m← milion→%ordinal-m-part-scale→;"},
+        {"value": "1000000000", "text": "miliardé;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000001", "text": "un miliard →%ordinal-m-part→;"},
+        {"value": "2000000000", "text": "←%cardinal-m← miliard→%ordinal-m-part-scale→;"},
+        {"value": "1000000000000", "text": "bilioné;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000001", "text": "un bilió →%ordinal-m-part→;"},
+        {"value": "2000000000000", "text": "←%cardinal-m← bilion→%ordinal-m-part-scale→;"},
+        {"value": "1000000000000000000", "text": "trilioné;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000001", "text": "un trilió →%ordinal-m-part→;"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m← trilion→%ordinal-m-part-scale→;"},
+        {"value": "1000000000000000000000000", "text": "quadrilioné;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000000000001", "text": "un quadrilió →%ordinal-m-part→;"},
+        {"value": "2000000000000000000000000", "text": "←%cardinal-m← quadrilion→%ordinal-m-part-scale→;"},
+        {"value": "1000000000000000000000000000000", "text": "quintilioné;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000000000000000001", "text": "un quintilió →%ordinal-m-part→;"},
+        {"value": "2000000000000000000000000000000", "text": "←%cardinal-m← quintilion→%ordinal-m-part-scale→;"}
+      ]},
+      "ordinal-m-part-cents": {"source": "a part of ordinal-m-part", "rules": [
+        {"value": "0", "text": "é;"},
+        {"value": "1", "text": "s =%ordinal-m-part=;"}
+      ]},
+      "ordinal-m-part-mil": {"source": "a part of ordinal-m-part", "rules": [
+        {"value": "0", "text": "é;"},
+        {"value": "1", "text": " =%ordinal-m-part=;"}
+      ]},
+      "ordinal-m-part-scale": {"source": "a part of ordinal-m-part", "rules": [
+        {"value": "0", "text": "é;"},
+        {"value": "1", "text": "s =%ordinal-m-part=;"}
+      ]},
+      "ordinal-f": {"source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.5: \"Els quatre primers ordinals tenen formes bàsiques específiques: primer, segon, tercer i quart\"; the others \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè), llevat del cas de deu, en què per raons històriques tenim desè, desena\"; \"no en la resta de casos (cent dosè, cent tresè, dos milè)\"; and \"En general, són preferibles els ordinals en ‑er/‑er(a) i en ‑è/‑en(a) a les formes simples corresponents, mentre que els ordinals en ‑èsim/‑èsim(a) són d’ús poc freqüent\"; the feminine ordinals primera, segona, tercera, quarta: CPNL, «Numerals catalans». SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example. AVL, Diccionari normatiu valencià (v2.2.9), «cinqué» (Papers/Languages/Iberian/Catalan/dnv_cinqué.html): \"cinqué -ena (o cinquè)\". AVL, Diccionari normatiu valencià (v2.2.9), «huité» (Papers/Languages/Iberian/Catalan/dnv_huité.html): \"huité -ena (o huitè)\". AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"desseté -ena (o dessetè)\". AVL, Diccionari normatiu valencià (v2.2.9), «dihuité» (Papers/Languages/Iberian/Catalan/dnv_dihuité.html): \"dihuité -ena (o dihuitè)\". AVL, Diccionari normatiu valencià (v2.2.9), «denové» (Papers/Languages/Iberian/Catalan/dnv_denové.html): \"denové -ena (o denovè)\"", "rules": [
+        {"value": "-x", "text": "menys →→;"},
+        {"value": "1", "text": "primera;", "source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.5: \"Els quatre primers ordinals tenen formes bàsiques específiques: primer, segon, tercer i quart\"; the others \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè), llevat del cas de deu, en què per raons històriques tenim desè, desena\"; \"no en la resta de casos (cent dosè, cent tresè, dos milè)\"; and \"En general, són preferibles els ordinals en ‑er/‑er(a) i en ‑è/‑en(a) a les formes simples corresponents, mentre que els ordinals en ‑èsim/‑èsim(a) són d’ús poc freqüent\""},
+        {"value": "2", "text": "segona;"},
+        {"value": "3", "text": "tercera;"},
+        {"value": "4", "text": "quarta;"},
+        {"value": "5", "text": "=%ordinal-f-part=;"}
+      ]},
+      "ordinal-f-part": {"source": "a part of ordinal-f", "rules": [
+        {"value": "1", "text": "unena;"},
+        {"value": "2", "text": "dosena;"},
+        {"value": "3", "text": "tresena;"},
+        {"value": "4", "text": "quatrena;"},
+        {"value": "5", "text": "cinquena;"},
+        {"value": "6", "text": "sisena;"},
+        {"value": "7", "text": "setena;"},
+        {"value": "8", "text": "huitena;"},
+        {"value": "9", "text": "novena;"},
+        {"value": "10", "text": "desena;"},
+        {"value": "11", "text": "onzena;"},
+        {"value": "12", "text": "dotzena;"},
+        {"value": "13", "text": "tretzena;"},
+        {"value": "14", "text": "catorzena;"},
+        {"value": "15", "text": "quinzena;"},
+        {"value": "16", "text": "setzena;"},
+        {"value": "17", "text": "dessetena;"},
+        {"value": "18", "text": "dihuitena;"},
+        {"value": "19", "text": "denovena;"},
+        {"value": "20", "text": "vintena;"},
+        {"value": "21", "text": "vint-i-→%ordinal-f-part→;"},
+        {"value": "30", "text": "trentena;"},
+        {"value": "31", "text": "trenta-→%ordinal-f-part→;"},
+        {"value": "40", "text": "quarantena;"},
+        {"value": "41", "text": "quaranta-→%ordinal-f-part→;"},
+        {"value": "50", "text": "cinquantena;"},
+        {"value": "51", "text": "cinquanta-→%ordinal-f-part→;"},
+        {"value": "60", "text": "seixantena;"},
+        {"value": "61", "text": "seixanta-→%ordinal-f-part→;"},
+        {"value": "70", "text": "setantena;"},
+        {"value": "71", "text": "setanta-→%ordinal-f-part→;"},
+        {"value": "80", "text": "huitantena;"},
+        {"value": "81", "text": "huitanta-→%ordinal-f-part→;"},
+        {"value": "90", "text": "norantena;"},
+        {"value": "91", "text": "noranta-→%ordinal-f-part→;"},
+        {"value": "100", "text": "centena;"},
+        {"value": "101", "text": "cent →%ordinal-f-part→;"},
+        {"value": "200", "text": "dos-cent→%ordinal-f-part-cents→;"},
+        {"value": "300", "text": "tres-cent→%ordinal-f-part-cents→;"},
+        {"value": "400", "text": "quatre-cent→%ordinal-f-part-cents→;"},
+        {"value": "500", "text": "cinc-cent→%ordinal-f-part-cents→;"},
+        {"value": "600", "text": "sis-cent→%ordinal-f-part-cents→;"},
+        {"value": "700", "text": "set-cent→%ordinal-f-part-cents→;"},
+        {"value": "800", "text": "huit-cent→%ordinal-f-part-cents→;"},
+        {"value": "900", "text": "nou-cent→%ordinal-f-part-cents→;"},
+        {"value": "1000", "text": "mil→%ordinal-f-part-mil→;"},
+        {"value": "2000", "text": "←%cardinal-m← mil→%ordinal-f-part-mil→;"},
+        {"value": "1000000", "text": "milionena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000001", "text": "un milió →%ordinal-f-part→;"},
+        {"value": "2000000", "text": "←%cardinal-m← milion→%ordinal-f-part-scale→;"},
+        {"value": "1000000000", "text": "miliardena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000001", "text": "un miliard →%ordinal-f-part→;"},
+        {"value": "2000000000", "text": "←%cardinal-m← miliard→%ordinal-f-part-scale→;"},
+        {"value": "1000000000000", "text": "bilionena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000001", "text": "un bilió →%ordinal-f-part→;"},
+        {"value": "2000000000000", "text": "←%cardinal-m← bilion→%ordinal-f-part-scale→;"},
+        {"value": "1000000000000000000", "text": "trilionena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000001", "text": "un trilió →%ordinal-f-part→;"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m← trilion→%ordinal-f-part-scale→;"},
+        {"value": "1000000000000000000000000", "text": "quadrilionena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000000000001", "text": "un quadrilió →%ordinal-f-part→;"},
+        {"value": "2000000000000000000000000", "text": "←%cardinal-m← quadrilion→%ordinal-f-part-scale→;"},
+        {"value": "1000000000000000000000000000000", "text": "quintilionena;", "source": "SILVER: in a compound ordinal the words before the last one keep the masculine (\"dos-cents unena\"), and \"milionè\" follows the -è rule; no saved example"},
+        {"value": "1000000000000000000000000000001", "text": "un quintilió →%ordinal-f-part→;"},
+        {"value": "2000000000000000000000000000000", "text": "←%cardinal-m← quintilion→%ordinal-f-part-scale→;"}
+      ]},
+      "ordinal-f-part-cents": {"source": "a part of ordinal-f-part", "rules": [
+        {"value": "0", "text": "ena;"},
+        {"value": "1", "text": "s =%ordinal-f-part=;"}
+      ]},
+      "ordinal-f-part-mil": {"source": "a part of ordinal-f-part", "rules": [
+        {"value": "0", "text": "ena;"},
+        {"value": "1", "text": " =%ordinal-f-part=;"}
+      ]},
+      "ordinal-f-part-scale": {"source": "a part of ordinal-f-part", "rules": [
+        {"value": "0", "text": "ena;"},
+        {"value": "1", "text": "s =%ordinal-f-part=;"}
+      ]}
+    },
+    "forms": {"cardinal": {"variants": [{"ruleset": "cardinal-m", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}], "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]}, "maximum": "999999999999999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal-m", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "ordinal-m", "reason": "standard"}], "feminine": [{"ruleset": "ordinal-f", "reason": "standard"}]}, "minimum": "1", "maximum": "999999999999999999999999999999999999"}},
+    "decimal": {"word": "coma", "places": 3, "source": "CLDR RBNF ca (common/rbnf/ca.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x.x: \"←← coma →→\"."},
+    "scientific": {"times": "per deu elevat a", "source": "Not checked against a grammar."},
+    "fraction": {"mixed": false, "limit": 10, "single": "un {denominator}", "plural": {"é": "ens", "ig": "igs", "ç": "ços", "t": "ts"}, "named": {"2": "mig", "3": "terç", "4": "quart", "5": "quint"}, "denominator": "{cardinal}ens", "ruleset": "ordinal-m-part", "numerator": "cardinal-m", "source": "IEC, Gramàtica de la llengua catalana (2016), §17.2.2: \"La forma de la majoria dels quantificadors fraccionaris coincideix amb la dels numerals ordinals\" and \"tenen formes particulars els numerals fraccionaris mig, meitat i terç\"; \"un quart o una quarta part (1/4), dos quarts\"; \"el quantificador cardinal designa el numerador de la fracció, i el fraccionari, el denominador\". AVL, Diccionari normatiu valencià (v2.2.9), «quint» (Papers/Languages/Iberian/Catalan/dnv_quint.html): \"Un quint, 1/5. Quatre quints, 4/5.\"; AVL, Diccionari normatiu valencià (v2.2.9), «desseté» (Papers/Languages/Iberian/Catalan/dnv_desseté.html): \"Un desseté, 1/17.\". SILVER: the other fractions from 1/6 take the -é ordinal."}
+  }
+}

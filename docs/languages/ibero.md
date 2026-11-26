@@ -14,7 +14,8 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 |---|---|---|---|---|---|
 | Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 237 | 234 |
 | Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
-| Catalan | every `ca` tag | `numtag/lexicon/ca.json` | long | 228 | 225 |
+| Catalan | every `ca` tag except `ca-ES-valencia` | `numtag/lexicon/ca.json` | long | 228 | 225 |
+| Valencian Catalan | `ca-ES-valencia` | `numtag/lexicon/ca-ES-valencia.json`, which extends `ca.json` with the main forms of the AVL Diccionari normatiu valencià ("huit", "dèsset", "desseté", "un quint") | long | 0 | 0 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
 | Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 174 | 174 |
