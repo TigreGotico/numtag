@@ -151,8 +151,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 181584)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 192933)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -347,8 +347,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -519,6 +519,25 @@ class TestEnglish(unittest.TestCase):
 
 
 
+class TestNorwegianNynorsk(unittest.TestCase):
+    """CLDR RBNF nn, Nynorskordboka and Språkrådet, «Tredjedel, tredel, fjerdedel, firedel og så vidare»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "nn", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("1", "21", "101", "1001", "1000000", "2000000")],
+                         ["éin", "tjueein", "hundre og ein", "tusen og ein", "éin million", "to millionar"])
+        self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["éin", "éi", "eitt"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "13", "20", "21", "30", "100", "1000000")],
+                         ["første", "trettande", "tjuande", "tjueførste", "trettiande", "hundrede", "millionte"])
+
+    def test_fractions_take_the_cardinal(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13")], ["ein tredel", "to tredelar", "åtte trettendelar"])
+
+
 class TestNorwegianBokmal(unittest.TestCase):
     """CLDR RBNF no, Bokmålsordboka and Språkrådet, «Tall, tid og dato»."""
 
@@ -530,6 +549,8 @@ class TestNorwegianBokmal(unittest.TestCase):
                          ["tjueen", "hundre og en", "hundre og tjueen", "tusen og en", "tusen hundre", "to millioner",
                           "to milliarder en"])
         self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["en", "ei", "ett"])
+        self.assertEqual([[self.say(n, gender=g) for n in ("21", "101", "1001")] for g in ("feminine", "neuter")],
+                         [["tjueen", "hundre og ei", "tusen og ei"], ["tjueett", "hundre og ett", "tusen og ett"]])
         self.assertEqual(self.say("1000000"), "én million")
 
     def test_ordinals(self):
