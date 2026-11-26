@@ -1,13 +1,24 @@
 # Changelog
 
+## [0.41.0a1](https://github.com/TigreGotico/numtag/tree/0.41.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.40.0a1...0.41.0a1)
+
+**Merged pull requests:**
+
+- feat: Danish writer [\#355](https://github.com/TigreGotico/numtag/pull/355) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.40.0a1](https://github.com/TigreGotico/numtag/tree/0.40.0a1) (2026-11-26)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.1a1...0.40.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.39.0a1...0.40.0a1)
+
+## [0.39.0a1](https://github.com/TigreGotico/numtag/tree/0.39.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.1a1...0.39.0a1)
 
 **Merged pull requests:**
 
 - feat: Bengali reader [\#372](https://github.com/TigreGotico/numtag/pull/372) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- feat: Danish writer [\#355](https://github.com/TigreGotico/numtag/pull/355) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Norwegian Nynorsk writer; nb compounds take gender [\#354](https://github.com/TigreGotico/numtag/pull/354) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.38.1a1](https://github.com/TigreGotico/numtag/tree/0.38.1a1) (2026-11-26)
