@@ -457,7 +457,6 @@ class TestLanguageTags(unittest.TestCase):
     def test_a_padded_bare_tag_reads_the_default_region(self):
         self.assertEqual(lexicon_name(" pt "), "pt-PT")
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/linguatag/issues/78")
     def test_a_padded_region_tag_reads_its_region(self):
         for tag in (" pt-BR", "pt-BR "):
             self.assertEqual(lexicon_name(tag), "pt-BR")
