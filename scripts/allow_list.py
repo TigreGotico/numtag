@@ -184,11 +184,15 @@ def category_ca(row, got):
     if kw.get("digits") == "number": return "digits_number"
     if row["fn"] == "fraction":
         if row["arg"].split("/")[1].lstrip("-") == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
-        return "ca_fraction"
+        last = mine.split()[-1]
+        one = row["arg"].lstrip("-").split("/")[0] == "1"
+        named = {"mig", "terç", "quart"} if one else {"migs", "terços", "quarts"}
+        return "ca_fraction" if last in named or last.endswith("è" if one else "ens") else None
     if row["fn"] == "ordinal" or kw.get("ordinals"):
         if str(row["arg"]) == "0": return "ca_zero"
         if got == {"err": "ValueError"}: return "ca_range"
-        return "ca_ordinal" if re.search(r"(è|ena|primera?|segona?|tercera?|quarta?)$", mine) else None
+        if " " not in mine and "-" not in mine and re.fullmatch(r"(primer|segon|tercer|quart)a?", mine): return "ca_ordinal"
+        return "ca_ordinal" if re.search(r"(è|ena)$", mine) else None
     if kw.get("gender") == "feminine":
         a, b = ca_tokens(out), ca_tokens(mine)
         if len(a) == len(b) and all(x == y or (x, y) in CA_PAIRS or x == y + "a" for x, y in zip(a, b)): return "ca_gender"
