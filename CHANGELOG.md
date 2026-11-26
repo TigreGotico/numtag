@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.34.0a1](https://github.com/TigreGotico/numtag/tree/0.34.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.1a1...0.34.0a1)
+
+**Merged pull requests:**
+
+- feat: Dutch writer [\#338](https://github.com/TigreGotico/numtag/pull/338) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.33.1a1](https://github.com/TigreGotico/numtag/tree/0.33.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.0a1...0.33.1a1)
@@ -621,10 +629,6 @@
 ## [0.14.7a1](https://github.com/TigreGotico/numtag/tree/0.14.7a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a2...0.14.7a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): digits and word decimals count a counted hundred noun [\#114](https://github.com/TigreGotico/numtag/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.6a2](https://github.com/TigreGotico/numtag/tree/0.14.6a2) (2026-11-17)
 
