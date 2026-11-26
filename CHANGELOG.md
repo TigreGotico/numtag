@@ -1,12 +1,19 @@
 # Changelog
 
+## [0.33.0a1](https://github.com/TigreGotico/numtag/tree/0.33.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.1a1...0.33.0a1)
+
+**Merged pull requests:**
+
+- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.32.1a1](https://github.com/TigreGotico/numtag/tree/0.32.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.0a1...0.32.1a1)
 
 **Merged pull requests:**
 
-- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.32.0a1](https://github.com/TigreGotico/numtag/tree/0.32.0a1) (2026-11-26)
