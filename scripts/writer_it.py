@@ -17,6 +17,11 @@ ONP = "ovos-number-parser 0.31.5a2 numbers_it.py"
 CRUSCA_1077 = "Accademia della Crusca, consulenza 1077"
 TRECCANI_FRAZIONARI = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un "
                        "aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\"")
+TRECCANI_ORDINALE = ("Vocabolario Treccani, «ordinale»: the joined form \"è pressoché l'unico per alcuni ordinali per i "
+                     "quali l'altro tipo sarebbe sentito come poco eufonico: centesimo decimo, millesimo primo, millesimo "
+                     "secondo, millesimo decimo, millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata "
+                     "è preferita)\". The writer splits these cases only: a round hundred and 10, and \"mille\" and 1, 2, "
+                     "10 or 11")
 TRECCANI_TRE = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali»: \"I composti di tre vanno accentati\", so a "
                 "compound that ends in three ends in \"tré\": \"milletré\", \"duemilatré\"")
 CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form "
@@ -80,17 +85,21 @@ def ordinal(name, e):
     rules += [R(100, f"cent→%{name}-o→"), R(200, f"←%cardinal-m←cent→%{name}-o→"),
               R(1000, f"mill→%{name}-mille→"), R(2000, f"←%count-mila←mil→%{name}-mila→")]
     for exponent, singular, _ in SCALES:
-        stem, joined = singular[:-1], f"{name}-mille" if singular.endswith("e") else f"{name}-o"
+        stem, joined = singular[:-1], f"{name}-scale" if singular.endswith("e") else f"{name}-o"
         rules += [R(10 ** exponent, f"{stem}→%{joined}→"), R(2 * 10 ** exponent, f"←%count-mila←{stem}→%{joined}→")]
     sets = [(name, rules)]
     for v in "iao":
         tails = [R(0, esim("esimo"))] + [R(n, (v if n != 1 and (n != 8 or v == "o") else "") + esim(w)) for n, w in ORD_TAIL.items()]
-        tails += [R(10, f"{v}=%{name}=")] if v == "o" else []
+        tails += [R(10, f"{esim('esimo')} {esim('decimo')}", TRECCANI_ORDINALE), R(11, f"o=%{name}=")] if v == "o" else []
         if v == "o":  # after "cent": "centottantesimo"
             tails += [R(80, f"=%{name}="), R(90, f"o=%{name}=")]
         sets.append((f"{name}-{v}", tails))
     # after "mill": "millesimo", "milleunesimo"; after "mil" of a count of thousands: "duemillesimo", "duemilaunesimo"
-    sets.append((f"{name}-mille", [R(0, esim("esimo")), R(1, "e=%" + name + "-unit=")]))
+    split = [R(1, f"{esim('esimo')} {esim('primo')}", TRECCANI_ORDINALE), R(2, f"{esim('esimo')} {esim('secondo')}"),
+             R(3, "e=%" + name + "-unit="), R(10, f"{esim('esimo')} {esim('decimo')}"),
+             R(11, f"{esim('esimo')} {esim('undicesimo')}"), R(12, "e=%" + name + "-unit=")]
+    sets.append((f"{name}-mille", [R(0, esim("esimo"))] + split))
+    sets.append((f"{name}-scale", [R(0, esim("esimo")), R(1, "e=%" + name + "-unit=")]))
     sets.append((f"{name}-mila", [R(0, esim("lesimo")), R(1, "a=%" + name + "-unit=")]))
     sets.append((f"{name}-unit", [R(n, esim(w)) for n, w in ORD_TAIL.items()] + [R(10, f"=%{name}=")]))
     return sets
