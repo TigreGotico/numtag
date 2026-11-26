@@ -925,6 +925,35 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 
 > Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
 
+## Regional words: "septante", "huitante", "octante", "nonante"
+
+French says 70, 80 and 90 in two ways: "soixante-dix", "quatre-vingts" and "quatre-vingt-dix" in France and Quebec, and "septante", "huitante" or "octante", and "nonante" in Belgium, Switzerland and other places. The regional words name no other thing, so every French tag reads them, and at the full score. The score tells how sure numtag is that the words are a number. It does not tell where people say them. The ordinals "septantième", "huitantième", "octantième" and "nonantième" read the same way.
+
+```python
+>>> read("Il a septante ans et elle nonante.", "fr-FR")
+[('septante', '70'), ('nonante', '90')]
+>>> read("nonante et un", "fr-CA")
+[('nonante et un', '91')]
+>>> read("Condorcet fait revivre les mots de septante, octante, nonante.", "fr")
+[('septante', '70'), ('octante', '80'), ('nonante', '90')]
+>>> read("Il y a huitante-deux personnes.", "fr-BE")
+[('huitante-deux', '82')]
+>>> [(m.text, m.confidence) for m in tag_numbers("Elle a eu son bac en nonante.", "fr-FR")]
+[('nonante', 1.0)]
+```
+
+> Académie française, Questions de langue, "Septante, octante, nonante": "ils restent connus dans l’usage parlé de nombreuses régions de l’Est et du Midi de la France, ainsi qu’en Acadie."; "Rien n’interdit de les employer, mais par rapport à l’usage courant en France, ils sont perçus comme régionaux ou vieillis."
+
+The writer of each region keeps its own words: `spell("70", "fr-FR")` writes "soixante-dix", and `spell("70", "fr-BE")` writes "septante".
+
+```python
+>>> from numtag import spell
+>>> [spell("70", lang)[0].text for lang in ("fr-FR", "fr-CA", "fr-BE", "fr-CH")]
+['soixante-dix', 'soixante-dix', 'septante', 'septante']
+>>> [spell("80", lang)[0].text for lang in ("fr-FR", "fr-BE", "fr-CH")]
+['quatre-vingts', 'quatre-vingts', 'huitante']
+```
+
 ## Two or a few: "a couple", "een paar", "ein paar"
 
 In English, "a couple" and "a couple of" give two at the score of a homograph, 0.4, with `Reason.HOMOGRAPH`. The dictionaries give the phrase two senses: two, and a small number. numtag cannot tell the senses apart from the text. So it gives two and marks the mention as weak. Only the article makes "couple" a number. With a count before it, "couple" is the noun "two persons paired", and the count counts couples: "one couple" is 1, and "three couple dances" is 3. "The couple" names two persons and has no count, so it gives no number.

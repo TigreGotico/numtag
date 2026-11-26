@@ -44,15 +44,45 @@ class TestVigesimalTens(unittest.TestCase):
 
 
 class TestRegionalTens(unittest.TestCase):
-    def test_septante_is_belgian(self):
-        # 70 + 7 = 77
-        self.assertEqual(fr("septante-sept", "fr-BE"), [("septante-sept", "77", C)])
-        self.assertEqual(fr("septante"), [])
+    TAGS = ("fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH")
 
-    def test_huitante_is_swiss(self):
-        # 80 + 2 = 82
-        self.assertEqual(fr("huitante-deux", "fr-CH"), [("huitante-deux", "82", C)])
-        self.assertEqual(fr("huitante", "fr-BE"), [])
+    def test_septante_and_nonante_read_under_every_french_tag(self):
+        # 70 + 5 = 75; 90 + 1 = 91; 90 + 9 = 99; the ordinal 70; 1900 + 70 + 9 = 1979
+        for lang in self.TAGS:
+            with self.subTest(lang=lang):
+                self.assertEqual(fr("septante-cinq", lang), [("septante-cinq", "75", C)])
+                self.assertEqual(fr("nonante et un", lang), [("nonante et un", "91", C)])
+                self.assertEqual(fr("nonante-neuf", lang), [("nonante-neuf", "99", C)])
+                self.assertEqual(fr("septantième", lang), [("septantième", "70", O)])
+                self.assertEqual(fr("mille neuf cent septante-neuf", lang),
+                                 [("mille neuf cent septante-neuf", "1979", C)])
+
+    def test_huitante_and_octante_read_under_every_french_tag(self):
+        # 80 + 2 = 82; 80 + 3 = 83; the ordinal 80
+        for lang in self.TAGS:
+            with self.subTest(lang=lang):
+                self.assertEqual(fr("huitante-deux", lang), [("huitante-deux", "82", C)])
+                self.assertEqual(fr("octante", lang), [("octante", "80", C)])
+                self.assertEqual(fr("octante-trois", lang), [("octante-trois", "83", C)])
+                self.assertEqual(fr("octantième", lang), [("octantième", "80", O)])
+
+    def test_a_regional_ten_is_a_sure_number(self):
+        # no other meaning, so the full score
+        for lang in ("fr-FR", "fr-CA"):
+            self.assertEqual(confidence("Il a septante ans et elle nonante.", lang),
+                             [("septante", 1.0), ("nonante", 1.0)])
+            self.assertEqual(confidence("Il y a huitante personnes, octante selon lui.", lang),
+                             [("huitante", 1.0), ("octante", 1.0)])
+
+    def test_the_writer_keeps_the_tens_of_each_region(self):
+        from numtag import spell
+        def say(value, lang):
+            return spell(value, lang)[0].text
+        for lang in ("fr-FR", "fr-CA", "fr"):
+            self.assertEqual([say(n, lang) for n in ("70", "80", "90", "91")],
+                             ["soixante-dix", "quatre-vingts", "quatre-vingt-dix", "quatre-vingt-onze"])
+        self.assertEqual([say(n, "fr-BE") for n in ("70", "80", "90")], ["septante", "quatre-vingts", "nonante"])
+        self.assertEqual([say(n, "fr-CH") for n in ("70", "80", "90")], ["septante", "huitante", "nonante"])
 
 
 class TestScaleNouns(unittest.TestCase):

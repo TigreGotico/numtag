@@ -97,17 +97,16 @@ class TestLexiconFiles(unittest.TestCase):
                          {"az": False, "en": False, "et": False, "eu": True, "fi": False, "fr-FR": False,
                           "hu": False, "id": False, "it": True, "pt-BR": True, "pt-PT": True, "ro": False,
                           "tr": False})
-    def test_fr_be_extends_fr_fr_with_septante_and_nonante(self):
-        base, belgian = load("fr-FR").readings, load("fr-BE").readings
-        self.assertLessEqual(base.keys(), belgian.keys())
-        self.assertEqual(set(belgian) - set(base),
-                         {"septante", "septantième", "septantièmes", "nonante", "nonantième", "nonantièmes"})
-        self.assertEqual(load("fr-BE").of("septante", "ten")[0].value, "70")
+    def test_fr_fr_reads_the_regional_tens(self):
+        french = load("fr-FR")
+        self.assertEqual({word: french.of(word, "ten")[0].value
+                          for word in ("septante", "huitante", "octante", "nonante")},
+                         {"septante": "70", "huitante": "80", "octante": "80", "nonante": "90"})
 
-    def test_fr_ch_extends_fr_be_with_huitante(self):
-        belgian, swiss = load("fr-BE").readings, load("fr-CH").readings
-        self.assertEqual(set(swiss) - set(belgian), {"huitante", "huitantième", "huitantièmes"})
-        self.assertEqual(load("fr-CH").of("huitante", "ten")[0].value, "80")
+    def test_fr_be_and_fr_ch_read_the_words_of_fr_fr(self):
+        base, belgian, swiss = load("fr-FR").readings, load("fr-BE").readings, load("fr-CH").readings
+        self.assertEqual(set(belgian), set(base))
+        self.assertEqual(set(swiss), set(base))
 
     def test_a_vague_quantifier_of_several_words_keeps_its_words_and_its_flag(self):
         data = deepcopy(lexicon_module._read("hr"))
