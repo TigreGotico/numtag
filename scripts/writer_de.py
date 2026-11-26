@@ -25,8 +25,10 @@ SILVER_HALF = "SILVER: 1/2 reads \"ein Halb\" and n/2 \"Halbe\"; no saved rule"
 DUDEN_EIN = ("Duden online, «hundertundein» (Papers/Languages/Germanic/German/duden_hundertundein.html): \"hundertundeinen "
              "Krimi lesen\"; «tausendundein»: \"tausendundeine Idee\", \"Märchen aus Tausendundeiner Nacht\": a final ein "
              "declines before a singular noun")
-SILVER_CASE = ("SILVER: the endings by case and gender follow the adjective declension (after an article: -e, -en; with no "
-               "article: -er, -e, -es, -en, -em); no saved table. " + CLDR + ", %spellout-ordinal-m, -n, -r, -s: "
+SILVER_CASE = ("IDS grammis, «Flexion der Adjektive» (Papers/Languages/Germanic/German/grammis_flexion_der_adjektive_3609.html): "
+               "\"Ordinalzahl-Adjektive (z. B. der dritte Mann, das fünfte Gebot ) werden regelmäßig stark oder schwach "
+               "flektiert.\" SILVER: the endings of each case and gender (weak: -e, -en; strong: -er, -e, -es, -en, -em); "
+               "no saved table. " + CLDR + ", %spellout-ordinal-m, -n, -r, -s: "
                "\"0: =%spellout-ordinal=m;\"")
 # The endings of the ordinal by case and gender: after an article, then with no article (strong).
 WEAK = {"nominative": dict(masculine="e", feminine="e", neuter="e"),
