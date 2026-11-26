@@ -74,20 +74,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 
 ## Languages
 
-| `lang` | Lexicon | Default scale |
-|---|---|---|
-| `pt-BR` | Brazilian Portuguese | short: "bilhão" is 10^9 |
-| every other `pt` tag (`pt`, `pt-PT`, `pt-AO`) | European Portuguese | long: "bilião" is 10^12 |
-| `en`, `en-GB` and every other `en` tag; `en-US` has its own lexicon | English | short: "billion" is 10^9 |
-| `el`, `ar`, `he`, `fa`, `kab`, `mt` | Greek, Arabic, Hebrew, Persian, Kabyle, Maltese | per lexicon, in [el-ar-he-fa-kab.md](docs/languages/el-ar-he-fa-kab.md) |
-| `de`, `nl`, `fy`, `da`, `sv`, `nb` (and `no`), `nn` | German, Dutch, West Frisian, Danish, Swedish, Norwegian | per lexicon, in [germanic.md](docs/languages/germanic.md) |
-| `fi`, `et`, `hu`, `tr`, `az` | Finnish, Estonian, Hungarian, Turkish, Azerbaijani | per lexicon, in [uralic-turkic.md](docs/languages/uralic-turkic.md) |
-| `lt` | Lithuanian | short: "trilijonas" is 10^12, in [baltic.md](docs/languages/baltic.md) |
-| `ru`, `uk`, `bg`, `pl`, `cs`, `sk`, `sl`, `hr` | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian | per lexicon, in [slavic.md](docs/languages/slavic.md) |
-| `sr` | Serbian, in the Latin and the Cyrillic script | long: "bilion" is 10^12, in [slavic.md](docs/languages/slavic.md) |
-| `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id`, `ms` | French, Italian, Romanian, Basque, Indonesian, Malay | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
-| `es`, `gl`, `ca` (`ca-ES-valencia` has its own lexicon), `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
-| `bn` | Bengali | Indian: "লাখ" is 10^5 and "কোটি" is 10^7, in [bn.md](docs/languages/bn.md) |
+[docs/languages/index.md](docs/languages/index.md) lists each supported language: what it reads, whether it has a writer, and its score on the gold corpus.
 
 Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
 

@@ -135,6 +135,35 @@ SRC.update({
  "fr_short": "numtag/lexicon/fr-FR.json, the setting scale: French counts in the long scale only, so a call for the short scale reads the long one.",
 })
 RO_DOOM = "DOOM 3 (2021), as quoted by dexonline (Papers/Languages/Romance/Romanian/)"
+KAB = "Papers/Languages/Berber/Kabyle/"
+KAB_WP = f"en.wikipedia, «Kabyle grammar», Numerotation ({KAB}kabyle_grammar_enwiki_oldid1383353682.html)"
+KAB_WT = f"fr.wiktionary, «Modèle:cardinaux/kab» ({KAB}cardinaux_kab_frwiktionary_template.html)"
+SRC.update({
+ "kab_arabic": KAB_WP + ": \"Only the first two numbers are Berber; for higher numbers, Arabic is used.\"; " + KAB_WT + ": \"3 tlata\", \"10 ɛecṛa\"; ovos-number-parser writes the learned Berber forms (\"kṛaḍ\", \"kuẓ\", \"mraw\").",
+ "kab_form": KAB_WT + ": \"400 ṛebɛa-mya\", \"900 tesɛa-mya\", \"3 000 telt-alaf\", \"8 000 temn-alaf\", \"80 tmanyin\", \"90 tesɛin\", \"13 telṭac\"; the writer takes the fr.wiktionary form where languagesandnumbers.com differs, and ovos-number-parser writes the other (\"ṛebɛ-mya\", \"tlat-alaf\").",
+ "kab_half": f"fr.wiktionary, «azgen» ({KAB}azgen_frwiktionary.html): \"Moitié\"; ovos-number-parser writes \"yiwen wis sin\" (one second).",
+ "kab_range": "numtag/lexicon/kab.json, the kab writer: a number goes up to 10^12 - 1, the last scale word of this lexicon (amelyaṛ); ovos-number-parser raises OverflowError from 10000, and past 10^12 - 1 numtag raises ValueError.",
+})
+KAB_ARABIC = {"kṛaḍ": "tlata", "kraḍ": "tlata", "kuẓ": "ṛebɛa", "semmus": "xemsa", "sḍis": "setta", "sa": "sebɛa", "tam": "tmanya",
+              "tẓa": "tesɛa", "mraw": "ɛecṛa", "kṛaḍet": "tlata", "kuẓet": "ṛebɛa", "semmuset": "xemsa", "sḍiset": "setta",
+              "sat": "sebɛa", "tamet": "tmanya", "tẓat": "tesɛa", "mrawet": "ɛecṛa"}
+KAB_FORM = {"ṛebɛ-mya": "ṛebɛa-mya", "tesɛ-mya": "tesɛa-mya", "tlat-alaf": "telt-alaf", "tmany-alaf": "temn-alaf",
+            "tmanyina": "tmanyin", "tsɛin": "tesɛin", "tleṭṭac": "telṭac", "sebeɛṭac": "sbeɛṭac", "temmenṭac": "tmenṭac"}
+def category_kab(row, got):
+    kw = row.get("kw", {})
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if out == "OverflowError" and not str(row["arg"]).startswith("-"): return "kab_range"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1] == "2" and mine.endswith("zgen"): return "kab_half"
+    words = lambda t, table: " ".join(table.get(w, w) for w in re.sub(r"(\S+)-(mya|alaf)", lambda m: table.get(m[0], m[0]), t).split())
+    form = lambda t: words(t, KAB_FORM)
+    if form(out) == form(mine): return "kab_form"
+    if form(words(out, KAB_ARABIC)) == form(mine): return "kab_arabic"
+    return None
 SRC.update({
  "ro_ordinal": RO_DOOM + ": \"sutălea (al o ~) ... f. a suta/a o suta\", \"mielea (al ~/al o ~) ... f. a mia/a o mia\", \"miilea (al + num. + ~)\", \"milioanelea (al + num. + ~) (referitor la milioane)\" (dexonline_milioanelea.html), \"milionulea (al ~/al un ~) (referitor la un milion)\" (dexonline_milionulea.html); ovos-number-parser writes \"al sutălea primul\" for 101 and \"al doi miliardulea\".",
  "ro_article": RO_DOOM + ": \"locul doi, parcela doi = al doilea/a doua\"; the article \"al\" is part of the ordinal, and ovos-number-parser drops it in the neuter.",
@@ -164,6 +193,35 @@ def category_ro(row, got):
         if re.sub(r"\b(unu|doi|doisprezece)$", lambda m: last[m.group(1)], out) == mine: return "ro_gender"
     if "ori zece la puterea" in mine:
         return "ro_decimal" if "ori zece la puterea" in out else "ro_big"
+    return None
+RU_CLDR = "CLDR RBNF ru (common/rbnf/ru.xml as shipped in unicode-rbnf 2.5.1)"
+RU_ROSENTAL = "Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 45 (Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf)"
+SRC.update({
+ "ru_one_scale": RU_CLDR + ", %spellout-cardinal-masculine: \"1000: ←%spellout-cardinal-feminine← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$[ →→];\" and \"1000000: ←%spellout-cardinal-masculine← $(cardinal,one{миллион}…)$\": a scale noun keeps its count (\"одна тысяча\", \"один миллион\"); ovos-number-parser drops it.",
+ "ru_decimal": "SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\"); ovos-number-parser writes \"точка\" and pads the decimals with \"ноль\".",
+ "ru_long": "numtag/lexicon/ru.json, the setting scale: Russian counts in the short scale (CLDR RBNF ru: \"миллиард\", \"триллион\"); the writer has no long-scale reading, and ovos-number-parser writes \"биллион\".",
+ "ru_fraction": RU_ROSENTAL + ", п. 3: \"Д р о б н ы е числительные пишутся раздельно, например: две пятых ( 2/ 5)\": the numerator in the feminine and the denominator an ordinal, -ая after one and -ых after other counts; ovos-number-parser writes the masculine (\"один миллионный\"), the nominative plural (\"две девятые\") or a mixed number.",
+ "ru_range": "numtag/lexicon/ru.json, the ru writer: a cardinal goes up to 10^18 - 1 and an ordinal up to 10^15 - 1; past it the cardinal spells the power of ten and the ordinal raises ValueError.",
+ "ru_negative": "numtag/lexicon/ru.json, the ru writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+})
+def category_ru(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "long":
+        if "биллион" in str(row.get("out")): return "ru_long"
+        return category_ru({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "ru_negative"
+    if "умножить на десять" in mine or got == {"err": "ValueError"}: return "ru_range"
+    flat = lambda t: re.sub(r"\b(один|одна) (?=(тысяч|миллион|миллиард|триллион|квадриллион))", "", t.replace("ё", "е"))
+    if row["fn"] == "fraction":
+        return "ru_fraction" if re.search(r"(ая|ых|ьих|ья)$", mine) else None
+    if " запятая " in mine and flat(re.sub(r"( ноль)+$", "", out.replace(" точка ", " запятая "))) == flat(mine): return "ru_decimal"
+    if flat(out) == flat(mine): return "ru_one_scale"
     return None
 GL_NORMAS = "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16 (Papers/Languages/Iberian/Galician/)"
 SRC.update({
