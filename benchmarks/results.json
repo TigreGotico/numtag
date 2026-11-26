@@ -1,0 +1,206 @@
+{
+ "an": {
+  "rows": 153,
+  "rows_right": 153
+ },
+ "ar": {
+  "rows": 157,
+  "rows_right": 156
+ },
+ "ast": {
+  "rows": 176,
+  "rows_right": 175
+ },
+ "az": {
+  "rows": 176,
+  "rows_right": 176
+ },
+ "bg": {
+  "rows": 163,
+  "rows_right": 163
+ },
+ "bn": {
+  "rows": 40,
+  "rows_right": 40
+ },
+ "ca": {
+  "rows": 228,
+  "rows_right": 225
+ },
+ "cs": {
+  "rows": 185,
+  "rows_right": 184
+ },
+ "da": {
+  "rows": 181,
+  "rows_right": 181
+ },
+ "de": {
+  "rows": 200,
+  "rows_right": 200
+ },
+ "el": {
+  "rows": 161,
+  "rows_right": 161
+ },
+ "en": {
+  "rows": 444,
+  "rows_right": 442
+ },
+ "eo": {
+  "rows": 213,
+  "rows_right": 213
+ },
+ "es": {
+  "rows": 237,
+  "rows_right": 234
+ },
+ "et": {
+  "rows": 170,
+  "rows_right": 170
+ },
+ "eu": {
+  "rows": 168,
+  "rows_right": 168
+ },
+ "fa": {
+  "rows": 153,
+  "rows_right": 153
+ },
+ "fi": {
+  "rows": 181,
+  "rows_right": 181
+ },
+ "fr-BE": {
+  "rows": 22,
+  "rows_right": 22
+ },
+ "fr-CH": {
+  "rows": 20,
+  "rows_right": 20
+ },
+ "fr-FR": {
+  "rows": 201,
+  "rows_right": 199
+ },
+ "fy": {
+  "rows": 156,
+  "rows_right": 156
+ },
+ "gl": {
+  "rows": 185,
+  "rows_right": 184
+ },
+ "he": {
+  "rows": 160,
+  "rows_right": 157
+ },
+ "hi": {
+  "rows": 284,
+  "rows_right": 284
+ },
+ "hr": {
+  "rows": 183,
+  "rows_right": 182
+ },
+ "hu": {
+  "rows": 197,
+  "rows_right": 195
+ },
+ "id": {
+  "rows": 175,
+  "rows_right": 174
+ },
+ "it": {
+  "rows": 194,
+  "rows_right": 191
+ },
+ "kab": {
+  "rows": 163,
+  "rows_right": 163
+ },
+ "lt": {
+  "rows": 167,
+  "rows_right": 167
+ },
+ "ms": {
+  "rows": 162,
+  "rows_right": 161
+ },
+ "mt": {
+  "rows": 185,
+  "rows_right": 177
+ },
+ "mwl": {
+  "rows": 162,
+  "rows_right": 162
+ },
+ "mwr": {
+  "rows": 14,
+  "rows_right": 14
+ },
+ "nb": {
+  "rows": 178,
+  "rows_right": 178
+ },
+ "nl": {
+  "rows": 187,
+  "rows_right": 187
+ },
+ "nn": {
+  "rows": 157,
+  "rows_right": 157
+ },
+ "oc": {
+  "rows": 174,
+  "rows_right": 174
+ },
+ "pl": {
+  "rows": 167,
+  "rows_right": 167
+ },
+ "pt-BR": {
+  "rows": 470,
+  "rows_right": 464
+ },
+ "pt-PT": {
+  "rows": 479,
+  "rows_right": 473
+ },
+ "ro": {
+  "rows": 157,
+  "rows_right": 157
+ },
+ "ru": {
+  "rows": 195,
+  "rows_right": 194
+ },
+ "sk": {
+  "rows": 154,
+  "rows_right": 154
+ },
+ "sl": {
+  "rows": 166,
+  "rows_right": 166
+ },
+ "sq": {
+  "rows": 170,
+  "rows_right": 170
+ },
+ "sr": {
+  "rows": 149,
+  "rows_right": 149
+ },
+ "sv": {
+  "rows": 176,
+  "rows_right": 176
+ },
+ "tr": {
+  "rows": 189,
+  "rows_right": 189
+ },
+ "uk": {
+  "rows": 184,
+  "rows_right": 184
+ }
+}

@@ -24,6 +24,8 @@ PACKAGE = Path(numtag.__file__).parent
 LEXICONS = PACKAGE / "lexicon"
 VERSION_TWO = sorted(path.stem for path in LEXICONS.glob("*.json") if "writer" in json.loads(path.read_text("utf-8")))
 WRITERS = sorted(name for name in VERSION_TWO if json.loads((LEXICONS / f"{name}.json").read_text("utf-8"))["writer"])
+FRACTION_WRITERS = [name for name in WRITERS
+                    if json.loads((LEXICONS / f"{name}.json").read_text("utf-8"))["writer"].get("fraction", {}) is not None]
 
 
 # https://github.com/TigreGotico/numtag/issues/305: the pt-PT reader splits an ordinal with two scale
@@ -71,6 +73,11 @@ def _issue_325(lang: str, text: str) -> bool:
 
 
 ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
+
+
+def _issue_373(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/373: the kab bound words read only inside a number."""
+    return lang == "kab" and text in ("juǧ", "wis", "tis")
 
 
 def _issue_329(lang: str, text: str) -> bool:
@@ -153,6 +160,36 @@ def _tiny(rules: list[dict], **forms) -> dict:
     return data
 
 
+class TestHindi(unittest.TestCase):
+    """CLDR RBNF hi: the Indian scale and the ordinal endings."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "hi", **kw)[0].text
+
+    def test_cardinals_count_in_lakh_and_crore(self):
+        self.assertEqual([self.say(n) for n in ("21", "101", "150000", "1000000", "123456789")],
+                         ["इक्कीस", "एक सौ एक", "एक लाख पचास हज़ार", "दस लाख",
+                          "बारह करोड़ चौंतीस लाख छप्पन हज़ार सात सौ नवासी"])
+
+    def test_ordinals_by_gender(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "4", "6", "7", "9", "100", "101")],
+                         ["पहला", "चौथा", "छठा", "सातवाँ", "नवाँ", "एक सौवाँ", "एक सौ एकवाँ"])
+
+    def test_the_standard_words_of_khn(self):
+        """KHN 2016 §5.1 p. 52, where it differs from CLDR hi."""
+        self.assertEqual([self.say(n) for n in ("15", "44", "53", "63", "87", "88", "91", "99")],
+                         ["पंद्रह", "चवालीस", "तिरपन", "तिरसठ", "सतासी", "अठासी", "इक्यानवे", "निन्यानवे"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("1", "5", "21")],
+                         ["पहली", "पाँचवीं", "इक्कीसवीं"])
+
+    def test_a_fraction_reads_over(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "13/47")], ["एक बटा तीन", "तेरह बटा सैंतालीस"])
+
+    def test_the_maximum_waits_for_the_reader(self):
+        with self.assertRaises(ValueError):
+            self.say("1" + "0" * 16)
+
+
 class TestGolden(unittest.TestCase):
     """The words of ovos-number-parser, for every language that has a writer block."""
 
@@ -200,15 +237,17 @@ class TestRoundTrip(unittest.TestCase):
     """What the writer says, the reader reads back as the same number."""
 
     @staticmethod
-    def numbers() -> list[int]:
+    def numbers(lang: str, form: str = "cardinal") -> list[int]:
         rng = random.Random(7)
         round_numbers = {d * 10 ** k for k in range(1, 13) for d in range(1, 10)} | {10 ** k + 1 for k in range(3, 13)}
-        return list(range(0, 1001)) + sorted(round_numbers) + [rng.randint(1001, 10 ** 9) for _ in range(500)]
+        numbers = list(range(0, 1001)) + sorted(round_numbers) + [rng.randint(1001, 10 ** 9) for _ in range(500)]
+        maximum = int(_file(lang)["writer"]["forms"][form].get("maximum") or 10 ** 13)
+        return [number for number in numbers if number <= maximum]
 
     def test_the_reader_reads_every_cardinal_back(self):
         for lang in WRITERS:
             failures = []
-            for number in self.numbers():
+            for number in self.numbers(lang):
                 if lang == "mwr" and number >= 10 ** 12:  # https://github.com/TigreGotico/numtag/issues/375
                     continue
                 words = spell(str(number), lang)[0].text
@@ -247,7 +286,7 @@ class TestRoundTrip(unittest.TestCase):
                        "splits https://github.com/TigreGotico/numtag/issues/295")
     def test_the_reader_reads_a_fraction_with_a_denominator_over_20_back_as_one_mention(self):
         failures = []
-        for lang in WRITERS:
+        for lang in FRACTION_WRITERS:
             for numerator, denominator in ((1, 21), (3, 25), (1, 100)):
                 text = spell(f"{numerator}/{denominator}", lang)[0].text
                 found = [(m.text, Fraction(m.value)) for m in tag_numbers(text, lang)]
@@ -260,7 +299,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_a_mixed_fraction_reads_as_its_parts_or_as_its_whole_value(self):
         # Whether the reader joins the whole part and the fraction is open in the issue; any other value is wrong.
         failures = []
-        for lang in WRITERS:
+        for lang in FRACTION_WRITERS:
             for value, allowed in (("31/3", {"10", "1/3", "31/3"}), ("32/3", {"10", "2/3", "32/3"})):
                 text = spell(value, lang)[0].text
                 values = [m.value for m in tag_numbers(text, lang)]
@@ -271,7 +310,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_every_literal_word_of_a_rule_is_a_form_of_the_reader(self):
         for lang in WRITERS:
             lexicon = load(lang)
-            known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners
+            known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners | lexicon.fraction_over
             block = _file(lang)["writer"]
             parsed = {name: [writer_module._parse(rule["text"], lang) for rule in spec["rules"]]
                       for name, spec in block["rulesets"].items()}
@@ -284,7 +323,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_373(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -339,7 +378,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_the_reader_reads_every_ordinal_back(self):
         for lang in WRITERS:
             failures = []
-            for number in self.numbers():
+            for number in self.numbers(lang, "ordinal"):
                 if number == 0 or lang == "mwr" and number >= 10 ** 12:  # mwr: issue 375
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
@@ -578,6 +617,53 @@ class TestNorwegianNynorsk(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13")], ["ein tredel", "to tredelar", "åtte trettendelar"])
 
 
+class TestBengali(unittest.TestCase):
+    """en.wiktionary «Appendix:Bengali numerals» (oldid 95460450) and Thompson, Bengali (2012), Appendix II."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "bn", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("0", "5", "21", "99", "1000", "100000", "10000000")],
+                         ["শূন্য", "পাঁচ", "একুশ", "নিরানব্বই", "এক হাজার", "এক লাখ", "এক কোটি"])
+
+    def test_the_indian_scale_counts_up_to_99_before_lakh_and_above_before_koti(self):
+        self.assertEqual([self.say(n) for n in ("1500000", "1000000000", "10000000000")],
+                         ["পনেরো লাখ", "এক শ কোটি", "এক হাজার কোটি"])
+
+    def test_the_hundreds(self):
+        self.assertEqual([self.say(n) for n in ("200", "999")], ["দুই শ", "নয় শ নিরানব্বই"])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="the reader reads \"একশ এক\" as 100 and 1 "
+                       "https://github.com/TigreGotico/numtag/issues/391")
+    def test_the_reader_reads_the_one_word_hundred_before_a_rest(self):
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("একশ এক", "bn")], [("একশ এক", "101")])
+
+    def test_ordinals_from_one_to_ten(self):
+        self.assertEqual([self.say(str(n), form=SpokenForm.ORDINAL) for n in range(1, 11)],
+                         ["প্রথম", "দ্বিতীয়", "তৃতীয়", "চতুর্থ", "পঞ্চম", "ষষ্ঠ", "সপ্তম", "অষ্টম", "নবম", "দশম"])
+
+    def test_no_decimal_minus_fraction_or_ordinal_past_ten(self):
+        for value, kw in (("1.5", {}), ("-3", {}), ("1/2", {}), ("11", {"form": SpokenForm.ORDINAL})):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                spell(value, "bn", **kw)
+
+    @pytest.mark.xfail(strict=True, raises=ValueError, reason="no saved source gives the bn decimal or minus word "
+                       "https://github.com/TigreGotico/numtag/issues/366")
+    def test_decimals_and_negatives_have_a_reading(self):
+        self.assertTrue(self.say("1.5") and self.say("-3"))
+
+    def test_the_reader_reads_a_sample_of_cardinals_back(self):
+        rng = random.Random(366)
+        failures = []
+        for number in [rng.randint(0, 10 ** 9) for _ in range(2000)]:
+            words = self.say(str(number))
+            found = [(m.text, m.value) for m in tag_numbers(words, "bn")]
+            if found != [(words, str(number))]:
+                failures.append((number, words, found))
+        self.assertEqual(failures[:5], [])
+
+
 class TestNorwegianBokmal(unittest.TestCase):
     """CLDR RBNF no, Bokmålsordboka and Språkrådet, «Tall, tid og dato»."""
 
@@ -600,6 +686,33 @@ class TestNorwegianBokmal(unittest.TestCase):
     def test_fractions_take_the_cardinal(self):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13", "9/34", "1/2")],
                          ["en tredel", "to tredeler", "åtte trettendeler", "ni trettifiredeler", "en halv"])
+
+
+class TestKabyle(unittest.TestCase):
+    """fr.wiktionary «Modèle:cardinaux/kab», languagesandnumbers.com and en.wikipedia «Kabyle grammar»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "kab", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "80", "400", "2000", "3000", "20000")],
+                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "juǧ alaf",
+                          "telt-alaf", "ɛecrin-alaf"])
+        self.assertEqual([self.say(n, gender="feminine") for n in ("1", "2", "21")], ["yiwet", "snat", "waḥed u ɛecrin"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "2", "3")],
+                         ["amezwaru", "wis sin", "wis tlata"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("1", "3")],
+                         ["tamezwarut", "tis tlata"])
+
+    def test_the_half(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "3/2")], ["azgen", "yiwen d wezgen"])
+
+    def test_no_decimal_and_no_minus_word(self):
+        for value in ("1.5", "-3", "-1/2"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                spell(value, "kab")
 
 
 class TestDutch(unittest.TestCase):
@@ -828,7 +941,7 @@ class TestLoader(unittest.TestCase):
                              "is not '-x' or a whole number with no leading zero")
 
     def test_a_rule_text_that_the_interpreter_does_not_read_is_refused(self):
-        for text in ("$(cardinal,one{a}other{b})$;", "=#,##0=;", "<<a;", "←x←;"):
+        for text in ("$(ordinal,one{a}other{b})$;", "$(cardinal,one{a})$;", "=#,##0=;", "<<a;", "←x←;"):
             with self.subTest(text=text):
                 self.refused(_tiny([{"value": "0", "text": text}]), "unsupported rule text")
 
@@ -853,6 +966,40 @@ class TestInterpreter(unittest.TestCase):
 
     def test_an_optional_part_stays_out_when_the_remainder_is_zero(self):
         self.assertEqual(self.read(self.RULES, "30"), "two tens")
+
+    def test_a_choice_reads_its_first_part_with_a_remainder_and_its_second_without(self):
+        rules = self.RULES + [{"value": "1000", "text": "[←← thousand →→|←← thousandth];"}]
+        self.assertEqual([self.read(rules, n) for n in ("2000", "2001")], ["two thousandth", "two thousand one"])
+
+    def test_a_denominator_stays_singular_after_a_count_in_the_category_one(self):
+        """With a ``plural`` list, 21 is in "one", so 21/3 keeps "third"; 2/3 takes "thirds"."""
+        rules = [{"value": "1", "text": "one;"}, {"value": "2", "text": "two;"}, {"value": "3", "text": "three;"},
+                 {"value": "20", "text": "twenty[-→→];"}]
+        data = _tiny(rules)
+        data["writer"]["rulesets"]["ord"] = {"source": "test", "rules": [{"value": "3", "text": "third;"}]}
+        data["writer"]["plural"] = [{"category": "one", "mod10": [1], "not_mod100": [11]}]
+        data["writer"]["fraction"] = {"mixed": False, "limit": 10, "single": "one {denominator}", "plural": "s",
+                                      "named": {}, "denominator": "{cardinal}", "ruleset": "ord",
+                                      "numerator": "cardinal", "source": "test"}
+        variants = Variants(self)
+        variants.write("variant", data)
+        writer = writer_module._writer("variant")
+        self.assertEqual([writer_module._fraction(writer, "cardinal", f) for f in ("21/3", "2/3", "1/3")],
+                         ["twenty-one third", "two thirds", "one third"])
+
+    def test_a_plural_word_agrees_with_the_quotient(self):
+        """CLDR ru: one ends in 1 but not 11, few ends in 2 to 4 but not 12 to 14."""
+        rules = [{"value": "0", "text": "n;"}, {"value": "1000",
+                  "text": "←← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$;"}]
+        plural = [{"category": "one", "mod10": [1], "not_mod100": [11]},
+                  {"category": "few", "mod10": [2, 3, 4], "not_mod100": [12, 13, 14]}]
+        variants = Variants(self)
+        data = _tiny(rules)
+        data["writer"]["plural"] = plural
+        variants.write("variant", data)
+        writer = writer_module._writer("variant")
+        self.assertEqual([writer.render("cardinal", n).split()[-1] for n in ("1000", "2000", "5000", "11000", "21000", "12000", "22000")],
+                         ["тысяча", "тысячи", "тысяч", "тысяч", "тысяча", "тысяч", "тысячи"])
 
     def test_a_radix_that_is_no_power_of_ten_sets_the_divisor(self):
         rules = [{"value": "0", "text": "zero;"}, {"value": "3", "text": "three;"}, {"value": "4", "text": "four;"},
@@ -1041,11 +1188,9 @@ class TestNamedDenominator(unittest.TestCase):
 
 
 class TestZeroFraction(unittest.TestCase):
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="-0/5 is written with a minus word although its value is zero "
-                       "https://github.com/TigreGotico/numtag/issues/295")
     def test_a_fraction_of_a_zero_numerator_has_no_minus_word(self):
-        self.assertEqual([spell("-0/5", lang)[0].text for lang in WRITERS],
-                         [spell("0/5", lang)[0].text for lang in WRITERS])
+        self.assertEqual([spell("-0/5", lang)[0].text for lang in FRACTION_WRITERS],
+                         [spell("0/5", lang)[0].text for lang in FRACTION_WRITERS])
 
 
 class TestMention(unittest.TestCase):
@@ -1075,6 +1220,49 @@ class TestMention(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pass lang"):
             mention.spoken()
         self.assertEqual(mention.spoken("ms")[0].text, "dua")
+
+
+class TestRussian(unittest.TestCase):
+    """CLDR RBNF ru for cardinals; Rosental (1985), § 45 for ordinals and fractions."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "ru", **kw)[0].text
+
+    def test_cardinals_agree_with_the_scale_noun(self):
+        self.assertEqual([self.say(n) for n in ("21", "2000", "5000", "21000", "2000000", "5000000")],
+                         ["двадцать один", "две тысячи", "пять тысяч", "двадцать одна тысяча", "два миллиона",
+                          "пять миллионов"])
+        self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["один", "одна", "одно"])
+        self.assertEqual(self.say("21000", case="genitive", gender="masculine"), "двадцати одной тысячи")
+
+    def test_the_yo_spelling_comes_first_and_the_e_spelling_second(self):
+        """Русская грамматика (1980), § 1374: "тр - ёх четыр - ёх", "тр - ём четыр - ём"."""
+        def both(value, **kw):
+            return [(s.text, s.reason.value) for s in spell(value, "ru", **kw)]
+        self.assertEqual(both("3", case="genitive", gender="masculine"),
+                         [("трёх", "standard"), ("трех", "variant_spelling")])
+        self.assertEqual(both("400", case="dative", gender="masculine"),
+                         [("четырёмстам", "standard"), ("четыремстам", "variant_spelling")])
+        self.assertEqual(both("4", form=SpokenForm.ORDINAL),
+                         [("четвёртый", "standard"), ("четвертый", "variant_spelling")])
+        self.assertEqual(both("300", form=SpokenForm.ORDINAL),
+                         [("трёхсотый", "standard"), ("трехсотый", "variant_spelling")])
+        self.assertEqual([m.value for m in tag_numbers("трёмстам четырёмстам", "ru")], ["300", "400"])
+
+    def test_ordinals_from_rosental(self):
+        """§ 45, п. 4 and 5: "три тысячи пятнадцатый", "двадцатипятитысячный", "стосорокашестимиллионный"."""
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in
+                          ("3015", "25000", "146000000", "31000000000", "200", "201", "1000", "2000")],
+                         ["три тысячи пятнадцатый", "двадцатипятитысячный", "стосорокашестимиллионный",
+                          "тридцатиодномиллиардный", "двухсотый", "двести первый", "тысячный", "двухтысячный"])
+        self.assertEqual(self.say("3", form=SpokenForm.ORDINAL, case="genitive", gender="feminine"), "третьей")
+        self.assertEqual(self.say("2000", form=SpokenForm.ORDINAL, case="prepositional", gender="neuter"),
+                         "двухтысячном")
+
+    def test_fractions(self):
+        """§ 45, п. 3: "две пятых"; -ая after a count in one ("двадцать одна сотая")."""
+        self.assertEqual([self.say(f) for f in ("2/5", "1/2", "5/8", "21/100", "3/1000")],
+                         ["две пятых", "одна вторая", "пять восьмых", "двадцать одна сотая", "три тысячных"])
 
 
 if __name__ == "__main__":
