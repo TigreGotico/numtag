@@ -571,12 +571,12 @@ WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
 TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
 WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
 RULESET_KEYS = frozenset(("source", "rules"))
-RULE_KEYS = frozenset(("value", "radix", "text", "source"))
+RULE_KEYS = frozenset(("value", "radix", "text", "round", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "numerator", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -672,6 +672,9 @@ def _check_writer(lang: str, writer: dict) -> None:
     for key in ("ruleset", "numerator"):
         if (name := writer.get("fraction", {}).get(key)) is not None and name not in writer["rulesets"]:
             raise ValueError(f"{lang}: the fraction names the unknown rule set {name!r}")
+    for rule in writer.get("fraction", {}).get("by_count", []):
+        if rule["ruleset"] not in writer["rulesets"]:
+            raise ValueError(f"{lang}: the fraction names the unknown rule set {rule['ruleset']!r}")
 
 
 def _read(lang: str) -> dict:

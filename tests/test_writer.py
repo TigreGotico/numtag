@@ -151,8 +151,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 181584)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "cs", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pl", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 204282)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -347,8 +347,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "cs", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "cs", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pl", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -539,6 +539,68 @@ class TestNorwegianBokmal(unittest.TestCase):
     def test_fractions_take_the_cardinal(self):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13", "9/34", "1/2")],
                          ["en tredel", "to tredeler", "åtte trettendeler", "ni trettifiredeler", "en halv"])
+
+
+class TestPolish(unittest.TestCase):
+    """G. Jagodziński, «Tworzenie i składnia liczebników»; zpe.gov.pl, «Odmiana liczebnika»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "pl", **kw)[0].text
+
+    def test_the_scale_word_agrees_with_its_count(self):
+        self.assertEqual([self.say(n) for n in ("1523", "2000", "5000", "12000000", "31000000000", "101000")],
+                         ["tysiąc pięćset dwadzieścia trzy", "dwa tysiące", "pięć tysięcy", "dwanaście milionów",
+                          "trzydzieści jeden miliardów", "sto jeden tysięcy"])
+
+    def test_one_inside_a_number_does_not_change_and_two_takes_the_gender(self):
+        self.assertEqual([self.say("21", gender="feminine"), self.say("1002", gender="feminine"), self.say("1", gender="neuter")],
+                         ["dwadzieścia jeden", "tysiąc dwie", "jedno"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("21", "63", "101", "1016", "2150", "3459", "2000", "2100", "1500000", "1800", "1801")],
+                         ["dwudziesty pierwszy", "sześćdziesiąty trzeci", "sto pierwszy", "tysiąc szesnasty",
+                          "dwa tysiące sto pięćdziesiąty", "trzy tysiące czterysta pięćdziesiąty dziewiąty", "dwutysięczny",
+                          "dwa tysiące setny", "milion pięćsettysięczny", "tysiąc osiemsetny", "tysiąc osiemset pierwszy"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "2/3", "3/4", "1/4")],
+                         ["jedna trzecia", "dwie trzecie", "trzy czwarte", "jedna czwarta"])
+
+    def test_every_spelling_reads_back(self):
+        for value in ("22", "1999", "25000", "2000001", "99000"):
+            for form in (SpokenForm.CARDINAL, SpokenForm.ORDINAL):
+                text = self.say(value, form=form)
+                with self.subTest(text=text):
+                    self.assertEqual([m.value for m in tag_numbers(text, "pl")], [value])
+
+
+class TestCzech(unittest.TestCase):
+    """Internetová jazyková příručka (ÚJČ AV ČR), «Členění čísel, víceslovné číslovkové výrazy»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "cs", **kw)[0].text
+
+    def test_each_word_apart(self):
+        self.assertEqual([self.say(n) for n in ("21", "54", "900", "2168", "2231", "1300783")],
+                         ["dvacet jedna", "padesát čtyři", "devět set", "dva tisíce sto šedesát osm",
+                          "dva tisíce dvě stě třicet jedna", "jeden milion tři sta tisíc sedm set osmdesát tři"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("25", "150", "478", "1956")],
+                         ["dvacátý pátý", "stý padesátý", "čtyřstý sedmdesátý osmý", "tisící devítistý padesátý šestý"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("5/100", "1/10", "2/10", "5/10")],
+                         ["pět setin", "jedna desetina", "dvě desetiny", "pět desetin"])
+
+    def test_every_spelling_reads_back(self):
+        for value in ("22", "1999", "25000", "2000001", "5/3"):
+            for form in (SpokenForm.CARDINAL, SpokenForm.ORDINAL):
+                if "/" in value and form is SpokenForm.ORDINAL:
+                    continue
+                text = self.say(value, form=form)
+                with self.subTest(text=text):
+                    self.assertEqual([m.value for m in tag_numbers(text, "cs")], [value])
 
 
 class TestDutch(unittest.TestCase):
