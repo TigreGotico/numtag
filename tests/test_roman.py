@@ -171,6 +171,20 @@ class TestWordLists(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(_read(text, lang), [])
 
+    def test_french_words_and_unit_symbols_give_no_mention(self):
+        # "mix" a mixing, "MC" a rapper, "cc" a copy, "cl" and "dl" centilitre and decilitre
+        for text in ("MIX de sons", "Le MIX de sons", "Le MC monte sur scène.", "En CC de ce courriel",
+                     "UNE BOUTEILLE DE 75 CL", "Ajoutez 2 DL de lait."):
+            with self.subTest(text=text):
+                self.assertEqual([m for m in _read(text, "fr") if m[0] in ("MIX", "MC", "CC", "CL", "DL")], [])
+
+    def test_french_numerals_still_read(self):
+        # 1000 + 900 + 90 + 9 = 1999; 2000 + 20 + 4 = 2024; the regnal 14; the chapter 1100
+        self.assertEqual(_read("MCMXCIX", "fr"), [("MCMXCIX", "1999", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("MMXXIV", "fr"), [("MMXXIV", "2024", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("Louis XIV", "fr"), [("XIV", "14", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("le chapitre MC", "fr"), [("MC", "1100", Kind.ORDINAL, SURE)])
+
     def test_a_lower_case_word_leaves_the_upper_case_numeral(self):
         for text, lang in (("Felipe VI", "es"), ("Alfonso VI conquistó Toledo.", "es"), ("Paolo VI", "it"),
                            ("Papa Paolo VI", "it"), ("D. João VI", "pt-PT")):
