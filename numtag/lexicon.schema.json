@@ -67,6 +67,7 @@
         "plural_scale_needs_count": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "point_decimal": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "roman_pronoun_letters": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "roman_ordinal_suffix": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "roman_title_case_cue": {"properties": {"value": {"type": "boolean", "default": true}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "scale": {"properties": {"value": {"enum": ["long", "short"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "scale_noun_agrees": {"properties": {"value": {"type": "boolean"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
@@ -251,7 +252,7 @@
     "writer": {"properties": {"format_version": {"enum": [2, 3]}}}
   },
   "allOf": [
-    {"if": {"properties": {"format_version": {"enum": [1, 2]}}}, "then": {"properties": {"entries": {"items": {"not": {"anyOf": [{"required": ["after"]}, {"required": ["cased"]}]}}}}}}
+    {"if": {"properties": {"format_version": {"enum": [1, 2]}}}, "then": {"properties": {"entries": {"items": {"not": {"anyOf": [{"required": ["after"]}, {"required": ["cased"]}]}}}, "settings": {"not": {"required": ["roman_ordinal_suffix"]}}}}}
   ],
   "if": {
     "required": [

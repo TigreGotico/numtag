@@ -10,7 +10,7 @@ from bisect import bisect_left
 
 from numtag.lexicon import Lexicon
 from numtag.mention import Kind, Reason
-from numtag.tokenize import Token
+from numtag.tokenize import Token, fold
 
 # The standard subtractive form from 1 to 3999 ("IIII", "IC" and "VX" are
 # no numeral). It is positional: each group writes one decimal digit.
@@ -44,6 +44,25 @@ def roman_value(word: str) -> str | None:
     if not match:
         return None
     return "".join(place[group] for place, group in zip(_PLACES, match.groups())).lstrip("0")
+
+
+def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None] | None:
+    """The value and the gender of an upper-case numeral glued to an ordinal
+    suffix of the language in lower case ("XIXe", "Ier", "IIde"), where the
+    language sets ``roman_ordinal_suffix``. The suffix keeps its lower case
+    in upper-case text ("XXe SIÈCLE"), so the change of case ends the
+    numeral. A single letter is I, V or X, as alone, and a numeral that is
+    also a word takes no suffix ("MMe")."""
+    numeral = word[:len(word) - len(word.lstrip("IVXLCDM"))]
+    suffix = word[len(numeral):]
+    if not (lexicon.roman_ordinal_suffix and numeral and suffix) or any(c.isupper() for c in suffix):
+        return None
+    if len(numeral) == 1 and numeral not in _SINGLE_LETTERS or fold(numeral) in lexicon.roman_words:
+        return None
+    value = roman_value(numeral)
+    if value is None or not lexicon.ordinal_suffix_fits(suffix, value):
+        return None
+    return value, lexicon.ordinal_suffixes[fold(suffix)]
 
 
 def _title_case(token: Token) -> bool:
@@ -142,10 +161,10 @@ def _listed_after(lexicon: Lexicon, tokens: list[Token], k: int, cued: set[int])
 
 
 def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
-                   taken: list[tuple[int, int]]) -> list[tuple[Token, str, Kind, Reason | None]]:
+                   taken: list[tuple[int, int]]) -> list[tuple[Token, str, Kind, Reason | None, str | None]]:
     """The Roman numerals among ``tokens`` outside the spans in ``taken``,
     which are in reading order and do not overlap: each token with its
-    value, its kind and why it is not sure."""
+    value, its kind, why it is not sure and the gender of its suffix."""
     ends = [end for _, end in taken]
     numerals = []
     cued: set[int] = set()
@@ -155,6 +174,11 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         # the first span that ends after the token starts is the only one that may cover it
         first = bisect_left(ends, token.start + 1)
         if first < len(taken) and taken[first][0] < token.end:
+            continue
+        if suffixed := _suffixed(lexicon, token.text):
+            # the suffix makes the place in a series: "au XXe siècle", "François Ier"
+            cued.add(k)
+            numerals.append((token, suffixed[0], Kind.ORDINAL, None, suffixed[1]))
             continue
         value = roman_value(token.text)
         if not value:
@@ -176,5 +200,5 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if not (sure_form or cue or token.text.isupper() or _list_item(tokens, k, text)):
             continue
         numerals.append((token, value, Kind.ORDINAL if cue else Kind.CARDINAL,
-                         None if sure_form or cue else Reason.HOMOGRAPH))
+                         None if sure_form or cue else Reason.HOMOGRAPH, None))
     return numerals

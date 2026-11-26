@@ -34,7 +34,7 @@ The loader reads `format_version` first. It reads versions 1, 2 and 3. It refuse
 
 A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3. The loader refuses a `writer` block in a version 1 file, and a key of version 3 in a version 1 or 2 file. The error names the key and the place.
 
-Version 3 adds the entry keys `after` and `cased` of the role `ordinal_suffix`.
+Version 3 adds the setting `roman_ordinal_suffix` and the entry keys `after` and `cased` of the role `ordinal_suffix`.
 
 ### Base lexicons
 
@@ -103,6 +103,7 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `period_ordinals` | boolean | `false` | A period after digits makes an ordinal ("am 3. Mai") when a cue shows it: a word of `period_ordinal_before` before the digits, with `period_ordinal_lowercase` any lower-case word after the period, or a number of at most `period_ordinal_free_digits` digits. | de: `true` |
 | `plural_scale_needs_count` | boolean | required | A plural scale word with no count names no number ("milhões de pessoas"). | pt-PT: `true` |
 | `point_decimal` | boolean | `false` | An hour and minutes written with a point are a decimal unless a clock word stands beside them. Elsewhere only an hour of "0" is one. | es: `true` |
+| `roman_ordinal_suffix` | boolean | `false` | Version 3. An ordinal suffix of the language in lower case, glued to an upper-case Roman numeral, makes the word one ordinal ("XIXe", "Ier"). The suffix keeps its `after` and `cased` limits, a single letter is I, V or X, and a numeral in `roman_word` takes no suffix ("MMe"). | fr-FR: `true` |
 | `roman_pronoun_letters` | boolean | `false` | "I" is a pronoun. A series noun before a single letter or a numeral that is also a word then counts only in title case ("Part I", not "the part I like"). | en: `true` |
 | `roman_title_case_cue` | boolean | `true` | A title-case word before a Roman numeral is a cue ("Luís XIV"). `false` where every noun is in title case ("Größe XIV"). | de: `false` |
 | `scale` | `"long"` or `"short"` | required | The scale of a scale word when the call names none: `short` makes a billion 10^9, `long` makes it 10^12. A call's `scale` argument overrides it. | pt-PT: `"long"` |

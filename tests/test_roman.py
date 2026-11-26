@@ -278,5 +278,45 @@ class TestCueRules(unittest.TestCase):
         self.assertEqual(mention.parts, (Part(Role.COUNT, (5, 8), "XIV", "14"),))
 
 
+
+class TestFrenchOrdinalSuffix(unittest.TestCase):
+    """fr writes the ordinal suffixes of digits after a Roman numeral ("XXe", "Ier")."""
+
+    def test_the_numeral_and_its_suffix_are_one_ordinal(self):
+        # XX = 20, XIX = 19, XVI = 16, V = 5, III = 3, I = 1, II = 2
+        rows = [
+            ("au XXe siècle", "XXe", "20", None), ("le XIXe", "XIXe", "19", None),
+            ("au XIXème siècle", "XIXème", "19", None), ("au XIXᵉ siècle", "XIXᵉ", "19", None),
+            ("le XVIe arrondissement", "XVIe", "16", None), ("la Ve République", "Ve", "5", None),
+            ("le IIIe Reich", "IIIe", "3", None), ("François Ier", "Ier", "1", "masculine"),
+            ("la Ire armée", "Ire", "1", "feminine"), ("la IIde République", "IIde", "2", "feminine"),
+            ("les XIXes siècles", "XIXes", "19", None), ("L’EUROPE AU XXe SIÈCLE", "XXe", "20", None),
+        ]
+        for text, numeral, value, gender in rows:
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.kind, m.reasons, m.gender, m.confidence)
+                                  for m in tag_numbers(text, "fr-FR") if m.form == Form.ROMAN],
+                                 [(numeral, value, Kind.ORDINAL, SURE, gender, 1.0)])
+
+    def test_the_mention_spans_the_numeral_and_the_suffix(self):
+        [mention] = tag_numbers("au XXe siècle", "fr-FR")
+        self.assertEqual((mention.char_span, mention.form), ((3, 6), Form.ROMAN))
+
+    def test_words_that_look_like_a_numeral_and_a_suffix_give_no_mention(self):
+        # "er" follows only 1 ("Vers", "Ver"); L, C, D and M alone are no
+        # numeral ("Le", "Ce", "De", "Me", "Mes"); "mm" is a word ("MMe");
+        # the suffix is lower case ("XXE"), and a lower-case numeral takes none
+        for text in ("Vers midi", "Ver de terre", "Le chat", "Ce soir", "De plus", "Me Durand", "Mes amis",
+                     "MMe", "XXE", "xxe", "Vies", "Ides"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [])
+
+    def test_a_language_without_the_setting_reads_no_suffix(self):
+        # en lists "st" and "th" for digits, but "XXth" is no English form; tr
+        # lists "inci", and "Vinci" is a name
+        self.assertEqual(_read("the XXth century", "en"), [])
+        self.assertEqual(_read("Leonardo da Vinci", "tr"), [])
+
+
 if __name__ == "__main__":
     unittest.main()
