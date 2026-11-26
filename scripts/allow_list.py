@@ -81,6 +81,33 @@ def category_it(row, got):
     if row["fn"] == "ordinal" and re.search(r"centesim[oa] decim[oa]$", mine) and mine.replace("esimo decimo", "odecimo").replace("esima decima", "odecima") == out: return "it_split"
     if mine.replace("uno", "un") == out.replace("uno", "un"): return "it_count"
     return None
+FR_ACADEMIE = "Académie française, «Questions de langue: nombres»: the traditional spelling links with a space the \"et\" of 21, 31 ... 71 (\"vingt et un\"), and \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments\". The writer prints the traditional spelling; ovos-number-parser joins only \"-et-\", which neither spelling does."
+SRC.update({
+ "fr_et": FR_ACADEMIE,
+ "fr_fraction": "OQLF, Banque de dépannage linguistique 23494, «Pluriel des fractions»: the denominator is a noun that \"prend la marque du pluriel comme tout autre nom\" (\"deux cinquièmes\"), so \"trois demis\" and \"cinq onzièmes\"; ovos-number-parser reads an improper fraction as a mixed number. SILVER: the plural after \"zéro\".",
+ "fr_big": "numtag/lexicon/fr-FR.json, the scale_noun entries: million 10^6, milliard 10^9, billion 10^12, billiard 10^15, trillion 10^18 (long scale), so 10^15 reads \"un billiard\" and the exponent form starts at 10^24.",
+ "fr_zero": "CLDR RBNF fr, %spellout-ordinal-masculine: \"0: zéroième\"; the call asks for the ordinal, and ovos-number-parser reads the cardinal.",
+ "fr_scale_count": "Académie française, «vingt et cent»: \"Ils restent également invariables lorsqu’ils sont employés comme adjectifs numéraux ordinaux\": \"quatre-vingt millionième\"; ovos-number-parser writes the plural s before the ordinal of a scale.",
+ "fr_scale_one": "CLDR RBNF fr, %spellout-ordinal-masculine reads the ordinal of 10^6 as \"millionième\" with no \"un\"; numtag reads every scale ordinal so, \"billiardième\".",
+ "fr_short": "numtag/lexicon/fr-FR.json, the setting scale: French counts in the long scale only, so a call for the short scale reads the long one.",
+})
+def category_fr(row, got):
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction":
+        top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
+        if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "fr_fraction"
+    if out == "NotImplementedError": return "onp_error"
+    if kw.get("ordinals") and mine == "zéroième": return "fr_zero"
+    if re.sub(r"-et-", " et ", out) == mine: return "fr_et"
+    if row["fn"] == "ordinal" and re.sub(r"(vingt|cent) (mil+i\w+ième)", r"\1s \2", re.sub(r"-et-", " et ", out)) == mine: return "fr_scale_count"
+    if row["fn"] == "ordinal" and out == "un " + mine: return "fr_scale_one"
+    if "fois dix puissance" in out and "fois dix puissance" not in mine: return "fr_big"
+    if kw.get("scale") == "short" and out != mine: return "fr_short"
+    return None
 def category_digits(row, got):
     return "digits_number" if row.get("kw", {}).get("digits") == "number" else None
 def category(row, got):
@@ -102,7 +129,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
