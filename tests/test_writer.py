@@ -45,6 +45,15 @@ def _issue_315(lang: str, text: str) -> bool:
     return lang == "es" and bool(ISSUE_315.search(text))
 
 
+ISSUE_318 = re.compile(r"(?:bilion|biliard|trilion|quadrilion)[a-z]*esim[oaie]\b|(?:milion|miliard)(?!esim)[a-z]+(?:esim|decim)[oaie]\b")
+
+
+def _issue_318(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/318: the it reader misses an ordinal of "bilione" and up,
+    and a fused scale ordinal with a rest ("milioneunesimo")."""
+    return lang == "it" and bool(ISSUE_318.search(text))
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -92,8 +101,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"es", "id", "ms", "pt-BR", "pt-PT"})
-        self.assertEqual(len(rows), 56745)
+        self.assertEqual({row["lang"] for row in rows}, {"es", "id", "it", "ms", "pt-BR", "pt-PT"})
+        self.assertEqual(len(rows), 68094)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -196,10 +205,14 @@ class TestRoundTrip(unittest.TestCase):
         for lang in WRITERS:
             lexicon = load(lang)
             known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners
+            block = _file(lang)["writer"]
+            parsed = {name: [writer_module._parse(rule["text"], lang) for rule in spec["rules"]]
+                      for name, spec in block["rulesets"].items()}
+            glued = self.glued(parsed) - self.form_rulesets(block)
             words = set()
-            for spec in _file(lang)["writer"]["rulesets"].values():
-                for rule in spec["rules"]:
-                    words |= {word.casefold() for text in self.literals(writer_module._parse(rule["text"], lang))
+            for name, rules in parsed.items():
+                for tokens in rules:
+                    words |= {word.casefold() for text in self.literals(tokens, name in glued)
                               for word in text.replace("\u00ad", " ").split()}
             with self.subTest(lang=lang):
                 self.assertTrue(words)
@@ -214,17 +227,47 @@ class TestRoundTrip(unittest.TestCase):
         self.assertEqual(found, [["347713783"], ["1000000000000000000"]])
 
     @classmethod
-    def literals(cls, tokens: tuple):
-        """The literal text of the rule, with a fragment fused to a call ("vigesimo" in "vigesimo→→") dropped."""
+    def glued(cls, parsed: dict) -> set:
+        """The rule sets that a rule calls straight after a literal with no space ("vent→%tail→")."""
+        names = set()
+        def walk(tokens):
+            for k, (kind, value) in enumerate(tokens):
+                if kind == "opt":
+                    walk(value)
+                elif kind != "lit" and value and k and tokens[k - 1][0] == "lit" and not tokens[k - 1][1][-1:].isspace():
+                    names.add(value)
+        for rules in parsed.values():
+            for tokens in rules:
+                walk(tokens)
+        return names
+
+    @staticmethod
+    def form_rulesets(block: dict) -> set:
+        found = set()
+        def walk(node):
+            if isinstance(node, dict):
+                found.update([node["ruleset"]] if isinstance(node.get("ruleset"), str) else [])
+                for item in node.values():
+                    walk(item)
+            elif isinstance(node, list):
+                for item in node:
+                    walk(item)
+        walk(block["forms"])
+        return found
+
+    @classmethod
+    def literals(cls, tokens: tuple, glued: bool = False):
+        """The literal text of the rule, with a fragment fused to a call ("vigesimo" in "vigesimo→→") or to
+        the text before a glued rule set ("a" in "trent→%tail→") dropped."""
         for k, (kind, value) in enumerate(tokens):
             if kind == "lit":
-                if k and tokens[k - 1][0] != "lit" and not value[0].isspace():
+                if (k and tokens[k - 1][0] != "lit" or not k and glued) and not value[0].isspace():
                     value = value.partition(" ")[2]
                 if k + 1 < len(tokens) and tokens[k + 1][0] not in ("lit",) and not value[-1:].isspace():
                     value = value.rpartition(" ")[0]
                 yield value
             elif kind == "opt":
-                yield from cls.literals(value)
+                yield from cls.literals(value, glued and not k)
 
     def test_the_reader_reads_every_ordinal_back(self):
         for lang in WRITERS:
@@ -234,7 +277,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -254,8 +297,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["es", "id", "ms", "pt-BR", "pt-PT"])
-        self.assertEqual(VERSION_TWO, ["es", "id", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(WRITERS, ["es", "id", "it", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(VERSION_TWO, ["es", "id", "it", "ms", "pt-BR", "pt-PT"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -269,7 +312,7 @@ class TestRevisions(unittest.TestCase):
 
 
 class TestSpanish(unittest.TestCase):
-    """Values from RAE DPD «uno», «ciento» and «fraccionarios», and CLDR 38 RBNF es."""
+    """Values from RAE DPD «uno», «ciento» and «fraccionarios», and CLDR RBNF es (unicode-rbnf 2.5.1)."""
 
     def say(self, value: str, **kw) -> str:
         return spell(value, "es", **kw)[0].text
@@ -291,6 +334,32 @@ class TestSpanish(unittest.TestCase):
     def test_a_denominator_past_ten_reads_avo(self):
         self.assertEqual([self.say(f) for f in ("2/3", "1/200", "3/56", "21/50")],
                          ["dos tercios", "un doscientosavo", "tres cincuentaiseisavos", "veintiún cincuentavos"])
+
+
+class TestItalian(unittest.TestCase):
+    """Values from Accademia della Crusca (consulenza 1077), Treccani «numerali»
+    and CLDR RBNF it (unicode-rbnf 2.5.1)."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "it", **kw)[0].text
+
+    def test_cento_keeps_its_vowel_before_otto_and_uno(self):
+        self.assertEqual([self.say(n) for n in ("101", "108", "180")], ["centouno", "centootto", "centottanta"])
+
+    def test_a_count_before_mila_and_milioni_keeps_the_full_uno(self):
+        self.assertEqual([self.say(n) for n in ("21000", "23000", "21000000")],
+                         ["ventunomila", "ventitremila", "ventuno milioni"])
+
+    def test_only_a_bare_one_takes_the_feminine(self):
+        self.assertEqual([self.say(n, gender="feminine") for n in ("1", "21")], ["una", "ventuno"])
+
+    def test_ordinals_are_one_word(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("23", "108", "1001", "2000", "1000000")],
+                         ["ventitreesimo", "centoottesimo", "milleunesimo", "duemillesimo", "milionesimo"])
+
+    def test_a_fraction_is_a_cardinal_and_a_plural_ordinal(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/2", "7/1000")],
+                         ["un mezzo", "due terzi", "tre mezzi", "sette millesimi"])
 
 
 class TestPortugueseScales(unittest.TestCase):

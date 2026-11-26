@@ -21,7 +21,10 @@ class TestWriterScripts(unittest.TestCase):
     def test_the_spanish_writer_block_is_what_the_script_writes(self):
         self.check("writer_es.py", "--check")
 
+    def test_the_italian_writer_block_is_what_the_script_writes(self):
+        self.check("writer_it.py", "--check")
+
     def test_the_allow_list_entries_are_what_the_script_writes(self):
-        for lang in ("es", "id", "ms", "pt-PT", "pt-BR"):
+        for lang in ("es", "id", "it", "ms", "pt-PT", "pt-BR"):
             with self.subTest(lang=lang):
                 self.check("allow_list.py", lang)

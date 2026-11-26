@@ -3332,9 +3332,9 @@
   }
  ],
   "writer": {
-    "source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1). Spanish counts in the long scale: the -illion words of this lexicon, 10^(6 × rank), and a count up to 999999 before each (\"mil millones\" for 10^9).",
+    "source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1). Spanish counts in the long scale: the -illion words of this lexicon, 10^(6 × rank), and a count up to 999999 before each (\"mil millones\" for 10^9).",
     "rulesets": {
-      "numbering": {"source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering, with the -illion words of this lexicon", "rules": [
+      "numbering": {"source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering, with the -illion words of this lexicon", "rules": [
         {"value": "-x", "text": "menos →→;"},
         {"value": "0", "text": "cero;"},
         {"value": "1", "text": "uno;"},
@@ -3410,7 +3410,7 @@
         {"value": "1000000000000000000000000000000000000000000000000000000000000000000000000", "text": "un duodecillón[ →→];"},
         {"value": "2000000000000000000000000000000000000000000000000000000000000000000000000", "text": "←%cardinal-m← duodecillones[ →→];"}
       ]},
-      "cardinal-m": {"source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"un\" and \"veintiún\" before a noun. RAE, Diccionario panhispánico de dudas, 2.ª ed., «uno»: the apocope holds in compounds, \"Tengo veintiún años\"", "rules": [
+      "cardinal-m": {"source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"un\" and \"veintiún\" before a noun. RAE, Diccionario panhispánico de dudas, 2.ª ed., «uno»: the apocope holds in compounds, \"Tengo veintiún años\"", "rules": [
         {"value": "-x", "text": "menos →→;"},
         {"value": "0", "text": "cero;"},
         {"value": "1", "text": "un;"},
@@ -3486,7 +3486,7 @@
         {"value": "1000000000000000000000000000000000000000000000000000000000000000000000000", "text": "un duodecillón[ →→];"},
         {"value": "2000000000000000000000000000000000000000000000000000000000000000000000000", "text": "←%cardinal-m← duodecillones[ →→];"}
       ]},
-      "cardinal-f": {"source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine", "rules": [
+      "cardinal-f": {"source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine", "rules": [
         {"value": "-x", "text": "menos →→;"},
         {"value": "0", "text": "cero;"},
         {"value": "1", "text": "una;"},
@@ -3562,7 +3562,7 @@
         {"value": "1000000000000000000000000000000000000000000000000000000000000000000000000", "text": "un duodecillón[ →→];"},
         {"value": "2000000000000000000000000000000000000000000000000000000000000000000000000", "text": "←%cardinal-m← duodecillones[ →→];"}
       ]},
-      "ordinal-m": {"source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-masculine. Changed from it, as ovos-number-parser 0.31.5a2 numbers_es.py writes it: 11.º and 12.º are \"undécimo\" and \"duodécimo\", 21.º to 29.º are one word (\"vigesimoprimero\"), and 18.º and 28.º drop one o (\"decimoctavo\"), and the count before a scale ordinal joins it (\"dosmilésimo\", \"veintidosmilésimo\")", "rules": [
+      "ordinal-m": {"source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-masculine. Changed from it, as ovos-number-parser 0.31.5a2 numbers_es.py writes it: 11.º and 12.º are \"undécimo\" and \"duodécimo\", 21.º to 29.º are one word (\"vigesimoprimero\"), and 18.º and 28.º drop one o (\"decimoctavo\"), and the count before a scale ordinal joins it (\"dosmilésimo\", \"veintidosmilésimo\")", "rules": [
         {"value": "-x", "text": "menos →→;"},
         {"value": "0", "text": "cero;"},
         {"value": "1", "text": "primero;"},
@@ -3627,7 +3627,7 @@
         {"value": "1000000000000000000000000000000000000000000000000000000000000000000000000", "text": "duodecillonésimo[ →→];"},
         {"value": "2000000000000000000000000000000000000000000000000000000000000000000000000", "text": "←%fused←duodecillonésimo[ →→];"}
       ]},
-      "ordinal-f": {"source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-feminine, with the changes of ordinal-m", "rules": [
+      "ordinal-f": {"source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-feminine, with the changes of ordinal-m", "rules": [
         {"value": "-x", "text": "menos →→;"},
         {"value": "0", "text": "cero;"},
         {"value": "1", "text": "primera;"},
@@ -3743,7 +3743,7 @@
         {"value": "1000", "text": "mil[→→];"},
         {"value": "2000", "text": "←←mil[→→];"}
       ]},
-      "avo": {"source": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 doscientosavo\"; a fraction is one word, \"dos treceavos\". ovos-number-parser 0.31.5a2 numbers_es.py writes \"treintavo\", \"veintiunavos\", \"cientounavo\" and \"milunavos\"", "rules": [
+      "avo": {"source": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 doscientosavo\"; the -avo words are \"una sola palabra: treceava, catorceava, cientounava\". ovos-number-parser 0.31.5a2 numbers_es.py writes \"treintavo\", \"veintiunavos\", \"cientounavo\" and \"milunavos\"", "rules": [
         {"value": "1", "text": "unavo;"},
         {"value": "2", "text": "dosavo;"},
         {"value": "3", "text": "tresavo;"},
@@ -3814,8 +3814,8 @@
       ]}
     },
     "forms": {"cardinal": {"variants": [{"ruleset": "numbering", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}], "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]}, "maximum": "999999999999999999999999999999999999999999999999999999999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal-m", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "ordinal-m", "reason": "standard"}], "feminine": [{"ruleset": "ordinal-f", "reason": "standard"}]}, "minimum": "0", "maximum": "999999999999999999999999999999999999999999999999999999999999999999999999999999"}},
-    "decimal": {"word": "coma", "places": 3, "source": "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x,x: \"←← coma →→\". ovos-number-parser 0.31.5a2 numbers_es.py reads each decimal digit (\"dos coma dos cinco\")."},
+    "decimal": {"word": "coma", "places": 3, "source": "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x,x: \"←← coma →→\". ovos-number-parser 0.31.5a2 numbers_es.py reads each decimal digit (\"dos coma dos cinco\")."},
     "scientific": {"times": "por diez elevado a", "source": "ovos-number-parser 0.31.5a2 numbers_es.py: 10^300 reads \"uno por diez elevado a trescientos\"."},
-    "fraction": {"mixed": false, "limit": 10, "single": "un {denominator}", "plural": "s", "named": {"2": "medio", "3": "tercio", "4": "cuarto", "5": "quinto", "6": "sexto", "7": "séptimo", "8": "octavo", "9": "noveno", "10": "décimo", "100": "centésimo", "1000": "milésimo", "10000": "diezmilésimo", "100000": "cienmilésimo", "1000000": "millonésimo"}, "denominator": "{cardinal}avos", "ruleset": "avo", "numerator": "cardinal-m", "source": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 doscientosavo\"; a fraction is one word, \"dos treceavos\". ovos-number-parser 0.31.5a2 numbers_es.py writes \"un medio\", \"dos tercios\" and \"tres milésimos\"."}
+    "fraction": {"mixed": false, "limit": 10, "single": "un {denominator}", "plural": "s", "named": {"2": "medio", "3": "tercio", "4": "cuarto", "5": "quinto", "6": "sexto", "7": "séptimo", "8": "octavo", "9": "noveno", "10": "décimo", "100": "centésimo", "1000": "milésimo", "10000": "diezmilésimo", "100000": "cienmilésimo", "1000000": "millonésimo"}, "denominator": "{cardinal}avos", "ruleset": "avo", "numerator": "cardinal-m", "source": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 doscientosavo\"; the -avo words are \"una sola palabra: treceava, catorceava, cientounava\". ovos-number-parser 0.31.5a2 numbers_es.py writes \"un medio\", \"dos tercios\" and \"tres milésimos\"."}
   }
 }
