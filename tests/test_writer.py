@@ -54,6 +54,14 @@ def _issue_318(lang: str, text: str) -> bool:
     return lang == "it" and bool(ISSUE_318.search(text))
 
 
+ISSUE_323 = re.compile(r"(?:centesim|millesim)[oa] (?:prim|second|decim|undicesim)[oa]$")
+
+
+def _issue_323(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/323: the it reader reads "centesimo decimo" as two ordinals."""
+    return lang == "it" and bool(ISSUE_323.search(text))
+
+
 ISSUE_325 = re.compile(r"(?:billion|billiard|trillion)ième")
 
 
@@ -285,7 +293,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_325(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -367,7 +375,15 @@ class TestItalian(unittest.TestCase):
 
     def test_ordinals_are_one_word(self):
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("23", "108", "1001", "2000", "1000000")],
-                         ["ventitreesimo", "centoottesimo", "milleunesimo", "duemillesimo", "milionesimo"])
+                         ["ventitreesimo", "centoottesimo", "millesimo primo", "duemillesimo", "milionesimo"])
+
+    def test_the_euphony_ordinals_are_spaced(self):
+        """Vocabolario Treccani «ordinale»: "centesimo decimo, millesimo primo, millesimo secondo, millesimo decimo,
+        millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata è preferita)"."""
+        ordinals = [self.say(n, form=SpokenForm.ORDINAL) for n in ("110", "1001", "1002", "1010", "1011", "1003", "2010")]
+        self.assertEqual(ordinals, ["centesimo decimo", "millesimo primo", "millesimo secondo", "millesimo decimo",
+                                    "millesimo undicesimo", "milletreesimo", "duemiladecimo"])
+        self.assertEqual(self.say("310", form=SpokenForm.ORDINAL, gender="feminine"), "trecentesima decima")
 
     def test_a_fraction_is_a_cardinal_and_a_plural_ordinal(self):
         self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/2", "7/1000")],
