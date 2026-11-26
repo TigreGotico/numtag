@@ -302,7 +302,8 @@ if left:
 path = "tests/golden/onp-writers-allow.json"
 text = open(path, encoding="utf-8").read()
 kept = [line.rstrip(",") for line in text.strip()[1:-1].strip().split("\n") if line and f'"lang": "{lang}"' not in line]
-new = "[\n" + ",\n".join(kept + [json.dumps(e, ensure_ascii=False) for e in entries]) + "\n]\n"
+lines = sorted(kept + [json.dumps(e, ensure_ascii=False) for e in entries], key=lambda line: json.loads(line)["lang"])  # stable
+new = "[\n" + ",\n".join(lines) + "\n]\n"
 if "--check" in sys.argv:
     old = [line.rstrip(",") for line in text.strip()[1:-1].strip().split("\n") if f'"lang": "{lang}"' in line]
     if sorted(old) != sorted(json.dumps(e, ensure_ascii=False) for e in entries):
