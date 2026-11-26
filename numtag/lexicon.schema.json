@@ -206,7 +206,7 @@
             "mixed": {"type": "boolean"},
             "ruleset": {"type": "string"},
             "numerator": {"type": "string"},
-            "plural": {"type": "string"},
+            "plural": {"oneOf": [{"type": "string"}, {"type": "object", "additionalProperties": {"type": "string"}}]},
             "source": {"type": "string"}
           },
           "required": ["limit", "named", "denominator", "single", "source"],

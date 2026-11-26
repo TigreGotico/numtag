@@ -405,13 +405,22 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     ordinal and a ``ruleset`` reading take the plural ending after a numerator other than 1."""
     count = writer.render(spec.get("numerator", ruleset), top)
     if bottom not in spec["named"] and "ruleset" in spec:
-        return f"{count} {writer.render(spec['ruleset'], bottom)}{spec['plural'] if top != '1' else ''}"
+        word = writer.render(spec["ruleset"], bottom)
+        return f"{count} {word if top == '1' else _plural(word, spec['plural'])}"
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
     elif top != "1":
-        word += spec["plural"]
+        word = _plural(word, spec["plural"])
     return f"{count} {word}"
+
+
+def _plural(word: str, plural: str | dict) -> str:
+    """A string is a suffix; a map replaces the first matching ending ("o" to "i": "terzo", "terzi")."""
+    if isinstance(plural, str):
+        return word + plural
+    end = next((end for end in plural if word.endswith(end)), "")
+    return word[:len(word) - len(end)] + plural.get(end, "")
 
 
 def _ordinal_of(writer: Writer, number: str) -> str:
