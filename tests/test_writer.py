@@ -93,6 +93,12 @@ def _issue_331(lang: str, text: str) -> bool:
     return lang == "gl" and len(SCALE_ORDINAL_GL.findall(text)) >= 2
 
 
+def _issue_343(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/343: the en reader reads "one hundredth" and ", five hundredth"
+    as fractions."""
+    return lang == "en" and re.search(r"(^|, )([a-z-]+ )?(hundred|thousand|[a-z]+illion)th$", text) is not None
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -140,8 +146,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 147537)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 158886)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -252,7 +258,7 @@ class TestRoundTrip(unittest.TestCase):
             for name, rules in parsed.items():
                 for tokens in rules:
                     words |= {word.casefold() for text in self.literals(tokens, name in glued)
-                              for word in text.replace("\u00ad", " ").split()}
+                              for word in text.replace("\u00ad", " ").replace(",", " ").split()}  # en "two thousand, two hundred"
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
@@ -316,7 +322,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words) and not _issue_343(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -336,8 +342,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -473,6 +479,32 @@ class TestGalician(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "1/16", "2/29", "7/345", "3/1000")],
                          ["un medio", "tres medios", "dous terzos", "un dezaseisavo", "dous vinte e noveavos",
                           "sete trescentos corenta e cincoavos", "tres milésimos"])
+class TestEnglish(unittest.TestCase):
+    """OALD «and» and «billion», GPO Style Manual 6.36 and 12.20, CLDR RBNF en."""
+
+    def say(self, value: str, variant: int = 0, **kw) -> str:
+        return spell(value, "en", **kw)[variant].text
+
+    def test_british_and_first_american_second(self):
+        self.assertEqual(self.say("2264"), "two thousand, two hundred and sixty-four")
+        self.assertEqual(self.say("1850", 1), "one thousand eight hundred fifty")
+        self.assertEqual(self.say("152305", 1), "one hundred fifty-two thousand three hundred five")
+        self.assertEqual(self.say("1000001"), "one million and one")
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("0", "12", "21", "40", "101", "1000000")],
+                         ["zeroth", "twelfth", "twenty-first", "fortieth", "one hundred and first", "one millionth"])
+
+    def test_the_long_scale_billion_is_a_million_million(self):
+        self.assertEqual([self.say(n, scale="long") for n in ("1000000000", "1000000000000")],
+                         ["one thousand million", "one billion"])
+        self.assertEqual(self.say("1000000000000"), "one trillion")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "3/4", "1/100", "7/1000000")],
+                         ["one half", "three halves", "two thirds", "three quarters", "one hundredth", "seven millionths"])
+
+
 class TestGerman(unittest.TestCase):
     """Amtliches Regelwerk (2024), § 36(1.6) and § 56(6) E5."""
 
@@ -682,7 +714,7 @@ class TestSpell(unittest.TestCase):
 
     def test_a_language_with_no_writer_raises_unsupported_language(self):
         with self.assertRaises(UnsupportedLanguageError):
-            spell("1", "en")
+            spell("1", "sv")
         with self.assertRaises(UnsupportedLanguageError):
             spell("1", "xx")
 

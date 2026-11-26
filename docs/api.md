@@ -408,10 +408,10 @@ ValueError: ordinals must be whole numbers from 1
 Traceback (most recent call last):
   ...
 ValueError: id: no case 'genitive'; it has []
->>> spell("1", "en")
+>>> spell("1", "sv")
 Traceback (most recent call last):
   ...
-numtag.lexicon.UnsupportedLanguageError: no writer for language 'en'
+numtag.lexicon.UnsupportedLanguageError: no writer for language 'sv'
 ```
 
 ## Spelling
