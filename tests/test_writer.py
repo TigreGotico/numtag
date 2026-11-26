@@ -146,6 +146,36 @@ def _tiny(rules: list[dict], **forms) -> dict:
     return data
 
 
+class TestHindi(unittest.TestCase):
+    """CLDR RBNF hi: the Indian scale and the ordinal endings."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "hi", **kw)[0].text
+
+    def test_cardinals_count_in_lakh_and_crore(self):
+        self.assertEqual([self.say(n) for n in ("21", "101", "150000", "1000000", "123456789")],
+                         ["इक्कीस", "एक सौ एक", "एक लाख पचास हज़ार", "दस लाख",
+                          "बारह करोड़ चौंतीस लाख छप्पन हज़ार सात सौ नवासी"])
+
+    def test_ordinals_by_gender(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "4", "6", "7", "9", "100", "101")],
+                         ["पहला", "चौथा", "छठा", "सातवाँ", "नवाँ", "एक सौवाँ", "एक सौ एकवाँ"])
+
+    def test_the_standard_words_of_khn(self):
+        """KHN 2016 §5.1 p. 52, where it differs from CLDR hi."""
+        self.assertEqual([self.say(n) for n in ("15", "44", "53", "63", "87", "88", "91", "99")],
+                         ["पंद्रह", "चवालीस", "तिरपन", "तिरसठ", "सतासी", "अठासी", "इक्यानवे", "निन्यानवे"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("1", "5", "21")],
+                         ["पहली", "पाँचवीं", "इक्कीसवीं"])
+
+    def test_a_fraction_reads_over(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "13/47")], ["एक बटा तीन", "तेरह बटा सैंतालीस"])
+
+    def test_the_maximum_waits_for_the_reader(self):
+        with self.assertRaises(ValueError):
+            self.say("1" + "0" * 16)
+
+
 class TestGolden(unittest.TestCase):
     """The words of ovos-number-parser, for every language that has a writer block."""
 
@@ -254,7 +284,7 @@ class TestRoundTrip(unittest.TestCase):
     def test_every_literal_word_of_a_rule_is_a_form_of_the_reader(self):
         for lang in WRITERS:
             lexicon = load(lang)
-            known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners
+            known = set(lexicon.readings) | lexicon.minus_words | lexicon.decimal_markers | lexicon.joiners | lexicon.fraction_over
             block = _file(lang)["writer"]
             parsed = {name: [writer_module._parse(rule["text"], lang) for rule in spec["rules"]]
                       for name, spec in block["rulesets"].items()}
@@ -347,8 +377,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "hi", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "hi", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
