@@ -21,14 +21,17 @@ ORDINAL = (TA + ": \"Rangtelwoorden worden gevormd door toevoeging van het achte
            "zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier "
            "miljoen vierhonderdduizendste\". The writer joins no \"en\" after honderd (\"honderdtweede\"), as the first form of "
            "the cardinal \"honderdeen of honderdeneen\"")
-SILVER_ONE = ("SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; "
-              "no saved example")
+SILVER_ONE = (TA + ": \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\"; SILVER: a lone scale ordinal has "
+              "no count (\"miljoenste\"), as \"honderdste\" and \"duizendste\", and keeps it before a rest (\"één "
+              "miljoen eerste\")")
 FRACTION = (TA + ": \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", \"Teller en noemer worden "
             "los van elkaar geschreven.\" (\"twee derde\", \"zevenenveertig tienduizendste\"), and \"Het rangtelwoord in de "
             "noemer krijgt meestal geen meervouds-n.\"")
 SILVER_HALF = "SILVER: 1/2 reads \"een half\" and n/2 \"halve\"; no saved rule"
-ONE = ("Taaladvies.net, «Een of één»: \"Er komen alleen uitspraaktekens op een als het een telwoord is en het ten onrechte als "
-       "lidwoord zou kunnen worden gelezen.\"; the writer writes \"een\"")
+ONE = ("Taaladvies.net, «Eén / een van de» (Papers/Languages/Germanic/Dutch/taaladvies-een-of-een-van-de.html): \"komen er "
+       "bijvoorbeeld uitspraaktekens op een als men een precies aantal bedoelt: Hij heeft nog één rekening (en geen twee "
+       "rekeningen) te betalen\"; a lone 1 and the count of a scale word are a precise number (\"één\", \"één miljoen\"); "
+       "inside a word 1 stays \"een\" (\"eenentwintig\", \"honderdeen\")")
 
 UNITS = "nul een twee drie vier vijf zes zeven acht negen tien elf twaalf dertien veertien vijftien zestien zeventien " \
         "achttien negentien".split()
@@ -58,11 +61,15 @@ def tens(name, last):
 
 
 cardinal = [R("-x", "min →→")] + [R(i, w) for i, w in enumerate(UNITS)]
-cardinal[2]["source"] = ONE
 cardinal += tens("cardinal", "")
 cardinal += [R(100, "honderd[→→]", SPACING), R(200, "←←honderd[→→]"), R(1000, "duizend[ →→]"), R(2000, "←←duizend[ →→]")]
 for exponent, word in SCALES:
     cardinal += [R(10 ** exponent, f"←← {word}[ →→]")]
+# The stressed reading: "één" for a lone 1 and for the count of a scale word; the rest is the cardinal.
+stressed = [R(1, "één", ONE), R(100, "=%cardinal="), R(1000, "duizend[ →%stressed→]"),
+            R(2000, "←%cardinal←duizend[ →%stressed→]")]
+stressed += [R(10 ** e, f"←%stressed← {w}[ →%stressed→]") for e, w in SCALES]
+stressed = [R("-x", "min →→"), R(0, "=%cardinal=")] + stressed[:1] + [R(2, "=%cardinal=")] + stressed[1:]
 
 ordinal = [R("-x", "min →→")] + [R(i, FIRST.get(i) or w + "de") for i, w in enumerate(UNITS)]
 ordinal[1]["source"] = ORDINAL
@@ -70,16 +77,19 @@ ordinal += tens("ordinal", "ste")
 ordinal += [R(100, "honderd→%ordinal-hundred→"), R(200, "←%cardinal←honderd→%ordinal-hundred→"),
             R(1000, "duizend→%ordinal-thousand→"), R(2000, "←%cardinal←duizend→%ordinal-thousand→")]
 for exponent, word in SCALES:
-    ordinal += [R(10 ** exponent, f"←%cardinal← {word}→%ordinal-thousand→", SILVER_ONE)]
+    ordinal += [R(10 ** exponent, f"[één ]{word}→%ordinal-thousand→", SILVER_ONE if exponent == 6 else None),
+                R(2 * 10 ** exponent, f"←%cardinal← {word}→%ordinal-thousand→")]
 
 sets = [
     ("cardinal", cardinal),
+    ("stressed", stressed),
     ("ordinal", ordinal),
     ("ordinal-hundred", [R(0, "ste"), R(1, "=%ordinal=")]),
     ("ordinal-thousand", [R(0, "ste"), R(1, " =%ordinal=")]),
 ]
 SOURCES = {
     "cardinal": CLDR + ", %spellout-cardinal, with the scale words of this lexicon. " + SPACING,
+    "stressed": ONE,
     "ordinal": CLDR + ", %spellout-ordinal. " + ORDINAL + ". " + SILVER_ONE,
 }
 rulesets = {name: {"source": SOURCES.get(name) or "a part of ordinal", "rules": rules} for name, rules in sets}
@@ -89,7 +99,8 @@ block = {
               "biljoen?»: \"Een miljoen miljoen is een biljoen … duizend miljoen is een miljard\".",
     "rulesets": rulesets,
     "forms": {
-        "cardinal": {"variants": [{"ruleset": "cardinal", "reason": "standard"}], "maximum": maximum},
+        "cardinal": {"variants": [{"ruleset": "stressed", "reason": "standard"},
+                                  {"ruleset": "cardinal", "reason": "variant_spelling"}], "maximum": maximum},
         "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "0", "maximum": maximum},
     },
     "decimal": {"word": "komma", "places": 3, "source": CLDR + ", %spellout-cardinal x.x: \"←← komma →→\"."},

@@ -564,6 +564,15 @@ class TestDutch(unittest.TestCase):
                           "vijftien achthonderdzevenentwintigduizendste"])
 
 
+    def test_a_one_of_its_own_is_stressed(self):
+        """Taaladvies.net, «Eén / een van de»: "uitspraaktekens op een als men een precies aantal bedoelt"."""
+        self.assertEqual([[x.text for x in spell(n, "nl")] for n in ("1", "1000000", "1001", "101", "21")],
+                         [["één", "een"], ["één miljoen", "een miljoen"], ["duizend één", "duizend een"],
+                          ["honderdeen"], ["eenentwintig"]])
+        self.assertEqual([spell(n, "nl", form=SpokenForm.ORDINAL)[0].text for n in ("1000000", "1000001")],
+                         ["miljoenste", "één miljoen eerste"])
+
+
 class TestGerman(unittest.TestCase):
     """Amtliches Regelwerk (2024), § 36(1.6) and § 56(6) E5."""
 
