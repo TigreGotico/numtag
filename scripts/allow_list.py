@@ -89,6 +89,7 @@ SRC.update({
  "fr_zero": "CLDR RBNF fr, %spellout-ordinal-masculine: \"0: zéroième\"; the call asks for the ordinal, and ovos-number-parser reads the cardinal.",
  "fr_scale_count": "Académie française, «vingt et cent»: \"Ils restent également invariables lorsqu’ils sont employés comme adjectifs numéraux ordinaux\": \"quatre-vingt millionième\"; ovos-number-parser writes the plural s before the ordinal of a scale.",
  "fr_scale_one": "CLDR RBNF fr, %spellout-ordinal-masculine reads the ordinal of 10^6 as \"millionième\" with no \"un\"; numtag reads every scale ordinal so, \"billiardième\".",
+ "fr_et_unieme": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", example \"la mille et unième nuit\"; ovos-number-parser writes \"cent unième\".",
  "fr_short": "numtag/lexicon/fr-FR.json, the setting scale: French counts in the long scale only, so a call for the short scale reads the long one.",
 })
 def category_fr(row, got):
@@ -102,6 +103,8 @@ def category_fr(row, got):
         return "fr_fraction"
     if out == "NotImplementedError": return "onp_error"
     if kw.get("ordinals") and mine == "zéroième": return "fr_zero"
+    if re.sub(r"(cent|mille) unième", r"\1 et unième", re.sub(r"-et-", " et ", out)) == mine and out != mine \
+            and " et unième" in mine and re.sub(r"-et-", " et ", out) != mine: return "fr_et_unieme"
     if re.sub(r"-et-", " et ", out) == mine: return "fr_et"
     if row["fn"] == "ordinal" and re.sub(r"(vingt|cent) (mil+i\w+ième)", r"\1s \2", re.sub(r"-et-", " et ", out)) == mine: return "fr_scale_count"
     if row["fn"] == "ordinal" and out == "un " + mine: return "fr_scale_one"

@@ -411,7 +411,7 @@ class TestFrench(unittest.TestCase):
 
     def test_ordinals(self):
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "5", "9", "21", "80", "1001", "1000000", "1000001")],
-                         ["premier", "cinquième", "neuvième", "vingt et unième", "quatre-vingtième", "mille unième",
+                         ["premier", "cinquième", "neuvième", "vingt et unième", "quatre-vingtième", "mille et unième",
                           "millionième", "un million unième"])
         self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="feminine"), "première")
 
