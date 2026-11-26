@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.37.1a1](https://github.com/TigreGotico/numtag/tree/0.37.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.0a1...0.37.1a1)
+
+**Merged pull requests:**
+
+- fix: nl writes één for a one of its own [\#350](https://github.com/TigreGotico/numtag/pull/350) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.37.0a1](https://github.com/TigreGotico/numtag/tree/0.37.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.2a1...0.37.0a1)
@@ -288,10 +296,6 @@
 ## [0.19.23a1](https://github.com/TigreGotico/numtag/tree/0.19.23a1) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a7...0.19.23a1)
-
-**Merged pull requests:**
-
-- fix\(de\): read a quarter fraction glued to the whole number [\#150](https://github.com/TigreGotico/numtag/pull/150) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.22a7](https://github.com/TigreGotico/numtag/tree/0.19.22a7) (2026-11-24)
 
