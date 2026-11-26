@@ -14,8 +14,8 @@ LEXICONS = ROOT / "numtag" / "lexicon"
 GOLD = ROOT / "tests" / "gold"
 RESULTS = ROOT / "benchmarks" / "results.json"
 PAGE = ROOT / "docs" / "languages" / "index.md"
-LEADERS = ["pt-PT", "pt-BR", "es", "fr-FR", "it", "de", "nl", "da", "kab", "hi", "bn", "mwr"]
-NOTES = {"es": "es-CO resolves to es"}
+LEADERS = ["pt-PT", "pt-BR", "es-CO", "fr-FR", "it-IT", "de-DE", "nl-NL", "da-DK", "kab", "hi-IN", "bn-IN", "mwr"]
+FEW_ROWS = 100
 ORDINAL_ROLES = {"ordinal", "ordinal_scale", "ordinal_suffix"}
 FRACTION_ROLES = {"half", "denominator", "fraction", "rational"}
 
@@ -29,12 +29,12 @@ verify: python scripts/language_table.py --check
 see: ../adding-a-language.md, ../benchmarks.md
 -->
 
-Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it has unit entries, ordinals when it has ordinal entries or entries with an ordinal form, and fractions when it has half, denominator, fraction or rational entries. It has a writer when the file has a `writer` block. "Gold rows" is the number of rows in `tests/gold/<lang>.jsonl`, and "right" is the number of rows that numtag reads right, from `benchmarks/results.json`. A dash means the language has no gold file.
+Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it has unit entries, ordinals when it has ordinal entries or entries with an ordinal form, and fractions when it has half, denominator, fraction or rational entries. It has a writer when the file has a `writer` block. "Gold rows" is the number of rows in `tests/gold/<lang>.jsonl`, "Rows right" is the number of rows that numtag reads right, from `benchmarks/results.json`, and "Share" is rows right divided by gold rows. A dash means the language has no gold file.
 
-The leader languages come first. The other languages follow in alphabetical order.
+The leader languages come first, each named by its full tag and the lexicon that the tag resolves to. The other languages follow in alphabetical order.
 
-| Language | Cardinals | Ordinals | Fractions | Writer | Gold rows | Right | Page |
-|---|---|---|---|---|---|---|---|
+| Language | Cardinals | Ordinals | Fractions | Writer | Gold rows | Rows right | Share | Page |
+|---|---|---|---|---|---|---|---|---|
 """
 
 
@@ -70,22 +70,38 @@ def measure() -> dict:
 
 
 def render(results: dict) -> str:
+    from numtag import UnsupportedLanguageError
+    from numtag.tagger import lexicon_name
     langs = sorted(path.stem for path in LEXICONS.glob("*.json"))
-    order = LEADERS + [lang for lang in langs if lang not in LEADERS]
+    leaders = []
+    for tag in LEADERS:
+        try:
+            leaders.append((tag, lexicon_name(tag)))
+        except UnsupportedLanguageError:
+            leaders.append((tag, None))
+    order = leaders + [(lang, lang) for lang in langs if lang not in {lex for _, lex in leaders}]
     yes = lambda flag: "yes" if flag else "no"
-    lines = []
-    for lang in order:
-        name = f"`{lang}`" + (f" ({NOTES[lang]})" if lang in NOTES else "")
-        if lang not in langs:
-            lines.append(f"| {name} | not supported | | | | | | |")
+    lines, notes = [], []
+    for tag, lang in order:
+        name = f"`{tag}`" if lang in (tag, None) else f"`{tag}` (resolves to `{lang}`)"
+        if lang is None:
+            lines.append(f"| {name} | not supported | | | | | | | |")
             continue
         found = roles(lang)
         writer = "writer" in json.loads((LEXICONS / f"{lang}.json").read_text(encoding="utf-8"))
         score = results.get(lang)
-        rows, right = (score["rows"], score["rows_right"]) if score else ("-", "-")
+        if score:
+            rows, right = score["rows"], score["rows_right"]
+            share = f"{100 * right / rows:.1f}%"
+            if rows < FEW_ROWS:
+                notes.append(f"[^{lang}]: The score of `{lang}` rests on {rows} rows.")
+                share += f"[^{lang}]"
+        else:
+            rows = right = share = "-"
         lines.append(f"| {name} | {yes('unit' in found)} | {yes(found & ORDINAL_ROLES)} | "
-                     f"{yes(found & FRACTION_ROLES)} | {yes(writer)} | {rows} | {right} | {page_for(lang)} |")
-    return HEADER + "\n".join(lines) + "\n\n---\n[← Home](../index.md)\n"
+                     f"{yes(found & FRACTION_ROLES)} | {yes(writer)} | {rows} | {right} | {share} | {page_for(lang)} |")
+    footer = "\n\n" + "\n\n".join(notes) if notes else ""
+    return HEADER + "\n".join(lines) + footer + "\n\n---\n[← Home](../index.md)\n"
 
 
 def main() -> int:

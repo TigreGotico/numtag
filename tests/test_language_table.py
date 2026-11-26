@@ -24,7 +24,9 @@ class TestLanguageTable(unittest.TestCase):
     def test_leader_without_lexicon_says_not_supported(self):
         page = language_table.PAGE.read_text(encoding="utf-8")
         self.assertIn("| `mwr` | not supported |", page)
-        self.assertIn("| `es` (es-CO resolves to es) |", page)
+        self.assertIn("| `es-CO` (resolves to `es`) |", page)
+        self.assertIn("| 479 | 473 | 98.7% |", page)
+        self.assertIn("The score of `bn` rests on 40 rows.", page)
 
 
 if __name__ == "__main__":
