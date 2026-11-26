@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.36.0a1](https://github.com/TigreGotico/numtag/tree/0.36.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.35.0a1...0.36.0a1)
+
+**Merged pull requests:**
+
+- feat: Valencian Catalan \(ca-ES-valencia\) lexicon and writer [\#341](https://github.com/TigreGotico/numtag/pull/341) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.35.0a1](https://github.com/TigreGotico/numtag/tree/0.35.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.34.0a1...0.35.0a1)
@@ -617,10 +625,6 @@
 ## [0.14.10a1](https://github.com/TigreGotico/numtag/tree/0.14.10a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.9a1...0.14.10a1)
-
-**Merged pull requests:**
-
-- fix: follow CLDR 49.0.0 for the group mark of et, fi, hu, nb, nn and sv [\#126](https://github.com/TigreGotico/numtag/pull/126) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.9a1](https://github.com/TigreGotico/numtag/tree/0.14.9a1) (2026-11-17)
 
