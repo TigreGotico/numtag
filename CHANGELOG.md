@@ -1,12 +1,21 @@
 # Changelog
 
+## [0.41.0a3](https://github.com/TigreGotico/numtag/tree/0.41.0a3) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a2...0.41.0a3)
+
+**Merged pull requests:**
+
+- feat: bn writer for cardinals and ordinals 1-10 [\#390](https://github.com/TigreGotico/numtag/pull/390) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- docs: generated per-language support table [\#389](https://github.com/TigreGotico/numtag/pull/389) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Hindi writer [\#378](https://github.com/TigreGotico/numtag/pull/378) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.41.0a2](https://github.com/TigreGotico/numtag/tree/0.41.0a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a1...0.41.0a2)
 
 **Merged pull requests:**
 
-- docs: generated per-language support table [\#389](https://github.com/TigreGotico/numtag/pull/389) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - test: derive the writer language lists from the data [\#388](https://github.com/TigreGotico/numtag/pull/388) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.41.0a1](https://github.com/TigreGotico/numtag/tree/0.41.0a1) (2026-11-26)
@@ -354,10 +363,6 @@
 ## [0.19.22a7](https://github.com/TigreGotico/numtag/tree/0.19.22a7) (2026-11-24)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.22a6...0.19.22a7)
-
-**Merged pull requests:**
-
-- docs\(gl\): say what RAG Normas 16.1 shows about "mil" [\#171](https://github.com/TigreGotico/numtag/pull/171) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.22a6](https://github.com/TigreGotico/numtag/tree/0.19.22a6) (2026-11-24)
 
