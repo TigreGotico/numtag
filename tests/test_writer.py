@@ -350,6 +350,10 @@ class TestItalian(unittest.TestCase):
         self.assertEqual([self.say(n) for n in ("21000", "23000", "21000000")],
                          ["ventunomila", "ventitremila", "ventuno milioni"])
 
+    def test_a_compound_that_ends_in_three_takes_the_accent(self):
+        self.assertEqual([self.say(n) for n in ("3", "23", "1003", "2003", "100003", "23000", "1000003")],
+                         ["tre", "ventitré", "milletré", "duemilatré", "centomilatré", "ventitremila", "un milione tre"])
+
     def test_only_a_bare_one_takes_the_feminine(self):
         self.assertEqual([self.say(n, gender="feminine") for n in ("1", "21")], ["una", "ventuno"])
 

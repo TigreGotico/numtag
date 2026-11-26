@@ -267,8 +267,8 @@
         {"value": "90", "text": "novant→%numbering-a→;"},
         {"value": "100", "text": "cent→%numbering-o→;", "source": "Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\""},
         {"value": "200", "text": "←%numbering←cent→%numbering-o→;"},
-        {"value": "1000", "text": "mille[→→];"},
-        {"value": "2000", "text": "←%count-mila←mila[→→];"},
+        {"value": "1000", "text": "mille[→%numbering-rest→];"},
+        {"value": "2000", "text": "←%count-mila←mila[→%numbering-rest→];"},
         {"value": "1000000", "text": "un milione[ →→];"},
         {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form first; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound «uno» \"può essere apocopato\", so the apocope is optional and the full form is the unmarked one: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000", "text": "un miliardo[ →→];"},
@@ -309,6 +309,11 @@
         {"value": "80", "text": "=%numbering=;"},
         {"value": "90", "text": "o=%numbering=;"}
       ]},
+      "numbering-rest": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+        {"value": "1", "text": "=%numbering=;"},
+        {"value": "3", "text": "tré;", "source": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali»: \"I composti di tre vanno accentati\", so a compound that ends in three ends in \"tré\": \"milletré\", \"duemilatré\""},
+        {"value": "4", "text": "=%numbering=;"}
+      ]},
       "cardinal-m": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"un\" and \"ventun\" before a noun", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zero;"},
@@ -341,8 +346,8 @@
         {"value": "90", "text": "novant→%cardinal-m-a→;"},
         {"value": "100", "text": "cent→%cardinal-m-o→;", "source": "Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\""},
         {"value": "200", "text": "←%cardinal-m←cent→%cardinal-m-o→;"},
-        {"value": "1000", "text": "mille[→→];"},
-        {"value": "2000", "text": "←%count-mila←mila[→→];"},
+        {"value": "1000", "text": "mille[→%cardinal-m-rest→];"},
+        {"value": "2000", "text": "←%count-mila←mila[→%cardinal-m-rest→];"},
         {"value": "1000000", "text": "un milione[ →→];"},
         {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form first; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound «uno» \"può essere apocopato\", so the apocope is optional and the full form is the unmarked one: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000", "text": "un miliardo[ →→];"},
@@ -382,6 +387,11 @@
         {"value": "4", "text": "o=%cardinal-m=;"},
         {"value": "80", "text": "=%cardinal-m=;"},
         {"value": "90", "text": "o=%cardinal-m=;"}
+      ]},
+      "cardinal-m-rest": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+        {"value": "1", "text": "=%cardinal-m=;"},
+        {"value": "3", "text": "tré;", "source": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali»: \"I composti di tre vanno accentati\", so a compound that ends in three ends in \"tré\": \"milletré\", \"duemilatré\""},
+        {"value": "4", "text": "=%cardinal-m=;"}
       ]},
       "cardinal-f": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine, with \"una\" for a bare 1 only. Accademia della Crusca, consulenza 1077: \"In passato era normale femminilizzare anche i composti di uno, mentre oggi questo è meno comune\", so 21 is \"ventuno\"", "rules": [
         {"value": "-x", "text": "meno →→;"},
