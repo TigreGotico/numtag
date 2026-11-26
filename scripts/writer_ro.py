@@ -23,9 +23,13 @@ DOOM_DOI = DOOM + ": \"locul doi, parcela doi = al doilea/a doua\""
 SILVER_DE = ("SILVER: \"de\" between a count of 20 or more and the scale word (\"douăzeci de mii\") has no saved rule; "
              "DOOM 3 has the examples \"o ~ de dolari\" (sută) and \"o mie de dolari\". The count is \"de\" when its last "
              "two digits are 00 or 20 to 99")
-SILVER_ORD = ("SILVER: the ordinal of a compound and of a plural scale word (\"al douăzeci și unulea\", \"al două "
-              "sutelea\", \"al două milioanelea\") follows the -lea rule of the headwords; DOOM 2 (2005) has "
-              "\"douăzeci și unulea (al ~) num. m., f. a douăzeci și una\", DOOM 3 has no such entry")
+DOOM_MILION = ("DOOM 3 (2021), via dexonline (Papers/Languages/Romance/Romanian/dexonline_milioanelea.html): "
+               "\"milioanelea (al + num. + ~) (referitor la milioane) (desp. -li-oa-) num. m. (al două/trei etc. "
+               "milioanelea), f. a ... milioana\"; dexonline_milionulea.html: \"milionulea (al ~/al un ~) (referitor la un "
+               "milion)\"")
+SILVER_ORD = ("SILVER: the ordinal of a compound and of a plural count of hundreds (\"al douăzeci și unulea\", \"al două "
+              "sutelea\") follows the -lea rule of the headwords; DOOM 2 (2005) has \"douăzeci și unulea (al ~) num. m., "
+              "f. a douăzeci și una\", DOOM 3 has no such entry. " + DOOM_MILION)
 SILVER_PRIMUL = "SILVER: \"primul\" and \"prima\" for 1 have no saved DOOM 3 entry"
 
 DOOM_FRACTION = (DOOM + " lists the nouns doime/doimi, jumătate, treime, pătrime/pătrimi, sfert/sferturi and "
