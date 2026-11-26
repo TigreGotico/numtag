@@ -416,7 +416,7 @@ numtag.lexicon.UnsupportedLanguageError: no writer for language 'sv'
 
 ## Spelling
 
-A `Spelling` is a frozen dataclass of `text`, `reason` and `rank`. The `rank` is the place in the list of the lexicon, from 0. The `reason` is a `SpellingReason`: `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting` or `variant_spelling`. A lexicon lists the spellings of a form in the order that its sources set, and numtag computes no score. A difference of region ("dezasseis" and "dezesseis") is a different lexicon and not a rank.
+A `Spelling` is a frozen dataclass of `text`, `reason` and `rank`. The `rank` is the place in the list of the lexicon, from 0. The `reason` is a `SpellingReason`: `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting`, `variant_spelling` or `strong` (the declension with no article before the number: de "drittem" after "dritten"). A lexicon lists the spellings of a form in the order that its sources set, and numtag computes no score. A difference of region ("dezasseis" and "dezesseis") is a different lexicon and not a rank.
 
 ## NumberMention.spoken
 

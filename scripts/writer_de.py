@@ -22,6 +22,26 @@ FRACTION = (RR + ", § 56(6) E5, p. 87: \"In allen übrigen Fällen schreibt man
 SILVER_ORD = ("SILVER: an ordinal past a million with a rest keeps one word with the plural scale word "
               "(\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example")
 SILVER_HALF = "SILVER: 1/2 reads \"ein Halb\" and n/2 \"Halbe\"; no saved rule"
+DUDEN_EIN = ("Duden online, «hundertundein» (Papers/Languages/Germanic/German/duden_hundertundein.html): \"hundertundeinen "
+             "Krimi lesen\"; «tausendundein»: \"tausendundeine Idee\", \"Märchen aus Tausendundeiner Nacht\": a final ein "
+             "declines before a singular noun")
+SILVER_CASE = ("SILVER: the endings by case and gender follow the adjective declension (after an article: -e, -en; with no "
+               "article: -er, -e, -es, -en, -em); no saved table. " + CLDR + ", %spellout-ordinal-m, -n, -r, -s: "
+               "\"0: =%spellout-ordinal=m;\"")
+# The endings of the ordinal by case and gender: after an article, then with no article (strong).
+WEAK = {"nominative": dict(masculine="e", feminine="e", neuter="e"),
+        "accusative": dict(masculine="en", feminine="e", neuter="e"),
+        "dative": dict(masculine="en", feminine="en", neuter="en"),
+        "genitive": dict(masculine="en", feminine="en", neuter="en")}
+STRONG = {"nominative": dict(masculine="er", feminine="e", neuter="es"),
+          "accusative": dict(masculine="en", feminine="e", neuter="es"),
+          "dative": dict(masculine="em", feminine="er", neuter="em"),
+          "genitive": dict(masculine="en", feminine="er", neuter="en")}
+# The cardinal 1 by case and gender, with no article (CLDR %spellout-cardinal-m, -n, -r, -s).
+ONE = {"nominative": dict(masculine="ein", feminine="eine", neuter="ein"),
+       "accusative": dict(masculine="einen", feminine="eine", neuter="ein"),
+       "dative": dict(masculine="einem", feminine="einer", neuter="einem"),
+       "genitive": dict(masculine="eines", feminine="einer", neuter="eines")}
 
 UNITS = "null eins zwei drei vier fünf sechs sieben acht neun zehn elf zwölf dreizehn vierzehn fünfzehn sechzehn " \
         "siebzehn achtzehn neunzehn".split()
@@ -70,7 +90,11 @@ def ordinal(name, end):
 
 sets = ([cardinal("numbering", "eins"), cardinal("cardinal-m", "ein"), cardinal("cardinal-f", "eine"),
          ("unit", [R(1, "ein")] + [R(i, w) for i, w in enumerate(UNITS[:10]) if i > 1])]
-        + ordinal("ordinal", "te") + ordinal("fraction", "tel"))
+        + [cardinal(f"cardinal-{one}", one) for one in ("einen", "einem", "einer", "eines")]
+        + ordinal("ordinal", "te") + ordinal("fraction", "tel")
+        + [s for end in ("ten", "ter", "tes", "tem") for s in ordinal(f"ordinal-{end[1:]}", end)])
+CARDINAL_SET = {"ein": "cardinal-m", "eine": "cardinal-f"}
+ORDINAL_SET = {"e": "ordinal", "en": "ordinal-en", "er": "ordinal-er", "es": "ordinal-es", "em": "ordinal-em"}
 SOURCES = {
     "numbering": CLDR + ", %spellout-numbering, with the scale words of this lexicon. " + ONE_WORD + ". " + SCALE,
     "cardinal-m": CLDR + ", %spellout-cardinal-masculine: \"ein\" before a masculine or neuter noun",
@@ -80,6 +104,9 @@ SOURCES = {
     "ordinal": CLDR + ", %spellout-ordinal, with one word past a million. " + ONE_WORD + ". " + SILVER_ORD,
     "fraction": FRACTION + ": the ordinal stem with -tel and -stel. " + SILVER_ORD,
 }
+SOURCES.update({f"cardinal-{one}": CLDR + f", %spellout-cardinal-{one[-1]}: \"1: {one};\". " + DUDEN_EIN
+                for one in ("einen", "einem", "einer", "eines")})
+SOURCES.update({f"ordinal-{end}": SOURCES["ordinal"] + ". " + SILVER_CASE for end in ("en", "er", "es", "em")})
 rulesets = {name: {"source": SOURCES.get(name) or "a part of " + name.rsplit("-", 1)[0], "rules": rules}
             for name, rules in sets}
 maximum = "9" * 24
@@ -91,8 +118,14 @@ block = {
                      "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}],
                                 "neuter": [{"ruleset": "cardinal-m", "reason": "standard"}],
                                 "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]},
+                     "case": {case: {g: [{"ruleset": CARDINAL_SET.get(one, f"cardinal-{one}"), "reason": "standard"}]
+                                     for g, one in by.items()} for case, by in ONE.items()},
                      "maximum": maximum},
-        "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "0", "maximum": maximum},
+        "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}],
+                    "case": {case: {g: [{"ruleset": ORDINAL_SET[WEAK[case][g]], "reason": "standard"},
+                                        {"ruleset": ORDINAL_SET[STRONG[case][g]], "reason": "strong"}]
+                                    for g in by} for case, by in WEAK.items()},
+                    "minimum": "0", "maximum": maximum},
     },
     "decimal": {"word": "Komma", "places": 3, "source": CLDR + ", %spellout-numbering x.x: \"←← Komma →→\"."},
     "scientific": {"times": "mal zehn hoch", "source": "Not checked against a grammar."},
