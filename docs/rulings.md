@@ -706,6 +706,21 @@ The four sources differ in strength. European Portuguese rests on Wikipedia, "De
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
+## A name before a large Roman numeral
+
+A title-case word before an upper-case Roman numeral makes it an ordinal only below 100. Regnal numbers stay below 100: the House of Reuss, which numbered every man Heinrich, reached Heinrich LXXIII. A numeral of 100 or more after a name is a year, a code or an abbreviation, so it is a cardinal with a low score. A regnal title before the name and a series noun still make it an ordinal. French "DC" is the postal symbol of the District of Columbia, so it reads only after a strong cue, as in English.
+
+```python
+>>> read("Louis XIV et Jean XXIII", "fr")
+[('XIV', '14'), ('XXIII', '23')]
+>>> [(m.text, m.kind.value, m.confidence) for m in tag_numbers("Ce DIV", "fr")]
+[('DIV', 'cardinal', 0.4)]
+>>> read("Il habite à Washington DC.", "fr")
+[]
+```
+
+Source: structural, no external source decides the bound. Wikipedia, "Imperial County of Reuss", lists "Henry LXXII" and "Henry LXXIII" among the princes, so 100 keeps the regnal numbers in that list a cue. The "DC" entry of `roman_word` in `fr-FR.json` cites Wiktionnaire.
+
 ## Words that are no number
 
 A scale noun alone, or a plural scale noun with no count, names no number. A singular scale noun before "de" counts one.
