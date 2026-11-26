@@ -29,10 +29,13 @@ class TestWriterScripts(unittest.TestCase):
             with self.subTest(variety=variety):
                 self.check("writer_fr.py", variety)
 
+    def test_the_catalan_writer_block_is_what_the_script_writes(self):
+        self.check("writer_ca.py", "")
+
     def test_the_romanian_writer_block_is_what_the_script_writes(self):
         self.check("writer_ro.py", "")
 
     def test_the_allow_list_entries_are_what_the_script_writes(self):
-        for lang in ("es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-PT", "pt-BR", "ro"):
+        for lang in ("ca", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-PT", "pt-BR", "ro"):
             with self.subTest(lang=lang):
                 self.check("allow_list.py", lang)

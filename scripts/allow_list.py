@@ -123,6 +123,39 @@ def category_ro(row, got):
     if "ori zece la puterea" in mine:
         return "ro_decimal" if "ori zece la puterea" in out else "ro_big"
     return None
+CA_GIEC = "IEC, Gramàtica de la llengua catalana (2016), §17.2 (Papers/Languages/Iberian/Catalan/giec_17_2_numerals.html)"
+SRC.update({
+ "ca_ordinal": CA_GIEC + ", §17.2.5: the ordinals past 4 \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè)\", and \"cent dosè, cent tresè, dos milè\"; ovos-number-parser writes \"cent primer\" and \"milè primer\".",
+ "ca_short": "numtag/lexicon/ca.json, the setting scale: Catalan counts in the long scale only (DIEC2, «bilió»: \"Milió de milions.\"), so a call for the short scale reads the long one.",
+ "ca_range": "numtag/lexicon/ca.json, the ca writer: an ordinal goes from 1 to 10^36 - 1, and outside it spell() raises.",
+ "ca_zero": "numtag/lexicon/ca.json, the ca writer: an ordinal starts at 1.",
+ "ca_gender": CA_GIEC + ", quadre 17.1: \"1 un una 2 dos dues 21 vint-i-un vint-i-una\", \"200 dos-cents dues-centes\", and the other numerals have one form; ovos-number-parser writes \"seta\", \"vinta i una\" and the masculine after mil.",
+ "ca_fraction": CA_GIEC + ", §17.2.2: the fractions take the ordinal form, with mig, meitat and terç, \"dos quarts\"; ovos-number-parser writes \"un migs\", \"un trentens\" and \"un deu mil\".",
+ "ca_big": "numtag/lexicon/ca.json, the scale_noun entries: milió, miliard (10^9), bilió, trilió, quadrilió, quintilió; there is no \"biliard\", so 10^15 reads \"mil bilions\", and the exponent form starts at 10^36.",
+})
+CA_PAIRS = {("un", "una"), ("dos", "dues"), ("cents", "centes")}
+def ca_tokens(text):
+    return [t for t in re.split(r"[ -]", text) if t != "i"]
+def category_ca(row, got):
+    if row.get("kw", {}).get("scale") == "short":  # the reason of the same row in the long scale, else the scale
+        long = category_ca({**row, "kw": {k: v for k, v in row["kw"].items() if k != "scale"}}, got)
+        return long or ("ca_short" if re.search(r"ili(ó|ons|ard)", str(row.get("out"))) else None)
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction":
+        if row["arg"].split("/")[1].lstrip("-") == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "ca_fraction"
+    if row["fn"] == "ordinal" or kw.get("ordinals"):
+        if str(row["arg"]) == "0": return "ca_zero"
+        if got == {"err": "ValueError"}: return "ca_range"
+        return "ca_ordinal" if re.search(r"(è|ena|primera?|segona?|tercera?|quarta?)$", mine) else None
+    if kw.get("gender") == "feminine":
+        a, b = ca_tokens(out), ca_tokens(mine)
+        if len(a) == len(b) and all(x == y or (x, y) in CA_PAIRS or x == y + "a" for x, y in zip(a, b)): return "ca_gender"
+    if re.search(r"biliard|triliard", out) or "per deu elevat a" in out + mine: return "ca_big"
+    return None
 def category_fr(row, got):
     kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
     if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
@@ -163,7 +196,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "ca": category_ca, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
