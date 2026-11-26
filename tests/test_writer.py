@@ -312,7 +312,7 @@ class TestRevisions(unittest.TestCase):
 
 
 class TestSpanish(unittest.TestCase):
-    """Values from RAE DPD «uno», «ciento» and «fraccionarios», and CLDR 38 RBNF es."""
+    """Values from RAE DPD «uno», «ciento» and «fraccionarios», and CLDR RBNF es (unicode-rbnf 2.5.1)."""
 
     def say(self, value: str, **kw) -> str:
         return spell(value, "es", **kw)[0].text
@@ -337,8 +337,8 @@ class TestSpanish(unittest.TestCase):
 
 
 class TestItalian(unittest.TestCase):
-    """Values from Accademia della Crusca (consulenze 1077 and «Centootto o centotto?»), Treccani «numerali»
-    and CLDR 38 RBNF it."""
+    """Values from Accademia della Crusca (consulenza 1077), Treccani «numerali»
+    and CLDR RBNF it (unicode-rbnf 2.5.1)."""
 
     def say(self, value: str, **kw) -> str:
         return spell(value, "it", **kw)[0].text

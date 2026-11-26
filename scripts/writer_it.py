@@ -9,12 +9,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 from splice_writer import splice
 
 LEXICON = Path(__file__).parents[1] / "numtag/lexicon/it.json"
-CLDR = "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)"
-CRUSCA_108 = ("Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final "
-              "vowel of «cento» stays before «otto» and «uno»")
+CLDR = "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)"
+CRUSCA_108 = ("Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno "
+              "o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: "
+              "\"centootto [raramente centotto]\"")
 ONP = "ovos-number-parser 0.31.5a2 numbers_it.py"
-CRUSCA_1077 = ("Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri "
-               "in lettere»")
+CRUSCA_1077 = "Accademia della Crusca, consulenza 1077"
 TRECCANI_FRAZIONARI = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un "
                        "aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\"")
 CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer "

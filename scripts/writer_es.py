@@ -12,13 +12,13 @@ from splice_writer import splice
 
 ROOT = Path(__file__).parents[1]
 LEXICON = ROOT / "numtag/lexicon/es.json"
-CLDR = "CLDR 38 RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1)"
+CLDR = "CLDR RBNF es (common/rbnf/es.xml as shipped in unicode-rbnf 2.5.1)"
 DPD_UNO = ("RAE, Diccionario panhispánico de dudas, 2.ª ed., «uno»: the apocope holds in compounds, "
            "\"Tengo veintiún años\"")
 DPD_CIENTO = ("RAE, Diccionario panhispánico de dudas, 2.ª ed., «ciento»: \"se apocopa en la forma cien cuando "
               "antecede al sustantivo\", and in compounds it \"solo se apocopa ante mil\"")
 DPD_AVO = ("RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 "
-           "doscientosavo\"; a fraction is one word, \"dos treceavos\"")
+           "doscientosavo\"; the -avo words are \"una sola palabra: treceava, catorceava, cientounava\"")
 ONP = "ovos-number-parser 0.31.5a2 numbers_es.py"
 
 UNITS = ("cero uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce quince dieciséis "

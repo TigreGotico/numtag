@@ -27,11 +27,11 @@ if lang == "pt-BR":
     SRC["big_ordinal"] = BIG_BR
 DPD_UNO = "RAE, Diccionario panhispánico de dudas, 2.ª ed., «uno»: before a masculine noun the numeral takes the form «un», in compounds too: «Tengo veintiún años»."
 SRC.update({
- "es_neutral": "Spanish has no neuter numeral. A call with no noun gender reads the bare number: CLDR 38 RBNF es, %spellout-numbering, 1 «uno», 21 «veintiuno».",
- "es_millardo": "CLDR 38 RBNF es, %spellout-numbering: 10^9 reads «mil millones», a count of millions. The lexicon reads «millardo» too.",
+ "es_neutral": "Spanish has no neuter numeral. A call with no noun gender reads the bare number: CLDR RBNF es (unicode-rbnf 2.5.1), %spellout-numbering, 1 «uno», 21 «veintiuno».",
+ "es_millardo": "CLDR RBNF es (unicode-rbnf 2.5.1), %spellout-numbering: 10^9 reads «mil millones», a count of millions. The lexicon reads «millardo» too.",
  "es_apocope": DPD_UNO,
  "es_short": "numtag/lexicon/es.json, the setting scale: Spanish counts in the long scale only («billón» is a million millions), so a call for the short scale reads the long one.",
- "es_improper": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: a fraction reads its numerator and the plural of the denominator word («dos treceavos»), so 3/2 reads «tres medios».",
+ "es_improper": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: the denominator word is «una sola palabra: treceava, catorceava, cientounava» after the numerator, so 3/2 reads «tres medios».",
  "onp_error": "ovos-number-parser raises NotImplementedError for this number; numtag reads it from the scale_noun entries of the lexicon, or raises ValueError past the last of them.",
  "digits_number": f"ovos-number-parser numbers_{lang}.py reads each decimal digit whatever `digits` says; numtag.spell(decimals=\"number\") reads the decimals as one number, as the call asks.",
 })
@@ -50,16 +50,16 @@ def category_es(row, got):
         if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
         if int(top) >= int(bottom) and " y " in out: return "es_improper"
     return None
-CLDR_IT = "CLDR 38 RBNF it, %spellout-ordinal-masculine: an ordinal is one word, the cardinal and \"-esimo\" (1001 \"milleunesimo\", 110 \"centodecimo\")."
+CLDR_IT = "CLDR RBNF it (unicode-rbnf 2.5.1), %spellout-ordinal-masculine: an ordinal is one word, the cardinal and \"-esimo\" (1001 \"milleunesimo\", 110 \"centodecimo\")."
 TRECCANI_FRAZIONARI = "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\": the numerator is a cardinal, \"un\" before the denominator, and the denominator agrees with it."
 SRC.update({
- "it_short": "numtag/lexicon/it.json, the setting scale: Italian counts in the long scale only (CLDR 38 RBNF it: \"1000000000000: un bilione\"), so a call for the short scale reads the long one.",
- "it_apocope": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound before a noun «uno» \"può essere apocopato ... ottantun votanti ... quarantun anni\"; gender=masculine reads the form before a noun, as CLDR 38 RBNF it %spellout-cardinal-masculine.",
+ "it_short": "numtag/lexicon/it.json, the setting scale: Italian counts in the long scale only (CLDR RBNF it (unicode-rbnf 2.5.1): \"1000000000000: un bilione\"), so a call for the short scale reads the long one.",
+ "it_apocope": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound before a noun «uno» \"può essere apocopato ... ottantun votanti ... quarantun anni\"; gender=masculine reads the form before a noun, as CLDR RBNF it (unicode-rbnf 2.5.1) %spellout-cardinal-masculine.",
  "it_ordinal": CLDR_IT,
- "it_mille": "CLDR 38 RBNF it, %spellout-numbering: \"1000: mille\"; \"mila\" is the plural after a count (\"2000: ←←mila\"), so -1000 is \"meno mille\".",
+ "it_mille": "CLDR RBNF it (unicode-rbnf 2.5.1), %spellout-numbering: \"1000: mille\"; \"mila\" is the plural after a count (\"2000: ←←mila\"), so -1000 is \"meno mille\".",
  "it_count": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: «uno» in a compound \"può essere apocopato\". Both forms are correct, and the writer prints the full form, \"ventuno\".",
  "it_fraction": TRECCANI_FRAZIONARI,
- "it_big": "numtag/lexicon/it.json, the scale_noun entries: milione 10^6, miliardo 10^9, bilione 10^12, biliardo 10^15, trilione 10^18, quadrilione 10^24 (CLDR 38 RBNF it names up to biliardo). The lexicon has no \"triliardo\" or \"quintilione\", so 10^21 reads \"mille trilioni\" and 10^30 reads the exponent form.",
+ "it_big": "numtag/lexicon/it.json, the scale_noun entries: milione 10^6, miliardo 10^9, bilione 10^12, biliardo 10^15, trilione 10^18, quadrilione 10^24 (CLDR RBNF it (unicode-rbnf 2.5.1) names up to biliardo). The lexicon has no \"triliardo\" or \"quintilione\", so 10^21 reads \"mille trilioni\" and 10^30 reads the exponent form.",
 })
 def category_it(row, got):
     kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))

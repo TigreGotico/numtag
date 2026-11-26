@@ -233,9 +233,9 @@
     {"word": "ª", "role": "ordinal_suffix", "gender": "feminine", "source": "The ordinal indicators º and ª (\"1º\", \"1ª\") show the gender, as in Portuguese."}
   ],
   "writer": {
-    "source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1). Italian counts in the long scale: \"miliardo\" for 10^9 and \"bilione\" for 10^12.",
+    "source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1). Italian counts in the long scale: \"miliardo\" for 10^9 and \"bilione\" for 10^12.",
     "rulesets": {
-      "numbering": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering, with the scale words of this lexicon. Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final vowel of «cento» stays before «otto» and «uno»", "rules": [
+      "numbering": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering, with the scale words of this lexicon. Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\"", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zero;"},
         {"value": "1", "text": "uno;"},
@@ -265,24 +265,24 @@
         {"value": "70", "text": "settant→%numbering-a→;"},
         {"value": "80", "text": "ottant→%numbering-a→;"},
         {"value": "90", "text": "novant→%numbering-a→;"},
-        {"value": "100", "text": "cent→%numbering-o→;", "source": "Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final vowel of «cento» stays before «otto» and «uno»"},
+        {"value": "100", "text": "cent→%numbering-o→;", "source": "Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\""},
         {"value": "200", "text": "←%numbering←cent→%numbering-o→;"},
         {"value": "1000", "text": "mille[→→];"},
         {"value": "2000", "text": "←%count-mila←mila[→→];"},
         {"value": "1000000", "text": "un milione[ →→];"},
-        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000", "text": "un miliardo[ →→];"},
-        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000", "text": "un bilione[ →→];"},
-        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000", "text": "un biliardo[ →→];"},
-        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000", "text": "un trilione[ →→];"},
-        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000000000", "text": "un quadrilione[ →→];"},
-        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
+        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
       ]},
-      "numbering-i": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "numbering-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "i;"},
         {"value": "1", "text": "uno;"},
         {"value": "2", "text": "i=%numbering=;"},
@@ -291,7 +291,7 @@
         {"value": "8", "text": "=%numbering=;"},
         {"value": "9", "text": "i=%numbering=;"}
       ]},
-      "numbering-a": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "numbering-a": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "a;"},
         {"value": "1", "text": "uno;"},
         {"value": "2", "text": "a=%numbering=;"},
@@ -300,7 +300,7 @@
         {"value": "8", "text": "=%numbering=;"},
         {"value": "9", "text": "a=%numbering=;"}
       ]},
-      "numbering-o": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "numbering-o": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "o;"},
         {"value": "1", "text": "ouno;"},
         {"value": "2", "text": "o=%numbering=;"},
@@ -309,7 +309,7 @@
         {"value": "80", "text": "=%numbering=;"},
         {"value": "90", "text": "o=%numbering=;"}
       ]},
-      "cardinal-m": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"un\" and \"ventun\" before a noun", "rules": [
+      "cardinal-m": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"un\" and \"ventun\" before a noun", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zero;"},
         {"value": "1", "text": "un;"},
@@ -339,24 +339,24 @@
         {"value": "70", "text": "settant→%cardinal-m-a→;"},
         {"value": "80", "text": "ottant→%cardinal-m-a→;"},
         {"value": "90", "text": "novant→%cardinal-m-a→;"},
-        {"value": "100", "text": "cent→%cardinal-m-o→;", "source": "Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final vowel of «cento» stays before «otto» and «uno»"},
+        {"value": "100", "text": "cent→%cardinal-m-o→;", "source": "Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\""},
         {"value": "200", "text": "←%cardinal-m←cent→%cardinal-m-o→;"},
         {"value": "1000", "text": "mille[→→];"},
         {"value": "2000", "text": "←%count-mila←mila[→→];"},
         {"value": "1000000", "text": "un milione[ →→];"},
-        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000", "text": "un miliardo[ →→];"},
-        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000", "text": "un bilione[ →→];"},
-        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000", "text": "un biliardo[ →→];"},
-        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000", "text": "un trilione[ →→];"},
-        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000000000", "text": "un quadrilione[ →→];"},
-        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
+        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
       ]},
-      "cardinal-m-i": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "cardinal-m-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "i;"},
         {"value": "1", "text": "un;"},
         {"value": "2", "text": "i=%cardinal-m=;"},
@@ -365,7 +365,7 @@
         {"value": "8", "text": "=%cardinal-m=;"},
         {"value": "9", "text": "i=%cardinal-m=;"}
       ]},
-      "cardinal-m-a": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "cardinal-m-a": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "a;"},
         {"value": "1", "text": "un;"},
         {"value": "2", "text": "a=%cardinal-m=;"},
@@ -374,7 +374,7 @@
         {"value": "8", "text": "=%cardinal-m=;"},
         {"value": "9", "text": "a=%cardinal-m=;"}
       ]},
-      "cardinal-m-o": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "cardinal-m-o": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "o;"},
         {"value": "1", "text": "oun;"},
         {"value": "2", "text": "o=%cardinal-m=;"},
@@ -383,13 +383,13 @@
         {"value": "80", "text": "=%cardinal-m=;"},
         {"value": "90", "text": "o=%cardinal-m=;"}
       ]},
-      "cardinal-f": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine, with \"una\" for a bare 1 only. Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"In passato era normale femminilizzare anche i composti di uno, mentre oggi questo è meno comune\", so 21 is \"ventuno\"", "rules": [
+      "cardinal-f": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine, with \"una\" for a bare 1 only. Accademia della Crusca, consulenza 1077: \"In passato era normale femminilizzare anche i composti di uno, mentre oggi questo è meno comune\", so 21 is \"ventuno\"", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zero;"},
         {"value": "1", "text": "una;"},
         {"value": "2", "text": "=%numbering=;"}
       ]},
-      "count-mila": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %%msc-no-final: the count before \"mila\" ends in \"tre\" with no accent (\"ventitremila\"). Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\"", "rules": [
+      "count-mila": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %%msc-no-final: the count before \"mila\" ends in \"tre\" with no accent (\"ventitremila\"). Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\"", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zero;"},
         {"value": "1", "text": "uno;"},
@@ -419,22 +419,22 @@
         {"value": "70", "text": "settant→%count-mila-a→;"},
         {"value": "80", "text": "ottant→%count-mila-a→;"},
         {"value": "90", "text": "novant→%count-mila-a→;"},
-        {"value": "100", "text": "cent→%count-mila-o→;", "source": "Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final vowel of «cento» stays before «otto» and «uno»"},
+        {"value": "100", "text": "cent→%count-mila-o→;", "source": "Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\""},
         {"value": "200", "text": "←%count-mila←cent→%count-mila-o→;"},
         {"value": "1000000", "text": "un milione[ →→];"},
-        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000", "text": "←%numbering← milioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000", "text": "un miliardo[ →→];"},
-        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000", "text": "←%numbering← miliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000", "text": "un bilione[ →→];"},
-        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000", "text": "←%numbering← bilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000", "text": "un biliardo[ →→];"},
-        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000", "text": "←%numbering← biliardi[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000", "text": "un trilione[ →→];"},
-        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
+        {"value": "2000000000000000000", "text": "←%numbering← trilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""},
         {"value": "1000000000000000000000000", "text": "un quadrilione[ →→];"},
-        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077, «Quarantaquattro gatti ... quando e come scrivere i numeri in lettere»: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
+        {"value": "2000000000000000000000000", "text": "←%numbering← quadrilioni[ →→];", "source": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer prints the full form, as ovos-number-parser 0.31.5a2 numbers_it.py does: \"ventunomila\", \"ventuno milioni\""}
       ]},
-      "count-mila-i": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "count-mila-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "i;"},
         {"value": "1", "text": "uno;"},
         {"value": "2", "text": "i=%count-mila=;"},
@@ -443,7 +443,7 @@
         {"value": "8", "text": "=%count-mila=;"},
         {"value": "9", "text": "i=%count-mila=;"}
       ]},
-      "count-mila-a": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "count-mila-a": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "a;"},
         {"value": "1", "text": "uno;"},
         {"value": "2", "text": "a=%count-mila=;"},
@@ -452,7 +452,7 @@
         {"value": "8", "text": "=%count-mila=;"},
         {"value": "9", "text": "a=%count-mila=;"}
       ]},
-      "count-mila-o": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "count-mila-o": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "o;"},
         {"value": "1", "text": "ouno;"},
         {"value": "2", "text": "o=%count-mila=;"},
@@ -461,7 +461,7 @@
         {"value": "80", "text": "=%count-mila=;"},
         {"value": "90", "text": "o=%count-mila=;"}
       ]},
-      "ordinal-m": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-masculine, with the count of thousands fused as ovos-number-parser 0.31.5a2 numbers_it.py writes it (\"duemillesimo\"), and \"centoottesimo\" as it writes it, after the cardinal \"centootto\". Accademia della Crusca, «Centootto o centotto?»: «la forma centootto è da preferire», the final vowel of «cento» stays before «otto» and «uno»", "rules": [
+      "ordinal-m": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-masculine, with the count of thousands fused as ovos-number-parser 0.31.5a2 numbers_it.py writes it (\"duemillesimo\"), and \"centoottesimo\" as it writes it, after the cardinal \"centootto\". Accademia della Crusca, consulenza 1077: \"108: centootto, meno bene centotto\", and \"101: centouno o, ormai abbastanza raro, centuno\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 29: \"centootto [raramente centotto]\"", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zeresimo;"},
         {"value": "1", "text": "primo;"},
@@ -508,7 +508,7 @@
         {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-m-mille→;"},
         {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-m-mille→;"}
       ]},
-      "ordinal-m-i": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
         {"value": "1", "text": "unesimo;"},
         {"value": "2", "text": "iduesimo;"},
@@ -520,7 +520,7 @@
         {"value": "8", "text": "ottesimo;"},
         {"value": "9", "text": "inovesimo;"}
       ]},
-      "ordinal-m-a": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-a": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
         {"value": "1", "text": "unesimo;"},
         {"value": "2", "text": "aduesimo;"},
@@ -532,7 +532,7 @@
         {"value": "8", "text": "ottesimo;"},
         {"value": "9", "text": "anovesimo;"}
       ]},
-      "ordinal-m-o": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-o": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
         {"value": "1", "text": "unesimo;"},
         {"value": "2", "text": "oduesimo;"},
@@ -547,15 +547,15 @@
         {"value": "80", "text": "=%ordinal-m=;"},
         {"value": "90", "text": "o=%ordinal-m=;"}
       ]},
-      "ordinal-m-mille": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-mille": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
         {"value": "1", "text": "e=%ordinal-m-unit=;"}
       ]},
-      "ordinal-m-mila": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-mila": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "lesimo;"},
         {"value": "1", "text": "a=%ordinal-m-unit=;"}
       ]},
-      "ordinal-m-unit": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-m-unit": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "1", "text": "unesimo;"},
         {"value": "2", "text": "duesimo;"},
         {"value": "3", "text": "treesimo;"},
@@ -567,7 +567,7 @@
         {"value": "9", "text": "novesimo;"},
         {"value": "10", "text": "=%ordinal-m=;"}
       ]},
-      "ordinal-f": {"source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-feminine, with the changes of ordinal-m", "rules": [
+      "ordinal-f": {"source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-feminine, with the changes of ordinal-m", "rules": [
         {"value": "-x", "text": "meno →→;"},
         {"value": "0", "text": "zeresima;"},
         {"value": "1", "text": "prima;"},
@@ -614,7 +614,7 @@
         {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-f-mille→;"},
         {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-f-mille→;"}
       ]},
-      "ordinal-f-i": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
         {"value": "1", "text": "unesima;"},
         {"value": "2", "text": "iduesima;"},
@@ -626,7 +626,7 @@
         {"value": "8", "text": "ottesima;"},
         {"value": "9", "text": "inovesima;"}
       ]},
-      "ordinal-f-a": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-a": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
         {"value": "1", "text": "unesima;"},
         {"value": "2", "text": "aduesima;"},
@@ -638,7 +638,7 @@
         {"value": "8", "text": "ottesima;"},
         {"value": "9", "text": "anovesima;"}
       ]},
-      "ordinal-f-o": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-o": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
         {"value": "1", "text": "unesima;"},
         {"value": "2", "text": "oduesima;"},
@@ -653,15 +653,15 @@
         {"value": "80", "text": "=%ordinal-f=;"},
         {"value": "90", "text": "o=%ordinal-f=;"}
       ]},
-      "ordinal-f-mille": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-mille": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
         {"value": "1", "text": "e=%ordinal-f-unit=;"}
       ]},
-      "ordinal-f-mila": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-mila": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "lesima;"},
         {"value": "1", "text": "a=%ordinal-f-unit=;"}
       ]},
-      "ordinal-f-unit": {"source": "a tail of CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+      "ordinal-f-unit": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "1", "text": "unesima;"},
         {"value": "2", "text": "duesima;"},
         {"value": "3", "text": "treesima;"},
@@ -675,7 +675,7 @@
       ]}
     },
     "forms": {"cardinal": {"variants": [{"ruleset": "numbering", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}], "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]}, "maximum": "999999999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal-m", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "ordinal-m", "reason": "standard"}], "feminine": [{"ruleset": "ordinal-f", "reason": "standard"}]}, "minimum": "0", "maximum": "999999999999999999999999999999"}},
-    "decimal": {"word": "virgola", "places": 3, "source": "CLDR 38 RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x,x: \"←← virgola →→\". ovos-number-parser 0.31.5a2 numbers_it.py reads each decimal digit."},
+    "decimal": {"word": "virgola", "places": 3, "source": "CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x,x: \"←← virgola →→\". ovos-number-parser 0.31.5a2 numbers_it.py reads each decimal digit."},
     "scientific": {"times": "per dieci elevato alla", "source": "ovos-number-parser 0.31.5a2 numbers_it.py: \"uno per dieci elevato alla sei\"."},
     "fraction": {"mixed": false, "limit": 10, "single": "un {denominator}", "plural": {"o": "i", "a": "e"}, "named": {"2": "mezzo", "3": "terzo", "4": "quarto", "5": "quinto", "6": "sesto", "7": "settimo", "8": "ottavo", "9": "nono", "10": "decimo"}, "denominator": "{cardinal}esimi", "ruleset": "ordinal-m", "numerator": "cardinal-m", "source": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\". ovos-number-parser 0.31.5a2 numbers_it.py writes \"un terzo\" and \"due terzi\"."}
   }
