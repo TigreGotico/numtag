@@ -279,6 +279,34 @@ class TestCueRules(unittest.TestCase):
 
 
 
+class TestTitleCaseBound(unittest.TestCase):
+    """A title-case word is a cue only for a numeral below 100."""
+
+    def test_a_large_numeral_after_a_name_is_a_weak_cardinal(self):
+        # MDCC = 1700, DIV = 504, MMXXIV = 2024, MD = 1500
+        for text, lang, numeral, value in (("Le PDG de Total MDCC", "fr-FR", "MDCC", "1700"),
+                                           ("Ce DIV", "fr-FR", "DIV", "504"),
+                                           ("In MMXXIV we moved.", "en", "MMXXIV", "2024"),
+                                           ("Ce MD", "fr-FR", "MD", "1500")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.CARDINAL, HOMOGRAPH)])
+
+    def test_dc_is_a_french_word(self):
+        self.assertEqual(_read("Il habite à Washington DC.", "fr-FR"), [])
+
+    def test_names_and_series_nouns_keep_their_ordinal(self):
+        # XIV = 14, IV = 4, III = 3, IX = 9, XXIII = 23, II = 2, LVIII = 58, LXXII = 72
+        for text, lang, numeral, value in (
+                ("Louis XIV", "fr-FR", "XIV", "14"), ("Henri IV", "fr-FR", "IV", "4"),
+                ("Napoléon III", "fr-FR", "III", "3"), ("Pie IX", "fr-FR", "IX", "9"),
+                ("Jean XXIII", "fr-FR", "XXIII", "23"), ("Chapitre IV", "fr-FR", "IV", "4"),
+                ("acte III", "fr-FR", "III", "3"), ("Élisabeth II", "fr-FR", "II", "2"),
+                ("Super Bowl LVIII", "en", "LVIII", "58"), ("Prince Henry LXXII", "en", "LXXII", "72"),
+                ("le roi Louis MDCC", "fr-FR", "MDCC", "1700"), ("au chapitre CXX", "fr-FR", "CXX", "120")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
+
+
 class TestFrenchOrdinalSuffix(unittest.TestCase):
     """fr writes the ordinal suffixes of digits after a Roman numeral ("XXe", "Ier")."""
 

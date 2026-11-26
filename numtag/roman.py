@@ -30,6 +30,12 @@ _NO_LETTER_FORM = {"\u2180": "1000", "\u2181": "5000", "\u2182": "10000", "\u218
 # A single letter is a numeral only as I, V or X: L, C, D and M alone are
 # labels ("Part D", "Vitamin C").
 _SINGLE_LETTERS = frozenset("IVX")
+# A title-case word is a cue only for a numeral below 100. Regnal numbers
+# and the places of a named series stay below it ("Heinrich LXXII" of
+# Reuss, "Super Bowl LVIII"); a larger numeral after a name is a year, a
+# code or an abbreviation ("In MMXXIV", "Total MDCC", "Ce DIV"). A value
+# is a digit string with no leading zero, so below 100 is at most 2 digits.
+_TITLE_CASE_CUE_DIGITS = 2
 
 
 def roman_value(word: str) -> str | None:
@@ -82,7 +88,7 @@ def _list_item(tokens: list[Token], k: int, text: str) -> bool:
     return opens_line and after in (")", ".")
 
 
-def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool) -> bool:
+def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool, value: str) -> bool:
     """True when the words around the numeral mark a place in a series.
 
     A series noun before it ("século XIX", "World War I") or, for a numeral
@@ -90,7 +96,8 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
     may be a pronoun, the series noun before a word must be in title case:
     "Part I" reads, "the part I like" does not. A numeral that is no word
     also takes any title-case word before it ("Luís XIV", "Edition XIV"),
-    in a language that does not write every noun in title case. Any
+    in a language that does not write every noun in title case, when it is
+    below 100 ("Total MDCC" has no cue). Any
     numeral takes a regnal title before the name ("King Henry I", "D. João
     I", "Papst Benedikt XVI"); a single letter or a numeral that is also a
     word takes nothing else: "tell John I am late" and "I told Mary Jane I
@@ -106,7 +113,8 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
             and tokens[k + 1].gap[-1:].isspace() else None
         if after is not None and after.norm in lexicon.roman_series_nouns:
             return True
-        if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before):
+        if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before) \
+                and len(value) <= _TITLE_CASE_CUE_DIGITS:
             return True
     return before is not None and "\n" not in tokens[k].gap and _regnal(lexicon, tokens, k) \
         and not (word and _initial(tokens, k))
@@ -191,7 +199,7 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if word and not token.text.isupper():
             continue
         # a word in a list is no numeral by its place: "World War I, I moved"
-        cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form) \
+        cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form, value=value) \
             or not word and _listed_after(lexicon, tokens, k, cued)
         if cue:
             cued.add(k)
