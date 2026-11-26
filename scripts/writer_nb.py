@@ -47,15 +47,17 @@ def R(value, text, source=None):
 
 
 def cardinal(name, one):
-    """``one`` is the bare 1: "en", "ei" or "ett"; in a compound 1 is "en" ("tjueen", "hundre og en")."""
+    """``one`` is the 1 of the gender: "en", "ei" or "ett". It ends a compound after "hundre og" and "tusen" in each
+    gender ("hundre og ei"), and after a ten only in the neuter ("tjueett", but "tjueen" for the feminine)."""
+    tail = name if one == "ett" else "count"
     rules = [R("-x", "minus →→"), R(0, "null"), R(1, one, ETT if one == "ett" else None)]
     rules += [R(i, w) for i, w in enumerate(UNITS) if i > 1]
-    rules += [R(t, f"{w}[→%count→]", TJUEEN if t == 20 else None) for t, w in TENS.items()]
-    rules += [R(100, "hundre[ og →%count→]", AND), R(200, "←%count← hundre[ og →%count→]"),
-              R(1000, "tusen[ →%and→]"), R(2000, "←%count← tusen[ →%and→]")]
+    rules += [R(t, f"{w}[→%{tail}→]", TJUEEN if t == 20 else None) for t, w in TENS.items()]
+    rules += [R(100, f"hundre[ og →%{name}→]", AND), R(200, f"←%count← hundre[ og →%{name}→]"),
+              R(1000, f"tusen[ →%and-{name}→]"), R(2000, f"←%count← tusen[ →%and-{name}→]")]
     for exponent, singular, plural in SCALES:
-        rules += [R(10 ** exponent, f"én {singular}[ →%cardinal-m→]", SCALE if exponent == 6 else None),
-                  R(2 * 10 ** exponent, f"←%cardinal-m← {plural}[ →%cardinal-m→]")]
+        rules += [R(10 ** exponent, f"én {singular}[ →%{name}→]", SCALE if exponent == 6 else None),
+                  R(2 * 10 ** exponent, f"←%cardinal-m← {plural}[ →%{name}→]")]
     return name, rules
 
 
@@ -89,11 +91,15 @@ def denominator():
 sets = [cardinal("cardinal-m", "en"), cardinal("cardinal-f", "ei"), cardinal("cardinal-n", "ett"),
         ("count", [R(i, w) for i, w in enumerate(UNITS)] + [R(t, f"{w}[→→]") for t, w in TENS.items()]
          + [R(100, "hundre[ og →→]"), R(200, "←← hundre[ og →→]"), R(1000, "tusen[ →%and→]"), R(2000, "←← tusen[ →%and→]")]),
-        ("and", [R(0, "og =%count="), R(100, "=%count=")])] + ordinal() + [denominator()]
+        ("and", [R(0, "og =%count="), R(100, "=%count=")])]
+sets += [(f"and-{name}", [R(0, f"og =%{name}="), R(100, f"=%{name}=")]) for name in ("cardinal-m", "cardinal-f", "cardinal-n")]
+sets += ordinal() + [denominator()]
 SOURCES = {
     "cardinal-m": CLDR + ", %spellout-cardinal-masculine, with the scale words of this lexicon. " + AND + ". " + TJUEEN,
-    "cardinal-f": CLDR + ", %spellout-cardinal-feminine: \"1: ei;\"",
-    "cardinal-n": CLDR + ", %spellout-cardinal-neuter: \"1: ett;\". " + ETT,
+    "cardinal-f": CLDR + ", %spellout-cardinal-feminine: \"1: ei;\", \"100: hundre[ og →→];\", \"1000: tusen[ "
+                  "→%%and-small-f→];\", and no rule for the tens, which read the cardinal (\"tjueen\")",
+    "cardinal-n": CLDR + ", %spellout-cardinal-neuter: \"1: ett;\", \"20: tjue[­→→];\", \"100: hundre[ og →→];\". "
+                  + ETT,
     "count": CLDR + ", %spellout-cardinal-reale: a count below a thousand, with \"en\" for 1 (" + TJUEEN + ")",
     "and": CLDR + ", %%and-small: \"0: og =%%spellout-cardinal-reale=;\", \"100: =%%spellout-cardinal-reale=;\"",
     "ordinal": ORDINAL + ". " + SILVER_ORD,
