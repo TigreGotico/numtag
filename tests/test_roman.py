@@ -307,6 +307,15 @@ class TestTitleCaseBound(unittest.TestCase):
                 self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
 
 
+class TestPsalms(unittest.TestCase):
+    def test_a_psalm_number_is_an_ordinal(self):
+        # CXIX = 119, CL = 150
+        for text, lang, numeral, value in (("Psaume CXIX", "fr-FR", "CXIX", "119"), ("le psaume CL", "fr-FR", "CL", "150"),
+                                           ("Psalm CXIX", "en", "CXIX", "119"), ("the psalms CXX", "en", "CXX", "120")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
+
+
 class TestHyphenatedNames(unittest.TestCase):
     """A hyphenated given name gives no token and is one title-case word."""
 
@@ -339,14 +348,28 @@ class TestFrenchOrdinalSuffix(unittest.TestCase):
             ("au XIXème siècle", "XIXème", "19", None), ("au XIXᵉ siècle", "XIXᵉ", "19", None),
             ("le XVIe arrondissement", "XVIe", "16", None), ("la Ve République", "Ve", "5", None),
             ("le IIIe Reich", "IIIe", "3", None), ("François Ier", "Ier", "1", "masculine"),
-            ("la Ire armée", "Ire", "1", "feminine"), ("la IIde République", "IIde", "2", "feminine"),
+            ("la Ire République", "Ire", "1", "feminine"), ("la IIde République", "IIde", "2", "feminine"),
+            ("le Xe arrondissement", "Xe", "10", None), ("au Xe siècle", "Xe", "10", None),
+            ("les IXe et Xe siècles", "Xe", "10", None), ("Jean-Paul Ier", "Ier", "1", "masculine"),
             ("les XIXes siècles", "XIXes", "19", None), ("L’EUROPE AU XXe SIÈCLE", "XXe", "20", None),
         ]
         for text, numeral, value, gender in rows:
             with self.subTest(text=text):
                 self.assertEqual([(m.text, m.value, m.kind, m.reasons, m.gender, m.confidence)
-                                  for m in tag_numbers(text, "fr-FR") if m.form == Form.ROMAN],
+                                  for m in tag_numbers(text, "fr-FR") if m.form == Form.ROMAN][-1:],
                                  [(numeral, value, Kind.ORDINAL, SURE, gender, 1.0)])
+
+    def test_a_single_letter_with_a_suffix_and_no_cue_is_weak(self):
+        # "Ire" is also "ire" (anger); I = 1, V = 5
+        for text, numeral, value in (("Ire et colère le saisirent.", "Ire", "1"), ("Ve", "Ve", "5")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [(numeral, value, Kind.ORDINAL, HOMOGRAPH)])
+
+    def test_a_listed_word_with_a_suffix_needs_a_cue(self):
+        # "Xe" is the symbol of xenon, "Cie" the abbreviation of compagnie
+        for text in ("Le xénon (Xe) est un gaz noble.", "Xe, Ar et Kr", "Le symbole Xe désigne le xénon.", "CIe"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [])
 
     def test_the_mention_spans_the_numeral_and_the_suffix(self):
         [mention] = tag_numbers("au XXe siècle", "fr-FR")

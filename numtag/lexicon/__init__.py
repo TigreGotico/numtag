@@ -434,6 +434,8 @@ class Lexicon:
     # An ordinal suffix of the language in lower case glued to an upper-case
     # numeral makes it an ordinal ("XIXe", "Ier").
     roman_ordinal_suffix: bool = False
+    # fr-CH "’": other characters that group digits as group_mark does ("1’234").
+    group_mark_forms: str = ""
 
     def ordinal_suffix_fits(self, suffix: str, digits: str) -> bool:
         """True when ``suffix`` is an ordinal suffix of the language that may
@@ -513,6 +515,7 @@ DEFAULT_SETTINGS = {
     "roman_pronoun_letters": False,
     "roman_title_case_cue": True,
     "roman_ordinal_suffix": False,
+    "group_mark_forms": "",
     "dotted_i": False,
     "fraction_agreement": True,
     "decimal_fraction": False,
@@ -625,7 +628,7 @@ ENTRY_KEYS = {
 
 
 # Keys that only a version 3 file holds.
-V3_SETTINGS = frozenset(("roman_ordinal_suffix",))
+V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms"))
 V3_ENTRY_KEYS = {"ordinal_suffix": frozenset(("after", "cased"))}
 
 
@@ -969,6 +972,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
         roman_ordinal_suffix=settings["roman_ordinal_suffix"],
+        group_mark_forms=settings["group_mark_forms"],
     )
 
 

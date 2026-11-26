@@ -52,13 +52,15 @@ def roman_value(word: str) -> str | None:
     return "".join(place[group] for place, group in zip(_PLACES, match.groups())).lstrip("0")
 
 
-def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None] | None:
-    """The value and the gender of an upper-case numeral glued to an ordinal
-    suffix of the language in lower case ("XIXe", "Ier", "IIde"), where the
-    language sets ``roman_ordinal_suffix``. The suffix keeps its lower case
-    in upper-case text ("XXe SIÈCLE"), so the change of case ends the
-    numeral. A single letter is I, V or X, as alone, and a numeral that is
-    also a word takes no suffix ("MMe")."""
+def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None, bool] | None:
+    """The value, the gender and the weakness of an upper-case numeral glued
+    to an ordinal suffix of the language in lower case ("XIXe", "Ier",
+    "IIde"), where the language sets ``roman_ordinal_suffix``. The suffix
+    keeps its lower case in upper-case text ("XXe SIÈCLE"), so the change of
+    case ends the numeral. A single letter is I, V or X, as alone, and a
+    numeral that is also a word takes no suffix ("MMe"). The word is weak
+    when its numeral is a single letter ("Ire" is also "ire", anger) or when
+    the whole word is listed as a word ("Xe" is xenon)."""
     numeral = word[:len(word) - len(word.lstrip("IVXLCDM"))]
     suffix = word[len(numeral):]
     if not (lexicon.roman_ordinal_suffix and numeral and suffix) or any(c.isupper() for c in suffix):
@@ -68,7 +70,23 @@ def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None] | None:
     value = roman_value(numeral)
     if value is None or not lexicon.ordinal_suffix_fits(suffix, value):
         return None
-    return value, lexicon.ordinal_suffixes[fold(suffix)]
+    return value, lexicon.ordinal_suffixes[fold(suffix)], len(numeral) == 1 or fold(word) in lexicon.roman_words
+
+
+def _suffix_cue(lexicon: Lexicon, tokens: list[Token], k: int, listed: bool) -> bool:
+    """True when the words around a weak numeral with a suffix mark a place
+    in a series: a series noun before or after it ("au Xe siècle", "la Ve
+    République"), a regnal title and a name, or, for a word that is not
+    listed, a title-case name before it ("François Ier", "Jean-Paul Ier")."""
+    before = tokens[k - 1] if _spaced(tokens, k) else None
+    after = tokens[k + 1] if k + 1 < len(tokens) and tokens[k + 1].gap.isspace() else None
+    if any(t is not None and t.norm in lexicon.roman_series_nouns for t in (before, after)):
+        return True
+    name = _gap_name(tokens[k].gap) if before is None else None
+    if not listed and lexicon.roman_title_case_cue and (before is not None and _title_case(before) or name):
+        return True
+    regnal = _regnal(lexicon, tokens, k) if before is not None else name is not None and _regnal_name(lexicon, tokens, k)
+    return "\n" not in tokens[k].gap and regnal
 
 
 def _title_case(token: Token) -> bool:
@@ -209,9 +227,16 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if first < len(taken) and taken[first][0] < token.end:
             continue
         if suffixed := _suffixed(lexicon, token.text):
-            # the suffix makes the place in a series: "au XXe siècle", "François Ier"
-            cued.add(k)
-            numerals.append((token, suffixed[0], Kind.ORDINAL, None, suffixed[1]))
+            # the suffix makes the place in a series: "au XXe siècle"; a weak
+            # word needs a cue too ("François Ier"), and a listed one reads
+            # only with it ("Le xénon (Xe)" holds no 10th)
+            value, gender, weak = suffixed
+            listed = fold(token.text) in lexicon.roman_words
+            sure = not weak or _suffix_cue(lexicon, tokens, k, listed)
+            if sure:
+                cued.add(k)
+            if sure or not listed:
+                numerals.append((token, value, Kind.ORDINAL, None if sure else Reason.HOMOGRAPH, gender))
             continue
         value = roman_value(token.text)
         if not value:

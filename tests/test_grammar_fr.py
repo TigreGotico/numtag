@@ -172,6 +172,13 @@ class TestDigitOrdinalSuffixes(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(fr(text), spans)
 
+    def test_no_mark_stands_between_the_digits_and_the_suffix(self):
+        # "2.d" is figure 2, part d
+        for text, spans in (("Voir la figure 2.d", [("2", "2", C)]), ("la figure 2.de", [("2", "2", C)]),
+                            ("les figures 2.des", [("2", "2", C)]), ("le 2.e", [("2", "2", C)])):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), spans)
+
     def test_the_letters_of_second_stay_lower_case(self):
         # "2D" and "3D" are two and three dimensions, "2DS" a console
         for text, spans in (("le film en 2D", [("2", "2", C)]), ("les imprimantes 3D", [("3", "3", C)]),
@@ -221,6 +228,17 @@ class TestSwissDigits(unittest.TestCase):
         self.assertEqual(read("1’234.50", "fr-CH"), [("1’234.50", "1234.5", "decimal")])
         self.assertEqual(read("Prix : 1’234’567,5 francs", "fr-CH"), [("1’234’567,5", "1234567.5", "decimal")])
         self.assertEqual(read("1’234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
+
+    def test_an_apostrophe_before_no_group_of_three_separates_two_numbers(self):
+        # 9"58 and 14h30 in Swiss notation, a score, minutes and seconds: each run is a number
+        for text, spans in (("en 9’58", [("9", "9", C), ("58", "58", C)]),
+                            ("à 14’30", [("14", "14", C), ("30", "30", C)]),
+                            ("J’ai 2’3 ans", [("2", "2", C), ("3", "3", C)]),
+                            ("1’23’’45", [("1", "1", C), ("23", "23", C), ("45", "45", C)]),
+                            ("3'45", [("3", "3", C), ("45", "45", C)]),
+                            ("1'2345", [("1", "1", C), ("2345", "2345", C)])):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "fr-CH"), spans)
 
 
 class TestBillion(unittest.TestCase):

@@ -231,7 +231,7 @@ A cue makes the numeral a sure ordinal:
 | A title-case word before an upper-case numeral below 100 that is no word | "Luís XIV", "Edition XIV" |
 | A regnal title (`roman_title`), then a name | "King Henry I", "D. João I", "Papst Benedikt XVI" |
 | A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no word | "séculos XI, XII e XIII" |
-| An ordinal suffix in lower case glued to an upper-case numeral, where the language sets `roman_ordinal_suffix` | fr "au XXe siècle", "François Ier", "la Ve République" |
+| An ordinal suffix in lower case glued to an upper-case numeral of two letters or more, where the language sets `roman_ordinal_suffix`. A single letter with a suffix also needs one of the other cues | fr "au XXe siècle", "François Ier", "la Ve République" |
 
 German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages too.
 

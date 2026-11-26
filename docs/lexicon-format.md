@@ -34,7 +34,7 @@ The loader reads `format_version` first. It reads versions 1, 2 and 3. It refuse
 
 A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3. The loader refuses a `writer` block in a version 1 file, and a key of version 3 in a version 1 or 2 file. The error names the key and the place.
 
-Version 3 adds the setting `roman_ordinal_suffix` and the entry keys `after` and `cased` of the role `ordinal_suffix`.
+Version 3 adds the settings `roman_ordinal_suffix` and `group_mark_forms` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
 
 ### Base lexicons
 
@@ -72,7 +72,8 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `glued_denominator_alone` | boolean | `false` | With `glued_denominators`: the glued part word with no number before it is one part of the product ("háromszázad" is 1/300). `false` where it names no number. | de: `true` |
 | `glued_denominator_alone_ambiguous` | boolean | `false` | With `glued_denominator_alone`: the lone reading has a second meaning, the count of parts, and has the confidence of a homograph. | de: `true` |
 | `glued_denominators` | boolean | `false` | A count glued to the part word of a hundred or more multiplies it, as it multiplies the scale word ("kétszázad" is 1/200, as "kétszáz" is 200). | de: `true` |
-| `group_mark` | string | required | The mark that groups the digits of a digit string. A mark other than "." or "," also stands between digits. A mark "'" also reads as "’" and "ʼ", the forms that a word's apostrophe takes. | pt-PT: `"."` |
+| `group_mark_forms` | string | `""` | Version 3. Other characters that group digits as `group_mark` does, and read as it ("1’234" is "1'234"). | fr-CH: `"’"` |
+| `group_mark` | string | required | The mark that groups the digits of a digit string. A mark other than "." or "," also stands between digits. It joins digits only before a group of exactly three: "9'58" is 9 and 58. | pt-PT: `"."` |
 | `half_of_scale` | boolean | `false` | A half after any scale word is half of that scale ("אלף וחצי" is 1500). | ar: `true` |
 | `hundred_counts_below_thousand` | boolean | `false` | A hundred multiplier takes no count of a thousand or more ("dvou tisíc sta" is 2100). | ru: `true` |
 | `inflection_position` | `"every"` or `"last"` | `"every"` | Where a suffix of an `inflection` class closes the number. `every`: on any word of a number. `last`: only on the last word, so a form with a suffix ends the number. | hu: `"last"` |
@@ -94,7 +95,7 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `ordinal_form_part_takes_no_digits` | boolean | `false` | A plural part word that is also a plural ordinal form takes no count in digits: "3 пятых класса" is three fifth-grade classes. A fraction in digits is written "3/5". | ru: `true` |
 | `ordinal_joiner_by_place` | boolean | `false` | The joiner before an ordinal word stands where it stands before the cardinal word in that place, and none stands before a scale ordinal: "tjue og tredje" is 20 and 3rd, "hundre og femte" is 105th. | de: `true` |
 | `ordinal_style` | `"every_word"` or `"first_word"` or `"last_word"` or `"tail_words"` | required | Which words of a multi-word ordinal are ordinal. `every_word`: each ("vigésimo primeiro"). `last_word`: only the last ("twenty-first"). `first_word`: the first ordinal unit, then a teen word or the joiner and a cardinal ten (ar "الحادي عشر"). `tail_words`: every word after the cardinal part (cs "dva tisíce dvacátý třetí"). | pt-PT: `"every_word"` |
-| `ordinal_suffix_marks` | list of strings | `["", "."]` | The marks that may stand between digits and an ordinal suffix ("." in "1.º"). The marks of `ordinal_suffix_mark` join this list. | nl: `[""]` |
+| `ordinal_suffix_marks` | list of strings | `["", "."]` | The marks that may stand between digits and an ordinal suffix ("." in "1.º"). The marks of `ordinal_suffix_mark` join this list. | nl, fr-FR: `[""]` |
 | `part_after_joiner_needs_article` | boolean | `false` | A part word after the joiner takes an article: "six and a quarter", never "six and quarter". "forty and eighth" is 40 and 8th. | en: `true` |
 | `part_glued_to_whole` | boolean | `false` | A fraction below one, with its own count, glued to the whole number before it adds to it ("zweieinviertel" is 2.25). | de: `true` |
 | `percent_phrase_is_no_number` | boolean | `false` | A percent phrase names the percent sign with no number before it too: "tanto por ciento" holds no 100. | es: `true` |
@@ -103,9 +104,9 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `period_ordinals` | boolean | `false` | A period after digits makes an ordinal ("am 3. Mai") when a cue shows it: a word of `period_ordinal_before` before the digits, with `period_ordinal_lowercase` any lower-case word after the period, or a number of at most `period_ordinal_free_digits` digits. | de: `true` |
 | `plural_scale_needs_count` | boolean | required | A plural scale word with no count names no number ("milhões de pessoas"). | pt-PT: `true` |
 | `point_decimal` | boolean | `false` | An hour and minutes written with a point are a decimal unless a clock word stands beside them. Elsewhere only an hour of "0" is one. | es: `true` |
-| `roman_ordinal_suffix` | boolean | `false` | Version 3. An ordinal suffix of the language in lower case, glued to an upper-case Roman numeral, makes the word one ordinal ("XIXe", "Ier"). The suffix keeps its `after` and `cased` limits, a single letter is I, V or X, and a numeral in `roman_word` takes no suffix ("MMe"). | fr-FR: `true` |
+| `roman_ordinal_suffix` | boolean | `false` | Version 3. An ordinal suffix of the language in lower case, glued to an upper-case Roman numeral, makes the word one ordinal ("XIXe", "Ier"). The suffix keeps its `after` and `cased` limits, a single letter is I, V or X, and a numeral in `roman_word` takes no suffix ("MMe"). A single-letter numeral with a suffix is sure only with a cue: a series noun before or after it, a title-case name before it or a regnal title and a name. With no cue it has the confidence of a homograph ("Ire"). A whole word in `roman_word` ("Xe") reads only with a series noun or a regnal cue. | fr-FR: `true` |
 | `roman_pronoun_letters` | boolean | `false` | "I" is a pronoun. A series noun before a single letter or a numeral that is also a word then counts only in title case ("Part I", not "the part I like"). | en: `true` |
-| `roman_title_case_cue` | boolean | `true` | A title-case word before a Roman numeral is a cue ("Luís XIV"). `false` where every noun is in title case ("Größe XIV"). | de: `false` |
+| `roman_title_case_cue` | boolean | `true` | A title-case word before a Roman numeral below 100 is a cue ("Luís XIV"). A numeral of 100 or more after it is no ordinal ("Total MDCC"). `false` where every noun is in title case ("Größe XIV"). | de: `false` |
 | `scale` | `"long"` or `"short"` | required | The scale of a scale word when the call names none: `short` makes a billion 10^9, `long` makes it 10^12. A call's `scale` argument overrides it. | pt-PT: `"long"` |
 | `scale_noun_agrees` | boolean | required | A singular scale noun takes only the count one ("um milhão", never "cem mil e um milhão"). | pt-PT: `true` |
 | `small_multiplier_starts_group` | boolean | `false` | A hundred or ten multiplier after a group of thousands starts the next group and counts no group ("bin yüz" is 1100, not 100000). | fi: `true` |
