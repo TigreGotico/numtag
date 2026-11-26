@@ -569,7 +569,7 @@ SETTINGS = REQUIRED_SETTINGS | frozenset(DEFAULT_SETTINGS)
 WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
 
 TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
-WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
+WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction", "plural"))
 RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))

@@ -67,6 +67,9 @@ class TestWriterScripts(unittest.TestCase):
     def test_the_romanian_writer_block_is_what_the_script_writes(self):
         self.check("writer_ro.py", "")
 
+    def test_the_russian_writer_block_is_what_the_script_writes(self):
+        self.check("writer_ru.py", "")
+
     def test_the_allow_list_entries_are_what_the_script_writes(self):
         langs = sorted({row["lang"] for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])})
         self.assertTrue({"id", "ms", "pt-PT", "es", "nb"} <= set(langs))

@@ -263,6 +263,7 @@ A script writes the writer block of a language, and a test checks that the file 
 | `decimal` | `{"word": ..., "places": ..., "read": ..., "source": ...}`. Required. The word between the whole part and the decimals, and the count of decimals that a reading keeps when the caller names none. `read` is `digits` (the default: one word for each decimal) or `number` (the decimals as one number, after a zero word for each leading zero). A `decimals` argument of `spell` replaces it. |
 | `scientific` | `{"times": ..., "source": ...}`. Optional. The words between the mantissa and the exponent: "kali sepuluh pangkat". A lexicon with no `scientific` has no exponent reading. |
 | `fraction` | Optional. How a fraction "n/m" reads. See below. |
+| `plural` | Optional. A list of `{"category": ..., "mod10": [...], "not_mod100": [...], "source": ...}`: the CLDR plural categories of whole numbers. A number is in the first category whose `mod10` holds its last digit and whose `not_mod100` misses its last two digits. Every other number is `other`. ru: one is `mod10` [1], `not_mod100` [11]. |
 
 ### Rules
 
@@ -278,9 +279,11 @@ The interpreter reads a whole number in a rule set like this. It picks the rule 
 | `→%name→` | The remainder, read by the rule set `name` |
 | `=%name=` | The whole number, read by the rule set `name` |
 | `[...]` | Text that stays out when the remainder is 0 |
+| `[a\|b]` | `a` when the remainder is not 0, else `b`: "[тысяча →%o→\|тысячный]". This is no part of the ICU syntax |
+| `$(cardinal,one{...}few{...}other{...})$` | The word of the plural category of the quotient, or the `other` word when the category has none: "тысяча", "тысячи", "тысяч" |
 | any other character | Itself |
 
-The soft hyphen U+00AD is dropped from the words, runs of spaces become one space, and the ends are trimmed. The writer of a lexicon is built on the first `spell` call for it, and it refuses then a rule text that holds any of the characters `$ # < >`, which belong to other parts of the ICU syntax that this version does not read, a quotient or remainder slot that names no `%` rule set, and a call to a rule set that the block lacks. The error names the rule set and the rule. A leading apostrophe is no part of this version and reads as text.
+The soft hyphen U+00AD is dropped from the words, runs of spaces become one space, and the ends are trimmed. The writer of a lexicon is built on the first `spell` call for it, and it refuses then a rule text that holds any of the characters `$ # < >` outside a `$(cardinal,...)$`, which belong to other parts of the ICU syntax that this version does not read, a quotient or remainder slot that names no `%` rule set, and a call to a rule set that the block lacks. The error names the rule set and the rule. A leading apostrophe is no part of this version and reads as text.
 
 ### Forms
 
