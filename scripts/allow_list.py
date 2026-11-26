@@ -123,6 +123,44 @@ def category_ro(row, got):
     if "ori zece la puterea" in mine:
         return "ro_decimal" if "ori zece la puterea" in out else "ro_big"
     return None
+GL_NORMAS = "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16 (Papers/Languages/Iberian/Galician/)"
+SRC.update({
+ "gl_cento": GL_NORMAS + ", p. 98: \"cento un, cento unha etc.\": no \"e\" after the hundreds; ovos-number-parser writes \"cento e un\" and \"novecentos e noventa\".",
+ "gl_gender": GL_NORMAS + ", p. 98: \"un/unha\", \"dous/dúas\", \"douscentos / duascentas\", and one form for the other numerals (\"catro\", \"cinco\"); ovos-number-parser writes the masculine there or a feminine of an invariable numeral (\"catra\").",
+ "gl_ordinal": GL_NORMAS + ", §16.2, p. 100: \"sétimo\", \"undécimo / décimo primeiro\", \"duodécimo / décimo segundo\", the first form of each pair; ovos-number-parser writes \"séptimo\" and leaves the ordinals of 200 to 900 empty. SILVER: \"ducentésimo\" and the other hundreds.",
+ "gl_zero": "numtag/lexicon/gl.json, the gl writer: an ordinal starts at 1, and no saved source gives an ordinal of 0.",
+ "gl_fraction": GL_NORMAS + ", §16.4, p. 101: \"a partir de 1/11 ... o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo, (2/29) dous vinte e noveavos\"; ovos-number-parser writes \"un medios\" and \"un trinta\".",
+ "gl_short": "numtag/lexicon/gl.json, the setting scale: Galician counts in the long scale only (RAG, Dicionario, «billón»: \"Un millón de millóns.\"), so a call for the short scale reads the long one.",
+ "gl_big": "numtag/lexicon/gl.json, the gl writer: the scale words stop at trillón (10^18), so from 10^24 the writer reads the exponent; ovos-number-parser writes words such as \"sexdecillóns\".",
+ "gl_range": "numtag/lexicon/gl.json, the gl writer: an ordinal goes from 1 to 10^24 - 1, and outside it spell() raises; ovos-number-parser writes these numbers.",
+ "gl_decimal": "SILVER: numtag reads each decimal digit, and ovos-number-parser reads the digits as one number. No saved source.",
+})
+GL_PAIRS = {("un", "unha"), ("dous", "dúas")}
+def gl_tokens_agree(out, mine):
+    a, b = out.split(), mine.split()
+    return len(a) == len(b) and all(x == y or (x, y) in GL_PAIRS or (x.endswith(("centos", "centas")) and y.endswith("centas"))
+                                    or (y.endswith("o") and x == y[:-1] + "a") for x, y in zip(a, b))
+def category_gl(row, got):
+    if row.get("kw", {}).get("scale") == "short":  # the reason of the same row in the long scale, else the scale
+        long = category_gl({**row, "kw": {k: v for k, v in row["kw"].items() if k != "scale"}}, got)
+        return long or ("gl_short" if re.search(r"illón|illóns", str(row.get("out"))) else None)
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction":
+        if row["arg"].split("/")[1].lstrip("-") == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "gl_fraction"
+    if row["fn"] == "number" and isinstance(row["arg"], float): return "gl_decimal"
+    if row["fn"] == "ordinal" or kw.get("ordinals"):
+        if str(row["arg"]) == "0": return "gl_zero"
+        if got == {"err": "ValueError"}: return "gl_range"
+        return "gl_ordinal" if got.get("out") else None
+    bare = re.sub(r"\b(cento|mil|\w+centos|\w+centas|\w+llóns?) e ", r"\1 ", out)
+    if bare == mine: return "gl_cento"
+    if gl_tokens_agree(bare, mine): return "gl_gender"
+    if "por dez elevado a" in mine: return "gl_big"
+    return None
 CA_GIEC = "IEC, Gramàtica de la llengua catalana (2016), §17.2 (Papers/Languages/Iberian/Catalan/giec_17_2_numerals.html)"
 SRC.update({
  "ca_ordinal": CA_GIEC + ", §17.2.5: the ordinals past 4 \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè)\", and \"cent dosè, cent tresè, dos milè\"; ovos-number-parser writes \"cent primer\" and \"milè primer\".",
@@ -196,7 +234,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "ca": category_ca, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }

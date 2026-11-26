@@ -85,6 +85,14 @@ def _issue_329(lang: str, text: str) -> bool:
     return bare != text and [(m.text, m.kind) for m in tag_numbers(bare, lang)] == [(bare, Kind.ORDINAL)]
 
 
+SCALE_ORDINAL_GL = re.compile(r"\b(?:mil|millon|billon|trillon)ésim[oa]\b")
+
+
+def _issue_331(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/331: the gl reader splits an ordinal with two scale ordinals."""
+    return lang == "gl" and len(SCALE_ORDINAL_GL.findall(text)) >= 2
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -132,8 +140,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 124839)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 136188)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -308,7 +316,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -328,8 +336,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -441,6 +449,30 @@ class TestFrench(unittest.TestCase):
                          ["un demi", "deux tiers", "trois quarts", "cinq onzièmes"])
 
 
+class TestGalician(unittest.TestCase):
+    """RAG e ILG, Normas ortográficas e morfolóxicas, §16."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "gl", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("21", "100", "101", "121", "200", "500", "1001", "2000000")],
+                         ["vinte e un", "cen", "cento un", "cento vinte e un", "douscentos", "cincocentos", "mil un",
+                          "dous millóns"])
+        self.assertEqual([self.say(n, gender="feminine") for n in ("21", "22", "200", "2000", "200000")],
+                         ["vinte e unha", "vinte e dúas", "duascentas", "dúas mil", "duascentas mil"])
+
+    def test_ordinals_take_the_feminine_on_the_last_word_only(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("7", "11", "12", "21", "101", "3000", "3001")],
+                         ["sétimo", "undécimo", "duodécimo", "vixésimo primeiro", "centésimo primeiro",
+                          "tres milésimo", "tres milésimo primeiro"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("11", "13", "21", "3000")],
+                         ["undécima", "décimo terceira", "vixésimo primeira", "tres milésima"])
+
+    def test_partitives(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "1/16", "2/29", "7/345", "3/1000")],
+                         ["un medio", "tres medios", "dous terzos", "un dezaseisavo", "dous vinte e noveavos",
+                          "sete trescentos corenta e cincoavos", "tres milésimos"])
 class TestCatalan(unittest.TestCase):
     """IEC, GIEC §17.2 and OIEC §4.4.2.2."""
 

@@ -24,7 +24,8 @@ ORDINAL = (GIEC + ", §17.2.5: \"Els quatre primers ordinals tenen formes bàsiq
            "quart\"; the others \"es formen d’una manera general a partir dels nombres cardinals i el sufix ‑è / ‑en(a), com "
            "els fraccionaris (vint-i-dosè, cent vint-i-cinquè, centè, dos-centè, milè), llevat del cas de deu, en què per "
            "raons històriques tenim desè, desena\"; \"no en la resta de casos (cent dosè, cent tresè, dos milè)\"; and "
-           "\"En general, són preferibles els ordinals en ‑er / ‑er(a) i en ‑è / ‑en(a) a les formes en ‑èsim\"")
+           "\"En general, són preferibles els ordinals en ‑er/‑er(a) i en ‑è/‑en(a) a les formes simples corresponents, "
+           "mentre que els ordinals en ‑èsim/‑èsim(a) són d’ús poc freqüent\"")
 FRACTION = (GIEC + ", §17.2.2: \"La forma de la majoria dels quantificadors fraccionaris coincideix amb la dels numerals "
             "ordinals\" and \"tenen formes particulars els numerals fraccionaris mig, meitat i terç\"; \"un quart o una "
             "quarta part (1/4), dos quarts\"; \"el quantificador cardinal designa el numerador de la fracció, i el "
