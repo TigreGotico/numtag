@@ -47,7 +47,7 @@ A row is right when the set of (start, end, value) that the library gives equals
 | pt-BR | 470 | 464 | 390 | 513 | 511 | 410 |
 | en | 444 | 442 | 358 | 486 | 485 | 400 |
 
-The rows that numtag misses are in [languages/pt.md](languages/pt.md) and [languages/en.md](languages/en.md). The gold values come from sources and hand arithmetic, not from either library.
+The table above is typed by hand from one run. A script writes [languages/index.md](languages/index.md), which gives the numtag gold score of every language. The rows that numtag misses are in [languages/pt.md](languages/pt.md) and [languages/en.md](languages/en.md). The gold values come from sources and hand arithmetic, not from either library.
 
 ---
 [← Design](design.md) · [Home](index.md) · [Roadmap →](roadmap.md)
