@@ -190,6 +190,8 @@ class Writer:
 
     def minus(self, ruleset: str) -> str:
         """The minus word of a rule set: the text of its minus rule apart from the number."""
+        if self.rulesets[ruleset].negative is None:
+            raise ValueError(f"rule set {ruleset!r} has no rule for negative numbers")
         return _tidy("".join(value for kind, value in self.rulesets[ruleset].negative if kind == "lit"))
 
     def spec(self, form: SpokenForm, scale: str | None = None) -> dict:
@@ -320,6 +322,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
     if digits.normalise(whole) == "0" and not fraction:
         negative = False
     text = writer.render(ruleset, whole, negative)
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":
@@ -333,6 +337,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
 
 def _each_digit(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str) -> str:
     words = [writer.render(ruleset, d) for d in whole]
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         words += [writer.decimal["word"], *[writer.render(ruleset, d) for d in fraction]]
     return " ".join(([writer.minus(ruleset)] if negative else []) + words)
@@ -383,6 +389,8 @@ def _exponent(writer: Writer, ruleset: str, negative: bool, whole: str, fraction
 
 
 def _fraction(writer: Writer, ruleset: str, value: str) -> str:
+    if "fraction" in writer.block and writer.block["fraction"] is None:
+        raise ValueError(f"{writer.name}: no fraction words; a fraction has no reading")
     spec = writer.block.get("fraction")
     top, _, bottom = value.partition("/")
     terms = top.removeprefix("-"), bottom.removeprefix("-")
