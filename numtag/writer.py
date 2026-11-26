@@ -403,15 +403,15 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     """The numerator and the word of the denominator: a named word, the reading of the ``ruleset``
     when the spec names one, else a one-word ordinal or the ``denominator`` text. A named word, an
     ordinal and a ``ruleset`` reading take the plural ending after a numerator other than 1."""
+    count = writer.render(spec.get("numerator", ruleset), top)
     if bottom not in spec["named"] and "ruleset" in spec:
-        word = writer.render(spec["ruleset"], bottom)
-        return f"{writer.render(ruleset, top)} {word}{spec['plural'] if top != '1' else ''}"
+        return f"{count} {writer.render(spec['ruleset'], bottom)}{spec['plural'] if top != '1' else ''}"
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
     elif top != "1":
         word += spec["plural"]
-    return f"{writer.render(ruleset, top)} {word}"
+    return f"{count} {word}"
 
 
 def _ordinal_of(writer: Writer, number: str) -> str:

@@ -79,7 +79,7 @@ def fused():
     units = [plain(w) for w in UNITS]
     units[1], units[21] = "un", "veintiun"
     rules = [R(i, w) for i, w in enumerate(units)]
-    rules += [R(30 + 10 * i, f"{w}[y→→]") for i, w in enumerate(TENS)]
+    rules += [R(30 + 10 * i, f"{w}[i→→]") for i, w in enumerate(TENS)]
     rules += [R(100, "cien"), R(101, "ciento→→")]
     rules += [R(200 + 100 * i, f"{w}[→→]") for i, w in enumerate(HUNDREDS)]
     rules += [R(1000, "mil[→→]"), R(2000, "←←mil[→→]")]
@@ -92,21 +92,29 @@ def avo():
         return (word[:-1] if word.endswith("a") else word) + "avo"
     units = [plain(w) for w in UNITS]
     units[1], units[21] = "un", "veintiun"
-    rules = [R(i, end(w)) for i, w in enumerate(units)]
+    rules = [R(i, end(w)) for i, w in enumerate(units) if i != 10]  # a rest after "-i" or "ciento"; 2 to 10 alone are named
     for i, w in enumerate(TENS):
-        rules += [R(30 + 10 * i, end(w)), R(31 + 10 * i, f"{w}y→→")]
-    rules += [R(100, "cienavo"), R(101, "ciento→→")]
+        rules += [R(30 + 10 * i, end(w)), R(31 + 10 * i, f"{w}i→→")]
+    rules += [R(101, "ciento→→")]  # 100 is a named word
     for i, w in enumerate(HUNDREDS):
         rules += [R(200 + 100 * i, end(w)), R(201 + 100 * i, f"{w}→→")]
-    rules += [R(1000, "milavo"), R(1001, "mil→→"), R(2000, "←%fused←milavo"), R(2001, "←%fused←mil→→")]
+    rules += [R(1000, "milavo"), R(1001, "mil→→"), R(2000, "←%fused←mil→%avo-rest→"),
+              R(1000000, "=%ordinal-m=")]  # a denominator from 10^6 reads its ordinal: "diezmillonésimo"
     return "avo", rules
+
+
+def avo_rest():
+    """The rest after "mil" in a denominator: a round count of thousands is a fused ordinal ("dosmilésimo",
+    as ovos-number-parser writes it), else the -avo reading ("dosmilunavo")."""
+    return "avo-rest", [R(0, "ésimo"), R(1, "=%avo=")]
 
 
 def ordinal(name, gender):
     g = feminine if gender == "f" else (lambda w: w)
-    rules = [R("-x", "menos →→")] + [R(i, g(w)) for i, w in enumerate(ORD_UNITS)]
+    rules = [R("-x", "menos →→"), R(0, "cero")] + [R(i, g(w)) for i, w in enumerate(ORD_UNITS) if i]
     rules += [R(10, g("décimo")), R(11, g("undécimo"), ONP), R(12, g("duodécimo"), ONP),
-              R(13, "decimo→→"), R(20, g("vigésimo")), R(21, "vigesimo→→", ONP)]
+              R(13, "decimo→→"), R(18, g("decimoctavo"), ONP), R(19, "decimo→→"),
+              R(20, g("vigésimo")), R(21, "vigesimo→→", ONP), R(28, g("vigesimoctavo"), ONP), R(29, "vigesimo→→")]
     rules += [R(30 + 10 * i, f"{g(w)}[ →→]") for i, w in enumerate(ORD_TENS)]
     rules += [R(100, f"{g('centésimo')}[ →→]")]
     rules += [R(200 + 100 * i, f"{g(w)}[ →→]") for i, w in enumerate(ORD_HUNDREDS)]
@@ -118,16 +126,17 @@ def ordinal(name, gender):
 
 
 sets = [cardinal("numbering", None), cardinal("cardinal-m", "m"), cardinal("cardinal-f", "f"),
-        ordinal("ordinal-m", "m"), ordinal("ordinal-f", "f"), fused(), avo()]
+        ordinal("ordinal-m", "m"), ordinal("ordinal-f", "f"), fused(), avo(), avo_rest()]
 SOURCES = {
     "numbering": CLDR + ", %spellout-numbering, with the -illion words of this lexicon",
     "cardinal-m": CLDR + ", %spellout-cardinal-masculine: \"un\" and \"veintiún\" before a noun. " + DPD_UNO,
     "cardinal-f": CLDR + ", %spellout-cardinal-feminine",
     "ordinal-m": CLDR + ", %spellout-ordinal-masculine. Changed from it, as " + ONP + " writes it: 11.º and "
                  "12.º are \"undécimo\" and \"duodécimo\", 21.º to 29.º are one word (\"vigesimoprimero\"), and "
-                 "the count before a scale ordinal joins it (\"dosmilésimo\", \"veintidosmilésimo\")",
+                 "18.º and 28.º drop one o (\"decimoctavo\"), and the count before a scale ordinal joins it (\"dosmilésimo\", \"veintidosmilésimo\")",
     "ordinal-f": CLDR + ", %spellout-ordinal-feminine, with the changes of ordinal-m",
-    "fused": ONP + ": the count of a fused ordinal and of an -avo word has no written accent and no space",
+    "fused": ONP + ": the count of a fused ordinal and of an -avo word has no written accent and no space, and \"y\" becomes \"i\" (\"noventainueve\")",
+    "avo-rest": "the rest of an -avo word after a count of thousands",
     "avo": DPD_AVO + ". " + ONP + " writes \"treintavo\", \"veintiunavos\", \"cientounavo\" and \"milunavos\"",
 }
 maximum = "9" * (6 * TOP + 6)
@@ -142,7 +151,8 @@ forms = {
                 "minimum": "0", "maximum": maximum},
 }
 NAMED = dict(zip(map(str, range(2, 11)), "medio tercio cuarto quinto sexto séptimo octavo noveno décimo".split()))
-NAMED.update({"100": "centésimo", "1000": "milésimo", "1000000": "millonésimo"})
+NAMED.update({"100": "centésimo", "1000": "milésimo", "10000": "diezmilésimo", "100000": "cienmilésimo",
+              "1000000": "millonésimo"})
 block = {
     "source": CLDR + ". Spanish counts in the long scale: the -illion words of this lexicon, 10^(6 × rank), and a "
               "count up to 999999 before each (\"mil millones\" for 10^9).",
@@ -152,7 +162,7 @@ block = {
                 + ONP + " reads each decimal digit (\"dos coma dos cinco\")."},
     "scientific": {"times": "por diez elevado a", "source": ONP + ": 10^300 reads \"uno por diez elevado a trescientos\"."},
     "fraction": {"mixed": False, "limit": 10, "single": "un {denominator}", "plural": "s", "named": NAMED,
-                 "denominator": "{cardinal}avos", "ruleset": "avo",
+                 "denominator": "{cardinal}avos", "ruleset": "avo", "numerator": "cardinal-m",
                  "source": DPD_AVO + ". " + ONP + " writes \"un medio\", \"dos tercios\" and \"tres milésimos\"."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)
