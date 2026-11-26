@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.39.0a1](https://github.com/TigreGotico/numtag/tree/0.39.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.1a1...0.39.0a1)
+
+**Merged pull requests:**
+
+- feat: Bengali reader [\#372](https://github.com/TigreGotico/numtag/pull/372) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Danish writer [\#355](https://github.com/TigreGotico/numtag/pull/355) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Norwegian Nynorsk writer; nb compounds take gender [\#354](https://github.com/TigreGotico/numtag/pull/354) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.38.1a1](https://github.com/TigreGotico/numtag/tree/0.38.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.38.0a1...0.38.1a1)
@@ -626,10 +636,6 @@
 ## [0.15.5a1](https://github.com/TigreGotico/numtag/tree/0.15.5a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.4a3...0.15.5a1)
-
-**Merged pull requests:**
-
-- fix\(gl\): read "mil e" and the next group as one number [\#154](https://github.com/TigreGotico/numtag/pull/154) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.4a3](https://github.com/TigreGotico/numtag/tree/0.15.4a3) (2026-11-18)
 
