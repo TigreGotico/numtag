@@ -51,7 +51,7 @@ def result(row: dict) -> dict:
     options = {"gender": GENDERS[kw["gender"]] if "gender" in kw else None, "scale": kw.get("scale"),
                "case": kw.get("case"), "places": kw.get("places"), "scientific": kw.get("scientific", False),
                "form": SpokenForm.ORDINAL if row["fn"] == "ordinal" or kw.get("ordinals") else SpokenForm.CARDINAL,
-               "decimals": "digits" if kw.get("digits") == "digit" else None}
+               "decimals": {"digit": "digits", "number": "number"}.get(kw.get("digits"))}
     try:
         return {"out": spell(arg, row["lang"], **options)[0].text}
     except Exception as error:

@@ -1,17 +1,19 @@
 """Rebuild the allow-list entries of one language from the writer golden file: each row where the
 writer differs from ovos-number-parser gets the output of numtag and the source of its category.
 
-usage: python scripts/allow_list.py pt-PT|pt-BR [--check]
+usage: python scripts/allow_list.py LANG [--check]
 A row with no category stops the script, so every entry has a source.
 """
-import sys, json, collections
+import sys, json, collections, os, re
+from pathlib import Path
+os.chdir(Path(__file__).parents[1])
 sys.path.insert(0, "tests"); import golden_writers as gw
 lang = sys.argv[1]
 CIB = "https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/"
 SRC = {
  "quadringentesimo": "Priberam, \"quadringentésimo\": \"Que ou o que ocupa o último lugar numa série de quatrocentos\"; \"quadrigentésimo\" has no definition in Priberam.",
  "whole_float": "numtag docs/values.md: a value is a canonical digit string, and the float 2.0 of the row is the digit string \"2\", with no decimals to read.",
- "scientific": "ovos-number-parser 0.30.1a1 numbers_pt.py, pronounce_number_pt: the function has no scientific parameter, so the row reads the plain number.",
+ "scientific": "ovos-number-parser 0.30.1a1 numbers_pt.py, pronounce_number_pt: the function has no scientific parameter, so the row reads the plain number." if lang.startswith("pt") else f"ovos-number-parser 0.31.5a2 numbers_{lang}.py: the writer has no scientific parameter, so the row reads the plain number.",
  "zero_denominator": "numtag docs/values.md: \"A fraction with a zero denominator has no value\"; spell raises ZeroDivisionError.",
  "negative": "Ciberdúvidas 11493 (" + CIB + "numeros-fraccionarios/11493): «um meio», «um terço»; Ciberdúvidas 4181 (" + CIB + "um-doze-avos/4181): «Avo, no singular, só em um avo e meio avo». A numerator of one takes the singular, and the minus word leads, as for a negative cardinal.",
  "avos": "Ciberdúvidas 35323 (" + CIB + "denominadores-multiplos-de-1000-10-000-100-000-1000-000/35323), after Celso Cunha: «Quando o ordinal é expresso por mais que uma palavra, usa-se … o cardinal seguido do termo avos … 10 000 → dez mil avos»; Ciberdúvidas 4181: «escreve-se um doze avos, dois treze avos, sempre com avos no plural».",
@@ -23,6 +25,33 @@ SRC = {
 BIG_BR = 'numtag/lexicon/pt-BR.json, the scale_noun entries and the short scale of pt-BR: the -illions run with no gap to "vigintilhão" (rank 20, 10^63), so an ordinal above 10^69 - 1 has no words.'
 if lang == "pt-BR":
     SRC["big_ordinal"] = BIG_BR
+DPD_UNO = "RAE, Diccionario panhispánico de dudas, 2.ª ed., «uno»: before a masculine noun the numeral takes the form «un», in compounds too: «Tengo veintiún años»."
+SRC.update({
+ "es_neutral": "Spanish has no neuter numeral. A call with no noun gender reads the bare number: CLDR 38 RBNF es, %spellout-numbering, 1 «uno», 21 «veintiuno».",
+ "es_millardo": "CLDR 38 RBNF es, %spellout-numbering: 10^9 reads «mil millones», a count of millions. The lexicon reads «millardo» too.",
+ "es_apocope": DPD_UNO,
+ "es_short": "numtag/lexicon/es.json, the setting scale: Spanish counts in the long scale only («billón» is a million millions), so a call for the short scale reads the long one.",
+ "es_improper": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: a fraction reads its numerator and the plural of the denominator word («dos treceavos»), so 3/2 reads «tres medios».",
+ "onp_error": "ovos-number-parser raises NotImplementedError for this number; numtag reads it from the scale_noun entries of the lexicon, or raises ValueError past the last of them.",
+ "digits_number": f"ovos-number-parser numbers_{lang}.py reads each decimal digit whatever `digits` says; numtag.spell(decimals=\"number\") reads the decimals as one number, as the call asks.",
+})
+def category_es(row, got):
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if out == "NotImplementedError": return "onp_error"
+    head, _, last = mine.rpartition(" ")
+    if kw.get("gender") == "masculine" and last in ("un", "veintiún") and out == f"{head} {last}o".strip().replace("veintiúno", "veintiuno"): return "es_apocope"
+    if kw.get("gender") == "neutral" and mine.replace("uno", "un").replace("veintiun", "veintiún") == out: return "es_neutral"
+    if "millardo" in out: return "es_millardo"
+    if kw.get("scale") == "short" and re.search(r"(?:b|tr|cuatr|quint|sext|sept|oct|non|dec)illon", out): return "es_short"
+    if row["fn"] == "fraction":
+        top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
+        if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        if int(top) >= int(bottom) and " y " in out: return "es_improper"
+    return None
+def category_digits(row, got):
+    return "digits_number" if row.get("kw", {}).get("digits") == "number" else None
 def category(row, got):
     out, mine = row.get("out", ""), got.get("out", "")
     if row["fn"] == "ordinal" and len(str(row["arg"])) > 90: return "big_ordinal"
@@ -42,7 +71,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = category(row, got)
+    c = {"es": category_es, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }

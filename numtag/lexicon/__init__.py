@@ -576,7 +576,7 @@ FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scal
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "plural", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "plural", "ruleset", "numerator", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -667,6 +667,9 @@ def _check_writer(lang: str, writer: dict) -> None:
     _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
     _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
     _refuse(lang, "fraction", writer.get("fraction", {}), FRACTION_KEYS)
+    for key in ("ruleset", "numerator"):
+        if (name := writer.get("fraction", {}).get(key)) is not None and name not in writer["rulesets"]:
+            raise ValueError(f"{lang}: the fraction names the unknown rule set {name!r}")
 
 
 def _read(lang: str) -> dict:

@@ -204,6 +204,8 @@
             "denominator": {"type": "string"},
             "single": {"type": "string"},
             "mixed": {"type": "boolean"},
+            "ruleset": {"type": "string"},
+            "numerator": {"type": "string"},
             "plural": {"type": "string"},
             "source": {"type": "string"}
           },

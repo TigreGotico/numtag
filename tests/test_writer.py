@@ -35,6 +35,16 @@ def _issue_305(lang: str, text: str) -> bool:
     return lang in ("pt-PT", "pt-BR") and bool(ISSUE_305.search(text))
 
 
+ISSUE_315 = re.compile(r"\b(?:veinti[a-z]+|(?:cuarent|cincuent|sesent|setent|ochent|novent)a?|treintai[a-z]+|"
+                       r"[a-z]+ientos[a-z]*|ciento[a-z]+|[a-z]*mil[a-z]*)avos?\b|\w+(?:mil|llon)ésim[oa]s?\b|^ésimo$"
+                       r"|^(?:un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve)avo$")  # the rest part of "treintaiunavo"
+
+
+def _issue_315(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/315: the es reader misses -avo words past 30, veinti- -avo words, and fused scale ordinals."""
+    return lang == "es" and bool(ISSUE_315.search(text))
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -82,8 +92,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"id", "ms", "pt-BR", "pt-PT"})
-        self.assertEqual(len(rows), 45396)
+        self.assertEqual({row["lang"] for row in rows}, {"es", "id", "ms", "pt-BR", "pt-PT"})
+        self.assertEqual(len(rows), 56745)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -194,7 +204,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -205,8 +215,13 @@ class TestRoundTrip(unittest.TestCase):
 
     @classmethod
     def literals(cls, tokens: tuple):
-        for kind, value in tokens:
+        """The literal text of the rule, with a fragment fused to a call ("vigesimo" in "vigesimo→→") dropped."""
+        for k, (kind, value) in enumerate(tokens):
             if kind == "lit":
+                if k and tokens[k - 1][0] != "lit" and not value[0].isspace():
+                    value = value.partition(" ")[2]
+                if k + 1 < len(tokens) and tokens[k + 1][0] not in ("lit",) and not value[-1:].isspace():
+                    value = value.rpartition(" ")[0]
                 yield value
             elif kind == "opt":
                 yield from cls.literals(value)
@@ -219,7 +234,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -239,8 +254,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["id", "ms", "pt-BR", "pt-PT"])
-        self.assertEqual(VERSION_TWO, ["id", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(WRITERS, ["es", "id", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(VERSION_TWO, ["es", "id", "ms", "pt-BR", "pt-PT"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -251,6 +266,31 @@ class TestRevisions(unittest.TestCase):
         numtag.lexicon.revision.cache_clear()
         self.addCleanup(numtag.lexicon.revision.cache_clear)
         self.assertNotEqual(numtag.lexicon.revision("id"), before)
+
+
+class TestSpanish(unittest.TestCase):
+    """Values from RAE DPD «uno», «ciento» and «fraccionarios», and CLDR 38 RBNF es."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "es", **kw)[0].text
+
+    def test_the_cardinal_takes_the_apocope_only_before_a_noun(self):
+        self.assertEqual([self.say("21"), self.say("21", gender="masculine"), self.say("21", gender="feminine")],
+                         ["veintiuno", "veintiún", "veintiuna"])
+
+    def test_a_thousand_millions_is_a_count_of_millions(self):
+        self.assertEqual(self.say("1000000000"), "mil millones")
+
+    def test_ordinals_fuse_the_count_of_a_scale_word(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("21", "2000", "22000", "1000000000")],
+                         ["vigesimoprimero", "dosmilésimo", "veintidosmilésimo", "milmillonésimo"])
+
+    def test_eighteenth_drops_one_o(self):
+        self.assertEqual(self.say("18", form=SpokenForm.ORDINAL, gender="feminine"), "decimoctava")
+
+    def test_a_denominator_past_ten_reads_avo(self):
+        self.assertEqual([self.say(f) for f in ("2/3", "1/200", "3/56", "21/50")],
+                         ["dos tercios", "un doscientosavo", "tres cincuentaiseisavos", "veintiún cincuentavos"])
 
 
 class TestPortugueseScales(unittest.TestCase):
