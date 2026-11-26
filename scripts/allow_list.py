@@ -277,6 +277,47 @@ def category_nl(row, got):
     if fixed == mine.replace("één", "een"): return "nl_decimal" if row["fn"] == "number" and isinstance(row["arg"], float) else "nl_een"
     if row["fn"] == "fraction" and fixed.endswith(" tweede") and fixed[:-len("tweede")] + "halve" == mine.replace("één", "een"): return "nl_half"
     return None
+NN_NO = "Nynorskordboka (ord.uib.no; Papers/Languages/Germanic/Norwegian Nynorsk/)"
+NN_CLDR = "CLDR RBNF nn (common/rbnf/nn.xml as shipped in unicode-rbnf 2.5.1)"
+NN_SR = "Språkrådet, «Tredjedel, tredel, fjerdedel, firedel og så vidare» (Papers/Languages/Germanic/Norwegian Nynorsk/sprakradet_tredjedel-tredel-fjerdedel-firedel.html)"
+SRC.update({
+ "nn_accent": "Språkrådet, «Aksentteikn» (Papers/Languages/Germanic/Norwegian Nynorsk/sprakradet_aksentteikn.html): \"Vi kan bruke aksentteikn for å skilje den ubundne artikkelen ein/en frå talordet éin/én.\"; " + NN_CLDR + ", %spellout-cardinal-reale: \"1: éin;\", \"1000000: éin million[ →→];\"; ovos-number-parser writes \"ein\".",
+ "nn_groups": NN_CLDR + ", %spellout-cardinal-reale: \"1000: ←%spellout-cardinal-neuter← tusen[ og →→];\": \"og\" after \"tusen\" before every rest; ovos-number-parser drops it before a rest of 100 or more, or puts \"og\" after a scale word.",
+ "nn_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"null\".",
+ "nn_fraction": NN_SR + ": \"Åttedel og åttandedel er heilt jamstilte former, som tredel og tredjedel, firedel og fjerdedel\"; " + NN_NO + ", «tredel»: plural \"tredelar\"; the writer takes the cardinal form; ovos-number-parser writes the ordinal form.",
+ "nn_range": "numtag/lexicon/nn.json, the nn writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trillion), and outside it spells the power of ten or raises ValueError.",
+ "nn_negative": "numtag/lexicon/nn.json, the nn writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "nn_zero": "SILVER: the ordinal of 0 is \"nullte\", as CLDR RBNF no %spellout-ordinal-masculine \"0: nullte;\"; ovos-number-parser writes \"nulte\".",
+ "nn_ordinal": NN_NO + ", «tjuande»: \"rekkjetal til 20\"; «tjueførste»: \"rekkjetal til 21\"; «hundrede»: \"rekkjetal til 100\"; SILVER past 100: the groups follow the cardinal (\"tusen og første\"); ovos-number-parser puts \"og\" before a last group of 100 or more.",
+ "nn_short": "numtag/lexicon/nn.json, the setting scale: Nynorsk counts in the long scale (" + NN_NO + ", «billion»: \"ein million millionar\"); the writer has no short-scale reading.",
+})
+def category_nn(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_nn({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("nn_short" if re.search(r"illi|illiard", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if "ti opphøgd i" in mine or got == {"err": "ValueError"}: return "nn_range"
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "nn_negative"
+    if out == "nulte" and mine == "nullte": return "nn_zero"
+    if row["fn"] == "fraction":
+        top, bottom = (int(x.lstrip("-")) for x in row["arg"].split("/"))
+        theirs = out.removeprefix("minus ")
+        same = top > bottom or mine.removeprefix("minus ").split()[0] in (theirs.split() or [""])[0:1] + ["ein", "éin"]
+        return "nn_fraction" if same and re.search(r"(del|delar|halv|halve)$", mine) else None
+    flat = lambda t: re.sub(r"\b(éin|ein|éi|ei|eitt|eit)\b", "1", t)
+    plain = lambda t: flat(re.sub(r"( null)+$", "", t)).replace(" og ", " ")
+    if flat(re.sub(r"( null)+$", "", out)) == flat(mine) and " komma " in mine: return "nn_decimal"
+    if flat(out) == flat(mine): return "nn_accent"
+    if plain(out) == plain(mine):
+        return "nn_ordinal" if row["fn"] == "ordinal" or kw.get("ordinals") else "nn_groups"
+    return None
+
 EN_GPO = "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf)"
 SRC.update({
  "en_hyphen": EN_GPO + ", 6.36: \"Print a hyphen between the elements of compound numbers from twenty-one to ninety-nine\"; ovos-number-parser writes \"twenty one\".",
@@ -324,6 +365,7 @@ SRC.update({
  "nb_groups": NB_CLDR + ", %spellout-cardinal-reale: \"2000000: ←← millioner[ →→];\" and %%and-small: \"100: =%%spellout-cardinal-reale=;\": \"og\" comes only after \"hundre\" and before a last group below 100 after \"tusen\"; ovos-number-parser writes \"og\" before every group.",
  "nb_fraction": NB_SR + ": \"Hovedregelen er at vi bruker grunntall i nevneren i brøker. åtte trettendeler ni trettifiredeler\", \"en tredel eller en tredjedel\"; ovos-number-parser writes the ordinal (\"ni tredje\", \"en åttendedel\").",
  "nb_range": "numtag/lexicon/nb.json, the nb writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trillion), and outside it spells the power of ten or raises ValueError.",
+ "nb_gender": NB_CLDR + ", %spellout-cardinal-feminine: \"100: hundre[ og →→];\" with \"1: ei;\", and %spellout-cardinal-neuter: \"1: ett;\", \"20: tjue[­→→];\": a compound ends in the 1 of its gender (\"hundre og ei\", \"tjueett\"); ovos-number-parser writes \"en\".",
  "nb_negative": "numtag/lexicon/nb.json, the nb writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
  "nb_zero": NB_CLDR + ", %spellout-ordinal-masculine: \"0: nullte;\"; ovos-number-parser writes \"nulte\".",
  "nb_short": "numtag/lexicon/nb.json, the setting scale: Norwegian counts in the long scale (" + NB_BM + ", «billion»: \"grunntallet 1 000 000 000 000\"); the writer has no short-scale reading.",
@@ -347,10 +389,51 @@ def category_nb(row, got):
         theirs = out.removeprefix("minus ").split(" og ")[0] if top < bottom else out.removeprefix("minus ")
         same = mine.removeprefix("minus ").split()[0] == theirs.split()[0] or top > bottom
         return "nb_fraction" if same and re.search(r"(del|deler|halv|halve)$", mine) else None
+    if kw.get("gender") in ("feminine", "neutral") and (plain := re.sub(r"(ei|ett)\b", "en", mine)) != mine:
+        return "nb_gender" if plain == out or category_nb(row, {"out": plain}) else None
     flat = lambda t: re.sub(r"\b(én|en) (?=\w*(illion|illiard))", "", t)
     if flat(re.sub(r"( null)+$", "", out)) == flat(mine) and " komma " in mine: return "nb_decimal"
     if flat(out) == flat(mine): return "nb_accent"
     if flat(out).replace(" og ", " ") == flat(mine).replace(" og ", " "): return "nb_groups"
+    return None
+DA_SN = "Dansk Sprognævn, sproget.dk «Et eller flere ord» (Papers/Languages/Germanic/Danish/sproget-dk-et-eller-flere-ord.html)"
+DA_ART = "sproget.dk «Den 101. dalmatiner møder den 101. stryger» (Papers/Languages/Germanic/Danish/sproget-dk-den-101-dalmatiner.html)"
+SRC.update({
+ "da_tusind": DA_SN + ": \"fire tusind(e) (og) tre hundred(e) (og) treoghalvfems\": \"tusind\" and \"tusinde\" are both correct; numtag writes the first, ovos-number-parser the second.",
+ "da_fraction": DA_ART + ": \"de talord, der står som førsteled i brøkangivelser med -del som andetled, er ordenstal, f.eks. i syvendedel, syttendedel og syvogtyvendedel\"; Den Danske Ordbog, «tredjedel»: \"fx to tredjedele = 2/3\"; ovos-number-parser drops \"del\" or writes \"trediedele\".",
+ "da_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"nul\".",
+ "da_negative": "numtag/lexicon/da.json, the da writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "da_range": "numtag/lexicon/da.json, the da writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trillion), and outside it spells the power of ten or raises ValueError.",
+ "da_og": DA_SN + ": \"(parentes om og og flertalsbøjningen angiver at disse valgfrit kan tages med eller udelades)\"; numtag follows CLDR RBNF da, %spellout-cardinal-common: \"1000000: million[ →→];\", with no \"og\" after a scale word; ovos-number-parser writes \"og\" there.",
+ "da_neuter": "CLDR RBNF da, %spellout-cardinal-common: \"2000: ←%spellout-cardinal-neuter← tusinde[ →%%and-small→];\" and %spellout-cardinal-neuter: \"1: et;\", \"100: hundrede[ og →→];\": the count of tusind and a neuter number end in \"et\"; ovos-number-parser writes \"en\".",
+ "da_ordinals": "numtag/lexicon/da.json, the da writer: ordinals=True reads the ordinal (\"første\", Den Danske Ordbog «anden»: \"som er nr. 2 i en rækkefølge\"); ovos-number-parser returns the cardinal.",
+ "da_short": "numtag/lexicon/da.json, the setting scale: Danish counts in the long scale (Den Danske Ordbog, «billion»: \"(an)tallet 10 12\"); the writer has no short-scale reading.",
+})
+def category_da(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_da({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("da_short" if re.search(r"illi|illiard", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "da_negative"
+    if " i " in mine and "gange ti" in mine or got == {"err": "ValueError"}: return "da_range"
+    if kw.get("ordinals") and re.search(r"(de|te|je|en|et)$", mine) and mine != out: return "da_ordinals"
+    if row["fn"] == "fraction":  # the numerator agrees, and the part is the ordinal and "del": "to tredjedele"
+        top, bottom = (int(x.lstrip("-")) for x in row["arg"].split("/"))
+        theirs = out.removeprefix("minus ")
+        same = mine.removeprefix("minus ").split()[0] == theirs.split()[0] or top > bottom
+        return "da_fraction" if same and re.search(r"(del|dele|halv|halve)$", mine) else None
+    flat = lambda t: t.replace("tusinde", "tusind")
+    if flat(re.sub(r"( nul)+$", "", out)) == flat(mine) and " komma " in mine: return "da_decimal"
+    if flat(out) == flat(mine): return "da_tusind"
+    if flat(out).replace(" og ", " ") == flat(mine).replace(" og ", " "): return "da_og"
+    neuter = lambda t: re.sub(r"\bet\b", "en", flat(t)).replace(" og ", " ")
+    if neuter(out) == neuter(mine): return "da_neuter"
     return None
 DE_RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024) (Papers/Languages/Germanic/German/rechtschreibrat_amtliches_regelwerk_2024.pdf)"
 DE_CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
@@ -439,11 +522,13 @@ def category(row, got):
         if bottom == "200": return "ducentesimo"
         if "ésim" in mine.split()[-1]: return "ordinal_denominator"
     return None
+# fr-* finds category_fr by name; pt-* has no category_pt and takes category.
+categorize = {"id": category_digits, "ms": category_digits}.get(lang) or globals().get("category_" + lang.split("-")[0], category)
 rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "ru": category_ru, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = categorize(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
