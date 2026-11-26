@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.41.0a2](https://github.com/TigreGotico/numtag/tree/0.41.0a2) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a1...0.41.0a2)
+
+**Merged pull requests:**
+
+- docs: generated per-language support table [\#389](https://github.com/TigreGotico/numtag/pull/389) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- test: derive the writer language lists from the data [\#388](https://github.com/TigreGotico/numtag/pull/388) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.41.0a1](https://github.com/TigreGotico/numtag/tree/0.41.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.40.0a1...0.41.0a1)
@@ -545,10 +554,6 @@
 ## [0.19.3a1](https://github.com/TigreGotico/numtag/tree/0.19.3a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.2a1...0.19.3a1)
-
-**Merged pull requests:**
-
-- fix: a joiner at the end of the text leaves the number before it [\#169](https://github.com/TigreGotico/numtag/pull/169) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.2a1](https://github.com/TigreGotico/numtag/tree/0.19.2a1) (2026-11-21)
 
