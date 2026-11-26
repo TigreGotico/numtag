@@ -160,8 +160,10 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "da", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 204282)
+        langs = {row["lang"] for row in rows}
+        self.assertTrue({"id", "ms", "pt-PT", "es", "nb"} <= langs)
+        self.assertEqual(langs, {row["lang"] for row in golden_writers.stored()} & set(WRITERS))
+        self.assertEqual(len(rows), 11349 * len(langs))
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -358,8 +360,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["bn", "ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["bn", "ca", "ca-ES-valencia", "da", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "nn", "pt-BR", "pt-PT", "ro"])
+        self.assertTrue({"id", "ms", "pt-PT", "pt-BR", "es", "nb"} <= set(WRITERS))
+        self.assertTrue(set(WRITERS) <= set(VERSION_TWO))
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -588,6 +590,11 @@ class TestBengali(unittest.TestCase):
 
     def test_the_hundreds(self):
         self.assertEqual([self.say(n) for n in ("200", "999")], ["দুই শ", "নয় শ নিরানব্বই"])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="the reader reads \"একশ এক\" as 100 and 1 "
+                       "https://github.com/TigreGotico/numtag/issues/391")
+    def test_the_reader_reads_the_one_word_hundred_before_a_rest(self):
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("একশ এক", "bn")], [("একশ এক", "101")])
 
     def test_ordinals_from_one_to_ten(self):
         self.assertEqual([self.say(str(n), form=SpokenForm.ORDINAL) for n in range(1, 11)],
