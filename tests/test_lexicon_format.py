@@ -65,7 +65,7 @@ class TestSchema(unittest.TestCase):
 
     def test_every_lexicon_validates_against_the_schema(self):
         validator = jsonschema.Draft202012Validator(SCHEMA)
-        self.assertEqual(len(NAMES), 51)
+        self.assertEqual(len(NAMES), 52)
         for name in NAMES:
             with self.subTest(lexicon=name):
                 self.assertEqual([e.message for e in validator.iter_errors(_file(name))], [])
