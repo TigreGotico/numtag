@@ -495,18 +495,18 @@
         {"value": "200", "text": "←%cardinal-m←cent→%ordinal-m-o→;"},
         {"value": "1000", "text": "mill→%ordinal-m-mille→;"},
         {"value": "2000", "text": "←%count-mila←mil→%ordinal-m-mila→;"},
-        {"value": "1000000", "text": "milion→%ordinal-m-mille→;"},
-        {"value": "2000000", "text": "←%count-mila←milion→%ordinal-m-mille→;"},
+        {"value": "1000000", "text": "milion→%ordinal-m-scale→;"},
+        {"value": "2000000", "text": "←%count-mila←milion→%ordinal-m-scale→;"},
         {"value": "1000000000", "text": "miliard→%ordinal-m-o→;"},
         {"value": "2000000000", "text": "←%count-mila←miliard→%ordinal-m-o→;"},
-        {"value": "1000000000000", "text": "bilion→%ordinal-m-mille→;"},
-        {"value": "2000000000000", "text": "←%count-mila←bilion→%ordinal-m-mille→;"},
+        {"value": "1000000000000", "text": "bilion→%ordinal-m-scale→;"},
+        {"value": "2000000000000", "text": "←%count-mila←bilion→%ordinal-m-scale→;"},
         {"value": "1000000000000000", "text": "biliard→%ordinal-m-o→;"},
         {"value": "2000000000000000", "text": "←%count-mila←biliard→%ordinal-m-o→;"},
-        {"value": "1000000000000000000", "text": "trilion→%ordinal-m-mille→;"},
-        {"value": "2000000000000000000", "text": "←%count-mila←trilion→%ordinal-m-mille→;"},
-        {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-m-mille→;"},
-        {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-m-mille→;"}
+        {"value": "1000000000000000000", "text": "trilion→%ordinal-m-scale→;"},
+        {"value": "2000000000000000000", "text": "←%count-mila←trilion→%ordinal-m-scale→;"},
+        {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-m-scale→;"},
+        {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-m-scale→;"}
       ]},
       "ordinal-m-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
@@ -543,11 +543,21 @@
         {"value": "7", "text": "osettesimo;"},
         {"value": "8", "text": "oottesimo;"},
         {"value": "9", "text": "onovesimo;"},
-        {"value": "10", "text": "o=%ordinal-m=;"},
+        {"value": "10", "text": "esimo decimo;", "source": "Vocabolario Treccani, «ordinale»: the joined form \"è pressoché l'unico per alcuni ordinali per i quali l'altro tipo sarebbe sentito come poco eufonico: centesimo decimo, millesimo primo, millesimo secondo, millesimo decimo, millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata è preferita)\". The writer splits these cases only: a round hundred and 10, and \"mille\" and 1, 2, 10 or 11"},
+        {"value": "11", "text": "o=%ordinal-m=;"},
         {"value": "80", "text": "=%ordinal-m=;"},
         {"value": "90", "text": "o=%ordinal-m=;"}
       ]},
       "ordinal-m-mille": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+        {"value": "0", "text": "esimo;"},
+        {"value": "1", "text": "esimo primo;", "source": "Vocabolario Treccani, «ordinale»: the joined form \"è pressoché l'unico per alcuni ordinali per i quali l'altro tipo sarebbe sentito come poco eufonico: centesimo decimo, millesimo primo, millesimo secondo, millesimo decimo, millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata è preferita)\". The writer splits these cases only: a round hundred and 10, and \"mille\" and 1, 2, 10 or 11"},
+        {"value": "2", "text": "esimo secondo;"},
+        {"value": "3", "text": "e=%ordinal-m-unit=;"},
+        {"value": "10", "text": "esimo decimo;"},
+        {"value": "11", "text": "esimo undicesimo;"},
+        {"value": "12", "text": "e=%ordinal-m-unit=;"}
+      ]},
+      "ordinal-m-scale": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esimo;"},
         {"value": "1", "text": "e=%ordinal-m-unit=;"}
       ]},
@@ -601,18 +611,18 @@
         {"value": "200", "text": "←%cardinal-m←cent→%ordinal-f-o→;"},
         {"value": "1000", "text": "mill→%ordinal-f-mille→;"},
         {"value": "2000", "text": "←%count-mila←mil→%ordinal-f-mila→;"},
-        {"value": "1000000", "text": "milion→%ordinal-f-mille→;"},
-        {"value": "2000000", "text": "←%count-mila←milion→%ordinal-f-mille→;"},
+        {"value": "1000000", "text": "milion→%ordinal-f-scale→;"},
+        {"value": "2000000", "text": "←%count-mila←milion→%ordinal-f-scale→;"},
         {"value": "1000000000", "text": "miliard→%ordinal-f-o→;"},
         {"value": "2000000000", "text": "←%count-mila←miliard→%ordinal-f-o→;"},
-        {"value": "1000000000000", "text": "bilion→%ordinal-f-mille→;"},
-        {"value": "2000000000000", "text": "←%count-mila←bilion→%ordinal-f-mille→;"},
+        {"value": "1000000000000", "text": "bilion→%ordinal-f-scale→;"},
+        {"value": "2000000000000", "text": "←%count-mila←bilion→%ordinal-f-scale→;"},
         {"value": "1000000000000000", "text": "biliard→%ordinal-f-o→;"},
         {"value": "2000000000000000", "text": "←%count-mila←biliard→%ordinal-f-o→;"},
-        {"value": "1000000000000000000", "text": "trilion→%ordinal-f-mille→;"},
-        {"value": "2000000000000000000", "text": "←%count-mila←trilion→%ordinal-f-mille→;"},
-        {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-f-mille→;"},
-        {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-f-mille→;"}
+        {"value": "1000000000000000000", "text": "trilion→%ordinal-f-scale→;"},
+        {"value": "2000000000000000000", "text": "←%count-mila←trilion→%ordinal-f-scale→;"},
+        {"value": "1000000000000000000000000", "text": "quadrilion→%ordinal-f-scale→;"},
+        {"value": "2000000000000000000000000", "text": "←%count-mila←quadrilion→%ordinal-f-scale→;"}
       ]},
       "ordinal-f-i": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
@@ -649,11 +659,21 @@
         {"value": "7", "text": "osettesima;"},
         {"value": "8", "text": "oottesima;"},
         {"value": "9", "text": "onovesima;"},
-        {"value": "10", "text": "o=%ordinal-f=;"},
+        {"value": "10", "text": "esima decima;", "source": "Vocabolario Treccani, «ordinale»: the joined form \"è pressoché l'unico per alcuni ordinali per i quali l'altro tipo sarebbe sentito come poco eufonico: centesimo decimo, millesimo primo, millesimo secondo, millesimo decimo, millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata è preferita)\". The writer splits these cases only: a round hundred and 10, and \"mille\" and 1, 2, 10 or 11"},
+        {"value": "11", "text": "o=%ordinal-f=;"},
         {"value": "80", "text": "=%ordinal-f=;"},
         {"value": "90", "text": "o=%ordinal-f=;"}
       ]},
       "ordinal-f-mille": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
+        {"value": "0", "text": "esima;"},
+        {"value": "1", "text": "esima prima;", "source": "Vocabolario Treccani, «ordinale»: the joined form \"è pressoché l'unico per alcuni ordinali per i quali l'altro tipo sarebbe sentito come poco eufonico: centesimo decimo, millesimo primo, millesimo secondo, millesimo decimo, millesimo undecimo o undicesimo, ecc. (in questi casi la grafia staccata è preferita)\". The writer splits these cases only: a round hundred and 10, and \"mille\" and 1, 2, 10 or 11"},
+        {"value": "2", "text": "esima seconda;"},
+        {"value": "3", "text": "e=%ordinal-f-unit=;"},
+        {"value": "10", "text": "esima decima;"},
+        {"value": "11", "text": "esima undicesima;"},
+        {"value": "12", "text": "e=%ordinal-f-unit=;"}
+      ]},
+      "ordinal-f-scale": {"source": "a tail of CLDR RBNF it (common/rbnf/it.xml as shipped in unicode-rbnf 2.5.1)", "rules": [
         {"value": "0", "text": "esima;"},
         {"value": "1", "text": "e=%ordinal-f-unit=;"}
       ]},
