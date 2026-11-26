@@ -534,6 +534,19 @@ A suffix that abbreviates one ordinal follows only its number. French "er" and "
 
 > Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Lorsque l’énoncé est écrit entièrement en capitales (par exemple dans un sous-titre) : la ou les lettres supérieures restent en minuscules.": the suffix of second is lower case, so "2D" (two dimensions) is no ordinal.
 
+French writes the same suffixes after a Roman numeral (setting `roman_ordinal_suffix`). The numeral is in upper case and the suffix in lower case, and the word is one ordinal with the gender of its suffix. The suffix keeps its limits, so "Vers" and "Ver" (V and "er") are no ordinal. A single letter is I, V or X, so "Le", "De" and "Me" are no ordinal either.
+
+```python
+>>> read("au XXe siècle, sous la Ve République", "fr")
+[('XXe', '20'), ('Ve', '5')]
+>>> [(m.text, m.value, m.kind.value, m.gender) for m in tag_numbers("François Ier et la IIde République", "fr")]
+[('Ier', '1', 'ordinal', 'masculine'), ('IIde', '2', 'ordinal', 'feminine')]
+>>> read("Vers midi, Me Durand est parti.", "fr")
+[]
+```
+
+> Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Pour abréger les adjectifs ordinaux, on fait suivre un chiffre arabe ou romain d’une, de deux ou de trois lettres minuscules surélevées qui correspondent aux lettres finales des adjectifs."
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.
