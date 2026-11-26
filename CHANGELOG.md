@@ -1,12 +1,43 @@
 # Changelog
 
+## [0.35.0a1](https://github.com/TigreGotico/numtag/tree/0.35.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.34.0a1...0.35.0a1)
+
+**Merged pull requests:**
+
+- feat: English writer [\#344](https://github.com/TigreGotico/numtag/pull/344) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.34.0a1](https://github.com/TigreGotico/numtag/tree/0.34.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.1a1...0.34.0a1)
+
+**Merged pull requests:**
+
+- feat: Dutch writer [\#338](https://github.com/TigreGotico/numtag/pull/338) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.33.1a1](https://github.com/TigreGotico/numtag/tree/0.33.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.0a1...0.33.1a1)
+
+**Merged pull requests:**
+
+- fix: allow\_list.py keeps the allow-list sorted by language [\#340](https://github.com/TigreGotico/numtag/pull/340) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.33.0a1](https://github.com/TigreGotico/numtag/tree/0.33.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.1a1...0.33.0a1)
+
+**Merged pull requests:**
+
+- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.32.1a1](https://github.com/TigreGotico/numtag/tree/0.32.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.0a1...0.32.1a1)
 
 **Merged pull requests:**
 
-- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.32.0a1](https://github.com/TigreGotico/numtag/tree/0.32.0a1) (2026-11-26)
@@ -571,10 +602,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.2a1...0.15.3a1)
 
-**Merged pull requests:**
-
-- fix: read a fraction of a scale word as one number [\#113](https://github.com/TigreGotico/numtag/pull/113) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.15.2a1](https://github.com/TigreGotico/numtag/tree/0.15.2a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.1a1...0.15.2a1)
@@ -603,17 +630,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.7a1...0.14.8a1)
 
-**Merged pull requests:**
-
-- fix: a hundred after a vague scale word starts its own number [\#122](https://github.com/TigreGotico/numtag/pull/122) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.14.7a1](https://github.com/TigreGotico/numtag/tree/0.14.7a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.6a2...0.14.7a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): digits and word decimals count a counted hundred noun [\#114](https://github.com/TigreGotico/numtag/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.6a2](https://github.com/TigreGotico/numtag/tree/0.14.6a2) (2026-11-17)
 

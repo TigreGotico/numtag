@@ -27,7 +27,7 @@ tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberM
 | Argument | Meaning |
 |---|---|
 | `text` | The text to read. numtag never changes it. |
-| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE`, `fr-CH` and `ca-ES-valencia` read their own lexicons. Every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
+| `lang` | A language tag. `pt-BR` reads Brazilian Portuguese and every other `pt` tag reads European Portuguese. `fr-BE`, `fr-CH`, `en-US` and `ca-ES-valencia` read their own lexicons. Every other `fr` tag reads `fr-FR`, and `no` reads Norwegian Bokmål. Every other tag reads the lexicon of its primary subtag: `de-AT` reads `de`. The README lists the lexicons. The tag may use `-` or `_`, in any case. |
 | `scale` | Optional, keyword only. `Scale.LONG`, `Scale.SHORT`, `"long"` or `"short"`. It replaces the default scale of the language. Read [number-scale.md](number-scale.md). |
 
 `tag_numbers` raises `UnsupportedLanguageError` for a language with no lexicon. It is a subclass of `ValueError`, so a caller can catch it alone and skip the text, or catch `ValueError` for every bad argument. A `scale` that is not a scale raises a plain `ValueError`. An empty value reads the default scale.
@@ -408,10 +408,10 @@ ValueError: ordinals must be whole numbers from 1
 Traceback (most recent call last):
   ...
 ValueError: id: no case 'genitive'; it has []
->>> spell("1", "en")
+>>> spell("1", "sv")
 Traceback (most recent call last):
   ...
-numtag.lexicon.UnsupportedLanguageError: no writer for language 'en'
+numtag.lexicon.UnsupportedLanguageError: no writer for language 'sv'
 ```
 
 ## Spelling

@@ -2,7 +2,7 @@
 
 CLDR 49.0.0 (unicode-org/cldr-json, cldr-numbers-full/main/<locale>/numbers.json,
 main.<locale>.numbers.symbols-numberSystem-latn) gives (group, decimal) below;
-pt-BR reads the "pt" file and fr-FR the "fr" file.
+pt-BR reads the "pt" file, fr-FR the "fr" file and en-US the "en" file.
 """
 import itertools
 import unittest
@@ -15,7 +15,7 @@ from helpers import read
 
 CLDR = {
     "ar": (",", "."), "ast": (".", ","), "az": (".", ","), "bg": (" ", ","), "ca": (".", ","), "ca-ES-valencia": (".", ","),
-    "cs": (" ", ","), "da": (".", ","), "de": (".", ","), "el": (".", ","), "en": (",", "."),
+    "cs": (" ", ","), "da": (".", ","), "de": (".", ","), "el": (".", ","), "en": (",", "."), "en-US": (",", "."),
     "es": (".", ","), "eo": ("\u202f", ","), "et": (" ", ","), "eu": (".", ","), "fa": (",", "."), "fi": (" ", ","),
     "fr-BE": (" ", ","), "fr-CH": ("'", ","), "fr-FR": (" ", ","), "fy": (".", ","),
     "gl": (" ", ","), "he": (",", "."), "hr": (".", ","), "hu": (" ", ","), "hi": (",", "."), "id": (".", ","),
