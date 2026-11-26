@@ -1,12 +1,20 @@
 # Changelog
 
+## [0.32.0a1](https://github.com/TigreGotico/numtag/tree/0.32.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.31.0a1...0.32.0a1)
+
+**Merged pull requests:**
+
+- fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.31.0a1](https://github.com/TigreGotico/numtag/tree/0.31.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.30.0a1...0.31.0a1)
 
 **Merged pull requests:**
 
-- feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Galician writer [\#332](https://github.com/TigreGotico/numtag/pull/332) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.30.0a1](https://github.com/TigreGotico/numtag/tree/0.30.0a1) (2026-11-26)
@@ -586,10 +594,6 @@
 ## [0.14.9a1](https://github.com/TigreGotico/numtag/tree/0.14.9a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.8a1...0.14.9a1)
-
-**Merged pull requests:**
-
-- fix\(es\): read the older "mil y quinientos" as one number [\#109](https://github.com/TigreGotico/numtag/pull/109) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.8a1](https://github.com/TigreGotico/numtag/tree/0.14.8a1) (2026-11-17)
 
