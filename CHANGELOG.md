@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.29.0a2](https://github.com/TigreGotico/numtag/tree/0.29.0a2) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.29.0a1...0.29.0a2)
+
+**Merged pull requests:**
+
+- docs: fr-CH huitante cites the OFS main-language figures [\#327](https://github.com/TigreGotico/numtag/pull/327) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.29.0a1](https://github.com/TigreGotico/numtag/tree/0.29.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.28.2a1...0.29.0a1)
@@ -609,10 +617,6 @@
 ## [0.14.3a1](https://github.com/TigreGotico/numtag/tree/0.14.3a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.2a1...0.14.3a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): a count and "stotina" before a scale word make one number [\#89](https://github.com/TigreGotico/numtag/pull/89) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.2a1](https://github.com/TigreGotico/numtag/tree/0.14.2a1) (2026-11-17)
 
