@@ -554,54 +554,54 @@ class TestConfidence(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/227")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/227")
     def test_digit_group_after_the_decimal_point_fi(self):
         self.assertEqual(read("43 279.168 29", "fi"), [("43 279.168 29", "43279.16829", D)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_day_with_superessive(self):
         self.assertEqual(read("május tizenötödikén", "hu"), [("tizenötödikén", "15", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_day_before_a_month(self):
         self.assertEqual(read("tizenötödike április", "hu"), [("tizenötödike", "15", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_first_day(self):
         self.assertEqual(read("elseje", "hu"), [("elseje", "1", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_first_day_superessive(self):
         self.assertEqual(read("elsején", "hu"), [("elsején", "1", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_twenty_first_day(self):
         self.assertEqual(read("huszonegyedikén", "hu"), [("huszonegyedikén", "21", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/230")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/230")
     def test_possessive_thirtieth_day(self):
         self.assertEqual(read("harmincadika", "hu"), [("harmincadika", "30", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/237")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/237")
     def test_hyphen_inside_a_part_word(self):
         self.assertEqual(read("kétezer-ötszázad", "hu"), [("kétezer-ötszázad", "0.0004", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_hungarian_zeroth(self):
         self.assertEqual(read("nulladik", "hu"), [("nulladik", "0", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/233")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/233")
     def test_case_form_of_forty(self):
         self.assertEqual(read("yüzde kırkını", "tr"), [("kırkını", "40", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/234")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/234")
     def test_ilk_is_the_first(self):
         self.assertIn(("ilk", "1", O), read("2020'nin ilk yarısı", "tr"))
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/235")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/235")
     def test_turkish_a_quarter_before_a_scale_word(self):
         self.assertEqual(read("çeyrek milyon", "tr"), [("çeyrek milyon", "250000", C)])
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/101")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/101")
 @pytest.mark.parametrize("text, expected", [
     ('yüz binlerce kişi', []),
     ('on binlerce kişi', []),
@@ -612,7 +612,7 @@ def test_tr_a_number_word_before_a_vague_plural_is_no_number(text, expected):
     assert read(text, "tr") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/161")
 @pytest.mark.parametrize("text, expected", [
     ('on iki kvintilyon üç yüz qırx beş', [('on iki kvintilyon üç yüz qırx beş', '12000000000000000345', C)]),
 ])

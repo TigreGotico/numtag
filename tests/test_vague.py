@@ -285,7 +285,7 @@ class TestCoupleAndPaar(unittest.TestCase):
                 self.assertEqual(quantity.text.casefold(), "ein paar")
                 self.assertEqual(quantity.confidence, AMBIGUOUS_CONFIDENCE)
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/249")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/249")
     def test_ein_paar_with_a_capital_is_one_pair(self):
         # DWDS lists the noun "Paar" and the pronoun "paar" as two words; the article counts one pair
         self.assertEqual(numbers("Ein Paar Schuhe.", "de"), [("Ein", "1")])
@@ -322,7 +322,7 @@ class TestLexicon(unittest.TestCase):
                                         for e in lexicon.readings[word]))
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/115")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/115")
 @pytest.mark.parametrize("text, words", [("several scores were averaged", "several scores"),
                                          ("many scores", "many scores")])
 def test_a_scale_word_with_a_homograph_sense_gives_the_homograph_confidence(text, words):
@@ -332,14 +332,14 @@ def test_a_scale_word_with_a_homograph_sense_gives_the_homograph_confidence(text
     assert (quantity.confidence, quantity.reasons) == (0.4, frozenset({Reason.HOMOGRAPH}))
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/116")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/116")
 @pytest.mark.parametrize("text, lang", [("milhares de milhões", "pt-PT"), ("thousands of millions", "en")])
 def test_a_scale_word_of_a_scale_word_is_one_magnitude(text, lang):
     # 1000 x 1000000 = 10^9 = 1000000000; 2 x 10^9 = 2000000000
     assert vague(text, lang) == [at(text, text, M, "1000000000", "2000000000")]
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/118")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/118")
 @pytest.mark.parametrize("text", ["How many people came?", "as many as 6,000 people"])
 def test_many_in_a_question_or_after_as_is_no_vague_quantity(text):
     assert vague(text, "en") == []

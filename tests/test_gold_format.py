@@ -46,7 +46,7 @@ class TestGoldFiles(unittest.TestCase):
 class TestPrefixedSpans(unittest.TestCase):
     """ar و and he ו are written as a prefix, so a span may start right after them."""
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/281")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/281")
     def test_ar_and_he_gold_files_pass(self):
         for lang, rows in (("ar", 157), ("he", 160)):
             n_in, errors = check_gold.check_file(GOLD_DIR / f"{lang}.jsonl")

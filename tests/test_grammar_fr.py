@@ -216,11 +216,11 @@ class TestLonePoint(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/273")
     def test_fr_digit_before_cents(self):
         self.assertEqual(read("2 cents", "fr-FR"), [("2 cents", "200", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/275")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/275")
     def test_fr_e_notation_glued_to_a_unit(self):
         self.assertEqual(read("1e5km", "fr-FR"), [])
 

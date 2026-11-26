@@ -122,15 +122,15 @@ class TestLithuanian(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/252")
     def test_collective_dveji(self):
         self.assertEqual(read("dveji metai", "lt"), [("dveji", "2", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/252")
     def test_collective_dvejus(self):
         self.assertEqual(read("prieš dvejus metus", "lt"), [("dvejus", "2", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/252")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/252")
     def test_collective_treji(self):
         self.assertEqual(read("treji metai", "lt"), [("treji", "3", C)])
 

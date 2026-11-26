@@ -582,12 +582,12 @@ class TestRanges(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_asturian_millionth(self):
         self.assertEqual(read("millonésima", "ast"), [("millonésima", "1000000", O)])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/108")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/108")
 @pytest.mark.parametrize("text, expected", [
     ('cien por cien y cinco por ciento', [('cien', '100', C), ('cinco', '5', C)]),
 ])
@@ -596,7 +596,7 @@ def test_es_a_number_after_a_percent_phrase_starts_a_new_number(text, expected):
     assert read(text, "es") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/111")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/111")
 @pytest.mark.parametrize("text, expected", [
     ('Llegó a casa a las mil y quinientas.', []),
 ])
@@ -605,7 +605,7 @@ def test_es_las_mil_y_quinientas_is_an_idiom_with_no_number(text, expected):
     assert read(text, "es") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/111")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/111")
 @pytest.mark.parametrize("text, expected", [
     ('entre los mil y quinientos euros', [('mil', '1000', C), ('quinientos', '500', C)]),
 ])
@@ -614,7 +614,7 @@ def test_es_the_range_guard_skips_an_article_after_entre(text, expected):
     assert read(text, "es") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/139")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/139")
 @pytest.mark.parametrize("text, expected", [
     ('el decimonono mes', [('decimonono', '19', O)]),
     ('el decimonona mes', [('decimonona', '19', O)]),

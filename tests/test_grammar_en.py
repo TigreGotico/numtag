@@ -691,16 +691,16 @@ class TestDigitDecimalTakesAMultiplier(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/228")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/228")
     def test_en_digit_groups_of_thousand_and_hundred(self):
         self.assertEqual(read("5 thousand 2 hundred", "en"), [("5 thousand 2 hundred", "5200", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/273")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/273")
     def test_en_digit_before_hundred(self):
         self.assertEqual(read("2 hundred", "en"), [("2 hundred", "200", C)])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/166")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/166")
 @pytest.mark.parametrize("text, expected", [
     ('two point five million three hundred', [('two point five million three hundred', '2500300', C)]),
     ('one point five million two thousand', [('one point five million two thousand', '1502000', C)]),

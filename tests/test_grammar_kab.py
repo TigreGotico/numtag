@@ -47,7 +47,7 @@ class TestKabyle(unittest.TestCase):
         self.assertEqual(sure("tmanya", "kab"), [("tmanya", "8", 1.0)])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/149")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/149")
 @pytest.mark.parametrize("text, expected", [
     ('ɣef lweḥda n tmeddit', [('lweḥda', '1', C)]),
     ('ɣef ssaɛtin n tmeddit', [('ssaɛtin', '2', C)]),
@@ -65,7 +65,7 @@ def test_kab_the_clock_hours_with_the_arabic_article(text, expected):
     assert read(text, "kab") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/168")
 @pytest.mark.parametrize("text, expected", [
     ('mraw d yiwen', [('mraw d yiwen', '11', C)]),
     ('ɣur-i mraw d sin n wussan', [('mraw d sin', '12', C)]),

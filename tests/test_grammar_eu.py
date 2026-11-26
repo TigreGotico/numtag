@@ -266,24 +266,24 @@ class TestAraua203Gaps(unittest.TestCase):
     # Rows of 203. araua that numtag does not read yet. Each test fails until
     # its issue is fixed; the expected value is the norm's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/94")
     def test_the_denominator_in_the_ablative_before_the_count(self):
         self.assertEqual(eu("hamarretik zazpi"), [("hamarretik zazpi", "0.7", F)])  # 7/10
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/94")
     def test_the_denominator_in_the_plain_ablative(self):
         self.assertEqual(eu("bostetik bi"), [("bostetik bi", "0.4", F)])  # 2/5
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/94")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/94")
     def test_the_denominator_with_ko_before_the_count(self):
         self.assertEqual(eu("bosteko bi"), [("bosteko bi", "0.4", F)])  # 2/5
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/95")
     def test_unitate_eta_joins_the_whole_part_and_the_fraction(self):
         text = "hogeita lau unitate eta bost hamarren"  # 24 + 5/10
         self.assertEqual(eu(text), [(text, "24.5", D)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/95")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/95")
     def test_unitate_eta_after_zero(self):
         text = "zero unitate eta hogeita zazpi ehunen"  # 0 + 27/100
         self.assertEqual(eu(text), [(text, "0.27", D)])
@@ -292,23 +292,23 @@ class TestAraua203Gaps(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/231")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/231")
     def test_plural_article_on_the_denominator_herenak(self):
         self.assertEqual(read("bi herenak", "eu"), [("bi herenak", "2/3", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/231")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/231")
     def test_plural_article_on_the_denominator_laurdenek(self):
         self.assertEqual(read("hiru laurdenek", "eu"), [("hiru laurdenek", "0.75", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/232")
     def test_clock_hour_in_the_plural_absolutive(self):
         self.assertEqual(read("bostak", "eu"), [("bostak", "5", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/232")
     def test_clock_hour_in_the_plural_absolutive_hirurak(self):
         self.assertEqual(read("hirurak", "eu"), [("hirurak", "3", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/232")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/232")
     def test_clock_hour_in_the_inessive(self):
         self.assertEqual(read("hiruretan", "eu"), [("hiruretan", "3", C)])
 

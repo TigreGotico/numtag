@@ -101,7 +101,7 @@ class TestKeBeforeAWord(unittest.TestCase):
         self.assertEqual(confidence("peringkat ke-2 di dunia", "id"), [("ke-2", 1.0)])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/161")
 @pytest.mark.parametrize("text, expected", [
     ('satu juta triliun', [('satu juta triliun', '1000000000000000000', C)]),
     ('dua belas juta triliun tiga ratus empat puluh lima', [('dua belas juta triliun tiga ratus empat puluh lima', '12000000000000000345', C)]),

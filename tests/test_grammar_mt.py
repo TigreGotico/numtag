@@ -66,7 +66,7 @@ class TestScale(unittest.TestCase):
     def test_biljun_is_ten_to_the_ninth(self):
         self.assertEqual(mt("biljun"), [("biljun", "1000000000", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/241")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/241")
     def test_a_short_form_with_an_apostrophe_before_a_scale_word(self):
         # 4 x 1000000
         self.assertEqual(mt("erbaʼ miljuni"), [("erbaʼ miljuni", "4000000", C)])
@@ -82,11 +82,11 @@ class TestArticle(unittest.TestCase):
         # 5 + 20 = 25
         self.assertEqual(mt("fil-ħamsa u għoxrin ta' Diċembru"), [("fil-ħamsa u għoxrin", "25", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/240")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/240")
     def test_an_ordinal_from_five_to_ten_after_the_article(self):
         self.assertEqual(mt("Dan huwa l-ħames kapitlu."), [("l-ħames", "5", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/240")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/240")
     def test_digits_after_the_article(self):
         self.assertEqual(mt("Malta saret indipendenti fl-1964."), [("1964", "1964", C)])
 
@@ -110,15 +110,15 @@ class TestFractionsAndDecimals(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/248")
     def test_weekday_it_tnejn_is_no_sure_number(self):
         self.assertEqual([m.text for m in tag_numbers("Nhar it-Tnejn immur l-iskola.", "mt") if m.confidence >= 1.0], [])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/248")
     def test_weekday_it_tlieta_is_no_sure_number(self):
         self.assertEqual([m.text for m in tag_numbers("Nhar it-Tlieta immur l-iskola.", "mt") if m.confidence >= 1.0], [])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/248")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/248")
     def test_weekday_l_erbgha_is_no_sure_number(self):
         self.assertEqual([m.text for m in tag_numbers("Nhar l-Erbgħa immur l-iskola.", "mt") if m.confidence >= 1.0], [])
 
