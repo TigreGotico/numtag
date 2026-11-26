@@ -410,6 +410,8 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
+        if "{numerator}" in word:  # a template that places the numerator itself: "trei pe douăzeci și cinci"
+            return word.replace("{numerator}", writer.render(ruleset, top))
     elif top != "1":
         word = _plural(word, spec["plural"])
     return f"{count} {word}"
