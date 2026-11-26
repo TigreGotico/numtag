@@ -24,6 +24,12 @@ _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
 _APOSTROPHES = str.maketrans({"\u2019": "'", "\u02bc": "'"})
 
 
+def _group_forms(group_mark: str) -> str:
+    """The group mark and the forms of it that ``fold`` reads as it: the
+    Swiss "'" is also written "’" ("1’234")."""
+    return group_mark + "".join(chr(c) for c, mark in _APOSTROPHES.items() if mark == group_mark)
+
+
 def fold(word: str) -> str:
     """The form a lexicon looks a word up by."""
     return word.casefold().translate(_APOSTROPHES)
@@ -127,11 +133,12 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
     found whole and then dropped. A soft hyphen between letters stays in
     the word, and so does one of ``apostrophes`` ("п'ять"). A group mark
     other than "." and "," ("1'234'567" in Switzerland) also stands between
-    digits. The modifier apostrophe (U+02BC) counts as a letter in Unicode;
+    digits, and so do its typographic forms ("1’234"). The modifier
+    apostrophe (U+02BC) counts as a letter in Unicode;
     with ``apostrophe_ends_word`` it is an apostrophe that ends a word, as in
     "bintʼi un"."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
-    between = marks + (re.escape(group_mark) if group_mark not in ".," else "")
+    between = marks + ("".join(map(re.escape, _group_forms(group_mark))) if group_mark not in ".," else "")
     joins = SOFT_HYPHEN + "".join(re.escape(a) for a in sorted(apostrophes))
     letter = r"[^\W\d_ʼ]" if apostrophe_ends_word else r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
@@ -297,12 +304,14 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     previous_end = 0
     matches = list(_token_pattern(script, apostrophes, group_mark, bool(compounds)).finditer(scan))
     ascii_digits = _ascii_digits(group_mark)
+    # a typographic form of the group mark reads as the mark: "1’234" is "1'234"
+    group_folds = {ord(form): group_mark for form in _group_forms(group_mark)[1:]} if group_mark not in ".," else {}
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:
             continue
         is_digits = match.lastgroup == "digits"
-        latin = match.group().translate(table) if is_digits else ""
+        latin = match.group().translate(table).translate(group_folds) if is_digits else ""
         if is_digits and not (ascii_digits.fullmatch(latin) and _one_digit_script(match.group(), table)):
             continue
         if not is_digits and match.group().casefold() in abbreviations and _abbreviated(scan, match.end()):
@@ -371,6 +380,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             key = None
             if script != DEFAULT_SCRIPT:
                 key = latin if is_digits else script.fold(letters)
+            elif is_digits and latin != word:
+                key = latin
             period = (period_ordinals is not None and is_digits and not suffix
                       and match.group().isdigit() and _period_ordinal(text, start, end, period_ordinals)) \
                 or (day_month and is_digits and not suffix and _DAY_MONTH.fullmatch(latin) is not None

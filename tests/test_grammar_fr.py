@@ -216,6 +216,12 @@ class TestSwissDigits(unittest.TestCase):
         self.assertEqual(read("1 234 567,5", "fr-CH"), [("1 234 567,5", "1234567.5", "decimal")])
         self.assertEqual(read("1'234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
 
+    def test_the_typographic_apostrophe_groups_digits_too(self):
+        # 1 x 10^3 + 234.50 = 1234.5; 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5
+        self.assertEqual(read("1’234.50", "fr-CH"), [("1’234.50", "1234.5", "decimal")])
+        self.assertEqual(read("Prix : 1’234’567,5 francs", "fr-CH"), [("1’234’567,5", "1234567.5", "decimal")])
+        self.assertEqual(read("1’234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
+
 
 class TestBillion(unittest.TestCase):
     def test_billion_carries_its_scale(self):

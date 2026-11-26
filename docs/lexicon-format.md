@@ -72,7 +72,7 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `glued_denominator_alone` | boolean | `false` | With `glued_denominators`: the glued part word with no number before it is one part of the product ("háromszázad" is 1/300). `false` where it names no number. | de: `true` |
 | `glued_denominator_alone_ambiguous` | boolean | `false` | With `glued_denominator_alone`: the lone reading has a second meaning, the count of parts, and has the confidence of a homograph. | de: `true` |
 | `glued_denominators` | boolean | `false` | A count glued to the part word of a hundred or more multiplies it, as it multiplies the scale word ("kétszázad" is 1/200, as "kétszáz" is 200). | de: `true` |
-| `group_mark` | string | required | The mark that groups the digits of a digit string. A mark other than "." or "," also stands between digits. | pt-PT: `"."` |
+| `group_mark` | string | required | The mark that groups the digits of a digit string. A mark other than "." or "," also stands between digits. A mark "'" also reads as "’" and "ʼ", the forms that a word's apostrophe takes. | pt-PT: `"."` |
 | `half_of_scale` | boolean | `false` | A half after any scale word is half of that scale ("אלף וחצי" is 1500). | ar: `true` |
 | `hundred_counts_below_thousand` | boolean | `false` | A hundred multiplier takes no count of a thousand or more ("dvou tisíc sta" is 2100). | ru: `true` |
 | `inflection_position` | `"every"` or `"last"` | `"every"` | Where a suffix of an `inflection` class closes the number. `every`: on any word of a number. `last`: only on the last word, so a form with a suffix ends the number. | hu: `"last"` |

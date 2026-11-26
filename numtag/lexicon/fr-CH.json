@@ -2,7 +2,7 @@
   "format_version": 2,
   "extends": "fr-BE",
   "settings": {
-    "group_mark": {"value": "'", "source": "CLDR 48 number symbols chart: the group mark \"'\" row lists \"de_CH, de_LI, en_CH, fr_CH, gsw, it_CH, lmo, wae, wal\"; ICU 78 formats 1234567.5 for fr_CH as \"1'234'567,5\"."}
+    "group_mark": {"value": "'", "source": "CLDR 48 number symbols chart: the group mark \"'\" row lists \"de_CH, de_LI, en_CH, fr_CH, gsw, it_CH, lmo, wae, wal\"; ICU 78 formats 1234567.5 for fr_CH as \"1'234'567,5\". CLDR 46.0.0 (cldr-json, cldr-numbers-full/main/de-CH/numbers.json, symbols-numberSystem-latn): \"group\": \"’\" (U+2019), where CLDR 49.0.0 gives \"'\" (U+0027) for de-CH and fr-CH: the Swiss group mark is written both ways, so \"1’234\" groups digits as \"1'234\" does."}
   },
   "entries": [
     {"word": "huitante", "role": "ten", "value": "80", "source": "Académie 9e éd., HUITANTE: \"En Suisse romande. Quatre-vingts.\"; CLDR 48 RBNF (ICU 78) fr_CH %spellout-cardinal-masculine: \"80: huitante;\", \"81: huitante->%%et-un>;\""},
