@@ -65,7 +65,7 @@ class TestSchema(unittest.TestCase):
 
     def test_every_lexicon_validates_against_the_schema(self):
         validator = jsonschema.Draft202012Validator(SCHEMA)
-        self.assertEqual(len(NAMES), 49)
+        self.assertEqual(len(NAMES), 50)
         for name in NAMES:
             with self.subTest(lexicon=name):
                 self.assertEqual([e.message for e in validator.iter_errors(_file(name))], [])
@@ -107,16 +107,16 @@ class TestSchema(unittest.TestCase):
 
     def test_the_schema_refuses_what_the_loader_refuses(self):
         validator = jsonschema.Draft202012Validator(SCHEMA)
-        bad = _file("en")
+        bad = _file("sv")
         bad["entries"] = [{"word": "x", "role": "unit", "value": "1", "rank": 3, "source": "s"}]
         self.assertTrue(list(validator.iter_errors(bad)))
-        bad = _file("en")
+        bad = _file("sv")
         bad["format_version"] = 3
         self.assertTrue(list(validator.iter_errors(bad)))
-        bad = _file("en")
+        bad = _file("sv")
         bad["writer"] = _file("id")["writer"]
         self.assertTrue(list(validator.iter_errors(bad)))
-        bad = _file("en")
+        bad = _file("sv")
         del bad["settings"]["scale"]
         self.assertTrue(list(validator.iter_errors(bad)))
 

@@ -8,7 +8,7 @@ import sys, json, collections, os, re
 from pathlib import Path
 os.chdir(Path(__file__).parents[1])
 sys.path.insert(0, "tests"); import golden_writers as gw
-from numtag import spell
+from numtag import spell, SpokenForm
 lang = sys.argv[1]
 CIB = "https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/"
 SRC = {
@@ -239,6 +239,42 @@ def category_nl(row, got):
     if fixed == mine: return "nl_decimal" if row["fn"] == "number" and isinstance(row["arg"], float) else "nl_een"
     if row["fn"] == "fraction" and fixed.endswith(" tweede") and fixed[:-len("tweede")] + "halve" == mine: return "nl_half"
     return None
+EN_GPO = "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf)"
+SRC.update({
+ "en_hyphen": EN_GPO + ", 6.36: \"Print a hyphen between the elements of compound numbers from twenty-one to ninety-nine\"; ovos-number-parser writes \"twenty one\".",
+ "en_ordinal_and": "numtag/lexicon/en.json, the en writer: the first ordinal variant is British, with \"and\" and the comma of the cardinal (Oxford Advanced Learner's Dictionary, «and»: \"two thousand, two hundred and sixty-four\"); ovos-number-parser writes the American ordinal, the second variant.",
+ "en_and_last": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %%commas: \"1: ' and =%spellout-cardinal-verbose=;\", so a last group below 100 follows \"and\" (\"ten thousand and one\"); ovos-number-parser writes a comma.",
+ "en_long_ordinal": "numtag/lexicon/en.json, the en writer: an ordinal counts in the scale of the call, as the cardinal (Oxford Advanced Learner's Dictionary, «billion»: \"(British English, old-fashioned) 1 000 000 000 000; one million million\"); ovos-number-parser reads an ordinal in the short scale only.",
+ "en_no_comma": "numtag/lexicon/en.json, the en writer writes the spoken form: a comma is no word, so the groups are joined by a space (OALD «and» prints \"two thousand, two hundred and sixty-four\"; the comma is print punctuation); ovos-number-parser writes the comma.",
+ "en_range": "numtag/lexicon/en.json, the en writer: a number goes up to 10^33 - 1, the last scale word of this lexicon (nonillion), and outside it spells the power of ten or raises ValueError; ovos-number-parser raises NotImplementedError for an ordinal from 10^18 or writes scale words this lexicon does not list.",
+ "en_one_hundredth": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal: \"100: ←%spellout-numbering← hundred→%%th→;\", so 100th reads \"one hundredth\"; ovos-number-parser writes \"hundredth\".",
+ "en_fraction_scale": "SILVER: a denominator 10^n drops its count (\"seven millionths\"; CLDR RBNF en %spellout-ordinal: \"1000000: ←%spellout-numbering← million→%%th→;\" gives the ordinal \"one millionth\"); no saved example; ovos-number-parser writes \"seven one millionths\".",
+})
+def category_en(row, got, out=None):
+    if row["fn"] == "ordinal" and row.get("kw", {}).get("scale") == "long":
+        short = spell(str(row["arg"]), "en", form=SpokenForm.ORDINAL, scale="short")[0].text
+        if category_en({**row, "kw": {k: v for k, v in row["kw"].items() if k != "scale"}}, {"out": short}): return "en_long_ordinal"
+    kw, mine = row.get("kw", {}), str(got.get("out", got.get("err")))
+    out = out or str(row.get("out", row.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if out == "NotImplementedError" or "times ten to the power of" in mine or got == {"err": "ValueError"}: return "en_range"
+    if row["fn"] == "number" and kw.get("ordinals") and mine == "one " + out: return "en_one_hundredth"
+    flat = mine.replace("-", " ")
+    if flat == out.replace("-", " ") and "-" in mine: return "en_hyphen"
+    theirs = out.replace("-", " ")
+    if re.sub(r", (?=((twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)( \w+)?|\w+)( \w+ths?)?$)", " and ", theirs).replace(",", "") == flat \
+            and not re.search(r"hundred", flat.rsplit(" and ", 1)[-1]): return "en_and_last"
+    if "," in out:
+        reason = category_en(row, {"out": mine}, out.replace(",", ""))
+        return reason or ("en_no_comma" if out.replace(",", "") == mine else None)
+    if row["fn"] != "number" and re.sub(r",| and(?= )", "", flat) == out.replace("-", " "): return "en_ordinal_and"
+    if row["fn"] == "fraction" and re.sub(r" one (?=(hundred|thousand|\w+illion)ths?$)", " ", out.replace("-", " ")) == flat:
+        return "en_fraction_scale"
+    return None
 DE_RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024) (Papers/Languages/Germanic/German/rechtschreibrat_amtliches_regelwerk_2024.pdf)"
 DE_CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
 SRC.update({
@@ -330,7 +366,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }

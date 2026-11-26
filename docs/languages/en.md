@@ -8,7 +8,15 @@ verify: sed '/^\x60\x60\x60/d' docs/languages/en.md | python -m doctest -o NORMA
 see: ../rulings.md, ../number-scale.md
 -->
 
-numtag reads every `en` tag (`en`, `en-US`, `en-GB`, `en-AU`) with one lexicon, `numtag/lexicon/en.json`. English reads in the short scale: "billion" is 10^9.
+numtag reads every `en` tag with `numtag/lexicon/en.json`, apart from `en-US`. `numtag/lexicon/en-US.json` extends it and has the same reader. English reads in the short scale: "billion" is 10^9.
+
+The writer writes British English for `en` and every other `en` tag ("two hundred and sixty-four"), and American English for `en-US` ("two hundred sixty-four"). The second reading of each is the other one. The groups have no comma: a comma is print punctuation, not a word.
+
+```python
+>>> from numtag import spell
+>>> [spell("2264", lang)[0].text for lang in ("en", "en-GB", "en-US")]
+['two thousand two hundred and sixty-four', 'two thousand two hundred and sixty-four', 'two thousand two hundred sixty-four']
+```
 
 ```python
 >>> from numtag import tag_numbers
