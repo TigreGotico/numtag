@@ -552,7 +552,6 @@ class TestOpenIssues(unittest.TestCase):
     def test_norwegian_nb_zeroth(self):
         self.assertEqual(read("nulte", "nb"), [("nulte", "0", O)])
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_norwegian_nn_millionth(self):
         self.assertEqual(read("millionte", "nn"), [("millionte", "1000000", O)])
 
