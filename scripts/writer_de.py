@@ -25,11 +25,16 @@ SILVER_HALF = "SILVER: 1/2 reads \"ein Halb\" and n/2 \"Halbe\"; no saved rule"
 DUDEN_EIN = ("Duden online, «hundertundein» (Papers/Languages/Germanic/German/duden_hundertundein.html): \"hundertundeinen "
              "Krimi lesen\"; «tausendundein»: \"tausendundeine Idee\", \"Märchen aus Tausendundeiner Nacht\": a final ein "
              "declines before a singular noun")
-SILVER_CASE = ("IDS grammis, «Flexion der Adjektive» (Papers/Languages/Germanic/German/grammis_flexion_der_adjektive_3609.html): "
-               "\"Ordinalzahl-Adjektive (z. B. der dritte Mann, das fünfte Gebot ) werden regelmäßig stark oder schwach "
-               "flektiert.\" SILVER: the endings of each case and gender (weak: -e, -en; strong: -er, -e, -es, -en, -em); "
-               "no saved table. " + CLDR + ", %spellout-ordinal-m, -n, -r, -s: "
-               "\"0: =%spellout-ordinal=m;\"")
+GRAMMIS = "IDS grammis (Papers/Languages/Germanic/German/)"
+SILVER_CASE = (GRAMMIS + ", «Flexion der Adjektive» (grammis_flexion_der_adjektive_3609.html): \"Ordinalzahl-Adjektive "
+               "(z. B. der dritte Mann, das fünfte Gebot ) werden regelmäßig stark oder schwach flektiert.\"; the weak and "
+               "strong tables of the same page (grammis_schwache_Adjektivflexion.jpg, grammis_starke_Adjektivflexion.jpg): "
+               "weak -e in the nominative singular and the accusative of the neuter and feminine, -en elsewhere; strong "
+               "-er, -e, -es, -en, -em, and \"Im Genitiv Maskulinum und Neutrum besitzen Adjektive aber immer die Endung -en\". "
+               + CLDR + ", %spellout-ordinal-m, -n, -r, -s: \"0: =%spellout-ordinal=m;\"")
+ARTICLE = (GRAMMIS + ", «Flexion der Artikel» (grammis_flexion_der_artikel_3608.html, table grammis_Flexion_Artikel.gif): "
+           "m. -er/-en/-em/-es, n. -es/-es/-em/-es, f. -e/-e/-er/-er, and \"bei Maskulina im Nominativ und bei Neutra im "
+           "Nominativ/Akkusativ endungslos\"")
 # The endings of the ordinal by case and gender: after an article, then with no article (strong).
 WEAK = {"nominative": dict(masculine="e", feminine="e", neuter="e"),
         "accusative": dict(masculine="en", feminine="e", neuter="e"),
@@ -106,7 +111,7 @@ SOURCES = {
     "ordinal": CLDR + ", %spellout-ordinal, with one word past a million. " + ONE_WORD + ". " + SILVER_ORD,
     "fraction": FRACTION + ": the ordinal stem with -tel and -stel. " + SILVER_ORD,
 }
-SOURCES.update({f"cardinal-{one}": CLDR + f", %spellout-cardinal-{one[-1]}: \"1: {one};\". " + DUDEN_EIN
+SOURCES.update({f"cardinal-{one}": CLDR + f", %spellout-cardinal-{one[-1]}: \"1: {one};\". " + DUDEN_EIN + ". " + ARTICLE
                 for one in ("einen", "einem", "einer", "eines")})
 SOURCES.update({f"ordinal-{end}": SOURCES["ordinal"] + ". " + SILVER_CASE for end in ("en", "er", "es", "em")})
 rulesets = {name: {"source": SOURCES.get(name) or "a part of " + name.rsplit("-", 1)[0], "rules": rules}
