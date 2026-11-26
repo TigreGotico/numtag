@@ -98,9 +98,10 @@ def ordinal(name, article, ends, first):
     for t, w in TENS.items():
         tail += [R(t, w + "lea" if m else w[:-1] + "ea"), R(t + 1, f"{w} și →%{body}→", SILVER_ORD)]
     sute, mii = ("elea", "ilea") if m else ("a", "a")
-    tail += [R(100, "o sutălea" if m else "o suta", DOOM_ORDINAL), R(101, "o sută →%" + body + "→"),
+    # DOOM 3 lists "al o sutălea" only, and "a suta", "al mielea", "a mia" before the forms with "o".
+    tail += [R(100, "o sutălea" if m else "suta", DOOM_ORDINAL), R(101, "o sută →%" + body + "→"),
              R(200, f"←%cardinal-f← sut→%{body}-sute→"),
-             R(1000, "o mielea" if m else "o mia"), R(1001, "o mie →%" + body + "→"),
+             R(1000, "mielea" if m else "mia"), R(1001, "o mie →%" + body + "→"),
              R(2000, f"←%count-f← mi→%{body}-mii→")]
     for exponent, singular, plural in SCALES:
         stem = plural[:-1]

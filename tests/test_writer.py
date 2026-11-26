@@ -75,7 +75,8 @@ ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(
 
 def _issue_329(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/329: the ro reader leaves out the article "al"/"a" and misses
-    the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea")."""
+    the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea"). The bare words
+    "al", "a" and "de" are exempt too: the reader reads "de" only inside a number ("douăzeci de mii")."""
     if lang != "ro":
         return False
     bare = re.sub(r"^(?:al|a) ", "", text)
@@ -459,9 +460,9 @@ class TestRomanian(unittest.TestCase):
     def test_ordinals(self):
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "2", "11", "21", "100", "1000", "2000")],
                          ["primul", "al doilea", "al unsprezecelea", "al douăzeci și unulea", "al o sutălea",
-                          "al o mielea", "al două miilea"])
+                          "al mielea", "al două miilea"])
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("2", "11", "20", "100", "1000")],
-                         ["a doua", "a unsprezecea", "a douăzecea", "a o suta", "a o mia"])
+                         ["a doua", "a unsprezecea", "a douăzecea", "a suta", "a mia"])
 
     def test_fractions(self):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "3/4", "7/100", "20/3", "3/25")],
