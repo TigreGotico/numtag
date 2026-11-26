@@ -1,6 +1,7 @@
 """Split a text into words and digit strings, each with its character offsets."""
 import re
 import unicodedata
+from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from functools import cache, cached_property
 
@@ -238,7 +239,8 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              period_ordinals: PeriodCues | None = None,
              dot_ordinal: bool = False, date_months: frozenset[str] = frozenset(),
              phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".",
-             compounds: frozenset[str] = frozenset(), day_month: bool = False) -> list[Token]:
+             compounds: frozenset[str] = frozenset(), day_month: bool = False,
+             suffix_fits: Callable[[str, str], bool] | None = None) -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -281,7 +283,9 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     ("quatre-vingts"). ``group_mark`` joins digits as "." and "," do
     ("1'234"). An ordinal suffix listed with a hyphen ("-lea") follows a
     hyphen ("2-lea"). The words of each listed compound in ``compounds``
-    become one token ("dètz-e-sèt", "bint'i un"). A compound joined by
+    become one token ("dètz-e-sèt", "bint'i un"). Given ``suffix_fits``, a
+    listed suffix is the ordinal suffix only where ``suffix_fits(suffix,
+    digits)`` is true ("1er", not "3er"). A compound joined by
     hyphens or dot signs with a word outside ``number_words`` is one noun
     ("segunda-feira", "mil·límetres"): its words are dropped.
     """
@@ -329,12 +333,14 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
             following = matches[index + 1]
             between = scan[match.end():following.start()]
             if (following.lastgroup == "word" and (between in suffix_marks or between in digit_suffix_marks)
-                    and following.group().casefold() in ordinal_suffixes):
+                    and following.group().casefold() in ordinal_suffixes
+                    and (suffix_fits is None or suffix_fits(following.group(), latin))):
                 end, suffix = following.end(), following.group()
                 latin += text[match.end():end]
                 skip_until = following.end()
             elif (following.lastgroup == "word" and between == "-"
-                    and (between + following.group()).casefold() in ordinal_suffixes):
+                    and (between + following.group()).casefold() in ordinal_suffixes
+                    and (suffix_fits is None or suffix_fits(between + following.group(), latin))):
                 # a suffix listed with a hyphen ("-lea") takes one ("2-lea")
                 end, suffix = following.end(), between + following.group()
                 latin += text[match.end():end]

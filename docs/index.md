@@ -45,7 +45,7 @@ numtag reads numbers. In some languages it also writes the value of a number as 
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |
 | [adding-a-language.md](adding-a-language.md) | How to add a language: the source rule, gold rows and the test gates |
-| [lexicon-format.md](lexicon-format.md) | The lexicon format, version 1: every key with its type, default and effect, the schema, and the revision |
+| [lexicon-format.md](lexicon-format.md) | The lexicon format, versions 1, 2 and 3: every key with its type, default and effect, the schema, and the revision |
 
 ## Inside the library
 

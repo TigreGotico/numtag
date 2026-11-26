@@ -519,6 +519,21 @@ A number in E notation ("1e5", "2,5e-3") is no number of the reader. Its "e" is 
 [('2e', '2')]
 ```
 
+A suffix that abbreviates one ordinal follows only its number. French "er" and "re" abbreviate "premier" and "première", and "d", "de", "nd" and "nde" abbreviate "second" and "seconde". So "3er" is 3 and a word. The letters of the suffix stay lower case, so "2D", two dimensions, is no ordinal. A plural takes an "s" ("1ers", "2es"), and the raised letters may be modifier letters ("2ᵉ", "1ᵉʳ").
+
+```python
+>>> read("les 1ers et 2es Jeux, la 2de et la 2nde partie", "fr")
+[('1ers', '1'), ('2es', '2'), ('2de', '2'), ('2nde', '2')]
+>>> read("le 1ᵉʳ mai et le 2ᵉ jour", "fr")
+[('1ᵉʳ', '1'), ('2ᵉ', '2')]
+>>> read("un 3er essai en 2D", "fr")
+[('un', '1'), ('3', '3'), ('2', '2')]
+```
+
+> Académie française, Dire, ne pas dire, "Abréviations des adjectifs numéraux": "Rappelons donc que premier et première s’abrègent en 1er et 1re, que second et seconde s’abrègent en 2d et 2de, et que toutes les autres formes s’abrègent en e : 3e, 5e, 100e, etc."
+
+> Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Lorsque l’énoncé est écrit entièrement en capitales (par exemple dans un sous-titre) : la ou les lettres supérieures restent en minuscules.": the suffix of second is lower case, so "2D" (two dimensions) is no ordinal.
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.

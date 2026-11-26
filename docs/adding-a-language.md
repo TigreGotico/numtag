@@ -28,7 +28,7 @@ The file is `numtag/lexicon/<lang>.json`. The file name is the lexicon name. `ta
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1`. Required. The loader refuses any other version, and any key it does not read. |
+| `format_version` | The integer `1`, or `2` for a file with a `writer` block, or `3` for a file that holds a key of version 3 ([lexicon-format.md](lexicon-format.md#version-and-refusal)). Required. The loader refuses any other version, and any key it does not read. |
 | `extends` | Optional. The name of a base lexicon. The file then holds only what differs from the base. |
 | `settings` | An object. Each key is a setting, and each value is an object with `value` and `source`. |
 | `words` | An object. Each key is a word list, and each value is an object with `value` (a list of words) and `source`. |

@@ -19,6 +19,7 @@ from numtag import lexicon as lexicon_module
 from numtag import tagger as tagger_module
 from numtag import writer as writer_module
 import golden_writers
+from helpers import expected_version
 
 PACKAGE = Path(numtag.__file__).parent
 LEXICONS = PACKAGE / "lexicon"
@@ -394,7 +395,9 @@ class TestRevisions(unittest.TestCase):
         names = sorted(path.stem for path in LEXICONS.glob("*.json"))
         for name in names:
             with self.subTest(lexicon=name):
-                self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
+                data = _file(name)
+                self.assertEqual(data["format_version"], expected_version(data))
+                self.assertEqual(data["format_version"] > 1, name in VERSION_TWO)
         self.assertTrue({"id", "ms", "pt-PT", "pt-BR", "es", "nb"} <= set(WRITERS))
         self.assertTrue(set(WRITERS) <= set(VERSION_TWO))
 
