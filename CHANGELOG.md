@@ -1,14 +1,23 @@
 # Changelog
 
+## [0.42.0a1](https://github.com/TigreGotico/numtag/tree/0.42.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a3...0.42.0a1)
+
+**Merged pull requests:**
+
+- feat: bn writer for cardinals and ordinals 1-10 [\#390](https://github.com/TigreGotico/numtag/pull/390) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Kabyle writer [\#379](https://github.com/TigreGotico/numtag/pull/379) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Hindi writer [\#378](https://github.com/TigreGotico/numtag/pull/378) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Russian writer [\#371](https://github.com/TigreGotico/numtag/pull/371) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.41.0a3](https://github.com/TigreGotico/numtag/tree/0.41.0a3) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a2...0.41.0a3)
 
 **Merged pull requests:**
 
-- feat: bn writer for cardinals and ordinals 1-10 [\#390](https://github.com/TigreGotico/numtag/pull/390) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - docs: generated per-language support table [\#389](https://github.com/TigreGotico/numtag/pull/389) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- feat: Hindi writer [\#378](https://github.com/TigreGotico/numtag/pull/378) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.41.0a2](https://github.com/TigreGotico/numtag/tree/0.41.0a2) (2026-11-26)
 
@@ -648,7 +657,6 @@
 - fix: read a number whose group marks mix spaces, and check every lexicon's marks [\#205](https://github.com/TigreGotico/numtag/pull/205) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(de\): "halb" before an hour is the half hour, no number [\#183](https://github.com/TigreGotico/numtag/pull/183) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(it,ca,oc\): a cardinal before a Latin unit ordinal makes no compound [\#182](https://github.com/TigreGotico/numtag/pull/182) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(fr, it, ro\): read "moins" after an hour, "quanto meno" and a lone point [\#175](https://github.com/TigreGotico/numtag/pull/175) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
