@@ -80,7 +80,7 @@ In English, "and" is optional between groups and after "hundred". Both forms rea
 
 > Wikipedia, "English numerals": in American English "many students are taught [...] not to use the word and anywhere in the whole part of a number, so it is not used before the tens and ones"; "Despite this rule, some Americans use the and in reading numbers containing tens and ones as an alternative".
 
-In French, "et" joins "un" to "mille" ("mille et un"), and the older "cent et un" joins it to "cent". The writer gives "cent un", and the reader also takes "et" after the hundreds, as it does after "mille". So "cent et un" and "cent et une" are one number, 101.
+In French, "et" joins "un" to "mille" ("mille et un"), and the older "cent et un" joins it to "cent". The writer gives "cent un". The reader takes "et" after the hundreds only before a one (the setting `joiner_after_hundred_one`), so "cent et un" and "cent et une" are one number, 101, and "cent et deux" is two numbers. A one that counts the word after it is no part of the hundreds: "cent et un million" is 100 and a million, and "cent et un tiers" is 100 and a third.
 
 ```python
 >>> read("Les Mille et Une Nuits", "fr")
@@ -89,6 +89,14 @@ In French, "et" joins "un" to "mille" ("mille et un"), and the older "cent et un
 [('cent et une', '101')]
 >>> read("mille cent et un", "fr")
 [('mille cent et un', '1101')]
+>>> read("cent et un millions", "fr")
+[('cent et un millions', '101000000')]
+>>> read("cent et deux", "fr")
+[('cent', '100'), ('deux', '2')]
+>>> read("cent et un million", "fr")
+[('cent', '100'), ('un million', '1000000')]
+>>> read("cent et un tiers", "fr")
+[('cent et un tiers', '301/3')]
 ```
 
 > TLFi, CENT: "Vieilli. Cent et un. Ma brochure (...) vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand" (Lamartine, 1831); "Remarque : À part cet emploi, un n'est pas relié à cent par et."
@@ -964,7 +972,7 @@ French says 70, 80 and 90 in two ways: "soixante-dix", "quatre-vingts" and "quat
 [('nonante', 1.0)]
 ```
 
-> Académie française, Questions de langue, "Septante, octante, nonante": "ils restent connus dans l’usage parlé de nombreuses régions de l’Est et du Midi de la France, ainsi qu’en Acadie."; "Rien n’interdit de les employer, mais par rapport à l’usage courant en France, ils sont perçus comme régionaux ou vieillis."
+> Académie française, Questions de langue, "Septante, octante, nonante" (https://www.dictionnaire-academie.fr/article/QDL078): "ils restent connus dans l’usage parlé de nombreuses régions de l’Est et du Midi de la France, ainsi qu’en Acadie."; "Rien n’interdit de les employer, mais par rapport à l’usage courant en France, ils sont perçus comme régionaux ou vieillis."
 
 The writer of each region keeps its own words: `spell("70", "fr-FR")` writes "soixante-dix", and `spell("70", "fr-BE")` writes "septante".
 

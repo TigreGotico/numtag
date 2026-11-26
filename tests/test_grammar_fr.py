@@ -105,6 +105,39 @@ class TestCentEtUn(unittest.TestCase):
         self.assertEqual(fr("entre cent et un million de personnes"),
                          [("cent", "100", C), ("un million", "1000000", C)])
         self.assertEqual(fr("entre cent et un millier"), [("cent", "100", C), ("un millier", "1000", C)])
+        # 100 and 2 x 1000; 100 and 3 x 1000; 2 x 100 and 3 x 1000; 100 and 2 x 10^6
+        self.assertEqual(fr("entre cent et deux mille francs"), [("cent", "100", C), ("deux mille", "2000", C)])
+        self.assertEqual(fr("entre cent et trois mille euros"), [("cent", "100", C), ("trois mille", "3000", C)])
+        self.assertEqual(fr("entre deux cents et trois mille personnes"),
+                         [("deux cents", "200", C), ("trois mille", "3000", C)])
+        self.assertEqual(fr("entre cent et deux millions"), [("cent", "100", C), ("deux millions", "2000000", C)])
+
+    def test_et_joins_only_un_to_the_hundreds(self):
+        # TLFi: "À part cet emploi, un n'est pas relié à cent par et."
+        rows = [("cent et deux", "fr-FR", [("cent", "100", C), ("deux", "2", C)]),
+                ("cent et vingt", "fr-FR", [("cent", "100", C), ("vingt", "20", C)]),
+                ("cent et dix ans", "fr-FR", [("cent", "100", C), ("dix", "10", C)]),
+                ("deux cents et quatre-vingts", "fr-FR", [("deux cents", "200", C), ("quatre-vingts", "80", C)]),
+                ("cent et deux mille personnes", "fr-FR", [("cent", "100", C), ("deux mille", "2000", C)]),
+                ("cent et septante", "fr-CH", [("cent", "100", C), ("septante", "70", C)])]
+        for text, lang, expected in rows:
+            with self.subTest(text=text):
+                self.assertEqual(fr(text, lang), expected)
+
+    def test_a_fraction_after_cent_et_adds_to_the_hundreds(self):
+        # 100 + 3/4; 200 + 3/4; 100 + 1/3 = 301/3; 100 + 2/3 = 302/3; 100 + 3/10; 100 + 5/8
+        rows = [("cent et trois quarts", "100.75"), ("deux cents et trois quarts", "200.75"),
+                ("cent et un tiers", "301/3"), ("cent et deux tiers", "302/3"),
+                ("cent et trois dixièmes", "100.3"), ("cent et cinq huitièmes", "100.625")]
+        for text, value in rows:
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value) for m in tag_numbers(text, "fr-FR")], [(text, value)])
+
+    def test_un_before_a_singular_scale_noun_counts_it(self):
+        # 100 and 10^6; 100 and 10^9; 200 and 10^6
+        self.assertEqual(fr("cent et un million"), [("cent", "100", C), ("un million", "1000000", C)])
+        self.assertEqual(fr("cent et un milliard"), [("cent", "100", C), ("un milliard", "1000000000", C)])
+        self.assertEqual(fr("deux cents et un million"), [("deux cents", "200", C), ("un million", "1000000", C)])
 
     def test_the_writer_writes_cent_un(self):
         from numtag import spell

@@ -373,6 +373,10 @@ class Lexicon:
     # the thousands and a group of hundreds ("mil y quinientos"), except
     # after a range cue, where it joins the two limits.
     joiner_thousand_hundreds: bool = False
+    # The joiner stands between the hundreds and a one that starts no longer
+    # number, whatever joiner_after_hundred says: fr "cent et un" is 101, and
+    # "cent et un million" is 100 and a million.
+    joiner_after_hundred_one: bool = False
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.
     percent_phrase_is_no_number: bool = False
@@ -535,6 +539,7 @@ DEFAULT_SETTINGS = {
     "ordinal_form_part_takes_no_digits": False,
     "joiner_thousand_one_only": False,
     "joiner_thousand_hundreds": False,
+    "joiner_after_hundred_one": False,
     "percent_phrase_is_no_number": False,
     "article_after_noun": False,
     "fraction_after_scale": False,
@@ -628,7 +633,7 @@ ENTRY_KEYS = {
 
 
 # Keys that only a version 3 file holds.
-V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms"))
+V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms", "joiner_after_hundred_one"))
 V3_ENTRY_KEYS = {"ordinal_suffix": frozenset(("after", "cased"))}
 
 
@@ -956,6 +961,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         ordinal_form_part_takes_no_digits=settings["ordinal_form_part_takes_no_digits"],
         joiner_thousand_one_only=settings["joiner_thousand_one_only"],
         joiner_thousand_hundreds=settings["joiner_thousand_hundreds"],
+        joiner_after_hundred_one=settings["joiner_after_hundred_one"],
         percent_phrase_is_no_number=settings["percent_phrase_is_no_number"],
         phrases=frozenset(tuple(w.split("-")) for w in readings if "-" in w),
         count_of=frozenset(words["count_of"]),

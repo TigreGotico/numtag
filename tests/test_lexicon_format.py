@@ -180,6 +180,19 @@ class TestVersion(unittest.TestCase):
                     ValueError, "variant: the key 'after' in entry 'er' of role 'ordinal_suffix' needs format_version 3"):
                 load.__wrapped__("variant")
 
+    def test_a_setting_of_version_3_in_an_older_file_is_refused_by_name(self):
+        variants = Variants(self)
+        for version in (1, 2):
+            data = _file("en")
+            data["format_version"] = version
+            data["settings"]["joiner_after_hundred_one"] = {"value": True, "source": "test"}
+            if version == 1:
+                del data["writer"]
+            variants.write("variant", data)
+            with self.subTest(version=version), self.assertRaisesRegex(
+                    ValueError, "variant: the key 'joiner_after_hundred_one' in settings needs format_version 3"):
+                load.__wrapped__("variant")
+
     def test_a_file_of_version_2_reads_in_version_3(self):
         variants = Variants(self)
         data = _file("en")

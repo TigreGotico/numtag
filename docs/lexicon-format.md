@@ -34,7 +34,7 @@ The loader reads `format_version` first. It reads versions 1, 2 and 3. It refuse
 
 A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3. The loader refuses a `writer` block in a version 1 file, and a key of version 3 in a version 1 or 2 file. The error names the key and the place.
 
-Version 3 adds the settings `roman_ordinal_suffix` and `group_mark_forms` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
+Version 3 adds the settings `roman_ordinal_suffix`, `group_mark_forms` and `joiner_after_hundred_one` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
 
 ### Base lexicons
 
@@ -80,6 +80,7 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `inverted_tens` | `null` or `"required"` or `"optional"` or `"never"` | none | A unit, then the joiner as this policy says, then a round ten, all parts of one compound word ("petindvajset", "pětadvacet"). `null` reads no such compound. | cs: `"optional"` |
 | `joiner_after_decimal_marker` | `"required"` or `"optional"` or `"never"` | `"never"` | Where the joiner may stand after a decimal marker ("две цяло и пет"). | ru: `"optional"` |
 | `joiner_after_hundred` | `"required"` or `"optional"` or `"never"` | required | The same, after the hundreds ("cento e vinte", "one hundred and twenty"). | pt-PT: `"required"` |
+| `joiner_after_hundred_one` | boolean | `false` | Version 3. The joiner stands between the hundreds and a one that starts no longer number, whatever `joiner_after_hundred` says: "cent et un" is 101, and "cent et deux" is two numbers. A one that counts the word after it is no part of the hundreds: "cent et un million" is 100 and a million. | fr-FR: `true` |
 | `joiner_before_half` | `"required"` or `"optional"` or `"never"` | `"required"` | Where the joiner may stand before a half or a fraction after a whole ("dua setengah", "two and a half"). | id: `"never"` |
 | `joiner_before_last_group` | `"required"` or `"optional"` or `"never"` | required | The same, before a last group below a hundred or a round hundred. Where it is `required`, "mil duzentos" is two numbers. | pt-PT: `"required"` |
 | `joiner_before_round_hundred` | boolean | required | A round hundred may follow the joiner after a thousand, so "mil e quinhentos" counts a larger scale noun. | pt-PT: `true` |
