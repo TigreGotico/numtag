@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.31.0a1](https://github.com/TigreGotico/numtag/tree/0.31.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.30.0a1...0.31.0a1)
+
+**Merged pull requests:**
+
+- feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- feat: Galician writer [\#332](https://github.com/TigreGotico/numtag/pull/332) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.30.0a1](https://github.com/TigreGotico/numtag/tree/0.30.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.29.1a1...0.30.0a1)
@@ -606,17 +615,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.5a1...0.14.6a1)
 
-**Merged pull requests:**
-
-- fix\(es\): "cien por cien" reads one mention of 100 [\#96](https://github.com/TigreGotico/numtag/pull/96) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.14.5a1](https://github.com/TigreGotico/numtag/tree/0.14.5a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.4a1...0.14.5a1)
-
-**Merged pull requests:**
-
-- fix\(eu\): read the fraction words of Euskaltzaindia rule 203 and a lone "laurden" [\#92](https://github.com/TigreGotico/numtag/pull/92) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.4a1](https://github.com/TigreGotico/numtag/tree/0.14.4a1) (2026-11-17)
 
