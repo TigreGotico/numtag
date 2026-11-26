@@ -367,6 +367,45 @@ def category_nb(row, got):
     if flat(out) == flat(mine): return "nb_accent"
     if flat(out).replace(" og ", " ") == flat(mine).replace(" og ", " "): return "nb_groups"
     return None
+DA_SN = "Dansk Sprognævn, sproget.dk «Et eller flere ord» (Papers/Languages/Germanic/Danish/sproget-dk-et-eller-flere-ord.html)"
+DA_ART = "sproget.dk «Den 101. dalmatiner møder den 101. stryger» (Papers/Languages/Germanic/Danish/sproget-dk-den-101-dalmatiner.html)"
+SRC.update({
+ "da_tusind": DA_SN + ": \"fire tusind(e) (og) tre hundred(e) (og) treoghalvfems\": \"tusind\" and \"tusinde\" are both correct; numtag writes the first, ovos-number-parser the second.",
+ "da_fraction": DA_ART + ": \"de talord, der står som førsteled i brøkangivelser med -del som andetled, er ordenstal, f.eks. i syvendedel, syttendedel og syvogtyvendedel\"; Den Danske Ordbog, «tredjedel»: \"fx to tredjedele = 2/3\"; ovos-number-parser drops \"del\" or writes \"trediedele\".",
+ "da_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"nul\".",
+ "da_negative": "numtag/lexicon/da.json, the da writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "da_range": "numtag/lexicon/da.json, the da writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trillion), and outside it spells the power of ten or raises ValueError.",
+ "da_og": DA_SN + ": \"(parentes om og og flertalsbøjningen angiver at disse valgfrit kan tages med eller udelades)\"; numtag follows CLDR RBNF da, %spellout-cardinal-common: \"1000000: million[ →→];\", with no \"og\" after a scale word; ovos-number-parser writes \"og\" there.",
+ "da_neuter": "CLDR RBNF da, %spellout-cardinal-common: \"2000: ←%spellout-cardinal-neuter← tusinde[ →%%and-small→];\" and %spellout-cardinal-neuter: \"1: et;\", \"100: hundrede[ og →→];\": the count of tusind and a neuter number end in \"et\"; ovos-number-parser writes \"en\".",
+ "da_ordinals": "numtag/lexicon/da.json, the da writer: ordinals=True reads the ordinal (\"første\", Den Danske Ordbog «anden»: \"som er nr. 2 i en rækkefølge\"); ovos-number-parser returns the cardinal.",
+ "da_short": "numtag/lexicon/da.json, the setting scale: Danish counts in the long scale (Den Danske Ordbog, «billion»: \"(an)tallet 10 12\"); the writer has no short-scale reading.",
+})
+def category_da(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_da({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("da_short" if re.search(r"illi|illiard", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "da_negative"
+    if " i " in mine and "gange ti" in mine or got == {"err": "ValueError"}: return "da_range"
+    if kw.get("ordinals") and re.search(r"(de|te|je|en|et)$", mine) and mine != out: return "da_ordinals"
+    if row["fn"] == "fraction":  # the numerator agrees, and the part is the ordinal and "del": "to tredjedele"
+        top, bottom = (int(x.lstrip("-")) for x in row["arg"].split("/"))
+        theirs = out.removeprefix("minus ")
+        same = mine.removeprefix("minus ").split()[0] == theirs.split()[0] or top > bottom
+        return "da_fraction" if same and re.search(r"(del|dele|halv|halve)$", mine) else None
+    flat = lambda t: t.replace("tusinde", "tusind")
+    if flat(re.sub(r"( nul)+$", "", out)) == flat(mine) and " komma " in mine: return "da_decimal"
+    if flat(out) == flat(mine): return "da_tusind"
+    if flat(out).replace(" og ", " ") == flat(mine).replace(" og ", " "): return "da_og"
+    neuter = lambda t: re.sub(r"\bet\b", "en", flat(t)).replace(" og ", " ")
+    if neuter(out) == neuter(mine): return "da_neuter"
+    return None
 DE_RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024) (Papers/Languages/Germanic/German/rechtschreibrat_amtliches_regelwerk_2024.pdf)"
 DE_CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
 SRC.update({
