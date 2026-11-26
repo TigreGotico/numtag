@@ -54,6 +54,14 @@ def _issue_318(lang: str, text: str) -> bool:
     return lang == "it" and bool(ISSUE_318.search(text))
 
 
+ISSUE_325 = re.compile(r"(?:billion|billiard|trillion)ième")
+
+
+def _issue_325(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/325: the fr reader misses ordinals of "billion" and up."""
+    return lang.startswith("fr-") and bool(ISSUE_325.search(text))
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -101,8 +109,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"es", "id", "it", "ms", "pt-BR", "pt-PT"})
-        self.assertEqual(len(rows), 68094)
+        self.assertEqual({row["lang"] for row in rows}, {"es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"})
+        self.assertEqual(len(rows), 102141)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -217,7 +225,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -277,7 +285,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_325(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -297,8 +305,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["es", "id", "it", "ms", "pt-BR", "pt-PT"])
-        self.assertEqual(VERSION_TWO, ["es", "id", "it", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(WRITERS, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(VERSION_TWO, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -364,6 +372,36 @@ class TestItalian(unittest.TestCase):
     def test_a_fraction_is_a_cardinal_and_a_plural_ordinal(self):
         self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/2", "7/1000")],
                          ["un mezzo", "due terzi", "tre mezzi", "sette millesimi"])
+
+
+class TestFrench(unittest.TestCase):
+    """The traditional spelling of the Académie française («Questions de langue: nombres»), and CLDR RBNF fr."""
+
+    def say(self, value: str, lang: str = "fr-FR", **kw) -> str:
+        return spell(value, lang, **kw)[0].text
+
+    def test_et_and_the_hyphen_below_one_hundred(self):
+        self.assertEqual([self.say(n) for n in ("21", "71", "72", "81", "99")],
+                         ["vingt et un", "soixante et onze", "soixante-douze", "quatre-vingt-un", "quatre-vingt-dix-neuf"])
+
+    def test_vingt_and_cent_take_the_plural_s_only_when_final_or_before_a_noun(self):
+        self.assertEqual([self.say(n) for n in ("80", "200", "201", "80000", "200000", "200000000")],
+                         ["quatre-vingts", "deux cents", "deux cent un", "quatre-vingt mille", "deux cent mille",
+                          "deux cents millions"])
+
+    def test_belgium_and_switzerland(self):
+        self.assertEqual([self.say(n, "fr-BE") for n in ("70", "80", "91")], ["septante", "quatre-vingts", "nonante et un"])
+        self.assertEqual([self.say(n, "fr-CH") for n in ("80", "81", "80000")], ["huitante", "huitante et un", "huitante mille"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "5", "9", "21", "80", "1001", "1000000", "1000001")],
+                         ["premier", "cinquième", "neuvième", "vingt et unième", "quatre-vingtième", "mille unième",
+                          "millionième", "un million unième"])
+        self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="feminine"), "première")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/4", "5/11")],
+                         ["un demi", "deux tiers", "trois quarts", "cinq onzièmes"])
 
 
 class TestPortugueseScales(unittest.TestCase):
