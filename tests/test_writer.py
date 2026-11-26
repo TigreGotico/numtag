@@ -140,8 +140,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 124839)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 136188)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -336,8 +336,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -473,6 +473,29 @@ class TestGalician(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "1/16", "2/29", "7/345", "3/1000")],
                          ["un medio", "tres medios", "dous terzos", "un dezaseisavo", "dous vinte e noveavos",
                           "sete trescentos corenta e cincoavos", "tres milésimos"])
+class TestCatalan(unittest.TestCase):
+    """IEC, GIEC §17.2 and OIEC §4.4.2.2."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "ca", **kw)[0].text
+
+    def test_the_hyphen_joins_tens_and_units_and_units_and_hundreds_only(self):
+        self.assertEqual([self.say(n) for n in ("22", "32", "102", "123", "200", "2000", "2100000")],
+                         ["vint-i-dos", "trenta-dos", "cent dos", "cent vint-i-tres", "dos-cents", "dos mil",
+                          "dos milions cent mil"])
+        self.assertEqual([self.say(n, gender="feminine") for n in ("21", "200", "2000")],
+                         ["vint-i-una", "dues-centes", "dues mil"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "4", "10", "22", "102", "125", "200", "2000")],
+                         ["primer", "quart", "desè", "vint-i-dosè", "cent dosè", "cent vint-i-cinquè", "dos-centè",
+                          "dos milè"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("1", "5", "21")],
+                         ["primera", "cinquena", "vint-i-unena"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "1/3", "2/3", "1/4", "3/4", "2/5", "5/11")],
+                         ["un mig", "un terç", "dos terços", "un quart", "tres quarts", "dos cinquens", "cinc onzens"])
 
 
 class TestRomanian(unittest.TestCase):
