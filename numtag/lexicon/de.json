@@ -1,5 +1,5 @@
 {
-  "format_version": 1,
+  "format_version": 2,
  "settings": {
   "part_glued_to_whole": {
    "value": true,
@@ -1851,10 +1851,469 @@
    "source": "CLDR RBNF de (unicode-rbnf 2.4.1 data, de.xml), %spellout-ordinal: 100 → \"einhundertste\", 1000 → \"eintausendste\", 1000000 → \"eine Millionste\", 1000000000 → \"eine Milliardeste\""
   },
   {
+   "word": "billionste",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billionsten",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billionster",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billionstes",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billionstem",
+   "role": "ordinal_scale",
+   "value": "billion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billiardste",
+   "role": "ordinal_scale",
+   "value": "billiarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billiardsten",
+   "role": "ordinal_scale",
+   "value": "billiarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billiardster",
+   "role": "ordinal_scale",
+   "value": "billiarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billiardstes",
+   "role": "ordinal_scale",
+   "value": "billiarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "billiardstem",
+   "role": "ordinal_scale",
+   "value": "billiarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trillionste",
+   "role": "ordinal_scale",
+   "value": "trillion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trillionsten",
+   "role": "ordinal_scale",
+   "value": "trillion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trillionster",
+   "role": "ordinal_scale",
+   "value": "trillion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trillionstes",
+   "role": "ordinal_scale",
+   "value": "trillion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trillionstem",
+   "role": "ordinal_scale",
+   "value": "trillion",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trilliardste",
+   "role": "ordinal_scale",
+   "value": "trilliarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trilliardsten",
+   "role": "ordinal_scale",
+   "value": "trilliarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trilliardster",
+   "role": "ordinal_scale",
+   "value": "trilliarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trilliardstes",
+   "role": "ordinal_scale",
+   "value": "trilliarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
+   "word": "trilliardstem",
+   "role": "ordinal_scale",
+   "value": "trilliarde",
+   "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"der zweimillionste Besucher\"; the reader reads the -ste ordinals of the scale words of this lexicon"
+  },
+  {
    "word": "ein paar",
    "role": "vague_quantifier",
    "ambiguous": true,
    "source": "DWDS, \"ein paar\" (knowledge/wiki/audits/numtag/issue-fixes/couple/sources/dwds-ein-paar.txt), Indefinitpronomen, eWDG 1974: \"bezeichnet eine unbestimmte Anzahl, eine Reihe von Personen oder Sachen einer Gattung\"; \"ein paar Schritte gehen\". DWDS, \"paar\" (dwds-paar.txt): \"indeklinables Indef.pron.\"; Etymologisches Wörterbuch (Pfeifer), \"Paar n.\": \"zwei zusammengehörende Dinge von gleicher oder ähnlicher Beschaffenheit\" The noun \"paar\" also names a pair, two that belong together, which numtag cannot tell from the text."
   }
- ]
+ ],
+  "writer": {
+    "source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1). German counts in the long scale of this lexicon: \"Milliarde\" for 10^9, \"Billion\" for 10^12.",
+    "rulesets": {
+      "numbering": {"source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering, with the scale words of this lexicon. Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\". Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\"", "rules": [
+        {"value": "-x", "text": "minus →→;"},
+        {"value": "0", "text": "null;"},
+        {"value": "1", "text": "eins;"},
+        {"value": "2", "text": "zwei;"},
+        {"value": "3", "text": "drei;"},
+        {"value": "4", "text": "vier;"},
+        {"value": "5", "text": "fünf;"},
+        {"value": "6", "text": "sechs;"},
+        {"value": "7", "text": "sieben;"},
+        {"value": "8", "text": "acht;"},
+        {"value": "9", "text": "neun;"},
+        {"value": "10", "text": "zehn;"},
+        {"value": "11", "text": "elf;"},
+        {"value": "12", "text": "zwölf;"},
+        {"value": "13", "text": "dreizehn;"},
+        {"value": "14", "text": "vierzehn;"},
+        {"value": "15", "text": "fünfzehn;"},
+        {"value": "16", "text": "sechzehn;"},
+        {"value": "17", "text": "siebzehn;"},
+        {"value": "18", "text": "achtzehn;"},
+        {"value": "19", "text": "neunzehn;"},
+        {"value": "20", "text": "zwanzig;"},
+        {"value": "21", "text": "→%unit→undzwanzig;"},
+        {"value": "30", "text": "dreißig;"},
+        {"value": "31", "text": "→%unit→unddreißig;"},
+        {"value": "40", "text": "vierzig;"},
+        {"value": "41", "text": "→%unit→undvierzig;"},
+        {"value": "50", "text": "fünfzig;"},
+        {"value": "51", "text": "→%unit→undfünfzig;"},
+        {"value": "60", "text": "sechzig;"},
+        {"value": "61", "text": "→%unit→undsechzig;"},
+        {"value": "70", "text": "siebzig;"},
+        {"value": "71", "text": "→%unit→undsiebzig;"},
+        {"value": "80", "text": "achtzig;"},
+        {"value": "81", "text": "→%unit→undachtzig;"},
+        {"value": "90", "text": "neunzig;"},
+        {"value": "91", "text": "→%unit→undneunzig;"},
+        {"value": "100", "text": "←%unit←hundert[→→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\""},
+        {"value": "1000", "text": "←%cardinal-m←tausend[→→];"},
+        {"value": "1000000", "text": "eine Million[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000", "text": "←%cardinal-f← Millionen[ →→];"},
+        {"value": "1000000000", "text": "eine Milliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000", "text": "←%cardinal-f← Milliarden[ →→];"},
+        {"value": "1000000000000", "text": "eine Billion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000", "text": "←%cardinal-f← Billionen[ →→];"},
+        {"value": "1000000000000000", "text": "eine Billiarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000", "text": "←%cardinal-f← Billiarden[ →→];"},
+        {"value": "1000000000000000000", "text": "eine Trillion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000", "text": "←%cardinal-f← Trillionen[ →→];"},
+        {"value": "1000000000000000000000", "text": "eine Trilliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000000", "text": "←%cardinal-f← Trilliarden[ →→];"}
+      ]},
+      "cardinal-m": {"source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: \"ein\" before a masculine or neuter noun", "rules": [
+        {"value": "-x", "text": "minus →→;"},
+        {"value": "0", "text": "null;"},
+        {"value": "1", "text": "ein;"},
+        {"value": "2", "text": "zwei;"},
+        {"value": "3", "text": "drei;"},
+        {"value": "4", "text": "vier;"},
+        {"value": "5", "text": "fünf;"},
+        {"value": "6", "text": "sechs;"},
+        {"value": "7", "text": "sieben;"},
+        {"value": "8", "text": "acht;"},
+        {"value": "9", "text": "neun;"},
+        {"value": "10", "text": "zehn;"},
+        {"value": "11", "text": "elf;"},
+        {"value": "12", "text": "zwölf;"},
+        {"value": "13", "text": "dreizehn;"},
+        {"value": "14", "text": "vierzehn;"},
+        {"value": "15", "text": "fünfzehn;"},
+        {"value": "16", "text": "sechzehn;"},
+        {"value": "17", "text": "siebzehn;"},
+        {"value": "18", "text": "achtzehn;"},
+        {"value": "19", "text": "neunzehn;"},
+        {"value": "20", "text": "zwanzig;"},
+        {"value": "21", "text": "→%unit→undzwanzig;"},
+        {"value": "30", "text": "dreißig;"},
+        {"value": "31", "text": "→%unit→unddreißig;"},
+        {"value": "40", "text": "vierzig;"},
+        {"value": "41", "text": "→%unit→undvierzig;"},
+        {"value": "50", "text": "fünfzig;"},
+        {"value": "51", "text": "→%unit→undfünfzig;"},
+        {"value": "60", "text": "sechzig;"},
+        {"value": "61", "text": "→%unit→undsechzig;"},
+        {"value": "70", "text": "siebzig;"},
+        {"value": "71", "text": "→%unit→undsiebzig;"},
+        {"value": "80", "text": "achtzig;"},
+        {"value": "81", "text": "→%unit→undachtzig;"},
+        {"value": "90", "text": "neunzig;"},
+        {"value": "91", "text": "→%unit→undneunzig;"},
+        {"value": "100", "text": "←%unit←hundert[→→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\""},
+        {"value": "1000", "text": "←%cardinal-m←tausend[→→];"},
+        {"value": "1000000", "text": "eine Million[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000", "text": "←%cardinal-f← Millionen[ →→];"},
+        {"value": "1000000000", "text": "eine Milliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000", "text": "←%cardinal-f← Milliarden[ →→];"},
+        {"value": "1000000000000", "text": "eine Billion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000", "text": "←%cardinal-f← Billionen[ →→];"},
+        {"value": "1000000000000000", "text": "eine Billiarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000", "text": "←%cardinal-f← Billiarden[ →→];"},
+        {"value": "1000000000000000000", "text": "eine Trillion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000", "text": "←%cardinal-f← Trillionen[ →→];"},
+        {"value": "1000000000000000000000", "text": "eine Trilliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000000", "text": "←%cardinal-f← Trilliarden[ →→];"}
+      ]},
+      "cardinal-f": {"source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-feminine: \"eine\" before a feminine noun", "rules": [
+        {"value": "-x", "text": "minus →→;"},
+        {"value": "0", "text": "null;"},
+        {"value": "1", "text": "eine;"},
+        {"value": "2", "text": "zwei;"},
+        {"value": "3", "text": "drei;"},
+        {"value": "4", "text": "vier;"},
+        {"value": "5", "text": "fünf;"},
+        {"value": "6", "text": "sechs;"},
+        {"value": "7", "text": "sieben;"},
+        {"value": "8", "text": "acht;"},
+        {"value": "9", "text": "neun;"},
+        {"value": "10", "text": "zehn;"},
+        {"value": "11", "text": "elf;"},
+        {"value": "12", "text": "zwölf;"},
+        {"value": "13", "text": "dreizehn;"},
+        {"value": "14", "text": "vierzehn;"},
+        {"value": "15", "text": "fünfzehn;"},
+        {"value": "16", "text": "sechzehn;"},
+        {"value": "17", "text": "siebzehn;"},
+        {"value": "18", "text": "achtzehn;"},
+        {"value": "19", "text": "neunzehn;"},
+        {"value": "20", "text": "zwanzig;"},
+        {"value": "21", "text": "→%unit→undzwanzig;"},
+        {"value": "30", "text": "dreißig;"},
+        {"value": "31", "text": "→%unit→unddreißig;"},
+        {"value": "40", "text": "vierzig;"},
+        {"value": "41", "text": "→%unit→undvierzig;"},
+        {"value": "50", "text": "fünfzig;"},
+        {"value": "51", "text": "→%unit→undfünfzig;"},
+        {"value": "60", "text": "sechzig;"},
+        {"value": "61", "text": "→%unit→undsechzig;"},
+        {"value": "70", "text": "siebzig;"},
+        {"value": "71", "text": "→%unit→undsiebzig;"},
+        {"value": "80", "text": "achtzig;"},
+        {"value": "81", "text": "→%unit→undachtzig;"},
+        {"value": "90", "text": "neunzig;"},
+        {"value": "91", "text": "→%unit→undneunzig;"},
+        {"value": "100", "text": "←%unit←hundert[→→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\""},
+        {"value": "1000", "text": "←%cardinal-m←tausend[→→];"},
+        {"value": "1000000", "text": "eine Million[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000", "text": "←%cardinal-f← Millionen[ →→];"},
+        {"value": "1000000000", "text": "eine Milliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000", "text": "←%cardinal-f← Milliarden[ →→];"},
+        {"value": "1000000000000", "text": "eine Billion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000", "text": "←%cardinal-f← Billionen[ →→];"},
+        {"value": "1000000000000000", "text": "eine Billiarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000", "text": "←%cardinal-f← Billiarden[ →→];"},
+        {"value": "1000000000000000000", "text": "eine Trillion[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000", "text": "←%cardinal-f← Trillionen[ →→];"},
+        {"value": "1000000000000000000000", "text": "eine Trilliarde[ →→];", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\""},
+        {"value": "2000000000000000000000", "text": "←%cardinal-f← Trilliarden[ →→];"}
+      ]},
+      "unit": {"source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal-masculine: the units before \"und\" and \"hundert\" (\"einundzwanzig\", \"einhundert\")", "rules": [
+        {"value": "1", "text": "ein;"},
+        {"value": "2", "text": "zwei;"},
+        {"value": "3", "text": "drei;"},
+        {"value": "4", "text": "vier;"},
+        {"value": "5", "text": "fünf;"},
+        {"value": "6", "text": "sechs;"},
+        {"value": "7", "text": "sieben;"},
+        {"value": "8", "text": "acht;"},
+        {"value": "9", "text": "neun;"}
+      ]},
+      "ordinal": {"source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal, with one word past a million. Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\". SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example", "rules": [
+        {"value": "-x", "text": "minus →→;"},
+        {"value": "0", "text": "nullte;"},
+        {"value": "1", "text": "erste;"},
+        {"value": "2", "text": "zweite;"},
+        {"value": "3", "text": "dritte;"},
+        {"value": "4", "text": "vierte;"},
+        {"value": "5", "text": "fünfte;"},
+        {"value": "6", "text": "sechste;"},
+        {"value": "7", "text": "siebte;"},
+        {"value": "8", "text": "achte;"},
+        {"value": "9", "text": "=%numbering=te;"},
+        {"value": "20", "text": "=%numbering=ste;"},
+        {"value": "100", "text": "←%unit←hundert→%ordinal-tail→;", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\""},
+        {"value": "1000", "text": "←%cardinal-m←tausend→%ordinal-tail→;"},
+        {"value": "1000000", "text": "←%cardinal-m←million→%ordinal-million→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000", "text": "←%cardinal-m←million→%ordinal-millions→;"},
+        {"value": "1000000000", "text": "←%cardinal-m←milliard→%ordinal-milliard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000", "text": "←%cardinal-m←milliard→%ordinal-milliards→;"},
+        {"value": "1000000000000", "text": "←%cardinal-m←billion→%ordinal-billion→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000", "text": "←%cardinal-m←billion→%ordinal-billions→;"},
+        {"value": "1000000000000000", "text": "←%cardinal-m←billiard→%ordinal-billiard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000", "text": "←%cardinal-m←billiard→%ordinal-billiards→;"},
+        {"value": "1000000000000000000", "text": "←%cardinal-m←trillion→%ordinal-trillion→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m←trillion→%ordinal-trillions→;"},
+        {"value": "1000000000000000000000", "text": "←%cardinal-m←trilliard→%ordinal-trilliard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000000000", "text": "←%cardinal-m←trilliard→%ordinal-trilliards→;"}
+      ]},
+      "ordinal-tail": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "=%ordinal=;"}
+      ]},
+      "ordinal-million": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "=%ordinal=;"}
+      ]},
+      "ordinal-millions": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "ordinal-milliard": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "e=%ordinal=;"}
+      ]},
+      "ordinal-milliards": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "ordinal-billion": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "=%ordinal=;"}
+      ]},
+      "ordinal-billions": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "ordinal-billiard": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "e=%ordinal=;"}
+      ]},
+      "ordinal-billiards": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "ordinal-trillion": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "=%ordinal=;"}
+      ]},
+      "ordinal-trillions": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "ordinal-trilliard": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "e=%ordinal=;"}
+      ]},
+      "ordinal-trilliards": {"source": "a part of ordinal", "rules": [
+        {"value": "0", "text": "ste;"},
+        {"value": "1", "text": "en=%ordinal=;"}
+      ]},
+      "fraction": {"source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 56(6) E5, p. 87: \"In allen übrigen Fällen schreibt man Bruchzahlen auf -tel und -stel entsprechend § 55 groß: ein Drittel, das erste Fünftel, neun Zehntel des Umsatzes, um drei Viertel größer\": the ordinal stem with -tel and -stel. SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example", "rules": [
+        {"value": "-x", "text": "minus →→;"},
+        {"value": "0", "text": "nulltel;"},
+        {"value": "1", "text": "erstel;"},
+        {"value": "2", "text": "zweitel;"},
+        {"value": "3", "text": "drittel;"},
+        {"value": "4", "text": "viertel;"},
+        {"value": "5", "text": "fünftel;"},
+        {"value": "6", "text": "sechstel;"},
+        {"value": "7", "text": "siebtel;"},
+        {"value": "8", "text": "achtel;"},
+        {"value": "9", "text": "=%numbering=tel;"},
+        {"value": "20", "text": "=%numbering=stel;"},
+        {"value": "100", "text": "←%unit←hundert→%fraction-tail→;", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\""},
+        {"value": "1000", "text": "←%cardinal-m←tausend→%fraction-tail→;"},
+        {"value": "1000000", "text": "←%cardinal-m←million→%fraction-million→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000", "text": "←%cardinal-m←million→%fraction-millions→;"},
+        {"value": "1000000000", "text": "←%cardinal-m←milliard→%fraction-milliard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000", "text": "←%cardinal-m←milliard→%fraction-milliards→;"},
+        {"value": "1000000000000", "text": "←%cardinal-m←billion→%fraction-billion→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000", "text": "←%cardinal-m←billion→%fraction-billions→;"},
+        {"value": "1000000000000000", "text": "←%cardinal-m←billiard→%fraction-billiard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000", "text": "←%cardinal-m←billiard→%fraction-billiards→;"},
+        {"value": "1000000000000000000", "text": "←%cardinal-m←trillion→%fraction-trillion→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000000", "text": "←%cardinal-m←trillion→%fraction-trillions→;"},
+        {"value": "1000000000000000000000", "text": "←%cardinal-m←trilliard→%fraction-trilliard→;", "source": "SILVER: an ordinal past a million with a rest keeps one word with the plural scale word (\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example"},
+        {"value": "2000000000000000000000", "text": "←%cardinal-m←trilliard→%fraction-trilliards→;"}
+      ]},
+      "fraction-tail": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "=%fraction=;"}
+      ]},
+      "fraction-million": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "=%fraction=;"}
+      ]},
+      "fraction-millions": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]},
+      "fraction-milliard": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "e=%fraction=;"}
+      ]},
+      "fraction-milliards": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]},
+      "fraction-billion": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "=%fraction=;"}
+      ]},
+      "fraction-billions": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]},
+      "fraction-billiard": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "e=%fraction=;"}
+      ]},
+      "fraction-billiards": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]},
+      "fraction-trillion": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "=%fraction=;"}
+      ]},
+      "fraction-trillions": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]},
+      "fraction-trilliard": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "e=%fraction=;"}
+      ]},
+      "fraction-trilliards": {"source": "a part of fraction", "rules": [
+        {"value": "0", "text": "stel;"},
+        {"value": "1", "text": "en=%fraction=;"}
+      ]}
+    },
+    "forms": {"cardinal": {"variants": [{"ruleset": "numbering", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}], "neuter": [{"ruleset": "cardinal-m", "reason": "standard"}], "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]}, "maximum": "999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "0", "maximum": "999999999999999999999999"}},
+    "decimal": {"word": "Komma", "places": 3, "source": "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1), %spellout-numbering x.x: \"←← Komma →→\"."},
+    "scientific": {"times": "mal zehn hoch", "source": "Not checked against a grammar."},
+    "fraction": {"mixed": false, "limit": 10, "single": "ein {denominator}", "plural": {"halb": "halbe"}, "capitalise": true, "named": {"2": "halb", "100": "hundertstel", "1000": "tausendstel", "1000000": "millionstel"}, "denominator": "{cardinal}stel", "ruleset": "fraction", "numerator": "cardinal-m", "source": "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024), § 56(6) E5, p. 87: \"In allen übrigen Fällen schreibt man Bruchzahlen auf -tel und -stel entsprechend § 55 groß: ein Drittel, das erste Fünftel, neun Zehntel des Umsatzes, um drei Viertel größer\"; \"in fünf hundertstel Sekunden\" (6.1). SILVER: 1/2 reads \"ein Halb\" and n/2 \"Halbe\"; no saved rule."}
+  }
 }

@@ -140,8 +140,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 136188)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 147537)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -336,8 +336,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "de", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -473,6 +473,27 @@ class TestGalician(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "1/16", "2/29", "7/345", "3/1000")],
                          ["un medio", "tres medios", "dous terzos", "un dezaseisavo", "dous vinte e noveavos",
                           "sete trescentos corenta e cincoavos", "tres milésimos"])
+class TestGerman(unittest.TestCase):
+    """Amtliches Regelwerk (2024), § 36(1.6) and § 56(6) E5."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "de", **kw)[0].text
+
+    def test_one_word_below_a_million_and_the_scale_words_apart(self):
+        self.assertEqual([self.say(n) for n in ("1", "21", "101", "1989", "700", "1000000", "2000500000")],
+                         ["eins", "einundzwanzig", "einhunderteins", "eintausendneunhundertneunundachtzig",
+                          "siebenhundert", "eine Million", "zwei Milliarden fünfhunderttausend"])
+        self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["ein", "eine", "ein"])
+
+    def test_ordinals_are_one_word(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("17", "100", "500000", "2000000")],
+                         ["siebzehnte", "einhundertste", "fünfhunderttausendste", "zweimillionste"])
+
+    def test_fractions_are_capital_nouns(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "1/5", "9/10", "3/4", "5/100")],
+                         ["ein Drittel", "ein Fünftel", "neun Zehntel", "drei Viertel", "fünf Hundertstel"])
+
+
 class TestCatalan(unittest.TestCase):
     """IEC, GIEC §17.2 and OIEC §4.4.2.2."""
 
