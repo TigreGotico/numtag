@@ -10,7 +10,7 @@ see: getting-started.md, api.md
 
 numtag is a number tagger. It finds every number in a text and returns one mention per number. A mention holds the exact words, their character span and an exact value as a digit string. It also holds the kind, the form, a confidence score and, where it matters, the number scale.
 
-numtag reads numbers, and it writes the value of a number as words in the languages whose lexicon has a writer block. It reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. A date library can build its dates that way: it reads the mentions and applies its own date rules. The chronologia date library depends on numtag for its numbers.
+numtag reads numbers. In some languages it also writes the value of a number as words. [languages/index.md](languages/index.md) gives the list. It reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. A date library can build its dates that way: it reads the mentions and applies its own date rules. The chronologia date library depends on numtag for its numbers.
 
 ## Start here
 
@@ -32,6 +32,7 @@ numtag reads numbers, and it writes the value of a number as words in the langua
 | Guide | Content |
 |---|---|
 | [rulings.md](rulings.md) | Each reading rule with an example sentence and its source |
+| [languages/index.md](languages/index.md) | The support table: per language, what numtag reads, whether it writes, and its gold score |
 | [languages/pt.md](languages/pt.md) | European and Brazilian Portuguese |
 | [languages/en.md](languages/en.md) | English |
 | [languages/el-ar-he-fa-kab.md](languages/el-ar-he-fa-kab.md) | Greek, Arabic, Hebrew, Persian, Kabyle and Maltese |
@@ -39,6 +40,7 @@ numtag reads numbers, and it writes the value of a number as words in the langua
 | [languages/uralic-turkic.md](languages/uralic-turkic.md) | Finnish, Estonian, Hungarian, Turkish and Azerbaijani |
 | [languages/baltic.md](languages/baltic.md) | Lithuanian |
 | [languages/bn.md](languages/bn.md) | Bengali |
+| [languages/hi.md](languages/hi.md) | Hindi |
 | [languages/slavic.md](languages/slavic.md) | Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croatian and Serbian |
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |

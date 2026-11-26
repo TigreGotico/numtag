@@ -569,14 +569,14 @@ SETTINGS = REQUIRED_SETTINGS | frozenset(DEFAULT_SETTINGS)
 WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
 
 TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
-WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction"))
+WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction", "plural"))
 RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "round", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "mixed_named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -668,11 +668,12 @@ def _check_writer(lang: str, writer: dict) -> None:
                     raise ValueError(f"{lang}: form {name!r} names the unknown rule set {variant['ruleset']!r}")
     _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
     _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
-    _refuse(lang, "fraction", writer.get("fraction", {}), FRACTION_KEYS)
+    fraction = writer.get("fraction") or {}
+    _refuse(lang, "fraction", fraction, FRACTION_KEYS)
     for key in ("ruleset", "numerator"):
-        if (name := writer.get("fraction", {}).get(key)) is not None and name not in writer["rulesets"]:
+        if (name := fraction.get(key)) is not None and name not in writer["rulesets"]:
             raise ValueError(f"{lang}: the fraction names the unknown rule set {name!r}")
-    for rule in writer.get("fraction", {}).get("by_count", []):
+    for rule in fraction.get("by_count", []):
         if rule["ruleset"] not in writer["rulesets"]:
             raise ValueError(f"{lang}: the fraction names the unknown rule set {rule['ruleset']!r}")
 

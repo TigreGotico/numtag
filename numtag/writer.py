@@ -93,7 +93,8 @@ def _divisor(base: str, radix: int) -> str:
 
 
 def _parse(text: str, where: str) -> tuple:
-    """The tokens of a rule text: ("lit", s), ("quo", set), ("rem", set), ("call", set), ("opt", tokens)."""
+    """The tokens of a rule text: ("lit", s), ("quo", set), ("rem", set), ("call", set), ("opt", tokens), and
+    ("plural", {category: word}) for a CLDR ``$(cardinal,one{…}other{…})$`` that agrees with the quotient."""
     text = text.removesuffix(";")
     tokens: list = []
     stack: list[list] = []
@@ -110,6 +111,24 @@ def _parse(text: str, where: str) -> tuple:
                 tokens.append(("lit", literal))
                 literal = ""
             tokens.append(({QUOTIENT: "quo", REMAINDER: "rem", CALL: "call"}[char], inner[1:] or None))
+            k = end
+        elif text.startswith("$(cardinal,", k):
+            end = text.find(")$", k)
+            forms = dict(re.findall(r"(\w+)\{([^}]*)\}", text[k + len("$(cardinal,"):end]))
+            if end < 0 or "other" not in forms:
+                raise ValueError(f"{where}: unsupported rule text {text!r}")
+            if literal:
+                tokens.append(("lit", literal))
+                literal = ""
+            tokens.append(("plural", forms))
+            k = end + 1
+        elif char == "[" and "|" in text[k + 1:text.find("]", k)]:  # "[a|b]": a with a remainder, else b
+            end = text.find("]", k)
+            if literal:
+                tokens.append(("lit", literal))
+                literal = ""
+            with_rest, without = text[k + 1:end].split("|", 1)
+            tokens.append(("alt", (_parse(with_rest, where), _parse(without, where))))
             k = end
         elif char == "[":
             if literal:
@@ -142,7 +161,10 @@ def _called(tokens: tuple):
     for kind, value in tokens:
         if kind == "opt":
             yield from _called(value)
-        elif kind != "lit" and value:
+        elif kind == "alt":
+            yield from _called(value[0])
+            yield from _called(value[1])
+        elif kind not in ("lit", "plural") and value:
             yield value
 
 
@@ -189,13 +211,29 @@ class Writer:
             elif kind == "opt":
                 if digits.normalise(remainder) != "0":
                     out += self._fill(value, ruleset, number, quotient, remainder)
+            elif kind == "alt":
+                out += self._fill(value[0 if digits.normalise(remainder) != "0" else 1], ruleset, number, quotient,
+                                  remainder)
+            elif kind == "plural":
+                out += value.get(self.plural_category(quotient)) or value["other"]
             else:
                 target = self.rulesets[value] if value else ruleset
                 out += self._run(target, {"quo": quotient, "rem": remainder, "call": number}[kind])
         return out
 
+    def plural_category(self, number: str) -> str:
+        """The CLDR plural category of a whole number, from the ``plural`` list of the writer block: the
+        first entry whose ``mod10`` holds the last digit and whose ``not_mod100`` misses the last two."""
+        last, last_two = number[-1:], digits.normalise(number[-2:])
+        for entry in self.block.get("plural", ()):
+            if last in map(str, entry["mod10"]) and last_two not in map(str, entry.get("not_mod100", ())):
+                return entry["category"]
+        return "other"
+
     def minus(self, ruleset: str) -> str:
         """The minus word of a rule set: the text of its minus rule apart from the number."""
+        if self.rulesets[ruleset].negative is None:
+            raise ValueError(f"rule set {ruleset!r} has no rule for negative numbers")
         return _tidy("".join(value for kind, value in self.rulesets[ruleset].negative if kind == "lit"))
 
     def spec(self, form: SpokenForm, scale: str | None = None) -> dict:
@@ -326,6 +364,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
     if digits.normalise(whole) == "0" and not fraction:
         negative = False
     text = writer.render(ruleset, whole, negative)
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":
@@ -339,6 +379,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
 
 def _each_digit(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str) -> str:
     words = [writer.render(ruleset, d) for d in whole]
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         words += [writer.decimal["word"], *[writer.render(ruleset, d) for d in fraction]]
     return " ".join(([writer.minus(ruleset)] if negative else []) + words)
@@ -389,6 +431,8 @@ def _exponent(writer: Writer, ruleset: str, negative: bool, whole: str, fraction
 
 
 def _fraction(writer: Writer, ruleset: str, value: str) -> str:
+    if "fraction" in writer.block and writer.block["fraction"] is None:
+        raise ValueError(f"{writer.name}: no fraction words; a fraction has no reading")
     spec = writer.block.get("fraction")
     top, _, bottom = value.partition("/")
     terms = top.removeprefix("-"), bottom.removeprefix("-")
@@ -396,6 +440,7 @@ def _fraction(writer: Writer, ruleset: str, value: str) -> str:
         raise ValueError(f"{value!r} is not a fraction of two whole numbers")
     negative = top.startswith("-") != bottom.startswith("-")
     top, bottom = map(digits.normalise, terms)
+    negative = negative and top != "0"
     if bottom == "0":
         raise ZeroDivisionError(f"denominator is zero: {value}")
     whole, rest = digits.divide_whole(top, bottom)
@@ -421,7 +466,8 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
         return f"{count} {_capital(spec, writer.render(name, bottom))}"
     if bottom not in spec["named"] and "ruleset" in spec:
         word = writer.render(spec["ruleset"], bottom)
-        return f"{count} {_capital(spec, word if top == '1' else _plural(word, spec['plural']))}"
+        one = top == "1" or writer.plural_category(top) == "one"
+        return f"{count} {_capital(spec, word if one else _plural(word, spec['plural']))}"
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
@@ -450,6 +496,8 @@ def _ordinal_of(writer: Writer, number: str) -> str:
 
 def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str, denominator: str) -> str:
     lead = [writer.render(ruleset, whole)] if whole != "0" else []
+    if lead and denominator in spec.get("mixed_named", {}):
+        return " ".join([*lead, spec["mixed_named"][denominator]])
     if denominator in spec["named"]:
         return " ".join([*lead, spec["named"][denominator]])
     word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, denominator))

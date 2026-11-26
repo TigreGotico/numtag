@@ -26,6 +26,9 @@ class TestWriterScripts(unittest.TestCase):
     def test_the_italian_writer_block_is_what_the_script_writes(self):
         self.check("writer_it.py", "--check")
 
+    def test_the_kabyle_writer_block_is_what_the_script_writes(self):
+        self.check("writer_kab.py", "--check")
+
     def test_the_french_writer_blocks_are_what_the_script_writes(self):
         for variety in ("fr-FR", "fr-BE", "fr-CH"):
             with self.subTest(variety=variety):
@@ -37,6 +40,9 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_nl.py", "")
     def test_the_norwegian_nynorsk_writer_block_is_what_the_script_writes(self):
         self.check("writer_nn.py", "")
+
+    def test_the_bengali_writer_block_is_what_the_script_writes(self):
+        self.check("writer_bn.py", "")
 
     def test_the_norwegian_bokmal_writer_block_is_what_the_script_writes(self):
         self.check("writer_nb.py", "")
@@ -60,9 +66,14 @@ class TestWriterScripts(unittest.TestCase):
 
     def test_the_czech_writer_block_is_what_the_script_writes(self):
         self.check("writer_cs.py", "")
+    def test_the_hindi_writer_block_is_what_the_script_writes(self):
+        self.check("writer_hi.py", "")
 
     def test_the_romanian_writer_block_is_what_the_script_writes(self):
         self.check("writer_ro.py", "")
+
+    def test_the_russian_writer_block_is_what_the_script_writes(self):
+        self.check("writer_ru.py", "")
 
     def test_the_allow_list_entries_are_what_the_script_writes(self):
         langs = sorted({row["lang"] for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])})
