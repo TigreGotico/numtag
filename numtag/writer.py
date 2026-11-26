@@ -190,6 +190,8 @@ class Writer:
 
     def minus(self, ruleset: str) -> str:
         """The minus word of a rule set: the text of its minus rule apart from the number."""
+        if self.rulesets[ruleset].negative is None:
+            raise ValueError(f"rule set {ruleset!r} has no rule for negative numbers")
         return _tidy("".join(value for kind, value in self.rulesets[ruleset].negative if kind == "lit"))
 
     def spec(self, form: SpokenForm, scale: str | None = None) -> dict:
@@ -320,6 +322,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
     if digits.normalise(whole) == "0" and not fraction:
         negative = False
     text = writer.render(ruleset, whole, negative)
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":
@@ -333,6 +337,8 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
 
 def _each_digit(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str) -> str:
     words = [writer.render(ruleset, d) for d in whole]
+    if fraction and writer.decimal["word"] is None:
+        raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction:
         words += [writer.decimal["word"], *[writer.render(ruleset, d) for d in fraction]]
     return " ".join(([writer.minus(ruleset)] if negative else []) + words)
@@ -390,6 +396,7 @@ def _fraction(writer: Writer, ruleset: str, value: str) -> str:
         raise ValueError(f"{value!r} is not a fraction of two whole numbers")
     negative = top.startswith("-") != bottom.startswith("-")
     top, bottom = map(digits.normalise, terms)
+    negative = negative and top != "0"
     if bottom == "0":
         raise ZeroDivisionError(f"denominator is zero: {value}")
     whole, rest = digits.divide_whole(top, bottom)
@@ -441,6 +448,8 @@ def _ordinal_of(writer: Writer, number: str) -> str:
 
 def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str, denominator: str) -> str:
     lead = [writer.render(ruleset, whole)] if whole != "0" else []
+    if lead and denominator in spec.get("mixed_named", {}):
+        return " ".join([*lead, spec["mixed_named"][denominator]])
     if denominator in spec["named"]:
         return " ".join([*lead, spec["named"][denominator]])
     word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, denominator))

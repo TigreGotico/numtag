@@ -24,6 +24,9 @@ class TestWriterScripts(unittest.TestCase):
     def test_the_italian_writer_block_is_what_the_script_writes(self):
         self.check("writer_it.py", "--check")
 
+    def test_the_kabyle_writer_block_is_what_the_script_writes(self):
+        self.check("writer_kab.py", "--check")
+
     def test_the_french_writer_blocks_are_what_the_script_writes(self):
         for variety in ("fr-FR", "fr-BE", "fr-CH"):
             with self.subTest(variety=variety):
@@ -51,6 +54,6 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_ro.py", "")
 
     def test_the_allow_list_entries_are_what_the_script_writes(self):
-        for lang in ("ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "gl", "ms", "nb", "nl", "pt-PT", "pt-BR", "ro"):
+        for lang in ("ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "gl", "kab", "ms", "nb", "nl", "pt-PT", "pt-BR", "ro"):
             with self.subTest(lang=lang):
                 self.check("allow_list.py", lang)
