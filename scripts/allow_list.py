@@ -454,11 +454,13 @@ def category(row, got):
         if bottom == "200": return "ducentesimo"
         if "ésim" in mine.split()[-1]: return "ordinal_denominator"
     return None
+# fr-* finds category_fr by name; pt-* has no category_pt and takes category.
+categorize = {"id": category_digits, "ms": category_digits}.get(lang) or globals().get("category_" + lang.split("-")[0], category)
 rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "nn": category_nn, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = categorize(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
