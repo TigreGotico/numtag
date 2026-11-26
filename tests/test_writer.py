@@ -70,6 +70,21 @@ def _issue_325(lang: str, text: str) -> bool:
     return lang.startswith("fr-") and bool(ISSUE_325.search(text))
 
 
+ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
+
+
+def _issue_329(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/329: the ro reader leaves out the article "al"/"a" and misses
+    the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea"). The bare words
+    "al", "a" and "de" are exempt too: the reader reads "de" only inside a number ("douăzeci de mii")."""
+    if lang != "ro":
+        return False
+    bare = re.sub(r"^(?:al|a) ", "", text)
+    if ISSUE_329.search(bare) or ISSUE_329.search(text):
+        return True
+    return bare != text and [(m.text, m.kind) for m in tag_numbers(bare, lang)] == [(bare, Kind.ORDINAL)]
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -117,8 +132,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"})
-        self.assertEqual(len(rows), 102141)
+        self.assertEqual({row["lang"] for row in rows}, {"es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 113490)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -233,7 +248,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -293,7 +308,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -313,8 +328,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"])
-        self.assertEqual(VERSION_TWO, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT"])
+        self.assertEqual(WRITERS, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["es", "fr-BE", "fr-CH", "fr-FR", "id", "it", "ms", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -424,6 +439,35 @@ class TestFrench(unittest.TestCase):
     def test_fractions(self):
         self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/4", "5/11")],
                          ["un demi", "deux tiers", "trois quarts", "cinq onzièmes"])
+
+
+class TestRomanian(unittest.TestCase):
+    """DOOM 3 spellings, genders and ordinal headwords, as quoted by dexonline."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "ro", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("14", "16", "21", "60", "101", "2000", "20000", "120000", "2000000")],
+                         ["paisprezece", "șaisprezece", "douăzeci și unu", "șaizeci", "o sută unu", "două mii",
+                          "douăzeci de mii", "o sută douăzeci de mii", "două milioane"])
+
+    def test_the_last_word_agrees_with_the_gender(self):
+        self.assertEqual([self.say(n, gender="feminine") for n in ("1", "12", "22", "1002")],
+                         ["una", "douăsprezece", "douăzeci și două", "o mie două"])
+        self.assertEqual(self.say("2", gender="neuter"), "două")
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "2", "11", "21", "100", "1000", "2000")],
+                         ["primul", "al doilea", "al unsprezecelea", "al douăzeci și unulea", "al o sutălea",
+                          "al mielea", "al două miilea"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("2", "11", "20", "100", "1000")],
+                         ["a doua", "a unsprezecea", "a douăzecea", "a suta", "a mia"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "3/4", "7/100", "20/3", "3/25")],
+                         ["o jumătate", "trei jumătăți", "două treimi", "trei pătrimi", "șapte sutimi",
+                          "douăzeci de treimi", "trei pe douăzeci și cinci"])
 
 
 class TestPortugueseScales(unittest.TestCase):

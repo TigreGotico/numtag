@@ -92,6 +92,37 @@ SRC.update({
  "fr_et_unieme": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", example \"la mille et unième nuit\"; ovos-number-parser writes \"cent unième\".",
  "fr_short": "numtag/lexicon/fr-FR.json, the setting scale: French counts in the long scale only, so a call for the short scale reads the long one.",
 })
+RO_DOOM = "DOOM 3 (2021), as quoted by dexonline (Papers/Languages/Romance/Romanian/)"
+SRC.update({
+ "ro_ordinal": RO_DOOM + ": \"sutălea (al o ~) ... f. a suta/a o suta\", \"mielea (al ~/al o ~) ... f. a mia/a o mia\", \"miilea (al + num. + ~)\"; ovos-number-parser writes \"al sutălea primul\" for 101 and \"al doi miliardulea\".",
+ "ro_article": RO_DOOM + ": \"locul doi, parcela doi = al doilea/a doua\"; the article \"al\" is part of the ordinal, and ovos-number-parser drops it in the neuter.",
+ "ro_zero": "numtag/lexicon/ro.json, the ro writer: an ordinal starts at 1, and no saved source gives an ordinal of 0.",
+ "ro_gender": RO_DOOM + ": \"doi2 num. m., f. două\", \"!unu2 num. m., g.-d. unuia; f. una\"; the last word agrees with the gender of the call, also after a scale word (\"o mie una\", \"două milioane două\"); ovos-number-parser writes the masculine there.",
+ "ro_range": "numtag/lexicon/ro.json, the ro writer: an ordinal goes from 1 to 10^21 - 1, and outside it spell() raises; ovos-number-parser writes these numbers.",
+ "ro_fraction": "numtag/lexicon/ro.json, the ro fraction block: DOOM 3 lists jumătate, treime, pătrime and cincime as nouns; the count agrees with the feminine noun (\"o jumătate\"). ovos-number-parser writes \"una jumătăți\" and \"trei douăzeci și cinci părți\". SILVER: the reading \"trei pe douăzeci și cinci\".",
+ "ro_decimal": "SILVER: CLDR RBNF ro x.x \"←← virgulă →→\" and numtag read each decimal digit; ovos-number-parser reads the digits as one number. No saved source.",
+ "ro_big": "numtag/lexicon/ro.json, the ro writer: the scale words stop at trilion (10^18), so from 10^21 the writer reads the exponent.",
+})
+def category_ro(row, got):
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction":
+        if row["arg"].split("/")[1].lstrip("-") == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "ro_fraction"
+    if row["fn"] == "number" and isinstance(row["arg"], float): return "ro_decimal"
+    if row["fn"] == "ordinal" or kw.get("ordinals"):
+        if str(row["arg"]) == "0": return "ro_zero"
+        if got == {"err": "ValueError"}: return "ro_range"
+        if kw.get("gender") == "neutral" and "al " + out == mine: return "ro_article"
+        return "ro_ordinal" if mine.startswith(("al ", "a ", "primul", "prima")) else None
+    if kw.get("gender") in ("feminine", "neutral") and out != mine:
+        last = {"unu": "una" if kw["gender"] == "feminine" else "unu", "doi": "două", "doisprezece": "douăsprezece"}
+        if re.sub(r"\b(unu|doi|doisprezece)$", lambda m: last[m.group(1)], out) == mine: return "ro_gender"
+    if "ori zece la puterea" in mine:
+        return "ro_decimal" if "ori zece la puterea" in out else "ro_big"
+    return None
 def category_fr(row, got):
     kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
     if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
@@ -132,7 +163,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
