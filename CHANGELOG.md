@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.26.0a2](https://github.com/TigreGotico/numtag/tree/0.26.0a2) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.26.0a1...0.26.0a2)
+
+**Merged pull requests:**
+
+- chore: commit the writer and allow-list generators with a check [\#314](https://github.com/TigreGotico/numtag/pull/314) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.26.0a1](https://github.com/TigreGotico/numtag/tree/0.26.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.25.2a1...0.26.0a1)
@@ -610,10 +618,6 @@
 ## [0.13.2a1](https://github.com/TigreGotico/numtag/tree/0.13.2a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.1a1...0.13.2a1)
-
-**Merged pull requests:**
-
-- fix: a locale's own group mark before a point decimal reads as one number [\#82](https://github.com/TigreGotico/numtag/pull/82) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.13.1a1](https://github.com/TigreGotico/numtag/tree/0.13.1a1) (2026-11-17)
 
