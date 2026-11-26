@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.36.1a1](https://github.com/TigreGotico/numtag/tree/0.36.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.0a1...0.36.1a1)
+
+**Merged pull requests:**
+
+- fix: ar reader reads Levantine تنعش \(12\) [\#345](https://github.com/TigreGotico/numtag/pull/345) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.36.0a1](https://github.com/TigreGotico/numtag/tree/0.36.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.35.0a1...0.36.0a1)
@@ -601,10 +609,6 @@
 ## [0.15.4a1](https://github.com/TigreGotico/numtag/tree/0.15.4a1) (2026-11-18)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.3a1...0.15.4a1)
-
-**Merged pull requests:**
-
-- fix: a marker word at the end leaves a first digit its count [\#135](https://github.com/TigreGotico/numtag/pull/135) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.3a1](https://github.com/TigreGotico/numtag/tree/0.15.3a1) (2026-11-17)
 
