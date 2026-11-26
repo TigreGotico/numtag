@@ -32,7 +32,7 @@ ISSUE_305 = re.compile(r"(?:ilionésim[ao].*){2}|(?:mil|ilion)ésim[ao] .*(?:mil
 
 
 def _issue_305(lang: str, text: str) -> bool:
-    return lang == "pt-PT" and bool(ISSUE_305.search(text))
+    return lang in ("pt-PT", "pt-BR") and bool(ISSUE_305.search(text))
 
 
 def _file(name: str) -> dict:
@@ -82,8 +82,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"id", "ms", "pt-PT"})
-        self.assertEqual(len(rows), 34047)
+        self.assertEqual({row["lang"] for row in rows}, {"id", "ms", "pt-BR", "pt-PT"})
+        self.assertEqual(len(rows), 45396)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -239,7 +239,7 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["id", "ms", "pt-PT"])
+        self.assertEqual(WRITERS, ["id", "ms", "pt-BR", "pt-PT"])
         self.assertEqual(VERSION_TWO, ["id", "ms", "pt-BR", "pt-PT"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
@@ -251,6 +251,27 @@ class TestRevisions(unittest.TestCase):
         numtag.lexicon.revision.cache_clear()
         self.addCleanup(numtag.lexicon.revision.cache_clear)
         self.assertNotEqual(numtag.lexicon.revision("id"), before)
+
+
+class TestPortugueseScales(unittest.TestCase):
+    """pt-BR counts in the short scale (Priberam, "bilião", sense 2: "[Brasil] Mil milhões"), pt-PT in the long."""
+
+    def test_the_short_scale_reads_brazilian_words(self):
+        self.assertEqual(spell("1000000000", "pt-BR")[0].text, "um bilhão")
+        self.assertEqual(spell("16", "pt-BR")[0].text, "dezesseis")
+        self.assertEqual(spell("1000000000", "pt-PT")[0].text, "mil milhões")
+        self.assertEqual(spell("1000000000", "pt-PT", scale="short")[0].text, "um bilião")
+
+    def test_a_cardinal_past_the_scale_words_reads_the_exponent(self):
+        # the -illions run with no gap to rank 20, "vigintilhão", 10^63 in the short scale
+        self.assertEqual(spell("1" + "0" * 68, "pt-BR")[0].text, "cem mil vigintilhões")
+        self.assertEqual(spell("1" + "0" * 100, "pt-BR")[0].text, "um vezes dez elevado a cem")
+        self.assertEqual(spell("1" + "0" * 100, "pt-PT")[0].text, "dez mil sedeciliões")
+
+    def test_an_ordinal_past_the_scale_words_raises(self):
+        self.assertEqual(spell("1" + "0" * 30, "pt-BR", form="ordinal")[0].text, "nonilionésimo")
+        with self.assertRaises(ValueError):
+            spell("1" + "0" * 69, "pt-BR", form="ordinal")
 
 
 class TestExtends(unittest.TestCase):

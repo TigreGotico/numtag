@@ -191,13 +191,17 @@ class Writer:
         """The minus word of a rule set: the text of its minus rule apart from the number."""
         return _tidy("".join(value for kind, value in self.rulesets[ruleset].negative if kind == "lit"))
 
-    def variants(self, form: SpokenForm, gender: str | None, case: str | None, scale: str | None = None) -> list[dict]:
+    def spec(self, form: SpokenForm, scale: str | None = None) -> dict:
+        """The form, with the sub-form of the scale in place of the base."""
         spec = self.forms.get(form.value)
         if spec is None and form in (SpokenForm.YEAR, SpokenForm.DIGITS):
             spec = self.forms["cardinal"]
         if spec is None:
             raise ValueError(f"{self.name}: no {form.value} form")
-        spec = spec.get("scale", {}).get(scale or self.scale, spec)
+        return spec.get("scale", {}).get(scale or self.scale, spec)
+
+    def variants(self, form: SpokenForm, gender: str | None, case: str | None, scale: str | None = None) -> list[dict]:
+        spec = self.spec(form, scale)
         if case is not None:
             if case not in spec.get("case", {}):
                 raise ValueError(f"{self.name}: no case {case!r}; it has {sorted(spec.get('case', {}))}")
@@ -258,27 +262,33 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     form = SpokenForm(form)
     if decimals not in (None, "digits", "number"):
         raise ValueError(f"decimals is 'digits' or 'number', not {decimals!r}")
+    scale = scale and Scale(scale).value
+    spec = writer.spec(form, scale)
     spellings: list[Spelling] = []
-    for variant in writer.variants(form, gender, case, scale and Scale(scale).value):
+    for variant in writer.variants(form, gender, case, scale):
         text = _speak(writer, variant["ruleset"], value, form, places, scientific,
-                      decimals or writer.decimal.get("read", "digits"))
+                      decimals or writer.decimal.get("read", "digits"), spec)
         if all(text != seen.text for seen in spellings):
             spellings.append(Spelling(text, SpellingReason(variant["reason"]), len(spellings)))
     return tuple(spellings)
 
 
 def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: int | None, scientific: bool,
-           decimals: str) -> str:
+           decimals: str, spec: dict) -> str:
     if "/" in value:
         return _fraction(writer, ruleset, value)
     negative, whole, fraction = _split(value, keep_zeros=decimals == "number")
     places = writer.decimal["places"] if places is None else places
     if form is SpokenForm.ORDINAL:
-        return _ordinal(writer, ruleset, negative, whole, fraction)
+        return _ordinal(writer, ruleset, negative, whole, fraction, spec)
     if form is SpokenForm.DIGITS:
         return _each_digit(writer, ruleset, negative, whole, fraction)
     if scientific and (text := _exponent(writer, ruleset, negative, whole, fraction, places, decimals)):
         return text
+    if (maximum := spec.get("maximum")) and digits.compare(whole, maximum) > 0:
+        if text := _exponent(writer, ruleset, negative, whole, fraction, places, decimals):
+            return text
+        raise ValueError(f"{writer.name}: no words name a number above {maximum}")
     if fraction and places <= 0 and digits.compare(whole, "1") < 0 and fraction[0] < "5":
         negative, whole, fraction = False, "0", ""
     elif fraction and places > 0 and whole == "0" and _below_quantum(fraction, places):
@@ -322,13 +332,13 @@ def _each_digit(writer: Writer, ruleset: str, negative: bool, whole: str, fracti
     return " ".join(([writer.minus(ruleset)] if negative else []) + words)
 
 
-def _ordinal(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str) -> str:
-    minimum = writer.forms["ordinal"].get("minimum", "0")
+def _ordinal(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str, spec: dict) -> str:
+    minimum = spec.get("minimum", "0")
     if negative and writer.rulesets[ruleset].negative is not None and not fraction:
         return writer.render(ruleset, whole, negative=True)
     if negative or fraction or digits.compare(whole, minimum) < 0:
         raise ValueError(f"ordinals must be whole numbers from {minimum}")
-    maximum = writer.forms["ordinal"].get("maximum")
+    maximum = spec.get("maximum")
     if maximum and digits.compare(whole, maximum) > 0:
         raise ValueError(f"{writer.name}: no ordinal words name a number above {maximum}")
     return writer.render(ruleset, whole)
