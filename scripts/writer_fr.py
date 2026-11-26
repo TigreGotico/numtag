@@ -23,7 +23,7 @@ ORDINAL_2000 = ("Not checked against a quoted example: \"deux millième\" applie
                 "ordinal, as OQLF BDL 23494 says the hyphen rule \"vaut tant pour les déterminants numéraux ... que "
                 "pour les adjectifs ordinaux\"")
 SOURCE_CH = ("Académie française, «Questions de langue: nombres»: \"octante, qui a été supplanté par quatre-vingts et "
-             "huitante – en Suisse – tant dans l'usage courant que dans l'enseignement ou les textes administratifs\"; "
+             "huitante – en Suisse – tant dans l’usage courant que dans l’enseignement ou les textes administratifs\"; "
              "Avanzi 2017, Français de nos régions, «Comment dit-on 80 en Belgique et en Suisse?»: in Vaud, Fribourg "
              "and Valais 77,4 to 82,4% use \"huitante\", and \"huitante est également en usage à l’école et dans "
              "l’administration\". OFS, Relevé structurel 2024, T 01.08.01.02 «Langues principales selon la grande région et le "
