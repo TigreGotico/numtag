@@ -26,7 +26,9 @@ SOURCE_CH = ("Académie française, «Questions de langue: nombres»: \"octante,
              "huitante – en Suisse – tant dans l'usage courant que dans l'enseignement ou les textes administratifs\"; "
              "Avanzi 2017, Français de nos régions, «Comment dit-on 80 en Belgique et en Suisse?»: in Vaud, Fribourg "
              "and Valais 77,4 to 82,4% use \"huitante\", and \"huitante est également en usage à l’école et dans "
-             "l’administration\". CLDR RBNF fr_CH \"huitante\"")
+             "l’administration\". OFS, Relevé structurel 2024, T 01.08.01.02 «Langues principales selon la grande région et le "
+             "canton»: French as a main language, permanent residents aged 15 or over, up to three main languages per "
+             "person: Vaud, Fribourg and Valais 969 116 against Geneva, Neuchâtel, Jura and Bern 596 172. CLDR RBNF fr_CH \"huitante\"")
 
 UNITS = ("zéro un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize dix-sept "
          "dix-huit dix-neuf").split()
