@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.28.1a1](https://github.com/TigreGotico/numtag/tree/0.28.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.28.0a1...0.28.1a1)
+
+**Merged pull requests:**
+
+- fix: it compounds after mille and mila end in tré [\#322](https://github.com/TigreGotico/numtag/pull/322) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.28.0a1](https://github.com/TigreGotico/numtag/tree/0.28.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.27.0a1...0.28.0a1)
@@ -621,7 +629,6 @@
 **Merged pull requests:**
 
 - fix\(tr\): read a lone "çeyrek" as a quarter [\#88](https://github.com/TigreGotico/numtag/pull/88) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(eu\): read erdi, heren and laurden with the article -a [\#86](https://github.com/TigreGotico/numtag/pull/86) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.13.3a1](https://github.com/TigreGotico/numtag/tree/0.13.3a1) (2026-11-17)
 
