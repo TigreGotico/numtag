@@ -82,10 +82,10 @@ def category_it(row, got):
 FR_ACADEMIE = "Académie française, «Questions de langue: nombres»: the traditional spelling links with a space the \"et\" of 21, 31 ... 71 (\"vingt et un\"), and \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments\". The writer prints the traditional spelling; ovos-number-parser joins only \"-et-\", which neither spelling does."
 SRC.update({
  "fr_et": FR_ACADEMIE,
- "fr_fraction": "SILVER: no saved source on the reading of a fraction in French. numtag reads the numerator as a cardinal and the denominator as a plural ordinal after a numerator other than 1, \"trois demis\", \"zéro cinquièmes\".",
+ "fr_fraction": "OQLF, Banque de dépannage linguistique 23494, «Pluriel des fractions»: the denominator is a noun that \"prend la marque du pluriel comme tout autre nom\" (\"deux cinquièmes\"), so \"trois demis\" and \"cinq onzièmes\"; ovos-number-parser reads an improper fraction as a mixed number. SILVER: the plural after \"zéro\".",
  "fr_big": "numtag/lexicon/fr-FR.json, the scale_noun entries: million 10^6, milliard 10^9, billion 10^12, billiard 10^15, trillion 10^18 (long scale), so 10^15 reads \"un billiard\" and the exponent form starts at 10^24.",
  "fr_zero": "CLDR RBNF fr, %spellout-ordinal-masculine: \"0: zéroième\"; the call asks for the ordinal, and ovos-number-parser reads the cardinal.",
- "fr_scale_count": "SILVER: the count before a scale noun keeps the plural s (Académie française, «Questions de langue: nombres»: \"Milliard, million et millier, étant des noms\"), so the exact ordinal reads \"quatre-vingts millionième\"; no saved source names this ordinal.",
+ "fr_scale_count": "Académie française, «vingt et cent»: \"Ils restent également invariables lorsqu’ils sont employés comme adjectifs numéraux ordinaux\": \"quatre-vingt millionième\"; ovos-number-parser writes the plural s before the ordinal of a scale.",
  "fr_scale_one": "CLDR RBNF fr, %spellout-ordinal-masculine reads the ordinal of 10^6 as \"millionième\" with no \"un\"; numtag reads every scale ordinal so, \"billiardième\".",
  "fr_short": "numtag/lexicon/fr-FR.json, the setting scale: French counts in the long scale only, so a call for the short scale reads the long one.",
 })

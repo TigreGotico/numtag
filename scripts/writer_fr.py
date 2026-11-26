@@ -15,12 +15,18 @@ ACADEMIE = ("Académie française, «Questions de langue: nombres»: the traditi
             "numerals below one hundred and links the others with a space; \"il est également possible, en accord "
             "avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui "
             "composent le nombre\". The writer prints the traditional spelling; the reader reads both")
-ACADEMIE_NOUNS = ("Académie française, «Questions de langue: nombres»: \"Milliard, million et millier, étant des noms, "
-                  "ne sont pas concernés par cette rectification\"")
+ACADEMIE_NOUNS = "Académie française, «Questions de langue: nombres»: \"vingt et cent varient devant millier, million, milliard\""
+ACADEMIE_ORDINAL = ("Académie française, «vingt et cent»: \"Ils restent également invariables lorsqu’ils sont employés "
+                    "comme adjectifs numéraux ordinaux\", so the count before an ordinal in -ième has no s: "
+                    "\"quatre-vingt millionième\", \"deux cent millionième\"")
 ORDINAL_2000 = ("Not checked against a quoted example: \"deux millième\" applies the traditional rule to the "
                 "ordinal, as OQLF BDL 23494 says the hyphen rule \"vaut tant pour les déterminants numéraux ... que "
                 "pour les adjectifs ordinaux\"")
-SILVER_CH = "SILVER: no official source on \"huitante\" was reached; the form is that of CLDR RBNF fr_CH"
+SOURCE_CH = ("Académie française, «Questions de langue: nombres»: \"octante, qui a été supplanté par quatre-vingts et "
+             "huitante – en Suisse – tant dans l'usage courant que dans l'enseignement ou les textes administratifs\"; "
+             "Avanzi 2017, Français de nos régions, «Comment dit-on 80 en Belgique et en Suisse?»: in Vaud, Fribourg "
+             "and Valais 77,4 to 82,4% use \"huitante\", and \"huitante est également en usage à l’école et dans "
+             "l’administration\"; these cantons hold most French speakers of Switzerland. CLDR RBNF fr_CH \"huitante\"")
 
 UNITS = ("zéro un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize dix-sept "
          "dix-huit dix-neuf").split()
@@ -36,8 +42,10 @@ if variety == "fr-CH":
 SCALES = [(6, "million"), (9, "milliard"), (12, "billion"), (15, "billiard"), (18, "trillion")]
 
 
-def R(value, text, source=None):
+def R(value, text, source=None, radix=None):
     rule = {"value": str(value), "text": text + ";"}
+    if radix:
+        rule["radix"] = radix
     if source:
         rule["source"] = source
     return rule
@@ -94,19 +102,26 @@ def ordinal(name, first):
     rules = [R("-x", "moins →→"), R(0, "zéroième"), R(1, first)] + [R(n, w) for n, w in ORDINALS.items() if n > 1]
     rules += [R(17, f"dix-→%{name}-unit→")]
     rules += tens(f"{name}-unit", True)
-    rules += [R(100, f"cent→%{name}-rest→"), R(200, f"←%count← cent→%{name}-rest→"),
-              R(1000, f"mill→%{name}-mille→"), R(2000, f"←%count← mill→%{name}-mille→", ORDINAL_2000)]
-    # "millionième", "un million unième", "deux millions unième". The count keeps the plural s before the noun, in
-    # the exact ordinal too ("quatre-vingts millionième"): the engine cannot pick the count by the rest.
+    big = [R(100, f"cent→%{name}-rest→"), R(200, f"←%count← cent→%{name}-rest→"),
+           R(1000, f"mill→%{name}-mille→"), R(2000, f"←%count← mill→%{name}-mille→", ORDINAL_2000)]
+    # A count whose cardinal ends in a plural s ("quatre-vingts", "deux cents") has an exact rule of its own: no s
+    # before the ordinal ("quatre-vingt millionième"), the s before the noun ("quatre-vingts millions unième").
+    # The radix keeps the divisor at the scale, so the count is the whole quotient.
+    plural_counts = [c for c in range(2, 1000) if (c % 100 == 0 and c >= 200) or (c % 100 == 80 and 80 not in TENS)]
     for exponent, noun in SCALES:
-        rules += [R(10 ** exponent, f"{noun}ième"), R(10 ** exponent + 1, f"un {noun} →%{name}-unit→"),
-                  R(2 * 10 ** exponent, f"←%cardinal-m← {noun}→%{name}-scale→", ACADEMIE_NOUNS)]
+        radix = 10 ** exponent
+        big += [R(radix, f"{noun}ième"), R(radix + 1, f"un {noun} →%{name}-unit→"),
+                R(2 * radix, f"←%cardinal-m← {noun}→%{name}-scale→", ACADEMIE_NOUNS, radix)]
+        for c in plural_counts:
+            big += [R(c * radix, f"←%count← {noun}ième", ACADEMIE_ORDINAL, radix),
+                    R(c * radix + 1, f"←%cardinal-m← {noun}→%{name}-scale→", None, radix)]
+    rules += big
     unit = [R(n, w) for n, w in ORDINALS.items()]
     rest = [R(0, "ième"), R(1, f" =%{name}-unit=")]
     scale = [R(0, "ième"), R(1, f"s =%{name}-unit=")]
     mille = [R(0, "ième"), R(1, f"e =%{name}-unit=")]
     inner = [r if not r["text"].endswith("ième;") or r["value"] not in {str(10 ** e) for e, _ in SCALES}
-             else R(r["value"], "un " + r["text"][:-1]) for r in rules[-3 * len(SCALES) - 4:]]
+             else R(r["value"], "un " + r["text"][:-1]) for r in big]
     sets = [(name, rules), (f"{name}-unit", unit + [R(17, f"dix-→%{name}-unit→")] + tens(f"{name}-unit", True)
                             + inner),
             (f"{name}-rest", rest), (f"{name}-scale", scale), (f"{name}-mille", mille)]
@@ -119,7 +134,7 @@ rulesets = {}
 for name, rules in sets:
     source = CLDR + f", %spellout-{name}" if "-" not in name.removeprefix("cardinal-").removeprefix("ordinal-") else \
         "a part of " + name.rsplit("-", 1)[0]
-    rulesets[name] = {"source": f"{source}. {ACADEMIE}" + (f". {SILVER_CH}" if variety == "fr-CH" else ""),
+    rulesets[name] = {"source": f"{source}. {ACADEMIE}" + (f". {SOURCE_CH}" if variety == "fr-CH" else ""),
                       "rules": rules}
 maximum = "9" * 24
 gender = {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}],
@@ -141,8 +156,10 @@ block = {
     "fraction": {"mixed": False, "limit": 10, "single": "un {denominator}", "plural": {"s": "s", "": "s"},
                  "named": {"2": "demi", "3": "tiers", "4": "quart"}, "denominator": "{cardinal}ièmes",
                  "ruleset": "ordinal-m", "numerator": "cardinal-m",
-                 "source": "Académie française, «Questions de langue: nombres» is not quoted for fractions. "
-                           "Not checked: the numerator is a cardinal and the denominator a plural ordinal, with "
-                           "\"demi\", \"tiers\" and \"quart\" for 2, 3 and 4; \"tiers\" is the same in the plural."},
+                 "source": "OQLF, Banque de dépannage linguistique 23494, «Pluriel des fractions»: the fractions "
+                           "\"sont formées d’un déterminant numéral, qui est le numérateur ( trois ), et d’un nom, qui est "
+                           "le dénominateur ( cinquièmes ). Ce dernier prend la marque du pluriel comme tout autre nom\". "
+                           "SILVER, not in a saved source: \"demi\", \"tiers\" and \"quart\" for 2, 3 and 4, and the "
+                           "plural after \"zéro\"."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)

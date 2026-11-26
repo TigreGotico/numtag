@@ -399,6 +399,12 @@ class TestFrench(unittest.TestCase):
                           "millionième", "un million unième"])
         self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="feminine"), "première")
 
+    def test_vingt_and_cent_before_a_scale_ordinal_take_no_s(self):
+        """OQLF BDL 21532: invariable "lorsqu'ils ont une valeur ordinale"; the noun before a rest keeps the s."""
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("80000000", "200000000", "80000001", "100000000")],
+                         ["quatre-vingt millionième", "deux cent millionième", "quatre-vingts millions unième",
+                          "cent millionième"])
+
     def test_fractions(self):
         self.assertEqual([self.say(f) for f in ("1/2", "2/3", "3/4", "5/11")],
                          ["un demi", "deux tiers", "trois quarts", "cinq onzièmes"])
