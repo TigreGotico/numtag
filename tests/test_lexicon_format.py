@@ -374,7 +374,8 @@ class TestRevision(unittest.TestCase):
                   "settings": {**base["settings"], **derived["settings"]},
                   "words": {**base["words"], **derived.get("words", {})},
                   "inflection": {},
-                  "entries": base["entries"]}
+                  "entries": base["entries"],
+                  "writer": derived["writer"]}
         self.assertEqual(numtag.revision("pt-BR"), self.sha256(merged))
 
     def test_every_lexicon_has_its_own_revision(self):
