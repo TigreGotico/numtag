@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.37.1a2](https://github.com/TigreGotico/numtag/tree/0.37.1a2) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.1a1...0.37.1a2)
+
+**Merged pull requests:**
+
+- test: strict xfails name the AssertionError they expect [\#333](https://github.com/TigreGotico/numtag/pull/333) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.37.1a1](https://github.com/TigreGotico/numtag/tree/0.37.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.0a1...0.37.1a1)
@@ -608,7 +616,6 @@
 **Merged pull requests:**
 
 - fix\(gl\): read "mil e" and the next group as one number [\#154](https://github.com/TigreGotico/numtag/pull/154) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix\(nl\): read "anderhalve" as 1.5 [\#151](https://github.com/TigreGotico/numtag/pull/151) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.4a3](https://github.com/TigreGotico/numtag/tree/0.15.4a3) (2026-11-18)
 
