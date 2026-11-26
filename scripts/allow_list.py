@@ -275,6 +275,43 @@ def category_en(row, got, out=None):
     if row["fn"] == "fraction" and re.sub(r" one (?=(hundred|thousand|\w+illion)ths?$)", " ", out.replace("-", " ")) == flat:
         return "en_fraction_scale"
     return None
+NB_BM = "Bokmålsordboka (ord.uib.no; Papers/Languages/Germanic/Norwegian Bokmål/)"
+NB_CLDR = "CLDR RBNF no (common/rbnf/no.xml as shipped in unicode-rbnf 2.5.1)"
+NB_SR = "Språkrådet, «Tall, tid og dato» (Papers/Languages/Germanic/Norwegian Bokmål/sprakradet_tall-tid-dato.html)"
+SRC.update({
+ "nb_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"null\".",
+ "nb_accent": NB_BM + ", «million»: \"én million\"; " + NB_CLDR + ", %spellout-cardinal-reale: \"1000000: én million[ →→];\"; ovos-number-parser writes \"en million\" or no count.",
+ "nb_groups": NB_CLDR + ", %spellout-cardinal-reale: \"2000000: ←← millioner[ →→];\" and %%and-small: \"100: =%%spellout-cardinal-reale=;\": \"og\" comes only after \"hundre\" and before a last group below 100 after \"tusen\"; ovos-number-parser writes \"og\" before every group.",
+ "nb_fraction": NB_SR + ": \"Hovedregelen er at vi bruker grunntall i nevneren i brøker. åtte trettendeler ni trettifiredeler\", \"en tredel eller en tredjedel\"; ovos-number-parser writes the ordinal (\"ni tredje\", \"en åttendedel\").",
+ "nb_range": "numtag/lexicon/nb.json, the nb writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trillion), and outside it spells the power of ten or raises ValueError.",
+ "nb_negative": "numtag/lexicon/nb.json, the nb writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "nb_zero": NB_CLDR + ", %spellout-ordinal-masculine: \"0: nullte;\"; ovos-number-parser writes \"nulte\".",
+ "nb_short": "numtag/lexicon/nb.json, the setting scale: Norwegian counts in the long scale (" + NB_BM + ", «billion»: \"grunntallet 1 000 000 000 000\"); the writer has no short-scale reading.",
+})
+def category_nb(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_nb({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("nb_short" if re.search(r"illi|illiard", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "nb_negative"
+    if out == "nulte" and mine == "nullte": return "nb_zero"
+    if "ti opphøyd i" in mine or got == {"err": "ValueError"}: return "nb_range"
+    if row["fn"] == "fraction":  # the numerator agrees, and the part is the cardinal and "del": "to tredeler"
+        top, bottom = (int(x.lstrip("-")) for x in row["arg"].split("/"))
+        theirs = out.removeprefix("minus ").split(" og ")[0] if top < bottom else out.removeprefix("minus ")
+        same = mine.removeprefix("minus ").split()[0] == theirs.split()[0] or top > bottom
+        return "nb_fraction" if same and re.search(r"(del|deler|halv|halve)$", mine) else None
+    flat = lambda t: re.sub(r"\b(én|en) (?=\w*(illion|illiard))", "", t)
+    if flat(re.sub(r"( null)+$", "", out)) == flat(mine) and " komma " in mine: return "nb_decimal"
+    if flat(out) == flat(mine): return "nb_accent"
+    if flat(out).replace(" og ", " ") == flat(mine).replace(" og ", " "): return "nb_groups"
+    return None
 DE_RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024) (Papers/Languages/Germanic/German/rechtschreibrat_amtliches_regelwerk_2024.pdf)"
 DE_CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
 SRC.update({
@@ -366,7 +403,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
