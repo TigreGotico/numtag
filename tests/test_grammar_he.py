@@ -113,7 +113,7 @@ class TestHebrew(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/263")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/263")
     def test_definite_article_ordinal_is_an_ordinal(self):
         self.assertEqual(read("השני", "he"), [("השני", "2", O)])
 

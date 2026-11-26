@@ -137,7 +137,7 @@ class TestMinusIdioms(unittest.TestCase):
         self.assertEqual(read("-.5", "it"), [("-.5", "-0.5", "decimal")])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/161")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/161")
 @pytest.mark.parametrize("text, expected", [
     ('novecentonovantanove sistiliardi', [('novecentonovantanove sistiliardi', '999000000000000000000000000000000000000000', C)]),
 ])

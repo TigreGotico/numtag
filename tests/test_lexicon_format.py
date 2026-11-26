@@ -461,16 +461,16 @@ class TestLanguageTags(unittest.TestCase):
         for tag in (" pt-BR", "pt-BR "):
             self.assertEqual(lexicon_name(tag), "pt-BR")
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/291")
     def test_bosnian_reads_a_thousand_of_hiljada(self):
         self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("dvije hiljade i petsto", "bs")],
                          [("dvije hiljade i petsto", "2500")])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/291")
     def test_swiss_german_reads_its_twenty(self):
         self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("zwänzg", "gsw")], [("zwänzg", "20")])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/291")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/291")
     def test_egyptian_arabic_reads_its_twenty_two(self):
         self.assertEqual([(m.text, m.value) for m in numtag.tag_numbers("اتنين وعشرين", "arz")],
                          [("اتنين وعشرين", "22")])

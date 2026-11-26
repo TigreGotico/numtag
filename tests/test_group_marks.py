@@ -96,7 +96,7 @@ class TestMixedMarks(unittest.TestCase):
                     self.assertEqual(read(text, lang), [(text, "1000000.5", "decimal")])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/131")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/131")
 @pytest.mark.parametrize("lang, text, expected", [
     ('fr-FR', 'le 10 000e visiteur', [('10 000e', "10000", "ordinal")]),
     ('fr-FR', 'le 10\u00a0000e visiteur', [('10\u00a0000e', "10000", "ordinal")]),

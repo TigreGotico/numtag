@@ -226,7 +226,7 @@ class TestRoundTrip(unittest.TestCase):
         """The writer says "koma", which the Malay lexicon does not read as a decimal mark: it says "perpuluhan"."""
         self.assertEqual(self.decimal_failures("ms"), [])
 
-    @pytest.mark.xfail(strict=True, reason="a denominator over 20 is written as a cardinal and an ordinal that the reader "
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="a denominator over 20 is written as a cardinal and an ordinal that the reader "
                        "splits https://github.com/TigreGotico/numtag/issues/295")
     def test_the_reader_reads_a_fraction_with_a_denominator_over_20_back_as_one_mention(self):
         failures = []
@@ -238,7 +238,7 @@ class TestRoundTrip(unittest.TestCase):
                     failures.append((lang, numerator, denominator, text, found))
         self.assertEqual(failures, [])
 
-    @pytest.mark.xfail(strict=True, reason="a whole part before a fraction reads back as another value, 31/3 as 11/3 and "
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="a whole part before a fraction reads back as another value, 31/3 as 11/3 and "
                        "32/3 as 4 https://github.com/TigreGotico/numtag/issues/295")
     def test_a_mixed_fraction_reads_as_its_parts_or_as_its_whole_value(self):
         # Whether the reader joins the whole part and the fraction is open in the issue; any other value is wrong.
@@ -270,7 +270,7 @@ class TestRoundTrip(unittest.TestCase):
                           if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
                 self.assertEqual(unread, [])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/305")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
     def test_the_pt_PT_reader_reads_ordinals_with_two_scale_groups_and_high_scale_words(self):
         found = [[m.value for m in tag_numbers(spell(n, "pt-PT", form=SpokenForm.ORDINAL)[0].text, "pt-PT")]
                  for n in ("347713783", "1000000000000000000")]
@@ -787,7 +787,7 @@ class TestInterpreter(unittest.TestCase):
         rules = [{"value": "0", "text": "a­b  c;"}]
         self.assertEqual(self.read(rules, "0"), "ab c")
 
-    @pytest.mark.xfail(strict=True, reason="the apostrophe that opens a rule text stays in the words "
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="the apostrophe that opens a rule text stays in the words "
                        "https://github.com/TigreGotico/numtag/issues/293")
     def test_an_apostrophe_that_opens_a_rule_text_is_no_part_of_the_words(self):
         # ICU rule text format: a leading apostrophe keeps the space after it and is not output.
@@ -952,7 +952,7 @@ class TestFraction(unittest.TestCase):
 
 
 class TestNamedDenominator(unittest.TestCase):
-    @pytest.mark.xfail(strict=True, reason="a named denominator drops the numerator also where it is more than 1 "
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="a named denominator drops the numerator also where it is more than 1 "
                        "https://github.com/TigreGotico/numtag/issues/294")
     def test_a_named_denominator_keeps_a_numerator_other_than_one(self):
         variants = Variants(self)
@@ -965,7 +965,7 @@ class TestNamedDenominator(unittest.TestCase):
 
 
 class TestZeroFraction(unittest.TestCase):
-    @pytest.mark.xfail(strict=True, reason="-0/5 is written with a minus word although its value is zero "
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="-0/5 is written with a minus word although its value is zero "
                        "https://github.com/TigreGotico/numtag/issues/295")
     def test_a_fraction_of_a_zero_numerator_has_no_minus_word(self):
         self.assertEqual([spell("-0/5", lang)[0].text for lang in WRITERS],

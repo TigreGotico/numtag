@@ -506,62 +506,62 @@ class TestLanguageTags(unittest.TestCase):
 class TestOpenIssues(unittest.TestCase):
     # Rows each open issue lists. The expected value is the issue's, worked out by hand.
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/215")
     def test_dreizehntel_is_one_thirteenth(self):
         self.assertEqual(read("dreizehntel", "de"), [("dreizehntel", "1/13", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/215")
     def test_neunzehntel_is_one_nineteenth(self):
         self.assertEqual(read("neunzehntel", "de"), [("neunzehntel", "1/19", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/215")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/215")
     def test_ein_dreizehntel_is_one_thirteenth(self):
         self.assertEqual(read("ein Dreizehntel", "de"), [("ein Dreizehntel", "1/13", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/216")
     def test_hundred_and_three_quarters_compound(self):
         self.assertEqual(read("hundertdreiviertel", "de"), [("hundertdreiviertel", "100.75", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/216")
     def test_two_hundred_and_a_quarter_compound(self):
         # 200 + 1/4 = 200.25
         self.assertEqual(read("zweihunderteinviertel", "de"), [("zweihunderteinviertel", "200.25", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/216")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/216")
     def test_one_hundred_and_three_quarters_compound(self):
         # 100 + 3/4 = 100.75
         self.assertEqual(read("einhundertdreiviertel", "de"), [("einhundertdreiviertel", "100.75", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/246")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/246")
     def test_norwegian_annet_is_second(self):
         self.assertEqual(read("annet kvartal", "nb"), [("annet", "2", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/253")
     def test_danish_split_four_and_twenty(self):
         self.assertEqual(read("fire og tyve", "da"), [("fire og tyve", "24", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/253")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/253")
     def test_danish_two_and_a_half_with_en(self):
         self.assertEqual(read("to en halv", "da"), [("to en halv", "2.5", F)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/163")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/163")
     def test_danish_minus_before_units_and_tens(self):
         self.assertEqual(read("minus fem og tyve", "da"), [("minus fem og tyve", "-25", C)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_norwegian_nb_zeroth(self):
         self.assertEqual(read("nulte", "nb"), [("nulte", "0", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_norwegian_nn_millionth(self):
         self.assertEqual(read("millionte", "nn"), [("millionte", "1000000", O)])
 
-    @pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/264")
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/264")
     def test_danish_sixtieth(self):
         self.assertEqual(read("tressende", "da"), [("tressende", "60", O)])
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/148")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/148")
 @pytest.mark.parametrize("text, expected", [
     ('in fuenf Tagen', [('fuenf', '5', C)]),
     ('in zwoelf Tagen', [('zwoelf', '12', C)]),
@@ -574,7 +574,7 @@ def test_de_the_ascii_spellings_of_the_umlaut_number_words(text, expected):
     assert read(text, "de") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/168")
 @pytest.mark.parametrize("text, expected", [
     ('Er hat es außer Acht gelassen', []),
     ('Nimm dich in Acht', []),
@@ -585,7 +585,7 @@ def test_de_a_capitalised_number_word_in_an_idiom_or_a_name_is_no_number(text, e
     assert read(text, "de") == expected
 
 
-@pytest.mark.xfail(strict=True, reason="https://github.com/TigreGotico/numtag/issues/168")
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/168")
 @pytest.mark.parametrize("text, expected", [
     ('sechtjin', [('sechtjin', '16', C)]),
 ])
