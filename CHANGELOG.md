@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.36.2a1](https://github.com/TigreGotico/numtag/tree/0.36.2a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.1a1...0.36.2a1)
+
+**Merged pull requests:**
+
+- fix: ar reader reads Levantine pre-noun احدعشر, تنعشر, تلات [\#346](https://github.com/TigreGotico/numtag/pull/346) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.36.1a1](https://github.com/TigreGotico/numtag/tree/0.36.1a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.0a1...0.36.1a1)
@@ -538,10 +546,6 @@
 ## [0.16.1a1](https://github.com/TigreGotico/numtag/tree/0.16.1a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.16.0a1...0.16.1a1)
-
-**Merged pull requests:**
-
-- fix\(fy\): read the inflected clock hours and the digit ordinal "21e" [\#146](https://github.com/TigreGotico/numtag/pull/146) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.16.0a1](https://github.com/TigreGotico/numtag/tree/0.16.0a1) (2026-11-19)
 
