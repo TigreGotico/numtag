@@ -141,6 +141,20 @@
       "type": ["object", "null"],
       "properties": {
         "source": {"type": "string"},
+        "plural": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {"enum": ["zero", "one", "two", "few", "many"]},
+              "mod10": {"type": "array", "items": {"type": "integer", "minimum": 0, "maximum": 9}},
+              "not_mod100": {"type": "array", "items": {"type": "integer", "minimum": 0, "maximum": 99}},
+              "source": {"type": "string"}
+            },
+            "required": ["category", "mod10"],
+            "additionalProperties": false
+          }
+        },
         "rulesets": {
           "type": "object",
           "additionalProperties": {
@@ -186,7 +200,7 @@
         },
         "decimal": {
           "type": "object",
-          "properties": {"word": {"type": "string"}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
+          "properties": {"word": {"type": ["string", "null"]}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
           "required": ["word", "places", "source"],
           "additionalProperties": false
         },
@@ -197,10 +211,11 @@
           "additionalProperties": false
         },
         "fraction": {
-          "type": "object",
+          "type": ["object", "null"],
           "properties": {
             "limit": {"type": "integer", "minimum": 2},
             "named": {"type": "object", "additionalProperties": {"type": "string"}},
+            "mixed_named": {"type": "object", "additionalProperties": {"type": "string"}},
             "denominator": {"type": "string"},
             "single": {"type": "string"},
             "mixed": {"type": "boolean"},
