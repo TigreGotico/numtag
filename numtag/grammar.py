@@ -537,15 +537,15 @@ class Grammar:
                 found.append((end, hundreds))
             for j in self._after_joiner(end, self.lex.joiner_after_hundred):
                 found += [(e, digits.add(hundreds, rest)) for e, rest in self.tens_units(j, nonzero=True)]
-            if self.lex.joiner_after_hundred_one:
+            if self.lex.joiner_after_hundred_one and end == i + 1:
                 found += self._hundred_and_one(end, hundreds)
         return found
 
     def _hundred_and_one(self, end: int, hundreds: str) -> list[tuple[int, str]]:
-        """The hundreds, the joiner and a one that starts no longer number:
-        "cent et un" is 101. In "cent et un million" or "cent et un tiers" the
-        one counts the word after it, so the hundreds stand alone, and
-        "cent et deux" is two numbers."""
+        """A hundred word with no count, the joiner and a one that starts no
+        longer number: "cent et un" is 101. In "cent et un million" or "cent
+        et un tiers" the one counts the word after it, so the hundred stands
+        alone; "cent et deux" and "deux cent et un" are two numbers."""
         one = end + 1
         if not self._is_word(end, self.lex.joiners) or one >= len(self.tokens) \
                 or not any(rest == "1" and e == one + 1 for e, rest in self.tens_units(one, nonzero=True)):

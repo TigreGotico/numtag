@@ -373,9 +373,10 @@ class Lexicon:
     # the thousands and a group of hundreds ("mil y quinientos"), except
     # after a range cue, where it joins the two limits.
     joiner_thousand_hundreds: bool = False
-    # The joiner stands between the hundreds and a one that starts no longer
-    # number, whatever joiner_after_hundred says: fr "cent et un" is 101, and
-    # "cent et un million" is 100 and a million.
+    # The joiner stands between a hundred word with no count and a one that
+    # starts no longer number, whatever joiner_after_hundred says: fr "cent
+    # et un" is 101, "deux cent et un" is two numbers, and "cent et un
+    # million" is 100 and a million.
     joiner_after_hundred_one: bool = False
     # A percent phrase names the percent sign with no number before it too:
     # "tanto por ciento" holds no 100.

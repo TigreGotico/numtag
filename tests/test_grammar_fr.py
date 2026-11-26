@@ -124,6 +124,11 @@ class TestCentEtUn(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual(fr(text, lang), expected)
 
+    def test_et_joins_un_only_to_the_bare_word_cent(self):
+        # TLFi attests "Cent et un" only: 2 x 100 and 1; 3 x 100 and 1
+        self.assertEqual(fr("deux cent et un"), [("deux cent", "200", C), ("un", "1", C)])
+        self.assertEqual(confidence("trois cents et une nuits", "fr-FR"), [("trois cents", 1.0), ("une", 0.3)])
+
     def test_a_fraction_after_cent_et_adds_to_the_hundreds(self):
         # 100 + 3/4; 200 + 3/4; 100 + 1/3 = 301/3; 100 + 2/3 = 302/3; 100 + 3/10; 100 + 5/8
         rows = [("cent et trois quarts", "100.75"), ("deux cents et trois quarts", "200.75"),
