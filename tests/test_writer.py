@@ -73,6 +73,12 @@ def _issue_325(lang: str, text: str) -> bool:
 ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
 
 
+def _sv_fused(lang: str, word: str) -> bool:
+    """sv "et" is "ett" fused with "tusen" ("ettusen", "tjugoettusen", CLDR sv %%spellout-numbering-t "1: et;"): a
+    part of a word, never a word."""
+    return lang == "sv" and word == "et"
+
+
 def _issue_329(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/329: the ro reader leaves out the article "al"/"a" and misses
     the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea"). The bare words
@@ -151,8 +157,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 181584)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "sv"})
+        self.assertEqual(len(rows), 192933)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -267,7 +273,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _sv_fused(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -347,8 +353,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "sv"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "sv"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -539,6 +545,33 @@ class TestNorwegianBokmal(unittest.TestCase):
     def test_fractions_take_the_cardinal(self):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13", "9/34", "1/2")],
                          ["en tredel", "to tredeler", "åtte trettendeler", "ni trettifiredeler", "en halv"])
+
+
+class TestSwedish(unittest.TestCase):
+    """Språkrådet, Myndigheternas skrivregler, 8th ed., §12.1.2: "tvåtusenfemhundratrettiofem kronor", "omkring tusen
+    deltagare"; CLDR RBNF sv."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "sv", **kw)[0].text
+
+    def test_one_word_below_a_million(self):
+        self.assertEqual([self.say(n) for n in ("100", "1000", "101", "1100", "2535", "21000", "2000001")],
+                         ["hundra", "tusen", "etthundraett", "ettusenetthundra", "tvåtusenfemhundratrettiofem",
+                          "tjugoettusen", "två miljoner ett"])
+        self.assertEqual([self.say("21", gender=g) for g in ("masculine", "feminine", "neuter")],
+                         ["tjugoen", "tjugoen", "tjugoett"])
+        self.assertEqual(self.say("21000000"), "tjugoen miljoner")
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("2", "20", "21", "100", "101", "1100", "1000000",
+                                                                         "2000001")],
+                         ["andra", "tjugonde", "tjugoförsta", "hundrade", "etthundraförsta", "ettusenetthundrade",
+                          "miljonte", "två miljoner första"])
+        self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="masculine"), "förste")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "1/3", "3/4", "1/8", "1/13", "1/100")],
+                         ["en halv", "en tredjedel", "tre fjärdedelar", "en åttondel", "en trettondel", "en hundradel"])
 
 
 class TestDutch(unittest.TestCase):
@@ -822,7 +855,7 @@ class TestSpell(unittest.TestCase):
 
     def test_a_language_with_no_writer_raises_unsupported_language(self):
         with self.assertRaises(UnsupportedLanguageError):
-            spell("1", "sv")
+            spell("1", "fi")
         with self.assertRaises(UnsupportedLanguageError):
             spell("1", "xx")
 
