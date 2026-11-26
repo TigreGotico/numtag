@@ -797,6 +797,22 @@ class TestInterpreter(unittest.TestCase):
         rules = self.RULES + [{"value": "1000", "text": "[←← thousand →→|←← thousandth];"}]
         self.assertEqual([self.read(rules, n) for n in ("2000", "2001")], ["two thousandth", "two thousand one"])
 
+    def test_a_denominator_stays_singular_after_a_count_in_the_category_one(self):
+        """With a ``plural`` list, 21 is in "one", so 21/3 keeps "third"; 2/3 takes "thirds"."""
+        rules = [{"value": "1", "text": "one;"}, {"value": "2", "text": "two;"}, {"value": "3", "text": "three;"},
+                 {"value": "20", "text": "twenty[-→→];"}]
+        data = _tiny(rules)
+        data["writer"]["rulesets"]["ord"] = {"source": "test", "rules": [{"value": "3", "text": "third;"}]}
+        data["writer"]["plural"] = [{"category": "one", "mod10": [1], "not_mod100": [11]}]
+        data["writer"]["fraction"] = {"mixed": False, "limit": 10, "single": "one {denominator}", "plural": "s",
+                                      "named": {}, "denominator": "{cardinal}", "ruleset": "ord",
+                                      "numerator": "cardinal", "source": "test"}
+        variants = Variants(self)
+        variants.write("variant", data)
+        writer = writer_module._writer("variant")
+        self.assertEqual([writer_module._fraction(writer, "cardinal", f) for f in ("21/3", "2/3", "1/3")],
+                         ["twenty-one third", "two thirds", "one third"])
+
     def test_a_plural_word_agrees_with_the_quotient(self):
         """CLDR ru: one ends in 1 but not 11, few ends in 2 to 4 but not 12 to 14."""
         rules = [{"value": "0", "text": "n;"}, {"value": "1000",
