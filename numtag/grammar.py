@@ -1592,10 +1592,13 @@ class Grammar:
             if not self._is_word(k, self.lex.joiners):
                 continue
             inner = self._inner(i, k)
-            if inner and k != default:
+            right = self._numbers(k + 1)
+            # it also splits where the number after it reaches past the
+            # longest reading: "cem e um milhão" is no number, so "entre cem
+            # e um milhão" is 100 and 1000000, not 101 and a bare "milhão"
+            if inner and k != default and not any(p.end > default for p in right):
                 continue
             left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned)._numbers(i) if p.end == k]
-            right = self._numbers(k + 1)
             if not (left and right):
                 continue
             longest = max(right, key=lambda p: p.end)

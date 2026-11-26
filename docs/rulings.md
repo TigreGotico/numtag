@@ -80,6 +80,19 @@ In English, "and" is optional between groups and after "hundred". Both forms rea
 
 > Wikipedia, "English numerals": in American English "many students are taught [...] not to use the word and anywhere in the whole part of a number, so it is not used before the tens and ones"; "Despite this rule, some Americans use the and in reading numbers containing tens and ones as an alternative".
 
+In French, "et" joins "un" to "mille" ("mille et un"), and the older "cent et un" joins it to "cent". The writer gives "cent un", and the reader also takes "et" after the hundreds, as it does after "mille". So "cent et un" and "cent et une" are one number, 101.
+
+```python
+>>> read("Les Mille et Une Nuits", "fr")
+[('Mille et Une', '1001')]
+>>> read("Ma brochure vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand", "fr")
+[('cent et une', '101')]
+>>> read("mille cent et un", "fr")
+[('mille cent et un', '1101')]
+```
+
+> TLFi, CENT: "Vieilli. Cent et un. Ma brochure (...) vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand" (Lamartine, 1831); "Remarque : À part cet emploi, un n'est pas relié à cent par et."
+
 ## A comma between classes
 
 In Portuguese, a comma after a scale word and before a number word links two classes of one number. The classes go from the largest down, so the class after the comma is smaller: "2 mil, milhões de pessoas" is 2000 and then a noun phrase. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
@@ -295,6 +308,15 @@ After a range cue, the first number ends at a joiner that splits the words into 
 [('cinco mil', '5000'), ('sessenta e sete milhões', '67000000')]
 >>> read("The prize is between five hundred thousand and two million dollars.", "en")
 [('five hundred thousand', '500000'), ('two million', '2000000')]
+```
+
+A joiner inside a number below a thousand ("sessenta e sete") is no range joiner, except where the number after it reaches past the longest reading. "cem e um milhão" is no number, because a singular scale noun takes only the count one. So after "entre", "cem e um milhão" is 100 and a million, not 101 and a bare "milhão".
+
+```python
+>>> read("O evento juntou entre cem e um milhão de pessoas.")
+[('cem', '100'), ('um milhão', '1000000')]
+>>> read("Il y avait entre cent et un million de personnes.", "fr")
+[('cent', '100'), ('un million', '1000000')]
 ```
 
 With no cue, the same words can read as one number.

@@ -85,6 +85,32 @@ class TestRegionalTens(unittest.TestCase):
         self.assertEqual([say(n, "fr-CH") for n in ("70", "80", "90")], ["septante", "huitante", "nonante"])
 
 
+class TestCentEtUn(unittest.TestCase):
+    def test_cent_et_un_is_one_number(self):
+        # 100 + 1 = 101, in the masculine and the feminine
+        self.assertEqual(fr("cent et un"), [("cent et un", "101", C)])
+        self.assertEqual(fr("Les Cent et Un"), [("Cent et Un", "101", C)])
+        self.assertEqual(fr("Ma brochure vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand"),
+                         [("cent et une", "101", C)])
+        self.assertEqual(confidence("cent et une nuits", "fr-FR"), [("cent et une", 1.0)])
+
+    def test_cent_et_un_reads_in_a_larger_number(self):
+        # 1000 + 101 = 1101; 101 x 10^6
+        self.assertEqual(fr("mille cent et un"), [("mille cent et un", "1101", C)])
+        self.assertEqual(fr("cent et un millions"), [("cent et un millions", "101000000", C)])
+
+    def test_cent_et_un_keeps_a_range_apart(self):
+        # the limits 100 and 200; 100 and 10^6; 100 and 1000
+        self.assertEqual(fr("entre cent et deux cents"), [("cent", "100", C), ("deux cents", "200", C)])
+        self.assertEqual(fr("entre cent et un million de personnes"),
+                         [("cent", "100", C), ("un million", "1000000", C)])
+        self.assertEqual(fr("entre cent et un millier"), [("cent", "100", C), ("un millier", "1000", C)])
+
+    def test_the_writer_writes_cent_un(self):
+        from numtag import spell
+        self.assertEqual(spell("101", "fr-FR")[0].text, "cent un")
+
+
 class TestScaleNouns(unittest.TestCase):
     def test_a_singular_scale_noun_takes_only_the_count_one(self):
         # "deux millions" is 2 x 1000000; "deux million" is no number of millions

@@ -447,6 +447,17 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(pt("entre mil e quinhentos e dois mil"),
                          [("mil e quinhentos", "1500", C), ("dois mil", "2000", C)])
 
+    def test_a_range_joiner_after_the_hundred_splits_before_a_scale_noun(self):
+        # "cem e um milhão" is no number (a singular scale noun counts only
+        # one), so the range is 100 and 10^6, not 101 and a lone "milhão"
+        self.assertEqual(pt("entre cem e um milhão de pessoas"),
+                         [("cem", "100", C), ("um milhão", "1000000", C)])
+        self.assertEqual(read("entre cien y un millón de personas", "es"),
+                         [("cien", "100", C), ("un millón", "1000000", C)])
+        # a number inside the hundreds still reads whole: 60 + 7 = 67, x 10^6
+        self.assertEqual(pt("entre cinco mil e sessenta e sete milhões"),
+                         [("cinco mil", "5000", C), ("sessenta e sete milhões", "67000000", C)])
+
     def test_a_range_cue_ends_the_first_number_at_the_range_joiner(self):
         # 100 x 1000 = 100000; 10^6
         self.assertEqual(pt("entre cem mil e um milhão de euros"),
