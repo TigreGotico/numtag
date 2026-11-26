@@ -706,6 +706,15 @@ The four sources differ in strength. European Portuguese rests on Wikipedia, "De
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
+A group mark "'" also reads in its typographic form "’" (U+2019), as the apostrophe of a word does. Swiss text writes both, and an editor that curls quotes turns one into the other.
+
+```python
+>>> read("1’234.50 et 1'234.50", "fr-CH")
+[('1’234.50', '1234.5'), ("1'234.50", '1234.5')]
+```
+
+> CLDR 46.0.0 (cldr-json, cldr-numbers-full/main/de-CH/numbers.json, symbols-numberSystem-latn): "group": "’" (U+2019), where CLDR 49.0.0 gives "'" (U+0027) for de-CH and fr-CH: the Swiss group mark is written both ways, so "1’234" groups digits as "1'234" does.
+
 ## A name before a large Roman numeral
 
 A title-case word before an upper-case Roman numeral makes it an ordinal only below 100. Regnal numbers stay below 100: the House of Reuss, which numbered every man Heinrich, reached Heinrich LXXIII. A numeral of 100 or more after a name is a year, a code or an abbreviation, so it is a cardinal with a low score. A regnal title before the name and a series noun still make it an ordinal. French "DC" is the postal symbol of the District of Columbia, so it reads only after a strong cue, as in English.
