@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.33.1a1](https://github.com/TigreGotico/numtag/tree/0.33.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.0a1...0.33.1a1)
+
+**Merged pull requests:**
+
+- fix: allow\_list.py keeps the allow-list sorted by language [\#340](https://github.com/TigreGotico/numtag/pull/340) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.33.0a1](https://github.com/TigreGotico/numtag/tree/0.33.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.1a1...0.33.0a1)
@@ -577,10 +585,6 @@
 ## [0.15.3a1](https://github.com/TigreGotico/numtag/tree/0.15.3a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.2a1...0.15.3a1)
-
-**Merged pull requests:**
-
-- fix: read a fraction of a scale word as one number [\#113](https://github.com/TigreGotico/numtag/pull/113) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.2a1](https://github.com/TigreGotico/numtag/tree/0.15.2a1) (2026-11-17)
 
