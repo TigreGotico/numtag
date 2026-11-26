@@ -35,11 +35,13 @@ def _issue_305(lang: str, text: str) -> bool:
     return lang in ("pt-PT", "pt-BR") and bool(ISSUE_305.search(text))
 
 
-ISSUE_315 = re.compile(r"\w+avos?\b|\w+(?:mil|llon)ésim[oa]s?\b|^ésimo$")
+ISSUE_315 = re.compile(r"\b(?:veinti[a-z]+|(?:cuarent|cincuent|sesent|setent|ochent|novent)a?|treintai[a-z]+|"
+                       r"[a-z]+ientos[a-z]*|ciento[a-z]+|[a-z]*mil[a-z]*)avos?\b|\w+(?:mil|llon)ésim[oa]s?\b|^ésimo$"
+                       r"|^(?:un|dos|tres|cuatro|cinco|seis|siete|ocho|nueve)avo$")  # the rest part of "treintaiunavo"
 
 
 def _issue_315(lang: str, text: str) -> bool:
-    """https://github.com/TigreGotico/numtag/issues/315: the es reader misses -avo words past 30 and fused thousands."""
+    """https://github.com/TigreGotico/numtag/issues/315: the es reader misses -avo words past 30, veinti- -avo words, and fused scale ordinals."""
     return lang == "es" and bool(ISSUE_315.search(text))
 
 

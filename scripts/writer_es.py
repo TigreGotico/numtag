@@ -92,7 +92,7 @@ def avo():
         return (word[:-1] if word.endswith("a") else word) + "avo"
     units = [plain(w) for w in UNITS]
     units[1], units[21] = "un", "veintiun"
-    rules = [R(i, end(w)) for i, w in enumerate(units) if i != 10]  # a rest after "-i" or "ciento"; 2 to 10 alone are named
+    rules = [R(i, end(w)) for i, w in enumerate(units) if i not in (0, 10)]  # a rest after "-i" or "ciento"; 2 to 10 alone are named
     for i, w in enumerate(TENS):
         rules += [R(30 + 10 * i, end(w)), R(31 + 10 * i, f"{w}i→→")]
     rules += [R(101, "ciento→→")]  # 100 is a named word

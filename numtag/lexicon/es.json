@@ -3744,7 +3744,6 @@
         {"value": "2000", "text": "←←mil[→→];"}
       ]},
       "avo": {"source": "RAE, Diccionario panhispánico de dudas, 2.ª ed., «fraccionarios»: \"1/11 onceavo … 1/200 doscientosavo\"; a fraction is one word, \"dos treceavos\". ovos-number-parser 0.31.5a2 numbers_es.py writes \"treintavo\", \"veintiunavos\", \"cientounavo\" and \"milunavos\"", "rules": [
-        {"value": "0", "text": "ceroavo;"},
         {"value": "1", "text": "unavo;"},
         {"value": "2", "text": "dosavo;"},
         {"value": "3", "text": "tresavo;"},
