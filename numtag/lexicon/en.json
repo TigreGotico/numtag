@@ -436,7 +436,7 @@
       ]},
       "cardinal-gb-commas": {"source": "a part of cardinal-gb", "rules": [
         {"value": "1", "text": " and =%cardinal-gb=;"},
-        {"value": "100", "text": ", =%cardinal-gb=;"}
+        {"value": "100", "text": " =%cardinal-gb=;"}
       ]},
       "cardinal-us": {"source": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal, with the scale words of this lexicon. U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 12.20: \"one thousand eight hundred fifty\", \"one hundred fifty-two thousand three hundred five\". U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 6.36: \"Print a hyphen between the elements of compound numbers from twenty-one to ninety-nine\"", "rules": [
         {"value": "-x", "text": "minus →→;"},
@@ -528,7 +528,7 @@
       "ordinal-gb-group": {"source": "a part of ordinal-gb", "rules": [
         {"value": "0", "text": "th;"},
         {"value": "1", "text": " and =%ordinal-gb=;"},
-        {"value": "100", "text": ", =%ordinal-gb=;"}
+        {"value": "100", "text": " =%ordinal-gb=;"}
       ]},
       "ordinal-us": {"source": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal and %spellout-ordinal-verbose: \"twenty-first\" (U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 6.36), \"hundredth\" (Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/))", "rules": [
         {"value": "-x", "text": "minus →→;"},
@@ -622,7 +622,7 @@
       ]},
       "cardinal-gb-long-commas": {"source": "a part of cardinal-gb-long", "rules": [
         {"value": "1", "text": " and =%cardinal-gb-long=;"},
-        {"value": "100", "text": ", =%cardinal-gb-long=;"}
+        {"value": "100", "text": " =%cardinal-gb-long=;"}
       ]},
       "cardinal-us-long": {"source": "Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/), «billion»: \"(British English, old-fashioned) 1 000 000 000 000; one million million\". ovos-number-parser writes 10^9 as \"one thousand million\" in the long scale", "rules": [
         {"value": "-x", "text": "minus →→;"},
@@ -706,7 +706,7 @@
       "ordinal-gb-long-group": {"source": "a part of ordinal-gb-long", "rules": [
         {"value": "0", "text": "th;"},
         {"value": "1", "text": " and =%ordinal-gb-long=;"},
-        {"value": "100", "text": ", =%ordinal-gb-long=;"}
+        {"value": "100", "text": " =%ordinal-gb-long=;"}
       ]},
       "ordinal-us-long": {"source": "Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/), «billion»: \"(British English, old-fashioned) 1 000 000 000 000; one million million\". ovos-number-parser writes 10^9 as \"one thousand million\" in the long scale", "rules": [
         {"value": "-x", "text": "minus →→;"},
@@ -756,6 +756,6 @@
     "forms": {"cardinal": {"variants": [{"ruleset": "cardinal-gb", "reason": "standard"}, {"ruleset": "cardinal-us", "reason": "no_conjunction", "source": "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 12.20: \"one thousand eight hundred fifty\", \"one hundred fifty-two thousand three hundred five\""}], "maximum": "999999999999999999999999999999999", "scale": {"long": {"variants": [{"ruleset": "cardinal-gb-long", "reason": "standard"}, {"ruleset": "cardinal-us-long", "reason": "no_conjunction", "source": "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 12.20: \"one thousand eight hundred fifty\", \"one hundred fifty-two thousand three hundred five\""}], "maximum": "999999999999999999999999999999999999"}}}, "ordinal": {"variants": [{"ruleset": "ordinal-gb", "reason": "standard"}, {"ruleset": "ordinal-us", "reason": "no_conjunction", "source": "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 12.20: \"one thousand eight hundred fifty\", \"one hundred fifty-two thousand three hundred five\""}], "minimum": "0", "maximum": "999999999999999999999999999999999", "scale": {"long": {"variants": [{"ruleset": "ordinal-gb-long", "reason": "standard"}, {"ruleset": "ordinal-us-long", "reason": "no_conjunction", "source": "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf), 12.20: \"one thousand eight hundred fifty\", \"one hundred fifty-two thousand three hundred five\""}], "minimum": "0", "maximum": "999999999999999999999999999999999999"}}}},
     "decimal": {"word": "point", "places": 3, "source": "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal x.x: \"←← point →→\"."},
     "scientific": {"times": "times ten to the power of", "source": "Not checked against a style guide."},
-    "fraction": {"mixed": false, "limit": 10, "single": "one {denominator}", "plural": {"half": "halves", "": "s"}, "named": {"2": "half", "4": "quarter", "100": "hundredth", "1000": "thousandth", "1000000": "millionth", "1000000000": "billionth", "1000000000000": "trillionth", "1000000000000000": "quadrillionth", "1000000000000000000": "quintillionth", "1000000000000000000000": "sextillionth", "1000000000000000000000000": "septillionth", "1000000000000000000000000000": "octillionth", "1000000000000000000000000000000": "nonillionth"}, "denominator": "{cardinal}ths", "ruleset": "ordinal-gb", "numerator": "cardinal-gb", "source": "Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/), «three quarters»: \"( US English also three fourths )\"; the denominator is the ordinal with -s (\"two thirds\", \"three quarters\"). SILVER: \"one half\" for 1/2; no saved source chooses between \"a half\" and \"one half\"."}
+    "fraction": {"mixed": false, "limit": 10, "single": "one {denominator}", "plural": {"half": "halves", "": "s"}, "named": {"2": "half", "4": "quarter", "100": "hundredth", "1000": "thousandth", "1000000": "millionth", "1000000000": "billionth", "1000000000000": "trillionth", "1000000000000000": "quadrillionth", "1000000000000000000": "quintillionth", "1000000000000000000000": "sextillionth", "1000000000000000000000000": "septillionth", "1000000000000000000000000000": "octillionth", "1000000000000000000000000000000": "nonillionth"}, "denominator": "{cardinal}ths", "ruleset": "ordinal-gb", "numerator": "cardinal-gb", "source": "Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/), «three quarters»: \"( US English also three fourths )\"; the denominator is the ordinal with -s (\"two thirds\", \"three quarters\"). SILVER: \"one half\" for 1/2; no saved source chooses between \"a half\" and \"one half\". SILVER: a denominator 10^n drops its count (\"seven millionths\"); no saved example."}
   }
 }

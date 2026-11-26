@@ -1,8 +1,9 @@
 """Write the writer block of en from CLDR RBNF en, the Oxford Advanced Learner's Dictionary, the GPO Style Manual
 and the scale words of the lexicon.
 
-usage: python scripts/writer_en.py [--check]
-The first variant is British, with "and" after the hundreds; the second is American, with no "and".
+usage: python scripts/writer_en.py en|en-US [--check]
+In en the first variant is British, with "and" after the hundreds, and the second is American, with no "and".
+In en-US the American variant is first.
 """
 import sys
 from pathlib import Path
@@ -10,7 +11,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from splice_writer import splice
 
-LEXICON = Path(__file__).parents[1] / "numtag/lexicon/en.json"
+variety = sys.argv[1]
+LEXICON = Path(__file__).parents[1] / f"numtag/lexicon/{variety}.json"
 CLDR = "CLDR RBNF en (common/rbnf/en.xml as shipped in unicode-rbnf 2.5.1)"
 OALD = "Oxford Advanced Learner's Dictionary (Papers/Languages/Germanic/English/)"
 GPO = "U.S. Government Publishing Office, Style Manual (2016) (Papers/Languages/Germanic/English/GPO-STYLEMANUAL-2016.pdf)"
@@ -25,7 +27,7 @@ ORDINAL = CLDR + ", %spellout-ordinal and %spellout-ordinal-verbose: \"twenty-fi
 SILVER_ORD = "SILVER: \"one hundred and first\", the ordinal of the British cardinal; no saved example"
 FRACTION = (OALD + ", «three quarters»: \"( US English also three fourths )\"; the denominator is the ordinal with -s "
             "(\"two thirds\", \"three quarters\"). SILVER: \"one half\" for 1/2; no saved source chooses between \"a half\" "
-            "and \"one half\"")
+            "and \"one half\". SILVER: a denominator 10^n drops its count (\"seven millionths\"); no saved example")
 
 UNITS = ("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen "
          "eighteen nineteen").split()
@@ -57,7 +59,7 @@ def cardinal_gb(name="cardinal-gb", scales=SCALES):
     rules += [R(10 ** e, f"←← {w}[→%{name}-commas→]", SCALE if w == "billion" and scales is SCALES else None) for e, w in scales]
     return [(name, rules),
             (f"{name}-and", [R(1, f" and =%{name}="), R(100, f" =%{name}=")]),
-            (f"{name}-commas", [R(1, f" and =%{name}="), R(100, f", =%{name}=")])]
+            (f"{name}-commas", [R(1, f" and =%{name}="), R(100, f" =%{name}=")])]
 
 
 def cardinal_us(name="cardinal-us", scales=SCALES):
@@ -75,7 +77,7 @@ def ordinal(name, count, british, scales=SCALES):
     sets = [(name, rules), (f"{name}-tieth", [R(0, "ieth"), R(1, f"y-=%{name}=")])]
     if british:
         sets += [(f"{name}-and", [R(0, "th"), R(1, f" and =%{name}=", SILVER_ORD), R(100, f" =%{name}=")]),
-                 (f"{name}-group", [R(0, "th"), R(1, f" and =%{name}="), R(100, f", =%{name}=")])]
+                 (f"{name}-group", [R(0, "th"), R(1, f" and =%{name}="), R(100, f" =%{name}=")])]
     else:
         sets += [(f"{name}-th", [R(0, "th"), R(1, f" =%{name}=")]), (f"{name}-group", [R(0, "th"), R(1, f" =%{name}=")])]
     return sets
@@ -100,8 +102,11 @@ maximum = "9" * 33
 
 
 def pair(form, end=""):
-    return {"variants": [{"ruleset": f"{form}-gb{end}", "reason": "standard"},
-                         {"ruleset": f"{form}-us{end}", "reason": "no_conjunction", "source": NO_AND}]}
+    gb = {"ruleset": f"{form}-gb{end}", "reason": "standard"}
+    us = {"ruleset": f"{form}-us{end}", "reason": "no_conjunction", "source": NO_AND}
+    if variety == "en-US":
+        return {"variants": [{**us, "reason": "standard"}, {**gb, "reason": "variant_spelling", "source": AND}]}
+    return {"variants": [gb, us]}
 
 
 block = {
@@ -117,7 +122,7 @@ block = {
     "scientific": {"times": "times ten to the power of", "source": "Not checked against a style guide."},
     "fraction": {"mixed": False, "limit": 10, "single": "one {denominator}", "plural": {"half": "halves", "": "s"},
                  "named": {"2": "half", "4": "quarter", "100": "hundredth", "1000": "thousandth",
-                           **{str(10 ** e): w + "th" for e, w in SCALES}}, "denominator": "{cardinal}ths", "ruleset": "ordinal-gb",
-                 "numerator": "cardinal-gb", "source": FRACTION + "."},
+                           **{str(10 ** e): w + "th" for e, w in SCALES}}, "denominator": "{cardinal}ths", "ruleset": "ordinal-us" if variety == "en-US" else "ordinal-gb",
+                 "numerator": "cardinal-us" if variety == "en-US" else "cardinal-gb", "source": FRACTION + "."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)
