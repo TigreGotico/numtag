@@ -204,6 +204,7 @@
             "denominator": {"type": "string"},
             "single": {"type": "string"},
             "mixed": {"type": "boolean"},
+            "capitalise": {"type": "boolean"},
             "ruleset": {"type": "string"},
             "numerator": {"type": "string"},
             "plural": {"oneOf": [{"type": "string"}, {"type": "object", "additionalProperties": {"type": "string"}}]},

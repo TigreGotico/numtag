@@ -108,7 +108,7 @@ SOURCES = {
     "cardinal-f": NORMAS_CARDINAL + "; \"un/unha\", \"dous/dúas\"",
     "ordinal-m": NORMAS_ORDINAL + ". " + SILVER_ORD,
     "ordinal-f": NORMAS_ORDINAL + ". " + SILVER_ORD,
-    "avo": NORMAS_PARTITIVE,
+    "avo": NORMAS_PARTITIVE + ". SILVER: a denominator with a hundred or a thousand (\"cento unavo\", \"dous milavo\") takes -avo by the same rule; the Normas give no example",
 }
 NAMED = dict(zip(map(str, range(2, 11)), "medio terzo cuarto quinto sexto sétimo oitavo noveno décimo".split()))
 NAMED.update({"100": "centésimo", "1000": "milésimo", "1000000": "millonésimo"})

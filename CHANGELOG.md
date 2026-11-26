@@ -1,12 +1,43 @@
 # Changelog
 
+## [0.33.1a1](https://github.com/TigreGotico/numtag/tree/0.33.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.33.0a1...0.33.1a1)
+
+**Merged pull requests:**
+
+- fix: allow\_list.py keeps the allow-list sorted by language [\#340](https://github.com/TigreGotico/numtag/pull/340) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.33.0a1](https://github.com/TigreGotico/numtag/tree/0.33.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.1a1...0.33.0a1)
+
+**Merged pull requests:**
+
+- feat: German writer [\#337](https://github.com/TigreGotico/numtag/pull/337) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.32.1a1](https://github.com/TigreGotico/numtag/tree/0.32.1a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.32.0a1...0.32.1a1)
+
+**Merged pull requests:**
+
+- fix: ca allow-list checks numtag's text; gl -avo of hundreds is SILVER [\#336](https://github.com/TigreGotico/numtag/pull/336) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.32.0a1](https://github.com/TigreGotico/numtag/tree/0.32.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.31.0a1...0.32.0a1)
+
+**Merged pull requests:**
+
+- feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.31.0a1](https://github.com/TigreGotico/numtag/tree/0.31.0a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.30.0a1...0.31.0a1)
 
 **Merged pull requests:**
 
-- feat: Catalan writer [\#334](https://github.com/TigreGotico/numtag/pull/334) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Galician writer [\#332](https://github.com/TigreGotico/numtag/pull/332) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.30.0a1](https://github.com/TigreGotico/numtag/tree/0.30.0a1) (2026-11-26)
@@ -555,10 +586,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.2a1...0.15.3a1)
 
-**Merged pull requests:**
-
-- fix: read a fraction of a scale word as one number [\#113](https://github.com/TigreGotico/numtag/pull/113) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.15.2a1](https://github.com/TigreGotico/numtag/tree/0.15.2a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.1a1...0.15.2a1)
@@ -571,10 +598,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.10a1...0.15.0a1)
 
-**Merged pull requests:**
-
-- feat: tag vague quantities in en and pt [\#110](https://github.com/TigreGotico/numtag/pull/110) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.14.10a1](https://github.com/TigreGotico/numtag/tree/0.14.10a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.9a1...0.14.10a1)
@@ -586,10 +609,6 @@
 ## [0.14.9a1](https://github.com/TigreGotico/numtag/tree/0.14.9a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.14.8a1...0.14.9a1)
-
-**Merged pull requests:**
-
-- fix\(es\): read the older "mil y quinientos" as one number [\#109](https://github.com/TigreGotico/numtag/pull/109) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.14.8a1](https://github.com/TigreGotico/numtag/tree/0.14.8a1) (2026-11-17)
 
