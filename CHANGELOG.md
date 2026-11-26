@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.38.0a1](https://github.com/TigreGotico/numtag/tree/0.38.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.1a2...0.38.0a1)
+
+**Merged pull requests:**
+
+- feat: de case and gender for cardinals and ordinals [\#351](https://github.com/TigreGotico/numtag/pull/351) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.37.1a2](https://github.com/TigreGotico/numtag/tree/0.37.1a2) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.37.1a1...0.37.1a2)
@@ -603,7 +611,6 @@
 - fix\(it,ca,oc\): a cardinal before a Latin unit ordinal makes no compound [\#182](https://github.com/TigreGotico/numtag/pull/182) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(fr, it, ro\): read "moins" after an hour, "quanto meno" and a lone point [\#175](https://github.com/TigreGotico/numtag/pull/175) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - perf: read each position once and cache the lookup forms [\#153](https://github.com/TigreGotico/numtag/pull/153) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: read no word before the first token, and a marker word as a noun [\#152](https://github.com/TigreGotico/numtag/pull/152) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
