@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.29.0a1](https://github.com/TigreGotico/numtag/tree/0.29.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.28.2a1...0.29.0a1)
+
+**Merged pull requests:**
+
+- feat: French writer \(fr-FR, fr-BE, fr-CH\) [\#326](https://github.com/TigreGotico/numtag/pull/326) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.28.2a1](https://github.com/TigreGotico/numtag/tree/0.28.2a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.28.1a1...0.28.2a1)
@@ -629,10 +637,6 @@
 ## [0.13.4a1](https://github.com/TigreGotico/numtag/tree/0.13.4a1) (2026-11-17)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.13.3a1...0.13.4a1)
-
-**Merged pull requests:**
-
-- fix\(tr\): read a lone "çeyrek" as a quarter [\#88](https://github.com/TigreGotico/numtag/pull/88) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.13.3a1](https://github.com/TigreGotico/numtag/tree/0.13.3a1) (2026-11-17)
 
