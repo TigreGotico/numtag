@@ -2346,7 +2346,7 @@
         {"value": "0", "text": "a;"},
         {"value": "1", "text": "o =%ordinal-f=;"}
       ]},
-      "avo": {"source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16.4, p. 101: \"medio, -a\", \"terzo, -a\" ... \"décimo, -a\", and \"a partir de 1/11 (e exceptuados 1/100, 1/1000, 1/1.000.000) o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo, (2/29) dous vinte e noveavos\"", "rules": [
+      "avo": {"source": "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16.4, p. 101: \"medio, -a\", \"terzo, -a\" ... \"décimo, -a\", and \"a partir de 1/11 (e exceptuados 1/100, 1/1000, 1/1.000.000) o partitivo faise engadindo ao cardinal o sufixo -avo: (1/16) un dezaseisavo, (2/29) dous vinte e noveavos\". SILVER: a denominator with a hundred or a thousand (\"cento unavo\", \"dous milavo\") takes -avo by the same rule; the Normas give no example", "rules": [
         {"value": "0", "text": "=%cardinal-m=avo;"}
       ]}
     },
