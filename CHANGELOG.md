@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.37.0a1](https://github.com/TigreGotico/numtag/tree/0.37.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.2a1...0.37.0a1)
+
+**Merged pull requests:**
+
+- feat: Norwegian Bokmål writer [\#348](https://github.com/TigreGotico/numtag/pull/348) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.36.2a1](https://github.com/TigreGotico/numtag/tree/0.36.2a1) (2026-11-26)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.36.1a1...0.36.2a1)
@@ -558,10 +566,6 @@
 ## [0.15.11a1](https://github.com/TigreGotico/numtag/tree/0.15.11a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.10a1...0.15.11a1)
-
-**Merged pull requests:**
-
-- fix\(nb, nn\): read the ordinals "annen" and "fyrste" [\#147](https://github.com/TigreGotico/numtag/pull/147) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.10a1](https://github.com/TigreGotico/numtag/tree/0.15.10a1) (2026-11-19)
 
