@@ -1691,6 +1691,12 @@
       "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[11], cardinal \"حدعش\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[11], cardinal \"حدعش\"."
     },
     {
+      "word": "تنعش",
+      "role": "ten",
+      "value": "12",
+      "source": "Defense Language Institute, Arabic Syrian Course, Module 2 (1983), Lesson 5 vocabulary, p. 46-47 (PDF pp. 50-51, a scan; Papers/Languages/Semitic/Arabic/dli1983_syrian_course_module2.pdf): \"twelve\", Syrian column, \"تنعش\"."
+    },
+    {
       "word": "خمستاش",
       "role": "ten",
       "value": "15",
