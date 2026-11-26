@@ -406,7 +406,7 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     count = writer.render(spec.get("numerator", ruleset), top)
     if bottom not in spec["named"] and "ruleset" in spec:
         word = writer.render(spec["ruleset"], bottom)
-        return f"{count} {word if top == '1' else _plural(word, spec['plural'])}"
+        return f"{count} {_capital(spec, word if top == '1' else _plural(word, spec['plural']))}"
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))
@@ -414,7 +414,11 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
             return word.replace("{numerator}", writer.render(ruleset, top))
     elif top != "1":
         word = _plural(word, spec["plural"])
-    return f"{count} {word}"
+    return f"{count} {_capital(spec, word)}"
+
+
+def _capital(spec: dict, word: str) -> str:
+    return word[:1].upper() + word[1:] if spec.get("capitalise") else word
 
 
 def _plural(word: str, plural: str | dict) -> str:

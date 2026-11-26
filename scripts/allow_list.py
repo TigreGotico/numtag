@@ -194,6 +194,40 @@ def category_ca(row, got):
         if len(a) == len(b) and all(x == y or (x, y) in CA_PAIRS or x == y + "a" for x, y in zip(a, b)): return "ca_gender"
     if re.search(r"biliard|triliard", out) or "per deu elevat a" in out + mine: return "ca_big"
     return None
+DE_RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024) (Papers/Languages/Germanic/German/rechtschreibrat_amtliches_regelwerk_2024.pdf)"
+DE_CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
+SRC.update({
+ "de_ordinal": DE_RR + ", § 36(1.6), p. 60: one word for \"allgemein um Ordinalzahlen\": \"der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\"; ovos-number-parser writes \"zwei Millionenste\" and reads ordinals=True as a cardinal.",
+ "de_negative": "numtag/lexicon/de.json, the de writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "de_fraction": DE_RR + ", § 56(6) E5, p. 86: \"In allen übrigen Fällen schreibt man Bruchzahlen auf -tel und -stel entsprechend § 55 groß: ein Drittel, das erste Fünftel, neun Zehntel des Umsatzes\"; ovos-number-parser writes \"ein drittel\" and \"eins dreißigste\".",
+ "de_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"null\" to three places.",
+ "de_gender": DE_CLDR + ", %spellout-cardinal-masculine: \"1: ein\" and \"100: ←%spellout-cardinal-masculine←hundert[→→]\", so a count before a masculine or neuter noun ends in \"ein\" (\"eintausendein\"); ovos-number-parser writes \"eins\".",
+ "de_count": DE_CLDR + ", %spellout-numbering: \"2000000: ←%spellout-cardinal-feminine← Millionen[ →→]\": \"Million\" is a feminine noun, so the count before it ends in \"eine\" (\"einhunderteine Millionen\"); ovos-number-parser writes \"einhunderteins Millionen\".",
+ "de_tausend": DE_CLDR + ", %spellout-numbering: \"1000: ←%spellout-cardinal-masculine←tausend[→→]\", so the count before \"tausend\" ends in \"ein\" (\"siebenhunderteintausend\"); ovos-number-parser writes \"siebenhunderteinstausend\".",
+ "de_range": "numtag/lexicon/de.json, the de writer: a number goes up to 10^24 - 1, the last scale word of this lexicon (Trilliarde), and outside it spell() raises.",
+ "de_short": "numtag/lexicon/de.json, the setting scale: German counts in the long scale only (Duden, «Milliarde»: \"tausend Millionen\"; «Billion»: \"eine Million Millionen\"), so a call for the short scale reads the long one.",
+})
+def category_de(row, got):
+    if row.get("kw", {}).get("scale") == "short":  # the reason of the same row in the long scale, else the scale
+        long = category_de({**row, "kw": {k: v for k, v in row["kw"].items() if k != "scale"}}, got)
+        return long or ("de_short" if re.search(r"illi", str(row.get("out"))) else None)
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction":
+        if row["arg"].split("/")[1].lstrip("-") == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        return "de_fraction" if re.search(r" (Halbe?|[A-ZÄÖÜ]\w*s?tel)$", mine) else None
+    if row["fn"] == "ordinal" or kw.get("ordinals"):
+        if str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "de_negative"
+        if got == {"err": "ValueError"}: return "de_range"
+        return "de_ordinal" if re.fullmatch(r"(minus )?\w+te", mine) else None
+    if row["fn"] == "number" and isinstance(row["arg"], float):
+        return "de_decimal" if re.sub(r"( null)+$", "", out) == mine else None
+    if re.sub(r"eins( \w+illi)", r"eine\1", out) == mine: return "de_count"
+    if out.replace("einstausend", "eintausend") == mine: return "de_tausend"
+    if kw.get("gender") in ("masculine", "neutral") and re.sub(r"eins\b", "ein", out) == mine: return "de_gender"
+    return None
 def category_fr(row, got):
     kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
     if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
@@ -234,7 +268,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "de": category_de, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
