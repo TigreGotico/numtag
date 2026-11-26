@@ -1,8 +1,9 @@
 {
-  "format_version": 2,
+  "format_version": 3,
   "extends": "fr-BE",
   "settings": {
-    "group_mark": {"value": "'", "source": "CLDR 48 number symbols chart: the group mark \"'\" row lists \"de_CH, de_LI, en_CH, fr_CH, gsw, it_CH, lmo, wae, wal\"; ICU 78 formats 1234567.5 for fr_CH as \"1'234'567,5\". CLDR 46.0.0 (cldr-json, cldr-numbers-full/main/de-CH/numbers.json, symbols-numberSystem-latn): \"group\": \"’\" (U+2019), where CLDR 49.0.0 gives \"'\" (U+0027) for de-CH and fr-CH: the Swiss group mark is written both ways, so \"1’234\" groups digits as \"1'234\" does."}
+    "group_mark": {"value": "'", "source": "CLDR 48 number symbols chart: the group mark \"'\" row lists \"de_CH, de_LI, en_CH, fr_CH, gsw, it_CH, lmo, wae, wal\"; ICU 78 formats 1234567.5 for fr_CH as \"1'234'567,5\"."},
+    "group_mark_forms": {"value": "’", "source": "educa.ch (Agence spécialisée de la Confédération et des cantons), \"Guide linguistique\", novembre 2023, Typographie: \"Subdivision par une apostrophe en groupes de trois pour les nombres ayant plus de quatre chiffres avant la virgule\", with the examples \"1'234’567\" and \"Un montant de 10’000 francs a été alloué.\" (U+2019), and \"10'000.00\" (U+0027) in a table: Swiss French text writes the group apostrophe both as U+0027 and as U+2019. CLDR 49.0.0 gives U+0027 for fr-CH, and no CLDR version gives U+2019 for fr-CH (CLDR 46.0.0 gives it for de-CH)."}
   },
   "entries": [
     {"word": "huitante", "role": "ten", "value": "80", "source": "Académie 9e éd., HUITANTE: \"En Suisse romande. Quatre-vingts.\"; CLDR 48 RBNF (ICU 78) fr_CH %spellout-cardinal-masculine: \"80: huitante;\", \"81: huitante->%%et-un>;\""},

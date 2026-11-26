@@ -24,12 +24,6 @@ _PREVIOUS_WORD = re.compile(r"([^\W\d_]+)\s+$")
 _APOSTROPHES = str.maketrans({"\u2019": "'", "\u02bc": "'"})
 
 
-def _group_forms(group_mark: str) -> str:
-    """The group mark and the forms of it that ``fold`` reads as it: the
-    Swiss "'" is also written "’" ("1’234")."""
-    return group_mark + "".join(chr(c) for c, mark in _APOSTROPHES.items() if mark == group_mark)
-
-
 def fold(word: str) -> str:
     """The form a lexicon looks a word up by."""
     return word.casefold().translate(_APOSTROPHES)
@@ -125,7 +119,7 @@ DEFAULT_SCRIPT = Script()
 
 @cache
 def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), group_mark: str = ".",
-                   apostrophe_ends_word: bool = False) -> re.Pattern:
+                   apostrophe_ends_word: bool = False, group_forms: str = "") -> re.Pattern:
     """A digit string keeps its group and decimal marks ("1.000.000,5"). A
     minus sign or a lone mark belongs to it only at the start of a word ("-5",
     ".5" and "-.5", not "5-7" or "...5"). The pattern takes digits of every script,
@@ -133,12 +127,14 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
     found whole and then dropped. A soft hyphen between letters stays in
     the word, and so does one of ``apostrophes`` ("п'ять"). A group mark
     other than "." and "," ("1'234'567" in Switzerland) also stands between
-    digits, and so do its typographic forms ("1’234"). The modifier
-    apostrophe (U+02BC) counts as a letter in Unicode;
+    digits, before a group of exactly three, and so do the other forms of it
+    in ``group_forms`` ("1’234"). After any other run ("9'58", "2’3") the
+    digits are two numbers. The modifier apostrophe (U+02BC) counts as a
+    letter in Unicode;
     with ``apostrophe_ends_word`` it is an apostrophe that ends a word, as in
     "bintʼi un"."""
     marks = ".," + "".join(re.escape(n) for n, a in script.native_digits if not a.isdigit())
-    between = marks + ("".join(map(re.escape, _group_forms(group_mark))) if group_mark not in ".," else "")
+    groups = "".join(map(re.escape, group_mark + group_forms))
     joins = SOFT_HYPHEN + "".join(re.escape(a) for a in sorted(apostrophes))
     letter = r"[^\W\d_ʼ]" if apostrophe_ends_word else r"[^\W\d_]"
     if script.fold_marks or script.word_chars:
@@ -151,7 +147,7 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
         # and digit follow: "5 1/2" is 5 and 1/2, not "5 1" and 2
         joined = rf"[{marks}]\d+|{re.escape(group_mark)}(?:\d{{3}}(?!\d)|\d+(?!\d|/\d))"
     else:
-        joined = rf"[{between}]\d+"
+        joined = rf"[{marks}]\d+" if group_mark in ".," else rf"[{marks}]\d+|[{groups}]\d{{3}}(?!\d)"
     return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:{joined})*)|(?P<word>{word})")
 
 
@@ -247,7 +243,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
              dot_ordinal: bool = False, date_months: frozenset[str] = frozenset(),
              phrases: frozenset[tuple[str, ...]] = frozenset(), group_mark: str = ".",
              compounds: frozenset[str] = frozenset(), day_month: bool = False,
-             suffix_fits: Callable[[str, str], bool] | None = None) -> list[Token]:
+             suffix_fits: Callable[[str, str], bool] | None = None, group_forms: str = "") -> list[Token]:
     """Words and digit strings of ``text``; punctuation only shows in gaps.
 
     A word glued to a digit string is its ordinal suffix when the language
@@ -288,7 +284,7 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
 
     The words of each phrase in ``phrases`` become one token
     ("quatre-vingts"). ``group_mark`` joins digits as "." and "," do
-    ("1'234"). An ordinal suffix listed with a hyphen ("-lea") follows a
+    ("1'234"), and so does each character of ``group_forms`` ("1’234"). An ordinal suffix listed with a hyphen ("-lea") follows a
     hyphen ("2-lea"). The words of each listed compound in ``compounds``
     become one token ("dètz-e-sèt", "bint'i un"). Given ``suffix_fits``, a
     listed suffix is the ordinal suffix only where ``suffix_fits(suffix,
@@ -302,10 +298,10 @@ def tokenize(text: str, ordinal_suffixes: frozenset[str] = frozenset(),
     table = script.digit_table
     tokens: list[Token] = []
     previous_end = 0
-    matches = list(_token_pattern(script, apostrophes, group_mark, bool(compounds)).finditer(scan))
+    matches = list(_token_pattern(script, apostrophes, group_mark, bool(compounds), group_forms).finditer(scan))
     ascii_digits = _ascii_digits(group_mark)
-    # a typographic form of the group mark reads as the mark: "1’234" is "1'234"
-    group_folds = {ord(form): group_mark for form in _group_forms(group_mark)[1:]} if group_mark not in ".," else {}
+    # another form of the group mark reads as the mark: "1’234" is "1'234"
+    group_folds = {ord(form): group_mark for form in group_forms}
     skip_until = -1
     for index, match in enumerate(matches):
         if match.start() < skip_until:

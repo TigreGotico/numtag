@@ -536,6 +536,8 @@ A suffix that abbreviates one ordinal follows only its number. French "er" and "
 
 French writes the same suffixes after a Roman numeral (setting `roman_ordinal_suffix`). The numeral is in upper case and the suffix in lower case, and the word is one ordinal with the gender of its suffix. The suffix keeps its limits, so "Vers" and "Ver" (V and "er") are no ordinal. A single letter is I, V or X, so "Le", "De" and "Me" are no ordinal either.
 
+A single-letter numeral with a suffix is sure only with a cue: a series noun before or after it ("au Xe siècle", "la Ve République"), a title-case name before it ("François Ier") or a regnal title and a name. With no cue it is an ordinal with a low score, as "Ire" is also "ire", anger. A word on the `roman_word` list reads only with a series noun or a regnal cue, as "Xe" is the symbol of xenon and "Cie" the abbreviation of "compagnie". No mark stands between digits and a French suffix, so "2.d", part d of figure 2, is no ordinal.
+
 ```python
 >>> read("au XXe siècle, sous la Ve République", "fr")
 [('XXe', '20'), ('Ve', '5')]
@@ -543,6 +545,12 @@ French writes the same suffixes after a Roman numeral (setting `roman_ordinal_su
 [('Ier', '1', 'ordinal', 'masculine'), ('IIde', '2', 'ordinal', 'feminine')]
 >>> read("Vers midi, Me Durand est parti.", "fr")
 []
+>>> [(m.text, m.confidence) for m in tag_numbers("Ire et colère le saisirent.", "fr")]
+[('Ire', 0.4)]
+>>> read("Le xénon (Xe) est un gaz rare. Le Xe arrondissement.", "fr")
+[('un', '1'), ('Xe', '10')]
+>>> read("Voir la figure 2.d", "fr")
+[('2', '2')]
 ```
 
 > Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Pour abréger les adjectifs ordinaux, on fait suivre un chiffre arabe ou romain d’une, de deux ou de trois lettres minuscules surélevées qui correspondent aux lettres finales des adjectifs."
@@ -706,14 +714,18 @@ The four sources differ in strength. European Portuguese rests on Wikipedia, "De
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
 
-A group mark "'" also reads in its typographic form "’" (U+2019), as the apostrophe of a word does. Swiss text writes both, and an editor that curls quotes turns one into the other.
+Swiss French writes the group apostrophe both as "'" (U+0027) and as "’" (U+2019). CLDR gives only "'" for fr-CH, so the second form is the setting `group_mark_forms`. A group mark other than ".", "," and a space joins digits only before a group of exactly three. So "9’58", a time or a score, is two numbers.
 
 ```python
 >>> read("1’234.50 et 1'234.50", "fr-CH")
 [('1’234.50', '1234.5'), ("1'234.50", '1234.5')]
+>>> read("en 9’58 et 3'45", "fr-CH")
+[('9', '9'), ('58', '58'), ('3', '3'), ('45', '45')]
 ```
 
-> CLDR 46.0.0 (cldr-json, cldr-numbers-full/main/de-CH/numbers.json, symbols-numberSystem-latn): "group": "’" (U+2019), where CLDR 49.0.0 gives "'" (U+0027) for de-CH and fr-CH: the Swiss group mark is written both ways, so "1’234" groups digits as "1'234" does.
+> "Subdivision par une apostrophe en groupes de trois pour les nombres ayant plus de quatre chiffres avant la virgule", with the examples "1'234’567" and "Un montant de 10’000 francs a été alloué." (U+2019), and "10'000.00" (U+0027) in a table: Swiss French text writes the group apostrophe both as U+0027 and as U+2019.
+
+Source: educa.ch, "Guide linguistique", November 2023, quoted in the `group_mark_forms` setting of `fr-CH.json`.
 
 ## A name before a large Roman numeral
 
