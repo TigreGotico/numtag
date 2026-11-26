@@ -253,6 +253,8 @@ A role that gives a value (`unit`, `ten`, `hundred`, `collective`, `article_coll
 
 A `writer` block makes the lexicon write numbers as words. `numtag.spell` runs it. The block holds rule sets that follow the text syntax of rule-based number formatting in ICU, the form of the CLDR files `common/rbnf/<lang>.xml`, and it says which rule set speaks each form. The rules of a lexicon come from CLDR where CLDR has them and carry a `source`. The CLDR data is under the Unicode License v3 (`LICENSE-CLDR`).
 
+A script writes the writer block of a language, and a test checks that the file holds what the script writes. Do not edit a written block by hand. Change the script and run it: `python scripts/writer_pt.py pt-PT` writes the block into `numtag/lexicon/pt-PT.json`. `python scripts/allow_list.py pt-PT` writes the allow-list entries of the language in `tests/golden/onp-writers-allow.json`. `--check` compares and changes nothing.
+
 | Key | Content |
 |---|---|
 | `source` | The quote and the file that give the rule sets. Required. |
