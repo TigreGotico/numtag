@@ -1691,10 +1691,28 @@
       "source": "en.wiktionary, Module:number list/data/ajp (South Levantine Arabic): numbers[11], cardinal \"حدعش\"; en.wiktionary, Module:number list/data/apc (North Levantine Arabic): numbers[11], cardinal \"حدعش\"."
     },
     {
+      "word": "احدعشر",
+      "role": "ten",
+      "value": "11",
+      "source": "en.wikipedia, \"Levantine Arabic grammar\" (oldid 1368977674; Papers/Languages/Semitic/Arabic/levantine_arabic_grammar_enwiki_rev1368977674.txt), numerals table: \"احدعش (i)ḥdaʕš\", before a noun \"احدعشر (i)ḥdaʕšar\"."
+    },
+    {
+      "word": "تنعشر",
+      "role": "ten",
+      "value": "12",
+      "source": "en.wikipedia, \"Levantine Arabic grammar\" (oldid 1368977674; Papers/Languages/Semitic/Arabic/levantine_arabic_grammar_enwiki_rev1368977674.txt), numerals table: \"تنعش tnaʕš\", before a noun \"تنعشر tnaʕšar\"."
+    },
+    {
+      "word": "تلات",
+      "role": "unit",
+      "value": "3",
+      "source": "en.wikipedia, \"Levantine Arabic grammar\" (oldid 1368977674; Papers/Languages/Semitic/Arabic/levantine_arabic_grammar_enwiki_rev1368977674.txt), numerals table: before a noun \"تلات tlēt/tlat (North)\"; \"numbers between 3 and 10 lose their final vowel before a noun\"."
+    },
+    {
       "word": "تنعش",
       "role": "ten",
       "value": "12",
-      "source": "Defense Language Institute, Arabic Syrian Course, Module 2 (1983), Lesson 5 vocabulary, p. 46-47 (PDF pp. 50-51, a scan; Papers/Languages/Semitic/Arabic/dli1983_syrian_course_module2.pdf): \"twelve\", Syrian column, \"تنعش\"."
+      "source": "Defense Language Institute, Arabic Syrian Course, Module 2 (1983), Lesson 5 vocabulary, p. 47 (PDF p. 51, a scan; Papers/Languages/Semitic/Arabic/dli1983_syrian_course_module2.pdf): \"twelve\", Syrian column, \"تنعش\"."
     },
     {
       "word": "خمستاش",
