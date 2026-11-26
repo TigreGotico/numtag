@@ -410,9 +410,16 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     when the spec names one, else a one-word ordinal or the ``denominator`` text. A named word, an
     ordinal and a ``ruleset`` reading take the plural ending after a numerator other than 1."""
     count = writer.render(spec.get("numerator", ruleset), top)
+    single = spec.get("single", "")
     if bottom not in spec["named"] and "ruleset" in spec:
         word = writer.render(spec["ruleset"], bottom)
+        if top == "1" and single.startswith("{denominator} "):  # the count after the part: eu "heren bat"
+            return single.replace("{denominator}", word)
+        if top != "1" and " " in word and "{numerator}" in spec.get("denominator", ""):  # eu "hamahiru zati berrogeita zazpi"
+            return spec["denominator"].replace("{numerator}", count).replace("{cardinal}", writer.render(ruleset, bottom))
         return f"{count} {_capital(spec, word if top == '1' else _plural(word, spec['plural']))}"
+    if top == "1" and bottom in spec["named"] and single.startswith("{denominator} "):
+        return single.replace("{denominator}", spec["named"][bottom])
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))

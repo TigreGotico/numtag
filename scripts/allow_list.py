@@ -51,6 +51,38 @@ def category_es(row, got):
         if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
         if int(top) >= int(bottom) and " y " in out: return "es_improper"
     return None
+EU_N = "Euskaltzaindia (Papers/Languages/Iberian/Basque/)"
+SRC.update({
+ "eu_eta": EU_N + ", 7. araua: \"mila eta berrehun, baina mila berrehun eta bi\"; 203. araua: \"1 647 413 milioi bat seiehun eta berrogeita zazpi mila laurehun eta hamahiru\", \"60 200 001 hirurogei milioi berrehun mila eta bat\": \"eta\" stands before a rest only when the rest has no \"eta\" of its own; ovos-number-parser writes \"eta\" after every scale word.",
+ "eu_scale_ordinal": EU_N + ", 203. araua, the ordinal table: \"1 000 000. milioigarren\"; ovos-number-parser writes \"milioi batgarren\".",
+ "eu_fraction": EU_N + ", 203. araua: \"1/3 heren23 heren bat\", \"2/3: bi heren\", \"3/2 = hiru erdi\", \"13/47 hamahiru zati berrogeita zazpi\": a part is the cardinal with -(r)en, and a part of more than one word reads \"zati\"; ovos-number-parser writes the ordinal (\"bat hogeita laugarren\") and a mixed number (\"bat eta erdi\").",
+ "eu_decimal": EU_N + ", 203. araua: \"0,27: zero koma hogeita zazpi edo zero koma bi zazpi\": the first form reads the decimals as one number; ovos-number-parser reads each digit.",
+ "eu_ordinals": "numtag.spell(form=SpokenForm.ORDINAL) reads the ordinal that the call asks for (" + EU_N + ", 203. araua: \"-garren atzizkia atxikitzen zaio zenbatzaile kardinalari\"); ovos-number-parser ignores ordinals=True and reads the cardinal.",
+ "eu_first": EU_N + ", 203. araua, the ordinal table: \"1. lehen/lehenengo lehenbiziko/lehendabiziko\": the writer uses the first form; 18. araua: \"ez du Euskaltzaindiak horietako batere hobesten\".",
+ "eu_range": "numtag/lexicon/eu.json, the eu writer: a number goes up to 10^24 - 1, the last scale word of this lexicon (trilioi), and outside it reads the exponent form or raises ValueError.",
+ "eu_short": "numtag/lexicon/eu.json, the setting scale: " + EU_N + ", 203. araua: \"Euskaraz, eskala luzea erabiltzen da\", so a call for the short scale reads the long one.",
+})
+def category_eu(row, got):
+    kw, out, mine = row.get("kw", {}), str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if "bider hamar ber" in mine or got == {"err": "ValueError"}: return "eu_range"
+    if row["fn"] == "ordinal" and out == "lehenengo" and mine == "lehen": return "eu_first"
+    if row["fn"] == "fraction":
+        top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
+        if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+        norm = re.search(r"(ren|en|erdi|heren|laurden)( bat)?$", mine) or " zati " in mine
+        return "eu_fraction" if norm and (re.search(r"garren$", out) or " eta " in out) else None
+    if kw.get("ordinals") and re.search(r"(garren|lehen)$", mine) and not re.search(r"(garren|lehen)$", out): return "eu_ordinals"
+    if row["fn"] == "number" and isinstance(row["arg"], float) and " koma " in mine: return "eu_decimal"
+    flat = lambda t: re.sub(r"\b(milioi|bilioi|trilioi) bat(garren)", r"\1\2", t).replace(" eta ", " ")
+    if flat(out) == flat(mine):
+        return "eu_scale_ordinal" if out.replace(" eta ", " ") != mine.replace(" eta ", " ") else "eu_eta"
+    if kw.get("scale") == "short" and category_eu({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got) is None:
+        return "eu_short" if re.search(r"(bilioi|trilioi|miliar)", out + mine) else None
+    if kw.get("scale") == "short": return category_eu({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+    return None
 CLDR_IT = "CLDR RBNF it (unicode-rbnf 2.5.1), %spellout-ordinal-masculine: an ordinal is one word, the cardinal and \"-esimo\" (1001 \"milleunesimo\", 110 \"centodecimo\")."
 TRECCANI_FRAZIONARI = "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\": the numerator is a cardinal, \"un\" before the denominator, and the denominator agrees with it."
 SRC.update({
@@ -414,7 +446,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "eu": category_eu, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }

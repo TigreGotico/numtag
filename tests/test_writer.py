@@ -73,6 +73,12 @@ def _issue_325(lang: str, text: str) -> bool:
 ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
 
 
+def _issue_360(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/360: the eu reader does not read a part of more than one word
+    ("hogeita baten bat"); its last word is also the genitive of the count ("etxe baten")."""
+    return lang == "eu" and text in ("baten", "biren", "hiruren", "lauren")
+
+
 def _issue_329(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/329: the ro reader leaves out the article "al"/"a" and misses
     the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea"). The bare words
@@ -151,8 +157,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 181584)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "eu", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
+        self.assertEqual(len(rows), 192933)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -267,8 +273,12 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_360(lang, word)]
                 self.assertEqual(unread, [])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/360")
+    def test_the_eu_reader_reads_a_part_of_more_than_one_word(self):
+        self.assertEqual([m.value for m in tag_numbers("hogeita baten bat", "eu")], ["1/21"])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
     def test_the_pt_PT_reader_reads_ordinals_with_two_scale_groups_and_high_scale_words(self):
@@ -347,8 +357,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "eu", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "eu", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -517,6 +527,36 @@ class TestEnglish(unittest.TestCase):
         self.assertEqual([self.say(f) for f in ("1/2", "3/2", "2/3", "3/4", "1/100", "7/1000000")],
                          ["one half", "three halves", "two thirds", "three quarters", "one hundredth", "seven millionths"])
 
+
+
+class TestBasque(unittest.TestCase):
+    """Euskaltzaindia, 7., 18. and 203. arauak."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "eu", **kw)[0].text
+
+    def test_cardinals_follow_the_examples_of_the_norms(self):
+        self.assertEqual([self.say(n) for n in ("18", "21", "30", "101", "1200", "1201", "1984", "13425", "1200000",
+                                                "1647413", "2700000", "60200001", "1000000000", "1000000000000")],
+                         ["hemezortzi", "hogeita bat", "hogeita hamar", "ehun eta bat", "mila eta berrehun",
+                          "mila berrehun eta bat", "mila bederatziehun eta laurogeita lau",
+                          "hamahiru mila laurehun eta hogeita bost", "milioi bat eta berrehun mila",
+                          "milioi bat seiehun eta berrogeita zazpi mila laurehun eta hamahiru",
+                          "bi milioi eta zazpiehun mila", "hirurogei milioi berrehun mila eta bat", "mila milioi",
+                          "bilioi bat"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("0", "1", "5", "21", "25", "101", "1001", "1000000")],
+                         ["zerogarren", "lehen", "bosgarren", "hogeita batgarren", "hogeita bosgarren",
+                          "ehun eta batgarren", "mila eta batgarren", "milioigarren"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "1/21", "1/1000000", "2/3", "3/2", "7/60", "13/47")],
+                         ["heren bat", "hogeita baten bat", "milioiren bat", "bi heren", "hiru erdi",
+                          "zazpi hirurogeiren", "hamahiru zati berrogeita zazpi"])
+
+    def test_decimals_and_negatives(self):
+        self.assertEqual([self.say(n) for n in ("0.27", "-15")], ["zero koma hogeita zazpi", "minus hamabost"])
 
 
 class TestNorwegianBokmal(unittest.TestCase):
