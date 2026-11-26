@@ -201,6 +201,7 @@
           "properties": {
             "limit": {"type": "integer", "minimum": 2},
             "named": {"type": "object", "additionalProperties": {"type": "string"}},
+            "mixed_named": {"type": "object", "additionalProperties": {"type": "string"}},
             "denominator": {"type": "string"},
             "single": {"type": "string"},
             "mixed": {"type": "boolean"},

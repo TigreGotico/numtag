@@ -398,6 +398,7 @@ def _fraction(writer: Writer, ruleset: str, value: str) -> str:
         raise ValueError(f"{value!r} is not a fraction of two whole numbers")
     negative = top.startswith("-") != bottom.startswith("-")
     top, bottom = map(digits.normalise, terms)
+    negative = negative and top != "0"
     if bottom == "0":
         raise ZeroDivisionError(f"denominator is zero: {value}")
     whole, rest = digits.divide_whole(top, bottom)
@@ -449,6 +450,8 @@ def _ordinal_of(writer: Writer, number: str) -> str:
 
 def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str, denominator: str) -> str:
     lead = [writer.render(ruleset, whole)] if whole != "0" else []
+    if lead and denominator in spec.get("mixed_named", {}):
+        return " ".join([*lead, spec["mixed_named"][denominator]])
     if denominator in spec["named"]:
         return " ".join([*lead, spec["named"][denominator]])
     word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, denominator))

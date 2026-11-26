@@ -75,6 +75,11 @@ def _issue_325(lang: str, text: str) -> bool:
 ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
 
 
+def _issue_373(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/373: the kab bound words read only inside a number."""
+    return lang == "kab" and text in ("juǧ", "wis", "tis")
+
+
 def _issue_329(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/329: the ro reader leaves out the article "al"/"a" and misses
     the ordinals of a counted hundred, thousand or scale word ("al o sutălea", "al două miilea"). The bare words
@@ -310,7 +315,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_373(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
@@ -673,6 +678,33 @@ class TestNorwegianBokmal(unittest.TestCase):
     def test_fractions_take_the_cardinal(self):
         self.assertEqual([self.say(f) for f in ("1/3", "2/3", "8/13", "9/34", "1/2")],
                          ["en tredel", "to tredeler", "åtte trettendeler", "ni trettifiredeler", "en halv"])
+
+
+class TestKabyle(unittest.TestCase):
+    """fr.wiktionary «Modèle:cardinaux/kab», languagesandnumbers.com and en.wikipedia «Kabyle grammar»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "kab", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "80", "400", "2000", "3000", "20000")],
+                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "juǧ alaf",
+                          "telt-alaf", "ɛecrin-alaf"])
+        self.assertEqual([self.say(n, gender="feminine") for n in ("1", "2", "21")], ["yiwet", "snat", "waḥed u ɛecrin"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "2", "3")],
+                         ["amezwaru", "wis sin", "wis tlata"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="feminine") for n in ("1", "3")],
+                         ["tamezwarut", "tis tlata"])
+
+    def test_the_half(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "3/2")], ["azgen", "yiwen d wezgen"])
+
+    def test_no_decimal_and_no_minus_word(self):
+        for value in ("1.5", "-3", "-1/2"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                spell(value, "kab")
 
 
 class TestDutch(unittest.TestCase):
@@ -1114,8 +1146,6 @@ class TestNamedDenominator(unittest.TestCase):
 
 
 class TestZeroFraction(unittest.TestCase):
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="-0/5 is written with a minus word although its value is zero "
-                       "https://github.com/TigreGotico/numtag/issues/295")
     def test_a_fraction_of_a_zero_numerator_has_no_minus_word(self):
         self.assertEqual([spell("-0/5", lang)[0].text for lang in FRACTION_WRITERS],
                          [spell("0/5", lang)[0].text for lang in FRACTION_WRITERS])
