@@ -17,6 +17,8 @@ ONP = "ovos-number-parser 0.31.5a2 numbers_it.py"
 CRUSCA_1077 = "Accademia della Crusca, consulenza 1077"
 TRECCANI_FRAZIONARI = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un "
                        "aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\"")
+TRECCANI_TRE = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali»: \"I composti di tre vanno accentati\", so a "
+                "compound that ends in three ends in \"tré\": \"milletré\", \"duemilatré\"")
 CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form "
                 "first; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound «uno» "
                 "\"può essere apocopato\", so the apocope is optional and the full form is the unmarked one: "
@@ -60,7 +62,8 @@ def cardinal(name, one, three="tré"):
     rules += [R(20 + 10 * i, f"{stem}→%{name}-{v}→") for i, (stem, v) in enumerate(TENS)]
     rules += [R(100, f"cent→%{name}-o→", CRUSCA_108), R(200, f"←%{name}←cent→%{name}-o→")]
     if three == "tré":
-        rules += [R(1000, "mille[→→]"), R(2000, "←%count-mila←mila[→→]")]
+        rules += [R(1000, f"mille[→%{name}-rest→]"), R(2000, f"←%count-mila←mila[→%{name}-rest→]")]
+        sets.append((f"{name}-rest", [R(1, f"=%{name}="), R(3, "tré", TRECCANI_TRE), R(4, f"=%{name}=")]))
     for exponent, singular, plural in SCALES:
         rules += [R(10 ** exponent, f"un {singular}[ →→]"),
                   R(2 * 10 ** exponent, f"←%numbering← {plural}[ →→]", CRUSCA_COUNT)]
