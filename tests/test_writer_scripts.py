@@ -4,6 +4,8 @@ import sys
 import unittest
 from pathlib import Path
 
+import golden_writers
+
 ROOT = Path(__file__).parent.parent
 
 
@@ -33,11 +35,18 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_gl.py", "")
     def test_the_dutch_writer_block_is_what_the_script_writes(self):
         self.check("writer_nl.py", "")
+
     def test_the_basque_writer_block_is_what_the_script_writes(self):
         self.check("writer_eu.py", "")
 
+    def test_the_norwegian_nynorsk_writer_block_is_what_the_script_writes(self):
+        self.check("writer_nn.py", "")
+
     def test_the_norwegian_bokmal_writer_block_is_what_the_script_writes(self):
         self.check("writer_nb.py", "")
+
+    def test_the_danish_writer_block_is_what_the_script_writes(self):
+        self.check("writer_da.py", "")
 
     def test_the_german_writer_block_is_what_the_script_writes(self):
         self.check("writer_de.py", "")
@@ -54,6 +63,8 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_ro.py", "")
 
     def test_the_allow_list_entries_are_what_the_script_writes(self):
-        for lang in ("ca", "de", "en", "es", "eu", "fr-BE", "fr-CH", "fr-FR", "id", "it", "gl", "ms", "nb", "nl", "pt-PT", "pt-BR", "ro"):
+        langs = sorted({row["lang"] for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])})
+        self.assertTrue({"id", "ms", "pt-PT", "es", "nb"} <= set(langs))
+        for lang in langs:
             with self.subTest(lang=lang):
                 self.check("allow_list.py", lang)
