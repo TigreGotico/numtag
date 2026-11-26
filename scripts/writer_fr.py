@@ -22,6 +22,9 @@ ACADEMIE_ORDINAL = ("Académie française, «vingt et cent»: \"Ils restent éga
 ORDINAL_2000 = ("Not checked against a quoted example: \"deux millième\" applies the traditional rule to the "
                 "ordinal, as OQLF BDL 23494 says the hyphen rule \"vaut tant pour les déterminants numéraux ... que "
                 "pour les adjectifs ordinaux\"")
+ACADEMIE_UNIEME = ("Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, "
+                   "trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", with "
+                   "the example \"la mille et unième nuit\"; the writer prints the usual form after cent and mille")
 SOURCE_CH = ("Académie française, «Questions de langue: nombres»: \"octante, qui a été supplanté par quatre-vingts et "
              "huitante – en Suisse – tant dans l'usage courant que dans l'enseignement ou les textes administratifs\"; "
              "Avanzi 2017, Français de nos régions, «Comment dit-on 80 en Belgique et en Suisse?»: in Vaud, Fribourg "
@@ -117,9 +120,9 @@ def ordinal(name, first):
                     R(c * radix + 1, f"←%cardinal-m← {noun}→%{name}-scale→", None, radix)]
     rules += big
     unit = [R(n, w) for n, w in ORDINALS.items()]
-    rest = [R(0, "ième"), R(1, f" =%{name}-unit=")]
+    rest = [R(0, "ième"), R(1, " et unième", ACADEMIE_UNIEME), R(2, f" =%{name}-unit=")]
     scale = [R(0, "ième"), R(1, f"s =%{name}-unit=")]
-    mille = [R(0, "ième"), R(1, f"e =%{name}-unit=")]
+    mille = [R(0, "ième"), R(1, "e et unième", ACADEMIE_UNIEME), R(2, f"e =%{name}-unit=")]
     inner = [r if not r["text"].endswith("ième;") or r["value"] not in {str(10 ** e) for e, _ in SCALES}
              else R(r["value"], "un " + r["text"][:-1]) for r in big]
     sets = [(name, rules), (f"{name}-unit", unit + [R(17, f"dix-→%{name}-unit→")] + tens(f"{name}-unit", True)

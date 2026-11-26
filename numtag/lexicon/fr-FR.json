@@ -1008,7 +1008,8 @@
       ]},
       "ordinal-m-rest": {"source": "a part of ordinal-m. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
-        {"value": "1", "text": " =%ordinal-m-unit=;"}
+        {"value": "1", "text": " et unième;", "source": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", with the example \"la mille et unième nuit\"; the writer prints the usual form after cent and mille"},
+        {"value": "2", "text": " =%ordinal-m-unit=;"}
       ]},
       "ordinal-m-scale": {"source": "a part of ordinal-m. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
@@ -1016,7 +1017,8 @@
       ]},
       "ordinal-m-mille": {"source": "a part of ordinal-m. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
-        {"value": "1", "text": "e =%ordinal-m-unit=;"}
+        {"value": "1", "text": "e et unième;", "source": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", with the example \"la mille et unième nuit\"; the writer prints the usual form after cent and mille"},
+        {"value": "2", "text": "e =%ordinal-m-unit=;"}
       ]},
       "ordinal-f": {"source": "CLDR RBNF fr (common/rbnf as shipped in unicode-rbnf 2.5.1), %spellout-ordinal-f. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "-x", "text": "moins →→;"},
@@ -1532,7 +1534,8 @@
       ]},
       "ordinal-f-rest": {"source": "a part of ordinal-f. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
-        {"value": "1", "text": " =%ordinal-f-unit=;"}
+        {"value": "1", "text": " et unième;", "source": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", with the example \"la mille et unième nuit\"; the writer prints the usual form after cent and mille"},
+        {"value": "2", "text": " =%ordinal-f-unit=;"}
       ]},
       "ordinal-f-scale": {"source": "a part of ordinal-f. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
@@ -1540,7 +1543,8 @@
       ]},
       "ordinal-f-mille": {"source": "a part of ordinal-f. Académie française, «Questions de langue: nombres»: the traditional spelling joins with a hyphen the numerals below one hundred and links the others with a space; \"il est également possible, en accord avec les Rectifications de l'orthographe ... de lier par un trait d'union tous les éléments qui composent le nombre\". The writer prints the traditional spelling; the reader reads both", "rules": [
         {"value": "0", "text": "ième;"},
-        {"value": "1", "text": "e =%ordinal-f-unit=;"}
+        {"value": "1", "text": "e et unième;", "source": "Dictionnaire de l’Académie française, 9e éd., «unième»: \"Ne s’emploie qu’avec les nombres vingt, trente, quarante, cinquante, soixante, quatre-vingts, cent et mille, souvent précédé de et\", with the example \"la mille et unième nuit\"; the writer prints the usual form after cent and mille"},
+        {"value": "2", "text": "e =%ordinal-f-unit=;"}
       ]}
     },
     "forms": {"cardinal": {"variants": [{"ruleset": "numbering", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "cardinal-m", "reason": "standard"}], "feminine": [{"ruleset": "cardinal-f", "reason": "standard"}]}, "maximum": "999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal-m", "reason": "standard"}], "gender": {"masculine": [{"ruleset": "ordinal-m", "reason": "standard"}], "feminine": [{"ruleset": "ordinal-f", "reason": "standard"}]}, "minimum": "0", "maximum": "999999999999999999999999"}},
