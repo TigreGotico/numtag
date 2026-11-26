@@ -17,8 +17,10 @@ ONP = "ovos-number-parser 0.31.5a2 numbers_it.py"
 CRUSCA_1077 = "Accademia della Crusca, consulenza 1077"
 TRECCANI_FRAZIONARI = ("Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 Frazionari: \"formati da un "
                        "aggettivo numerale cardinale e da un ordinale (un terzo, due quinti, quattro decimi, ecc.)\"")
-CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\". The writer "
-                "prints the full form, as " + ONP + " does: \"ventunomila\", \"ventuno milioni\"")
+CRUSCA_COUNT = (CRUSCA_1077 + ": \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form "
+                "first; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound «uno» "
+                "\"può essere apocopato\", so the apocope is optional and the full form is the unmarked one: "
+                "\"ventunomila\", \"ventuno milioni\"")
 
 UNITS = ("zero uno due tre quattro cinque sei sette otto nove dieci undici dodici tredici quattordici quindici "
          "sedici diciassette diciotto diciannove").split()
@@ -101,9 +103,8 @@ SOURCES = {
                   "comune\", so 21 is \"ventuno\"",
     "count-mila": CLDR + ", %%msc-no-final: the count before \"mila\" ends in \"tre\" with no accent (\"ventitremila\"). "
                   + CRUSCA_COUNT,
-    "ordinal-m": CLDR + ", %spellout-ordinal-masculine, with the count of thousands fused as " + ONP
-                 + " writes it (\"duemillesimo\"), and \"centoottesimo\" as it writes it, after the cardinal \"centootto\". "
-                 + CRUSCA_108,
+    "ordinal-m": CLDR + ", %spellout-ordinal-masculine (\"2000: ←%spellout-cardinal-masculine←mille→%%ordinal-esimo→\": "
+                 "\"duemillesimo\"), with \"centoottesimo\" from the cardinal \"centootto\". " + CRUSCA_108,
     "ordinal-f": CLDR + ", %spellout-ordinal-feminine, with the changes of ordinal-m",
 }
 rulesets = {name: {"source": SOURCES.get(name) or "a tail of " + SOURCES[name.rsplit("-", 1)[0]].split(",")[0],
@@ -124,10 +125,10 @@ block = {
     },
     "decimal": {"word": "virgola", "places": 3,
                 "source": CLDR + ", %spellout-numbering x,x: \"←← virgola →→\". " + ONP + " reads each decimal digit."},
-    "scientific": {"times": "per dieci elevato alla", "source": ONP + ": \"uno per dieci elevato alla sei\"."},
+    "scientific": {"times": "per dieci elevato alla", "source": "Not checked against a grammar: the phrase of " + ONP + ", \"uno per dieci elevato alla sei\"."},
     "fraction": {"mixed": False, "limit": 10, "single": "un {denominator}", "plural": {"o": "i", "a": "e"},
                  "named": dict(zip(map(str, range(2, 11)), ["mezzo"] + ORDINALS[3:])),
                  "denominator": "{cardinal}esimi", "ruleset": "ordinal-m", "numerator": "cardinal-m",
-                 "source": TRECCANI_FRAZIONARI + ". " + ONP + " writes \"un terzo\" and \"due terzi\"."},
+                 "source": TRECCANI_FRAZIONARI + "."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)

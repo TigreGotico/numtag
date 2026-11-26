@@ -57,7 +57,8 @@ SRC.update({
  "it_apocope": "Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: in a compound before a noun «uno» \"può essere apocopato ... ottantun votanti ... quarantun anni\"; gender=masculine reads the form before a noun, as CLDR RBNF it (unicode-rbnf 2.5.1) %spellout-cardinal-masculine.",
  "it_ordinal": CLDR_IT,
  "it_mille": "CLDR RBNF it (unicode-rbnf 2.5.1), %spellout-numbering: \"1000: mille\"; \"mila\" is the plural after a count (\"2000: ←←mila\"), so -1000 is \"meno mille\".",
- "it_count": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\"; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: «uno» in a compound \"può essere apocopato\". Both forms are correct, and the writer prints the full form, \"ventuno\".",
+ "it_count": "Accademia della Crusca, consulenza 1077: \"21.000: ventunomila o ventunmila: entrambe le forme vanno bene\", the full form first; Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», ex. 24-25: «uno» in a compound \"può essere apocopato\", so the apocope is optional and the full form \"ventuno\" is the unmarked one.",
+ "it_mezzi": "SILVER: no saved source names the plural fraction \"mezzi\". Enciclopedia dell'Italiano (Treccani, 2010-11), «numerali», § 2.3 gives the pattern \"un terzo, due quinti, quattro decimi\" and says \"discorso a parte va fatto per mezzo\"; the writer applies the pattern to the half (\"tre mezzi\") until a source names the form.",
  "it_fraction": TRECCANI_FRAZIONARI,
  "it_big": "numtag/lexicon/it.json, the scale_noun entries: milione 10^6, miliardo 10^9, bilione 10^12, biliardo 10^15, trilione 10^18, quadrilione 10^24 (CLDR RBNF it (unicode-rbnf 2.5.1) names up to biliardo). The lexicon has no \"triliardo\" or \"quintilione\", so 10^21 reads \"mille trilioni\" and 10^30 reads the exponent form.",
 })
@@ -72,7 +73,7 @@ def category_it(row, got):
     if row["fn"] == "fraction":
         top, bottom = (t.lstrip("-") for t in row["arg"].split("/"))
         if bottom == "0": return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
-        return "it_fraction"
+        return "it_mezzi" if bottom == "2" and top not in ("0", "1") else "it_fraction"
     if kw.get("scale") == "short" and out != mine: return "it_short"
     if kw.get("gender") == "masculine" and re.sub(r"un\b", "uno", mine) == out: return "it_apocope"
     if row["fn"] == "ordinal" and " " not in mine.removeprefix("meno ") and " " in out.removeprefix("meno "): return "it_ordinal"
