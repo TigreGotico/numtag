@@ -88,6 +88,7 @@ Read [docs/values.md](docs/values.md) for the full contract.
 | `fr` (`fr-BE` and `fr-CH` have their own lexicons), `it`, `ro`, `eu`, `id`, `ms` | French, Italian, Romanian, Basque, Indonesian, Malay | per lexicon, in [fr-it-ro-eu-id.md](docs/languages/fr-it-ro-eu-id.md) |
 | `hi`, `mwr` | Hindi, Marwari | Indian: "लाख" is 10^5, "करोड़" (mwr "किरोड़") is 10^7 |
 | `es`, `gl`, `ca` (`ca-ES-valencia` has its own lexicon), `ast`, `an`, `oc`, `mwl` | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan, Mirandese | per lexicon, in [ibero.md](docs/languages/ibero.md) |
+| `bn` | Bengali | Indian: "লাখ" is 10^5 and "কোটি" is 10^7, in [bn.md](docs/languages/bn.md) |
 
 Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
 
