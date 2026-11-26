@@ -8,6 +8,7 @@ import sys, json, collections, os, re
 from pathlib import Path
 os.chdir(Path(__file__).parents[1])
 sys.path.insert(0, "tests"); import golden_writers as gw
+from numtag import spell
 lang = sys.argv[1]
 CIB = "https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/"
 SRC = {
@@ -197,13 +198,13 @@ def category_ca(row, got):
 NL_TA = "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/taaladvies-aaneenschrijven-telwoorden.html)"
 SRC.update({
  "nl_een": "Taaladvies.net, «Een of één» (Papers/Languages/Germanic/Dutch/taaladvies-een-of-een-van-de.html): \"Er komen alleen uitspraaktekens op een als het een telwoord is en het ten onrechte als lidwoord zou kunnen worden gelezen.\"; numtag writes \"een\", ovos-number-parser \"één\".",
- "nl_ordinal": NL_TA + ": \"102e honderdentweede\"; SILVER for the other units after honderd; ovos-number-parser writes \"honderdtweede\".",
  "nl_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"nul\" to three places.",
  "nl_negative": "numtag/lexicon/nl.json, the nl writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
  "nl_range": "numtag/lexicon/nl.json, the nl writer: a number goes up to 10^24 - 1, the last scale word of this lexicon (triljard), and outside it spell() raises.",
  "nl_ordinals": "ovos-number-parser 0.31.5a2 numbers_nl.py: pronounce_number reads ordinals=True as a cardinal; numtag reads the ordinal.",
  "nl_improper": NL_TA + ": \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", so 4/3 reads \"vier derde\"; ovos-number-parser reads an improper fraction as a mixed number (\"één en één derde\").",
  "nl_half": "SILVER: numtag reads n/2 with \"halve\" (\"vier halve\"), ovos-number-parser with the ordinal \"tweede\"; no saved rule for either.",
+ "nl_one_scale": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\" (Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)»); ovos-number-parser writes \"miljoenste\".",
  "nl_short": "numtag/lexicon/nl.json, the setting scale: Dutch counts in the long scale only (Onze Taal 70 (2001): \"duizend miljoen is een miljard\"), so a call for the short scale reads the long one.",
 })
 def nl_fixed(out):
@@ -225,9 +226,13 @@ def category_nl(row, got):
     fixed = nl_fixed(out)
     if row["fn"] == "fraction" and " en " in fixed:  # "een en een derde" for 4/3: the word of the denominator agrees
         top, bottom = (int(x.lstrip("-")) for x in row["arg"].split("/"))
-        if top > bottom and fixed.split()[-1] == mine.split()[-1].replace("halve", "half"): return "nl_improper"
+        whole, rest = divmod(top, bottom)
+        sign = "min " if row["arg"].startswith("-") else ""
+        word = mine.split()[-1].replace("halve", "half")
+        mixed = f"{sign}{spell(str(whole), 'nl')[0].text} en {spell(str(rest), 'nl')[0].text} {word}"
+        if top > bottom and rest and fixed == mixed: return "nl_improper"
+    if re.fullmatch(r"(min )?een \w+(joen|jard)ste", mine) and fixed == mine.replace("een ", "", 1): return "nl_one_scale"
     if fixed == mine: return "nl_decimal" if row["fn"] == "number" and isinstance(row["arg"], float) else "nl_een"
-    if fixed == mine.replace("honderden", "honderd"): return "nl_ordinal"
     if row["fn"] == "fraction" and fixed.endswith(" tweede") and fixed[:-len("tweede")] + "halve" == mine: return "nl_half"
     return None
 def category_fr(row, got):

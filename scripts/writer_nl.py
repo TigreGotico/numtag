@@ -19,9 +19,10 @@ ORDINAL = (TA + ": \"Rangtelwoorden worden gevormd door toevoeging van het achte
            "overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste "
            "en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze "
            "zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier "
-           "miljoen vierhonderdduizendste\"")
-SILVER_EN = ("SILVER: \"en\" joins a unit from 1 to 9 after honderd in an ordinal, by the one example \"honderdentweede\"; "
-             "the cardinal keeps \"honderdtwee\"")
+           "miljoen vierhonderdduizendste\". The writer joins no \"en\" after honderd (\"honderdtweede\"), as the first form of "
+           "the cardinal \"honderdeen of honderdeneen\"")
+SILVER_ONE = ("SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; "
+              "no saved example")
 FRACTION = (TA + ": \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", \"Teller en noemer worden "
             "los van elkaar geschreven.\" (\"twee derde\", \"zevenenveertig tienduizendste\"), and \"Het rangtelwoord in de "
             "noemer krijgt meestal geen meervouds-n.\"")
@@ -68,24 +69,18 @@ ordinal[1]["source"] = ORDINAL
 ordinal += tens("ordinal", "ste")
 ordinal += [R(100, "honderd→%ordinal-hundred→"), R(200, "←%cardinal←honderd→%ordinal-hundred→"),
             R(1000, "duizend→%ordinal-thousand→"), R(2000, "←%cardinal←duizend→%ordinal-thousand→")]
-scale_sets = []
 for exponent, word in SCALES:
-    # "miljoenste", not "een miljoenste": the reader reads "een miljoenste" as 1/1000000
-    ordinal += [R(10 ** exponent, f"→%ordinal-{word}→"), R(2 * 10 ** exponent, f"←%cardinal← {word}→%ordinal-thousand→")]
-    scale_sets += [(f"ordinal-{word}", [R(0, word + "ste"), R(1, f"een {word} =%ordinal-inner=")])]
+    ordinal += [R(10 ** exponent, f"←%cardinal← {word}→%ordinal-thousand→", SILVER_ONE)]
 
 sets = [
     ("cardinal", cardinal),
     ("ordinal", ordinal),
-    ("ordinal-hundred", [R(0, "ste"), R(1, "en=%ordinal=", SILVER_EN), R(10, "=%ordinal=")]),
-    ("ordinal-thousand", [R(0, "ste"), R(1, " =%ordinal-inner=")]),
-    # after a scale word a round scale keeps its count: "een biljoen een miljoenste"
-    ("ordinal-inner", [R(0, "=%ordinal=")] + [R(10 ** e, f"←%cardinal← {w}→%ordinal-thousand→") for e, w in SCALES]),
-] + scale_sets
+    ("ordinal-hundred", [R(0, "ste"), R(1, "=%ordinal=")]),
+    ("ordinal-thousand", [R(0, "ste"), R(1, " =%ordinal=")]),
+]
 SOURCES = {
     "cardinal": CLDR + ", %spellout-cardinal, with the scale words of this lexicon. " + SPACING,
-    "ordinal": CLDR + ", %spellout-ordinal. " + ORDINAL,
-    "ordinal-hundred": ORDINAL + ". " + SILVER_EN,
+    "ordinal": CLDR + ", %spellout-ordinal. " + ORDINAL + ". " + SILVER_ONE,
 }
 rulesets = {name: {"source": SOURCES.get(name) or "a part of ordinal", "rules": rules} for name, rules in sets}
 maximum = "9" * 24
@@ -100,7 +95,7 @@ block = {
     "decimal": {"word": "komma", "places": 3, "source": CLDR + ", %spellout-cardinal x.x: \"←← komma →→\"."},
     "scientific": {"times": "maal tien tot de macht", "source": "Not checked against a grammar."},
     "fraction": {"mixed": False, "limit": 10, "single": "een {denominator}", "plural": {"half": "halve"},
-                 "named": {"2": "half"}, "denominator": "{cardinal}ste", "ruleset": "ordinal", "numerator": "cardinal",
+                 "named": {"2": "half", **{str(10 ** e): w + "ste" for e, w in SCALES}}, "denominator": "{cardinal}ste", "ruleset": "ordinal", "numerator": "cardinal",
                  "source": FRACTION + ". " + SILVER_HALF + "."},
 }
 splice(LEXICON, block, check="--check" in sys.argv)

@@ -984,9 +984,9 @@
         {"value": "1000000000000000000", "text": "←← triljoen[ →→];"},
         {"value": "1000000000000000000000", "text": "←← triljard[ →→];"}
       ]},
-      "ordinal": {"source": "CLDR RBNF nl (common/rbnf/nl.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal. Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Rangtelwoorden worden gevormd door toevoeging van het achtervoegsel -ste, de of -e aan het overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\"", "rules": [
+      "ordinal": {"source": "CLDR RBNF nl (common/rbnf/nl.xml as shipped in unicode-rbnf 2.5.1), %spellout-ordinal. Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Rangtelwoorden worden gevormd door toevoeging van het achtervoegsel -ste, de of -e aan het overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\". The writer joins no \"en\" after honderd (\"honderdtweede\"), as the first form of the cardinal \"honderdeen of honderdeneen\". SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example", "rules": [
         {"value": "-x", "text": "min →→;"},
-        {"value": "0", "text": "nulste;", "source": "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Rangtelwoorden worden gevormd door toevoeging van het achtervoegsel -ste, de of -e aan het overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\""},
+        {"value": "0", "text": "nulste;", "source": "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Rangtelwoorden worden gevormd door toevoeging van het achtervoegsel -ste, de of -e aan het overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\". The writer joins no \"en\" after honderd (\"honderdtweede\"), as the first form of the cardinal \"honderdeen of honderdeneen\""},
         {"value": "1", "text": "eerste;"},
         {"value": "2", "text": "tweede;"},
         {"value": "3", "text": "derde;"},
@@ -1090,65 +1090,25 @@
         {"value": "200", "text": "←%cardinal←honderd→%ordinal-hundred→;"},
         {"value": "1000", "text": "duizend→%ordinal-thousand→;"},
         {"value": "2000", "text": "←%cardinal←duizend→%ordinal-thousand→;"},
-        {"value": "1000000", "text": "→%ordinal-miljoen→;"},
-        {"value": "2000000", "text": "←%cardinal← miljoen→%ordinal-thousand→;"},
-        {"value": "1000000000", "text": "→%ordinal-miljard→;"},
-        {"value": "2000000000", "text": "←%cardinal← miljard→%ordinal-thousand→;"},
-        {"value": "1000000000000", "text": "→%ordinal-biljoen→;"},
-        {"value": "2000000000000", "text": "←%cardinal← biljoen→%ordinal-thousand→;"},
-        {"value": "1000000000000000", "text": "→%ordinal-biljard→;"},
-        {"value": "2000000000000000", "text": "←%cardinal← biljard→%ordinal-thousand→;"},
-        {"value": "1000000000000000000", "text": "→%ordinal-triljoen→;"},
-        {"value": "2000000000000000000", "text": "←%cardinal← triljoen→%ordinal-thousand→;"},
-        {"value": "1000000000000000000000", "text": "→%ordinal-triljard→;"},
-        {"value": "2000000000000000000000", "text": "←%cardinal← triljard→%ordinal-thousand→;"}
+        {"value": "1000000", "text": "←%cardinal← miljoen→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"},
+        {"value": "1000000000", "text": "←%cardinal← miljard→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"},
+        {"value": "1000000000000", "text": "←%cardinal← biljoen→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"},
+        {"value": "1000000000000000", "text": "←%cardinal← biljard→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"},
+        {"value": "1000000000000000000", "text": "←%cardinal← triljoen→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"},
+        {"value": "1000000000000000000000", "text": "←%cardinal← triljard→%ordinal-thousand→;", "source": "SILVER: a lone scale ordinal keeps its count, \"een miljoenste\", by the pattern of \"vier miljoenste\"; no saved example"}
       ]},
-      "ordinal-hundred": {"source": "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Rangtelwoorden worden gevormd door toevoeging van het achtervoegsel -ste, de of -e aan het overeenkomstige hoofdtelwoord. Met de hoofdtelwoorden een en drie corresponderen evenwel de rangtelwoorden eerste en derde. Voor het overige worden de rangtelwoorden op dezelfde wijze gespeld als de hoofdtelwoorden waarvan ze zijn afgeleid.\" Examples: \"honderdentweede\", \"drieduizend tweehonderdtwintigste\", \"vier miljoenste\", \"vier miljoen vierhonderdduizendste\". SILVER: \"en\" joins a unit from 1 to 9 after honderd in an ordinal, by the one example \"honderdentweede\"; the cardinal keeps \"honderdtwee\"", "rules": [
+      "ordinal-hundred": {"source": "a part of ordinal", "rules": [
         {"value": "0", "text": "ste;"},
-        {"value": "1", "text": "en=%ordinal=;", "source": "SILVER: \"en\" joins a unit from 1 to 9 after honderd in an ordinal, by the one example \"honderdentweede\"; the cardinal keeps \"honderdtwee\""},
-        {"value": "10", "text": "=%ordinal=;"}
+        {"value": "1", "text": "=%ordinal=;"}
       ]},
       "ordinal-thousand": {"source": "a part of ordinal", "rules": [
         {"value": "0", "text": "ste;"},
-        {"value": "1", "text": " =%ordinal-inner=;"}
-      ]},
-      "ordinal-inner": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "=%ordinal=;"},
-        {"value": "1000000", "text": "←%cardinal← miljoen→%ordinal-thousand→;"},
-        {"value": "1000000000", "text": "←%cardinal← miljard→%ordinal-thousand→;"},
-        {"value": "1000000000000", "text": "←%cardinal← biljoen→%ordinal-thousand→;"},
-        {"value": "1000000000000000", "text": "←%cardinal← biljard→%ordinal-thousand→;"},
-        {"value": "1000000000000000000", "text": "←%cardinal← triljoen→%ordinal-thousand→;"},
-        {"value": "1000000000000000000000", "text": "←%cardinal← triljard→%ordinal-thousand→;"}
-      ]},
-      "ordinal-miljoen": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "miljoenste;"},
-        {"value": "1", "text": "een miljoen =%ordinal-inner=;"}
-      ]},
-      "ordinal-miljard": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "miljardste;"},
-        {"value": "1", "text": "een miljard =%ordinal-inner=;"}
-      ]},
-      "ordinal-biljoen": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "biljoenste;"},
-        {"value": "1", "text": "een biljoen =%ordinal-inner=;"}
-      ]},
-      "ordinal-biljard": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "biljardste;"},
-        {"value": "1", "text": "een biljard =%ordinal-inner=;"}
-      ]},
-      "ordinal-triljoen": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "triljoenste;"},
-        {"value": "1", "text": "een triljoen =%ordinal-inner=;"}
-      ]},
-      "ordinal-triljard": {"source": "a part of ordinal", "rules": [
-        {"value": "0", "text": "triljardste;"},
-        {"value": "1", "text": "een triljard =%ordinal-inner=;"}
+        {"value": "1", "text": " =%ordinal=;"}
       ]}
     },
     "forms": {"cardinal": {"variants": [{"ruleset": "cardinal", "reason": "standard"}], "maximum": "999999999999999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "0", "maximum": "999999999999999999999999"}},
     "decimal": {"word": "komma", "places": 3, "source": "CLDR RBNF nl (common/rbnf/nl.xml as shipped in unicode-rbnf 2.5.1), %spellout-cardinal x.x: \"←← komma →→\"."},
     "scientific": {"times": "maal tien tot de macht", "source": "Not checked against a grammar."},
-    "fraction": {"mixed": false, "limit": 10, "single": "een {denominator}", "plural": {"half": "halve"}, "named": {"2": "half"}, "denominator": "{cardinal}ste", "ruleset": "ordinal", "numerator": "cardinal", "source": "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", \"Teller en noemer worden los van elkaar geschreven.\" (\"twee derde\", \"zevenenveertig tienduizendste\"), and \"Het rangtelwoord in de noemer krijgt meestal geen meervouds-n.\". SILVER: 1/2 reads \"een half\" and n/2 \"halve\"; no saved rule."}
+    "fraction": {"mixed": false, "limit": 10, "single": "een {denominator}", "plural": {"half": "halve"}, "named": {"2": "half", "1000000": "miljoenste", "1000000000": "miljardste", "1000000000000": "biljoenste", "1000000000000000": "biljardste", "1000000000000000000": "triljoenste", "1000000000000000000000": "triljardste"}, "denominator": "{cardinal}ste", "ruleset": "ordinal", "numerator": "cardinal", "source": "Taaladvies.net, «Aaneenschrijven van telwoorden (algemeen)» (Papers/Languages/Germanic/Dutch/): \"Bij breuken is de teller een hoofdtelwoord en de noemer een rangtelwoord.\", \"Teller en noemer worden los van elkaar geschreven.\" (\"twee derde\", \"zevenenveertig tienduizendste\"), and \"Het rangtelwoord in de noemer krijgt meestal geen meervouds-n.\". SILVER: 1/2 reads \"een half\" and n/2 \"halve\"; no saved rule."}
   }
 }

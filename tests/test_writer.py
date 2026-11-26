@@ -93,6 +93,11 @@ def _issue_331(lang: str, text: str) -> bool:
     return lang == "gl" and len(SCALE_ORDINAL_GL.findall(text)) >= 2
 
 
+def _issue_339(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/339: the nl reader splits "een miljoenste" into een + miljoenste."""
+    return lang == "nl" and re.fullmatch(r"een \w+(joen|jard)ste", text) is not None
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -316,7 +321,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words) and not _issue_339(lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -487,7 +492,7 @@ class TestDutch(unittest.TestCase):
 
     def test_ordinals(self):
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "3", "20", "100", "102", "135", "3220", "4000000", "4400000")],
-                         ["eerste", "derde", "twintigste", "honderdste", "honderdentweede", "honderdvijfendertigste",
+                         ["eerste", "derde", "twintigste", "honderdste", "honderdtweede", "honderdvijfendertigste",
                           "drieduizend tweehonderdtwintigste", "vier miljoenste", "vier miljoen vierhonderdduizendste"])
 
     def test_fractions(self):
