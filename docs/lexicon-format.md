@@ -1,14 +1,14 @@
 # The lexicon format
 
 <!-- agent-hint
-covers: The format of a lexicon JSON file, versions 1 and 2: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
+covers: The format of a lexicon JSON file, versions 1, 2 and 3: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
 source: numtag/lexicon/__init__.py:load, numtag/lexicon/__init__.py:revision, numtag/lexicon.schema.json, tests/test_lexicon_format.py
 generated: no
 verify: for k in $(grep -oP '^ +"\K[a-z_]+(?=": \{"properties")' numtag/lexicon.schema.json); do grep -qF "$k" docs/lexicon-format.md || exit 1; done
 see: adding-a-language.md, design.md
 -->
 
-A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1 and 2 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
+A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1, 2 and 3 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
 
 The engine has no code for a language. A language that needs new behaviour gets a new key or a new role here, and the format version goes up in the same change.
 
@@ -18,7 +18,7 @@ A file is a JSON object with these keys.
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1` or `2`. Required. Only version 2 holds `writer`. |
+| `format_version` | The integer `1`, `2` or `3`. Required. Only versions 2 and 3 hold `writer`. Only version 3 holds the keys that this page marks as version 3. |
 | `extends` | The name of a base lexicon. Optional. |
 | `settings` | An object. Each key is a setting, and each value is `{"value": ..., "source": ...}`. |
 | `words` | An object. Each key is a word list, and each value is `{"value": [...], "source": ...}`. |
@@ -30,9 +30,11 @@ A file with no `extends` holds `settings`, `words` and `entries`. It holds every
 
 ### Version and refusal
 
-The loader reads `format_version` first. It reads versions 1 and 2. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1, 2 and 3. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
-A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. The loader refuses a `writer` block in a version 1 file.
+A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3. The loader refuses a `writer` block in a version 1 file, and a key of version 3 in a version 1 or 2 file. The error names the key and the place.
+
+Version 3 adds the entry keys `after` and `cased` of the role `ordinal_suffix`.
 
 ### Base lexicons
 
@@ -199,7 +201,7 @@ An entry is an object with `word`, `role` and `source`. The role decides which o
 | `ordinal_scale` | value | An ordinal scale word. `value` is the cardinal scale word that it names ("milésimo" names "mil"). |
 | `half` | none | The word for a half ("meio"). |
 | `ordinal_ending`, `ordinal_prefix`, `denominator_prefix` | none | A piece that makes the cardinal before it an ordinal, the cardinal after it an ordinal, or the cardinal after it a denominator. |
-| `ordinal_suffix` | none | A suffix after digits ("º", "st"). It reads only `word`, `role`, `source` and `gender`. |
+| `ordinal_suffix` | none | A suffix after digits ("º", "st"). It reads only `word`, `role`, `source`, `gender`, `after` and `cased`. |
 | `vague_quantifier` | none | A word that states an amount with no exact number ("several"). It reads only `word`, `role`, `source` and `ambiguous`. |
 
 The loader reads an entry that holds `scale_of` after all other entries, because it takes its power of ten from that scale word. It reads `ordinal_scale` entries after all other entries for the same reason.
@@ -245,6 +247,8 @@ Every role that makes forms (all but `ordinal_suffix` and `vague_quantifier`) re
 | `standalone` | boolean | `false` | An ordinal that is never the last word of a longer ordinal: fr "premier". Only a hyphen joins it to a number before it. | fr-FR: `{"word": "premier", "role": "ordinal", "standalone": true}` |
 | `number_after` | list of strings | `[]` | Words after which the word has only its number reading (ca "les nou" is nine o'clock). | hu: `{"word": "hat", "role": "unit", "number_after": ["kérek", "kérem", "kérünk", "kérjük", "kérj", "legyen", "állíts", "állítsd", "állítsa", "tegyél", "tedd", "tegye"]}` |
 | `count` | string | `""` | On a scale word: the count that the form holds. The dual ar "ألفان" is 2 × 10^3. | ar: `{"word": "ألفان", "role": "scale_numeral", "count": "2"}` |
+| `after` | list of digit strings | none | Version 3. On an `ordinal_suffix`: the only numbers that the suffix follows. fr "er" lists "1", so "1er" is the 1st and "3er" is 3 and a word. Without it, the suffix follows any number. | fr-FR: `{"word": "er", "role": "ordinal_suffix", "after": ["1"]}` |
+| `cased` | boolean | `false` | Version 3. On an `ordinal_suffix`: the suffix reads only in the case that `word` writes. fr "d" reads in "2d" and not in "2D", two dimensions. Without it, the suffix reads in any case ("1ST"). | fr-FR: `{"word": "d", "role": "ordinal_suffix", "after": ["2"], "cased": true}` |
 | `counted` | boolean | `false` | A plural multiplier that a count takes, in words or in digits below a thousand (he "מאות"). | ru: `{"word": "сотни", "role": "hundred_multiplier", "counted": true}` |
 
 A role that gives a value (`unit`, `ten`, `hundred`, `collective`, `article_collective`, `denominator`, `ordinal`, `fraction`, `decimal_zero`, `value_word`, `unit_and_half`, `rational`, `teen`, `teen_suffix`) reads `value`, `addend`, `bound`, `takes_unit`, `takes_units`, `case`, `ordinal_unit`, `numerator`, `weak_alone`, `invariant`, `cardinal`, `teens`, `after_article`, `weak_at_end`, `joined_count`, `weak_after`, `weak_before`, `standalone` and `number_after`. A scale role reads `value`, `rank`, `count` and `counted`. `half` reads `bound`. `ordinal_scale` reads `value` and `after_article`. A mark role reads no key besides those that make forms.

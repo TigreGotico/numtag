@@ -58,7 +58,8 @@ def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
                     if lexicon.period_ordinals else None,
                     dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
                     phrases=lexicon.phrases, group_mark=lexicon.group_mark,
-                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
+                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".",
+                    suffix_fits=lexicon.ordinal_suffix_fits)
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
