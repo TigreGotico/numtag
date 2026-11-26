@@ -719,6 +719,15 @@ A title-case word before an upper-case Roman numeral makes it an ordinal only be
 []
 ```
 
+A hyphenated given name is one title-case word before the numeral, so "Jean-Paul II" reads like "Élisabeth II".
+
+```python
+>>> read("Jean-Paul II et Élisabeth II", "fr")
+[('II', '2'), ('II', '2')]
+>>> [(m.text, m.kind.value) for m in tag_numbers("le pape Jean-Paul I", "fr")]
+[('I', 'ordinal')]
+```
+
 Source: structural, no external source decides the bound. Wikipedia, "Imperial County of Reuss", lists "Henry LXXII" and "Henry LXXIII" among the princes, so 100 keeps the regnal numbers in that list a cue. The "DC" entry of `roman_word` in `fr-FR.json` cites Wiktionnaire.
 
 ## Words that are no number

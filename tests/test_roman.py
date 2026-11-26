@@ -307,6 +307,28 @@ class TestTitleCaseBound(unittest.TestCase):
                 self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
 
 
+class TestHyphenatedNames(unittest.TestCase):
+    """A hyphenated given name gives no token and is one title-case word."""
+
+    def test_a_hyphenated_name_is_a_title_case_cue(self):
+        # II = 2
+        for text, lang in (("Jean-Paul II", "fr-FR"), ("le pape Jean-Paul II est mort", "fr-FR"),
+                           ("(Jean-Paul II)", "fr-FR"), ("John-Paul II", "en")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("II", "2", Kind.ORDINAL, SURE)])
+
+    def test_a_regnal_title_before_a_hyphenated_name_reads_a_single_letter(self):
+        # I = 1
+        for text, lang in (("le pape Jean-Paul I", "fr-FR"), ("Pope John-Paul I", "en")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("I", "1", Kind.ORDINAL, SURE)])
+
+    def test_a_hyphenated_word_that_is_no_name_is_no_cue(self):
+        # a lower-case part is no name; a single letter needs a regnal title
+        self.assertEqual(_read("les pays-Bas II", "fr-FR"), [("II", "2", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("Marie-Thérèse I", "fr-FR"), [])
+
+
 class TestFrenchOrdinalSuffix(unittest.TestCase):
     """fr writes the ordinal suffixes of digits after a Roman numeral ("XXe", "Ier")."""
 

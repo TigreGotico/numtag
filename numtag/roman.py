@@ -72,7 +72,23 @@ def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None] | None:
 
 
 def _title_case(token: Token) -> bool:
-    return token.text[:1].isupper() and any(c.islower() for c in token.text[1:])
+    return _title_case_word(token.text)
+
+
+def _title_case_word(word: str) -> bool:
+    return word[:1].isupper() and any(c.islower() for c in word[1:])
+
+
+# A hyphenated word gives no token ("Jean-Paul"), so it stays in the gap
+# before the next token, with only spaces after it.
+_GAP_NAME = re.compile(r"(?<![\w-])([^\W\d_]+(?:-[^\W\d_]+)+)[ \t]+$")
+
+
+def _gap_name(gap: str) -> str | None:
+    """The hyphenated name right before a numeral, each part in title case:
+    "Jean-Paul" in "Jean-Paul II"."""
+    match = _GAP_NAME.search(gap)
+    return match[1] if match and all(_title_case_word(part) for part in match[1].split("-")) else None
 
 
 def _spaced(tokens: list[Token], k: int) -> bool:
@@ -104,6 +120,8 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool,
     would come" give no cue. A title-case word is no cue for a lower-case
     numeral: "Pokaż mi" holds no 1001."""
     before = tokens[k - 1] if _spaced(tokens, k) else None
+    # a hyphenated name before the numeral is one title-case word: "Jean-Paul II"
+    name = None if before is not None else _gap_name(tokens[k].gap)
     if before is not None and before.norm in lexicon.roman_series_nouns:
         return not (word and lexicon.roman_pronoun_letters) or _title_case(before)
     if not word:
@@ -113,11 +131,11 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool,
             and tokens[k + 1].gap[-1:].isspace() else None
         if after is not None and after.norm in lexicon.roman_series_nouns:
             return True
-        if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before) \
+        if upper and lexicon.roman_title_case_cue and (before is not None and _title_case(before) or name) \
                 and len(value) <= _TITLE_CASE_CUE_DIGITS:
             return True
-    return before is not None and "\n" not in tokens[k].gap and _regnal(lexicon, tokens, k) \
-        and not (word and _initial(tokens, k))
+    regnal = _regnal(lexicon, tokens, k) if before is not None else name is not None and _regnal_name(lexicon, tokens, k)
+    return "\n" not in tokens[k].gap and regnal and not (word and _initial(tokens, k))
 
 
 def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
@@ -136,6 +154,13 @@ def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
                 and all(t.gap.isspace() and "\n" not in t.gap for t in name[1:]):
             return True
     return False
+
+
+def _regnal_name(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
+    """A regnal title, then a hyphenated name, right before token k: "le pape
+    Jean-Paul I". The name gives no token, so it is the gap before k."""
+    gap = tokens[k].gap
+    return k > 0 and tokens[k - 1].norm in lexicon.roman_titles and re.fullmatch(r"[ \t]+\S+[ \t]+", gap) is not None
 
 
 def _initial(tokens: list[Token], k: int) -> bool:
