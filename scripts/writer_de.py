@@ -12,12 +12,12 @@ from splice_writer import splice
 LEXICON = Path(__file__).parents[1] / "numtag/lexicon/de.json"
 CLDR = "CLDR RBNF de (common/rbnf/de.xml as shipped in unicode-rbnf 2.5.1)"
 RR = "Rat für deutsche Rechtschreibung, Amtliches Regelwerk (2024)"
-ONE_WORD = (RR + ", § 36(1.6), p. 60: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie "
+ONE_WORD = (RR + ", § 36(1.6), p. 61: one word when \"es sich um mehrteilige Kardinalzahlen unter einer Million sowie "
             "allgemein um Ordinalzahlen handelt: dreizehn, siebenhundert, neunzehnhundertneunundachtzig; der siebzehnte "
             "Oktober, der einhundertste Geburtstag, der fünfhunderttausendste Fall, der zweimillionste Besucher\"")
-SCALE = (RR + ", § 36(1.6), p. 60: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend "
+SCALE = (RR + ", § 36(1.6), p. 61: \"Vgl. aber Substantive wie Dutzend, Million, Milliarde, Billion: zwei Dutzend "
          "Hühner, eine Million Teilnehmer, zwei Milliarden fünfhunderttausend Menschen\"")
-FRACTION = (RR + ", § 56(6) E5, p. 86: \"In allen übrigen Fällen schreibt man Bruchzahlen auf -tel und -stel entsprechend "
+FRACTION = (RR + ", § 56(6) E5, p. 87: \"In allen übrigen Fällen schreibt man Bruchzahlen auf -tel und -stel entsprechend "
             "§ 55 groß: ein Drittel, das erste Fünftel, neun Zehntel des Umsatzes, um drei Viertel größer\"")
 SILVER_ORD = ("SILVER: an ordinal past a million with a rest keeps one word with the plural scale word "
               "(\"zweimillionenerste\"), by the one-word rule of § 36(1.6); no saved example")
