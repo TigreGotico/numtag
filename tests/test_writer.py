@@ -347,8 +347,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nl", "pt-BR", "pt-PT", "ro"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -561,6 +561,31 @@ class TestGerman(unittest.TestCase):
     def test_fractions_are_capital_nouns(self):
         self.assertEqual([self.say(f) for f in ("1/3", "1/5", "9/10", "3/4", "5/100")],
                          ["ein Drittel", "ein Fünftel", "neun Zehntel", "drei Viertel", "fünf Hundertstel"])
+
+
+class TestValencian(unittest.TestCase):
+    """AVL, Diccionari normatiu valencià: the main form of each entry."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "ca-ES-valencia", **kw)[0].text
+
+    def test_cardinals(self):
+        self.assertEqual([self.say(n) for n in ("8", "17", "18", "19", "80", "28")],
+                         ["huit", "dèsset", "díhuit", "dènou", "huitanta", "vint-i-huit"])
+        self.assertEqual([self.say(n, gender="feminine") for n in ("2", "200")], ["dos", "dos-centes"])
+
+    def test_ordinals_end_in_e_acute(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("5", "8", "17", "18", "19")],
+                         ["cinqué", "huité", "desseté", "dihuité", "denové"])
+        self.assertEqual(self.say("17", form=SpokenForm.ORDINAL, gender="feminine"), "dessetena")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/5", "4/5", "2/3", "3/4")],
+                         ["un quint", "quatre quints", "dos terços", "tres quarts"])
+
+    def test_the_language_tag_reads_the_variety(self):
+        self.assertEqual(spell("17", "ca_ES_valencia")[0].text, "dèsset")
+        self.assertEqual(spell("17", "ca")[0].text, "disset")
 
 
 class TestCatalan(unittest.TestCase):
