@@ -151,8 +151,8 @@ class TestGolden(unittest.TestCase):
 
     def test_every_row_of_every_writer_language_matches(self):
         rows = [row for row in golden_writers.stored() if golden_writers.has_writer(row["lang"])]
-        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"})
-        self.assertEqual(len(rows), 181584)
+        self.assertEqual({row["lang"] for row in rows}, {"ca", "de", "en", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "ru"})
+        self.assertEqual(len(rows), 192933)
         found = golden_writers.mismatches(rows, golden_writers.allowed())
         self.assertEqual([(row, got) for row, got in found[:5]], [])
 
@@ -347,8 +347,8 @@ class TestRevisions(unittest.TestCase):
         for name in names:
             with self.subTest(lexicon=name):
                 self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
-        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
-        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro"])
+        self.assertEqual(WRITERS, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "ru"])
+        self.assertEqual(VERSION_TWO, ["ca", "ca-ES-valencia", "de", "en", "en-US", "es", "fr-BE", "fr-CH", "fr-FR", "gl", "id", "it", "ms", "nb", "nl", "pt-BR", "pt-PT", "ro", "ru"])
 
     def test_a_change_of_a_writer_rule_changes_the_revision(self):
         before = numtag.revision("id")
@@ -767,7 +767,7 @@ class TestLoader(unittest.TestCase):
                              "is not '-x' or a whole number with no leading zero")
 
     def test_a_rule_text_that_the_interpreter_does_not_read_is_refused(self):
-        for text in ("$(cardinal,one{a}other{b})$;", "=#,##0=;", "<<a;", "←x←;"):
+        for text in ("$(ordinal,one{a}other{b})$;", "$(cardinal,one{a})$;", "=#,##0=;", "<<a;", "←x←;"):
             with self.subTest(text=text):
                 self.refused(_tiny([{"value": "0", "text": text}]), "unsupported rule text")
 
@@ -792,6 +792,24 @@ class TestInterpreter(unittest.TestCase):
 
     def test_an_optional_part_stays_out_when_the_remainder_is_zero(self):
         self.assertEqual(self.read(self.RULES, "30"), "two tens")
+
+    def test_a_choice_reads_its_first_part_with_a_remainder_and_its_second_without(self):
+        rules = self.RULES + [{"value": "1000", "text": "[←← thousand →→|←← thousandth];"}]
+        self.assertEqual([self.read(rules, n) for n in ("2000", "2001")], ["two thousandth", "two thousand one"])
+
+    def test_a_plural_word_agrees_with_the_quotient(self):
+        """CLDR ru: one ends in 1 but not 11, few ends in 2 to 4 but not 12 to 14."""
+        rules = [{"value": "0", "text": "n;"}, {"value": "1000",
+                  "text": "←← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$;"}]
+        plural = [{"category": "one", "mod10": [1], "not_mod100": [11]},
+                  {"category": "few", "mod10": [2, 3, 4], "not_mod100": [12, 13, 14]}]
+        variants = Variants(self)
+        data = _tiny(rules)
+        data["writer"]["plural"] = plural
+        variants.write("variant", data)
+        writer = writer_module._writer("variant")
+        self.assertEqual([writer.render("cardinal", n).split()[-1] for n in ("1000", "2000", "5000", "11000", "21000", "12000", "22000")],
+                         ["тысяча", "тысячи", "тысяч", "тысяч", "тысяча", "тысяч", "тысячи"])
 
     def test_a_radix_that_is_no_power_of_ten_sets_the_divisor(self):
         rules = [{"value": "0", "text": "zero;"}, {"value": "3", "text": "three;"}, {"value": "4", "text": "four;"},
@@ -1014,6 +1032,35 @@ class TestMention(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pass lang"):
             mention.spoken()
         self.assertEqual(mention.spoken("ms")[0].text, "dua")
+
+
+class TestRussian(unittest.TestCase):
+    """CLDR RBNF ru for cardinals; Rosental (1985), § 45 for ordinals and fractions."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "ru", **kw)[0].text
+
+    def test_cardinals_agree_with_the_scale_noun(self):
+        self.assertEqual([self.say(n) for n in ("21", "2000", "5000", "21000", "2000000", "5000000")],
+                         ["двадцать один", "две тысячи", "пять тысяч", "двадцать одна тысяча", "два миллиона",
+                          "пять миллионов"])
+        self.assertEqual([self.say("1", gender=g) for g in ("masculine", "feminine", "neuter")], ["один", "одна", "одно"])
+        self.assertEqual(self.say("21000", case="genitive", gender="masculine"), "двадцати одной тысячи")
+
+    def test_ordinals_from_rosental(self):
+        """§ 45, п. 4 and 5: "три тысячи пятнадцатый", "двадцатипятитысячный", "стосорокашестимиллионный"."""
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in
+                          ("3015", "25000", "146000000", "31000000000", "200", "201", "1000", "2000")],
+                         ["три тысячи пятнадцатый", "двадцатипятитысячный", "стосорокашестимиллионный",
+                          "тридцатиодномиллиардный", "двухсотый", "двести первый", "тысячный", "двухтысячный"])
+        self.assertEqual(self.say("3", form=SpokenForm.ORDINAL, case="genitive", gender="feminine"), "третьей")
+        self.assertEqual(self.say("2000", form=SpokenForm.ORDINAL, case="prepositional", gender="neuter"),
+                         "двухтысячном")
+
+    def test_fractions(self):
+        """§ 45, п. 3: "две пятых"; -ая after a count in one ("двадцать одна сотая")."""
+        self.assertEqual([self.say(f) for f in ("2/5", "1/2", "5/8", "21/100", "3/1000")],
+                         ["две пятых", "одна вторая", "пять восьмых", "двадцать одна сотая", "три тысячных"])
 
 
 if __name__ == "__main__":

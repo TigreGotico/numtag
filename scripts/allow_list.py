@@ -133,6 +133,37 @@ def category_ro(row, got):
     if "ori zece la puterea" in mine:
         return "ro_decimal" if "ori zece la puterea" in out else "ro_big"
     return None
+RU_CLDR = "CLDR RBNF ru (common/rbnf/ru.xml as shipped in unicode-rbnf 2.5.1)"
+RU_ROSENTAL = "Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 45 (Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf)"
+SRC.update({
+ "ru_yo": RU_CLDR + ", %spellout-ordinal-masculine: \"4: четвертый;\": the writer writes е, as CLDR; ovos-number-parser writes ё (\"четвёртый\", \"трёх\"). The reader reads both.",
+ "ru_one_scale": RU_CLDR + ", %spellout-cardinal-masculine: \"1000: ←%spellout-cardinal-feminine← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$[ →→];\" and \"1000000: ←%spellout-cardinal-masculine← $(cardinal,one{миллион}…)$\": a scale noun keeps its count (\"одна тысяча\", \"один миллион\"); ovos-number-parser drops it.",
+ "ru_decimal": "SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\"); ovos-number-parser writes \"точка\" and pads the decimals with \"ноль\".",
+ "ru_long": "numtag/lexicon/ru.json, the setting scale: Russian counts in the short scale (CLDR RBNF ru: \"миллиард\", \"триллион\"); the writer has no long-scale reading, and ovos-number-parser writes \"биллион\".",
+ "ru_fraction": RU_ROSENTAL + ", п. 3: \"Д р о б н ы е числительные пишутся раздельно, например: две пятых ( 2/ 5)\": the numerator in the feminine and the denominator an ordinal, -ая after one and -ых after other counts; ovos-number-parser writes the masculine (\"один миллионный\"), the nominative plural (\"две девятые\") or a mixed number.",
+ "ru_range": "numtag/lexicon/ru.json, the ru writer: a cardinal goes up to 10^18 - 1 and an ordinal up to 10^15 - 1; past it the cardinal spells the power of ten and the ordinal raises ValueError.",
+ "ru_negative": "numtag/lexicon/ru.json, the ru writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+})
+def category_ru(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "long":
+        if "биллион" in str(row.get("out")): return "ru_long"
+        return category_ru({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "ru_negative"
+    if "умножить на десять" in mine or got == {"err": "ValueError"}: return "ru_range"
+    flat = lambda t: re.sub(r"\b(один|одна) (?=(тысяч|миллион|миллиард|триллион|квадриллион))", "", t.replace("ё", "е"))
+    if row["fn"] == "fraction":
+        return "ru_fraction" if re.search(r"(ая|ых|ьих|ья)$", mine) else None
+    if " запятая " in mine and flat(re.sub(r"( ноль)+$", "", out.replace(" точка ", " запятая "))) == flat(mine): return "ru_decimal"
+    if out.replace("ё", "е") == mine: return "ru_yo"
+    if flat(out) == flat(mine): return "ru_one_scale"
+    return None
 GL_NORMAS = "RAG e ILG, Normas ortográficas e morfolóxicas do idioma galego, 23.ª ed. (2012), §16 (Papers/Languages/Iberian/Galician/)"
 SRC.update({
  "gl_cento": GL_NORMAS + ", p. 98: \"cento un, cento unha etc.\": no \"e\" after the hundreds; ovos-number-parser writes \"cento e un\" and \"novecentos e noventa\".",
@@ -414,7 +445,7 @@ rows = [r for r in gw.stored() if r["lang"] == lang]
 bad = gw.mismatches(rows, {})
 entries, left, count = [], [], collections.Counter()
 for row, got in bad:
-    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
+    c = {"es": category_es, "it": category_it, "de": category_de, "en": category_en, "nb": category_nb, "nl": category_nl, "ca": category_ca, "gl": category_gl, "ro": category_ro, "ru": category_ru, "fr-FR": category_fr, "fr-BE": category_fr, "fr-CH": category_fr, "id": category_digits, "ms": category_digits}.get(lang, category)(row, got)
     if c is None: left.append((row, got)); continue
     count[c] += 1
     e = {k: row[k] for k in ("lang", "fn", "arg") }
