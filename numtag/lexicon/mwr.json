@@ -866,10 +866,16 @@
    "source": "SILVER: a normalised spelling; Bahal prints \"नेवे\": the scan prints े. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"90. नेवे~नेऊ\""
   },
   {
+   "word": "इकरांणू",
+   "role": "unit",
+   "value": "91",
+   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book p. 57: \"91. इकरांणू\""
+  },
+  {
    "word": "इकराणू",
    "role": "unit",
    "value": "91",
-   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"91. इकराणू\". SILVER: the glyph is faint on the scan"
+   "source": "SILVER: a reading of the scan; Bahal prints \"इकरांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book p. 57: \"91. इकरांणू\""
   },
   {
    "word": "बराणू",
@@ -908,16 +914,22 @@
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"96. छिन्नू\""
   },
   {
+   "word": "संतांणू",
+   "role": "unit",
+   "value": "97",
+   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book p. 57: \"97. संतांणू\""
+  },
+  {
    "word": "सतांणू",
    "role": "unit",
    "value": "97",
-   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"97. सतांणू~संताणू\". SILVER: the dot after स is faint; the row reads सतांणू or संताणू"
+   "source": "SILVER: a reading of the scan; Bahal prints \"संतांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book p. 57: \"97. संतांणू\""
   },
   {
    "word": "संताणू",
    "role": "unit",
    "value": "97",
-   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"97. सतांणू~संताणू\". SILVER: the dot after स is faint; the row reads सतांणू or संताणू"
+   "source": "SILVER: a reading of the scan; Bahal prints \"संतांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book p. 57: \"97. संतांणू\""
   },
   {
    "word": "अंठाणू",
@@ -1644,10 +1656,16 @@
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after a cardinal that ends in a consonant or in -ै (dropped), by the examples of §5.2.3; the forms past 13 are not printed"
   },
   {
+   "word": "इकरांणूमौ",
+   "role": "ordinal",
+   "value": "91",
+   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after the cardinal, by the examples of §5.2.3; the forms past 13 are not printed"
+  },
+  {
    "word": "इकराणूमौ",
    "role": "ordinal",
    "value": "91",
-   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after a cardinal that ends in a consonant or in -ै (dropped), by the examples of §5.2.3; the forms past 13 are not printed"
+   "source": "SILVER: the ordinal of a reading of the scan; Bahal prints \"इकरांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after the cardinal, by the examples of §5.2.3; the forms past 13 are not printed"
   },
   {
    "word": "बराणूमौ",
@@ -1680,10 +1698,22 @@
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after a cardinal that ends in a consonant or in -ै (dropped), by the examples of §5.2.3; the forms past 13 are not printed"
   },
   {
+   "word": "संतांणूमौ",
+   "role": "ordinal",
+   "value": "97",
+   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after the cardinal, by the examples of §5.2.3; the forms past 13 are not printed"
+  },
+  {
    "word": "सतांणूमौ",
    "role": "ordinal",
    "value": "97",
-   "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after a cardinal that ends in a consonant or in -ै (dropped), by the examples of §5.2.3; the forms past 13 are not printed"
+   "source": "SILVER: the ordinal of a reading of the scan; Bahal prints \"संतांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after the cardinal, by the examples of §5.2.3; the forms past 13 are not printed"
+  },
+  {
+   "word": "संताणूमौ",
+   "role": "ordinal",
+   "value": "97",
+   "source": "SILVER: the ordinal of a reading of the scan; Bahal prints \"संतांणू\". Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.3, book p. 61: \"पैलौ दूजौ~बीजौ तीजौ चौथौ पांचमौ छठौ\"; \"छ से ऊपर के क्रमसूचकों की रचना गणनामूलकों के साथ -मौ प्रत्यय के योग से होती है\": \"सात सातमौ\", \"नव नमौ\", \"दस दसमौ\", \"इगियारै इगियारमौ\", \"बारै बारमौ\", \"तेरै तेरमौ\". SILVER: -मौ after the cardinal, by the examples of §5.2.3; the forms past 13 are not printed"
   },
   {
    "word": "अंठाणूमौ",
@@ -1830,13 +1860,13 @@
         {"value": "88", "text": "इठियासी;"},
         {"value": "89", "text": "गुणनेवे;"},
         {"value": "90", "text": "नेवे;"},
-        {"value": "91", "text": "इकराणू;"},
+        {"value": "91", "text": "इकरांणू;"},
         {"value": "92", "text": "बराणू;"},
         {"value": "93", "text": "तेराणू;"},
         {"value": "94", "text": "चौराणू;"},
         {"value": "95", "text": "पंचाणू;"},
         {"value": "96", "text": "छिन्नू;"},
-        {"value": "97", "text": "सतांणू;"},
+        {"value": "97", "text": "संतांणू;"},
         {"value": "98", "text": "अंठाणू;"},
         {"value": "99", "text": "निनाणू;"},
         {"value": "100", "text": "एक सौ[ →→];", "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.2, book p. 60: \"पूणौ दो सौ\", \"साढौ तीन सौ\": a count before सौ, with no joiner; book p. 57: \"सौ से ऊपर के गणनामूलक संख्यावाचक भारतीय आर्य भाषाओं की तद्विषयक रचनाओं के अनुरूप निर्मित होते हैं\". SILVER: \"एक सौ\" for 100, where Bahal's table prints a lone \"सौ\" and Swami a lone \"सो\"; a lone हजार, लाख and किरोड़ with no count, as Swami's \"हजार\"; the order of the groups past a thousand and the words लाख and किरोड़ (the stems of Bahal's collectives लाखां and किरोड़ां, §5.2.5)"},
@@ -1940,13 +1970,13 @@
         {"value": "88", "text": "इठियासीमौ;"},
         {"value": "89", "text": "गुणनेवमौ;"},
         {"value": "90", "text": "नेवमौ;"},
-        {"value": "91", "text": "इकराणूमौ;"},
+        {"value": "91", "text": "इकरांणूमौ;"},
         {"value": "92", "text": "बराणूमौ;"},
         {"value": "93", "text": "तेराणूमौ;"},
         {"value": "94", "text": "चौराणूमौ;"},
         {"value": "95", "text": "पंचाणूमौ;"},
         {"value": "96", "text": "छिन्नूमौ;"},
-        {"value": "97", "text": "सतांणूमौ;"},
+        {"value": "97", "text": "संतांणूमौ;"},
         {"value": "98", "text": "अंठाणूमौ;"},
         {"value": "99", "text": "निनाणूमौ;"},
         {"value": "100", "text": "[एक ]सौ→%ordinal-tail→;"},
