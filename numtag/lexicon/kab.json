@@ -72,9 +72,10 @@
   "words": {
     "joiner": {
       "value": [
-        "u"
+        "u",
+        "d"
       ],
-      "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"the conjunction u\"."
+      "source": "languagesandnumbers.com, \"Counting in Kabyle\": \"the conjunction u\". Tatoeba sentence 11390187 \"zuǧ alaf d yiwen\" (\"deux-mille-un\") and 10954819 \"alef d rebε-mya\" write \"d\" after the thousands; 12709086 \"mraw d yiwen\" (\"eleven\") writes it after the Berber ten. No saved page shows \"d\" after a hundred or between a unit and a ten; the reader also takes it there, because one joiner list serves every place."
     },
     "ordinal_particle": {
       "value": [
@@ -681,6 +682,284 @@
       "value": "1",
       "gender": "feminine",
       "source": "en.wiktionary \"amezwaru\": \"amezwaru ( feminine tamezwarut , masculine plural imezwura )\", \"first\"; en.wikipedia \"Kabyle grammar\", \"Numerotation\": \"are respectively amezwaru and aneggaru\"."
+    },
+    {
+      "word": "mraw d yiwen",
+      "role": "ten",
+      "value": "11",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw yiwen",
+      "role": "ten",
+      "value": "11",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d yiwet",
+      "role": "ten",
+      "value": "11",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw yiwet",
+      "role": "ten",
+      "value": "11",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d sin",
+      "role": "ten",
+      "value": "12",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw sin",
+      "role": "ten",
+      "value": "12",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d snat",
+      "role": "ten",
+      "value": "12",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw snat",
+      "role": "ten",
+      "value": "12",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d kraḍ",
+      "role": "ten",
+      "value": "13",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw kraḍ",
+      "role": "ten",
+      "value": "13",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d kuẓ",
+      "role": "ten",
+      "value": "14",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw kuẓ",
+      "role": "ten",
+      "value": "14",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d ukkuẓ",
+      "role": "ten",
+      "value": "14",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw ukkuẓ",
+      "role": "ten",
+      "value": "14",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d semmus",
+      "role": "ten",
+      "value": "15",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw semmus",
+      "role": "ten",
+      "value": "15",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d sḍis",
+      "role": "ten",
+      "value": "16",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw sḍis",
+      "role": "ten",
+      "value": "16",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d sdis",
+      "role": "ten",
+      "value": "16",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw sdis",
+      "role": "ten",
+      "value": "16",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d sa",
+      "role": "ten",
+      "value": "17",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw sa",
+      "role": "ten",
+      "value": "17",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d tam",
+      "role": "ten",
+      "value": "18",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw tam",
+      "role": "ten",
+      "value": "18",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw d tẓa",
+      "role": "ten",
+      "value": "19",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "mraw tẓa",
+      "role": "ten",
+      "value": "19",
+      "source": "Tatoeba sentence 12709086 \"mraw d yiwen n yiɣunab\" (\"eleven pencils\"), 13311699 \"mraw d sin n dderya\" (\"twelve children\"), 11297429 \"Mraw d kṛad yexxamen\" (\"Treize maisons\"), 11715122 \"mraw d kṛad neɣ mraw d ukkuẓ iseggasen\" (\"treize ou quatorze ans\"), 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 11302517 \"wis mraw d sin\" (the twelfth day), 8300346 \"ɣef mraw sḍis asragen, abrid wis mraw sin\" (\"à seize heures dix-huit, voie douze\"): the Berber ten mraw comes first, then \"d\" or nothing, then the unit."
+    },
+    {
+      "word": "ukkuẓ",
+      "role": "unit",
+      "value": "4",
+      "gender": "masculine",
+      "source": "Tatoeba sentence 11394104 \"Sin ternuḍ sin, ɣur-k ukkuẓ.\" (two and two make four), 8272109 \"uswir wis ukkuẓ\": ukkuẓ is the annexed form of kuẓ."
+    },
+    {
+      "word": "sdis",
+      "role": "unit",
+      "value": "6",
+      "gender": "masculine",
+      "source": "Tatoeba sentence 11452880 \"mraw d sdis iseggasen\" (\"seize ans\"), 10781220 \"ɣef tis sdis d uzgen\" (\"à six heures et demie\"): sdis is sḍis written without the dot."
+    },
+    {
+      "word": "meyya",
+      "role": "hundred",
+      "value": "100",
+      "source": "Tatoeba sentence 11392956 \"meyya u tlata u tlatin n iseggasen\" (133 years), 11437444 \"meyya u sebɛa u ṛebɛin n iseggasen\" (\"cent quarante sept ans\"), 11278432 \"telt meyya u xemsa u settin\" (365)."
+    },
+    {
+      "word": "meyya",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "Tatoeba sentence 11278432 \"telt meyya u xemsa u settin\" (365), 11417349 \"tmen meyya u xemseṭṭac\" (815), 11417346 \"xems meyya u xemsa u ttsɛin\" (595)."
+    },
+    {
+      "word": "miyya",
+      "role": "hundred",
+      "value": "100",
+      "source": "Tatoeba sentence 9587094 \"Rekkmen waman deg miyya n tfesniwin.\" (\"Water boils at one hundred degrees.\")."
+    },
+    {
+      "word": "miya",
+      "role": "hundred",
+      "value": "100",
+      "source": "Tatoeba sentence 11504633 \"Rnu-as miya igramen n lfarina.\" (\"Add one hundred grams of flour.\")."
+    },
+    {
+      "word": "xemsmeyya",
+      "role": "hundred",
+      "value": "500",
+      "source": "Tatoeba sentence 11360416 \"Ugar n xemsmeyya n yimelyaṛen\": xems and meyya written as one word."
+    },
+    {
+      "word": "tmen",
+      "role": "unit",
+      "value": "8",
+      "bound": true,
+      "source": "Tatoeba sentence 11417349 \"tmen meyya u xemseṭṭac n iseggasen\" (815 years), 11417339 \"tmen meyya u ṛebɛin n iseggasen\" (\"huit cent quarante ans\")."
+    },
+    {
+      "word": "zuǧ",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "Tatoeba sentence 11390187 \"Tafsut taberkan n zuǧ alaf d yiwen.\" (\"Le printemps noir de deux-mille-un.\"), 11387744 \"zuǧ alaf u rebεa\": zuǧ counts the thousands as juǧ does."
+    },
+    {
+      "word": "tniyen",
+      "role": "unit",
+      "value": "2",
+      "bound": true,
+      "source": "Tatoeba sentence 7035726 \"tniyen u tlatin d asefru\" (32 poems): tniyen is the bound two before a ten, as tnayen."
+    },
+    {
+      "word": "xemsṭac",
+      "role": "ten",
+      "value": "15",
+      "source": "Tatoeba sentence 12211214 \"xemsṭac yidulaṛen\" (\"quinze dollars\"), 12037282 \"xemsṭac n yiseggasen\" (\"15 ans\")."
+    },
+    {
+      "word": "alfin",
+      "role": "scale_numeral",
+      "value": 3,
+      "count": "2",
+      "source": "Tatoeba sentence 13400917 \"Tekseb alfin n tektubin.\" (\"Elle a deux mille livres.\"), 11376995 \"Tesɛa alfin n yedlisen.\" (\"Elle a deux mille livres.\"), 12272654 \"alfin n medden\" (\"deux mille personnes\")."
+    },
+    {
+      "word": "melyun",
+      "role": "scale_numeral",
+      "value": 6,
+      "source": "Tatoeba sentence 12500030 writes \"melyun\" for amelyun, without the first vowel."
+    },
+    {
+      "word": "imelyan",
+      "role": "scale_numeral",
+      "value": 6,
+      "plural": true,
+      "source": "Tatoeba sentence 11468235 \"Kečč d bu imelyan?\" (\"Es-tu millionnaire ?\"): imelyan is a plural of amelyun beside imelyunen."
+    },
+    {
+      "word": "walef",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "Tatoeba sentence 12893445 \"Azal n walef inelmaden i ssawḍen.\" (\"There are about a thousand students in all.\"), 11151082 \"azal n walef n medden\" (\"Nearly a thousand people\"): walef is the annexed form of alef."
+    },
+    {
+      "word": "umelyun",
+      "role": "scale_numeral",
+      "value": 6,
+      "source": "Tatoeba sentence 12898417 \"azal n umelyun n tikkal\" (\"like a million times\"), 10728926 \"Ugar n umelyun d wezgen\" (\"more than a million and a half\"): umelyun is the annexed form of amelyun."
+    },
+    {
+      "word": "agim",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "Tatoeba sentence 8187267 \"sin igiman n medden\" (\"deux mille personnes\"), 11321732 \"Uriɣ nnig n wagim n yisefra.\" (\"J'ai écrit plus de mille poèmes.\"), 13691005 \"ugar n wagim n tutlayin\" (\"plus de mille langues\"): the Berber word for thousand, plural igiman."
+    },
+    {
+      "word": "wagim",
+      "role": "scale_numeral",
+      "value": 3,
+      "source": "Tatoeba sentence 11321732 \"Uriɣ nnig n wagim n yisefra.\" (\"J'ai écrit plus de mille poèmes.\"), 13691005 \"ugar n wagim n tutlayin\" (\"plus de mille langues\"): wagim is the annexed form of agim."
+    },
+    {
+      "word": "igiman",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "Tatoeba sentence 8187267 \"Tazeqqa-ya tettawi sin igiman n medden.\" (\"Cette salle peut contenir deux mille personnes.\"), 12872490 \"llan deg-s igiman n yitran\" (\"thousands of stars\")."
     }
   ],
   "writer": {
