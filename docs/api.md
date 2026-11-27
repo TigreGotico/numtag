@@ -393,7 +393,7 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 | `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
 | `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
 | `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
-| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). `"fraction"` reads the whole part with a whole word and the decimals as a fraction of a power of ten (ru "две целых двадцать пять сотых"). Another value raises `ValueError`. The default is the lexicon's, and a lexicon can list more reads as variant spellings |
+| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). `"fraction"` reads the whole part with a whole word and the decimals as a fraction of a power of ten (ru "две целых двадцать пять сотых"). The power of ten follows the decimals as written, or `places` when it is given: "2.50" and "2.5" with `places=2` both read "две целых пятьдесят сотых". Another value raises `ValueError`. The default is the lexicon's, and a lexicon can list more reads as variant spellings |
 
 ```python
 >>> from numtag import SpokenForm, spell, tag_numbers
