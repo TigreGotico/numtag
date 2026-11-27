@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.49.0a1](https://github.com/TigreGotico/numtag/tree/0.49.0a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.48.0a1...0.49.0a1)
+
+**Merged pull requests:**
+
+- feat\(kab\): counts of scale nouns, fused hundreds, quarters, decimals and N seg M fractions [\#422](https://github.com/TigreGotico/numtag/pull/422) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.48.0a1](https://github.com/TigreGotico/numtag/tree/0.48.0a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.47.0a2...0.48.0a1)
@@ -601,10 +609,6 @@
 ## [0.19.8a1](https://github.com/TigreGotico/numtag/tree/0.19.8a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.7a1...0.19.8a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): read the long ordinal genitive and dative with the movable vowel [\#196](https://github.com/TigreGotico/numtag/pull/196) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.7a1](https://github.com/TigreGotico/numtag/tree/0.19.7a1) (2026-11-22)
 
