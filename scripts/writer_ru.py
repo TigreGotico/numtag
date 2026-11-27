@@ -98,6 +98,22 @@ SCALES = [(3, ("тысяча", "тысячи", "тысяч"), "тысячн"), (
           (12, ("триллион", "триллиона", "триллионов"), "триллионн")]
 
 
+# The short-scale words above 10^15, copied from "квадриллион", with the sense line of each in the saved
+# ru.wiktionary file.
+WIKT = "Papers/Languages/Slavic/Russian/ru_wiktionary_quintillion_to_duodecillion_declension.txt"
+LARGE = [("квинтиллион", "тысяча квадриллионов;  тысяча в шестой степени; число, равное 1018"),
+         ("секстиллион", "тысяча квинтиллионов; тысяча в седьмой степени; число, равное 1021"),
+         ("септиллион", "тысяча секстиллионов; тысяча в восьмой степени; число, равное 1024"),
+         ("октиллион", "тысяча септиллионов;  тысяча в девятой степени; число, равное 1027"),
+         ("нониллион", "тысяча октиллионов; число, равное 1030"),
+         ("дециллион", "тысяча нониллионов; число, равное 1033"),
+         ("ундециллион", "тысяча дециллионов; число, равное 1036"),
+         ("дуодециллион", "тысяча ундециллионов; число, равное 1039")]
+LARGE_SOURCE = {word: f"ru.wiktionary, \"{word}\" ({WIKT}): \"{sense}\"; a masculine inanimate noun of Zaliznyak type 1a, "
+                      "so its rules copy those of \"квадриллион\"." for word, sense in LARGE}
+LARGE_EXPONENT = {word: 3 * rank + 3 for rank, (word, _) in enumerate(LARGE, 5)}
+
+
 def R(value, text, source=None):
     rule = {"value": str(value), "text": text + ";"}
     if source:
@@ -114,7 +130,9 @@ def bare(name, rules):
         one = re.search(r"\$\(cardinal,one\{(\w+)\}", text)
         if one and re.fullmatch(r"10*", value) and len(value) > 3:
             rest = f"[ →%{name}-one→]"
-            out += [R(value, one.group(1) + rest, BARE), R("2" + value[1:], text.removesuffix(";").replace("[ →→]", rest))]
+            large = next((w for w in LARGE_SOURCE if one.group(1).startswith(w)), None)
+            out += [R(value, one.group(1) + rest, BARE + (". " + LARGE_SOURCE[large] if large else "")),
+                    R("2" + value[1:], text.removesuffix(";").replace("[ →→]", rest))]
         else:
             out.append(rule)
     return out
@@ -140,6 +158,8 @@ def cldr_sets(path):
                 rules.append(R(value, text.replace("ать[", "ати["), LOCATIVE))
                 continue
             rules.append(R(value, text))
+            if value == "1000000000000000":
+                rules += [R(10 ** LARGE_EXPONENT[word], text.replace("квадриллион", word)) for word, _ in LARGE]
         sets[rename(name)] = rules
     return sets
 
@@ -257,7 +277,7 @@ def main():
         "rulesets": rulesets,
         "forms": {
             "cardinal": {"variants": pair("cardinal-m"), "gender": by_gender("cardinal"),
-                         "case": by_case("cardinal"), "maximum": "9" * 18},
+                         "case": by_case("cardinal"), "maximum": "9" * 42},
             "ordinal": {"variants": pair("ordinal-m-nominative"),
                         "gender": by_gender("ordinal"), "case": by_case("ordinal"), "minimum": "0", "maximum": "9" * 15},
         },

@@ -127,5 +127,17 @@ class TestDocExamples(unittest.TestCase):
                     self.assertIn(normalise(piece), corpus)
 
 
+class TestGoldCounts(unittest.TestCase):
+    def test_each_language_page_gives_the_gold_score(self):
+        from test_gold import score_file
+        row = re.compile(r"lexicon/([\w-]+)\.json` \| \w+ \| (\d+) \| (\d+) \|")
+        for path in sorted((ROOT / "docs" / "languages").glob("*.md")):
+            text = path.read_text(encoding="utf-8")
+            for lang, rows, correct in row.findall(text):
+                with self.subTest(page=path.name, lang=lang):
+                    score = score_file(ROOT / "tests" / "gold" / f"{lang}.jsonl")
+                    self.assertEqual((int(rows), int(correct)), (score.rows, score.correct))
+
+
 if __name__ == "__main__":
     unittest.main()
