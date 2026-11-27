@@ -14,9 +14,10 @@ import numtag
 from numtag import lexicon as lexicon_module
 from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, INFLECTION_KEYS, READABLE_VERSIONS,
                             REQUIRED_SETTINGS, REQUIRED_WORDS, SCALE_OF_KEYS, SETTINGS, TOP_KEYS, WORDS,
-                            UnsupportedLanguageError, WRITER_VERSION, load)
+                            UnsupportedLanguageError, V3_VERSION, WRITER_VERSION, load)
 from numtag import tagger as tagger_module
 from numtag.tagger import lexicon_name
+from helpers import expected_version, holds_v3_keys
 
 PACKAGE = Path(numtag.__file__).parent
 ROOT = Path(__file__).parent.parent
@@ -111,7 +112,10 @@ class TestSchema(unittest.TestCase):
         bad["entries"] = [{"word": "x", "role": "unit", "value": "1", "rank": 3, "source": "s"}]
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("sv")
-        bad["format_version"] = 3
+        bad["format_version"] = 4
+        self.assertTrue(list(validator.iter_errors(bad)))
+        bad = _file("fr-FR")
+        bad["format_version"] = 2
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("sv")
         bad["writer"] = _file("id")["writer"]
@@ -135,11 +139,11 @@ class TestVersion(unittest.TestCase):
         for name in NAMES:
             with self.subTest(lexicon=name):
                 data = _file(name)
-                self.assertEqual(data["format_version"], WRITER_VERSION if "writer" in data else 1)
+                self.assertEqual(data["format_version"], expected_version(data))
 
     def test_a_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
-        for version in (3, 0, "1", None):
+        for version in (4, 0, "1", None):
             data = _file("en")
             data["format_version"] = version
             variants.write("variant", data)
@@ -158,11 +162,30 @@ class TestVersion(unittest.TestCase):
     def test_a_base_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
         base = _file("pt-PT")
-        base["format_version"] = 3
+        base["format_version"] = 4
         variants.write("base", base)
         variants.write("variant", {**_file("pt-BR"), "extends": "base"})
-        with self.assertRaisesRegex(ValueError, "base: format_version 3 is unknown"):
+        with self.assertRaisesRegex(ValueError, "base: format_version 4 is unknown"):
             load.__wrapped__("variant")
+
+    def test_a_key_of_version_3_in_an_older_file_is_refused_by_name(self):
+        variants = Variants(self)
+        for version in (1, 2):
+            data = _file("fr-FR")
+            data["format_version"] = version
+            if version == 1:
+                del data["writer"]
+            variants.write("variant", data)
+            with self.subTest(version=version), self.assertRaisesRegex(
+                    ValueError, "variant: the key 'after' in entry 'er' of role 'ordinal_suffix' needs format_version 3"):
+                load.__wrapped__("variant")
+
+    def test_a_file_of_version_2_reads_in_version_3(self):
+        variants = Variants(self)
+        data = _file("en")
+        data["format_version"] = 3
+        variants.write("variant", data)
+        self.assertEqual(load.__wrapped__("variant").ordinal_suffixes, load.__wrapped__("en").ordinal_suffixes)
 
 
 class TestUnknownKeys(unittest.TestCase):
@@ -284,6 +307,8 @@ class TestReadOrRefuse(unittest.TestCase):
             def edit(data, key=key):
                 item = data["settings"].setdefault(key, {"source": "test"})
                 item["value"] = _different(_value_spec("settings", key), item.get("value", DEFAULT_SETTINGS.get(key)))
+                if holds_v3_keys(data):
+                    data["format_version"] = V3_VERSION
 
             with self.subTest(setting=key):
                 self.assertTrue(self.changes(variants, edit))
@@ -346,6 +371,8 @@ class TestReadOrRefuse(unittest.TestCase):
                         entry[key] = [entry["word"]]
                     else:
                         entry[key] = _different(spec, entry.get(key))
+                if holds_v3_keys(data):
+                    data["format_version"] = V3_VERSION
 
             with self.subTest(entry=key):
                 self.assertTrue(self.changes(variants, edit))

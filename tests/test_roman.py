@@ -278,5 +278,118 @@ class TestCueRules(unittest.TestCase):
         self.assertEqual(mention.parts, (Part(Role.COUNT, (5, 8), "XIV", "14"),))
 
 
+
+class TestTitleCaseBound(unittest.TestCase):
+    """A title-case word is a cue only for a numeral below 100."""
+
+    def test_a_large_numeral_after_a_name_is_a_weak_cardinal(self):
+        # MDCC = 1700, DIV = 504, MMXXIV = 2024, MD = 1500
+        for text, lang, numeral, value in (("Le PDG de Total MDCC", "fr-FR", "MDCC", "1700"),
+                                           ("Ce DIV", "fr-FR", "DIV", "504"),
+                                           ("In MMXXIV we moved.", "en", "MMXXIV", "2024"),
+                                           ("Ce MD", "fr-FR", "MD", "1500")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.CARDINAL, HOMOGRAPH)])
+
+    def test_dc_is_a_french_word(self):
+        self.assertEqual(_read("Il habite à Washington DC.", "fr-FR"), [])
+
+    def test_names_and_series_nouns_keep_their_ordinal(self):
+        # XIV = 14, IV = 4, III = 3, IX = 9, XXIII = 23, II = 2, LVIII = 58, LXXII = 72
+        for text, lang, numeral, value in (
+                ("Louis XIV", "fr-FR", "XIV", "14"), ("Henri IV", "fr-FR", "IV", "4"),
+                ("Napoléon III", "fr-FR", "III", "3"), ("Pie IX", "fr-FR", "IX", "9"),
+                ("Jean XXIII", "fr-FR", "XXIII", "23"), ("Chapitre IV", "fr-FR", "IV", "4"),
+                ("acte III", "fr-FR", "III", "3"), ("Élisabeth II", "fr-FR", "II", "2"),
+                ("Super Bowl LVIII", "en", "LVIII", "58"), ("Prince Henry LXXII", "en", "LXXII", "72"),
+                ("le roi Louis MDCC", "fr-FR", "MDCC", "1700"), ("au chapitre CXX", "fr-FR", "CXX", "120")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
+
+
+class TestPsalms(unittest.TestCase):
+    def test_a_psalm_number_is_an_ordinal(self):
+        # CXIX = 119, CL = 150
+        for text, lang, numeral, value in (("Psaume CXIX", "fr-FR", "CXIX", "119"), ("le psaume CL", "fr-FR", "CL", "150"),
+                                           ("Psalm CXIX", "en", "CXIX", "119"), ("the psalms CXX", "en", "CXX", "120")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [(numeral, value, Kind.ORDINAL, SURE)])
+
+
+class TestHyphenatedNames(unittest.TestCase):
+    """A hyphenated given name gives no token and is one title-case word."""
+
+    def test_a_hyphenated_name_is_a_title_case_cue(self):
+        # II = 2
+        for text, lang in (("Jean-Paul II", "fr-FR"), ("le pape Jean-Paul II est mort", "fr-FR"),
+                           ("(Jean-Paul II)", "fr-FR"), ("John-Paul II", "en")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("II", "2", Kind.ORDINAL, SURE)])
+
+    def test_a_regnal_title_before_a_hyphenated_name_reads_a_single_letter(self):
+        # I = 1
+        for text, lang in (("le pape Jean-Paul I", "fr-FR"), ("Pope John-Paul I", "en")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, lang), [("I", "1", Kind.ORDINAL, SURE)])
+
+    def test_a_hyphenated_word_that_is_no_name_is_no_cue(self):
+        # a lower-case part is no name; a single letter needs a regnal title
+        self.assertEqual(_read("les pays-Bas II", "fr-FR"), [("II", "2", Kind.CARDINAL, HOMOGRAPH)])
+        self.assertEqual(_read("Marie-Thérèse I", "fr-FR"), [])
+
+
+class TestFrenchOrdinalSuffix(unittest.TestCase):
+    """fr writes the ordinal suffixes of digits after a Roman numeral ("XXe", "Ier")."""
+
+    def test_the_numeral_and_its_suffix_are_one_ordinal(self):
+        # XX = 20, XIX = 19, XVI = 16, V = 5, III = 3, I = 1, II = 2
+        rows = [
+            ("au XXe siècle", "XXe", "20", None), ("le XIXe", "XIXe", "19", None),
+            ("au XIXème siècle", "XIXème", "19", None), ("au XIXᵉ siècle", "XIXᵉ", "19", None),
+            ("le XVIe arrondissement", "XVIe", "16", None), ("la Ve République", "Ve", "5", None),
+            ("le IIIe Reich", "IIIe", "3", None), ("François Ier", "Ier", "1", "masculine"),
+            ("la Ire République", "Ire", "1", "feminine"), ("la IIde République", "IIde", "2", "feminine"),
+            ("le Xe arrondissement", "Xe", "10", None), ("au Xe siècle", "Xe", "10", None),
+            ("les IXe et Xe siècles", "Xe", "10", None), ("Jean-Paul Ier", "Ier", "1", "masculine"),
+            ("les XIXes siècles", "XIXes", "19", None), ("L’EUROPE AU XXe SIÈCLE", "XXe", "20", None),
+        ]
+        for text, numeral, value, gender in rows:
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value, m.kind, m.reasons, m.gender, m.confidence)
+                                  for m in tag_numbers(text, "fr-FR") if m.form == Form.ROMAN][-1:],
+                                 [(numeral, value, Kind.ORDINAL, SURE, gender, 1.0)])
+
+    def test_a_single_letter_with_a_suffix_and_no_cue_is_weak(self):
+        # "Ire" is also "ire" (anger); I = 1, V = 5
+        for text, numeral, value in (("Ire et colère le saisirent.", "Ire", "1"), ("Ve", "Ve", "5")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [(numeral, value, Kind.ORDINAL, HOMOGRAPH)])
+
+    def test_a_listed_word_with_a_suffix_needs_a_cue(self):
+        # "Xe" is the symbol of xenon, "Cie" the abbreviation of compagnie
+        for text in ("Le xénon (Xe) est un gaz noble.", "Xe, Ar et Kr", "Le symbole Xe désigne le xénon.", "CIe"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [])
+
+    def test_the_mention_spans_the_numeral_and_the_suffix(self):
+        [mention] = tag_numbers("au XXe siècle", "fr-FR")
+        self.assertEqual((mention.char_span, mention.form), ((3, 6), Form.ROMAN))
+
+    def test_words_that_look_like_a_numeral_and_a_suffix_give_no_mention(self):
+        # "er" follows only 1 ("Vers", "Ver"); L, C, D and M alone are no
+        # numeral ("Le", "Ce", "De", "Me", "Mes"); "mm" is a word ("MMe");
+        # the suffix is lower case ("XXE"), and a lower-case numeral takes none
+        for text in ("Vers midi", "Ver de terre", "Le chat", "Ce soir", "De plus", "Me Durand", "Mes amis",
+                     "MMe", "XXE", "xxe", "Vies", "Ides"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr-FR"), [])
+
+    def test_a_language_without_the_setting_reads_no_suffix(self):
+        # en lists "st" and "th" for digits, but "XXth" is no English form; tr
+        # lists "inci", and "Vinci" is a name
+        self.assertEqual(_read("the XXth century", "en"), [])
+        self.assertEqual(_read("Leonardo da Vinci", "tr"), [])
+
+
 if __name__ == "__main__":
     unittest.main()
