@@ -230,7 +230,7 @@ A cue makes the numeral a sure ordinal:
 | A series noun after a numeral that is no word | "the XXI century" |
 | A title-case word before an upper-case numeral below 100 that is no word | "Luís XIV", "Edition XIV" |
 | A regnal title (`roman_title`), then a name | "King Henry I", "D. João I", "Papst Benedikt XVI" |
-| A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no word | "séculos XI, XII e XIII" |
+| A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no single letter: a word of the `roman_word` list counts here | "séculos XI, XII e XIII", fr "les chapitres XCIX et CC" |
 | An ordinal suffix in lower case glued to an upper-case numeral of two letters or more, where the language sets `roman_ordinal_suffix`. A single letter with a suffix also needs one of the other cues | fr "au XXe siècle", "François Ier", "la Ve République" |
 
 German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages too.
@@ -254,7 +254,7 @@ A single letter is a numeral only as I, V or X. L, C, D and M alone are labels (
 
 A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "IV") is far more often a pronoun, an initial or a label. It reads only in upper case, and only after one of two cues:
 
-- a series noun before it ("World War I", "Part I")
+- a series noun before it ("World War I", "Part I"), or, for a listed word of two letters or more, a cued numeral before it in a list ("les chapitres XCIX et CC")
 - a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
 
 A hyphenated name is one title-case word, as "Jean-Paul" in "Jean-Paul II" and "le pape Jean-Paul I".

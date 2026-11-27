@@ -144,6 +144,13 @@ class TestCentEtUn(unittest.TestCase):
         self.assertEqual(fr("cent et un milliard"), [("cent", "100", C), ("un milliard", "1000000000", C)])
         self.assertEqual(fr("deux cents et un million"), [("deux cents", "200", C), ("un million", "1000000", C)])
 
+    def test_a_long_run_of_cent_et_un_reads_without_deep_recursion(self):
+        # 2000 times 100 + 1 = 101, one number between each pair of commas
+        text = ", ".join(["cent et un"] * 2000)
+        mentions = tag_numbers(text, "fr-FR")
+        self.assertEqual({m.value for m in mentions}, {"101"})
+        self.assertEqual(len(mentions), 2000)
+
     def test_the_writer_writes_cent_un(self):
         from numtag import spell
         self.assertEqual(spell("101", "fr-FR")[0].text, "cent un")

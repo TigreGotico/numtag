@@ -178,6 +178,27 @@ class TestWordLists(unittest.TestCase):
             with self.subTest(text=text):
                 self.assertEqual([m for m in _read(text, "fr") if m[0] in ("MIX", "MC", "CC", "CL", "DL")], [])
 
+    def test_a_listed_french_word_with_a_suffix_reads_after_a_series_noun(self):
+        # 200th, 150th, 550th, 1100th and 1009th chapters; without the noun no ordinal
+        for text, value in (("le CCe chapitre", "200"), ("le CLe chapitre", "150"), ("le DLe chapitre", "550"),
+                            ("le MCe chapitre", "1100"), ("le MIXe chapitre", "1009")):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr"), [(text.split()[1], value, Kind.ORDINAL, SURE)])
+        for text in ("le CCe", "MMe", "Les XLe"):
+            with self.subTest(text=text):
+                self.assertEqual(_read(text, "fr"), [])
+
+    def test_a_listed_french_word_in_a_list_after_a_cued_numeral_reads(self):
+        # chapters 99 and 200; 99, 200 and 150
+        self.assertEqual(_read("les chapitres XCIX et CC", "fr"),
+                         [("XCIX", "99", Kind.ORDINAL, SURE), ("CC", "200", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("les chapitres XCIX, CC et CL", "fr"),
+                         [("XCIX", "99", Kind.ORDINAL, SURE), ("CC", "200", Kind.ORDINAL, SURE),
+                          ("CL", "150", Kind.ORDINAL, SURE)])
+        # a single letter after a list cue stays a word: "World War I, I moved"
+        self.assertEqual(_read("World War I, I moved", "en"), [("I", "1", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("En CC de ce courriel", "fr"), [])
+
     def test_french_numerals_still_read(self):
         # 1000 + 900 + 90 + 9 = 1999; 2000 + 20 + 4 = 2024; the regnal 14; the chapter 1100
         self.assertEqual(_read("MCMXCIX", "fr"), [("MCMXCIX", "1999", Kind.CARDINAL, HOMOGRAPH)])

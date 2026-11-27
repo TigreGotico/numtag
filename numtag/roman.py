@@ -252,9 +252,10 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
                                   or token.text.islower() and token.norm in lexicon.roman_lower_words)
         if word and not token.text.isupper():
             continue
-        # a word in a list is no numeral by its place: "World War I, I moved"
+        # a single letter in a list is no numeral by its place: "World War I,
+        # I moved"; a listed word of more letters is ("les chapitres XCIX et CC")
         cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form, value=value) \
-            or not word and _listed_after(lexicon, tokens, k, cued)
+            or (not word or len(token.text) > 1) and _listed_after(lexicon, tokens, k, cued)
         if cue:
             cued.add(k)
         if word and not cue:
