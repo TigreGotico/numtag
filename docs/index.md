@@ -12,7 +12,7 @@ numtag finds every number in a text and gives its exact words, its character spa
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/share-dark.svg">
-  <img alt="33 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="img/share.svg">
+  <img alt="34 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="img/share.svg">
 </picture>
 
 `img/plot_share.py` makes this figure from `benchmarks/results.json`. Each bar is the share of gold rows in `tests/gold/<lang>.jsonl` that numtag reads right.

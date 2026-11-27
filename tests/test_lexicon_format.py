@@ -112,7 +112,7 @@ class TestSchema(unittest.TestCase):
         bad["entries"] = [{"word": "x", "role": "unit", "value": "1", "rank": 3, "source": "s"}]
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("fi")
-        bad["format_version"] = 6
+        bad["format_version"] = 7
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("fr-FR")
         bad["format_version"] = 2
@@ -152,7 +152,7 @@ class TestVersion(unittest.TestCase):
 
     def test_a_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
-        for version in (6, 0, "1", None):
+        for version in (7, 0, "1", None):
             data = _file("en")
             data["format_version"] = version
             variants.write("variant", data)
@@ -171,10 +171,10 @@ class TestVersion(unittest.TestCase):
     def test_a_base_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
         base = _file("pt-PT")
-        base["format_version"] = 6
+        base["format_version"] = 7
         variants.write("base", base)
         variants.write("variant", {**_file("pt-BR"), "extends": "base"})
-        with self.assertRaisesRegex(ValueError, "base: format_version 6 is unknown"):
+        with self.assertRaisesRegex(ValueError, "base: format_version 7 is unknown"):
             load.__wrapped__("variant")
 
     def test_a_key_of_version_3_in_an_older_file_is_refused_by_name(self):
@@ -401,6 +401,10 @@ class TestReadOrRefuse(unittest.TestCase):
                         entry[key] = entry[key] + 1
                     elif key == "value":
                         entry[key] += "1"
+                    elif key == "context":
+                        # a lone word that starts or ends a run is no number
+                        entry[key] = [] if entry.get(key) else [{"prev": ["@end"], "then": "word", "source": "s"},
+                                                                {"next": ["@end"], "then": "word", "source": "s"}]
                     elif key in ("ambiguous_forms", "excluded_forms", "weak_forms") and key not in entry:
                         entry[key] = [entry["word"]]
                     else:

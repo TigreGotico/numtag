@@ -18,7 +18,7 @@ A file is a JSON object with these keys.
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1`, `2`, `3`, `4` or `5`. Required. Only versions 2 to 5 hold `writer`. Only versions 3 to 5 hold the keys that this page marks as version 3, only versions 4 and 5 the keys that it marks as version 4, and only version 5 the keys that it marks as version 5. |
+| `format_version` | The integer `1`, `2`, `3`, `4`, `5` or `6`. Required. Only versions 2 to 6 hold `writer`. Only versions 3 to 6 hold the keys that this page marks as version 3, only versions 4 to 6 the keys that it marks as version 4, only versions 5 and 6 the keys that it marks as version 5, and only version 6 the keys that it marks as version 6. |
 | `extends` | The name of a base lexicon. Optional. |
 | `settings` | An object. Each key is a setting, and each value is `{"value": ..., "source": ...}`. |
 | `words` | An object. Each key is a word list, and each value is `{"value": [...], "source": ...}`. |
@@ -30,15 +30,17 @@ A file with no `extends` holds `settings`, `words` and `entries`. It holds every
 
 ### Version and refusal
 
-The loader reads `format_version` first. It reads versions 1, 2, 3, 4 and 5. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1, 2, 3, 4, 5 and 6. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
-A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4, and a file that holds a key of version 5 moves to version 5. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, a key of version 4 in an older file, and a key of version 5 in an older file. The error names the key and the place.
+A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4, a file that holds a key of version 5 moves to version 5, and a file that holds a key of version 6 moves to version 6. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, and a key of version 4, 5 or 6 in an older file. The error names the key and the place.
 
 Version 3 adds the settings `roman_ordinal_suffix` and `group_mark_forms` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
 
 Version 4 adds the decimal keys `variant_read` and `by_case`, the decimal read `fraction`, and the gender `plural` of a form. These are all the changes of version 4.
 
 Version 5 adds the setting `joiner_after_hundred_one`. It is the only change of version 5.
+
+Version 6 adds the entry key `context` and the word lists whose names start with `cue_`. These are all the changes of version 6.
 
 ### Base lexicons
 
@@ -170,6 +172,7 @@ A word list holds a `value`, a list of strings, and a `source`. Every list may b
 | `roman_series_noun` | no | Nouns that mark a place in a series, so a Roman numeral beside them is an ordinal ("século"). | pt-PT: `["século", "séculos", "capítulo"]` |
 | `roman_title` | no | Regnal titles before a name that a numeral follows ("rei"). | pt-PT: `["rei", "rainha", "papa"]` |
 | `roman_word` | no | Roman numerals that are also a word or a common abbreviation, which read only after a strong cue ("CD", "MIX"). | pt-PT: `["cd", "cv", "cc"]` |
+| `cue_<name>` | no | Version 6. A class of words that a `context` cue names as `@<name>`. | pt-PT: `"cue_restrictive": ["só", "apenas", "somente"]` |
 | `vague_clitic` | no | A clitic that may stand between a vague quantifier and the scale word ("je" in "nekoliko je tisuća"). | hr: `["sam", "si", "je"]` |
 | `word_apostrophe` | no | Marks that join letters into one word ("п'ять"). | uk: `["'", "’"]` |
 
@@ -253,12 +256,45 @@ Every role that makes forms (all but `ordinal_suffix` and `vague_quantifier`) re
 | `weak_before` | list of strings | `[]` | Words after which the word is weak (hu "hat rám"). | hu: `{"word": "hat", "role": "unit", "weak_before": ["rám", "rád", "rá", "ránk", "rátok", "rájuk"]}` |
 | `standalone` | boolean | `false` | An ordinal that is never the last word of a longer ordinal: fr "premier". Only a hyphen joins it to a number before it. | fr-FR: `{"word": "premier", "role": "ordinal", "standalone": true}` |
 | `number_after` | list of strings | `[]` | Words after which the word has only its number reading (ca "les nou" is nine o'clock). | hu: `{"word": "hat", "role": "unit", "number_after": ["kérek", "kérem", "kérünk", "kérjük", "kérj", "legyen", "állíts", "állítsd", "állítsa", "tegyél", "tedd", "tegye"]}` |
+| `context` | list of cues | `[]` | Version 6. The words around a lone word that decide it. See [Context cues](#context-cues). | pt-PT: `{"word": "segundos", "role": "ordinal", "context": [{"prev": ["@number"], "then": "word", "source": "…"}]}` |
 | `count` | string | `""` | On a scale word: the count that the form holds. The dual ar "ألفان" is 2 × 10^3. | ar: `{"word": "ألفان", "role": "scale_numeral", "count": "2"}` |
 | `after` | list of digit strings | none | Version 3. On an `ordinal_suffix`: the only numbers that the suffix follows. fr "er" lists "1", so "1er" is the 1st and "3er" is 3 and a word. Without it, the suffix follows any number. | fr-FR: `{"word": "er", "role": "ordinal_suffix", "after": ["1"]}` |
 | `cased` | boolean | `false` | Version 3. On an `ordinal_suffix`: the suffix reads only in the case that `word` writes. fr "d" reads in "2d" and not in "2D", two dimensions. Without it, the suffix reads in any case ("1ST"). | fr-FR: `{"word": "d", "role": "ordinal_suffix", "after": ["2"], "cased": true}` |
 | `counted` | boolean | `false` | A plural multiplier that a count takes, in words or in digits below a thousand (he "מאות"). | ru: `{"word": "сотни", "role": "hundred_multiplier", "counted": true}` |
 
-A role that gives a value (`unit`, `ten`, `hundred`, `collective`, `article_collective`, `denominator`, `ordinal`, `fraction`, `decimal_zero`, `value_word`, `unit_and_half`, `rational`, `teen`, `teen_suffix`) reads `value`, `addend`, `bound`, `takes_unit`, `takes_units`, `case`, `ordinal_unit`, `numerator`, `weak_alone`, `invariant`, `cardinal`, `teens`, `after_article`, `weak_at_end`, `joined_count`, `weak_after`, `weak_before`, `standalone` and `number_after`. A scale role reads `value`, `rank`, `count` and `counted`. `half` reads `bound`. `ordinal_scale` reads `value` and `after_article`. A mark role reads no key besides those that make forms.
+A role that gives a value (`unit`, `ten`, `hundred`, `collective`, `article_collective`, `denominator`, `ordinal`, `fraction`, `decimal_zero`, `value_word`, `unit_and_half`, `rational`, `teen`, `teen_suffix`) reads `value`, `addend`, `bound`, `takes_unit`, `takes_units`, `case`, `ordinal_unit`, `numerator`, `weak_alone`, `invariant`, `cardinal`, `teens`, `after_article`, `weak_at_end`, `joined_count`, `weak_after`, `weak_before`, `standalone`, `number_after` and `context`. A scale role reads `value`, `rank`, `count` and `counted`. `half` reads `bound`. `ordinal_scale` reads `value` and `after_article`. A mark role reads no key besides those that make forms.
+
+### Context cues
+
+The key `context` holds an ordered list of cues. A cue looks at the word right before a lone word and the word right after it, in the same run of words. Punctuation ends the run. The tagger uses the first cue that matches. A cue has no effect on a word inside a longer number: "vigésimo segundo" stays 22.
+
+| Key | Value | Meaning |
+|---|---|---|
+| `prev` | list of strings | The words that may stand right before the word. |
+| `next` | list of strings | The words that may stand right after the word. |
+| `then` | `number`, `word` or `homograph` | The reading when the cue matches. |
+| `source` | string | Required. The source of the cue. |
+
+A cue holds `prev`, `next` or both. With both, both must match. A string is a word, or the name of a class with `@` before it. The class `@x` is the word list `cue_x`. Four classes need no list:
+
+| Class | Matches |
+|---|---|
+| `@number` | Digits, or a cardinal word that is not an article and has no second meaning. |
+| `@article` | A word of `article_one`. |
+| `@ordinal` | An ordinal word. |
+| `@end` | No word: the word starts or ends the run. |
+
+The verdicts:
+
+| `then` | Result |
+|---|---|
+| `number` | The mention is sure, with the confidence 1.0. It replaces `Reason.ARTICLE` and `Reason.HOMOGRAPH`. |
+| `word` | The word is no number, and the tagger gives no mention. |
+| `homograph` | The mention keeps `Reason.HOMOGRAPH`. |
+
+When no cue matches, the usual rules decide. Keep each `word` cue narrow and cite it: a wrong `word` cue removes a true number.
+
+The older keys read as cues, after the cues of `context`: `number_after: [w]` is `{"prev": [w], "then": "number"}`, `weak_after: [w]` is `{"prev": [w], "then": "homograph"}`, and `weak_before: [w]` is `{"next": [w], "then": "homograph"}`. The keys `weak_at_end` and `joined_count` stay as they are.
 
 ## The writer block
 

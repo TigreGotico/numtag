@@ -22,31 +22,10 @@
    "leader": true
   },
   {
-   "lang": "ca",
-   "rows": 228,
-   "rows_right": 225,
-   "share": 98.7,
-   "leader": false
-  },
-  {
-   "lang": "es",
-   "rows": 237,
-   "rows_right": 234,
-   "share": 98.7,
-   "leader": true
-  },
-  {
    "lang": "pt-BR",
    "rows": 470,
-   "rows_right": 464,
-   "share": 98.7,
-   "leader": true
-  },
-  {
-   "lang": "pt-PT",
-   "rows": 479,
-   "rows_right": 473,
-   "share": 98.7,
+   "rows_right": 465,
+   "share": 98.9,
    "leader": true
   },
   {
@@ -61,6 +40,27 @@
    "rows": 205,
    "rows_right": 203,
    "share": 99.0,
+   "leader": true
+  },
+  {
+   "lang": "pt-PT",
+   "rows": 479,
+   "rows_right": 474,
+   "share": 99.0,
+   "leader": true
+  },
+  {
+   "lang": "ca",
+   "rows": 228,
+   "rows_right": 226,
+   "share": 99.1,
+   "leader": false
+  },
+  {
+   "lang": "es",
+   "rows": 237,
+   "rows_right": 235,
+   "share": 99.2,
    "leader": true
   },
   {
@@ -100,13 +100,6 @@
   },
   {
    "lang": "cs",
-   "rows": 185,
-   "rows_right": 184,
-   "share": 99.5,
-   "leader": false
-  },
-  {
-   "lang": "gl",
    "rows": 185,
    "rows_right": 184,
    "share": 99.5,
@@ -312,6 +305,13 @@
    "lang": "uk",
    "rows": 184,
    "rows_right": 184,
+   "share": 100.0,
+   "leader": false
+  },
+  {
+   "lang": "gl",
+   "rows": 185,
+   "rows_right": 185,
    "share": 100.0,
    "leader": false
   },

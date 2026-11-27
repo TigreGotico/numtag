@@ -1,5 +1,5 @@
 {
-  "format_version": 2,
+  "format_version": 6,
  "settings": {
   "point_decimal": {
    "value": true,
@@ -71,6 +71,8 @@
   }
  },
  "words": {
+  "cue_restrictive": {"value": ["solo", "sólo", "solamente", "únicamente"], "source": "Structural, no external source: the word lists of the articles, contractions and demonstratives."},
+  "cue_little": {"value": ["poco", "poquito"], "source": "Structural, no external source: the word lists of the articles, contractions and demonstratives."},
   "clock_before": {
    "value": [
     "las",
@@ -270,14 +272,14 @@
    "role": "unit",
    "value": "1",
    "gender": "masculine",
-   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\""
+   "context": [{"prev": ["@restrictive"], "next": ["@little"], "then": "word", "source": "SILVER, no saved source: \"un poco\" is a quantifier phrase (\"a little\"), no count of one."}, {"prev": ["@restrictive"], "then": "number", "source": "RAE, DLE, \"solo\" (Papers: Languages/Iberian/Spanish/dle_rae_solo.html), solo², sense 1: «adv. Únicamente, solamente»; «Puede escribirse sólo cuando hay riesgo de ambigüedad con el adj. solo 1». SILVER: no saved grammar states that \"un\" after a restrictive adverb is the numeral."}], "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\"; CLDR RBNF es (common/rbnf/es.xml) %spellout-cardinal-masculine/-feminine: \"1: un\", \"1: una\", \"21: veintiún\", \"21: veintiuna\", \"30: treinta[ y >>]\", \"100: cien\", \"101: ciento >>\", \"200: doscientos[ >>]\", \"200: dos­cientas[ >>]\", \"1000: mil[ >>]\", \"1000000: un millón[ >>]\", \"2000000: <...< millones[ >>]\", \"1000000000000: un billón[ >>]\""
   },
   {
    "word": "una",
    "role": "unit",
    "value": "1",
    "gender": "feminine",
-   "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
+   "context": [{"prev": ["@restrictive"], "then": "number", "source": "RAE, DLE, \"solo\" (Papers: Languages/Iberian/Spanish/dle_rae_solo.html), solo², sense 1: «adv. Únicamente, solamente»; «Puede escribirse sólo cuando hay riesgo de ambigüedad con el adj. solo 1». SILVER: no saved grammar states that \"un\" after a restrictive adverb is the numeral."}], "source": "RAE y ASALE, Diccionario panhispánico de dudas (DPD), \"cardinales\" §1, table: \"1 uno, fem. una; apocopado: un\", \"21 veintiuno, fem. veintiuna; apocopado: veintiún\", \"200 doscientos, fem. doscientas\", \"1 000 000 un millón\", \"1 000 000 000 mil millones o un millardo\""
   },
   {
    "word": "dos",
@@ -1809,7 +1811,7 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+   "context": [{"prev": ["@number"], "then": "word", "source": "RAE, DLE, \"segundo\" (Papers: Languages/Iberian/Spanish/dle_rae_segundo.html), sense 2.a, m.: «Unidad de tiempo del sistema internacional, que equivale a la duración de 9 192 631 770 pe[ríodos]». A cardinal before the plural counts the unit (structural, no external source)."}], "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
   },
   {
    "word": "segundas",

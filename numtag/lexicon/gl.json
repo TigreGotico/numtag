@@ -1,5 +1,5 @@
 {
-  "format_version": 2,
+  "format_version": 6,
  "settings": {
   "scale": {
    "value": "long",
@@ -1268,7 +1268,7 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
+   "context": [{"prev": ["@number"], "then": "word", "source": "RAG, Dicionario, \"segundo (2)\" (Papers: Languages/Iberian/Galician/rag_dicionario_segundo.html), s. m., sense 1: «Cada unha das sesenta partes iguais en que se divide un minuto». A cardinal before the plural counts the unit (structural, no external source)."}], "source": "RAG Normas 16.2 Ordinais: \"primeiro\", \"sétimo\", \"undécimo / décimo primeiro\", \"vixésimo primeiro\", \"trixésimo\", \"cuadraxésimo\", \"quincuaxésimo\", \"sesaxésimo\", \"septuaxésimo\", \"octoxésimo\", \"nonaxésimo\", \"centésimo\", \"milésimo\", \"millonésimo\"; \"Todas estas formas admiten morfemas de xénero e número, que nas formas compostas só se unen ao último elemento (décimo primeira)\"; \"segundo\" is also a unit of time"
   },
   {
    "word": "segundas",

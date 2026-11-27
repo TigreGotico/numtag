@@ -25,20 +25,26 @@ from functools import cache, cached_property
 from pathlib import Path
 
 from numtag.mention import Scale
-from numtag.tokenize import COMPOUND_MARK, Script, fold
+from numtag.tokenize import COMPOUND_MARK, Script, Token, fold
 
 _HERE = Path(__file__).parent
 
-FORMAT_VERSION = 5
+FORMAT_VERSION = 6
 # A version 1 file stays valid; only a version 2 file or newer may hold a
 # ``writer`` block, only a version 3 file or newer the keys of V3_SETTINGS and
 # V3_ENTRY_KEYS, only a version 4 file or newer the writer keys of _v4_keys,
-# and only a version 5 file the keys of V5_SETTINGS.
-READABLE_VERSIONS = (1, 2, 3, 4, 5)
+# only a version 5 file or newer the keys of V5_SETTINGS, and only a version
+# 6 file the entry key ``context`` and the ``cue_`` word lists.
+READABLE_VERSIONS = (1, 2, 3, 4, 5, 6)
 WRITER_VERSION = 2
 V3_VERSION = 3
 V4_VERSION = 4
 V5_VERSION = 5
+V6_VERSION = 6
+# The verdicts of a context cue.
+CUE_VERDICTS = ("number", "word", "homograph")
+# The cue classes that need no word list.
+BUILTIN_CLASSES = ("@number", "@article", "@ordinal", "@end")
 
 
 class UnsupportedLanguageError(ValueError):
@@ -86,6 +92,16 @@ COMPOUND_ROLES = ("unit", "ten", "hundred", "ordinal", "ordinal_scale", "half", 
 # cardinal after it an ordinal ("ke|dua", "ke-2"), and a part that makes the
 # cardinal after it a denominator ("se|per|enam belas").
 MARK_ROLES = ("ordinal_ending", "ordinal_prefix", "denominator_prefix")
+
+
+@dataclass(frozen=True)
+class Cue:
+    """A neighbour that decides a word: ``prev`` holds the words that may
+    stand right before it and ``next`` the words right after it, as literal
+    folded words or built-in ``@`` classes. None matches any word."""
+    prev: frozenset[str] | None
+    next: frozenset[str] | None
+    then: str
 
 
 @dataclass(frozen=True)
@@ -165,19 +181,14 @@ class Entry:
     # clause ("hat és hét" lists two numbers). An adjective goes before
     # "et deux chapeaux", so fr "neuf" leaves it out.
     joined_count: bool = False
-    # Words before and after which the word is weak: Hungarian "hat" is
-    # also the verb "to take effect", as in "nem hat" and "hat rám".
-    weak_after: frozenset[str] = frozenset()
-    weak_before: frozenset[str] = frozenset()
     # An ordinal that is never the last word of a longer ordinal: French
     # "premier" and "second" ("vingt et unième", "vingt-deuxième"),
     # Italian "secondo" ("ventiduesimo"). Only a hyphen joins it to a
     # number before it: ICU 78 wrote the Catalan 22nd "vint-i-segon".
     standalone: bool = False
-    # Words after which the word has only its number reading: after "les"
-    # the Catalan adjective "nou" ("new") is "noves", so "a les nou" is
-    # nine o'clock.
-    number_after: frozenset[str] = frozenset()
+    # The cues of the words around a lone word, in order: the first that
+    # matches decides it ("segundo o relatório" is no number).
+    context: tuple[Cue, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -456,6 +467,27 @@ class Lexicon:
             return False
         return key not in self.ordinal_suffix_after or digits in self.ordinal_suffix_after[key]
 
+    def cue(self, entries, before: Token | None, after: Token | None) -> str | None:
+        """The verdict of the first cue of ``entries`` that the words around a
+        lone word match ("number", "word" or "homograph"), or None."""
+        for entry in entries:
+            for cue in entry.context:
+                if (cue.prev is None or self._fits(cue.prev, before)) \
+                        and (cue.next is None or self._fits(cue.next, after)):
+                    return cue.then
+        return None
+
+    def _fits(self, words: frozenset[str], token: Token | None) -> bool:
+        if token is None:
+            return "@end" in words
+        if token.norm in words:
+            return True
+        readings = () if token.is_digits else self.readings.get(token.norm, ())
+        return ("@article" in words and token.norm in self.articles
+                or "@ordinal" in words and any(e.ordinal or e.role == "ordinal" for e in readings)
+                or "@number" in words and (token.is_digits or token.norm not in self.articles and any(
+                    e.role in CARDINAL_ROLES and not e.ordinal and not e.ambiguous for e in readings)))
+
     def of(self, word: str, role: str, parts: bool = True) -> tuple[Entry, ...]:
         """The entries of ``word`` with ``role``; with ``parts`` False, only
         those that are no piece of a longer word."""
@@ -623,7 +655,7 @@ _FORM_KEYS = frozenset(("word", "role", "source", "stems", "excluded_forms", "am
 _VALUE_KEYS = _FORM_KEYS | {"value", "addend", "bound", "takes_unit", "takes_units", "case", "ordinal_unit",
                             "numerator", "weak_alone", "invariant", "cardinal", "teens", "after_article",
                             "weak_at_end", "joined_count", "weak_after", "weak_before", "standalone",
-                            "number_after"}
+                            "number_after", "context"}
 # A denominator that names a scale word takes its value from that word.
 SCALE_OF_KEYS = _FORM_KEYS | {"scale_of"}
 ENTRY_KEYS = {
@@ -642,6 +674,7 @@ V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms"))
 # Keys that only a version 5 file holds.
 V5_SETTINGS = frozenset(("joiner_after_hundred_one",))
 V3_ENTRY_KEYS = {"ordinal_suffix": frozenset(("after", "cased"))}
+CUE_KEYS = frozenset(("prev", "next", "then", "source"))
 
 
 def _refuse(lang: str, where: str, found, allowed) -> None:
@@ -664,7 +697,9 @@ def _check(lang: str, data: dict) -> None:
                 raise ValueError(f"{lang}: the writer {', '.join(keys)} needs format_version {V4_VERSION}")
         elif "extends" not in data:
             raise ValueError(f"{lang}: a null writer block drops the writer of a base, and this file has no base")
-    for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
+    cue_lists = {name for name in data.get("words", {}) if name.startswith("cue_")}
+    _needs(lang, data, "words", data.get("words", {}), cue_lists, V6_VERSION)
+    for section, allowed in (("settings", SETTINGS), ("words", WORDS | cue_lists)):
         _refuse(lang, section, data.get(section, ()), allowed)
         for name, item in data.get(section, {}).items():
             _refuse(lang, f"{section} {name!r}", item, ITEM_KEYS)
@@ -678,6 +713,13 @@ def _check(lang: str, data: dict) -> None:
         if allowed and not spec.keys() <= allowed:
             _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
         _needs(lang, data, f"entry {spec['word']!r} of role {role!r}", spec, V3_ENTRY_KEYS.get(role, ()), V3_VERSION)
+        _needs(lang, data, f"entry {spec['word']!r} of role {role!r}", spec, ("context",), V6_VERSION)
+        for cue in spec.get("context", ()):
+            where = f"a cue of entry {spec['word']!r}"
+            _refuse(lang, where, cue, CUE_KEYS)
+            if cue.get("then") not in CUE_VERDICTS or "source" not in cue or not ("prev" in cue or "next" in cue):
+                raise ValueError(f"{lang}: {where} needs 'prev' or 'next', a 'source', and a 'then' of "
+                                 f"{', '.join(map(repr, CUE_VERDICTS))}")
     _needs(lang, data, "settings", data.get("settings", {}), V3_SETTINGS, V3_VERSION)
     _needs(lang, data, "settings", data.get("settings", {}), V5_SETTINGS, V5_VERSION)
 
@@ -832,19 +874,50 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     suffix_ends = settings["inflection_position"] == "last"
 
     ambiguous_words: set[str] = set()
+    cue_classes = {"@" + key[4:]: frozenset(fold(w) for w in value) for key, value in words.items()
+                   if key.startswith("cue_")}
+
+    def side(names) -> frozenset[str] | None:
+        if names is None:
+            return None
+        found: set[str] = set()
+        for name in names:
+            if name in BUILTIN_CLASSES:
+                found.add(name)
+            elif name.startswith("@"):
+                if name not in cue_classes:
+                    raise ValueError(f"{lang}: the cue class {name!r} has no word list 'cue_{name[1:]}'")
+                found |= cue_classes[name]
+            else:
+                found |= {fold(name)} | {fold(form) for form in script.lexicon_forms(name)}
+        return frozenset(found)
+
+    def cues(spec: dict, weak: bool) -> tuple[Cue, ...]:
+        """The cues of ``context``, then those of the older keys. A form
+        outside ``weak_forms`` takes no ``weak_after`` or ``weak_before`` cue."""
+        found = [Cue(side(c.get("prev")), side(c.get("next")), c["then"]) for c in spec.get("context", ())]
+        if "number_after" in spec:
+            found.append(Cue(side(spec["number_after"]), None, "number"))
+        if weak:
+            if "weak_after" in spec:
+                found.append(Cue(side(spec["weak_after"]), None, "homograph"))
+            if "weak_before" in spec:
+                found.append(Cue(None, side(spec["weak_before"]), "homograph"))
+        return tuple(found)
+
     vague_quantifiers: dict[tuple[str, ...], bool] = {}
 
     def put(spec: dict, entry: Entry) -> None:
         ambiguous = {w.casefold() for w in spec.get("ambiguous_forms", [])}
         ambiguous_words.update(ambiguous)
         weak = {w.casefold() for w in spec.get("weak_forms", [])}
+        all_cues, strong_cues = cues(spec, True), cues(spec, False)
         for word, ordinal, final, fraction_case in _forms(spec, inflection, suffix_ends):
             reading = replace(entry, ordinal=ordinal, final=final, fraction_case=fraction_case,
-                              ambiguous=entry.ambiguous or word in ambiguous)
+                              ambiguous=entry.ambiguous or word in ambiguous, context=all_cues)
             if weak and word not in weak:
                 # "hatkor" (at six) is no verb form: the weak cues hold for "hat" only
-                reading = replace(reading, weak_at_end=False, joined_count=False,
-                                  weak_after=frozenset(), weak_before=frozenset())
+                reading = replace(reading, weak_at_end=False, joined_count=False, context=strong_cues)
             for form in script.lexicon_forms(word):
                 readings.setdefault(fold(form), []).append(reading)
 
@@ -870,10 +943,7 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             teens=spec.get("teens", False),
                             after_article=spec.get("after_article", False),
                             weak_at_end=spec.get("weak_at_end", False), joined_count=spec.get("joined_count", False),
-                            weak_after=frozenset(fold(w) for w in spec.get("weak_after", ())),
-                            weak_before=frozenset(fold(w) for w in spec.get("weak_before", ())),
-                            standalone=spec.get("standalone", False),
-                            number_after=frozenset(fold(w) for w in spec.get("number_after", ())), **facts))
+                            standalone=spec.get("standalone", False), **facts))
         elif role in SCALE_ROLES:
             facts.update(count=spec.get("count", ""), counted=spec.get("counted", False))
             if "value" in spec:

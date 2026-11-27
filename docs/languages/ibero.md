@@ -12,9 +12,9 @@ numtag reads Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirand
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 237 | 234 |
-| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 184 |
-| Catalan | every `ca` tag except `ca-ES-valencia` | `numtag/lexicon/ca.json` | long | 228 | 225 |
+| Spanish | every `es` tag | `numtag/lexicon/es.json` | long | 237 | 235 |
+| Galician | every `gl` tag | `numtag/lexicon/gl.json` | long | 185 | 185 |
+| Catalan | every `ca` tag except `ca-ES-valencia` | `numtag/lexicon/ca.json` | long | 228 | 226 |
 | Asturian | every `ast` tag | `numtag/lexicon/ast.json` | long | 176 | 175 |
 | Aragonese | every `an` tag | `numtag/lexicon/an.json` | long | 153 | 153 |
 | Occitan | every `oc` tag | `numtag/lexicon/oc.json` | long | 174 | 174 |
@@ -144,12 +144,12 @@ Catalan "nou" is nine and also "new", and "u" is one and also the name of a lett
 
 ## Longer ordinals and the time unit "segons"
 
-A longer Catalan ordinal ends in "-unè", "-dosè", "-tresè" or "-quatrè", never in "primer", "segon", "tercer" or "quart". The Occitan ones end in "-unen" and "-dosen". So a cardinal and one of these words after a space are two numbers. "vint segons" is 20 and the time unit "segons", and "deu segons" is 10. A hyphen still joins them, because ICU 78 wrote the Catalan 22nd "vint-i-segon".
+A longer Catalan ordinal ends in "-unè", "-dosè", "-tresè" or "-quatrè", never in "primer", "segon", "tercer" or "quart". The Occitan ones end in "-unen" and "-dosen". So a cardinal and one of these words after a space are two numbers. "vint segons" is 20 and the time unit "segons", and "deu segons" is 10. After a cardinal, a cue of the lexicon reads the plural "segons" as the time unit, so it gives no mention. A hyphen still joins them, because ICU 78 wrote the Catalan 22nd "vint-i-segon".
 
 ```python
 >>> from numtag import tag_numbers
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers('Espera vint segons.', 'ca')]
-[('vint', '20', 'cardinal'), ('segons', '2', 'ordinal')]
+[('vint', '20', 'cardinal')]
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers('el vint-i-segon', 'ca')]
 [('vint-i-segon', '22', 'ordinal')]
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers('vint segondas', 'oc')]

@@ -22,7 +22,7 @@ The confidence is a fixed score in (0, 1]. It is not a probability. The same tex
 
 The gold corpus and its tests use 0.5 as the line between a weak mention and a clear number. A caller that wants only clear numbers keeps the mentions at 0.5 or above.
 
-A weak mention also says why it is weak. Its `reasons` field holds `Reason.ARTICLE` for an article and `Reason.HOMOGRAPH` for a word with a second meaning. A sure number has no reasons. The scores can change in a release, and the reasons keep their meaning, so filter on the reason.
+A weak mention also says why it is weak. Its `reasons` field holds `Reason.ARTICLE` for an article and `Reason.HOMOGRAPH` for a word with a second meaning. `Reason.HOMOGRAPH` means that no cue of the lexicon decided the word: the words next to it fit both meanings. A sure number has no reasons. The scores can change in a release, and the reasons keep their meaning, so filter on the reason.
 
 ## Articles
 
@@ -111,6 +111,19 @@ Such a word gives 0.4 when the number rests on it. That means the word alone, a 
 [('Three score and ten', '70', 1.0)]
 ```
 
+The lexicon can hold cues on the words next to a lone word (see [the lexicon format](lexicon-format.md#context-cues)). A cue makes the word a sure number, removes the mention, or keeps the homograph. Before an article, Portuguese "segundo" is the preposition "according to", and after a cardinal, "segundos" is the unit of time. After "só", "apenas" or "somente", "um" is the count 1. A cue looks only at one word on each side: in "Só falta um dia." a verb stands between "só" and "um", and "um" stays an article.
+
+```python
+>>> read("Segundo o último relatório, a cooperativa vendeu.", "pt-PT")
+[]
+>>> read("Esperou sessenta e seis segundos.", "pt-PT")
+[('sessenta e seis', '66', 1.0)]
+>>> read("Apareceu apenas um aluno.", "pt-PT")
+[('um', '1', 1.0)]
+>>> read("Chegou em segundo lugar.", "pt-PT")
+[('segundo', '2', 0.4)]
+```
+
 A word before the homograph can also make the reading clear when it agrees only with the number. In Catalan, the adjective "nou" ("new") is "noves" after "les" and "nous" after "els", so "a les nou" is nine o'clock. After "el", "nou" can also be "the new one".
 
 ```python
@@ -148,7 +161,7 @@ A whole number before the joiner and a minus word also make the reading clear.
 [('miinus viis', '-5', 1.0)]
 ```
 
-The score does not tell which meaning is right. In "Chegou em segundo lugar" the word is the ordinal. In "Segundo o jornal" it means "according to". Both get 0.4, and the caller decides from the context.
+The score does not tell which meaning is right. In "Chegou em segundo lugar" the word is the ordinal. In "Dormiu no quarto" it is the room. Both get 0.4, and the caller decides from the context. Where the next word decides, a lexicon cue removes the mention: in "Segundo o jornal", "segundo" means "according to".
 
 ## Readings that a low score marks
 
@@ -161,7 +174,7 @@ The gold corpus holds sentences where the word is not a number. numtag tags the 
 
 ```python
 >>> read("Segundo o jornal, choveu muito.", "pt-PT")
-[('Segundo', '2', 0.4)]
+[]
 >>> read("Dormiu no quarto dos fundos.", "pt-PT")
 [('quarto', '4', 0.4)]
 >>> read("Está no meio da sala.", "pt-PT")

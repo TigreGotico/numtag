@@ -25,7 +25,7 @@ class TestLanguageTable(unittest.TestCase):
         page = language_table.PAGE.read_text(encoding="utf-8")
         self.assertIn("| `mwr` | yes | yes | yes | yes | 26 | 26 | 100.0%[^mwr] |", page)
         self.assertIn("| `es-CO` (resolves to `es`) |", page)
-        self.assertIn("| 479 | 473 | 98.7% |", page)
+        self.assertIn("| 479 | 474 | 99.0% |", page)
         self.assertIn("The score of `bn` rests on 75 rows.", page)
 
 

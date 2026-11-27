@@ -25,7 +25,7 @@
  },
  "ca": {
   "rows": 228,
-  "rows_right": 225
+  "rows_right": 226
  },
  "cs": {
   "rows": 185,
@@ -53,7 +53,7 @@
  },
  "es": {
   "rows": 237,
-  "rows_right": 234
+  "rows_right": 235
  },
  "et": {
   "rows": 170,
@@ -89,7 +89,7 @@
  },
  "gl": {
   "rows": 185,
-  "rows_right": 184
+  "rows_right": 185
  },
  "he": {
   "rows": 160,
@@ -161,11 +161,11 @@
  },
  "pt-BR": {
   "rows": 470,
-  "rows_right": 464
+  "rows_right": 465
  },
  "pt-PT": {
   "rows": 479,
-  "rows_right": 473
+  "rows_right": 474
  },
  "ro": {
   "rows": 157,

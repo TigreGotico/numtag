@@ -51,12 +51,12 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 
 ## Italian ordinals from primo to nono
 
-A longer Italian ordinal is one word that ends in "-esimo" ("ventiduesimo", "centotreesimo"). "primo" to "nono" never end a longer ordinal. So a cardinal and one of these words are two numbers: "dieci secondi" is 10 and the time unit "secondi", never 12. "decimo" can end one ("centodecimo"), so "cento decimo" is 110.
+A longer Italian ordinal is one word that ends in "-esimo" ("ventiduesimo", "centotreesimo"). "primo" to "nono" never end a longer ordinal. So a cardinal and one of these words are two numbers: "dieci secondi" is 10 and the time unit "secondi", never 12. After a cardinal, a cue of the lexicon reads the plural "secondi" as the time unit, so it gives no mention. "decimo" can end one ("centodecimo"), so "cento decimo" is 110.
 
 ```python
 >>> from numtag import tag_numbers
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers('tra dieci secondi', 'it')]
-[('dieci', '10', 'cardinal'), ('secondi', '2', 'ordinal')]
+[('dieci', '10', 'cardinal')]
 >>> [(m.text, m.value, m.kind.value) for m in tag_numbers('cento decimo', 'it')]
 [('cento decimo', '110', 'ordinal')]
 ```
