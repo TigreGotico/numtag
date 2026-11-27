@@ -21,7 +21,7 @@ MILLION = {"en": "million", "pt-BR": "milhão", "pt-PT": "milhão", "de": "milli
            "fi": "miljoona", "et": "miljon", "hu": "millió", "tr": "milyon", "az": "milyon",
            "ar": "مليون", "el": "εκατομμύριο", "fa": "میلیون", "he": "מיליון", "kab": "amelyun",
            "ru": "миллион", "uk": "мільйон", "bg": "милион", "pl": "milion", "cs": "milión", "sk": "milión",
-           "sl": "milijon", "hr": "milijun", "bn": "লাখ", "hi": "लाख", "sq": "milion", "sr": "milion", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
+           "sl": "milijon", "hr": "milijun", "bn": "লাখ", "hi": "लाख", "mwr": "लाख", "sq": "milion", "sr": "milion", "eu": "milioi", "fr-BE": "million", "fr-CH": "million",
            "fr-FR": "million", "id": "juta", "ms": "juta", "it": "milione", "mt": "miljun", "ro": "milion",
            "eo": "miliono", "es": "millón", "gl": "millón", "ca": "milió", "ca-ES-valencia": "milió", "en-US": "million", "ast": "millón", "an": "millón",
            "oc": "milion", "mwl": "milhon", "lt": "milijonas"}
