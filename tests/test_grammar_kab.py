@@ -75,5 +75,39 @@ def test_kab_word_forms_and_the_joiner_d(text, expected):
 
 
 
+@pytest.mark.parametrize("text, expected", [
+    # 17 x 1000 = 17000; 3 x 10^6; 13 x 10^6 with the annexed plural
+    ("sbeɛṭac n alef", [("sbeɛṭac n alef", "17000", C)]),
+    ("kṛad n yimelyunen n yidularen", [("kṛad n yimelyunen", "3000000", C)]),
+    ("Sɛiɣ ṭnac n yimelyunen", [("ṭnac n yimelyunen", "12000000", C)]),
+    # 5 x 100 = 500; 500 + 30 = 530; 500 x 10^9
+    ("xemsmya u tlatin", [("xemsmya u tlatin", "530", C)]),
+    ("xemsmeyya n yimelyaṛen", [("xemsmeyya n yimelyaṛen", "500000000000", C)]),
+])
+def test_kab_a_count_of_scale_nouns_and_fused_hundreds(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    # 106 + 74/100; 3 + 3/100
+    ("meyya d setta tafrayt rebεa u sebεin", [("meyya d setta tafrayt rebεa u sebεin", "106.74", D)]),
+    ("tlata ticcert ilem tlata", [("tlata ticcert ilem tlata", "3.03", D)]),
+])
+def test_kab_the_decimal_marker(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    # Dallet p. 704: errbaɛ is a quarter; 3/4 = 0.75; 1/3 of a loaf
+    ("tlata errbaɛ n weɣrum", [("tlata errbaɛ", "0.75", F)]),
+    ("Yečča kan rrbeɛ n uɣrum", [("rrbeɛ", "0.25", F)]),
+    # 2 out of 3; 5 out of 10 = 1/2
+    ("sin ɣef kraḍ n yilmeẓyen", [("sin ɣef kraḍ", "2/3", F)]),
+    ("semmus seg mraw n yixxamen", [("semmus seg mraw", "0.5", F)]),
+])
+def test_kab_fractions(text, expected):
+    assert read(text, "kab") == expected
+
+
 if __name__ == "__main__":
     unittest.main()
