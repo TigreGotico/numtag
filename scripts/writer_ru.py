@@ -45,8 +45,10 @@ LOCATIVE = (GR80 + ". CLDR ru writes \"двадцать[ →→]\" and \"три�
 BARE = (GR80 + "; Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 164, п. 2 "
         "(Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf): \"груз массой в "
         "тысячу пятьсот тонн\", and п. 1 г): \"не одной тысячей рублей (слово тысяча с предшествующим числительным одна "
-        "рассматривается как существительное и управляет родительным падежом следующего слова)\". So a scale word "
-        "with the count one is bare (\"тысяча\", \"миллион\"); CLDR ru writes \"одна тысяча\", the variant here")
+        "рассматривается как существительное и управляет родительным падежом следующего слова)\". The § 1378 paradigm "
+        "shows the bare form \"тысяча\" for 1000. SILVER: \"миллион\" and the larger scale words follow the same pattern; "
+        "no saved example shows them. Розенталь п. 1 г) says that in \"одна тысяча\" the scale word acts as a noun. "
+        "CLDR ru writes \"одна тысяча\", the variant here")
 ORDINAL_PLURAL = (ROSENTAL + ", п. 3: \"Д р о б н ы е числительные пишутся раздельно, например: две пятых ( 2/ 5)\". "
                   "The plural of an ordinal has one form for the three genders, with the adjective endings -ые, -ых, "
                   "-ым, -ыми (\"пятых\", \"пятыми\") and -ьи, -ьих, -ьим, -ьими for \"третий\"")
