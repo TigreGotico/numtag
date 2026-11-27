@@ -1477,6 +1477,32 @@ class TestRussian(unittest.TestCase):
         self.assertEqual(f'{self.say("2", gender="feminine", case="instrumental")} '
                          f'{self.say("5", form=SpokenForm.ORDINAL, gender="plural", case="instrumental")}', "двумя пятыми")
 
+    SCALES = ("квинтиллион", "секстиллион", "септиллион", "октиллион", "нониллион", "дециллион", "ундециллион",
+              "дуодециллион")
+    CASES = ("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional")
+
+    def test_the_short_scale_words_from_10_18_to_10_39_in_six_cases(self):
+        """ru.wiktionary declension tables (type 1a): a masculine inanimate noun, 10^(3 x rank + 3); the accusative
+        is the nominative."""
+        endings = dict(zip(self.CASES, ("", "а", "у", "", "ом", "е")))
+        for rank, word in enumerate(self.SCALES, 5):
+            value = "1" + "0" * (3 * rank + 3)
+            for case in self.CASES:
+                with self.subTest(word=word, case=case):
+                    self.assertEqual(self.say(value, case=case, gender="masculine"), word + endings[case])
+
+    def test_a_count_before_a_short_scale_word_takes_the_plural_of_the_count(self):
+        """Wiktionary plural: Р. мн. ч. "-ов"; the count 2 takes the genitive singular, 5 the genitive plural."""
+        self.assertEqual([self.say(n + "0" * (3 * rank + 3)) for n, rank in
+                          (("2", 5), ("5", 6), ("21", 7), ("3", 8), ("25", 9), ("100", 10), ("2", 11), ("5", 12))],
+                         ["два квинтиллиона", "пять секстиллионов", "двадцать один септиллион", "три октиллиона",
+                          "двадцать пять нониллионов", "сто дециллионов", "два ундециллиона", "пять дуодециллионов"])
+        self.assertEqual(self.say("5" + "0" * 21, case="instrumental", gender="masculine"), "пятью секстиллионами")
+
+    def test_a_number_below_10_42_reads_as_words(self):
+        self.assertEqual(self.say("1" + "0" * 38 + "5"), "дуодециллион пять")
+        self.assertEqual(self.say("1" + "0" * 42), "один умножить на десять в степени сорок два")
+
 
 if __name__ == "__main__":
     unittest.main()
