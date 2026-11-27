@@ -272,7 +272,7 @@ def _writer(name: str) -> Writer:
 
 def _split(value: str, keep_zeros: bool = False) -> tuple[bool, str, str]:
     """The sign, whole digits and fraction digits of a decimal digit string; ``keep_zeros`` keeps the
-    trailing zeros of written decimals that are not all zeros."""
+    trailing zeros of written decimals that are not all zeros ("1.80" reads eighty, "2.50" reads fifty hundredths)."""
     negative = value.startswith("-")
     whole, point, fraction = value.removeprefix("-").partition(".")
     if not _is_digits(whole) or point and not _is_digits(fraction):
@@ -335,7 +335,8 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
            decimals: str, spec: dict, case: str | None = None) -> str:
     if "/" in value:
         return _fraction(writer, ruleset, value)
-    negative, whole, fraction = _split(value, keep_zeros=decimals == "number")
+    negative, whole, fraction = _split(value, keep_zeros=decimals in ("number", "fraction"))
+    pad = places if decimals == "fraction" else None
     places = writer.decimal["places"] if places is None else places
     if form is SpokenForm.ORDINAL:
         return _ordinal(writer, ruleset, negative, whole, fraction, spec)
@@ -355,6 +356,8 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
         places = first
     else:
         whole, fraction = _round(whole, fraction, max(places, 0))
+    if fraction and pad:
+        fraction = fraction.ljust(pad, "0")
     text = _plain(writer, ruleset, negative, whole, fraction, places, decimals, case)
     if not fraction and len(whole) > BIG and _padded(writer, ruleset, text):
         return _exponent(writer, ruleset, negative, whole, fraction, places, decimals) or text

@@ -1392,6 +1392,25 @@ class TestRussian(unittest.TestCase):
     def say(self, value: str, **kw) -> str:
         return spell(value, "ru", **kw)[0].text
 
+    def test_a_fraction_of_decimals_keeps_the_zeros_and_follows_places(self):
+        fraction = {"decimals": "fraction"}
+        for value, places, words in (
+                ("2.50", 2, "две целых пятьдесят сотых"), ("3.10", 2, "три целых десять сотых"),
+                ("1.500", 3, "одна целая пятьсот тысячных"), ("2.5", 2, "две целых пятьдесят сотых"),
+                ("2.50", None, "две целых пятьдесят сотых"), ("2.5", None, "две целых пять десятых"),
+                ("1.500", None, "одна целая пятьсот тысячных"), ("2.504", 2, "две целых пятьдесят сотых"),
+                ("2.5", 3, "две целых пятьсот тысячных")):
+            self.assertEqual(self.say(value, places=places, **fraction), words, (value, places))
+
+    def test_a_fraction_of_decimals_with_trailing_zeros_in_every_case(self):
+        cases = {"nominative": "две целых пятьдесят сотых", "genitive": "двух целых пятидесяти сотых",
+                 "dative": "двум целым пятидесяти сотым", "accusative": "две целых пятьдесят сотых",
+                 "instrumental": "двумя целыми пятьюдесятью сотыми", "prepositional": "двух целых пятидесяти сотых"}
+        for case, words in cases.items():
+            self.assertEqual(self.say("2.50", decimals="fraction", places=2, case=case, gender="masculine"), words, case)
+        self.assertEqual(self.say("1.500", decimals="fraction", places=3, case="instrumental", gender="masculine"),
+                         "одной целой пятьюстами тысячными")
+
     def test_cardinals_agree_with_the_scale_noun(self):
         self.assertEqual([self.say(n) for n in ("21", "2000", "5000", "21000", "2000000", "5000000")],
                          ["двадцать один", "две тысячи", "пять тысяч", "двадцать одна тысяча", "два миллиона",
