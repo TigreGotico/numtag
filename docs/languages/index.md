@@ -22,9 +22,9 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `de-DE` (resolves to `de`) | yes | yes | yes | yes | 200 | 200 | 100.0% | [germanic.md](germanic.md) |
 | `nl-NL` (resolves to `nl`) | yes | yes | yes | yes | 187 | 187 | 100.0% | [germanic.md](germanic.md) |
 | `da-DK` (resolves to `da`) | yes | yes | yes | yes | 181 | 181 | 100.0% | [germanic.md](germanic.md) |
-| `kab` | yes | yes | yes | no | 163 | 163 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
-| `hi-IN` (resolves to `hi`) | yes | yes | no | no | 284 | 284 | 100.0% | [hi.md](hi.md) |
-| `bn-IN` (resolves to `bn`) | yes | yes | yes | no | 40 | 40 | 100.0%[^bn] | [bn.md](bn.md) |
+| `kab` | yes | yes | yes | yes | 163 | 163 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
+| `hi-IN` (resolves to `hi`) | yes | yes | no | yes | 284 | 284 | 100.0% | [hi.md](hi.md) |
+| `bn-IN` (resolves to `bn`) | yes | yes | yes | yes | 40 | 40 | 100.0%[^bn] | [bn.md](bn.md) |
 | `mwr` | not supported | | | | | | | |
 | `an` | yes | yes | yes | no | 153 | 153 | 100.0% | [ibero.md](ibero.md) |
 | `ar` | yes | yes | yes | no | 157 | 156 | 99.4% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
@@ -59,7 +59,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `oc` | yes | yes | yes | no | 174 | 174 | 100.0% | [ibero.md](ibero.md) |
 | `pl` | yes | yes | yes | no | 167 | 167 | 100.0% | [slavic.md](slavic.md) |
 | `ro` | yes | yes | yes | yes | 157 | 157 | 100.0% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
-| `ru` | yes | yes | yes | no | 195 | 194 | 99.5% | [slavic.md](slavic.md) |
+| `ru` | yes | yes | yes | yes | 195 | 194 | 99.5% | [slavic.md](slavic.md) |
 | `sk` | yes | yes | yes | no | 154 | 154 | 100.0% | [slavic.md](slavic.md) |
 | `sl` | yes | yes | yes | no | 166 | 166 | 100.0% | [slavic.md](slavic.md) |
 | `sq` | yes | no | no | no | 170 | 170 | 100.0% |  |

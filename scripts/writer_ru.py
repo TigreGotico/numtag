@@ -36,6 +36,26 @@ YO = ("Русская грамматика (1980), § 1374 (Papers/Languages/Sla
       "Примечание 2: \"любая книга может быть напечатана последовательно с буквой ё\". So ё is permitted and "
       "recommended, and the writer writes it for speech (\"трёх\", \"четырёх\", \"трём\"); the е spelling is the "
       "second reading. SILVER: \"четвёртый\" and its forms, by the same rule; no saved example writes it")
+GR80 = ("Русская грамматика (1980), § 1378 (Papers/Languages/Slavic/russkaya_grammatika_1980_rusgram_html.zip, "
+        "1366-1383.html): \"При образовании падежных форм нормально изменение по падежам каждого слова, входящего в "
+        "составное числительное. И. тысяча двести восемьдесят семь Р. тысячи двухсот восьмидесяти семи … Пр. о тысяче о "
+        "двухстах о восьмидесяти семи\"")
+LOCATIVE = (GR80 + ". CLDR ru writes \"двадцать[ →→]\" and \"тридцать[ →→]\" in %spellout-cardinal-masculine-locative "
+            "and \"двадцати\", \"тридцати\" in the -neuter-locative set; the writer takes the declined form")
+BARE = (GR80 + "; Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 164, п. 2 "
+        "(Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf): \"груз массой в "
+        "тысячу пятьсот тонн\", and п. 1 г): \"не одной тысячей рублей (слово тысяча с предшествующим числительным одна "
+        "рассматривается как существительное и управляет родительным падежом следующего слова)\". So a scale word "
+        "with the count one is bare (\"тысяча\", \"миллион\"); CLDR ru writes \"одна тысяча\", the variant here")
+ORDINAL_PLURAL = (ROSENTAL + ", п. 3: \"Д р о б н ы е числительные пишутся раздельно, например: две пятых ( 2/ 5)\". "
+                  "The plural of an ordinal has one form for the three genders, with the adjective endings -ые, -ых, "
+                  "-ым, -ыми (\"пятых\", \"пятыми\") and -ьи, -ьих, -ьим, -ьими for \"третий\"")
+DECIMAL = (CLDR + ", %spellout-cardinal-feminine: \"x.x: [←← $(cardinal,one{целая}other{целых})$ ]→%%fractions-feminine→;\" "
+           "and %%fractions-feminine: \"10: ←%spellout-cardinal-feminine← "
+           "$(cardinal,one{десятая}other{десятых})$;\"; Русская грамматика (1980), § 1366-1383.html: \"одна целая шесть "
+           "десятых, три целых и двадцать пять сотых\"; " + ROSENTAL + ", п. 3: \"три целых и шесть седьмых\". The "
+           "standard decimal reads the whole part with \"целая\" or \"целых\" and the decimals as a fraction of a power "
+           "of ten; \"запятая\" and one word for each decimal is the variant")
 SILVER = ("SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\") and \"умножить на десять в "
           "степени\"; no saved example")
 
@@ -43,11 +63,15 @@ CASES = {"nominative": "", "genitive": "-genitive", "dative": "-dative", "accusa
          "instrumental": "-ablative", "prepositional": "-locative"}
 ALIAS = {"ablative": "instrumental", "locative": "prepositional"}  # the CLDR names of the same cases
 GENDERS = {"masculine": "m", "feminine": "f", "neuter": "n"}
+# The ordinal also has a plural, which has no gender: "две пятых".
+ORDINAL_GENDERS = GENDERS | {"plural": "p"}
 # The adjective endings of an ordinal: a hard stem ("пятый"); "ой" stems differ in the masculine nominative and
 # accusative only ("второй"); "третий" takes the soft endings of its own.
 HARD = {"m": dict(nominative="ый", genitive="ого", dative="ому", accusative="ый", instrumental="ым", prepositional="ом"),
         "f": dict(nominative="ая", genitive="ой", dative="ой", accusative="ую", instrumental="ой", prepositional="ой"),
         "n": dict(nominative="ое", genitive="ого", dative="ому", accusative="ое", instrumental="ым", prepositional="ом")}
+PLURAL_HARD = dict(nominative="ые", genitive="ых", dative="ым", accusative="ые", instrumental="ыми", prepositional="ых")
+PLURAL_SOFT = dict(nominative="ьи", genitive="ьих", dative="ьим", accusative="ьи", instrumental="ьими", prepositional="ьих")
 SOFT = {"m": dict(nominative="ий", genitive="ьего", dative="ьему", accusative="ий", instrumental="ьим", prepositional="ьем"),
         "f": dict(nominative="ья", genitive="ьей", dative="ьей", accusative="ью", instrumental="ьей", prepositional="ьей"),
         "n": dict(nominative="ье", genitive="ьего", dative="ьему", accusative="ье", instrumental="ьим", prepositional="ьем")}
@@ -80,6 +104,21 @@ def R(value, text, source=None):
     return rule
 
 
+def bare(name, rules):
+    """The rules with a bare scale word for the count one at the start of the number: "тысяча", "тысячи двухсот".
+    The CLDR rule moves to the count two, and the rest of the number reads "одна тысяча" ("миллион одна тысяча")."""
+    out = []
+    for rule in rules:
+        value, text = rule["value"], rule["text"]
+        one = re.search(r"\$\(cardinal,one\{(\w+)\}", text)
+        if one and re.fullmatch(r"10*", value) and len(value) > 3:
+            rest = f"[ →%{name}-one→]"
+            out += [R(value, one.group(1) + rest, BARE), R("2" + value[1:], text.removesuffix(";").replace("[ →→]", rest))]
+        else:
+            out.append(rule)
+    return out
+
+
 def cldr_sets(path):
     """The CLDR cardinal rule sets, renamed: "spellout-cardinal-feminine-genitive" becomes "cardinal-f-genitive"."""
     def rename(name):
@@ -96,12 +135,17 @@ def cldr_sets(path):
             if value == "x.x" or len(value) > 18:
                 continue
             text = re.sub(r"%(spellout-cardinal-[\w-]+)", lambda m: "%" + rename(m.group(1)), text)
+            if name == "spellout-cardinal-masculine-locative" and value in ("20", "30"):
+                rules.append(R(value, text.replace("ать[", "ати["), LOCATIVE))
+                continue
             rules.append(R(value, text))
         sets[rename(name)] = rules
     return sets
 
 
 def ending(stem, kind, g, case):
+    if g == "p":
+        return stem + (PLURAL_SOFT if kind == "ий" else PLURAL_HARD)[case]
     if kind == "ий":
         return stem + SOFT[g][case]
     if kind == "ой" and g == "m" and case in ("nominative", "accusative"):
@@ -162,23 +206,31 @@ def main():
         name, rules = count(exponent, forms)
         rulesets[name] = {"source": CLDR + ", %spellout-cardinal-feminine 1000 and -masculine 1000000. " + PLURAL,
                           "rules": rules}
-    for g in GENDERS.values():
+    for name, rules in sets.items():
+        rulesets[name + "-one"] = {"source": rulesets[name]["source"] + ": the scale word with the count one, "
+                                             "\"одна тысяча\"", "rules": rules}
+        rulesets[name] = {"source": rulesets[name]["source"] + ". " + BARE, "rules": bare(name, rules)}
+    for g in ORDINAL_GENDERS.values():
         for case in CASES:
             name, rules = ordinal(g, case)
-            rulesets[name] = {"source": ORDINAL + ". " + ENDINGS, "rules": rules}
+            rulesets[name] = {"source": ORDINAL + ". " + (ORDINAL_PLURAL if g == "p" else ENDINGS), "rules": rules}
 
     rulesets = with_yo(rulesets)
 
     def pair(name):
-        return [{"ruleset": name, "reason": "standard"}, {"ruleset": name + "-e", "reason": "variant_spelling"}]
+        spellings = [{"ruleset": name, "reason": "standard"}, {"ruleset": name + "-e", "reason": "variant_spelling"}]
+        one = name + "-one"
+        return spellings + ([{"ruleset": one, "reason": "variant_spelling"}] if one in rulesets else [])
 
     def by_case(kind):
+        genders = GENDERS if kind == "cardinal" else ORDINAL_GENDERS
         table = {case: {gender: pair(f"{kind}-{g}" + (CASES[case] if kind == "cardinal" else f"-{case}"))
-                        for gender, g in GENDERS.items()} for case in CASES}
+                        for gender, g in genders.items()} for case in CASES}
         return table | {alias: table[case] for alias, case in ALIAS.items()}
 
     def by_gender(kind):
-        return {gender: pair(f"{kind}-{g}" + ("" if kind == "cardinal" else "-nominative")) for gender, g in GENDERS.items()}
+        genders = GENDERS if kind == "cardinal" else ORDINAL_GENDERS
+        return {gender: pair(f"{kind}-{g}" + ("" if kind == "cardinal" else "-nominative")) for gender, g in genders.items()}
 
     block = {
         "source": CLDR + ". Russian counts in the short scale of this lexicon: \"миллиард\" for 10^9, \"триллион\" for "
@@ -192,7 +244,8 @@ def main():
             "ordinal": {"variants": pair("ordinal-m-nominative"),
                         "gender": by_gender("ordinal"), "case": by_case("ordinal"), "minimum": "0", "maximum": "9" * 15},
         },
-        "decimal": {"word": "запятая", "places": 3, "source": SILVER + "."},
+        "decimal": {"word": "запятая", "places": 3, "read": "fraction", "variant_read": ["digits"],
+                    "whole": {"one": "целая", "other": "целых"}, "source": DECIMAL + ". " + SILVER + "."},
         "scientific": {"times": "умножить на десять в степени", "source": SILVER + "."},
         "fraction": {"mixed": False, "limit": 10, "single": "одна {denominator}", "plural": {"ья": "ьих", "ая": "ых"},
                      "named": {}, "denominator": "{cardinal}", "ruleset": "ordinal-f-nominative",

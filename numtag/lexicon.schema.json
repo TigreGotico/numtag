@@ -187,8 +187,8 @@
             "type": "object",
             "properties": {
               "variants": {"$ref": "#/$defs/variants"},
-              "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
-              "case": {"type": "object", "additionalProperties": {"anyOf": [{"$ref": "#/$defs/variants"}, {"type": "object", "propertyNames": {"enum": ["feminine", "masculine", "neuter"]}, "additionalProperties": {"$ref": "#/$defs/variants"}}]}},
+              "gender": {"type": "object", "propertyNames": {"enum": ["masculine", "feminine", "neuter", "plural"]}, "additionalProperties": {"$ref": "#/$defs/variants"}},
+              "case": {"type": "object", "additionalProperties": {"anyOf": [{"$ref": "#/$defs/variants"}, {"type": "object", "propertyNames": {"enum": ["feminine", "masculine", "neuter", "plural"]}, "additionalProperties": {"$ref": "#/$defs/variants"}}]}},
               "minimum": {"type": "string", "pattern": "^[0-9]+$"},
               "maximum": {"type": "string", "pattern": "^[0-9]+$"},
               "scale": {"type": "object", "propertyNames": {"enum": ["short", "long"]}, "additionalProperties": {"type": "object", "required": ["variants"]}}
@@ -200,7 +200,7 @@
         },
         "decimal": {
           "type": "object",
-          "properties": {"word": {"type": ["string", "null"]}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number"]}, "source": {"type": "string"}},
+          "properties": {"word": {"type": ["string", "null"]}, "places": {"type": "integer", "minimum": 0}, "read": {"enum": ["digits", "number", "fraction"]}, "variant_read": {"type": "array", "items": {"enum": ["digits", "number", "fraction"]}}, "whole": {"type": "object", "properties": {"one": {"type": "string"}, "other": {"type": "string"}}, "required": ["one", "other"], "additionalProperties": false}, "source": {"type": "string"}},
           "required": ["word", "places", "source"],
           "additionalProperties": false
         },

@@ -299,22 +299,25 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     the lexicon's ``scale`` setting. ``case`` raises ``ValueError`` where
     the lexicon has no such case. ``places`` is the count of decimals read,
     default the lexicon's. ``scientific`` reads the exponent form where the
-    lexicon has one. ``decimals`` is "digits" (one word per decimal) or
+    lexicon has one. ``decimals`` is "digits" (one word per decimal),
     "number" (the decimals as one number, with the trailing zeros as
-    written: "1.80" reads eighty), default the lexicon's.
+    written: "1.80" reads eighty) or "fraction" (the whole word and a
+    fraction of a power of ten), default the lexicon's.
     """
     writer = _writer(lexicon_name(lang))
     form = SpokenForm(form)
-    if decimals not in (None, "digits", "number"):
-        raise ValueError(f"decimals is 'digits' or 'number', not {decimals!r}")
+    if decimals not in (None, "digits", "number", "fraction"):
+        raise ValueError(f"decimals is 'digits', 'number' or 'fraction', not {decimals!r}")
     scale = scale and Scale(scale).value
     spec = writer.spec(form, scale)
     spellings: list[Spelling] = []
-    for variant in writer.variants(form, gender, case, scale):
-        text = _speak(writer, variant["ruleset"], value, form, places, scientific,
-                      decimals or writer.decimal.get("read", "digits"), spec)
-        if all(text != seen.text for seen in spellings):
-            spellings.append(Spelling(text, SpellingReason(variant["reason"]), len(spellings)))
+    reads = [decimals] if decimals else [writer.decimal.get("read", "digits"), *writer.decimal.get("variant_read", [])]
+    for number, read in enumerate(reads):
+        for variant in writer.variants(form, gender, case, scale):
+            text = _speak(writer, variant["ruleset"], value, form, places, scientific, read, spec)
+            reason = variant["reason"] if number == 0 else "variant_spelling"
+            if all(text != seen.text for seen in spellings):
+                spellings.append(Spelling(text, SpellingReason(reason), len(spellings)))
     return tuple(spellings)
 
 
@@ -361,6 +364,12 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
     text = writer.render(ruleset, whole, negative)
     if fraction and writer.decimal["word"] is None:
         raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
+    if fraction and decimals == "fraction":
+        fraction = fraction[:places]
+        spec = writer.block["fraction"]
+        whole_word = writer.decimal["whole"]["one" if writer.plural_category(whole) == "one" else "other"]
+        count = writer.render(spec.get("numerator", ruleset), whole, negative)
+        return f"{count} {whole_word} {_counted(writer, ruleset, spec, fraction.lstrip('0'), '1' + '0' * len(fraction))}"
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":
