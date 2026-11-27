@@ -1,15 +1,26 @@
 # Changelog
 
-## [0.44.0a1](https://github.com/TigreGotico/numtag/tree/0.44.0a1) (2026-11-26)
+## [0.45.0a1](https://github.com/TigreGotico/numtag/tree/0.45.0a1) (2026-11-27)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a3...0.44.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.43.0a1...0.45.0a1)
+
+**Merged pull requests:**
+
+- feat: Russian writer [\#371](https://github.com/TigreGotico/numtag/pull/371) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.43.0a1](https://github.com/TigreGotico/numtag/tree/0.43.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.42.0a1...0.43.0a1)
+
+## [0.42.0a1](https://github.com/TigreGotico/numtag/tree/0.42.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.41.0a3...0.42.0a1)
 
 **Merged pull requests:**
 
 - feat: bn writer for cardinals and ordinals 1-10 [\#390](https://github.com/TigreGotico/numtag/pull/390) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Kabyle writer [\#379](https://github.com/TigreGotico/numtag/pull/379) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - feat: Hindi writer [\#378](https://github.com/TigreGotico/numtag/pull/378) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- feat: Russian writer [\#371](https://github.com/TigreGotico/numtag/pull/371) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.41.0a3](https://github.com/TigreGotico/numtag/tree/0.41.0a3) (2026-11-26)
 
