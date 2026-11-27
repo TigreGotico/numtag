@@ -7,9 +7,16 @@
   },
   "decimal_marker": {
    "value": [
-    "दशमलव"
+    "दशमलव",
+    "दसमलव"
    ],
-   "source": "SILVER: the Hindi word (hi.json); no Marwari source"
+   "source": "दसमलव: Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 2-2 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt2-2_djvu.txt), OCR text line 10300: \"दसमलव-सं०पु० [सं० दशमलव] वह भिन्न जिस के हर में दश या उत्तका\". SILVER: दशमलव is the Hindi word (hi.json); no Marwari source"
+  },
+  "fraction_over": {
+   "value": [
+    "बटा"
+   ],
+   "source": "SILVER: a fraction read aloud as numerator, \"बटा\" and denominator, the word of hi.json (\"एक बटा तीन\"); no saved Marwari source"
   },
   "minus": {
    "value": [
@@ -942,6 +949,678 @@
    "role": "unit",
    "value": "99",
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"99. निनाणू\""
+  },
+  {
+   "word": "सतत्तर",
+   "role": "unit",
+   "value": "77",
+   "source": "SILVER: a spoken or spelling variant of सितन्तर (77); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"सितन्तर\" for 77"
+  },
+  {
+   "word": "पंदरा",
+   "role": "unit",
+   "value": "15",
+   "source": "SILVER: a spoken or spelling variant of पन्दरे (15); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पन्दरे\" for 15"
+  },
+  {
+   "word": "छियाणवै",
+   "role": "unit",
+   "value": "96",
+   "source": "SILVER: a spoken or spelling variant of छिन्नू (96); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"छिन्नू\" for 96"
+  },
+  {
+   "word": "अठाणवै",
+   "role": "unit",
+   "value": "98",
+   "source": "SILVER: a spoken or spelling variant of अंठाणू (98); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अंठाणू\" for 98"
+  },
+  {
+   "word": "बियाळीस",
+   "role": "unit",
+   "value": "42",
+   "source": "SILVER: a spoken or spelling variant of बंयालीस (42); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"बंयालीस\" for 42"
+  },
+  {
+   "word": "चम्मोतर",
+   "role": "unit",
+   "value": "74",
+   "source": "SILVER: a spoken or spelling variant of चौवोतर (74); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चौवोतर\" for 74"
+  },
+  {
+   "word": "चवदा",
+   "role": "unit",
+   "value": "14",
+   "source": "SILVER: a spoken or spelling variant of चऊदे (14); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चऊदे\" for 14"
+  },
+  {
+   "word": "अठाईस",
+   "role": "unit",
+   "value": "28",
+   "source": "SILVER: a spoken or spelling variant of अट्ठाईस (28); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अट्ठाईस\" for 28"
+  },
+  {
+   "word": "छियाळीस",
+   "role": "unit",
+   "value": "46",
+   "source": "SILVER: a spoken or spelling variant of छियालीस (46); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"छियालीस\" for 46"
+  },
+  {
+   "word": "उणचाळीस",
+   "role": "unit",
+   "value": "39",
+   "source": "SILVER: a spoken or spelling variant of गुणचालीस (39); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणचालीस\" for 39"
+  },
+  {
+   "word": "उणचास",
+   "role": "unit",
+   "value": "49",
+   "source": "SILVER: a spoken or spelling variant of गुणपच्चास (49); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणपच्चास\" for 49"
+  },
+  {
+   "word": "इकोत्तर",
+   "role": "unit",
+   "value": "71",
+   "source": "SILVER: a spoken or spelling variant of इकोतर (71); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इकोतर\" for 71"
+  },
+  {
+   "word": "उगणयासी",
+   "role": "unit",
+   "value": "79",
+   "source": "SILVER: a spoken or spelling variant of गुणियासी (79); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणियासी\" for 79"
+  },
+  {
+   "word": "छिहत्तर",
+   "role": "unit",
+   "value": "76",
+   "source": "SILVER: a spoken or spelling variant of छियतर (76); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"छियतर\" for 76"
+  },
+  {
+   "word": "गुणहत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "SILVER: a spoken or spelling variant of गुणन्तर (69); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणन्तर\" for 69"
+  },
+  {
+   "word": "अठावन",
+   "role": "unit",
+   "value": "58",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 5444: \"अठावन-वि० पचास व आठ । --पु० श्रट्टावत की सलख्या, ५५८।\""
+  },
+  {
+   "word": "सत्ताईस",
+   "role": "unit",
+   "value": "27",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 27568: \"सत्ताईस--देखो 'सताईस' (रू. भे )\""
+  },
+  {
+   "word": "दोय",
+   "role": "unit",
+   "value": "2",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 97915: \"दोय-देखो 'दो' ।\""
+  },
+  {
+   "word": "नौ",
+   "role": "unit",
+   "value": "9",
+   "source": "SILVER: a spoken or spelling variant of नव (9); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"नव\" for 9"
+  },
+  {
+   "word": "छह",
+   "role": "unit",
+   "value": "6",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 61719: \"छह-देसो 'छे' ।\""
+  },
+  {
+   "word": "छव",
+   "role": "unit",
+   "value": "6",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 61669: \"छव-वि० [स० पठ] छ , पाच व एक । -स्त्री० १ छ की\""
+  },
+  {
+   "word": "चाळीस",
+   "role": "unit",
+   "value": "40",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_p393_chalis.png), read from the page scan, p. 393: \"चाळीस–वि०[स० चत्वारिंशत्] तीस और दश । –पु० चालीस की सख्या, ४० ।\""
+  },
+  {
+   "word": "सतरा",
+   "role": "unit",
+   "value": "17",
+   "source": "SILVER: a spoken or spelling variant of सतरे (17); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"सतरे\" for 17"
+  },
+  {
+   "word": "इक्यावन",
+   "role": "unit",
+   "value": "51",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_khand1_djvu.txt), OCR text line 55159: \"इक्यावन-वि० [सं० एकपंचाशत, प्रा० एक्क्राबप्ण, अप्र० एकावन]\""
+  },
+  {
+   "word": "सैंताळीस",
+   "role": "unit",
+   "value": "47",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_pt4-3_p4819_saintalees.png), read from the page scan, book p. 5819: \"सैंताळिस, सैंताळी, सैंताळीस–वि [स सप्तचत्वारिंशत्] चालीस व सात का योग, छियालीस से एक अधिक ।\""
+  },
+  {
+   "word": "चौबीस",
+   "role": "unit",
+   "value": "24",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 2-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt2-1_djvu.txt), OCR text line 18152: \"चौबीसौ-स ०पु०---२४ वा वर्ष । ४\""
+  },
+  {
+   "word": "तेरह",
+   "role": "unit",
+   "value": "13",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 86242: \"तेरह-वि० दश व तीन ।\""
+  },
+  {
+   "word": "सोळा",
+   "role": "unit",
+   "value": "16",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_pt4-3_p4850_solah.png), read from the page scan, book p. 5850: \"सोळा—देखो 'सोळह' (रू भे )\" and \"सोळह–वि [स षोडस्] पन्द्रह और एक का योग । स पु—उक्त योग से बनने वाली सख्या, १६ ।\""
+  },
+  {
+   "word": "बयासी",
+   "role": "unit",
+   "value": "82",
+   "source": "SILVER: a spoken or spelling variant of बंयासी (82); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"बंयासी\" for 82"
+  },
+  {
+   "word": "इक्याणवै",
+   "role": "unit",
+   "value": "91",
+   "source": "SILVER: a spoken or spelling variant of इकरांणू (91); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इकरांणू\" for 91"
+  },
+  {
+   "word": "पचास",
+   "role": "unit",
+   "value": "50",
+   "source": "Grierson, G. A. (ed.) (1908), Linguistic Survey of India IX-2 (Papers/Languages/Indo-Aryan/Marwari/grierson_1908_p304_standard_list_numerals.png), read from the page scan, p. 304, Standard List, Mārwāṛī column: \"12. Fifty . . Pachās\"; the Marwari word for 50 in the lexicon is पच्चास (Bahal §5.2.1)"
+  },
+  {
+   "word": "नब्बै",
+   "role": "unit",
+   "value": "90",
+   "source": "SILVER: a spoken or spelling variant of नेवे (90); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"नेवे\" for 90"
+  },
+  {
+   "word": "अठंतर",
+   "role": "unit",
+   "value": "78",
+   "source": "SILVER: a spoken or spelling variant of इठतर (78); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इठतर\" for 78"
+  },
+  {
+   "word": "बाणवै",
+   "role": "unit",
+   "value": "92",
+   "source": "SILVER: a spoken or spelling variant of बराणू (92); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"बराणू\" for 92"
+  },
+  {
+   "word": "तेरा",
+   "role": "unit",
+   "value": "13",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 86253: \"तेरा-देखो तेरे ।\""
+  },
+  {
+   "word": "तरेपन",
+   "role": "unit",
+   "value": "53",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 81421: \"तरेपन-देखो ,'तिरेपन! ।,\""
+  },
+  {
+   "word": "निन्याणवै",
+   "role": "unit",
+   "value": "99",
+   "source": "SILVER: a spoken or spelling variant of निनाणू (99); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"निनाणू\" for 99"
+  },
+  {
+   "word": "पचहत्तर",
+   "role": "unit",
+   "value": "75",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 3-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt3-1_djvu.txt), OCR text line 29661: \"रू०भे०--पचेतर, पंचौतर, पचहत्तर ।\""
+  },
+  {
+   "word": "सत्तावन",
+   "role": "unit",
+   "value": "57",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 27575: \"सत्तावन--देखो 'सतावन” (रू भे.)\""
+  },
+  {
+   "word": "चौहत्तर",
+   "role": "unit",
+   "value": "74",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 2-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt2-1_djvu.txt), OCR text line 18581: \"चौहत्तरमों-वि०--जो क्रम मे तिहृत्तर के बाद पडता हो ।\""
+  },
+  {
+   "word": "बीस",
+   "role": "unit",
+   "value": "20",
+   "source": "Grierson, G. A. (ed.) (1908), Linguistic Survey of India IX-2 (Papers/Languages/Indo-Aryan/Marwari/grierson_1908_p304_standard_list_numerals.png), read from the page scan, p. 304, Standard List, Mārwāṛī column: \"11. Twenty . . Bis\""
+  },
+  {
+   "word": "चवाळीस",
+   "role": "unit",
+   "value": "44",
+   "source": "SILVER: a spoken or spelling variant of चम्मालीस (44); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चम्मालीस\" for 44"
+  },
+  {
+   "word": "बारा",
+   "role": "unit",
+   "value": "12",
+   "source": "SILVER: a spoken or spelling variant of बारै (12); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"बारै\" for 12"
+  },
+  {
+   "word": "चौंतीस",
+   "role": "unit",
+   "value": "34",
+   "source": "SILVER: a spoken or spelling variant of चौतीस (34); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चौतीस\" for 34"
+  },
+  {
+   "word": "तरेसठ",
+   "role": "unit",
+   "value": "63",
+   "source": "SILVER: a spoken or spelling variant of तेसठ (63); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"तेसठ\" for 63"
+  },
+  {
+   "word": "पिच्यासी",
+   "role": "unit",
+   "value": "85",
+   "source": "SILVER: a spoken or spelling variant of पिचियासी (85); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पिचियासी\" for 85"
+  },
+  {
+   "word": "तिराणवै",
+   "role": "unit",
+   "value": "93",
+   "source": "SILVER: a spoken or spelling variant of तेराणू (93); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"तेराणू\" for 93"
+  },
+  {
+   "word": "छब्बीस",
+   "role": "unit",
+   "value": "26",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 2-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt2-1_djvu.txt), OCR text line 20377: \"छब्बीस--देखो 'छाईस' (रू,भे )\""
+  },
+  {
+   "word": "सत्यासी",
+   "role": "unit",
+   "value": "87",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 28095: \"सत्यासी--देखों 'सितियासी” (रू. भे.)\""
+  },
+  {
+   "word": "अठारा",
+   "role": "unit",
+   "value": "18",
+   "source": "SILVER: a spoken or spelling variant of अट्ठारै (18); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अट्ठारै\" for 18"
+  },
+  {
+   "word": "चमाळीस",
+   "role": "unit",
+   "value": "44",
+   "source": "SILVER: a spoken or spelling variant of चम्मालीस (44); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चम्मालीस\" for 44"
+  },
+  {
+   "word": "बहत्तर",
+   "role": "unit",
+   "value": "72",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-2 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-2_djvu.txt), OCR text line 14562: \"बहत्तर, वहत्तरि--देखो “बश्नोत्तर' (रू भें )\""
+  },
+  {
+   "word": "उणहत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "SILVER: a spoken or spelling variant of गुणन्तर (69); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणन्तर\" for 69"
+  },
+  {
+   "word": "गुणचास",
+   "role": "unit",
+   "value": "49",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 48503: \"गुणचास, गुणप्रास-वि० [स० ऊनपचाशत] पचास से एक\""
+  },
+  {
+   "word": "इकावन",
+   "role": "unit",
+   "value": "51",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 17695: \"इकावन-वि० पचास व एक । --प० उक्त की संख्या, ५१॥\""
+  },
+  {
+   "word": "सड़सठ",
+   "role": "unit",
+   "value": "67",
+   "source": "SILVER: a spoken or spelling variant of सिड़सठ (67); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"सिड़सठ\" for 67"
+  },
+  {
+   "word": "चवदै",
+   "role": "unit",
+   "value": "14",
+   "source": "SILVER: a spoken or spelling variant of चऊदे (14); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चऊदे\" for 14"
+  },
+  {
+   "word": "पंद्रह",
+   "role": "unit",
+   "value": "15",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 3-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt3-1_djvu.txt), OCR text line 12546: \"रू०भे०--पंदरह, पुंदर॑, पंद्रह, पनर, पनरइ, पनरे।\""
+  },
+  {
+   "word": "इक्यासी",
+   "role": "unit",
+   "value": "81",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 17780: \"इक्यासी-देखो “उकियासी ।\""
+  },
+  {
+   "word": "सत्ताणवै",
+   "role": "unit",
+   "value": "97",
+   "source": "SILVER: a spoken or spelling variant of संतांणू (97); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"संतांणू\" for 97"
+  },
+  {
+   "word": "सित्यासी",
+   "role": "unit",
+   "value": "87",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 61111: \"सित्यासी--देखो 'सितियासी/ (रू, भरे )\""
+  },
+  {
+   "word": "चोपन",
+   "role": "unit",
+   "value": "54",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 2-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt2-1_djvu.txt), OCR text line 16705: \"चोपन--देखो 'चौपन' (रू भे )\""
+  },
+  {
+   "word": "तेवीस",
+   "role": "unit",
+   "value": "23",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 86390: \"तेवीस-देखों 'तेईस' ।\""
+  },
+  {
+   "word": "अठत्तर",
+   "role": "unit",
+   "value": "78",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 5377: \"अठत्तर-देखो 'इठतर' ।\""
+  },
+  {
+   "word": "गुणचाळीस",
+   "role": "unit",
+   "value": "39",
+   "source": "SILVER: a spoken or spelling variant of गुणचालीस (39); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणचालीस\" for 39"
+  },
+  {
+   "word": "निन्याणूं",
+   "role": "unit",
+   "value": "99",
+   "source": "SILVER: a spoken or spelling variant of निनाणू (99); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"निनाणू\" for 99"
+  },
+  {
+   "word": "उगणचाळीस",
+   "role": "unit",
+   "value": "39",
+   "source": "SILVER: a spoken or spelling variant of गुणचालीस (39); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणचालीस\" for 39"
+  },
+  {
+   "word": "चौराणवै",
+   "role": "unit",
+   "value": "94",
+   "source": "SILVER: a spoken or spelling variant of चौराणू (94); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चौराणू\" for 94"
+  },
+  {
+   "word": "सत्याणवै",
+   "role": "unit",
+   "value": "97",
+   "source": "SILVER: a spoken or spelling variant of संतांणू (97); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"संतांणू\" for 97"
+  },
+  {
+   "word": "नब्बे",
+   "role": "unit",
+   "value": "90",
+   "source": "SILVER: a spoken or spelling variant of नेवे (90); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"नेवे\" for 90"
+  },
+  {
+   "word": "उगणसत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "SILVER: a spoken or spelling variant of गुणन्तर (69); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणन्तर\" for 69"
+  },
+  {
+   "word": "पिच्याणवै",
+   "role": "unit",
+   "value": "95",
+   "source": "SILVER: a spoken or spelling variant of पंचाणू (95); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पंचाणू\" for 95"
+  },
+  {
+   "word": "तिहत्तर",
+   "role": "unit",
+   "value": "73",
+   "source": "SILVER: a spoken or spelling variant of तेवोतर (73); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"तेवोतर\" for 73"
+  },
+  {
+   "word": "गुणसठ",
+   "role": "unit",
+   "value": "59",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 48559: \"गुणसठौ-देखो 'गुणसाठों'।\""
+  },
+  {
+   "word": "पैंताळीस",
+   "role": "unit",
+   "value": "45",
+   "source": "SILVER: a spoken or spelling variant of पैतालीस (45); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पैतालीस\" for 45"
+  },
+  {
+   "word": "तैंताळीस",
+   "role": "unit",
+   "value": "43",
+   "source": "SILVER: a spoken or spelling variant of तंयालीस (43); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"तंयालीस\" for 43"
+  },
+  {
+   "word": "नवासी",
+   "role": "unit",
+   "value": "89",
+   "source": "SILVER: a spoken or spelling variant of गुणनेवे (89); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणनेवे\" for 89"
+  },
+  {
+   "word": "पिचंतर",
+   "role": "unit",
+   "value": "75",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 3-1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt3-1_djvu.txt), OCR text line 29658: \"पिचंतर-वि० [सं० पथच सप्तति] सत्तर शोर पाँच का योग ।\""
+  },
+  {
+   "word": "पच्चासी",
+   "role": "unit",
+   "value": "85",
+   "source": "SILVER: a spoken or spelling variant of पिचियासी (85); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पिचियासी\" for 85"
+  },
+  {
+   "word": "पनरै",
+   "role": "unit",
+   "value": "15",
+   "source": "SILVER: a spoken or spelling variant of पन्दरे (15); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पन्दरे\" for 15"
+  },
+  {
+   "word": "सितंतर",
+   "role": "unit",
+   "value": "77",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 61136: \"सितंतरेक-वि,--जो सतहत्तर के लगभग हो।\""
+  },
+  {
+   "word": "अठाणू",
+   "role": "unit",
+   "value": "98",
+   "source": "SILVER: a spoken or spelling variant of अंठाणू (98); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अंठाणू\" for 98"
+  },
+  {
+   "word": "इक्याणूं",
+   "role": "unit",
+   "value": "91",
+   "source": "SILVER: a spoken or spelling variant of इकरांणू (91); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इकरांणू\" for 91"
+  },
+  {
+   "word": "सतहत्तर",
+   "role": "unit",
+   "value": "77",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_pt4-3_djvu.txt), OCR text line 26689: \"सतहत्तर-देखो 'प्ितहृत्तर' (रू, भे )\""
+  },
+  {
+   "word": "उगणसाठ",
+   "role": "unit",
+   "value": "59",
+   "source": "SILVER: a spoken or spelling variant of गुणसाठ (59); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणसाठ\" for 59"
+  },
+  {
+   "word": "तैंतालीस",
+   "role": "unit",
+   "value": "43",
+   "source": "SILVER: a spoken or spelling variant of तंयालीस (43); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"तंयालीस\" for 43"
+  },
+  {
+   "word": "उण्यासी",
+   "role": "unit",
+   "value": "79",
+   "source": "SILVER: a spoken or spelling variant of गुणियासी (79); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणियासी\" for 79"
+  },
+  {
+   "word": "पिचाणवै",
+   "role": "unit",
+   "value": "95",
+   "source": "SILVER: a spoken or spelling variant of पंचाणू (95); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पंचाणू\" for 95"
+  },
+  {
+   "word": "चौदा",
+   "role": "unit",
+   "value": "14",
+   "source": "SILVER: a spoken or spelling variant of चऊदे (14); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"चऊदे\" for 14"
+  },
+  {
+   "word": "ग्यारा",
+   "role": "unit",
+   "value": "11",
+   "source": "SILVER: a spoken or spelling variant of इगियारै (11); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इगियारै\" for 11"
+  },
+  {
+   "word": "उगण्यासी",
+   "role": "unit",
+   "value": "79",
+   "source": "SILVER: a spoken or spelling variant of गुणियासी (79); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणियासी\" for 79"
+  },
+  {
+   "word": "इकताळीस",
+   "role": "unit",
+   "value": "41",
+   "source": "SILVER: a spoken or spelling variant of इगतालीस (41); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इगतालीस\" for 41"
+  },
+  {
+   "word": "अठाणूं",
+   "role": "unit",
+   "value": "98",
+   "source": "SILVER: a spoken or spelling variant of अंठाणू (98); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अंठाणू\" for 98"
+  },
+  {
+   "word": "अड़ताळीस",
+   "role": "unit",
+   "value": "48",
+   "source": "SILVER: a spoken or spelling variant of अड़तालीस (48); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अड़तालीस\" for 48"
+  },
+  {
+   "word": "गुणत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "SILVER: a spoken or spelling variant of गुणन्तर (69); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"गुणन्तर\" for 69"
+  },
+  {
+   "word": "अठारै",
+   "role": "unit",
+   "value": "18",
+   "source": "SILVER: a spoken or spelling variant of अट्ठारै (18); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"अट्ठारै\" for 18"
+  },
+  {
+   "word": "उनहत्तर",
+   "role": "unit",
+   "value": "69",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 48452: \"उनहत्तर | -पु० साठ व\""
+  },
+  {
+   "word": "सत्ताणूं",
+   "role": "unit",
+   "value": "97",
+   "source": "SILVER: a spoken or spelling variant of संतांणू (97); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"संतांणू\" for 97"
+  },
+  {
+   "word": "इकतालीस",
+   "role": "unit",
+   "value": "41",
+   "source": "SILVER: a spoken or spelling variant of इगतालीस (41); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इगतालीस\" for 41"
+  },
+  {
+   "word": "अठ्यासी",
+   "role": "unit",
+   "value": "88",
+   "source": "SILVER: a spoken or spelling variant of इठियासी (88); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"इठियासी\" for 88"
+  },
+  {
+   "word": "अठारह",
+   "role": "unit",
+   "value": "18",
+   "source": "Lalas, Sitaram (1986), Rājasthānī-Hindī Saṅkṣipt Śabdakoś, vol. 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_sanshipt_vol1_djvu.txt), OCR text line 5439: \"अठारह-वि० दस व श्राठ के बरावर। --पु० दस व झाठ के\""
+  },
+  {
+   "word": "सतरह",
+   "role": "unit",
+   "value": "17",
+   "source": "SILVER: a spoken or spelling variant of सतरे (17); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"सतरे\" for 17"
+  },
+  {
+   "word": "सतर",
+   "role": "unit",
+   "value": "17",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_pt4-3_p5257_satarai.png), read from the page scan, book p. 5257: \"सतरै–वि. [स. सप्तदशन् प्रा. सत्तरस अप. सत्तरह] सोलह और एक का योग, सत्रह । … रू भे —सतर, सत्तर, सत्रह ।\""
+  },
+  {
+   "word": "सत्रह",
+   "role": "unit",
+   "value": "17",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_pt4-3_p5257_satarai.png), read from the page scan, book p. 5257: \"सतरै–वि. [स. सप्तदशन् प्रा. सत्तरस अप. सत्तरह] सोलह और एक का योग, सत्रह । … रू भे —सतर, सत्तर, सत्रह ।\""
+  },
+  {
+   "word": "छः",
+   "role": "unit",
+   "value": "6",
+   "source": "SILVER: the Hindi spelling of छ (6) with a visarga; Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"छ\" for 6"
+  },
+  {
+   "word": "बयाळीस",
+   "role": "unit",
+   "value": "42",
+   "source": "SILVER: a spoken or spelling variant of बंयालीस (42); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"बंयालीस\" for 42"
+  },
+  {
+   "word": "अरब",
+   "role": "scale_numeral",
+   "value": 9,
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_khand1_p121_arab.png), read from the page scan, book p. 121: \"अरव–सं०पु० [सं० अर्बुद] १ सौ करोड़ की संख्या ।\" (the print writes ब as व); a hundred crore is 10^9"
+  },
+  {
+   "word": "पंदरै",
+   "role": "unit",
+   "value": "15",
+   "source": "SILVER: a spoken or spelling variant of पन्दरै (15); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पन्दरे\" for 15"
+  },
+  {
+   "word": "पाँच",
+   "role": "unit",
+   "value": "5",
+   "source": "SILVER: the spelling of पांच (5) with a candrabindu; Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पांच\" for 5"
+  },
+  {
+   "word": "शून्य",
+   "role": "unit",
+   "value": "0",
+   "source": "SILVER: the Hindi word that Bahal names for the Marwari सुम (0); Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, book p. 57: \"शून्य के राजस्थानी का वाचक शब्द है सुम\""
+  },
+  {
+   "word": "पचाणवै",
+   "role": "unit",
+   "value": "95",
+   "source": "SILVER: a spoken or spelling variant of पंचाणू (95); no saved text prints this form. Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57, prints \"पंचाणू\" for 95"
+  },
+  {
+   "word": "सोळह",
+   "role": "unit",
+   "value": "16",
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, pt 4-3 (Papers/Languages/Indo-Aryan/Marwari/lalas_pt4-3_p4850_solah.png), read from the page scan, book p. 5850: \"सोळह–वि [स षोडस्] पन्द्रह और एक का योग । स पु—उक्त योग से बनने वाली सख्या, १६ ।\""
   },
   {
    "word": "सो",

@@ -25,7 +25,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `kab` | yes | yes | yes | yes | 194 | 194 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
 | `hi-IN` (resolves to `hi`) | yes | yes | no | yes | 284 | 284 | 100.0% | [hi.md](hi.md) |
 | `bn-IN` (resolves to `bn`) | yes | yes | yes | yes | 75 | 75 | 100.0%[^bn] | [bn.md](bn.md) |
-| `mwr` | yes | yes | yes | yes | 14 | 14 | 100.0%[^mwr] |  |
+| `mwr` | yes | yes | yes | yes | 26 | 26 | 100.0%[^mwr] |  |
 | `an` | yes | yes | yes | no | 153 | 153 | 100.0% | [ibero.md](ibero.md) |
 | `ar` | yes | yes | yes | no | 157 | 156 | 99.4% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
 | `ast` | yes | yes | yes | no | 176 | 175 | 99.4% | [ibero.md](ibero.md) |
@@ -70,7 +70,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 
 [^bn]: The score of `bn` rests on 75 rows.
 
-[^mwr]: The score of `mwr` rests on 14 rows.
+[^mwr]: The score of `mwr` rests on 26 rows.
 
 [^fr-BE]: The score of `fr-BE` rests on 22 rows.
 
