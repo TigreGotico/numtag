@@ -645,6 +645,71 @@ def category_fr(row, got):
     return None
 def category_digits(row, got):
     return "digits_number" if row.get("kw", {}).get("digits") == "number" else None
+SV_CLDR = "CLDR RBNF sv (common/rbnf/sv.xml as shipped in unicode-rbnf 2.5.1)"
+SRC.update({
+ "sv_space": "ovos-number-parser numbers_sv.py leaves a space at the end of the text (\"en miljard \"); numtag writes the same words with no trailing space.",
+ "sv_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"noll\" and reads the digit 1 \"en\", where numtag reads the counting form \"ett\" (" + SV_CLDR + ", %spellout-numbering \"1: ett;\", \"x.x: ←← komma →→;\").",
+ "sv_ett": "Språkrådet, Myndigheternas skrivregler, 8th ed. (Papers/Languages/Germanic/Swedish/myndigheternas-skrivregler-8-uppl.pdf), §12.1.2: \"tvåtusenfemhundratrettiofem kronor (2 535 kr)\", \"en miljon, omkring tusen deltagare\": one word below a million and a bare \"tusen\"; en.wikipedia «Swedish grammar», rev. 1385083823: \"The ett preceding hundra (100) and tusen (1000) is optional, but in compounds it is usually required\" (SILVER, a secondary source); " + SV_CLDR + ", %%spellout-numbering-t \"1: et;\" (\"tjugoettusen\"). ovos-number-parser writes \"ett\" before a lone hundra and tusen, a space after tusen, three t, or no \"ett\" inside a compound.",
+ "sv_gender": SV_CLDR + ", %spellout-cardinal-reale (the common gender): \"1: en;\", %spellout-ordinal-masculine \"1: förste;\"; ovos-number-parser writes the neuter in every gender.",
+ "sv_ordinals": "ovos-number-parser numbers_sv.py, pronounce_number_sv: with ordinals=True it still writes the cardinal; numtag writes the ordinal that the call asks for (" + SV_CLDR + ", %spellout-ordinal-neuter).",
+ "sv_fraction": "en.wikipedia «Swedish grammar», rev. 1385083823 (Papers/Languages/Germanic/Swedish/): \"Rational numbers are read as the cardinal number of the numerator followed by the ordinal number of the denominator compounded with del or, if the numerator is higher than one, delar\", \"1 ⁄ 3 en tredjedel 3 ⁄ 4 tre fjärdedelar\" (SILVER, a secondary source); ovos-number-parser writes the bare ordinal (\"ett hundrade\") or a mixed number.",
+ "sv_scale_one": "Språkrådet, Myndigheternas skrivregler, 8th ed. (Papers/Languages/Germanic/Swedish/myndigheternas-skrivregler-8-uppl.pdf), §12.1.2: \"en miljon\": a scale word is common gender, so a count that ends in 1 takes \"en\" (" + SV_CLDR + ", %spellout-numbering \"2000000: ←%spellout-cardinal-reale← miljoner[ →→];\", reale \"1: en;\"); ovos-number-parser writes \"tjugoett miljoner\".",
+ "sv_improper": "numtag/lexicon/sv.json, the sv writer: a fraction above 1 reads the numerator and the plural part (\"fyra tredjedelar\"); ovos-number-parser reads a mixed number (\"ett och en tredjedel\"), another valid reading with the same part word.",
+ "sv_fraction_scale": "SILVER: a denominator from 10^6 is the scale ordinal and \"del\" (\"en miljontedel\"), by the -del rule of en.wikipedia «Swedish grammar», rev. 1385083823; the same page says \"There is no ordinal for miljard\", so no source writes these parts; ovos-number-parser writes the bare ordinal.",
+ "sv_range": "numtag/lexicon/sv.json, the sv writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (triljon), and outside it spells the power of ten or raises ValueError.",
+ "sv_negative": "numtag/lexicon/sv.json, the sv writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser returns the digits.",
+ "sv_short": "numtag/lexicon/sv.json, the setting scale: Swedish counts in the long scale (" + SV_CLDR + ", %spellout-numbering \"1000000000: en miljard[ →→];\"); the writer has no short-scale reading.",
+})
+def sv_flat(text):
+    """The text with the known differences of form undone: the count "ett" and the space around hundra, tusen and a
+    scale word, and ttt."""
+    text = re.sub(r"( null| noll)+$", "", text.strip()).replace("ttt", "tt")
+    text = re.sub(r"(ett|et)(?=hundra|tusen)", "", text)
+    text = re.sub(r"(^|(?<= ))(en|ett) (?=(miljon|miljard|biljon|biljard|triljon))", "", text)
+    return text.replace(" ", "")
+def sv_neuter(text):
+    """The common-gender text in the neuter: "tjugoen" to "tjugoett", "förste" to "första"."""
+    text = re.sub(r"(?<![a-zåäö])en(?![a-zåäö])|(?<=[oa])en(?![a-zåäö])|(?<=[oa])en(?=tusen)", "ett", text)
+    text = re.sub(r"(?<![a-zåäö])en(?=tusen)", "ett", text)
+    text = re.sub(r"(?<=tusen)en(?![a-zåäö])", "ett", text)
+    return re.sub(r"förste\b", "första", re.sub(r"andre\b", "andra", text))
+def category_sv(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_sv({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("sv_short" if re.search(r"iljon|iljard|iljar", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and re.fullmatch(r"-\d+", out): return "sv_negative"
+    if "tio upphöjt till" in mine or got == {"err": "ValueError"}: return "sv_range"
+    if kw.get("ordinals") and re.search(r"(de|te|a|e)$", mine) and not re.search(r"(de|te|första|andra)$", out): return "sv_ordinals"
+    if row["fn"] == "fraction":  # the word of the part is the ordinal of ovos-number-parser with "del"
+        bottom = row["arg"].split("/")[1].lstrip("-")
+        if bottom == "2": return "sv_fraction" if re.search(r" (halv|halva)$", mine) else None
+        top = int(row["arg"].split("/")[0].lstrip("-"))
+        if " och " in out and top > int(bottom):  # "ett och en tredjedel" for 4/3: the same part word
+            return "sv_improper" if re.sub(r"ar$", "", out.split()[-1]) == re.sub(r"ar$", "", mine.split()[-1]) else None
+        if int(bottom) >= 10 ** 6 and re.search(r"dela?r?$", mine): return "sv_fraction_scale"
+        ordinal = sv_flat(out.split()[-1])
+        word = sv_flat(re.sub(r"ar$", "", mine.split()[-1]))
+        return "sv_fraction" if word in (ordinal + "del", ordinal[:-2] + "del") else None
+    if out.strip() == mine: return "sv_space"
+    if " komma " in mine:  # the decimal digits: ovos-number-parser pads with "noll" and reads 1 "en"
+        whole, _, rest = mine.partition(" komma ")
+        theirs = re.sub(r"( noll)+$", "", out.strip())
+        if theirs == f"{whole} komma " + " ".join("en" if w == "ett" else w for w in rest.split()) or theirs == mine:
+            return "sv_decimal"
+    if kw.get("gender") in ("masculine", "feminine") and sv_flat(out) == sv_flat(sv_neuter(mine)) and out != mine: return "sv_gender"
+    if sv_flat(out) == sv_flat(mine):
+        return "sv_ett"
+    common = re.sub(r"(?<=[oa])en (?=miljon|miljard|biljon|biljard|triljon)", "ett ", mine)
+    if common != mine and sv_flat(out) in (sv_flat(common), sv_flat(sv_neuter(common))): return "sv_scale_one"
+    return None
+
 def category(row, got):
     out, mine = row.get("out", ""), got.get("out", "")
     if row["fn"] == "ordinal" and len(str(row["arg"])) > 90: return "big_ordinal"

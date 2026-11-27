@@ -80,6 +80,14 @@ def _issue_360(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/360: the eu reader does not read a part of more than one word
     ("hogeita baten bat"); its last word is also the genitive of the count ("etxe baten")."""
     return lang == "eu" and text in ("baten", "biren", "hiruren", "lauren")
+
+
+def _sv_fused(lang: str, word: str) -> bool:
+    """sv "et" is "ett" fused with "tusen" ("ettusen", "tjugoettusen", CLDR sv %%spellout-numbering-t "1: et;"): a
+    part of a word, never a word."""
+    return lang == "sv" and word == "et"
+
+
 def _issue_373(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/373: the kab bound words read only inside a number."""
     return lang == "kab" and text in ("juǧ", "wis", "tis")
@@ -328,7 +336,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_360(lang, word) and not _issue_373(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_360(lang, word) and not _issue_373(lang, word) and not _sv_fused(lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/360")
@@ -787,6 +795,33 @@ class TestCzech(unittest.TestCase):
                 text = self.say(value, form=form)
                 with self.subTest(text=text):
                     self.assertEqual([m.value for m in tag_numbers(text, "cs")], [value])
+
+
+class TestSwedish(unittest.TestCase):
+    """Språkrådet, Myndigheternas skrivregler, 8th ed., §12.1.2: "tvåtusenfemhundratrettiofem kronor", "omkring tusen
+    deltagare"; CLDR RBNF sv."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "sv", **kw)[0].text
+
+    def test_one_word_below_a_million(self):
+        self.assertEqual([self.say(n) for n in ("100", "1000", "101", "1100", "2535", "21000", "2000001")],
+                         ["hundra", "tusen", "etthundraett", "ettusenetthundra", "tvåtusenfemhundratrettiofem",
+                          "tjugoettusen", "två miljoner ett"])
+        self.assertEqual([self.say("21", gender=g) for g in ("masculine", "feminine", "neuter")],
+                         ["tjugoen", "tjugoen", "tjugoett"])
+        self.assertEqual(self.say("21000000"), "tjugoen miljoner")
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("2", "20", "21", "100", "101", "1100", "1000000",
+                                                                         "2000001")],
+                         ["andra", "tjugonde", "tjugoförsta", "hundrade", "etthundraförsta", "ettusenetthundrade",
+                          "miljonte", "två miljoner första"])
+        self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="masculine"), "förste")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "1/3", "3/4", "1/8", "1/13", "1/100")],
+                         ["en halv", "en tredjedel", "tre fjärdedelar", "en åttondel", "en trettondel", "en hundradel"])
 class TestKabyle(unittest.TestCase):
     """fr.wiktionary «Modèle:cardinaux/kab», languagesandnumbers.com and en.wikipedia «Kabyle grammar»."""
 
@@ -1129,7 +1164,7 @@ class TestSpell(unittest.TestCase):
 
     def test_a_language_with_no_writer_raises_unsupported_language(self):
         with self.assertRaises(UnsupportedLanguageError):
-            spell("1", "sv")
+            spell("1", "fi")
         with self.assertRaises(UnsupportedLanguageError):
             spell("1", "xx")
 
