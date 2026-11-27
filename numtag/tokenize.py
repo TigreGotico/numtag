@@ -148,6 +148,9 @@ def _token_pattern(script: Script, apostrophes: frozenset[str] = frozenset(), gr
         joined = rf"[{marks}]\d+|{re.escape(group_mark)}(?:\d{{3}}(?!\d)|\d+(?!\d|/\d))"
     else:
         joined = rf"[{marks}]\d+" if group_mark in ".," else rf"[{marks}]\d+|[{groups}]\d{{3}}(?!\d)"
+    if group_forms:
+        # another form of the mark joins only a group of three: "1’234", not "9’58"
+        joined += rf"|[{''.join(map(re.escape, group_forms))}]\d{{3}}(?!\d)"
     return re.compile(rf"(?P<digits>(?:(?<![^\s(\[])(?:[-−][{marks}]?|[{marks}]))?\d+(?:{joined})*)|(?P<word>{word})")
 
 
