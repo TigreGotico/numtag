@@ -212,8 +212,10 @@ def _listed_after(lexicon: Lexicon, tokens: list[Token], k: int, cued: set[int])
     """The numeral follows a cued numeral in a list: "séculos XI, XII e XIII"."""
     if k > 0 and k - 1 in cued and tokens[k].gap.strip() == ",":
         return True
+    # the joiner stands between the two numerals with only space after it, so
+    # "chapitre XX et annexe-A. CD audio" gives the CD no cue
     return k > 1 and k - 2 in cued and tokens[k - 1].norm in lexicon.joiners \
-        and tokens[k - 1].gap.strip() in ("", ",")
+        and tokens[k - 1].gap.strip() in ("", ",") and not tokens[k].gap.strip()
 
 
 def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],

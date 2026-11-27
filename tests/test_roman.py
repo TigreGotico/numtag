@@ -199,6 +199,13 @@ class TestWordLists(unittest.TestCase):
         self.assertEqual(_read("World War I, I moved", "en"), [("I", "1", Kind.ORDINAL, SURE)])
         self.assertEqual(_read("En CC de ce courriel", "fr"), [])
 
+    def test_the_list_cue_needs_only_space_after_the_joiner(self):
+        # "et" joins XX to "annexe-A", not to the CD (compact disc) of the next sentence
+        self.assertEqual(_read("Voir chapitre XX et annexe-A. CD audio fourni.", "fr"),
+                         [("XX", "20", Kind.ORDINAL, SURE)])
+        self.assertEqual(_read("les chapitres XCIX et CC", "fr"),
+                         [("XCIX", "99", Kind.ORDINAL, SURE), ("CC", "200", Kind.ORDINAL, SURE)])
+
     def test_french_numerals_still_read(self):
         # 1000 + 900 + 90 + 9 = 1999; 2000 + 20 + 4 = 2024; the regnal 14; the chapter 1100
         self.assertEqual(_read("MCMXCIX", "fr"), [("MCMXCIX", "1999", Kind.CARDINAL, HOMOGRAPH)])
