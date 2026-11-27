@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.46.0a3](https://github.com/TigreGotico/numtag/tree/0.46.0a3) (2026-11-27)
+## [0.46.0a4](https://github.com/TigreGotico/numtag/tree/0.46.0a4) (2026-11-27)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a2...0.46.0a3)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a2...0.46.0a4)
 
 **Merged pull requests:**
 
