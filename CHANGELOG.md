@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.48.0a1](https://github.com/TigreGotico/numtag/tree/0.48.0a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.47.0a2...0.48.0a1)
+
+**Merged pull requests:**
+
+- feat\(ru\): name the short-scale words from 10^18 to 10^39 [\#424](https://github.com/TigreGotico/numtag/pull/424) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.47.0a2](https://github.com/TigreGotico/numtag/tree/0.47.0a2) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.47.0a1...0.47.0a2)
@@ -501,10 +509,6 @@
 ## [0.19.20a1](https://github.com/TigreGotico/numtag/tree/0.19.20a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.19a1...0.19.20a1)
-
-**Merged pull requests:**
-
-- fix\(bg\): read the long ordinals of 11 to 19, 20 and 30 [\#195](https://github.com/TigreGotico/numtag/pull/195) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.19a1](https://github.com/TigreGotico/numtag/tree/0.19.19a1) (2026-11-22)
 
