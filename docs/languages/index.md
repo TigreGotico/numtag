@@ -12,7 +12,7 @@ Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../img/coverage-dark.svg">
-  <img alt="Of 53 lexicons, 53 read cardinals, 52 read ordinals, 51 read fractions and 25 have a writer." src="../img/coverage.svg">
+  <img alt="Of 53 lexicons, 53 read cardinals, 52 read ordinals, 51 read fractions and 29 have a writer." src="../img/coverage.svg">
 </picture>
 
 `img/plot_coverage.py` makes this figure from `numtag/lexicon/*.json`.

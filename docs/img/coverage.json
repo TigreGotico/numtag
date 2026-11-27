@@ -10,7 +10,7 @@
   "cardinals": 53,
   "ordinals": 52,
   "fractions": 51,
-  "writer": 25
+  "writer": 29
  },
  "rows": [
   {
@@ -74,7 +74,7 @@
    "cardinals": true,
    "ordinals": true,
    "fractions": true,
-   "writer": false
+   "writer": true
   },
   {
    "lang": "da",
@@ -137,7 +137,7 @@
    "cardinals": true,
    "ordinals": true,
    "fractions": true,
-   "writer": false
+   "writer": true
   },
   {
    "lang": "fa",
@@ -305,7 +305,7 @@
    "cardinals": true,
    "ordinals": true,
    "fractions": true,
-   "writer": false
+   "writer": true
   },
   {
    "lang": "pt-BR",
@@ -368,7 +368,7 @@
    "cardinals": true,
    "ordinals": true,
    "fractions": true,
-   "writer": false
+   "writer": true
   },
   {
    "lang": "tr",

@@ -33,14 +33,14 @@ Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../img/coverage-dark.svg">
-  <img alt="Of 53 lexicons, 53 read cardinals, 52 read ordinals, 51 read fractions and 25 have a writer." src="../img/coverage.svg">
+  <img alt="{coverage_alt}" src="../img/coverage.svg">
 </picture>
 
 `img/plot_coverage.py` makes this figure from `numtag/lexicon/*.json`.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../img/share-dark.svg">
-  <img alt="33 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="../img/share.svg">
+  <img alt="{share_alt}" src="../img/share.svg">
 </picture>
 
 `img/plot_share.py` makes this figure from `benchmarks/results.json`.
@@ -115,7 +115,11 @@ def render(results: dict) -> str:
         lines.append(f"| {name} | {yes('unit' in found)} | {yes(found & ORDINAL_ROLES)} | "
                      f"{yes(found & FRACTION_ROLES)} | {yes(writer)} | {rows} | {right} | {share} | {page_for(lang)} |")
     footer = "\n\n" + "\n\n".join(notes) if notes else ""
-    return HEADER + "\n".join(lines) + footer + "\n\n---\n[← Home](../index.md)\n"
+    sys.path.insert(0, str(ROOT / "docs" / "img"))
+    import plot_coverage
+    import plot_share
+    header = HEADER.replace("{coverage_alt}", plot_coverage.alt(plot_coverage.data())).replace("{share_alt}", plot_share.alt(plot_share.data()))
+    return header + "\n".join(lines) + footer + "\n\n---\n[← Home](../index.md)\n"
 
 
 def main() -> int:

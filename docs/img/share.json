@@ -127,13 +127,6 @@
    "leader": false
   },
   {
-   "lang": "mwr",
-   "rows": 14,
-   "rows_right": 14,
-   "share": 100.0,
-   "leader": true
-  },
-  {
    "lang": "fr-CH",
    "rows": 20,
    "rows_right": 20,
@@ -148,9 +141,16 @@
    "leader": false
   },
   {
+   "lang": "mwr",
+   "rows": 26,
+   "rows_right": 26,
+   "share": 100.0,
+   "leader": true
+  },
+  {
    "lang": "bn",
-   "rows": 40,
-   "rows_right": 40,
+   "rows": 75,
+   "rows_right": 75,
    "share": 100.0,
    "leader": true
   },
@@ -223,13 +223,6 @@
    "rows_right": 163,
    "share": 100.0,
    "leader": false
-  },
-  {
-   "lang": "kab",
-   "rows": 163,
-   "rows_right": 163,
-   "share": 100.0,
-   "leader": true
   },
   {
    "lang": "sl",
@@ -335,6 +328,13 @@
    "rows_right": 189,
    "share": 100.0,
    "leader": false
+  },
+  {
+   "lang": "kab",
+   "rows": 194,
+   "rows_right": 194,
+   "share": 100.0,
+   "leader": true
   },
   {
    "lang": "de",
