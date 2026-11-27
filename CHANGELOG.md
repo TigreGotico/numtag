@@ -1,12 +1,23 @@
 # Changelog
 
-## [0.46.2a1](https://github.com/TigreGotico/numtag/tree/0.46.2a1) (2026-11-27)
+## [0.47.0a1](https://github.com/TigreGotico/numtag/tree/0.47.0a1) (2026-11-27)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a4...0.46.2a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.2a1...0.47.0a1)
 
 **Merged pull requests:**
 
 - feat: mwr reads 111 more Marwari number forms, दसमलव and बटा [\#414](https://github.com/TigreGotico/numtag/pull/414) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.46.2a1](https://github.com/TigreGotico/numtag/tree/0.46.2a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.1a1...0.46.2a1)
+
+## [0.46.1a1](https://github.com/TigreGotico/numtag/tree/0.46.1a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a4...0.46.1a1)
+
+**Merged pull requests:**
+
 - fix\(kab\): Dallet 1982 forms are the standard writer output [\#411](https://github.com/TigreGotico/numtag/pull/411) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - fix\(ru\): bare scale words, declined prepositional tens, plural ordinals, целых decimals [\#402](https://github.com/TigreGotico/numtag/pull/402) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
