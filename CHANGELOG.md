@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.49.3a2](https://github.com/TigreGotico/numtag/tree/0.49.3a2) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.2a1...0.49.3a2)
+
+**Merged pull requests:**
+
+- docs: link the demo Space in the README [\#431](https://github.com/TigreGotico/numtag/pull/431) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(kab\): writer defaults follow the native review on \#379 [\#429](https://github.com/TigreGotico/numtag/pull/429) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- docs\(ru\): cite § 1378 for the bare scale word [\#428](https://github.com/TigreGotico/numtag/pull/428) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.49.2a1](https://github.com/TigreGotico/numtag/tree/0.49.2a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.1a1...0.49.2a1)
@@ -602,10 +612,6 @@
 ## [0.19.11a1](https://github.com/TigreGotico/numtag/tree/0.19.11a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.10a1...0.19.11a1)
-
-**Merged pull requests:**
-
-- fix\(sl\): read the clock hour enih and weaken a bare tisoče [\#201](https://github.com/TigreGotico/numtag/pull/201) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.10a1](https://github.com/TigreGotico/numtag/tree/0.19.10a1) (2026-11-22)
 

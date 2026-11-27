@@ -27,8 +27,8 @@ numtag finds every number in a text and returns one mention per number. A mentio
 | `tests/gold/<lang>.jsonl` | Gold rows of real sentences, one file per lexicon |
 | `tests/gold_floor.json` | The lowest accepted gold score of each language |
 | `tests/golden/readings.jsonl.gz` | Every field of every mention of every gold and consumer text, at both scales. `python tests/golden.py` writes it |
-| `tests/golden/onp-writers.jsonl.gz` | What the ovos-number-parser writers said, row by row: 488,631 calls over 43 tags. `tests/golden_writers.py` runs the rows of each lexicon with a `writer` block through `numtag.spell`. `tests/golden/onp-writers-allow.json` lists the rows where the stored words are a known defect, each with a source |
-| `tests/golden/revisions.json` | The revision of every lexicon that has no `writer` block. It never changes |
+| `tests/golden/onp-writers.jsonl.gz` | What the ovos-number-parser writers said, row by row: 488,631 calls over 43 tags. `tests/golden_writers.py` runs the rows of each lexicon with a `writer` block through `numtag.spell`. `tests/golden/onp-writers-allow/<lang>.json` lists the rows where the stored words are a known defect, each with a source |
+| `tests/golden/revisions/<lang>.txt` | The revision of a lexicon that has no `writer` block. It never changes |
 | `tests/consumers/` | The readings that each consumer of numtag depends on |
 | `benchmarks/bench.py` | The accuracy, memory and time script |
 | `docs/` | The documentation. `docs/index.md` sets the reading order |
