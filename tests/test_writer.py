@@ -637,8 +637,6 @@ class TestBengali(unittest.TestCase):
     def test_the_hundreds(self):
         self.assertEqual([self.say(n) for n in ("200", "999")], ["দুই শ", "নয় শ নিরানব্বই"])
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="the reader reads \"একশ এক\" as 100 and 1 "
-                       "https://github.com/TigreGotico/numtag/issues/391")
     def test_the_reader_reads_the_one_word_hundred_before_a_rest(self):
         self.assertEqual([(m.text, m.value) for m in tag_numbers("একশ এক", "bn")], [("একশ এক", "101")])
 

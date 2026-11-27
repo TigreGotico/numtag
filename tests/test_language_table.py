@@ -26,7 +26,7 @@ class TestLanguageTable(unittest.TestCase):
         self.assertIn("| `mwr` | yes | yes | yes | yes | 14 | 14 | 100.0%[^mwr] |", page)
         self.assertIn("| `es-CO` (resolves to `es`) |", page)
         self.assertIn("| 479 | 473 | 98.7% |", page)
-        self.assertIn("The score of `bn` rests on 40 rows.", page)
+        self.assertIn("The score of `bn` rests on 75 rows.", page)
 
 
 if __name__ == "__main__":
