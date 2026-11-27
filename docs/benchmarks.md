@@ -36,7 +36,7 @@ uv pip install --python .venv-parser/bin/python --prerelease=allow "ovos-number-
 python docs/img/plot_benchmarks.py
 ```
 
-Each run writes a JSON report and prints it. `docs/img/plot_benchmarks.py` reads the two reports, draws the figure and prints the rows of the accuracy table. The parser version is pinned because ovos-number-parser reads numbers with numtag from 0.31.0a1, which requires `numtag>=0.19.0a1`. A run of such a version gives the numtag scores in both columns.
+Each run writes a JSON report and prints it. `docs/img/plot_benchmarks.py` reads the two reports, draws the figure and prints the rows of the accuracy table. The parser version is pinned because ovos-number-parser reads numbers with numtag from 0.25.0a1 (`numtag>=0.12.12a1`). A run of such a version gives the numtag scores in both columns.
 
 ## Accuracy
 
