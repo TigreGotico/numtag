@@ -1,0 +1,388 @@
+{
+ "features": [
+  "cardinals",
+  "ordinals",
+  "fractions",
+  "writer"
+ ],
+ "lexicons": 53,
+ "totals": {
+  "cardinals": 53,
+  "ordinals": 52,
+  "fractions": 51,
+  "writer": 29
+ },
+ "rows": [
+  {
+   "lang": "an",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "ar",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "ast",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "az",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "bg",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "bn",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "ca-ES-valencia",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "ca",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "cs",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "da",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "de",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "el",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "en-US",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "en",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "eo",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "es",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "et",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "eu",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "fa",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "fi",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "fr-BE",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "fr-CH",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "fr-FR",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "fy",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "gl",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "he",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "hi",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": false,
+   "writer": true
+  },
+  {
+   "lang": "hr",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "hu",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "id",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "it",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "kab",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "lt",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "ms",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "mt",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "mwl",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "mwr",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "nb",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "nl",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "nn",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "oc",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "pl",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "pt-BR",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "pt-PT",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "ro",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "ru",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "sk",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "sl",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "sq",
+   "cardinals": true,
+   "ordinals": false,
+   "fractions": false,
+   "writer": false
+  },
+  {
+   "lang": "sr",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "sv",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": true
+  },
+  {
+   "lang": "tr",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  },
+  {
+   "lang": "uk",
+   "cardinals": true,
+   "ordinals": true,
+   "fractions": true,
+   "writer": false
+  }
+ ]
+}

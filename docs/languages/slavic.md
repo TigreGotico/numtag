@@ -185,4 +185,4 @@ Serbian, long scale:
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
 
 ---
-[← Baltic languages](baltic.md) · [Home](../index.md) · [French, Italian, Romanian, Basque, Indonesian and Malay →](fr-it-ro-eu-id.md)
+[← Hindi](hi.md) · [Home](../index.md) · [French, Italian, Romanian, Basque, Indonesian and Malay →](fr-it-ro-eu-id.md)

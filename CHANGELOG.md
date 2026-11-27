@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.47.0a2](https://github.com/TigreGotico/numtag/tree/0.47.0a2) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.47.0a1...0.47.0a2)
+
+**Merged pull requests:**
+
+- docs: README, docs index, navigation and plots [\#405](https://github.com/TigreGotico/numtag/pull/405) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.47.0a1](https://github.com/TigreGotico/numtag/tree/0.47.0a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.2a1...0.47.0a1)
