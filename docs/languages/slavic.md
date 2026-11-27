@@ -12,7 +12,7 @@ numtag reads Russian, Ukrainian, Bulgarian, Polish, Czech, Slovak, Slovene, Croa
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 195 | 194 |
+| Russian | every `ru` tag | `numtag/lexicon/ru.json` | short | 227 | 226 |
 | Ukrainian | every `uk` tag | `numtag/lexicon/uk.json` | short | 184 | 184 |
 | Bulgarian | every `bg` tag | `numtag/lexicon/bg.json` | short | 163 | 163 |
 | Polish | every `pl` tag | `numtag/lexicon/pl.json` | long | 167 | 167 |
