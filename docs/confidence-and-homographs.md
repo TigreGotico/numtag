@@ -111,15 +111,13 @@ Such a word gives 0.4 when the number rests on it. That means the word alone, a 
 [('Three score and ten', '70', 1.0)]
 ```
 
-The lexicon can hold cues on the words next to a lone word (see [the lexicon format](lexicon-format.md#context-cues)). A cue makes the word a sure number, removes the mention, or keeps the homograph. Before an article, Portuguese "segundo" is the preposition "according to", and after a cardinal, "segundos" is the unit of time. After "só", "apenas" or "somente", "um" is the count 1. A cue looks only at one word on each side: in "Só falta um dia." a verb stands between "só" and "um", and "um" stays an article.
+The lexicon can hold cues on the words next to a lone word (see [the lexicon format](lexicon-format.md#context-cues)). A cue makes the word a sure number, removes the mention, or keeps the homograph. Before an article, Portuguese "segundo" is the preposition "according to", and after a cardinal, "segundos" is the unit of time. A cue looks only at one word on each side.
 
 ```python
 >>> read("Segundo o último relatório, a cooperativa vendeu.", "pt-PT")
 []
 >>> read("Esperou sessenta e seis segundos.", "pt-PT")
 [('sessenta e seis', '66', 1.0)]
->>> read("Apareceu apenas um aluno.", "pt-PT")
-[('um', '1', 1.0)]
 >>> read("Chegou em segundo lugar.", "pt-PT")
 [('segundo', '2', 0.4)]
 ```

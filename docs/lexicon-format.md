@@ -172,7 +172,7 @@ A word list holds a `value`, a list of strings, and a `source`. Every list may b
 | `roman_series_noun` | no | Nouns that mark a place in a series, so a Roman numeral beside them is an ordinal ("século"). | pt-PT: `["século", "séculos", "capítulo"]` |
 | `roman_title` | no | Regnal titles before a name that a numeral follows ("rei"). | pt-PT: `["rei", "rainha", "papa"]` |
 | `roman_word` | no | Roman numerals that are also a word or a common abbreviation, which read only after a strong cue ("CD", "MIX"). | pt-PT: `["cd", "cv", "cc"]` |
-| `cue_<name>` | no | Version 6. A class of words that a `context` cue names as `@<name>`. | pt-PT: `"cue_restrictive": ["só", "apenas", "somente"]` |
+| `cue_<name>` | no | Version 6. A class of words that a `context` cue names as `@<name>`. | pt-PT: `"cue_determiner": ["o", "a", "os", "as"]` |
 | `vague_clitic` | no | A clitic that may stand between a vague quantifier and the scale word ("je" in "nekoliko je tisuća"). | hr: `["sam", "si", "je"]` |
 | `word_apostrophe` | no | Marks that join letters into one word ("п'ять"). | uk: `["'", "’"]` |
 

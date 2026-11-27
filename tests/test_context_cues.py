@@ -25,14 +25,6 @@ C = "cardinal"
     ("Ha aspettato sessanta secondi.", "it", [("sessanta", "60", 1.0)]),
     ("Va esperar seixanta segons.", "ca", [("seixanta", "60", 1.0)]),
     ("Agardou sesenta segundos.", "gl", [("sesenta", "60", 1.0)]),
-    # a restrictive adverb right before "um"/"un" makes it the count 1 (#312)
-    ("Apareceu apenas um aluno.", "pt-PT", [("um", "1", 1.0)]),
-    ("Ficou somente uma cadeira livre.", "pt-BR", [("uma", "1", 1.0)]),
-    ("Queda solo un día.", "es", [("un", "1", 1.0)]),
-    ("Tengo sólo una hermana.", "es", [("una", "1", 1.0)]),
-    # "um pouco" is "a little", no count of one
-    ("Espera só um pouco.", "pt-PT", []),
-    ("Espera solo un poco.", "es", []),
 ])
 def test_a_cue_decides_the_lone_word(text, lang, expected):
     assert sure(text, lang) == expected
@@ -49,6 +41,11 @@ def test_a_cue_decides_the_lone_word(text, lang, expected):
     # the article with no restrictive adverb before it stays weak
     ("Comprei um livro.", "pt-PT", [("um", "1", 0.3)]),
     ("Compré un libro.", "es", [("un", "1", 0.3)]),
+    # a restrictive adverb before an article in a predicate does not make
+    # it a count: "only an example", "only a child"
+    ("É só um exemplo.", "pt-PT", [("um", "1", 0.3)]),
+    ("Ela é apenas uma criança.", "pt-PT", [("uma", "1", 0.3)]),
+    ("Es solo un ejemplo.", "es", [("un", "1", 0.3)]),
     # the singular after the article: unit or ordinal, no cue decides
     ("Espera um segundo.", "pt-PT", [("um", "1", 0.3), ("segundo", "2", 0.4)]),
 ])
@@ -57,13 +54,14 @@ def test_no_cue_keeps_the_old_reading(text, lang, expected):
 
 
 @pytest.mark.xfail(strict=True, raises=AssertionError,
-                   reason="https://github.com/TigreGotico/numtag/issues/312: a cue reads one word on each side, "
-                          "and a verb stands between the adverb and the article")
+                   reason="https://github.com/TigreGotico/numtag/issues/312: a restrictive adverb before the "
+                          "article makes a count only in some clauses, and no cue tells them apart")
 @pytest.mark.parametrize("text, lang, expected", [
+    ("Apareceu apenas um aluno.", "pt-PT", [("um", "1", 1.0)]),
     ("Só falta um dia.", "pt-BR", [("um", "1", 1.0)]),
     ("Solo queda un día.", "es", [("un", "1", 1.0)]),
 ])
-def test_an_adverb_two_words_before_the_article(text, lang, expected):
+def test_a_restrictive_adverb_before_the_article_counts(text, lang, expected):
     assert sure(text, lang) == expected
 
 
