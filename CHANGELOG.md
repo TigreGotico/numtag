@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.49.2a1](https://github.com/TigreGotico/numtag/tree/0.49.2a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.1a1...0.49.2a1)
+
+**Merged pull requests:**
+
+- fix\(fr\): read the French regional words \(carries \#396\) [\#427](https://github.com/TigreGotico/numtag/pull/427) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(fr\): finish \#392: suffixed Roman numerals on roman\_word, hyphenated regnal names, alternate group marks [\#410](https://github.com/TigreGotico/numtag/pull/410) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [0.49.1a1](https://github.com/TigreGotico/numtag/tree/0.49.1a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.0a1...0.49.1a1)
@@ -602,17 +611,9 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.9a1...0.19.10a1)
 
-**Merged pull requests:**
-
-- fix\(cs\): read the bookish ordinal prvý and its case forms [\#199](https://github.com/TigreGotico/numtag/pull/199) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.19.9a1](https://github.com/TigreGotico/numtag/tree/0.19.9a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.8a1...0.19.9a1)
-
-**Merged pull requests:**
-
-- fix\(cs\): "mínus" before a number is a sign [\#198](https://github.com/TigreGotico/numtag/pull/198) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.8a1](https://github.com/TigreGotico/numtag/tree/0.19.8a1) (2026-11-22)
 
