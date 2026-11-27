@@ -38,6 +38,13 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_gl.py", "")
     def test_the_dutch_writer_block_is_what_the_script_writes(self):
         self.check("writer_nl.py", "")
+
+    def test_the_basque_writer_block_is_what_the_script_writes(self):
+        self.check("writer_eu.py", "")
+
+    def test_the_swedish_writer_block_is_what_the_script_writes(self):
+        self.check("writer_sv.py", "")
+
     def test_the_norwegian_nynorsk_writer_block_is_what_the_script_writes(self):
         self.check("writer_nn.py", "")
 
@@ -61,6 +68,11 @@ class TestWriterScripts(unittest.TestCase):
         for variety in ("ca", "ca-ES-valencia"):
             self.check("writer_ca.py", variety)
 
+    def test_the_polish_writer_block_is_what_the_script_writes(self):
+        self.check("writer_pl.py", "")
+
+    def test_the_czech_writer_block_is_what_the_script_writes(self):
+        self.check("writer_cs.py", "")
     def test_the_hindi_writer_block_is_what_the_script_writes(self):
         self.check("writer_hi.py", "")
 

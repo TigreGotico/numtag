@@ -21,12 +21,12 @@ class TestLanguageTable(unittest.TestCase):
         self.assertEqual(language_table.measure(), committed,
                          "run python scripts/language_table.py --measure")
 
-    def test_leader_without_lexicon_says_not_supported(self):
+    def test_leader_rows(self):
         page = language_table.PAGE.read_text(encoding="utf-8")
-        self.assertIn("| `mwr` | not supported |", page)
+        self.assertIn("| `mwr` | yes | yes | yes | yes | 14 | 14 | 100.0%[^mwr] |", page)
         self.assertIn("| `es-CO` (resolves to `es`) |", page)
         self.assertIn("| 479 | 473 | 98.7% |", page)
-        self.assertIn("The score of `bn` rests on 40 rows.", page)
+        self.assertIn("The score of `bn` rests on 75 rows.", page)
 
 
 if __name__ == "__main__":

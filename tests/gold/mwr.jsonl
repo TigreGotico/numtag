@@ -1,0 +1,14 @@
+{"text": "म्हारै घरै तीन गायां है।", "mentions": [{"start": 11, "end": 14, "value": "3", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.1: 3 तीन"}
+{"text": "गांव में पच्चीस घर है।", "mentions": [{"start": 9, "end": 15, "value": "25", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.1: 25 पच्चीस"}
+{"text": "बो बारै बरस रो है।", "mentions": [{"start": 3, "end": 7, "value": "12", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.1: 12 बारै"}
+{"text": "उणरै कनै दो सो बावन रिपिया है।", "mentions": [{"start": 9, "end": 19, "value": "252", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), 2*100+52"}
+{"text": "मेळै में तीन लाख पच्चास हजार लोग आया।", "mentions": [{"start": 9, "end": 28, "value": "350000", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), 3*10^5+50*10^3"}
+{"text": "सरकार एक किरोड़ रिपिया दिया।", "mentions": [{"start": 6, "end": 15, "value": "10000000", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), 1*10^7"}
+{"text": "वो दो हजार इक्कीस में आयो।", "mentions": [{"start": 3, "end": 17, "value": "2021", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), 2*1000+21"}
+{"text": "सात सो चौरासी कोस री जातरा।", "mentions": [{"start": 0, "end": 13, "value": "784", "kind": "cardinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), 7*100+84"}
+{"text": "बो पांचमौ छोरो है।", "mentions": [{"start": 3, "end": 9, "value": "5", "kind": "ordinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.3: पांचमौ"}
+{"text": "आज इगियारमौ दिन है।", "mentions": [{"start": 3, "end": 11, "value": "11", "kind": "ordinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.3: इगियारै इगियारमौ"}
+{"text": "पैलौ दिन चोखो हो।", "mentions": [{"start": 0, "end": 4, "value": "1", "kind": "ordinal"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.3: पैलौ"}
+{"text": "डोढ सेर घी लावो।", "mentions": [{"start": 0, "end": 3, "value": "1.5", "kind": "fraction"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.2: डोढ 1½"}
+{"text": "पाव सेर गुड़ लावो।", "mentions": [{"start": 0, "end": 3, "value": "0.25", "kind": "fraction"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.2: पाव ¼"}
+{"text": "ढचौ मण बाजरो।", "mentions": [{"start": 0, "end": 3, "value": "4.5", "kind": "fraction"}], "source": "arithmetic; Bahal 1964, §5.2.1-5.2.3 (page scan), §5.2.2: ढचौ 4½"}

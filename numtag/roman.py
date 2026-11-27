@@ -10,7 +10,7 @@ from bisect import bisect_left
 
 from numtag.lexicon import Lexicon
 from numtag.mention import Kind, Reason
-from numtag.tokenize import Token
+from numtag.tokenize import Token, fold
 
 # The standard subtractive form from 1 to 3999 ("IIII", "IC" and "VX" are
 # no numeral). It is positional: each group writes one decimal digit.
@@ -30,6 +30,12 @@ _NO_LETTER_FORM = {"\u2180": "1000", "\u2181": "5000", "\u2182": "10000", "\u218
 # A single letter is a numeral only as I, V or X: L, C, D and M alone are
 # labels ("Part D", "Vitamin C").
 _SINGLE_LETTERS = frozenset("IVX")
+# A title-case word is a cue only for a numeral below 100. Regnal numbers
+# and the places of a named series stay below it ("Heinrich LXXII" of
+# Reuss, "Super Bowl LVIII"); a larger numeral after a name is a year, a
+# code or an abbreviation ("In MMXXIV", "Total MDCC", "Ce DIV"). A value
+# is a digit string with no leading zero, so below 100 is at most 2 digits.
+_TITLE_CASE_CUE_DIGITS = 2
 
 
 def roman_value(word: str) -> str | None:
@@ -46,8 +52,61 @@ def roman_value(word: str) -> str | None:
     return "".join(place[group] for place, group in zip(_PLACES, match.groups())).lstrip("0")
 
 
+def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None, bool] | None:
+    """The value, the gender and the weakness of an upper-case numeral glued
+    to an ordinal suffix of the language in lower case ("XIXe", "Ier",
+    "IIde"), where the language sets ``roman_ordinal_suffix``. The suffix
+    keeps its lower case in upper-case text ("XXe SIÈCLE"), so the change of
+    case ends the numeral. A single letter is I, V or X, as alone, and a
+    numeral that is also a word takes no suffix ("MMe"). The word is weak
+    when its numeral is a single letter ("Ire" is also "ire", anger) or when
+    the whole word is listed as a word ("Xe" is xenon)."""
+    numeral = word[:len(word) - len(word.lstrip("IVXLCDM"))]
+    suffix = word[len(numeral):]
+    if not (lexicon.roman_ordinal_suffix and numeral and suffix) or any(c.isupper() for c in suffix):
+        return None
+    if len(numeral) == 1 and numeral not in _SINGLE_LETTERS or fold(numeral) in lexicon.roman_words:
+        return None
+    value = roman_value(numeral)
+    if value is None or not lexicon.ordinal_suffix_fits(suffix, value):
+        return None
+    return value, lexicon.ordinal_suffixes[fold(suffix)], len(numeral) == 1 or fold(word) in lexicon.roman_words
+
+
+def _suffix_cue(lexicon: Lexicon, tokens: list[Token], k: int, listed: bool) -> bool:
+    """True when the words around a weak numeral with a suffix mark a place
+    in a series: a series noun before or after it ("au Xe siècle", "la Ve
+    République"), a regnal title and a name, or, for a word that is not
+    listed, a title-case name before it ("François Ier", "Jean-Paul Ier")."""
+    before = tokens[k - 1] if _spaced(tokens, k) else None
+    after = tokens[k + 1] if k + 1 < len(tokens) and tokens[k + 1].gap.isspace() else None
+    if any(t is not None and t.norm in lexicon.roman_series_nouns for t in (before, after)):
+        return True
+    name = _gap_name(tokens[k].gap) if before is None else None
+    if not listed and lexicon.roman_title_case_cue and (before is not None and _title_case(before) or name):
+        return True
+    regnal = _regnal(lexicon, tokens, k) if before is not None else name is not None and _regnal_name(lexicon, tokens, k)
+    return "\n" not in tokens[k].gap and regnal
+
+
 def _title_case(token: Token) -> bool:
-    return token.text[:1].isupper() and any(c.islower() for c in token.text[1:])
+    return _title_case_word(token.text)
+
+
+def _title_case_word(word: str) -> bool:
+    return word[:1].isupper() and any(c.islower() for c in word[1:])
+
+
+# A hyphenated word gives no token ("Jean-Paul"), so it stays in the gap
+# before the next token, with only spaces after it.
+_GAP_NAME = re.compile(r"(?<![\w-])([^\W\d_]+(?:-[^\W\d_]+)+)[ \t]+$")
+
+
+def _gap_name(gap: str) -> str | None:
+    """The hyphenated name right before a numeral, each part in title case:
+    "Jean-Paul" in "Jean-Paul II"."""
+    match = _GAP_NAME.search(gap)
+    return match[1] if match and all(_title_case_word(part) for part in match[1].split("-")) else None
 
 
 def _spaced(tokens: list[Token], k: int) -> bool:
@@ -63,7 +122,7 @@ def _list_item(tokens: list[Token], k: int, text: str) -> bool:
     return opens_line and after in (")", ".")
 
 
-def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool) -> bool:
+def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool, value: str) -> bool:
     """True when the words around the numeral mark a place in a series.
 
     A series noun before it ("século XIX", "World War I") or, for a numeral
@@ -71,13 +130,16 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
     may be a pronoun, the series noun before a word must be in title case:
     "Part I" reads, "the part I like" does not. A numeral that is no word
     also takes any title-case word before it ("Luís XIV", "Edition XIV"),
-    in a language that does not write every noun in title case. Any
+    in a language that does not write every noun in title case, when it is
+    below 100 ("Total MDCC" has no cue). Any
     numeral takes a regnal title before the name ("King Henry I", "D. João
     I", "Papst Benedikt XVI"); a single letter or a numeral that is also a
     word takes nothing else: "tell John I am late" and "I told Mary Jane I
     would come" give no cue. A title-case word is no cue for a lower-case
     numeral: "Pokaż mi" holds no 1001."""
     before = tokens[k - 1] if _spaced(tokens, k) else None
+    # a hyphenated name before the numeral is one title-case word: "Jean-Paul II"
+    name = None if before is not None else _gap_name(tokens[k].gap)
     if before is not None and before.norm in lexicon.roman_series_nouns:
         return not (word and lexicon.roman_pronoun_letters) or _title_case(before)
     if not word:
@@ -87,10 +149,11 @@ def _cue(lexicon: Lexicon, tokens: list[Token], k: int, word: bool, upper: bool)
             and tokens[k + 1].gap[-1:].isspace() else None
         if after is not None and after.norm in lexicon.roman_series_nouns:
             return True
-        if upper and lexicon.roman_title_case_cue and before is not None and _title_case(before):
+        if upper and lexicon.roman_title_case_cue and (before is not None and _title_case(before) or name) \
+                and len(value) <= _TITLE_CASE_CUE_DIGITS:
             return True
-    return before is not None and "\n" not in tokens[k].gap and _regnal(lexicon, tokens, k) \
-        and not (word and _initial(tokens, k))
+    regnal = _regnal(lexicon, tokens, k) if before is not None else name is not None and _regnal_name(lexicon, tokens, k)
+    return "\n" not in tokens[k].gap and regnal and not (word and _initial(tokens, k))
 
 
 def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
@@ -109,6 +172,13 @@ def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
                 and all(t.gap.isspace() and "\n" not in t.gap for t in name[1:]):
             return True
     return False
+
+
+def _regnal_name(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
+    """A regnal title, then a hyphenated name, right before token k: "le pape
+    Jean-Paul I". The name gives no token, so it is the gap before k."""
+    gap = tokens[k].gap
+    return k > 0 and tokens[k - 1].norm in lexicon.roman_titles and re.fullmatch(r"[ \t]+\S+[ \t]+", gap) is not None
 
 
 def _initial(tokens: list[Token], k: int) -> bool:
@@ -142,10 +212,10 @@ def _listed_after(lexicon: Lexicon, tokens: list[Token], k: int, cued: set[int])
 
 
 def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
-                   taken: list[tuple[int, int]]) -> list[tuple[Token, str, Kind, Reason | None]]:
+                   taken: list[tuple[int, int]]) -> list[tuple[Token, str, Kind, Reason | None, str | None]]:
     """The Roman numerals among ``tokens`` outside the spans in ``taken``,
     which are in reading order and do not overlap: each token with its
-    value, its kind and why it is not sure."""
+    value, its kind, why it is not sure and the gender of its suffix."""
     ends = [end for _, end in taken]
     numerals = []
     cued: set[int] = set()
@@ -155,6 +225,18 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         # the first span that ends after the token starts is the only one that may cover it
         first = bisect_left(ends, token.start + 1)
         if first < len(taken) and taken[first][0] < token.end:
+            continue
+        if suffixed := _suffixed(lexicon, token.text):
+            # the suffix makes the place in a series: "au XXe siècle"; a weak
+            # word needs a cue too ("François Ier"), and a listed one reads
+            # only with it ("Le xénon (Xe)" holds no 10th)
+            value, gender, weak = suffixed
+            listed = fold(token.text) in lexicon.roman_words
+            sure = not weak or _suffix_cue(lexicon, tokens, k, listed)
+            if sure:
+                cued.add(k)
+            if sure or not listed:
+                numerals.append((token, value, Kind.ORDINAL, None if sure else Reason.HOMOGRAPH, gender))
             continue
         value = roman_value(token.text)
         if not value:
@@ -167,7 +249,7 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if word and not token.text.isupper():
             continue
         # a word in a list is no numeral by its place: "World War I, I moved"
-        cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form) \
+        cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form, value=value) \
             or not word and _listed_after(lexicon, tokens, k, cued)
         if cue:
             cued.add(k)
@@ -176,5 +258,5 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
         if not (sure_form or cue or token.text.isupper() or _list_item(tokens, k, text)):
             continue
         numerals.append((token, value, Kind.ORDINAL if cue else Kind.CARDINAL,
-                         None if sure_form or cue else Reason.HOMOGRAPH))
+                         None if sure_form or cue else Reason.HOMOGRAPH, None))
     return numerals

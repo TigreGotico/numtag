@@ -19,6 +19,7 @@ from numtag import lexicon as lexicon_module
 from numtag import tagger as tagger_module
 from numtag import writer as writer_module
 import golden_writers
+from helpers import expected_version
 
 PACKAGE = Path(numtag.__file__).parent
 LEXICONS = PACKAGE / "lexicon"
@@ -73,6 +74,18 @@ def _issue_325(lang: str, text: str) -> bool:
 
 
 ISSUE_329 = re.compile(r"^(?:al|a|de)$|sut[ăe]lea|sut[ae]$|mielea|miilea|mia$|(?:milion|miliard|bilion|biliard|trilion)(?:ulea|a)$|(?:milioan|miliard|bilioan|biliard|trilioan)elea$")
+
+
+def _issue_360(lang: str, text: str) -> bool:
+    """https://github.com/TigreGotico/numtag/issues/360: the eu reader does not read a part of more than one word
+    ("hogeita baten bat"); its last word is also the genitive of the count ("etxe baten")."""
+    return lang == "eu" and text in ("baten", "biren", "hiruren", "lauren")
+
+
+def _sv_fused(lang: str, word: str) -> bool:
+    """sv "et" is "ett" fused with "tusen" ("ettusen", "tjugoettusen", CLDR sv %%spellout-numbering-t "1: et;"): a
+    part of a word, never a word."""
+    return lang == "sv" and word == "et"
 
 
 def _issue_373(lang: str, text: str) -> bool:
@@ -248,12 +261,20 @@ class TestRoundTrip(unittest.TestCase):
         for lang in WRITERS:
             failures = []
             for number in self.numbers(lang):
+                if lang == "mwr" and number >= 10 ** 12:  # https://github.com/TigreGotico/numtag/issues/375
+                    continue
                 words = spell(str(number), lang)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
                 if found != [(words, str(number), Kind.CARDINAL)]:
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
+
+    @unittest.expectedFailure
+    def test_the_mwr_reader_reads_a_lakh_count_before_kirod(self):
+        """https://github.com/TigreGotico/numtag/issues/375"""
+        self.assertEqual([(m.text, m.value) for m in tag_numbers("दो लाख किरोड़", "mwr")],
+                         [("दो लाख किरोड़", "2000000000000")])
 
     DECIMALS = ("0.5", "2.5", "3.14", "12.75", "100.25", "0.001")
 
@@ -315,8 +336,12 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_373(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_360(lang, word) and not _issue_373(lang, word) and not _sv_fused(lang, word)]
                 self.assertEqual(unread, [])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/360")
+    def test_the_eu_reader_reads_a_part_of_more_than_one_word(self):
+        self.assertEqual([m.value for m in tag_numbers("hogeita baten bat", "eu")], ["1/21"])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/305")
     def test_the_pt_PT_reader_reads_ordinals_with_two_scale_groups_and_high_scale_words(self):
@@ -371,7 +396,7 @@ class TestRoundTrip(unittest.TestCase):
         for lang in WRITERS:
             failures = []
             for number in self.numbers(lang, "ordinal"):
-                if number == 0:
+                if number == 0 or lang == "mwr" and number >= 10 ** 12:  # mwr: issue 375
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
@@ -394,7 +419,9 @@ class TestRevisions(unittest.TestCase):
         names = sorted(path.stem for path in LEXICONS.glob("*.json"))
         for name in names:
             with self.subTest(lexicon=name):
-                self.assertIn(_file(name)["format_version"], (2, 4) if name in VERSION_TWO else (1,))
+                data = _file(name)
+                self.assertEqual(data["format_version"], expected_version(data))
+                self.assertEqual(data["format_version"] > 1, name in VERSION_TWO)
         self.assertTrue({"id", "ms", "pt-PT", "pt-BR", "es", "nb"} <= set(WRITERS))
         self.assertTrue(set(WRITERS) <= set(VERSION_TWO))
 
@@ -567,6 +594,36 @@ class TestEnglish(unittest.TestCase):
 
 
 
+class TestBasque(unittest.TestCase):
+    """Euskaltzaindia, 7., 18. and 203. arauak."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "eu", **kw)[0].text
+
+    def test_cardinals_follow_the_examples_of_the_norms(self):
+        self.assertEqual([self.say(n) for n in ("18", "21", "30", "101", "1200", "1201", "1984", "13425", "1200000",
+                                                "1647413", "2700000", "60200001", "1000000000", "1000000000000")],
+                         ["hemezortzi", "hogeita bat", "hogeita hamar", "ehun eta bat", "mila eta berrehun",
+                          "mila berrehun eta bat", "mila bederatziehun eta laurogeita lau",
+                          "hamahiru mila laurehun eta hogeita bost", "milioi bat eta berrehun mila",
+                          "milioi bat seiehun eta berrogeita zazpi mila laurehun eta hamahiru",
+                          "bi milioi eta zazpiehun mila", "hirurogei milioi berrehun mila eta bat", "mila milioi",
+                          "bilioi bat"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("0", "1", "5", "21", "25", "101", "1001", "1000000")],
+                         ["zerogarren", "lehen", "bosgarren", "hogeita batgarren", "hogeita bosgarren",
+                          "ehun eta batgarren", "mila eta batgarren", "milioigarren"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "1/21", "1/1000000", "2/3", "3/2", "7/60", "13/47")],
+                         ["heren bat", "hogeita baten bat", "milioiren bat", "bi heren", "hiru erdi",
+                          "zazpi hirurogeiren", "hamahiru zati berrogeita zazpi"])
+
+    def test_decimals_and_negatives(self):
+        self.assertEqual([self.say(n) for n in ("0.27", "-15")], ["zero koma hogeita zazpi", "minus hamabost"])
+
+
 class TestDanish(unittest.TestCase):
     """CLDR RBNF da, sproget.dk and Den Danske Ordbog."""
 
@@ -626,8 +683,6 @@ class TestBengali(unittest.TestCase):
     def test_the_hundreds(self):
         self.assertEqual([self.say(n) for n in ("200", "999")], ["দুই শ", "নয় শ নিরানব্বই"])
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="the reader reads \"একশ এক\" as 100 and 1 "
-                       "https://github.com/TigreGotico/numtag/issues/391")
     def test_the_reader_reads_the_one_word_hundred_before_a_rest(self):
         self.assertEqual([(m.text, m.value) for m in tag_numbers("একশ এক", "bn")], [("একশ এক", "101")])
 
@@ -680,6 +735,93 @@ class TestNorwegianBokmal(unittest.TestCase):
                          ["en tredel", "to tredeler", "åtte trettendeler", "ni trettifiredeler", "en halv"])
 
 
+class TestPolish(unittest.TestCase):
+    """G. Jagodziński, «Tworzenie i składnia liczebników»; zpe.gov.pl, «Odmiana liczebnika»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "pl", **kw)[0].text
+
+    def test_the_scale_word_agrees_with_its_count(self):
+        self.assertEqual([self.say(n) for n in ("1523", "2000", "5000", "12000000", "31000000000", "101000")],
+                         ["tysiąc pięćset dwadzieścia trzy", "dwa tysiące", "pięć tysięcy", "dwanaście milionów",
+                          "trzydzieści jeden miliardów", "sto jeden tysięcy"])
+
+    def test_one_inside_a_number_does_not_change_and_two_takes_the_gender(self):
+        self.assertEqual([self.say("21", gender="feminine"), self.say("1002", gender="feminine"), self.say("1", gender="neuter")],
+                         ["dwadzieścia jeden", "tysiąc dwie", "jedno"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("21", "63", "101", "1016", "2150", "3459", "2000", "2100", "1500000", "1800", "1801")],
+                         ["dwudziesty pierwszy", "sześćdziesiąty trzeci", "sto pierwszy", "tysiąc szesnasty",
+                          "dwa tysiące sto pięćdziesiąty", "trzy tysiące czterysta pięćdziesiąty dziewiąty", "dwutysięczny",
+                          "dwa tysiące setny", "milion pięćsettysięczny", "tysiąc osiemsetny", "tysiąc osiemset pierwszy"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/3", "2/3", "3/4", "1/4")],
+                         ["jedna trzecia", "dwie trzecie", "trzy czwarte", "jedna czwarta"])
+
+    def test_every_spelling_reads_back(self):
+        for value in ("22", "1999", "25000", "2000001", "99000"):
+            for form in (SpokenForm.CARDINAL, SpokenForm.ORDINAL):
+                text = self.say(value, form=form)
+                with self.subTest(text=text):
+                    self.assertEqual([m.value for m in tag_numbers(text, "pl")], [value])
+
+
+class TestCzech(unittest.TestCase):
+    """Internetová jazyková příručka (ÚJČ AV ČR), «Členění čísel, víceslovné číslovkové výrazy»."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "cs", **kw)[0].text
+
+    def test_each_word_apart(self):
+        self.assertEqual([self.say(n) for n in ("21", "54", "900", "2168", "2231", "1300783")],
+                         ["dvacet jedna", "padesát čtyři", "devět set", "dva tisíce sto šedesát osm",
+                          "dva tisíce dvě stě třicet jedna", "jeden milion tři sta tisíc sedm set osmdesát tři"])
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("25", "150", "478", "1956")],
+                         ["dvacátý pátý", "stý padesátý", "čtyřstý sedmdesátý osmý", "tisící devítistý padesátý šestý"])
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("5/100", "1/10", "2/10", "5/10")],
+                         ["pět setin", "jedna desetina", "dvě desetiny", "pět desetin"])
+
+    def test_every_spelling_reads_back(self):
+        for value in ("22", "1999", "25000", "2000001", "5/3"):
+            for form in (SpokenForm.CARDINAL, SpokenForm.ORDINAL):
+                if "/" in value and form is SpokenForm.ORDINAL:
+                    continue
+                text = self.say(value, form=form)
+                with self.subTest(text=text):
+                    self.assertEqual([m.value for m in tag_numbers(text, "cs")], [value])
+
+
+class TestSwedish(unittest.TestCase):
+    """Språkrådet, Myndigheternas skrivregler, 8th ed., §12.1.2: "tvåtusenfemhundratrettiofem kronor", "omkring tusen
+    deltagare"; CLDR RBNF sv."""
+
+    def say(self, value: str, **kw) -> str:
+        return spell(value, "sv", **kw)[0].text
+
+    def test_one_word_below_a_million(self):
+        self.assertEqual([self.say(n) for n in ("100", "1000", "101", "1100", "2535", "21000", "2000001")],
+                         ["hundra", "tusen", "etthundraett", "ettusenetthundra", "tvåtusenfemhundratrettiofem",
+                          "tjugoettusen", "två miljoner ett"])
+        self.assertEqual([self.say("21", gender=g) for g in ("masculine", "feminine", "neuter")],
+                         ["tjugoen", "tjugoen", "tjugoett"])
+        self.assertEqual(self.say("21000000"), "tjugoen miljoner")
+
+    def test_ordinals(self):
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("2", "20", "21", "100", "101", "1100", "1000000",
+                                                                         "2000001")],
+                         ["andra", "tjugonde", "tjugoförsta", "hundrade", "etthundraförsta", "ettusenetthundrade",
+                          "miljonte", "två miljoner första"])
+        self.assertEqual(self.say("1", form=SpokenForm.ORDINAL, gender="masculine"), "förste")
+
+    def test_fractions(self):
+        self.assertEqual([self.say(f) for f in ("1/2", "1/3", "3/4", "1/8", "1/13", "1/100")],
+                         ["en halv", "en tredjedel", "tre fjärdedelar", "en åttondel", "en trettondel", "en hundradel"])
 class TestKabyle(unittest.TestCase):
     """fr.wiktionary «Modèle:cardinaux/kab», languagesandnumbers.com and en.wikipedia «Kabyle grammar»."""
 
@@ -920,6 +1062,15 @@ class TestLoader(unittest.TestCase):
         self.refused(data, "variant: the writer decimal key 'variant_read', decimal key 'by_case', decimal read "
                            "'fraction', gender 'plural' of form 'ordinal' needs format_version 4")
 
+    def test_an_unknown_decimal_read_is_refused_at_load(self):
+        data = _file("ru")
+        data["writer"]["decimal"]["variant_read"] = ["words"]
+        self.refused(data, "variant: the decimal read 'words' is not 'digits', 'number' or 'fraction'")
+
+    def test_a_fraction_decimal_needs_a_lexicon_that_has_it(self):
+        with self.assertRaisesRegex(ValueError, "en: no fraction reading of decimals"):
+            spell("1.5", "en", decimals="fraction")
+
     def test_a_fraction_decimal_with_no_cases_is_refused_by_name(self):
         data = _file("ru")
         del data["writer"]["decimal"]["by_case"]
@@ -1033,7 +1184,7 @@ class TestSpell(unittest.TestCase):
 
     def test_a_language_with_no_writer_raises_unsupported_language(self):
         with self.assertRaises(UnsupportedLanguageError):
-            spell("1", "sv")
+            spell("1", "fi")
         with self.assertRaises(UnsupportedLanguageError):
             spell("1", "xx")
 

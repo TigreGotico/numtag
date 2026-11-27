@@ -519,6 +519,42 @@ A number in E notation ("1e5", "2,5e-3") is no number of the reader. Its "e" is 
 [('2e', '2')]
 ```
 
+A suffix that abbreviates one ordinal follows only its number. French "er" and "re" abbreviate "premier" and "première", and "d", "de", "nd" and "nde" abbreviate "second" and "seconde". So "3er" is 3 and a word. The letters of the suffix stay lower case, so "2D", two dimensions, is no ordinal. A plural takes an "s" ("1ers", "2es"), and the raised letters may be modifier letters ("2ᵉ", "1ᵉʳ").
+
+```python
+>>> read("les 1ers et 2es Jeux, la 2de et la 2nde partie", "fr")
+[('1ers', '1'), ('2es', '2'), ('2de', '2'), ('2nde', '2')]
+>>> read("le 1ᵉʳ mai et le 2ᵉ jour", "fr")
+[('1ᵉʳ', '1'), ('2ᵉ', '2')]
+>>> read("un 3er essai en 2D", "fr")
+[('un', '1'), ('3', '3'), ('2', '2')]
+```
+
+> Académie française, Dire, ne pas dire, "Abréviations des adjectifs numéraux": "Rappelons donc que premier et première s’abrègent en 1er et 1re, que second et seconde s’abrègent en 2d et 2de, et que toutes les autres formes s’abrègent en e : 3e, 5e, 100e, etc."
+
+> Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Lorsque l’énoncé est écrit entièrement en capitales (par exemple dans un sous-titre) : la ou les lettres supérieures restent en minuscules.": the suffix of second is lower case, so "2D" (two dimensions) is no ordinal.
+
+French writes the same suffixes after a Roman numeral (setting `roman_ordinal_suffix`). The numeral is in upper case and the suffix in lower case, and the word is one ordinal with the gender of its suffix. The suffix keeps its limits, so "Vers" and "Ver" (V and "er") are no ordinal. A single letter is I, V or X, so "Le", "De" and "Me" are no ordinal either.
+
+A single-letter numeral with a suffix is sure only with a cue: a series noun before or after it ("au Xe siècle", "la Ve République"), a title-case name before it ("François Ier") or a regnal title and a name. With no cue it is an ordinal with a low score, as "Ire" is also "ire", anger. A word on the `roman_word` list reads only with a series noun or a regnal cue, as "Xe" is the symbol of xenon and "Cie" the abbreviation of "compagnie". No mark stands between digits and a French suffix, so "2.d", part d of figure 2, is no ordinal.
+
+```python
+>>> read("au XXe siècle, sous la Ve République", "fr")
+[('XXe', '20'), ('Ve', '5')]
+>>> [(m.text, m.value, m.kind.value, m.gender) for m in tag_numbers("François Ier et la IIde République", "fr")]
+[('Ier', '1', 'ordinal', 'masculine'), ('IIde', '2', 'ordinal', 'feminine')]
+>>> read("Vers midi, Me Durand est parti.", "fr")
+[]
+>>> [(m.text, m.confidence) for m in tag_numbers("Ire et colère le saisirent.", "fr")]
+[('Ire', 0.4)]
+>>> read("Le xénon (Xe) est un gaz rare. Le Xe arrondissement.", "fr")
+[('un', '1'), ('Xe', '10')]
+>>> read("Voir la figure 2.d", "fr")
+[('2', '2')]
+```
+
+> Office québécois de la langue française, Banque de dépannage linguistique, "Abréviation de l’adjectif ordinal": "Pour abréger les adjectifs ordinaux, on fait suivre un chiffre arabe ou romain d’une, de deux ou de trois lettres minuscules surélevées qui correspondent aux lettres finales des adjectifs."
+
 ## Fractions
 
 A count and a denominator make a fraction. "avos" joins only a denominator above ten, so "dez avos" is no fraction. A fraction word after "e" adds that part of one.
@@ -677,6 +713,43 @@ Czech, Galician, Occitan and European Portuguese keep the dot, although CLDR giv
 The four sources differ in strength. European Portuguese rests on Wikipedia, "Decimal separator", which lists Portugal among the countries that write "1.234.567,89". Galician rests on the reading of ovos-number-parser and on the dot of Spanish and Portuguese. The Czech reference grammar allows the dot only for money amounts in administrative text. The lexicon reads it in every Czech text, because the comma is the only decimal mark. A section number such as "1.500" reads as 1500 for that reason. Occitan rests on the reading of ovos-number-parser alone, and no Occitan grammar in the sources names the dot. A source for the Occitan dot is open.
 
 > CLDR 48 numbers, gl (latn): decimal ",", group " "; the dot groups digits as in es and pt-PT ("1.000.000"), as ovos-number-parser reads gl.
+
+Swiss French writes the group apostrophe both as "'" (U+0027) and as "’" (U+2019). CLDR gives only "'" for fr-CH, so the second form is the setting `group_mark_forms`. A group mark other than ".", "," and a space joins digits only before a group of exactly three. So "9’58", a time or a score, is two numbers.
+
+```python
+>>> read("1’234.50 et 1'234.50", "fr-CH")
+[('1’234.50', '1234.5'), ("1'234.50", '1234.5')]
+>>> read("en 9’58 et 3'45", "fr-CH")
+[('9', '9'), ('58', '58'), ('3', '3'), ('45', '45')]
+```
+
+> "Subdivision par une apostrophe en groupes de trois pour les nombres ayant plus de quatre chiffres avant la virgule", with the examples "1'234’567" and "Un montant de 10’000 francs a été alloué." (U+2019), and "10'000.00" (U+0027) in a table: Swiss French text writes the group apostrophe both as U+0027 and as U+2019.
+
+Source: educa.ch, "Guide linguistique", November 2023, quoted in the `group_mark_forms` setting of `fr-CH.json`.
+
+## A name before a large Roman numeral
+
+A title-case word before an upper-case Roman numeral makes it an ordinal only below 100. Regnal numbers stay below 100: the House of Reuss, which numbered every man Heinrich, reached Heinrich LXXIII. A numeral of 100 or more after a name is a year, a code or an abbreviation, so it is a cardinal with a low score. A regnal title before the name and a series noun still make it an ordinal. French "DC" is the postal symbol of the District of Columbia, so it reads only after a strong cue, as in English.
+
+```python
+>>> read("Louis XIV et Jean XXIII", "fr")
+[('XIV', '14'), ('XXIII', '23')]
+>>> [(m.text, m.kind.value, m.confidence) for m in tag_numbers("Ce DIV", "fr")]
+[('DIV', 'cardinal', 0.4)]
+>>> read("Il habite à Washington DC.", "fr")
+[]
+```
+
+A hyphenated given name is one title-case word before the numeral, so "Jean-Paul II" reads like "Élisabeth II".
+
+```python
+>>> read("Jean-Paul II et Élisabeth II", "fr")
+[('II', '2'), ('II', '2')]
+>>> [(m.text, m.kind.value) for m in tag_numbers("le pape Jean-Paul I", "fr")]
+[('I', 'ordinal')]
+```
+
+Source: structural, no external source decides the bound. Wikipedia, "Imperial County of Reuss", lists "Henry LXXII" and "Henry LXXIII" among the princes, so 100 keeps the regnal numbers in that list a cue. The "DC" entry of `roman_word` in `fr-FR.json` cites Wiktionnaire.
 
 ## Words that are no number
 
