@@ -1,8 +1,20 @@
 # Changelog
 
-## [0.45.0a1](https://github.com/TigreGotico/numtag/tree/0.45.0a1) (2026-11-27)
+## [0.46.0a1](https://github.com/TigreGotico/numtag/tree/0.46.0a1) (2026-11-27)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.43.0a1...0.45.0a1)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.45.0a1...0.46.0a1)
+
+**Merged pull requests:**
+
+- feat: Marwari \(mwr\) lexicon, reader and writer [\#384](https://github.com/TigreGotico/numtag/pull/384) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.45.0a1](https://github.com/TigreGotico/numtag/tree/0.45.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.44.0a1...0.45.0a1)
+
+## [0.44.0a1](https://github.com/TigreGotico/numtag/tree/0.44.0a1) (2026-11-26)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.43.0a1...0.44.0a1)
 
 **Merged pull requests:**
 
