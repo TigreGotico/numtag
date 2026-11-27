@@ -23,11 +23,16 @@ class TestLanguageTable(unittest.TestCase):
 
     def test_leader_rows(self):
         page = language_table.PAGE.read_text(encoding="utf-8")
-        self.assertIn("| `mwr` | yes | yes | yes | yes | 26 | 26 | 100.0%[^mwr] |", page)
-        self.assertIn("| `es-CO` (resolves to `es`) |", page)
-        self.assertIn("| 479 | 473 | 98.7% |", page)
-        self.assertIn("The score of `bn` rests on 75 rows.", page)
+        results = json.loads(language_table.RESULTS.read_text(encoding="utf-8"))
 
+        def score(lang: str) -> str:
+            rows, right = results[lang]["rows"], results[lang]["rows_right"]
+            return f"| {rows} | {right} | {100 * right / rows:.1f}%"
+
+        self.assertIn(f"| `mwr` | yes | yes | yes | yes {score('mwr')}[^mwr] |", page)
+        self.assertIn("| `es-CO` (resolves to `es`) |", page)
+        self.assertIn(f"| `pt-PT` | yes | yes | yes | yes {score('pt-PT')} |", page)
+        self.assertIn(f"The score of `bn` rests on {results['bn']['rows']} rows.", page)
 
 if __name__ == "__main__":
     unittest.main()
