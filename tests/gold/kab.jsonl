@@ -191,3 +191,4 @@
 {"text": "Tmanyin ; Quatre-vingts.", "mentions": [{"start": 0, "end": 7, "value": "80", "kind": "cardinal"}], "source": "Dallet (1982), Dictionnaire kabyle-français, p. 825: \"tmanyin ; ‖ Quatre-vingts.\""}
 {"text": "Alfin, deux mille.", "mentions": [{"start": 0, "end": 5, "value": "2000", "kind": "cardinal"}], "source": "Dallet (1982), Dictionnaire kabyle-français, p. 446: \"alfin (wa) ‖ Deux mille.\""}
 {"text": "Yesɛa miṭin n yiseggasen.", "mentions": [{"start": 6, "end": 11, "value": "200", "kind": "cardinal"}], "source": "Dallet (1982), Dictionnaire kabyle-français, p. 528: \"miṭin / miṭayen / mitayen (duel ar.). ‖ Deux cents.\"; the sentence frame is the one of row \"Yesɛa tmanyin n yiseggasen.\""}
+{"text": "Eḥdac bbussan : onze jours.", "mentions": [{"start": 0, "end": 5, "value": "11", "kind": "cardinal"}], "source": "Dallet (1982), Dictionnaire kabyle-français, p. 305: \"eḥdac bbussan : onze jours.\""}
