@@ -44,15 +44,116 @@ class TestVigesimalTens(unittest.TestCase):
 
 
 class TestRegionalTens(unittest.TestCase):
-    def test_septante_is_belgian(self):
-        # 70 + 7 = 77
-        self.assertEqual(fr("septante-sept", "fr-BE"), [("septante-sept", "77", C)])
-        self.assertEqual(fr("septante"), [])
+    TAGS = ("fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH")
 
-    def test_huitante_is_swiss(self):
-        # 80 + 2 = 82
-        self.assertEqual(fr("huitante-deux", "fr-CH"), [("huitante-deux", "82", C)])
-        self.assertEqual(fr("huitante", "fr-BE"), [])
+    def test_septante_and_nonante_read_under_every_french_tag(self):
+        # 70 + 5 = 75; 90 + 1 = 91; 90 + 9 = 99; the ordinal 70; 1900 + 70 + 9 = 1979
+        for lang in self.TAGS:
+            with self.subTest(lang=lang):
+                self.assertEqual(fr("septante-cinq", lang), [("septante-cinq", "75", C)])
+                self.assertEqual(fr("nonante et un", lang), [("nonante et un", "91", C)])
+                self.assertEqual(fr("nonante-neuf", lang), [("nonante-neuf", "99", C)])
+                self.assertEqual(fr("septantième", lang), [("septantième", "70", O)])
+                self.assertEqual(fr("mille neuf cent septante-neuf", lang),
+                                 [("mille neuf cent septante-neuf", "1979", C)])
+
+    def test_huitante_and_octante_read_under_every_french_tag(self):
+        # 80 + 2 = 82; 80 + 3 = 83; the ordinal 80
+        for lang in self.TAGS:
+            with self.subTest(lang=lang):
+                self.assertEqual(fr("huitante-deux", lang), [("huitante-deux", "82", C)])
+                self.assertEqual(fr("octante", lang), [("octante", "80", C)])
+                self.assertEqual(fr("octante-trois", lang), [("octante-trois", "83", C)])
+                self.assertEqual(fr("octantième", lang), [("octantième", "80", O)])
+
+    def test_a_regional_ten_is_a_sure_number(self):
+        # no other meaning, so the full score
+        for lang in ("fr-FR", "fr-CA"):
+            self.assertEqual(confidence("Il a septante ans et elle nonante.", lang),
+                             [("septante", 1.0), ("nonante", 1.0)])
+            self.assertEqual(confidence("Il y a huitante personnes, octante selon lui.", lang),
+                             [("huitante", 1.0), ("octante", 1.0)])
+
+    def test_the_writer_keeps_the_tens_of_each_region(self):
+        from numtag import spell
+        def say(value, lang):
+            return spell(value, lang)[0].text
+        for lang in ("fr-FR", "fr-CA", "fr"):
+            self.assertEqual([say(n, lang) for n in ("70", "80", "90", "91")],
+                             ["soixante-dix", "quatre-vingts", "quatre-vingt-dix", "quatre-vingt-onze"])
+        self.assertEqual([say(n, "fr-BE") for n in ("70", "80", "90")], ["septante", "quatre-vingts", "nonante"])
+        self.assertEqual([say(n, "fr-CH") for n in ("70", "80", "90")], ["septante", "huitante", "nonante"])
+
+
+class TestCentEtUn(unittest.TestCase):
+    def test_cent_et_un_is_one_number(self):
+        # 100 + 1 = 101, in the masculine and the feminine
+        self.assertEqual(fr("cent et un"), [("cent et un", "101", C)])
+        self.assertEqual(fr("Les Cent et Un"), [("Cent et Un", "101", C)])
+        self.assertEqual(fr("Ma brochure vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand"),
+                         [("cent et une", "101", C)])
+        self.assertEqual(confidence("cent et une nuits", "fr-FR"), [("cent et une", 1.0)])
+
+    def test_cent_et_un_reads_in_a_larger_number(self):
+        # 1000 + 101 = 1101; 101 x 10^6
+        self.assertEqual(fr("mille cent et un"), [("mille cent et un", "1101", C)])
+        self.assertEqual(fr("cent et un millions"), [("cent et un millions", "101000000", C)])
+
+    def test_cent_et_un_keeps_a_range_apart(self):
+        # the limits 100 and 200; 100 and 10^6; 100 and 1000
+        self.assertEqual(fr("entre cent et deux cents"), [("cent", "100", C), ("deux cents", "200", C)])
+        self.assertEqual(fr("entre cent et un million de personnes"),
+                         [("cent", "100", C), ("un million", "1000000", C)])
+        self.assertEqual(fr("entre cent et un millier"), [("cent", "100", C), ("un millier", "1000", C)])
+        # 100 and 2 x 1000; 100 and 3 x 1000; 2 x 100 and 3 x 1000; 100 and 2 x 10^6
+        self.assertEqual(fr("entre cent et deux mille francs"), [("cent", "100", C), ("deux mille", "2000", C)])
+        self.assertEqual(fr("entre cent et trois mille euros"), [("cent", "100", C), ("trois mille", "3000", C)])
+        self.assertEqual(fr("entre deux cents et trois mille personnes"),
+                         [("deux cents", "200", C), ("trois mille", "3000", C)])
+        self.assertEqual(fr("entre cent et deux millions"), [("cent", "100", C), ("deux millions", "2000000", C)])
+
+    def test_et_joins_only_un_to_the_hundreds(self):
+        # TLFi: "À part cet emploi, un n'est pas relié à cent par et."
+        rows = [("cent et deux", "fr-FR", [("cent", "100", C), ("deux", "2", C)]),
+                ("cent et vingt", "fr-FR", [("cent", "100", C), ("vingt", "20", C)]),
+                ("cent et dix ans", "fr-FR", [("cent", "100", C), ("dix", "10", C)]),
+                ("deux cents et quatre-vingts", "fr-FR", [("deux cents", "200", C), ("quatre-vingts", "80", C)]),
+                ("cent et deux mille personnes", "fr-FR", [("cent", "100", C), ("deux mille", "2000", C)]),
+                ("cent et septante", "fr-CH", [("cent", "100", C), ("septante", "70", C)])]
+        for text, lang, expected in rows:
+            with self.subTest(text=text):
+                self.assertEqual(fr(text, lang), expected)
+
+    def test_et_joins_un_only_to_the_bare_word_cent(self):
+        # TLFi attests "Cent et un" only: 2 x 100 and 1; 3 x 100 and 1
+        self.assertEqual(fr("deux cent et un"), [("deux cent", "200", C), ("un", "1", C)])
+        self.assertEqual(confidence("trois cents et une nuits", "fr-FR"), [("trois cents", 1.0), ("une", 0.3)])
+
+    def test_a_fraction_after_cent_et_adds_to_the_hundreds(self):
+        # 100 + 3/4; 200 + 3/4; 100 + 1/3 = 301/3; 100 + 2/3 = 302/3; 100 + 3/10; 100 + 5/8
+        rows = [("cent et trois quarts", "100.75"), ("deux cents et trois quarts", "200.75"),
+                ("cent et un tiers", "301/3"), ("cent et deux tiers", "302/3"),
+                ("cent et trois dixièmes", "100.3"), ("cent et cinq huitièmes", "100.625")]
+        for text, value in rows:
+            with self.subTest(text=text):
+                self.assertEqual([(m.text, m.value) for m in tag_numbers(text, "fr-FR")], [(text, value)])
+
+    def test_un_before_a_singular_scale_noun_counts_it(self):
+        # 100 and 10^6; 100 and 10^9; 200 and 10^6
+        self.assertEqual(fr("cent et un million"), [("cent", "100", C), ("un million", "1000000", C)])
+        self.assertEqual(fr("cent et un milliard"), [("cent", "100", C), ("un milliard", "1000000000", C)])
+        self.assertEqual(fr("deux cents et un million"), [("deux cents", "200", C), ("un million", "1000000", C)])
+
+    def test_a_long_run_of_cent_et_un_reads_without_deep_recursion(self):
+        # 2000 times 100 + 1 = 101, one number between each pair of commas
+        text = ", ".join(["cent et un"] * 2000)
+        mentions = tag_numbers(text, "fr-FR")
+        self.assertEqual({m.value for m in mentions}, {"101"})
+        self.assertEqual(len(mentions), 2000)
+
+    def test_the_writer_writes_cent_un(self):
+        from numtag import spell
+        self.assertEqual(spell("101", "fr-FR")[0].text, "cent un")
 
 
 class TestScaleNouns(unittest.TestCase):

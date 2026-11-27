@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "format_version": {
-      "enum": [1, 2, 3, 4]
+      "enum": [1, 2, 3, 4, 5]
     },
     "extends": {
       "type": "string"
@@ -48,6 +48,7 @@
         "joiner_between_groups": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "joiner_tens_units": {"properties": {"value": {"enum": ["required", "optional", "never"]}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "joiner_thousand_hundreds": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
+        "joiner_after_hundred_one": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "joiner_thousand_one_only": {"properties": {"value": {"type": "boolean", "default": false}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "joiner_unit_ten": {"properties": {"value": {"enum": ["required", "optional", "never"], "default": "required"}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
         "kept_marks": {"properties": {"value": {"type": "string", "default": ""}, "source": {"type": "string"}}, "required": ["value", "source"], "additionalProperties": false},
@@ -267,11 +268,12 @@
     "format_version"
   ],
   "dependentSchemas": {
-    "writer": {"properties": {"format_version": {"enum": [2, 3, 4]}}}
+    "writer": {"properties": {"format_version": {"enum": [2, 3, 4, 5]}}}
   },
   "allOf": [
     {"if": {"properties": {"format_version": {"enum": [1, 2]}}}, "then": {"properties": {"entries": {"items": {"not": {"anyOf": [{"required": ["after"]}, {"required": ["cased"]}]}}}, "settings": {"not": {"anyOf": [{"required": ["roman_ordinal_suffix"]}, {"required": ["group_mark_forms"]}]}}}}},
-    {"if": {"properties": {"format_version": {"enum": [1, 2, 3]}}}, "then": {"properties": {"writer": {"anyOf": [{"type": "null"}, {"properties": {"decimal": {"not": {"anyOf": [{"required": ["variant_read"]}, {"required": ["by_case"]}, {"properties": {"read": {"const": "fraction"}}, "required": ["read"]}]}}, "forms": {"additionalProperties": {"properties": {"gender": {"not": {"required": ["plural"]}}, "case": {"additionalProperties": {"not": {"type": "object", "required": ["plural"]}}}}}}}}]}}}}
+    {"if": {"properties": {"format_version": {"enum": [1, 2, 3]}}}, "then": {"properties": {"writer": {"anyOf": [{"type": "null"}, {"properties": {"decimal": {"not": {"anyOf": [{"required": ["variant_read"]}, {"required": ["by_case"]}, {"properties": {"read": {"const": "fraction"}}, "required": ["read"]}]}}, "forms": {"additionalProperties": {"properties": {"gender": {"not": {"required": ["plural"]}}, "case": {"additionalProperties": {"not": {"type": "object", "required": ["plural"]}}}}}}}}]}}}},
+    {"if": {"properties": {"format_version": {"enum": [1, 2, 3, 4]}}}, "then": {"properties": {"settings": {"not": {"required": ["joiner_after_hundred_one"]}}}}}
   ],
   "if": {
     "required": [

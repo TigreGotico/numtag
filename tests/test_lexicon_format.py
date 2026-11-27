@@ -112,10 +112,13 @@ class TestSchema(unittest.TestCase):
         bad["entries"] = [{"word": "x", "role": "unit", "value": "1", "rank": 3, "source": "s"}]
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("fi")
-        bad["format_version"] = 5
+        bad["format_version"] = 6
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("fr-FR")
         bad["format_version"] = 2
+        self.assertTrue(list(validator.iter_errors(bad)))
+        bad = _file("fr-FR")
+        bad["format_version"] = 4
         self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("fi")
         bad["writer"] = _file("id")["writer"]
@@ -149,7 +152,7 @@ class TestVersion(unittest.TestCase):
 
     def test_a_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
-        for version in (5, 0, "1", None):
+        for version in (6, 0, "1", None):
             data = _file("en")
             data["format_version"] = version
             variants.write("variant", data)
@@ -168,10 +171,10 @@ class TestVersion(unittest.TestCase):
     def test_a_base_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
         base = _file("pt-PT")
-        base["format_version"] = 5
+        base["format_version"] = 6
         variants.write("base", base)
         variants.write("variant", {**_file("pt-BR"), "extends": "base"})
-        with self.assertRaisesRegex(ValueError, "base: format_version 5 is unknown"):
+        with self.assertRaisesRegex(ValueError, "base: format_version 6 is unknown"):
             load.__wrapped__("variant")
 
     def test_a_key_of_version_3_in_an_older_file_is_refused_by_name(self):
@@ -184,6 +187,32 @@ class TestVersion(unittest.TestCase):
             variants.write("variant", data)
             with self.subTest(version=version), self.assertRaisesRegex(
                     ValueError, "variant: the key 'after' in entry 'er' of role 'ordinal_suffix' needs format_version 3"):
+                load.__wrapped__("variant")
+
+    def test_a_setting_of_version_3_in_an_older_file_is_refused_by_name(self):
+        variants = Variants(self)
+        for version in (1, 2):
+            data = _file("en")
+            data["format_version"] = version
+            data["settings"]["group_mark_forms"] = {"value": "e", "source": "test"}
+            if version == 1:
+                del data["writer"]
+            variants.write("variant", data)
+            with self.subTest(version=version), self.assertRaisesRegex(
+                    ValueError, "variant: the key 'group_mark_forms' in settings needs format_version 3"):
+                load.__wrapped__("variant")
+
+    def test_a_setting_of_version_5_in_an_older_file_is_refused_by_name(self):
+        variants = Variants(self)
+        for version in (1, 2, 3, 4):
+            data = _file("en")
+            data["format_version"] = version
+            data["settings"]["joiner_after_hundred_one"] = {"value": True, "source": "test"}
+            if version == 1:
+                del data["writer"]
+            variants.write("variant", data)
+            with self.subTest(version=version), self.assertRaisesRegex(
+                    ValueError, "variant: the key 'joiner_after_hundred_one' in settings needs format_version 5"):
                 load.__wrapped__("variant")
 
     def test_a_file_of_version_2_reads_in_version_3(self):
@@ -313,8 +342,7 @@ class TestReadOrRefuse(unittest.TestCase):
             def edit(data, key=key):
                 item = data["settings"].setdefault(key, {"source": "test"})
                 item["value"] = _different(_value_spec("settings", key), item.get("value", DEFAULT_SETTINGS.get(key)))
-                if holds_v3_keys(data):
-                    data["format_version"] = V3_VERSION
+                data["format_version"] = max(data["format_version"], expected_version(data))
 
             with self.subTest(setting=key):
                 self.assertTrue(self.changes(variants, edit))
@@ -377,8 +405,7 @@ class TestReadOrRefuse(unittest.TestCase):
                         entry[key] = [entry["word"]]
                     else:
                         entry[key] = _different(spec, entry.get(key))
-                if holds_v3_keys(data):
-                    data["format_version"] = V3_VERSION
+                data["format_version"] = max(data["format_version"], expected_version(data))
 
             with self.subTest(entry=key):
                 self.assertTrue(self.changes(variants, edit))

@@ -80,6 +80,29 @@ In English, "and" is optional between groups and after "hundred". Both forms rea
 
 > Wikipedia, "English numerals": in American English "many students are taught [...] not to use the word and anywhere in the whole part of a number, so it is not used before the tens and ones"; "Despite this rule, some Americans use the and in reading numbers containing tens and ones as an alternative".
 
+In French, "et" joins "un" to "mille" ("mille et un"), and the older "cent et un" joins it to "cent". The writer gives "cent un". The reader takes "et" after the bare word "cent" only before a one (the setting `joiner_after_hundred_one`), so "cent et un" and "cent et une" are one number, 101. "cent et deux" is two numbers, and so is "deux cent et un", which the source does not give. A one that counts the word after it is no part of the hundreds: "cent et un million" is 100 and a million, and "cent et un tiers" is one mixed number, 100 and a third (301/3), not 101 thirds.
+
+```python
+>>> read("Les Mille et Une Nuits", "fr")
+[('Mille et Une', '1001')]
+>>> read("Ma brochure vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand", "fr")
+[('cent et une', '101')]
+>>> read("mille cent et un", "fr")
+[('mille cent et un', '1101')]
+>>> read("cent et un millions", "fr")
+[('cent et un millions', '101000000')]
+>>> read("cent et deux", "fr")
+[('cent', '100'), ('deux', '2')]
+>>> read("deux cent et un", "fr")
+[('deux cent', '200'), ('un', '1')]
+>>> read("cent et un million", "fr")
+[('cent', '100'), ('un million', '1000000')]
+>>> read("cent et un tiers", "fr")
+[('cent et un tiers', '301/3')]
+```
+
+> TLFi, CENT: "Vieilli. Cent et un. Ma brochure (...) vaut pour la pensée cent et une fois plus que celle de M. de Chateaubriand" (Lamartine, 1831); "Remarque : À part cet emploi, un n'est pas relié à cent par et."
+
 ## A comma between classes
 
 In Portuguese, a comma after a scale word and before a number word links two classes of one number. The classes go from the largest down, so the class after the comma is smaller: "2 mil, milhões de pessoas" is 2000 and then a noun phrase. The joiner rule still holds after the comma: a round last group needs "e", so a comma before it ends the number.
@@ -310,6 +333,15 @@ After a range cue, the first number ends at a joiner that splits the words into 
 [('cinco mil', '5000'), ('sessenta e sete milhões', '67000000')]
 >>> read("The prize is between five hundred thousand and two million dollars.", "en")
 [('five hundred thousand', '500000'), ('two million', '2000000')]
+```
+
+A joiner inside a number below a thousand ("sessenta e sete") is no range joiner, except where the number after it reaches past the longest reading. "cem e um milhão" is no number, because a singular scale noun takes only the count one. So after "entre", "cem e um milhão" is 100 and a million, not 101 and a bare "milhão".
+
+```python
+>>> read("O evento juntou entre cem e um milhão de pessoas.")
+[('cem', '100'), ('um milhão', '1000000')]
+>>> read("Il y avait entre cent et un million de personnes.", "fr")
+[('cent', '100'), ('un million', '1000000')]
 ```
 
 With no cue, the same words can read as one number.
@@ -939,6 +971,35 @@ Some number words are also a noun that a count takes. Right after a sure cardina
 ```
 
 > Wikipedia, "Hungarian noun phrase": "Therefore, the plural is not used with numerals or quantity expressions." TLFi (CNRTL), "second": "Second et deuxième peuvent être empl. l'un à la place de l'autre, sauf dans les syntagmes figés, les loc. et les adj. numéraux ordinaux comp. (où second n'est jamais empl.)".
+
+## Regional words: "septante", "huitante", "octante", "nonante"
+
+French says 70, 80 and 90 in two ways: "soixante-dix", "quatre-vingts" and "quatre-vingt-dix" in France and Quebec, and "septante", "huitante" or "octante", and "nonante" in Belgium, Switzerland and other places. The regional words name no other thing, so every French tag reads them, and at the full score. The score tells how sure numtag is that the words are a number. It does not tell where people say them. The ordinals "septantième", "huitantième", "octantième" and "nonantième" read the same way.
+
+```python
+>>> read("Il a septante ans et elle nonante.", "fr-FR")
+[('septante', '70'), ('nonante', '90')]
+>>> read("nonante et un", "fr-CA")
+[('nonante et un', '91')]
+>>> read("Condorcet fait revivre les mots de septante, octante, nonante.", "fr")
+[('septante', '70'), ('octante', '80'), ('nonante', '90')]
+>>> read("Il y a huitante-deux personnes.", "fr-BE")
+[('huitante-deux', '82')]
+>>> [(m.text, m.confidence) for m in tag_numbers("Elle a eu son bac en nonante.", "fr-FR")]
+[('nonante', 1.0)]
+```
+
+> Académie française, Questions de langue, "Septante, octante, nonante" (https://www.dictionnaire-academie.fr/article/QDL078): "ils restent connus dans l’usage parlé de nombreuses régions de l’Est et du Midi de la France, ainsi qu’en Acadie."; "Rien n’interdit de les employer, mais par rapport à l’usage courant en France, ils sont perçus comme régionaux ou vieillis."
+
+The writer of each region keeps its own words: `spell("70", "fr-FR")` writes "soixante-dix", and `spell("70", "fr-BE")` writes "septante".
+
+```python
+>>> from numtag import spell
+>>> [spell("70", lang)[0].text for lang in ("fr-FR", "fr-CA", "fr-BE", "fr-CH")]
+['soixante-dix', 'soixante-dix', 'septante', 'septante']
+>>> [spell("80", lang)[0].text for lang in ("fr-FR", "fr-BE", "fr-CH")]
+['quatre-vingts', 'quatre-vingts', 'huitante']
+```
 
 ## Two or a few: "a couple", "een paar", "ein paar"
 

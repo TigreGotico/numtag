@@ -8,11 +8,11 @@ verify: sed '/^\x60\x60\x60/d' docs/languages/fr-it-ro-eu-id.md | python -m doct
 see: ../rulings.md, ../adding-a-language.md
 -->
 
-numtag reads French, Italian, Romanian, Basque, Indonesian and Malay. French has three lexicons: Belgium and Switzerland say "septante" and "nonante", and Switzerland also says "huitante".
+numtag reads French, Italian, Romanian, Basque, Indonesian and Malay. French has three lexicons. They read the same words: every French tag reads "septante", "huitante", "octante" and "nonante" ([rulings](../rulings.md#regional-words-septante-huitante-octante-nonante)). They differ in how they write numbers, and Switzerland groups digits with an apostrophe. Belgium and Switzerland write "septante" and "nonante", and Switzerland also writes "huitante".
 
 | Language | Tags | Lexicon | Default scale | Gold rows | Rows that pass |
 |---|---|---|---|---|---|
-| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 201 | 199 |
+| French (France) | `fr`, `fr-FR` and every other `fr` tag | `numtag/lexicon/fr-FR.json` | long | 205 | 203 |
 | French (Belgium) | `fr-BE` | `numtag/lexicon/fr-BE.json` | long | 22 | 22 |
 | French (Switzerland) | `fr-CH` | `numtag/lexicon/fr-CH.json` | long | 20 | 20 |
 | Italian | every `it` tag | `numtag/lexicon/it.json` | long | 194 | 191 |
@@ -35,6 +35,8 @@ The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, th
 [('nonante-sept', '97')]
 >>> read('huitante', 'fr-CH')
 [('huitante', '80')]
+>>> read('septante-cinq', 'fr-CA')
+[('septante-cinq', '75')]
 >>> read('ventitré', 'it')
 [('ventitré', '23')]
 >>> read('douăzeci și cinci', 'ro')

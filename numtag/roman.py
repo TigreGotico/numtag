@@ -212,8 +212,10 @@ def _listed_after(lexicon: Lexicon, tokens: list[Token], k: int, cued: set[int])
     """The numeral follows a cued numeral in a list: "séculos XI, XII e XIII"."""
     if k > 0 and k - 1 in cued and tokens[k].gap.strip() == ",":
         return True
+    # the joiner stands between the two numerals with only space after it, so
+    # "chapitre XX et annexe-A. CD audio" gives the CD no cue
     return k > 1 and k - 2 in cued and tokens[k - 1].norm in lexicon.joiners \
-        and tokens[k - 1].gap.strip() in ("", ",")
+        and tokens[k - 1].gap.strip() in ("", ",") and not tokens[k].gap.strip()
 
 
 def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
@@ -252,9 +254,10 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
                                   or token.text.islower() and token.norm in lexicon.roman_lower_words)
         if word and not token.text.isupper():
             continue
-        # a word in a list is no numeral by its place: "World War I, I moved"
+        # a single letter in a list is no numeral by its place: "World War I,
+        # I moved"; a listed word of more letters is ("les chapitres XCIX et CC")
         cue = _cue(lexicon, tokens, k, word, upper=token.text.isupper() or sure_form, value=value) \
-            or not word and _listed_after(lexicon, tokens, k, cued)
+            or (not word or len(token.text) > 1) and _listed_after(lexicon, tokens, k, cued)
         if cue:
             cued.add(k)
         if word and not cue:

@@ -536,7 +536,42 @@ class Grammar:
                 found.append((end, hundreds))
             for j in self._after_joiner(end, self.lex.joiner_after_hundred):
                 found += [(e, digits.add(hundreds, rest)) for e, rest in self.tens_units(j, nonzero=True)]
+            if self.lex.joiner_after_hundred_one and end == i + 1:
+                found += self._hundred_and_one(end, hundreds)
         return found
+
+    def _hundred_and_one(self, end: int, hundreds: str) -> list[tuple[int, str]]:
+        """A hundred word with no count, the joiner and a one that counts no
+        word after it: "cent et un" is 101. In "cent et un million", "cent et
+        un tiers" or "cent et un cent" the one counts the word after it, so
+        the hundred stands alone; "cent et deux" and "deux cent et un" are two
+        numbers. The check looks at the next words only, so a long run of
+        such phrases parses at a fixed depth."""
+        one = end + 1
+        if not self._is_word(end, self.lex.joiners) or one >= len(self.tokens) \
+                or not any(rest == "1" and e == one + 1 for e, rest in self.tens_units(one, nonzero=True)):
+            return []
+        if self._counted_by_one(one + 1):
+            return []
+        return [(one + 1, digits.add(hundreds, "1"))]
+
+    def _counted_by_one(self, k: int) -> bool:
+        """True when the words at ``k`` take the one before them as a count:
+        a singular scale word ("un million", "un cent"), a part word or a
+        collective ("un tiers", "une douzaine", "un demi"), a decimal marker
+        ("un virgule cinq") or the joiner and a half ("un et demi"), with only
+        a space or a hyphen before them. A plural scale word takes no one
+        ("cent et un millions" is 101 millions)."""
+        if k >= len(self.tokens) or self.tokens[k].is_digits or not self.tokens[k].links_to_previous():
+            return False
+        if self._is_word(k, self.lex.decimal_markers):
+            return True
+        if self._is_word(k, self.lex.joiners):
+            return bool(self._readings(k + 1, "half"))
+        return any(e.role in SCALE_ROLES and not e.plural
+                   or e.role in ("denominator", "collective", "article_collective", "half", "fraction",
+                                 "ordinal_scale")
+                   for e in self.lex.readings.get(self.tokens[k].norm, ()))
 
     def decimal_digits(self, i: int) -> list[tuple[int, int, str]]:
         """(start, end, digits) after a decimal marker, one reading per end: each word
@@ -1589,10 +1624,13 @@ class Grammar:
             if not self._is_word(k, self.lex.joiners):
                 continue
             inner = self._inner(i, k)
-            if inner and k != default:
+            right = self._numbers(k + 1)
+            # it also splits where the number after it reaches past the
+            # longest reading: "cem e um milhão" is no number, so "entre cem
+            # e um milhão" is 100 and 1000000, not 101 and a bare "milhão"
+            if inner and k != default and not any(p.end > default for p in right):
                 continue
             left = [p for p in Grammar(self.lex, self.tokens[:k], self.unsigned)._numbers(i) if p.end == k]
-            right = self._numbers(k + 1)
             if not (left and right):
                 continue
             longest = max(right, key=lambda p: p.end)

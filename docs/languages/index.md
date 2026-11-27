@@ -31,7 +31,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `pt-PT` | yes | yes | yes | yes | 479 | 473 | 98.7% | [pt.md](pt.md) |
 | `pt-BR` | yes | yes | yes | yes | 470 | 464 | 98.7% | [pt.md](pt.md) |
 | `es-CO` (resolves to `es`) | yes | yes | yes | yes | 237 | 234 | 98.7% | [ibero.md](ibero.md) |
-| `fr-FR` | yes | yes | yes | yes | 201 | 199 | 99.0% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
+| `fr-FR` | yes | yes | yes | yes | 205 | 203 | 99.0% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `it-IT` (resolves to `it`) | yes | yes | yes | yes | 194 | 191 | 98.5% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `de-DE` (resolves to `de`) | yes | yes | yes | yes | 200 | 200 | 100.0% | [germanic.md](germanic.md) |
 | `nl-NL` (resolves to `nl`) | yes | yes | yes | yes | 187 | 187 | 100.0% | [germanic.md](germanic.md) |

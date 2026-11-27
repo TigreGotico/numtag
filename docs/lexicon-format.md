@@ -18,7 +18,7 @@ A file is a JSON object with these keys.
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1`, `2`, `3` or `4`. Required. Only versions 2, 3 and 4 hold `writer`. Only versions 3 and 4 hold the keys that this page marks as version 3, and only version 4 the keys that it marks as version 4. |
+| `format_version` | The integer `1`, `2`, `3`, `4` or `5`. Required. Only versions 2 to 5 hold `writer`. Only versions 3 to 5 hold the keys that this page marks as version 3, only versions 4 and 5 the keys that it marks as version 4, and only version 5 the keys that it marks as version 5. |
 | `extends` | The name of a base lexicon. Optional. |
 | `settings` | An object. Each key is a setting, and each value is `{"value": ..., "source": ...}`. |
 | `words` | An object. Each key is a word list, and each value is `{"value": [...], "source": ...}`. |
@@ -30,13 +30,15 @@ A file with no `extends` holds `settings`, `words` and `entries`. It holds every
 
 ### Version and refusal
 
-The loader reads `format_version` first. It reads versions 1, 2, 3 and 4. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1, 2, 3, 4 and 5. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
-A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, and a key of version 4 in an older file. The error names the key and the place.
+A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4, and a file that holds a key of version 5 moves to version 5. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, a key of version 4 in an older file, and a key of version 5 in an older file. The error names the key and the place.
 
 Version 3 adds the settings `roman_ordinal_suffix` and `group_mark_forms` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
 
 Version 4 adds the decimal keys `variant_read` and `by_case`, the decimal read `fraction`, and the gender `plural` of a form. These are all the changes of version 4.
+
+Version 5 adds the setting `joiner_after_hundred_one`. It is the only change of version 5.
 
 ### Base lexicons
 
@@ -82,6 +84,7 @@ A setting holds a `value` and a `source`. A setting with no default is required 
 | `inverted_tens` | `null` or `"required"` or `"optional"` or `"never"` | none | A unit, then the joiner as this policy says, then a round ten, all parts of one compound word ("petindvajset", "pětadvacet"). `null` reads no such compound. | cs: `"optional"` |
 | `joiner_after_decimal_marker` | `"required"` or `"optional"` or `"never"` | `"never"` | Where the joiner may stand after a decimal marker ("две цяло и пет"). | ru: `"optional"` |
 | `joiner_after_hundred` | `"required"` or `"optional"` or `"never"` | required | The same, after the hundreds ("cento e vinte", "one hundred and twenty"). | pt-PT: `"required"` |
+| `joiner_after_hundred_one` | boolean | `false` | Version 5. The joiner stands between a hundred word with no count and a one that starts no longer number, whatever `joiner_after_hundred` says: "cent et un" is 101, and "cent et deux" and "deux cent et un" are two numbers. A one that counts the word after it is no part of the hundreds: "cent et un million" is 100 and a million. | fr-FR: `true` |
 | `joiner_before_half` | `"required"` or `"optional"` or `"never"` | `"required"` | Where the joiner may stand before a half or a fraction after a whole ("dua setengah", "two and a half"). | id: `"never"` |
 | `joiner_before_last_group` | `"required"` or `"optional"` or `"never"` | required | The same, before a last group below a hundred or a round hundred. Where it is `required`, "mil duzentos" is two numbers. | pt-PT: `"required"` |
 | `joiner_before_round_hundred` | boolean | required | A round hundred may follow the joiner after a thousand, so "mil e quinhentos" counts a larger scale noun. | pt-PT: `true` |
