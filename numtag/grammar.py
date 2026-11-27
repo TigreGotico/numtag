@@ -1662,10 +1662,10 @@ class Grammar:
         # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán")
         at_end = not self.tokens[i].noun_after and (i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners))
         joined = at_end and i + 1 < len(self.tokens) and self._number_at(i + 2)
-        before = self.tokens[i - 1].norm if i > 0 else None
-        after = self.tokens[i + 1].norm if i + 1 < len(self.tokens) else None
-        return any(e.ambiguous or (e.weak_at_end and at_end and not (e.joined_count and joined))
-                   or before in e.weak_after or after in e.weak_before for e in entries)
+        before = self.tokens[i - 1] if i > 0 else None
+        after = self.tokens[i + 1] if i + 1 < len(self.tokens) else None
+        return any(e.ambiguous or (e.weak_at_end and at_end and not (e.joined_count and joined)) for e in entries) \
+            or self.lex.cue(entries, before, after) == "homograph"
 
     def _number_at(self, i: int) -> bool:
         """Digits or a cardinal word, not an article, an ordinal or a form

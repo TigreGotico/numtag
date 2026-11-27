@@ -1,5 +1,5 @@
 from numtag import tag_numbers
-from numtag.lexicon import V3_ENTRY_KEYS, V3_SETTINGS, V3_VERSION, V4_VERSION, V5_SETTINGS, V5_VERSION, WRITER_VERSION, _v4_keys
+from numtag.lexicon import V3_ENTRY_KEYS, V3_SETTINGS, V3_VERSION, V4_VERSION, V5_SETTINGS, V5_VERSION, V6_VERSION, WRITER_VERSION, _v4_keys
 
 
 def read(text: str, lang: str, **options) -> list[tuple[str, str, str]]:
@@ -24,7 +24,9 @@ def holds_v3_keys(data: dict) -> bool:
 
 def expected_version(data: dict) -> int:
     """The lowest version that reads the file: 5 for a setting of version 5, 4 for a writer key of version 4, 3 for
-    a key of version 3, 2 for a writer block, else 1."""
+    a key of version 3, 2 for a writer block, else 1; 6 for a context cue or a cue word list."""
+    if any("context" in e for e in data.get("entries", ())) or any(k.startswith("cue_") for k in data.get("words", {})):
+        return V6_VERSION
     if set(data.get("settings", {})) & V5_SETTINGS:
         return V5_VERSION
     if data.get("writer") and _v4_keys(data["writer"]):

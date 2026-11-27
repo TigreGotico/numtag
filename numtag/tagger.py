@@ -211,10 +211,17 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
                              and run[start].norm in lexicon.nouns_after_count):
             i += 1
             continue
+        # a cue decides only a lone word: "vigésimo segundo" stays 22
+        cue = None if best.end != start + 1 or run[start].is_digits else lexicon.cue(
+            lexicon.readings.get(run[start].norm, ()), run[start - 1] if start > 0 else None,
+            run[best.end] if best.end < len(run) else None)
+        if cue == "word":
+            i += 1
+            continue
         value = -best.value if negative != signed else best.value
         span = (run[i].start, run[best.end - 1].end)
         reason = _reason(number_grammar, lexicon, run, start, best, alone=text.strip() == run[start].text,
-                         signed=negative)
+                         signed=negative, cue=cue)
         words = run[start:best.end]
         kind = _kind(lexicon, words, best)
         pieces = best.parts
@@ -353,9 +360,14 @@ def _number_scale(lexicon: Lexicon, tokens: list[Token]) -> Scale | None:
 
 
 def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, parse: Parse,
-            *, alone: bool = False, signed: bool = False) -> Reason | None:
+            *, alone: bool = False, signed: bool = False, cue: str | None = None) -> Reason | None:
     """Why the number is not sure, or None for a sure number. ``alone``: the
-    word is the whole text. ``signed``: a minus word starts the number."""
+    word is the whole text. ``signed``: a minus word starts the number.
+    ``cue``: the verdict of a lexicon cue on the words around a lone word."""
+    if cue == "number":
+        return None
+    if cue == "homograph":
+        return None if signed else Reason.HOMOGRAPH
     # The article stands next to its noun: before it ("um livro"), or after
     # it where the language puts it there ("liburu bat"). A number in digits
     # and an ordinal are part of the noun phrase: "un 20 por ciento", "una
@@ -403,9 +415,6 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
         and run[start - 1].norm in lexicon.articles \
         and any(not e.plural for e in lexicon.of(run[start].norm, "denominator")) \
         and _kind(lexicon, word, parse) == Kind.ORDINAL
-    # "a les nou": the word before it agrees only with the number reading
-    agrees = parse.end == start + 1 and start > 0 and bool(entries) \
-        and all(run[start - 1].norm in e.number_after for e in entries)
     # "al per cent": a percent phrase with no number before it, at the end or
     # before "of", is the price ("Ho he venut per cent.") or the percent sign
     # with its number missing ("el tant per cent de descompte"). Before a
@@ -422,4 +431,4 @@ def _reason(grammar: Grammar, lexicon: Lexicon, run: list[Token], start: int, pa
         and parse.kind == Kind.CARDINAL
     homograph = ((parse.ambiguous and not whole) or lone_ambiguous) and not cardinal_percent \
         or listed or weak_ordinal or bare_percent
-    return Reason.HOMOGRAPH if homograph and not signed and not agrees else None
+    return Reason.HOMOGRAPH if homograph and not signed else None

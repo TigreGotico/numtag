@@ -19,7 +19,7 @@ Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../img/share-dark.svg">
-  <img alt="33 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="../img/share.svg">
+  <img alt="34 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="../img/share.svg">
 </picture>
 
 `img/plot_share.py` makes this figure from `benchmarks/results.json`.
@@ -28,9 +28,9 @@ The leader languages come first, each named by its full tag and the lexicon that
 
 | Language | Cardinals | Ordinals | Fractions | Writer | Gold rows | Rows right | Share | Page |
 |---|---|---|---|---|---|---|---|---|
-| `pt-PT` | yes | yes | yes | yes | 479 | 473 | 98.7% | [pt.md](pt.md) |
-| `pt-BR` | yes | yes | yes | yes | 470 | 464 | 98.7% | [pt.md](pt.md) |
-| `es-CO` (resolves to `es`) | yes | yes | yes | yes | 237 | 234 | 98.7% | [ibero.md](ibero.md) |
+| `pt-PT` | yes | yes | yes | yes | 479 | 474 | 99.0% | [pt.md](pt.md) |
+| `pt-BR` | yes | yes | yes | yes | 470 | 465 | 98.9% | [pt.md](pt.md) |
+| `es-CO` (resolves to `es`) | yes | yes | yes | yes | 237 | 235 | 99.2% | [ibero.md](ibero.md) |
 | `fr-FR` | yes | yes | yes | yes | 205 | 203 | 99.0% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `it-IT` (resolves to `it`) | yes | yes | yes | yes | 194 | 191 | 98.5% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `de-DE` (resolves to `de`) | yes | yes | yes | yes | 200 | 200 | 100.0% | [germanic.md](germanic.md) |
@@ -45,7 +45,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `ast` | yes | yes | yes | no | 176 | 175 | 99.4% | [ibero.md](ibero.md) |
 | `az` | yes | yes | yes | no | 176 | 176 | 100.0% | [uralic-turkic.md](uralic-turkic.md) |
 | `bg` | yes | yes | yes | no | 163 | 163 | 100.0% | [slavic.md](slavic.md) |
-| `ca` | yes | yes | yes | yes | 228 | 225 | 98.7% | [ibero.md](ibero.md) |
+| `ca` | yes | yes | yes | yes | 228 | 226 | 99.1% | [ibero.md](ibero.md) |
 | `ca-ES-valencia` | yes | yes | yes | yes | - | - | - | [ibero.md](ibero.md) |
 | `cs` | yes | yes | yes | yes | 185 | 184 | 99.5% | [slavic.md](slavic.md) |
 | `el` | yes | yes | yes | no | 161 | 161 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
@@ -59,7 +59,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `fr-BE` | yes | yes | yes | yes | 22 | 22 | 100.0%[^fr-BE] | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `fr-CH` | yes | yes | yes | yes | 20 | 20 | 100.0%[^fr-CH] | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
 | `fy` | yes | yes | yes | no | 156 | 156 | 100.0% | [germanic.md](germanic.md) |
-| `gl` | yes | yes | yes | yes | 185 | 184 | 99.5% | [ibero.md](ibero.md) |
+| `gl` | yes | yes | yes | yes | 185 | 185 | 100.0% | [ibero.md](ibero.md) |
 | `he` | yes | yes | yes | no | 160 | 157 | 98.1% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
 | `hr` | yes | yes | yes | no | 183 | 182 | 99.5% | [slavic.md](slavic.md) |
 | `hu` | yes | yes | yes | no | 197 | 195 | 99.0% | [uralic-turkic.md](uralic-turkic.md) |

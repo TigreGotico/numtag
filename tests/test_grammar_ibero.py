@@ -378,10 +378,11 @@ class TestCatalan(unittest.TestCase):
     def test_the_first_four_ordinals_end_no_longer_ordinal(self):
         # 22nd is "vint-i-dosè" and 101st "cent unè": "vint segons" is 20
         # and the time unit, never 22
-        for text, count, unit in [("vint segons", "20", "2"), ("trenta primers", "30", "1"),
-                                  ("cent tercer", "100", "3")]:
+        for text, count, unit in [("trenta primers", "30", "1"), ("cent tercer", "100", "3")]:
             with self.subTest(text=text):
                 self.assertEqual([(value, kind) for _, value, kind in read(text, "ca")], [(count, C), (unit, O)])
+        # after a cardinal the plural "segons" is the time unit and no ordinal
+        self.assertEqual(read("vint segons", "ca"), [("vint", "20", C)])
         self.assertEqual(read("vint-i-dosè", "ca"), [("vint-i-dosè", "22", O)])
         # ICU 78 wrote 22nd with a hyphen: 20 + 2 = 22
         self.assertEqual(read("el vint-i-segon", "ca"), [("vint-i-segon", "22", O)])

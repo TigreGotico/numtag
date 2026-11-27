@@ -1,5 +1,5 @@
 {
-  "format_version": 2,
+  "format_version": 6,
  "settings": {
   "point_decimal": {
    "value": true,
@@ -1809,7 +1809,7 @@
    "gender": "masculine",
    "plural": true,
    "ambiguous": true,
-   "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
+   "context": [{"prev": ["@number"], "then": "word", "source": "RAE, DLE, \"segundo\" (Papers: Languages/Iberian/Spanish/dle_rae_segundo.html), sense 2.a, m.: «Unidad de tiempo del sistema internacional, que equivale a la duración de 9 192 631 770 pe[ríodos]». A cardinal before the plural counts the unit (structural, no external source)."}], "source": "DPD \"ordinales\" §1 table: \"primero (apocopado primer)\", \"tercero (apocopado tercer)\", \"séptimo (también sétimo)\", \"noveno (hoy raro nono)\", \"vigesimoprimero o vigésimo primero\", \"trigésimo primero\", \"centésimo primero\", \"1000.º milésimo\", \"1 000 000.º millonésimo\"; \"todos los ordinales presentan variación de género y número: primero(s), primera(s)\"; \"segundo\" is also a unit of time"
   },
   {
    "word": "segundas",

@@ -1,5 +1,5 @@
 {
-  "format_version": 2,
+  "format_version": 6,
  "settings": {
   "scale": {
    "value": "long",
@@ -653,7 +653,7 @@
    "plural": true,
    "ambiguous": true,
    "standalone": true,
-   "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
+   "context": [{"prev": ["@number"], "then": "word", "source": "IEC, DIEC2, \"segon¹\" (Papers: Languages/Iberian/Catalan/diec2_segon_0041381.json), sense 1 1: «m. [FIF] [FIM] [MT] Unitat de temps del sistema internacional que constitueix la seixantena part d’un minut (símbol, s).» A cardinal before the plural counts the unit (structural, no external source)."}], "source": "CLDR RBNF ca %spellout-ordinal-masculine/-feminine, ICU 78 rendering: \"primer\", \"segon\", \"setzè\", \"dissetè\", \"vint-i-primer\", \"trenta-primer\", \"centè\", \"cent unè\", \"dos-centè\", \"dos-cents unè\", \"milè\", \"mil unè\", \"dos milè\", \"un milionè\", \"primera\", \"setzena\", \"cent unena\", \"milena\"; \"segon\" is also a unit of time; CLDR RBNF ca (unicode-org/cldr main) %%spellout-ordinal-masculine-large: \"1: unè;\", \"2: dosè;\", \"3: tresè;\", \"4: quatrè;\"; ca.wikipedia \"Numerals en català\", Ordinals: \"presenten unes formes específiques per als quatre primers\", \"la resta es formen a partir del cardinal corresponent amb el sufix -è\", \"21è | vint-i-unè\", \"101è | cent-unè\": a longer ordinal ends in \"-unè\" or \"-dosè\", never in \"primer\" or \"segon\", so \"vint segons\" is 20 and the time unit. ICU 78 joined it with a hyphen (\"vint-i-segon\"), and that form still reads as one ordinal."
   },
   {
    "word": "segones",

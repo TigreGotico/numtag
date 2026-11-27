@@ -56,13 +56,16 @@ class TestOrdinalEnding(unittest.TestCase):
     def test_a_latin_unit_ordinal_ends_no_longer_ordinal(self):
         # 22nd is "ventiduesimo" and 103rd "centotreesimo": "dieci secondi"
         # is 10 and the time unit, never 12
-        for text, count in [("tra dieci secondi", "10"), ("trenta secondi", "30"),
-                            ("cento terzo", "100"), ("venti primi", "20")]:
+        for text, count in [("cento terzo", "100"), ("venti primi", "20")]:
             with self.subTest(text=text):
                 found = it(text)
                 self.assertEqual(found[0][1:], (count, C))
                 self.assertEqual(len(found), 2)
                 self.assertEqual(found[1][2], O)
+        # after a cardinal the plural "secondi" is the time unit and no ordinal
+        for text, count in [("tra dieci secondi", "10"), ("trenta secondi", "30")]:
+            with self.subTest(text=text):
+                self.assertEqual([f[1:] for f in it(text)], [(count, C)])
         # "decimo" ends "centodecimo", so 100 + 10 = 110 still reads
         self.assertEqual(it("cento decimo"), [("cento decimo", "110", O)])
 
