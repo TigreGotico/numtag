@@ -1,8 +1,25 @@
 # Changelog
 
+## [0.49.3a3](https://github.com/TigreGotico/numtag/tree/0.49.3a3) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.3a2...0.49.3a3)
+
+**Merged pull requests:**
+
+- feat: context cues decide homographs \(\#407 part 1\) [\#433](https://github.com/TigreGotico/numtag/pull/433) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- test: per-language files so writer PRs do not collide \(\#394\) [\#432](https://github.com/TigreGotico/numtag/pull/432) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.49.3a2](https://github.com/TigreGotico/numtag/tree/0.49.3a2) (2026-11-27)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.2a1...0.49.3a2)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.3a1...0.49.3a2)
+
+## [0.49.3a1](https://github.com/TigreGotico/numtag/tree/0.49.3a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.2a2...0.49.3a1)
+
+## [0.49.2a2](https://github.com/TigreGotico/numtag/tree/0.49.2a2) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.2a1...0.49.2a2)
 
 **Merged pull requests:**
 
@@ -604,10 +621,6 @@
 ## [0.19.12a1](https://github.com/TigreGotico/numtag/tree/0.19.12a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.11a1...0.19.12a1)
-
-**Merged pull requests:**
-
-- fix: eu denominator of several words reads whole and -\(r\)en bat is also about N [\#203](https://github.com/TigreGotico/numtag/pull/203) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.11a1](https://github.com/TigreGotico/numtag/tree/0.19.11a1) (2026-11-22)
 
