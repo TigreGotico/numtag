@@ -10,6 +10,8 @@ see: docs/index.md, docs/getting-started.md, AGENTS.md
 
 numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões"), in more than 50 lexicons.
 
+Try it in the browser: [TigreGotico/numtag Space](https://huggingface.co/spaces/TigreGotico/numtag).
+
 ## Install
 
 numtag needs Python 3.11 or later.
