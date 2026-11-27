@@ -141,5 +141,20 @@ class TestTokenize(unittest.TestCase):
         self.assertEqual([(t.text, t.norm) for t in tokens], [("Şase", "șase")])
 
 
+class TestGroupMarkForms(unittest.TestCase):
+    """Each character of ``group_forms`` groups digits as the group mark does, whatever the mark."""
+
+    def test_a_form_joins_a_group_of_three_for_every_mark(self):
+        for mark in ("'", ",", ".", " "):
+            with self.subTest(mark=mark):
+                [token] = tokenize("1’234", group_mark=mark, group_forms="’")
+                self.assertEqual((token.text, token.latin), ("1’234", f"1{mark}234"))
+
+    def test_a_form_before_no_group_of_three_separates_the_digits(self):
+        for mark in ("'", ",", " "):
+            with self.subTest(mark=mark):
+                self.assertEqual([t.text for t in tokenize("9’58", group_mark=mark, group_forms="’")], ["9", "58"])
+
+
 if __name__ == "__main__":
     unittest.main()
