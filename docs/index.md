@@ -1,36 +1,51 @@
 # numtag documentation
 
 <!-- agent-hint
-covers: The map of the documentation: what numtag is and which page answers which question.
-source: docs/*.md, numtag/__init__.py:__all__
+covers: The map of the documentation: what numtag is, a quickstart, and which page answers which question.
+source: docs/*.md, numtag/__init__.py:__all__, docs/img/plot_share.py
 generated: no
 verify: diff <(ls docs/*.md docs/languages/*.md | sed 's#docs/##' | grep -v '^index.md$' | sort) <(grep -o '^| \[[^]]*\]([a-z/-]*\.md)' docs/index.md | sed 's/.*(\(.*\))/\1/' | sort)
 see: getting-started.md, api.md
 -->
 
-numtag is a number tagger. It finds every number in a text and returns one mention per number. A mention holds the exact words, their character span and an exact value as a digit string. It also holds the kind, the form, a confidence score and, where it matters, the number scale.
+numtag finds every number in a text and gives its exact words, its character span and its exact value.
 
-numtag reads numbers. In some languages it also writes the value of a number as words. [languages/index.md](languages/index.md) gives the list. It reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. A date library can build its dates that way: it reads the mentions and applies its own date rules. The chronologia date library depends on numtag for its numbers.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/share-dark.svg">
+  <img alt="33 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="img/share.svg">
+</picture>
 
-## Start here
+`img/plot_share.py` makes this figure from `benchmarks/results.json`. Each bar is the share of gold rows in `tests/gold/<lang>.jsonl` that numtag reads right.
 
-| Guide | Content |
+## Quickstart
+
+```bash
+uv pip install --prerelease=allow numtag
+```
+
+```python
+>>> from numtag import tag_numbers
+>>> [(m.text, m.value) for m in tag_numbers("Comprou duas dúzias de ovos por 2,5 euros.", "pt-PT")]
+[('duas dúzias', '24'), ('2,5', '2.5')]
+```
+
+## Scope
+
+A mention holds the exact words, their character span and an exact value as a digit string. It also holds the kind, the form, a confidence score and, where it matters, the number scale. In some languages numtag also writes the value of a number as words.
+
+numtag reads no units, percentages, ranges, dates or clock times. A caller builds those from the mentions. The chronologia date library reads its numbers with numtag and applies its own date rules.
+
+## Pages
+
+Read the pages in this order.
+
+| Page | What you get there |
 |---|---|
-| [getting-started.md](getting-started.md) | The first call, then common tasks: filter weak mentions, replace numbers with digits, convert values |
+| [getting-started.md](getting-started.md) | A walk-through: the first call, then weak mentions, digits in place of words, value conversion, scale and language tags |
 | [api.md](api.md) | Every public name: `tag_numbers`, `NumberMention`, `Kind`, `Form`, `Reason`, `Scale`, `Part`, `Role`, `is_canonical_value`, `ARTICLE_CONFIDENCE`, `UnsupportedLanguageError`, `tag_vague_quantities`, `VagueQuantity`, `VagueKind`, `revision` |
-
-## The contract
-
-| Guide | Content |
-|---|---|
 | [values.md](values.md) | The three canonical value strings, conversion with `int`, `Decimal` and `Fraction`, and why a value has no length limit |
 | [number-scale.md](number-scale.md) | Long and short scale, the `scale` argument and the `number_scale` field |
 | [confidence-and-homographs.md](confidence-and-homographs.md) | What a low score means, articles, words with a second meaning, and what a caller does with them |
-
-## The language rules
-
-| Guide | Content |
-|---|---|
 | [rulings.md](rulings.md) | Each reading rule with an example sentence and its source |
 | [languages/index.md](languages/index.md) | The support table: per language, what numtag reads, whether it writes, and its gold score |
 | [languages/pt.md](languages/pt.md) | European and Brazilian Portuguese |
@@ -46,11 +61,6 @@ numtag reads numbers. In some languages it also writes the value of a number as 
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |
 | [adding-a-language.md](adding-a-language.md) | How to add a language: the source rule, gold rows and the test gates |
 | [lexicon-format.md](lexicon-format.md) | The lexicon format, version 1: every key with its type, default and effect, the schema, and the revision |
-
-## Inside the library
-
-| Guide | Content |
-|---|---|
 | [design.md](design.md) | Principles, tokenizer, lexicon, grammar, string arithmetic and determinism |
 | [benchmarks.md](benchmarks.md) | Accuracy against ovos-number-parser, with the commands |
 | [roadmap.md](roadmap.md) | Planned features |

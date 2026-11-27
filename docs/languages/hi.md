@@ -24,3 +24,6 @@ The `hi` lexicon reads Hindi numbers in the Devanagari script and in Devanagari 
 
 - The lexicon has no fraction words, so "आधा" gives no mention.
 - "अरब" and "खरब" also name places and peoples, so they give a mention only after a count: "सऊदी अरब" gives no mention, and "दो अरब" is 2000000000.
+
+---
+[← Bengali](bn.md) · [Home](../index.md) · [Slavic languages →](slavic.md)

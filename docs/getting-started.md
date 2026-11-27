@@ -1,29 +1,41 @@
 # Getting started
 
 <!-- agent-hint
-covers: How to make the first call and do the common tasks: filter weak mentions, replace numbers with digits, convert values, choose a scale.
+covers: A walk-through from the first call to the common tasks: read a mention, filter weak mentions, replace numbers with digits, convert values, choose a scale, pass a language tag.
 source: numtag/tagger.py:tag_numbers, numtag/mention.py
 generated: no
 verify: sed '/^\x60\x60\x60/d' docs/getting-started.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
 see: api.md, values.md, number-scale.md
 -->
 
-This guide shows the first call to numtag and the tasks that most callers need. Every example on this page runs as a test, so the output shown is the output that numtag gives.
+This walk-through starts with one call and its output, then adds one task per step. Every example on this page runs as a test, so each output is the output that numtag gives.
 
-## Install
+## The first call
 
-numtag needs Python 3.11 or later. Its one dependency is linguatag, which reads language tags.
+Give `tag_numbers` a text and a language tag. It returns a list of mentions in reading order, and the mentions never overlap.
+
+```python
+>>> from numtag import tag_numbers
+>>> mention = tag_numbers("The tower is one hundred and twenty-five point five metres tall.", "en")[0]
+>>> mention.text, mention.char_span, mention.value
+('one hundred and twenty-five point five', (13, 51), '125.5')
+>>> mention.kind, mention.form
+(<Kind.DECIMAL: 'decimal'>, <Form.WORDS: 'words'>)
+```
+
+The span slices the original text, so `text[start:end]` is always `mention.text`. Use the span to replace or mark the number in place.
+
+To run this example, install numtag first. It needs Python 3.11 or later. Its one dependency is linguatag, which reads language tags.
 
 ```bash
 uv pip install --prerelease=allow numtag
 ```
 
-## The first call
+## Read a full mention
 
-Give `tag_numbers` a text and a language tag. It returns a list of mentions in reading order.
+A mention also holds the gender of the words, a confidence score, the scale and the parts of the number.
 
 ```python
->>> from numtag import tag_numbers
 >>> mentions = tag_numbers("A viagem custou mil e duzentos euros.", "pt-PT")
 >>> mentions
 [NumberMention(char_span=(16, 30), text='mil e duzentos', value='1200', kind=<Kind.CARDINAL: 'cardinal'>, form=<Form.WORDS: 'words'>, gender='masculine', confidence=1.0, number_scale=None, reasons=frozenset(), parts=(Part(role=<Role.SCALE: 'scale'>, char_span=(16, 19), text='mil', value='1000'), Part(role=<Role.JOINER: 'joiner'>, char_span=(20, 21), text='e', value=None), Part(role=<Role.COUNT: 'count'>, char_span=(22, 30), text='duzentos', value='200')))]

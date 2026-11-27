@@ -10,6 +10,20 @@ see: ../adding-a-language.md, ../benchmarks.md
 
 Each row is one lexicon in `numtag/lexicon/`. A lexicon reads cardinals when it has unit entries, ordinals when it has ordinal entries or entries with an ordinal form, and fractions when it has half, denominator, fraction or rational entries. It has a writer when the file has a `writer` block. "Gold rows" is the number of rows in `tests/gold/<lang>.jsonl`, "Rows right" is the number of rows that numtag reads right, from `benchmarks/results.json`, and "Share" is rows right divided by gold rows. A dash means the language has no gold file.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../img/coverage-dark.svg">
+  <img alt="Of 53 lexicons, 53 read cardinals, 52 read ordinals, 51 read fractions and 25 have a writer." src="../img/coverage.svg">
+</picture>
+
+`img/plot_coverage.py` makes this figure from `numtag/lexicon/*.json`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../img/share-dark.svg">
+  <img alt="33 of 51 gold sets score 100 %. The lowest are mt at 95.7 %, he at 98.1 %, it at 98.5 %." src="../img/share.svg">
+</picture>
+
+`img/plot_share.py` makes this figure from `benchmarks/results.json`.
+
 The leader languages come first, each named by its full tag and the lexicon that the tag resolves to. The other languages follow in alphabetical order.
 
 | Language | Cardinals | Ordinals | Fractions | Writer | Gold rows | Rows right | Share | Page |

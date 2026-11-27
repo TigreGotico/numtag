@@ -1,14 +1,24 @@
 # numtag
 
 <!-- agent-hint
-covers: What numtag does, how to install it, a first example, the supported languages and the way into docs/.
+covers: What numtag does, how to install it, a first example and the way into docs/.
 source: numtag/__init__.py:__all__, numtag/tagger.py:tag_numbers, numtag/lexicon/*.json
 generated: no
-verify: diff <(awk '/^\x60\x60\x60python/{n++;f=(n==1);next} /^\x60\x60\x60/{f=0} f' README.md | python -) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' README.md) && sed '/^\x60\x60\x60/d' README.md | python -m doctest -o NORMALIZE_WHITESPACE /dev/stdin
+verify: diff <(awk '/^\x60\x60\x60python/{n++;f=(n==1);next} /^\x60\x60\x60/{f=0} f' README.md | python -) <(awk '/^\x60\x60\x60text/{f=1;next} /^\x60\x60\x60/{f=0} f' README.md)
 see: docs/index.md, docs/getting-started.md, AGENTS.md
 -->
 
-numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões").
+numtag finds every number in a text. For each number it gives the exact words, their character offsets, an exact value, the kind of number and how it is written. It reads number words ("duas dúzias"), digits ("1.234,5") and both together ("2 milhões"), in more than 50 lexicons.
+
+## Install
+
+numtag needs Python 3.11 or later.
+
+```bash
+uv pip install --prerelease=allow numtag
+```
+
+## Quickstart
 
 ```python
 from numtag import tag_numbers
@@ -22,85 +32,27 @@ for m in tag_numbers("Comprou duas dúzias de ovos e ganhou um milhão de euros.
 (37, 46) 'um milhão' 1000000 cardinal
 ```
 
-## Install
-
-numtag needs Python 3.11 or later and depends on linguatag, which reads language tags.
-
-```bash
-uv pip install --prerelease=allow numtag
-```
-
-To work on the library, install it from a clone with its test extra and run the tests:
-
-```bash
-uv pip install -e ".[test]"
-pytest tests
-```
-
-## Quickstart
-
-`tag_numbers(text, lang)` returns a list of `NumberMention` objects in reading order. The mentions never overlap.
-
-```python
->>> from numtag import tag_numbers
->>> mention = tag_numbers("The tower is one hundred and twenty-five point five metres tall.", "en")[0]
->>> mention.text, mention.char_span, mention.value
-('one hundred and twenty-five point five', (13, 51), '125.5')
->>> mention.kind, mention.form
-(<Kind.DECIMAL: 'decimal'>, <Form.WORDS: 'words'>)
-```
-
-The span slices the original text, so `text[start:end]` is always `mention.text`. Use the span to replace or mark the number in place.
-
-## Values
-
-A value is a canonical digit string, never an `int` or a `float`. It has one of three forms.
-
-| Form | Examples |
-|---|---|
-| whole number | `"24"`, `"-42"`, `"1000000"` |
-| decimal | `"125.5"`, `"0.75"` |
-| fraction in lowest terms | `"1/3"`, `"7/3"` |
-
-numtag computes each value with string arithmetic on digits, so a value has no length limit and no rounding error. Convert a value when you need a number. `int()` reads a whole number, `decimal.Decimal()` reads a whole number or a decimal, and `fractions.Fraction()` reads all three forms.
-
-```python
->>> from fractions import Fraction
->>> Fraction(tag_numbers("dois e um terço", "pt-PT")[0].value)
-Fraction(7, 3)
-```
-
-Read [docs/values.md](docs/values.md) for the full contract.
-
-## Languages
-
-[docs/languages/index.md](docs/languages/index.md) lists each supported language: what it reads, whether it has a writer, and its score on the gold corpus.
-
-Each language page gives the default scale of each lexicon. Pass `scale="long"` or `scale="short"` to read the large scale words in the other scale. Another language tag raises `UnsupportedLanguageError`, a subclass of `ValueError`.
-
-Each language is one JSON file in `numtag/lexicon/`. Each word and each setting in the file carries the source of its rule.
+A value is a canonical digit string such as `"24"`, `"2.5"` or `"1/3"`, never an `int` or a `float`. The span slices the original text.
 
 ## Documentation
 
-Start with [docs/index.md](docs/index.md) for the map and [docs/getting-started.md](docs/getting-started.md) for the first calls. Agents that change the repository read [AGENTS.md](AGENTS.md).
-
-| Guide | Content |
+| Page | What you get there |
 |---|---|
 | [docs/index.md](docs/index.md) | The map of the documentation |
-| [docs/getting-started.md](docs/getting-started.md) | First calls and common tasks |
+| [docs/getting-started.md](docs/getting-started.md) | A walk-through of the first calls and the common tasks |
 | [docs/api.md](docs/api.md) | Every public name |
 | [docs/values.md](docs/values.md) | The value strings and how to convert them |
 | [docs/number-scale.md](docs/number-scale.md) | Long and short scale |
 | [docs/confidence-and-homographs.md](docs/confidence-and-homographs.md) | Articles, words with two meanings, low scores |
 | [docs/rulings.md](docs/rulings.md) | The reading rules, each with its source |
-| [docs/languages/](docs/languages/) | What each language reads |
-| [docs/adding-a-language.md](docs/adding-a-language.md) | The lexicon format and the gates for each language |
+| [docs/languages/index.md](docs/languages/index.md) | The support table and the score of each language |
+| [docs/adding-a-language.md](docs/adding-a-language.md) | How to add a language: the source rule, gold rows and test gates |
 | [docs/design.md](docs/design.md) | How the tagger works inside |
 | [docs/benchmarks.md](docs/benchmarks.md) | Accuracy against ovos-number-parser |
 | [docs/roadmap.md](docs/roadmap.md) | Planned features |
 
+Contributors and agents find the setup and test commands in [AGENTS.md](AGENTS.md).
+
 ## License
 
-Apache-2.0.
-
-The `writer` blocks of the lexicons hold rules from the Unicode CLDR rule-based number formats (CLDR 44), copyright Unicode, Inc., under the Unicode License v3. The text is in [LICENSE-CLDR](LICENSE-CLDR).
+Apache-2.0. The `writer` blocks of the lexicons hold rules from the Unicode CLDR rule-based number formats (CLDR 44), copyright Unicode, Inc., under the Unicode License v3. The text is in [LICENSE-CLDR](LICENSE-CLDR).

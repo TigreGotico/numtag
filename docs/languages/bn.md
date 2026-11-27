@@ -25,3 +25,6 @@ The `bn` lexicon reads Bengali numbers in the Bengali script and in Bengali digi
 - A number with a classifier glued to it ("একুশটি", "দুটো") gives no mention.
 - Digits grouped in the Indian way ("১,০০,০০০") give no mention.
 - The ordinals past 10 and the fraction words other than the half have no source and are not read.
+
+---
+[← Baltic languages](baltic.md) · [Home](../index.md) · [Hindi →](hi.md)
