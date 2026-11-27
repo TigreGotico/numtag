@@ -29,13 +29,14 @@ from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
 
-FORMAT_VERSION = 3
-# A version 1 file stays valid; only a version 2 or 3 file may hold a
-# ``writer`` block, and only a version 3 file the keys of V3_SETTINGS and
-# V3_ENTRY_KEYS.
-READABLE_VERSIONS = (1, 2, 3)
+FORMAT_VERSION = 4
+# A version 1 file stays valid; only a version 2, 3 or 4 file may hold a
+# ``writer`` block, only a version 3 or 4 file the keys of V3_SETTINGS and
+# V3_ENTRY_KEYS, and only a version 4 file the writer keys of _v4_keys.
+READABLE_VERSIONS = (1, 2, 3, 4)
 WRITER_VERSION = 2
 V3_VERSION = 3
+V4_VERSION = 4
 
 
 class UnsupportedLanguageError(ValueError):
@@ -599,7 +600,8 @@ RULESET_KEYS = frozenset(("source", "rules"))
 RULE_KEYS = frozenset(("value", "radix", "text", "round", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
-DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
+DECIMAL_CASE_KEYS = frozenset(("numerator", "one", "other", "whole"))
+DECIMAL_KEYS = frozenset(("word", "places", "read", "variant_read", "by_case", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
 FRACTION_KEYS = frozenset(("limit", "named", "mixed_named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
@@ -648,6 +650,8 @@ def _check(lang: str, data: dict) -> None:
             raise ValueError(f"{lang}: a writer block needs format_version {WRITER_VERSION}")
         if data["writer"] is not None:
             _check_writer(lang, data["writer"])
+            if data["format_version"] < V4_VERSION and (keys := _v4_keys(data["writer"])):
+                raise ValueError(f"{lang}: the writer {', '.join(keys)} needs format_version {V4_VERSION}")
         elif "extends" not in data:
             raise ValueError(f"{lang}: a null writer block drops the writer of a base, and this file has no base")
     for section, allowed in (("settings", SETTINGS), ("words", WORDS)):
@@ -671,6 +675,17 @@ def _needs_v3(lang: str, data: dict, where: str, found, v3_keys) -> None:
     """Refuse a key of version 3 in a file of an older version."""
     if data["format_version"] < V3_VERSION and (keys := sorted(set(found) & set(v3_keys))):
         raise ValueError(f"{lang}: the key {', '.join(map(repr, keys))} in {where} needs format_version {V3_VERSION}")
+
+
+def _v4_keys(writer: dict) -> list[str]:
+    """The keys and values of the writer block that only version 4 reads."""
+    decimal = writer["decimal"]
+    found = [f"decimal key {key!r}" for key in ("variant_read", "by_case") if key in decimal]
+    found += ["decimal read 'fraction'"] * ("fraction" in [decimal.get("read"), *decimal.get("variant_read", [])])
+    for name, form in writer["forms"].items():
+        genders = [*form.get("gender", {}), *(g for by in form.get("case", {}).values() if isinstance(by, dict) for g in by)]
+        found += [f"gender 'plural' of form {name!r}"] * ("plural" in genders)
+    return found
 
 
 def _check_writer(lang: str, writer: dict) -> None:
@@ -705,6 +720,17 @@ def _check_writer(lang: str, writer: dict) -> None:
                 if variant["ruleset"] not in writer["rulesets"]:
                     raise ValueError(f"{lang}: form {name!r} names the unknown rule set {variant['ruleset']!r}")
     _refuse(lang, "decimal", writer["decimal"], DECIMAL_KEYS)
+    for read in [writer["decimal"].get("read", "digits"), *writer["decimal"].get("variant_read", [])]:
+        if read not in ("digits", "number", "fraction"):
+            raise ValueError(f"{lang}: the decimal read {read!r} is not 'digits', 'number' or 'fraction'")
+    if "fraction" in [writer["decimal"].get("read"), *writer["decimal"].get("variant_read", [])]:
+        if "by_case" not in writer["decimal"]:
+            raise ValueError(f"{lang}: the decimal read 'fraction' needs 'by_case'")
+        for case, spec in writer["decimal"]["by_case"].items():
+            _refuse(lang, f"decimal case {case!r}", spec, DECIMAL_CASE_KEYS)
+            for key in ("numerator", "one", "other"):
+                if spec[key] not in writer["rulesets"]:
+                    raise ValueError(f"{lang}: decimal case {case!r} names the unknown rule set {spec[key]!r}")
     _refuse(lang, "scientific", writer.get("scientific", {}), SCIENTIFIC_KEYS)
     fraction = writer.get("fraction") or {}
     _refuse(lang, "fraction", fraction, FRACTION_KEYS)
