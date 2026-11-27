@@ -29,14 +29,16 @@ from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
 
-FORMAT_VERSION = 4
-# A version 1 file stays valid; only a version 2, 3 or 4 file may hold a
-# ``writer`` block, only a version 3 or 4 file the keys of V3_SETTINGS and
-# V3_ENTRY_KEYS, and only a version 4 file the writer keys of _v4_keys.
-READABLE_VERSIONS = (1, 2, 3, 4)
+FORMAT_VERSION = 5
+# A version 1 file stays valid; only a version 2 file or newer may hold a
+# ``writer`` block, only a version 3 file or newer the keys of V3_SETTINGS and
+# V3_ENTRY_KEYS, only a version 4 file or newer the writer keys of _v4_keys,
+# and only a version 5 file the keys of V5_SETTINGS.
+READABLE_VERSIONS = (1, 2, 3, 4, 5)
 WRITER_VERSION = 2
 V3_VERSION = 3
 V4_VERSION = 4
+V5_VERSION = 5
 
 
 class UnsupportedLanguageError(ValueError):
@@ -635,8 +637,10 @@ ENTRY_KEYS = {
 }
 
 
-# Keys that only a version 3 file holds.
-V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms", "joiner_after_hundred_one"))
+# Keys that only a version 3 file or newer holds.
+V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms"))
+# Keys that only a version 5 file holds.
+V5_SETTINGS = frozenset(("joiner_after_hundred_one",))
 V3_ENTRY_KEYS = {"ordinal_suffix": frozenset(("after", "cased"))}
 
 
@@ -673,14 +677,15 @@ def _check(lang: str, data: dict) -> None:
         allowed = SCALE_OF_KEYS if role == "denominator" and "scale_of" in spec else ENTRY_KEYS.get(role)
         if allowed and not spec.keys() <= allowed:
             _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
-        _needs_v3(lang, data, f"entry {spec['word']!r} of role {role!r}", spec, V3_ENTRY_KEYS.get(role, ()))
-    _needs_v3(lang, data, "settings", data.get("settings", {}), V3_SETTINGS)
+        _needs(lang, data, f"entry {spec['word']!r} of role {role!r}", spec, V3_ENTRY_KEYS.get(role, ()), V3_VERSION)
+    _needs(lang, data, "settings", data.get("settings", {}), V3_SETTINGS, V3_VERSION)
+    _needs(lang, data, "settings", data.get("settings", {}), V5_SETTINGS, V5_VERSION)
 
 
-def _needs_v3(lang: str, data: dict, where: str, found, v3_keys) -> None:
-    """Refuse a key of version 3 in a file of an older version."""
-    if data["format_version"] < V3_VERSION and (keys := sorted(set(found) & set(v3_keys))):
-        raise ValueError(f"{lang}: the key {', '.join(map(repr, keys))} in {where} needs format_version {V3_VERSION}")
+def _needs(lang: str, data: dict, where: str, found, new_keys, version: int) -> None:
+    """Refuse a key of ``version`` in a file of an older version."""
+    if data["format_version"] < version and (keys := sorted(set(found) & set(new_keys))):
+        raise ValueError(f"{lang}: the key {', '.join(map(repr, keys))} in {where} needs format_version {version}")
 
 
 def _v4_keys(writer: dict) -> list[str]:
