@@ -38,6 +38,10 @@ class TestWriterScripts(unittest.TestCase):
         self.check("writer_gl.py", "")
     def test_the_dutch_writer_block_is_what_the_script_writes(self):
         self.check("writer_nl.py", "")
+
+    def test_the_basque_writer_block_is_what_the_script_writes(self):
+        self.check("writer_eu.py", "")
+
     def test_the_norwegian_nynorsk_writer_block_is_what_the_script_writes(self):
         self.check("writer_nn.py", "")
 
