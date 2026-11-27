@@ -59,7 +59,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `oc` | yes | yes | yes | no | 174 | 174 | 100.0% | [ibero.md](ibero.md) |
 | `pl` | yes | yes | yes | yes | 167 | 167 | 100.0% | [slavic.md](slavic.md) |
 | `ro` | yes | yes | yes | yes | 157 | 157 | 100.0% | [fr-it-ro-eu-id.md](fr-it-ro-eu-id.md) |
-| `ru` | yes | yes | yes | yes | 195 | 194 | 99.5% | [slavic.md](slavic.md) |
+| `ru` | yes | yes | yes | yes | 227 | 226 | 99.6% | [slavic.md](slavic.md) |
 | `sk` | yes | yes | yes | no | 154 | 154 | 100.0% | [slavic.md](slavic.md) |
 | `sl` | yes | yes | yes | no | 166 | 166 | 100.0% | [slavic.md](slavic.md) |
 | `sq` | yes | no | no | no | 170 | 170 | 100.0% |  |
