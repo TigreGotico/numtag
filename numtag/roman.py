@@ -52,25 +52,26 @@ def roman_value(word: str) -> str | None:
     return "".join(place[group] for place, group in zip(_PLACES, match.groups())).lstrip("0")
 
 
-def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None, bool] | None:
+def _suffixed(lexicon: Lexicon, word: str) -> tuple[str, str | None, bool, bool] | None:
     """The value, the gender and the weakness of an upper-case numeral glued
     to an ordinal suffix of the language in lower case ("XIXe", "Ier",
     "IIde"), where the language sets ``roman_ordinal_suffix``. The suffix
     keeps its lower case in upper-case text ("XXe SIÈCLE"), so the change of
-    case ends the numeral. A single letter is I, V or X, as alone, and a
-    numeral that is also a word takes no suffix ("MMe"). The word is weak
-    when its numeral is a single letter ("Ire" is also "ire", anger) or when
-    the whole word is listed as a word ("Xe" is xenon)."""
+    case ends the numeral. A single letter is I, V or X, as alone. The word
+    is weak when its numeral is a single letter ("Ire" is also "ire",
+    anger), and listed when the whole word or its numeral is listed as a
+    word ("Xe" is xenon, "MMe" holds "mm")."""
     numeral = word[:len(word) - len(word.lstrip("IVXLCDM"))]
     suffix = word[len(numeral):]
     if not (lexicon.roman_ordinal_suffix and numeral and suffix) or any(c.isupper() for c in suffix):
         return None
-    if len(numeral) == 1 and numeral not in _SINGLE_LETTERS or fold(numeral) in lexicon.roman_words:
+    if len(numeral) == 1 and numeral not in _SINGLE_LETTERS:
         return None
     value = roman_value(numeral)
     if value is None or not lexicon.ordinal_suffix_fits(suffix, value):
         return None
-    return value, lexicon.ordinal_suffixes[fold(suffix)], len(numeral) == 1 or fold(word) in lexicon.roman_words
+    listed = fold(word) in lexicon.roman_words or fold(numeral) in lexicon.roman_words
+    return value, lexicon.ordinal_suffixes[fold(suffix)], len(numeral) == 1 or listed, listed
 
 
 def _suffix_cue(lexicon: Lexicon, tokens: list[Token], k: int, listed: bool) -> bool:
@@ -171,6 +172,10 @@ def _regnal(lexicon: Lexicon, tokens: list[Token], k: int) -> bool:
         if title.norm in lexicon.roman_titles and joined and "\n" not in title_gap \
                 and all(t.gap.isspace() and "\n" not in t.gap for t in name[1:]):
             return True
+        # a hyphenated name gives no token and stands in the gap: "le pape Jean-Paul Louis I"
+        if words == 1 and _gap_name(title_gap) and re.fullmatch(r"[ \t]+\S+[ \t]+", title_gap) \
+                and title.norm in lexicon.roman_titles:
+            return True
     return False
 
 
@@ -230,8 +235,7 @@ def roman_numerals(text: str, lexicon: Lexicon, tokens: list[Token],
             # the suffix makes the place in a series: "au XXe siècle"; a weak
             # word needs a cue too ("François Ier"), and a listed one reads
             # only with it ("Le xénon (Xe)" holds no 10th)
-            value, gender, weak = suffixed
-            listed = fold(token.text) in lexicon.roman_words
+            value, gender, weak, listed = suffixed
             sure = not weak or _suffix_cue(lexicon, tokens, k, listed)
             if sure:
                 cued.add(k)
