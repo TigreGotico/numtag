@@ -1,14 +1,14 @@
 # The lexicon format
 
 <!-- agent-hint
-covers: The format of a lexicon JSON file, versions 1, 2 and 3: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
+covers: The format of a lexicon JSON file, versions 1, 2, 3 and 4: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
 source: numtag/lexicon/__init__.py:load, numtag/lexicon/__init__.py:revision, numtag/lexicon.schema.json, tests/test_lexicon_format.py
 generated: no
 verify: for k in $(grep -oP '^ +"\K[a-z_]+(?=": \{"properties")' numtag/lexicon.schema.json); do grep -qF "$k" docs/lexicon-format.md || exit 1; done
 see: adding-a-language.md, design.md
 -->
 
-A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1, 2 and 3 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
+A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1, 2, 3 and 4 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
 
 The engine has no code for a language. A language that needs new behaviour gets a new key or a new role here, and the format version goes up in the same change.
 
@@ -18,7 +18,7 @@ A file is a JSON object with these keys.
 
 | Key | Content |
 |---|---|
-| `format_version` | The integer `1`, `2` or `3`. Required. Only versions 2 and 3 hold `writer`. Only version 3 holds the keys that this page marks as version 3. |
+| `format_version` | The integer `1`, `2`, `3` or `4`. Required. Only versions 2, 3 and 4 hold `writer`. Only versions 3 and 4 hold the keys that this page marks as version 3, and only version 4 the keys that it marks as version 4. |
 | `extends` | The name of a base lexicon. Optional. |
 | `settings` | An object. Each key is a setting, and each value is `{"value": ..., "source": ...}`. |
 | `words` | An object. Each key is a word list, and each value is `{"value": [...], "source": ...}`. |
@@ -30,11 +30,13 @@ A file with no `extends` holds `settings`, `words` and `entries`. It holds every
 
 ### Version and refusal
 
-The loader reads `format_version` first. It reads versions 1, 2 and 3. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1, 2, 3 and 4. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
-A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3. The loader refuses a `writer` block in a version 1 file, and a key of version 3 in a version 1 or 2 file. The error names the key and the place.
+A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, and a key of version 4 in an older file. The error names the key and the place.
 
 Version 3 adds the settings `roman_ordinal_suffix`, `group_mark_forms` and `joiner_after_hundred_one` and the entry keys `after` and `cased` of the role `ordinal_suffix`. These are all the changes of version 3; a file that holds none of them reads the same under version 2.
+
+Version 4 adds the decimal keys `variant_read` and `by_case`, the decimal read `fraction`, and the gender `plural` of a form. These are all the changes of version 4.
 
 ### Base lexicons
 
@@ -267,7 +269,7 @@ A script writes the writer block of a language, and a test checks that the file 
 | `source` | The quote and the file that give the rule sets. Required. |
 | `rulesets` | An object. Each key is the name of a rule set, and each value is `{"source": ..., "rules": [...]}`. Required. |
 | `forms` | An object. Each key is a form: `cardinal`, `ordinal` or `year`. Required, and it holds `cardinal`. |
-| `decimal` | `{"word": ..., "places": ..., "read": ..., "source": ...}`. Required. The word between the whole part and the decimals, and the count of decimals that a reading keeps when the caller names none. `read` is `digits` (the default: one word for each decimal) or `number` (the decimals as one number, after a zero word for each leading zero). A `decimals` argument of `spell` replaces it. |
+| `decimal` | `{"word": ..., "places": ..., "read": ..., "source": ...}`. Required. The word between the whole part and the decimals, and the count of decimals that a reading keeps when the caller names none. `read` is `digits` (the default: one word for each decimal), `number` (the decimals as one number, after a zero word for each leading zero) or `fraction` (version 4: the whole part, a whole word and the decimals as a fraction of a power of ten, ru "две целых двадцать пять сотых"). A `fraction` read needs `by_case` (version 4), an object from a case name, and `nominative` for a call with no case, to `{"numerator": ..., "one": ..., "other": ..., "whole": {"one": ..., "other": ...}}`. `numerator` is the rule set of the whole part and of the count of the decimals. `one` and `other` are the rule sets of the power of ten after a count of the plural category `one` and after any other. `whole` holds the whole word after a whole part of each category. So ru reads 2.5 in the instrumental "двумя целыми пятью десятыми". `variant_read` (version 4) is a list of more reads, each a `variant_spelling` after the spellings of `read`. A `decimals` argument of `spell` replaces them. |
 | `scientific` | `{"times": ..., "source": ...}`. Optional. The words between the mantissa and the exponent: "kali sepuluh pangkat". A lexicon with no `scientific` has no exponent reading. |
 | `fraction` | Optional. How a fraction "n/m" reads. See below. |
 | `plural` | Optional. A list of `{"category": ..., "mod10": [...], "not_mod100": [...], "source": ...}`: the CLDR plural categories of whole numbers. A number is in the first category whose `mod10` holds its last digit and whose `not_mod100` misses its last two digits. Every other number is `other`. ru: one is `mod10` [1], `not_mod100` [11]. |
@@ -296,7 +298,7 @@ The soft hyphen U+00AD is dropped from the words, runs of spaces become one spac
 
 A form has `variants`, a list of `{"ruleset": ..., "reason": ..., "source": ...}`. The list is in rank order: the first is the default reading. A `reason` is one of `standard`, `no_conjunction`, `year_pairs`, `plain`, `counting`, `variant_spelling` or `strong`. Two variants with the same words count once. A difference of region or standard is no variant: it is another lexicon.
 
-A form can also hold `gender`, an object from `masculine`, `feminine` or `neuter` to a list of variants, and `case`, an object from a case name to a list of variants or to a `gender` object. A case with a `gender` object needs a gender: a call with no gender, or with a gender that the case does not list, raises `ValueError`. A call that names a gender that the form does not list reads the `variants`. A call that names a case that the form does not list raises `ValueError`, and the message names the cases that the form has. A case takes the place of the gender. A form can hold `scale`, an object from `short` or `long` to a form with the same keys apart from `scale`. A call reads the form of the scale it names, or of the lexicon's `scale` setting when it names none. A form with no entry for that scale reads as itself. The `ordinal` form can hold `minimum`, a digit string: a call for a number below it, for a negative number or for a number with decimals raises `ValueError`. A form or a form of a scale can hold `maximum`, a digit string, for a lexicon with no scale word past that number. An ordinal above it raises `ValueError`. A cardinal above it reads the `scientific` form, or raises `ValueError` when the lexicon has no `scientific` form. The `year` form is optional: a lexicon with no `year` reads the cardinal. The form `digits` of `numtag.spell` uses the cardinal rule set for each digit.
+A form can also hold `gender`, an object from `masculine`, `feminine`, `neuter` or `plural` (version 4) to a list of variants (`plural` is the plural of a form that has no gender in the plural, such as the Russian ordinal), and `case`, an object from a case name to a list of variants or to a `gender` object. A case with a `gender` object needs a gender: a call with no gender, or with a gender that the case does not list, raises `ValueError`. A call that names a gender that the form does not list reads the `variants`. A call that names a case that the form does not list raises `ValueError`, and the message names the cases that the form has. A case takes the place of the gender. A form can hold `scale`, an object from `short` or `long` to a form with the same keys apart from `scale`. A call reads the form of the scale it names, or of the lexicon's `scale` setting when it names none. A form with no entry for that scale reads as itself. The `ordinal` form can hold `minimum`, a digit string: a call for a number below it, for a negative number or for a number with decimals raises `ValueError`. A form or a form of a scale can hold `maximum`, a digit string, for a lexicon with no scale word past that number. An ordinal above it raises `ValueError`. A cardinal above it reads the `scientific` form, or raises `ValueError` when the lexicon has no `scientific` form. The `year` form is optional: a lexicon with no `year` reads the cardinal. The form `digits` of `numtag.spell` uses the cardinal rule set for each digit.
 
 ### Decimals, negatives and size
 

@@ -1,5 +1,5 @@
 from numtag import tag_numbers
-from numtag.lexicon import V3_ENTRY_KEYS, V3_SETTINGS, V3_VERSION, WRITER_VERSION
+from numtag.lexicon import V3_ENTRY_KEYS, V3_SETTINGS, V3_VERSION, V4_VERSION, WRITER_VERSION, _v4_keys
 
 
 def read(text: str, lang: str, **options) -> list[tuple[str, str, str]]:
@@ -23,5 +23,8 @@ def holds_v3_keys(data: dict) -> bool:
 
 
 def expected_version(data: dict) -> int:
-    """The lowest version that reads the file: 3 for a key of version 3, 2 for a writer block, else 1."""
+    """The lowest version that reads the file: 4 for a writer key of version 4, 3 for a key of version 3, 2 for a
+    writer block, else 1."""
+    if data.get("writer") and _v4_keys(data["writer"]):
+        return V4_VERSION
     return V3_VERSION if holds_v3_keys(data) else WRITER_VERSION if "writer" in data else 1

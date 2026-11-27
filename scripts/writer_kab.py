@@ -2,8 +2,10 @@
 
 usage: python scripts/writer_kab.py [--check]
 
-Where languagesandnumbers.com and the fr.wiktionary table differ, the writer takes the fr.wiktionary form, which
-cites Dallet and Kossmann.
+The standard reading takes the form of Dallet (1982) where the dictionary gives one: tmanyin, meyya, miṭin, alef,
+alfin and the unit + u + ten compounds. Elsewhere, where languagesandnumbers.com and the fr.wiktionary table differ,
+the writer takes the fr.wiktionary form. The fr.wiktionary forms of 100, 200 and 2000 (mya, mitin, juǧ alaf) stay
+as a variant spelling.
 """
 import sys
 from pathlib import Path
@@ -16,12 +18,17 @@ PAPERS = "Papers/Languages/Berber/Kabyle/"
 LN = f"languagesandnumbers.com (a hobby site), «Counting in Kabyle» ({PAPERS}languagesandnumbers_kabyle.html)"
 WT = f"fr.wiktionary, «Modèle:cardinaux/kab» ({PAPERS}cardinaux_kab_frwiktionary_template.html)"
 WP = f"en.wikipedia, «Kabyle grammar», Numerotation ({PAPERS}kabyle_grammar_enwiki_oldid1383353682.html)"
+DALLET = f"Dallet (1982), Dictionnaire kabyle-français ({PAPERS}dallet_1982_kf_p*.png)"
+DALLET_SRC = (DALLET + ": p. 825 \"tmanyin ; ‖ Quatre-vingts.\"; p. 528 \"meyya ; fém.\", \"meyyat ‖ Cent. Centaine.\", "
+              "\"meyyeṭ, dans les emprunts arabes : meyyeṭ esna, cent ans.\", \"miṭin / miṭayen / mitayen (duel ar.). "
+              "‖ Deux cents.\"; p. 446 \"alef (wa)\", \"luluf / alaf ‖ Mille.\", \"alfin (wa) ‖ Deux mille.\"; "
+              "p. 703 \"ṛebɛa w ɛecrin, vingt-quatre.\"; p. 756 \"sebɛa u ɛecrin, vingt-sept.\"")
 NATIVE = f"Mokraoui (2026), native answers on the Kabyle clock ({PAPERS}athmanemokraoui_2026_kabyle_clock_answers.md)"
 UNITS_SRC = (WP + ": \"Only the first two numbers are Berber; for higher numbers, Arabic is used. They are yiwen (f. yiwet ) "
              "\\\"one\\\", sin (f. snat ) \\\"two\\\".\"; " + WT + ": \"0 ilem\", \"3 tlata\", \"13 telṭac\", \"17 sbeɛṭac\", "
              "\"18 tmenṭac\", \"80 tmanyin\", \"90 tesɛin\"; " + LN + ": \"ziṛu or ilem [0]\", \"tleṭṭac [13]\", "
              "\"tmanyina [80], and tsɛin [90]\": the writer takes the fr.wiktionary form")
-COMPOUND = (LN + ": \"Compound numbers are formed starting with the unit, followed by the conjunction u , then the ten\", "
+COMPOUND = (DALLET_SRC + "; " + LN + ": \"Compound numbers are formed starting with the unit, followed by the conjunction u , then the ten\", "
             "\"When compound, the units one and two are replaced by Arabic loanwords : waḥed [1] (from wahid ), tnayn [2] "
             "(from ithnan ). Thus, we get waḥed u ɛecrin [21], tnayn u tlatin [32]\"; " + WT + ": \"21 waḥed u ɛecrin\", "
             "\"22 tnayn u ɛecrin\"")
@@ -53,10 +60,12 @@ UNITS = {0: "ilem", 1: "yiwen", 2: "sin", 3: "tlata", 4: "ṛebɛa", 5: "xemsa",
          9: "tesɛa", 10: "ɛecṛa", 11: "ḥḍac", 12: "tnac", 13: "telṭac", 14: "ṛbeɛṭac", 15: "xemseṭṭac", 16: "seṭṭac",
          17: "sbeɛṭac", 18: "tmenṭac", 19: "tseɛṭac"}
 TENS = {20: "ɛecrin", 30: "tlatin", 40: "ṛebɛin", 50: "xemsin", 60: "settin", 70: "sebɛin", 80: "tmanyin", 90: "tesɛin"}
-HUNDREDS = {100: "mya", 200: "mitin", 300: "telt-mya", 400: "ṛebɛa-mya", 500: "xems-mya", 600: "sett-mya",
+HUNDREDS = {100: "meyya", 200: "miṭin", 300: "telt-mya", 400: "ṛebɛa-mya", 500: "xems-mya", 600: "sett-mya",
             700: "sebɛ-mya", 800: "temn-mya", 900: "tesɛa-mya"}
-THOUSANDS = {1000: "alef", 2000: "juǧ alaf", 3000: "telt-alaf", 4000: "ṛebɛ-alaf", 5000: "xems-alaf", 6000: "sett-alaf",
+THOUSANDS = {1000: "alef", 2000: "alfin", 3000: "telt-alaf", 4000: "ṛebɛ-alaf", 5000: "xems-alaf", 6000: "sett-alaf",
              7000: "sebɛ-alaf", 8000: "temn-alaf", 9000: "tesɛ-alaf", 10000: "ɛecṛ-alaf"}
+HUNDREDS_WT = {**HUNDREDS, 100: "mya", 200: "mitin"}
+THOUSANDS_WT = {**THOUSANDS, 2000: "juǧ alaf"}
 SCALES = [(6, "amelyun", "imelyunen"), (9, "amelyaṛ", "imelyaren")]
 
 
@@ -69,16 +78,16 @@ def R(value, text, source=None, radix=None):
     return rule
 
 
-def cardinal(one, two):
+def cardinal(one, two, hundreds=HUNDREDS, thousands=THOUSANDS, rest="rest", count="cardinal"):
     """``one`` and ``two`` are the words of 1 and 2: yiwen and sin alone, waḥed and tnayn in a compound."""
     rules = [R(i, {1: one, 2: two}.get(i, w)) for i, w in UNITS.items()]
-    rules += [R(t, f"[→%rest→ u ]{w}") for t, w in TENS.items()]
-    rules += [R(h, f"{w}[ u →%rest→]") for h, w in HUNDREDS.items()]
-    rules += [R(t, f"{w}[ u →%rest→]") for t, w in THOUSANDS.items()]
-    rules += [R(11000, "←%rest←-alaf[ u →%rest→]", SILVER_THOUSANDS, radix=1000)]
+    rules += [R(t, f"[→%{rest}→ u ]{w}") for t, w in TENS.items()]
+    rules += [R(h, f"{w}[ u →%{rest}→]") for h, w in hundreds.items()]
+    rules += [R(t, f"{w}[ u →%{rest}→]") for t, w in thousands.items()]
+    rules += [R(11000, f"←%{rest}←-alaf[ u →%{rest}→]", SILVER_THOUSANDS, radix=1000)]
     for exponent, singular, plural in SCALES:
-        rules += [R(10 ** exponent, f"{singular}[ u →%rest→]"),
-                  R(2 * 10 ** exponent, f"←%cardinal← {plural}[ u →%rest→]", SILVER_SCALE if exponent == 6 else None)]
+        rules += [R(10 ** exponent, f"{singular}[ u →%{rest}→]"),
+                  R(2 * 10 ** exponent, f"←%{count}← {plural}[ u →%{rest}→]", SILVER_SCALE if exponent == 6 else None)]
     return rules
 
 
@@ -87,11 +96,17 @@ def ordinal(prefix, first, count):
 
 
 sets = {"cardinal": cardinal("yiwen", "sin"), "cardinal-f": cardinal("yiwet", "snat"), "rest": cardinal("waḥed", "tnayn"),
+        "cardinal-wt": cardinal("yiwen", "sin", HUNDREDS_WT, THOUSANDS_WT, "rest-wt", "cardinal-wt"),
+        "rest-wt": cardinal("waḥed", "tnayn", HUNDREDS_WT, THOUSANDS_WT, "rest-wt", "cardinal-wt"),
         "ordinal": ordinal("wis", "amezwaru", "cardinal"), "ordinal-f": ordinal("tis", "tamezwarut", "cardinal-f")}
+WT_VARIANT = ("The fr.wiktionary forms as a variant spelling. " + HUNDRED + ". " + THOUSAND + ". " + COMPOUND + ". "
+              + SILVER_REST)
 SOURCES = {
     "cardinal": ". ".join((UNITS_SRC, COMPOUND, HUNDRED, THOUSAND, SCALE, SILVER_REST, SILVER_THOUSANDS, SILVER_SCALE)),
     "cardinal-f": UNITS_SRC,
     "rest": COMPOUND + ". " + SILVER_REST,
+    "cardinal-wt": WT_VARIANT,
+    "rest-wt": WT_VARIANT,
     "ordinal": ORDINAL,
     "ordinal-f": ORDINAL,
 }
@@ -99,17 +114,20 @@ rulesets = {name: {"source": SOURCES[name], "rules": rules} for name, rules in s
 maximum = "9" * 12
 
 
-def form(masculine, feminine):
-    return {"variants": [{"ruleset": masculine, "reason": "standard"}],
-            "gender": {"masculine": [{"ruleset": masculine, "reason": "standard"}],
+def form(masculine, feminine, variant=None):
+    spellings = [{"ruleset": masculine, "reason": "standard"}]
+    if variant:
+        spellings.append({"ruleset": variant, "reason": "variant_spelling"})
+    return {"variants": spellings,
+            "gender": {"masculine": spellings,
                        "feminine": [{"ruleset": feminine, "reason": "standard"}]},
             "maximum": maximum}
 
 
 block = {
-    "source": "The Kabyle pages in " + PAPERS + ": " + WT + ", " + LN + ", " + WP + " and " + NATIVE + ".",
+    "source": "The Kabyle pages in " + PAPERS + ": " + DALLET + ", " + WT + ", " + LN + ", " + WP + " and " + NATIVE + ".",
     "rulesets": rulesets,
-    "forms": {"cardinal": form("cardinal", "cardinal-f"), "ordinal": {**form("ordinal", "ordinal-f"), "minimum": "1"}},
+    "forms": {"cardinal": form("cardinal", "cardinal-f", "cardinal-wt"), "ordinal": {**form("ordinal", "ordinal-f"), "minimum": "1"}},
     "decimal": {"word": None, "places": 3,
                 "source": LN + ": the page names no word for the decimal mark, so a number with decimals has no reading."},
     "fraction": {"limit": 2, "named": {"2": "azgen"}, "mixed_named": {"2": "d wezgen"}, "denominator": "{cardinal}",
