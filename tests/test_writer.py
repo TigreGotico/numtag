@@ -394,7 +394,7 @@ class TestRevisions(unittest.TestCase):
         names = sorted(path.stem for path in LEXICONS.glob("*.json"))
         for name in names:
             with self.subTest(lexicon=name):
-                self.assertEqual(_file(name)["format_version"], 2 if name in VERSION_TWO else 1)
+                self.assertIn(_file(name)["format_version"], (2, 4) if name in VERSION_TWO else (1,))
         self.assertTrue({"id", "ms", "pt-PT", "pt-BR", "es", "nb"} <= set(WRITERS))
         self.assertTrue(set(WRITERS) <= set(VERSION_TWO))
 
@@ -914,6 +914,17 @@ class TestLoader(unittest.TestCase):
         data["format_version"] = 1
         self.refused(data, "variant: a writer block needs format_version 2")
 
+    def test_a_key_of_version_4_in_a_version_2_file_is_refused_by_name(self):
+        data = _file("ru")
+        data["format_version"] = 2
+        self.refused(data, "variant: the writer decimal key 'variant_read', decimal key 'by_case', decimal read "
+                           "'fraction', gender 'plural' of form 'ordinal' needs format_version 4")
+
+    def test_a_fraction_decimal_with_no_cases_is_refused_by_name(self):
+        data = _file("ru")
+        del data["writer"]["decimal"]["by_case"]
+        self.refused(data, "variant: the decimal read 'fraction' needs 'by_case'")
+
     def test_an_unknown_key_of_the_block_is_refused_by_name(self):
         data = _tiny([{"value": "0", "text": "nol;"}])
         data["writer"]["bogus"] = 1
@@ -1285,6 +1296,13 @@ class TestRussian(unittest.TestCase):
                          ["одна целая шесть десятых", "три целых двадцать пять сотых", "двадцать одна целая одна десятая",
                           "ноль целых пять сотых", "минус две целых пять десятых"])
         self.assertEqual(self.say("1.5", decimals="digits"), "один запятая пять")
+        cases = ("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional")
+        self.assertEqual([self.say("2.5", case=c, gender="masculine") for c in cases],
+                         ["две целых пять десятых", "двух целых пяти десятых", "двум целым пяти десятым",
+                          "две целых пять десятых", "двумя целыми пятью десятыми", "двух целых пяти десятых"])
+        self.assertEqual([self.say("1.1", case=c, gender="masculine") for c in cases],
+                         ["одна целая одна десятая", "одной целой одной десятой", "одной целой одной десятой",
+                          "одну целую одну десятую", "одной целой одной десятой", "одной целой одной десятой"])
         self.assertEqual([m.value for m in tag_numbers("одна целая шесть десятых", "ru")], ["1.6"])
 
     def test_the_plural_ordinal_has_six_cases(self):

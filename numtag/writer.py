@@ -314,7 +314,7 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     reads = [decimals] if decimals else [writer.decimal.get("read", "digits"), *writer.decimal.get("variant_read", [])]
     for number, read in enumerate(reads):
         for variant in writer.variants(form, gender, case, scale):
-            text = _speak(writer, variant["ruleset"], value, form, places, scientific, read, spec)
+            text = _speak(writer, variant["ruleset"], value, form, places, scientific, read, spec, case)
             reason = variant["reason"] if number == 0 else "variant_spelling"
             if all(text != seen.text for seen in spellings):
                 spellings.append(Spelling(text, SpellingReason(reason), len(spellings)))
@@ -322,7 +322,7 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
 
 
 def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: int | None, scientific: bool,
-           decimals: str, spec: dict) -> str:
+           decimals: str, spec: dict, case: str | None = None) -> str:
     if "/" in value:
         return _fraction(writer, ruleset, value)
     negative, whole, fraction = _split(value, keep_zeros=decimals == "number")
@@ -345,7 +345,7 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
         places = first
     else:
         whole, fraction = _round(whole, fraction, max(places, 0))
-    text = _plain(writer, ruleset, negative, whole, fraction, places, decimals)
+    text = _plain(writer, ruleset, negative, whole, fraction, places, decimals, case)
     if not fraction and len(whole) > BIG and _padded(writer, ruleset, text):
         return _exponent(writer, ruleset, negative, whole, fraction, places, decimals) or text
     return text
@@ -358,7 +358,7 @@ def _below_quantum(fraction: str, places: int) -> bool:
 
 
 def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str, places: int,
-           decimals: str = "digits") -> str:
+           decimals: str = "digits", case: str | None = None) -> str:
     if digits.normalise(whole) == "0" and not fraction:
         negative = False
     text = writer.render(ruleset, whole, negative)
@@ -366,10 +366,11 @@ def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: s
         raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
     if fraction and decimals == "fraction":
         fraction = fraction[:places]
-        spec = writer.block["fraction"]
-        whole_word = writer.decimal["whole"]["one" if writer.plural_category(whole) == "one" else "other"]
-        count = writer.render(spec.get("numerator", ruleset), whole, negative)
-        return f"{count} {whole_word} {_counted(writer, ruleset, spec, fraction.lstrip('0'), '1' + '0' * len(fraction))}"
+        top, bottom = fraction.lstrip("0"), "1" + "0" * len(fraction)
+        spec = writer.decimal["by_case"][case or "nominative"]
+        category = lambda number: "one" if writer.plural_category(number) == "one" else "other"
+        return " ".join([writer.render(spec["numerator"], whole, negative), spec["whole"][category(whole)],
+                         writer.render(spec["numerator"], top), writer.render(spec[category(top)], bottom)])
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":

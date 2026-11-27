@@ -52,10 +52,11 @@ ORDINAL_PLURAL = (ROSENTAL + ", п. 3: \"Д р о б н ы е числитель
                   "-ым, -ыми (\"пятых\", \"пятыми\") and -ьи, -ьих, -ьим, -ьими for \"третий\"")
 DECIMAL = (CLDR + ", %spellout-cardinal-feminine: \"x.x: [←← $(cardinal,one{целая}other{целых})$ ]→%%fractions-feminine→;\" "
            "and %%fractions-feminine: \"10: ←%spellout-cardinal-feminine← "
-           "$(cardinal,one{десятая}other{десятых})$;\"; Русская грамматика (1980), § 1366-1383.html: \"одна целая шесть "
-           "десятых, три целых и двадцать пять сотых\"; " + ROSENTAL + ", п. 3: \"три целых и шесть седьмых\". The "
-           "standard decimal reads the whole part with \"целая\" or \"целых\" and the decimals as a fraction of a power "
-           "of ten; \"запятая\" and one word for each decimal is the variant")
+           "$(cardinal,one{десятая}other{десятых})$;\"; Русская грамматика (1980), Гр-80 §§ 1366–1383: \"одна целая "
+           "шесть десятых, три целых и двадцать пять сотых\", \"пяти десятым участка, трем пятым суток\", and § 1378: "
+           "\"нормально изменение по падежам каждого слова\"; " + ROSENTAL + ", п. 3: \"три целых и шесть седьмых\". "
+           "The standard decimal reads the whole part with \"целая\" or \"целых\" and the decimals as a fraction of a "
+           "power of ten, every word in the case; \"запятая\" and one word for each decimal is the variant")
 SILVER = ("SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\") and \"умножить на десять в "
           "степени\"; no saved example")
 
@@ -194,6 +195,22 @@ def with_yo(rulesets):
     return out
 
 
+# "целый" after the count one and after any other: "одна целая", "две целых", "двумя целыми".
+WHOLE = {"nominative": ("целая", "целых"), "genitive": ("целой", "целых"), "dative": ("целой", "целым"),
+         "accusative": ("целую", "целых"), "instrumental": ("целой", "целыми"), "prepositional": ("целой", "целых")}
+
+
+def decimal_cases():
+    """The rule sets and the whole word of a decimal in each case. After a count other than one, the nominative
+    and the accusative take the genitive plural ("две пятых"); the other cases agree ("двумя пятыми")."""
+    table = {}
+    for case, (one, other) in WHOLE.items():
+        plural = "genitive" if case in ("nominative", "accusative") else case
+        table[case] = {"numerator": "cardinal-f" + CASES[case], "one": f"ordinal-f-{case}",
+                       "other": f"ordinal-p-{plural}", "whole": {"one": one, "other": other}}
+    return table | {alias: table[case] for alias, case in ALIAS.items()}
+
+
 def main():
     path, check = Path(__file__).parent / "cldr/ru.xml", "--check" in sys.argv
     sets = cldr_sets(path)
@@ -245,7 +262,7 @@ def main():
                         "gender": by_gender("ordinal"), "case": by_case("ordinal"), "minimum": "0", "maximum": "9" * 15},
         },
         "decimal": {"word": "запятая", "places": 3, "read": "fraction", "variant_read": ["digits"],
-                    "whole": {"one": "целая", "other": "целых"}, "source": DECIMAL + ". " + SILVER + "."},
+                    "by_case": decimal_cases(), "source": DECIMAL + ". " + SILVER + "."},
         "scientific": {"times": "умножить на десять в степени", "source": SILVER + "."},
         "fraction": {"mixed": False, "limit": 10, "single": "одна {denominator}", "plural": {"ья": "ьих", "ая": "ых"},
                      "named": {}, "denominator": "{cardinal}", "ruleset": "ordinal-f-nominative",

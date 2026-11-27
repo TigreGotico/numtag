@@ -14,7 +14,8 @@ import numtag
 from numtag import lexicon as lexicon_module
 from numtag.lexicon import (DEFAULT_SETTINGS, DEFAULT_WORDS, ENTRY_KEYS, INFLECTION_KEYS, READABLE_VERSIONS,
                             REQUIRED_SETTINGS, REQUIRED_WORDS, SCALE_OF_KEYS, SETTINGS, TOP_KEYS, WORDS,
-                            UnsupportedLanguageError, WRITER_VERSION, load)
+                            UnsupportedLanguageError, V4_VERSION, WRITER_VERSION, load)
+from numtag.lexicon import _v4_keys
 from numtag import tagger as tagger_module
 from numtag.tagger import lexicon_name
 
@@ -116,6 +117,12 @@ class TestSchema(unittest.TestCase):
         bad = _file("sv")
         bad["writer"] = _file("id")["writer"]
         self.assertTrue(list(validator.iter_errors(bad)))
+        bad = _file("ru")
+        bad["format_version"] = 2
+        self.assertTrue(list(validator.iter_errors(bad)))
+        bad = _file("ru")
+        del bad["writer"]["decimal"]["by_case"]
+        self.assertTrue(list(validator.iter_errors(bad)))
         bad = _file("sv")
         del bad["settings"]["scale"]
         self.assertTrue(list(validator.iter_errors(bad)))
@@ -135,7 +142,9 @@ class TestVersion(unittest.TestCase):
         for name in NAMES:
             with self.subTest(lexicon=name):
                 data = _file(name)
-                self.assertEqual(data["format_version"], WRITER_VERSION if "writer" in data else 1)
+                writer = data.get("writer")
+                expected = V4_VERSION if writer and _v4_keys(writer) else WRITER_VERSION if "writer" in data else 1
+                self.assertEqual(data["format_version"], expected)
 
     def test_a_lexicon_with_an_unknown_version_is_refused_by_name(self):
         variants = Variants(self)
