@@ -604,7 +604,6 @@ def test_cs_a_scale_word_above_million_scales_the_count(text, expected):
     assert read(text, "cs") == expected
 
 
-@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/162")
 @pytest.mark.parametrize("text, expected", [
     ('pięćdziesiąty', [('pięćdziesiąty', '50', O)]),
     ('sześćdziesiątego', [('sześćdziesiątego', '60', O)]),

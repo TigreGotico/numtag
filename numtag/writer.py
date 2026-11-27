@@ -54,6 +54,7 @@ class _Rule:
     base: str
     divisor: str
     tokens: tuple
+    round: tuple | None = None  # the tokens read when the remainder is 0 ("dwutysięczny" beside "dwa tysiące pierwszy")
 
 
 class _Ruleset:
@@ -66,7 +67,10 @@ class _Ruleset:
             if spec["value"] == "-x":
                 self.negative = tokens
             else:
-                self.rules.append(_Rule(spec["value"], _divisor(spec["value"], spec.get("radix", 10)), tokens))
+                round_text = spec.get("round")
+                round_tokens = _parse(round_text, f"{name} {spec['value']!r} round") if round_text else None
+                self.rules.append(_Rule(spec["value"], _divisor(spec["value"], spec.get("radix", 10)), tokens,
+                                        round_tokens))
         self.rules.sort(key=lambda rule: (len(rule.base), rule.base))
 
     def find(self, number: str) -> _Rule:
@@ -177,7 +181,7 @@ class Writer:
         self.rulesets = {key: _Ruleset(key, spec["rules"]) for key, spec in block["rulesets"].items()}
         for ruleset in self.rulesets.values():
             for rule in ruleset.rules:
-                for name in _called(rule.tokens):
+                for name in [*_called(rule.tokens), *_called(rule.round or ())]:
                     if name not in self.rulesets:
                         raise ValueError(f"{self.name}: rule set {ruleset.name!r} calls the unknown rule set {name!r}")
         self.forms = block["forms"]
@@ -196,7 +200,8 @@ class Writer:
             return self._fill(ruleset.negative, ruleset, number, "1", number)
         rule = ruleset.find(number)
         quotient, remainder = digits.divide_whole(number, rule.divisor)
-        return self._fill(rule.tokens, ruleset, number, quotient, remainder)
+        tokens = rule.round if rule.round is not None and digits.normalise(remainder) == "0" else rule.tokens
+        return self._fill(tokens, ruleset, number, quotient, remainder)
 
     def _fill(self, tokens: tuple, ruleset: _Ruleset, number: str, quotient: str, remainder: str) -> str:
         out = ""
@@ -456,10 +461,20 @@ def _counted(writer: Writer, ruleset: str, spec: dict, top: str, bottom: str) ->
     when the spec names one, else a one-word ordinal or the ``denominator`` text. A named word, an
     ordinal and a ``ruleset`` reading take the plural ending after a numerator other than 1."""
     count = writer.render(spec.get("numerator", ruleset), top)
+    single = spec.get("single", "")
+    if bottom not in spec["named"] and "by_count" in spec:  # the case of the part follows the numerator (pl, cs)
+        name = next(rule["ruleset"] for rule in spec["by_count"] if re.fullmatch(rule["count"], top))
+        return f"{count} {_capital(spec, writer.render(name, bottom))}"
     if bottom not in spec["named"] and "ruleset" in spec:
         word = writer.render(spec["ruleset"], bottom)
+        if top == "1" and single.startswith("{denominator} "):  # the count after the part: eu "heren bat"
+            return single.replace("{denominator}", word)
+        if top != "1" and " " in word and "{numerator}" in spec.get("denominator", ""):  # eu "hamahiru zati berrogeita zazpi"
+            return spec["denominator"].replace("{numerator}", count).replace("{cardinal}", writer.render(ruleset, bottom))
         one = top == "1" or writer.plural_category(top) == "one"
         return f"{count} {_capital(spec, word if one else _plural(word, spec['plural']))}"
+    if top == "1" and bottom in spec["named"] and single.startswith("{denominator} "):
+        return single.replace("{denominator}", spec["named"][bottom])
     word = spec["named"].get(bottom) or _ordinal_of(writer, bottom)
     if " " in word:
         word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, bottom))

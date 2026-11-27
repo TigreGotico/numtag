@@ -58,7 +58,8 @@ def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
                     if lexicon.period_ordinals else None,
                     dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
                     phrases=lexicon.phrases, group_mark=lexicon.group_mark,
-                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
+                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".",
+                    suffix_fits=lexicon.ordinal_suffix_fits, group_forms=lexicon.group_mark_forms)
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
@@ -77,10 +78,10 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     mentions = [m for m in mentions
                 if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
     mentions = _slash_fractions(text, tokens, mentions, after_slash)
-    for token, value, kind, reason in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
+    for token, value, kind, reason, gender in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
         span = (token.start, token.end)
         mentions.append(NumberMention(
-            span, token.text, value, kind, Form.ROMAN, None, CONFIDENCE[reason],
+            span, token.text, value, kind, Form.ROMAN, gender, CONFIDENCE[reason],
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=(Part(Role.COUNT, span, token.text, value),)))
     mentions.sort(key=lambda m: m.char_span)

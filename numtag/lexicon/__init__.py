@@ -29,10 +29,13 @@ from numtag.tokenize import COMPOUND_MARK, Script, fold
 
 _HERE = Path(__file__).parent
 
-FORMAT_VERSION = 2
-# A version 1 file stays valid; only a version 2 file may hold a ``writer`` block.
-READABLE_VERSIONS = (1, 2)
+FORMAT_VERSION = 3
+# A version 1 file stays valid; only a version 2 or 3 file may hold a
+# ``writer`` block, and only a version 3 file the keys of V3_SETTINGS and
+# V3_ENTRY_KEYS.
+READABLE_VERSIONS = (1, 2, 3)
 WRITER_VERSION = 2
+V3_VERSION = 3
 
 
 class UnsupportedLanguageError(ValueError):
@@ -288,6 +291,10 @@ class Lexicon:
     # cardinal, is the noun that the cardinal counts.
     nouns_after_count: frozenset[str]
     ordinal_suffixes: dict[str, str | None] = field(default_factory=dict)
+    # fr "er": a suffix that follows only these digit strings ("1er", no "3er").
+    ordinal_suffix_after: dict[str, frozenset[str]] = field(default_factory=dict)
+    # fr "d": a suffix that reads only as written ("2d", no "2D").
+    ordinal_suffix_cased: dict[str, str] = field(default_factory=dict)
     # The letters I and İ are two letters with the lower-case forms ı and i.
     dotted_i: bool = False
     # A denominator after a numerator above one takes its plural form
@@ -424,6 +431,22 @@ class Lexicon:
     # A title-case word before a numeral is a cue ("Luís XIV"), unless the
     # language writes every noun in title case ("Größe XIV").
     roman_title_case_cue: bool = True
+    # An ordinal suffix of the language in lower case glued to an upper-case
+    # numeral makes it an ordinal ("XIXe", "Ier").
+    roman_ordinal_suffix: bool = False
+    # fr-CH "’": other characters that group digits as group_mark does ("1’234").
+    group_mark_forms: str = ""
+
+    def ordinal_suffix_fits(self, suffix: str, digits: str) -> bool:
+        """True when ``suffix`` is an ordinal suffix of the language that may
+        follow the digit string ``digits``: fr "er" follows only "1" ("1er",
+        no "3er"), and "d" follows "2" only in lower case ("2d", no "2D")."""
+        key = fold(suffix)
+        if key not in self.ordinal_suffixes:
+            return False
+        if key in self.ordinal_suffix_cased and suffix != self.ordinal_suffix_cased[key]:
+            return False
+        return key not in self.ordinal_suffix_after or digits in self.ordinal_suffix_after[key]
 
     def of(self, word: str, role: str, parts: bool = True) -> tuple[Entry, ...]:
         """The entries of ``word`` with ``role``; with ``parts`` False, only
@@ -491,6 +514,8 @@ DEFAULT_SETTINGS = {
     "ordinal_suffix_marks": ["", "."],
     "roman_pronoun_letters": False,
     "roman_title_case_cue": True,
+    "roman_ordinal_suffix": False,
+    "group_mark_forms": "",
     "dotted_i": False,
     "fraction_agreement": True,
     "decimal_fraction": False,
@@ -571,12 +596,12 @@ WORDS = REQUIRED_WORDS | frozenset(DEFAULT_WORDS)
 TOP_KEYS = frozenset(("format_version", "extends", "settings", "words", "inflection", "entries", "writer"))
 WRITER_KEYS = frozenset(("source", "rulesets", "forms", "decimal", "scientific", "fraction", "plural"))
 RULESET_KEYS = frozenset(("source", "rules"))
-RULE_KEYS = frozenset(("value", "radix", "text", "source"))
+RULE_KEYS = frozenset(("value", "radix", "text", "round", "source"))
 FORM_KEYS = frozenset(("variants", "gender", "case", "minimum", "maximum", "scale"))
 VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_KEYS = frozenset(("word", "places", "read", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "mixed_named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "numerator", "source"))
+FRACTION_KEYS = frozenset(("limit", "named", "mixed_named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))
@@ -597,9 +622,14 @@ ENTRY_KEYS = {
     **dict.fromkeys(MARK_ROLES, _FORM_KEYS),
     "half": _FORM_KEYS | {"bound"},
     "ordinal_scale": _FORM_KEYS | {"value", "after_article"},
-    "ordinal_suffix": frozenset(("word", "role", "source", "gender")),
+    "ordinal_suffix": frozenset(("word", "role", "source", "gender", "after", "cased")),
     "vague_quantifier": frozenset(("word", "role", "source", "ambiguous")),
 }
+
+
+# Keys that only a version 3 file holds.
+V3_SETTINGS = frozenset(("roman_ordinal_suffix", "group_mark_forms"))
+V3_ENTRY_KEYS = {"ordinal_suffix": frozenset(("after", "cased"))}
 
 
 def _refuse(lang: str, where: str, found, allowed) -> None:
@@ -633,6 +663,14 @@ def _check(lang: str, data: dict) -> None:
         allowed = SCALE_OF_KEYS if role == "denominator" and "scale_of" in spec else ENTRY_KEYS.get(role)
         if allowed and not spec.keys() <= allowed:
             _refuse(lang, f"entry {spec['word']!r} of role {role!r}", spec, allowed)
+        _needs_v3(lang, data, f"entry {spec['word']!r} of role {role!r}", spec, V3_ENTRY_KEYS.get(role, ()))
+    _needs_v3(lang, data, "settings", data.get("settings", {}), V3_SETTINGS)
+
+
+def _needs_v3(lang: str, data: dict, where: str, found, v3_keys) -> None:
+    """Refuse a key of version 3 in a file of an older version."""
+    if data["format_version"] < V3_VERSION and (keys := sorted(set(found) & set(v3_keys))):
+        raise ValueError(f"{lang}: the key {', '.join(map(repr, keys))} in {where} needs format_version {V3_VERSION}")
 
 
 def _check_writer(lang: str, writer: dict) -> None:
@@ -673,6 +711,9 @@ def _check_writer(lang: str, writer: dict) -> None:
     for key in ("ruleset", "numerator"):
         if (name := fraction.get(key)) is not None and name not in writer["rulesets"]:
             raise ValueError(f"{lang}: the fraction names the unknown rule set {name!r}")
+    for rule in fraction.get("by_count", []):
+        if rule["ruleset"] not in writer["rulesets"]:
+            raise ValueError(f"{lang}: the fraction names the unknown rule set {rule['ruleset']!r}")
 
 
 def _read(lang: str) -> dict:
@@ -748,6 +789,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
     scale = Scale(scale or settings["scale"])
     readings: dict[str, list[Entry]] = {}
     suffixes: dict[str, str | None] = {}
+    suffix_after: dict[str, frozenset[str]] = {}
+    suffix_cased: dict[str, str] = {}
     inflection = data.get("inflection", {})
     suffix_ends = settings["inflection_position"] == "last"
 
@@ -816,6 +859,10 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
                             after_article=spec.get("after_article", False), **facts))
         elif role == "ordinal_suffix":
             suffixes[fold(spec["word"])] = spec.get("gender")
+            if "after" in spec:
+                suffix_after[fold(spec["word"])] = frozenset(spec["after"])
+            if spec.get("cased", False):
+                suffix_cased[fold(spec["word"])] = spec["word"]
         elif role == "vague_quantifier":
             vague_quantifiers[tuple(fold(w) for w in spec["word"].split())] = spec.get("ambiguous", False)
         else:
@@ -875,6 +922,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         part_nouns=frozenset(words["part_noun"]),
         nouns_after_count=frozenset(words["noun_after_count"]),
         ordinal_suffixes=suffixes,
+        ordinal_suffix_after=suffix_after,
+        ordinal_suffix_cased=suffix_cased,
         dotted_i=settings["dotted_i"],
         fraction_agreement=settings["fraction_agreement"],
         decimal_fraction=settings["decimal_fraction"],
@@ -925,6 +974,8 @@ def load(lang: str, scale: Scale | None = None) -> Lexicon:
         roman_lower_words=frozenset(words["roman_lower_word"]),
         roman_pronoun_letters=settings["roman_pronoun_letters"],
         roman_title_case_cue=settings["roman_title_case_cue"],
+        roman_ordinal_suffix=settings["roman_ordinal_suffix"],
+        group_mark_forms=settings["group_mark_forms"],
     )
 
 

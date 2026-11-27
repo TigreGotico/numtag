@@ -28,6 +28,28 @@ class TestCardinals(unittest.TestCase):
         self.assertEqual(bn("দুই শ"), [("দুই শ", "200", C)])
         self.assertEqual(bn("পাঁচ শ পঞ্চাশ"), [("পাঁচ শ পঞ্চাশ", "550", C)])
 
+    def test_the_one_word_hundreds_take_a_rest(self):
+        # 6000 + 700 + 99 = 6799; 13000 + 900 + 1 = 13901; 100 + 1 = 101
+        self.assertEqual(bn("ছয় হাজার সাতশো নিরানব্বই"), [("ছয় হাজার সাতশো নিরানব্বই", "6799", C)])
+        self.assertEqual(bn("তেরো হাজার নয়শো এক"), [("তেরো হাজার নয়শো এক", "13901", C)])
+        self.assertEqual(bn("একশ এক"), [("একশ এক", "101", C)])
+        self.assertEqual(bn("দুশো"), [("দুশো", "200", C)])
+        self.assertEqual(bn("দুইশো পাঁচ"), [("দুইশো পাঁচ", "205", C)])
+
+    def test_a_hundred_counts_the_koti(self):
+        # (100 + 47) * 10^7 = 1470000000
+        self.assertEqual(bn("একশো সাতচল্লিশ কোটি"), [("একশো সাতচল্লিশ কোটি", "1470000000", C)])
+
+    def test_a_glued_classifier_ends_the_number(self):
+        # the classifier adds nothing: 21, 47, 3, 2, 482
+        self.assertEqual(bn("একুশটি"), [("একুশটি", "21", C)])
+        self.assertEqual(bn("সাতচল্লিশটা"), [("সাতচল্লিশটা", "47", C)])
+        self.assertEqual(bn("তিনটে"), [("তিনটে", "3", C)])
+        self.assertEqual(bn("দুটো"), [("দুটো", "2", C)])
+        self.assertEqual(bn("চারশো বিরাশিটি"), [("চারশো বিরাশিটি", "482", C)])
+        self.assertEqual(bn("পাঁচখানা"), [("পাঁচখানা", "5", C)])
+        self.assertEqual(bn("দুজন"), [("দুজন", "2", C)])
+
     def test_the_indian_scale(self):
         # 3 * 10^7 + 50 * 10^5 = 35000000; 10 * 10^5 = 1000000
         self.assertEqual(bn("তিন কোটি পঞ্চাশ লাখ"), [("তিন কোটি পঞ্চাশ লাখ", "35000000", C)])
@@ -49,6 +71,3 @@ class TestOpenIssues(unittest.TestCase):
         # 1,00,000 is one lakh: 100000
         self.assertEqual(bn("১,০০,০০০"), [("১,০০,০০০", "100000", C)])
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/365")
-    def test_a_glued_classifier(self):
-        self.assertEqual(bn("একুশটি"), [("একুশটি", "21", C)])

@@ -74,7 +74,8 @@
   "kept_marks": {
    "value": "ঁংঃ়ািীুূৃৄ৅৆েৈ৉৊োৌ্ৗৢৣ",
    "source": "structural, no external source: every Bengali mark stays part of the word on lookup, as in the hi lexicon; folding one would merge words that differ only by a vowel sign."
-  }
+  },
+  "inflection_position": {"value": "last", "source": "Thompson, Bengali (LOALL 18, 2012), 5.2.5.1, p. 54 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"tais added to numbers with count nouns\"; \"pécista narikel gach twenty-five coconut trees\": the classifier goes on the last word of the number and ends it."}
  },
  "words": {
   "joiner": {
@@ -132,6 +133,10 @@
    "source": "structural, no external source: the cited pages list no such word."
   }
  },
+ "inflection": {
+  "bn.classifier": {"value": ["", "টা", "টো", "টে", "টি", "জন", "খানা", "খানি"], "source": "Thompson, Bengali (LOALL 18, 2012), 5.2.5.1 \"ta\", p. 54 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"tais added to numbers with count nouns: carta Sari four sarees, hajarta prosn6é a thousand questions, pécista narikel gach twenty-five coconut trees\"; \"ta has two allomorphs to and te which are used, mainly in West Bengal, for vowel harmony. duto two, tinte three, carte four\"; 5.2.5.2 \"ti\", p. 55; 5.2.5.3 \"jon\": \"jon comes into its own with numbers and quantifiers preceding nouns\"; 5.2.5.4 \"khana and khani\"; p. 54: \"ek-ta k316m a pen, ek-ti somdsya a word, ek-khana khata a note-book\". The Bengali spellings টা, টো, টে, টি, জন, খানা, খানি are the script forms of these transliterations."},
+  "bn.classifier.bound": {"value": ["টো", "টি", "জন"], "source": "Thompson, Bengali (LOALL 18, 2012), 5.2.5.1, p. 54 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"duto two\"; the stem দু of দুই takes a classifier only."}
+ },
  "entries": [
   {
    "word": "শূন্য",
@@ -143,619 +148,792 @@
    "word": "এক",
    "role": "unit",
    "value": "1",
+   "stems": {"এক": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 1, Cardinal: \"এক (ek)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"1 ek\""
   },
   {
    "word": "দুই",
    "role": "unit",
    "value": "2",
+   "stems": {"দুই": ["bn.classifier"], "দু": ["bn.classifier.bound"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 2, Cardinal: \"দুই (dui)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"2 dui\""
   },
   {
    "word": "তিন",
    "role": "unit",
    "value": "3",
+   "stems": {"তিন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 3, Cardinal: \"তিন (tin)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"3 tin\""
   },
   {
    "word": "চার",
    "role": "unit",
    "value": "4",
+   "stems": {"চার": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 4, Cardinal: \"চার (car)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"4 car\""
   },
   {
    "word": "পাঁচ",
    "role": "unit",
    "value": "5",
+   "stems": {"পাঁচ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 5, Cardinal: \"পাঁচ (pãc)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"5 pac\""
   },
   {
    "word": "ছয়",
    "role": "unit",
    "value": "6",
+   "stems": {"ছয়": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 6, Cardinal: \"ছয় (choẏ)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"6 choy\""
   },
   {
    "word": "সাত",
    "role": "unit",
    "value": "7",
+   "stems": {"সাত": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 7, Cardinal: \"সাত (śat)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"7 sat\""
   },
   {
    "word": "আট",
    "role": "unit",
    "value": "8",
+   "stems": {"আট": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 8, Cardinal: \"আট (aṭ)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"8 at\""
   },
   {
    "word": "নয়",
    "role": "unit",
    "value": "9",
+   "stems": {"নয়": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 9, Cardinal: \"নয় (noẏ)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"9 nay\""
   },
   {
    "word": "দশ",
    "role": "unit",
    "value": "10",
+   "stems": {"দশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 10, Cardinal: \"দশ (doś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"10 das\""
   },
   {
    "word": "এগারো",
    "role": "unit",
    "value": "11",
+   "stems": {"এগারো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 11, Cardinal: \"এগারো (egarō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"11 egaro\""
   },
   {
    "word": "বারো",
    "role": "unit",
    "value": "12",
+   "stems": {"বারো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 12, Cardinal: \"বারো (barō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"12 baro\""
   },
   {
    "word": "তেরো",
    "role": "unit",
    "value": "13",
+   "stems": {"তেরো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 13, Cardinal: \"তেরো (terō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"13 tero\""
   },
   {
    "word": "চোদ্দো",
    "role": "unit",
    "value": "14",
+   "stems": {"চোদ্দো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 14, Cardinal: \"চোদ্দো (cōddō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"14 couddo\""
   },
   {
    "word": "পনেরো",
    "role": "unit",
    "value": "15",
+   "stems": {"পনেরো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 15, Cardinal: \"পনেরো (ponerō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"15 ponero\""
   },
   {
    "word": "ষোলো",
    "role": "unit",
    "value": "16",
+   "stems": {"ষোলো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 16, Cardinal: \"ষোলো (śōlō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"16 solo\""
   },
   {
    "word": "সতেরো",
    "role": "unit",
    "value": "17",
+   "stems": {"সতেরো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 17, Cardinal: \"সতেরো (śoterō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"17 sdtero\""
   },
   {
    "word": "আঠারো",
    "role": "unit",
    "value": "18",
+   "stems": {"আঠারো": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 18, Cardinal: \"আঠারো (aṭharō)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"18 atharo\""
   },
   {
    "word": "উনিশ",
    "role": "unit",
    "value": "19",
+   "stems": {"উনিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 19, Cardinal: \"উনিশ (uniś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"19 unis\""
   },
   {
    "word": "বিশ",
    "role": "unit",
    "value": "20",
+   "stems": {"বিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 20, Cardinal: \"বিশ (biś), কুড়ি (kuṛi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"20 bis/kuri\""
   },
   {
    "word": "কুড়ি",
    "role": "unit",
    "value": "20",
+   "stems": {"কুড়ি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 20, Cardinal: \"বিশ (biś), কুড়ি (kuṛi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"20 bis/kuri\""
   },
   {
    "word": "একুশ",
    "role": "unit",
    "value": "21",
+   "stems": {"একুশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 21, Cardinal: \"একুশ (ekuś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"21 ekus\""
   },
   {
    "word": "বাইশ",
    "role": "unit",
    "value": "22",
+   "stems": {"বাইশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 22, Cardinal: \"বাইশ (baiś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"22 bais\""
   },
   {
    "word": "তেইশ",
    "role": "unit",
    "value": "23",
+   "stems": {"তেইশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 23, Cardinal: \"তেইশ (teiś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"23 teis\""
   },
   {
    "word": "চব্বিশ",
    "role": "unit",
    "value": "24",
+   "stems": {"চব্বিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 24, Cardinal: \"চব্বিশ (cobbiś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"24 cdbbis\""
   },
   {
    "word": "পঁচিশ",
    "role": "unit",
    "value": "25",
+   "stems": {"পঁচিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 25, Cardinal: \"পঁচিশ (põciś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"25 pdcis\""
   },
   {
    "word": "ছাব্বিশ",
    "role": "unit",
    "value": "26",
+   "stems": {"ছাব্বিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 26, Cardinal: \"ছাব্বিশ (chabbiś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"26 chabbis\""
   },
   {
    "word": "সাতাশ",
    "role": "unit",
    "value": "27",
+   "stems": {"সাতাশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 27, Cardinal: \"সাতাশ (śataś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"27 satas/satais\""
   },
   {
    "word": "আঠাশ",
    "role": "unit",
    "value": "28",
+   "stems": {"আঠাশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 28, Cardinal: \"আঠাশ (aṭhaś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"28 atas  /atais\""
   },
   {
    "word": "উনত্রিশ",
    "role": "unit",
    "value": "29",
+   "stems": {"উনত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 29, Cardinal: \"উনত্রিশ (untriś), উনতিরিশ (untiriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"29 undtris\""
   },
   {
    "word": "উনতিরিশ",
    "role": "unit",
    "value": "29",
+   "stems": {"উনতিরিশ": ["bn.classifier"]},
    "source": "SILVER (Wiktionary only): en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 29, Cardinal: \"উনত্রিশ (untriś), উনতিরিশ (untiriś)\""
   },
   {
    "word": "ত্রিশ",
    "role": "unit",
    "value": "30",
+   "stems": {"ত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 30, Cardinal: \"ত্রিশ (triś), তিরিশ (tiriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"30 tris\""
   },
   {
    "word": "তিরিশ",
    "role": "unit",
    "value": "30",
+   "stems": {"তিরিশ": ["bn.classifier"]},
    "source": "SILVER (Wiktionary only): en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 30, Cardinal: \"ত্রিশ (triś), তিরিশ (tiriś)\""
   },
   {
    "word": "একত্রিশ",
    "role": "unit",
    "value": "31",
+   "stems": {"একত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 31, Cardinal: \"একত্রিশ (ekotriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"31 ektris\""
   },
   {
    "word": "বত্রিশ",
    "role": "unit",
    "value": "32",
+   "stems": {"বত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 32, Cardinal: \"বত্রিশ (botriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"32 bdtris\""
   },
   {
    "word": "তেত্রিশ",
    "role": "unit",
    "value": "33",
+   "stems": {"তেত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 33, Cardinal: \"তেত্রিশ (tetriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"33 tetris\""
   },
   {
    "word": "চৌত্রিশ",
    "role": "unit",
    "value": "34",
+   "stems": {"চৌত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 34, Cardinal: \"চৌত্রিশ (cōutriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"34 coutris\""
   },
   {
    "word": "পঁয়ত্রিশ",
    "role": "unit",
    "value": "35",
+   "stems": {"পঁয়ত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 35, Cardinal: \"পঁয়ত্রিশ (põẏotriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"35 psytris\""
   },
   {
    "word": "ছত্রিশ",
    "role": "unit",
    "value": "36",
+   "stems": {"ছত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 36, Cardinal: \"ছত্রিশ (chotriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"36 chdtris\""
   },
   {
    "word": "সাঁইত্রিশ",
    "role": "unit",
    "value": "37",
+   "stems": {"সাঁইত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 37, Cardinal: \"সাঁইত্রিশ (śãitriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"37 satris\""
   },
   {
    "word": "আটত্রিশ",
    "role": "unit",
    "value": "38",
+   "stems": {"আটত্রিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 38, Cardinal: \"আটত্রিশ (aṭotriś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"38 attris\""
   },
   {
    "word": "উনচল্লিশ",
    "role": "unit",
    "value": "39",
+   "stems": {"উনচল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 39, Cardinal: \"উনচল্লিশ (uncolliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"39 undcdllis\""
   },
   {
    "word": "চল্লিশ",
    "role": "unit",
    "value": "40",
+   "stems": {"চল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 40, Cardinal: \"চল্লিশ (colliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"40 cdllis\""
   },
   {
    "word": "একচল্লিশ",
    "role": "unit",
    "value": "41",
+   "stems": {"একচল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 41, Cardinal: \"একচল্লিশ (ekocolliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"41 ekcdllis\""
   },
   {
    "word": "বিয়াল্লিশ",
    "role": "unit",
    "value": "42",
+   "stems": {"বিয়াল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 42, Cardinal: \"বিয়াল্লিশ (biẏalliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"42 biyallis\""
   },
   {
    "word": "তেতাল্লিশ",
    "role": "unit",
    "value": "43",
+   "stems": {"তেতাল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 43, Cardinal: \"তেতাল্লিশ (tetalliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"43 tetallis\""
   },
   {
    "word": "চুয়াল্লিশ",
    "role": "unit",
    "value": "44",
+   "stems": {"চুয়াল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 44, Cardinal: \"চুয়াল্লিশ (cuẏalliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"44 cuyallis\""
   },
   {
    "word": "পঁয়তাল্লিশ",
    "role": "unit",
    "value": "45",
+   "stems": {"পঁয়তাল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 45, Cardinal: \"পঁয়তাল্লিশ (põẏotalliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"45 pdytallis\""
   },
   {
    "word": "ছেচল্লিশ",
    "role": "unit",
    "value": "46",
+   "stems": {"ছেচল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 46, Cardinal: \"ছেচল্লিশ (checolliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"46 checdllis\""
   },
   {
    "word": "সাতচল্লিশ",
    "role": "unit",
    "value": "47",
+   "stems": {"সাতচল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 47, Cardinal: \"সাতচল্লিশ (śatocolliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"47 satcollis\""
   },
   {
    "word": "আটচল্লিশ",
    "role": "unit",
    "value": "48",
+   "stems": {"আটচল্লিশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 48, Cardinal: \"আটচল্লিশ (aṭocolliś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"48 atcdllis\""
   },
   {
    "word": "উনপঞ্চাশ",
    "role": "unit",
    "value": "49",
+   "stems": {"উনপঞ্চাশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 49, Cardinal: \"উনপঞ্চাশ (unponcaś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"49 undpahcas\""
   },
   {
    "word": "পঞ্চাশ",
    "role": "unit",
    "value": "50",
+   "stems": {"পঞ্চাশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 50, Cardinal: \"পঞ্চাশ (poncaś)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"50 pafcas\""
   },
   {
    "word": "একান্ন",
    "role": "unit",
    "value": "51",
+   "stems": {"একান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 51, Cardinal: \"একান্ন (ekanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"51 ekanné\""
   },
   {
    "word": "বাহান্ন",
    "role": "unit",
    "value": "52",
+   "stems": {"বাহান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 52, Cardinal: \"বাহান্ন (bahanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"52 bahanné\""
   },
   {
    "word": "তিপান্ন",
    "role": "unit",
    "value": "53",
+   "stems": {"তিপান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 53, Cardinal: \"তিপান্ন (tipanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"53 tippannd\""
   },
   {
    "word": "চুয়ান্ন",
    "role": "unit",
    "value": "54",
+   "stems": {"চুয়ান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 54, Cardinal: \"চুয়ান্ন (cuẏanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"54 cuyannd\""
   },
   {
    "word": "পঞ্চান্ন",
    "role": "unit",
    "value": "55",
+   "stems": {"পঞ্চান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 55, Cardinal: \"পঞ্চান্ন (poncanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"55 paAcannd\""
   },
   {
    "word": "ছাপান্ন",
    "role": "unit",
    "value": "56",
+   "stems": {"ছাপান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 56, Cardinal: \"ছাপান্ন (chapanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"56 chappanné\""
   },
   {
    "word": "সাতান্ন",
    "role": "unit",
    "value": "57",
+   "stems": {"সাতান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 57, Cardinal: \"সাতান্ন (śatanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"57 satanné\""
   },
   {
    "word": "আটান্ন",
    "role": "unit",
    "value": "58",
+   "stems": {"আটান্ন": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 58, Cardinal: \"আটান্ন (aṭanno)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"58 atanné\""
   },
   {
    "word": "উনষাট",
    "role": "unit",
    "value": "59",
+   "stems": {"উনষাট": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 59, Cardinal: \"উনষাট (unośaṭ)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"59 undsat\""
   },
   {
    "word": "ষাট",
    "role": "unit",
    "value": "60",
+   "stems": {"ষাট": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 60, Cardinal: \"ষাট (śaṭ)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"60 sat\""
   },
   {
    "word": "একষট্টি",
    "role": "unit",
    "value": "61",
+   "stems": {"একষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 61, Cardinal: \"একষট্টি (ekośoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"61 aksdtti\""
   },
   {
    "word": "বাষট্টি",
    "role": "unit",
    "value": "62",
+   "stems": {"বাষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 62, Cardinal: \"বাষট্টি (baśoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"62 basdtti\""
   },
   {
    "word": "তেষট্টি",
    "role": "unit",
    "value": "63",
+   "stems": {"তেষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 63, Cardinal: \"তেষট্টি (teśoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"63 tesdtti\""
   },
   {
    "word": "চৌষট্টি",
    "role": "unit",
    "value": "64",
+   "stems": {"চৌষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 64, Cardinal: \"চৌষট্টি (cōuśoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"64 cousdtti\""
   },
   {
    "word": "পঁয়ষট্টি",
    "role": "unit",
    "value": "65",
+   "stems": {"পঁয়ষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 65, Cardinal: \"পঁয়ষট্টি (põẏośoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"65 psysdtti\""
   },
   {
    "word": "ছেষট্টি",
    "role": "unit",
    "value": "66",
+   "stems": {"ছেষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 66, Cardinal: \"ছেষট্টি (cheśoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"66 chesotti\""
   },
   {
    "word": "সাতষট্টি",
    "role": "unit",
    "value": "67",
+   "stems": {"সাতষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 67, Cardinal: \"সাতষট্টি (śatośoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"67 satsdtti\""
   },
   {
    "word": "আটষট্টি",
    "role": "unit",
    "value": "68",
+   "stems": {"আটষট্টি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 68, Cardinal: \"আটষট্টি (aṭośoṭṭi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"68 atsdtti\""
   },
   {
    "word": "উনসত্তর",
    "role": "unit",
    "value": "69",
+   "stems": {"উনসত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 69, Cardinal: \"উনসত্তর (unośottor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"69 undsdttdr\""
   },
   {
    "word": "সত্তর",
    "role": "unit",
    "value": "70",
+   "stems": {"সত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 70, Cardinal: \"সত্তর (śottor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"70 sdttor\""
   },
   {
    "word": "একাত্তর",
    "role": "unit",
    "value": "71",
+   "stems": {"একাত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 71, Cardinal: \"একাত্তর (ekattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"71 ekattdr\""
   },
   {
    "word": "বাহাত্তর",
    "role": "unit",
    "value": "72",
+   "stems": {"বাহাত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 72, Cardinal: \"বাহাত্তর (bahattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"72 bahattér\""
   },
   {
    "word": "তিয়াত্তর",
    "role": "unit",
    "value": "73",
+   "stems": {"তিয়াত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 73, Cardinal: \"তিয়াত্তর (tiẏattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"73 tivyatt6r\""
   },
   {
    "word": "চুয়াত্তর",
    "role": "unit",
    "value": "74",
+   "stems": {"চুয়াত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 74, Cardinal: \"চুয়াত্তর (cuẏattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"74 cuyattor\""
   },
   {
    "word": "পঁচাত্তর",
    "role": "unit",
    "value": "75",
+   "stems": {"পঁচাত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 75, Cardinal: \"পঁচাত্তর (põcattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"75 p5cattor\""
   },
   {
    "word": "ছিয়াত্তর",
    "role": "unit",
    "value": "76",
+   "stems": {"ছিয়াত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 76, Cardinal: \"ছিয়াত্তর (chiẏattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"76 chiyatt6r\""
   },
   {
    "word": "সাতাত্তর",
    "role": "unit",
    "value": "77",
+   "stems": {"সাতাত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 77, Cardinal: \"সাতাত্তর (śatattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"77 satatt6r\""
   },
   {
    "word": "আটাত্তর",
    "role": "unit",
    "value": "78",
+   "stems": {"আটাত্তর": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 78, Cardinal: \"আটাত্তর (aṭattor)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"78 atattor\""
   },
   {
    "word": "উনআশি",
    "role": "unit",
    "value": "79",
+   "stems": {"উনআশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 79, Cardinal: \"উনআশি (unaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"79 undasi\""
   },
   {
    "word": "আশি",
    "role": "unit",
    "value": "80",
+   "stems": {"আশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 80, Cardinal: \"আশি (aśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"80 asi\""
   },
   {
    "word": "একাশি",
    "role": "unit",
    "value": "81",
+   "stems": {"একাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 81, Cardinal: \"একাশি (ekaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"81 aekasi\""
   },
   {
    "word": "বিরাশি",
    "role": "unit",
    "value": "82",
+   "stems": {"বিরাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 82, Cardinal: \"বিরাশি (biraśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"82 birasi\""
   },
   {
    "word": "তিরাশি",
    "role": "unit",
    "value": "83",
+   "stems": {"তিরাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 83, Cardinal: \"তিরাশি (tiraśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"83 tirasi\""
   },
   {
    "word": "চুরাশি",
    "role": "unit",
    "value": "84",
+   "stems": {"চুরাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 84, Cardinal: \"চুরাশি (curaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"84 curasi\""
   },
   {
    "word": "পঁচাশি",
    "role": "unit",
    "value": "85",
+   "stems": {"পঁচাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 85, Cardinal: \"পঁচাশি (põcaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"85 pScasi\""
   },
   {
    "word": "ছিয়াশি",
    "role": "unit",
    "value": "86",
+   "stems": {"ছিয়াশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 86, Cardinal: \"ছিয়াশি (chiẏaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"86 chiyasi\""
   },
   {
    "word": "সাতাশি",
    "role": "unit",
    "value": "87",
+   "stems": {"সাতাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 87, Cardinal: \"সাতাশি (śataśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"87 satasi\""
   },
   {
    "word": "অষ্টাশি",
    "role": "unit",
    "value": "88",
+   "stems": {"অষ্টাশি": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 88, Cardinal: \"অষ্টাশি (ośṭaśi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"88 atasi/astdasi\""
   },
   {
    "word": "উননব্বই",
    "role": "unit",
    "value": "89",
+   "stems": {"উননব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 89, Cardinal: \"উননব্বই (unonbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"89 undndbbdi\""
   },
   {
    "word": "নব্বই",
    "role": "unit",
    "value": "90",
+   "stems": {"নব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 90, Cardinal: \"নব্বই (nobboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"90 nobbdi\""
   },
   {
    "word": "একানব্বই",
    "role": "unit",
    "value": "91",
+   "stems": {"একানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 91, Cardinal: \"একানব্বই (ekanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"91 ekansbbdi\""
   },
   {
    "word": "বিরানব্বই",
    "role": "unit",
    "value": "92",
+   "stems": {"বিরানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 92, Cardinal: \"বিরানব্বই (biranbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"92 biranabbdi\""
   },
   {
    "word": "তিরানব্বই",
    "role": "unit",
    "value": "93",
+   "stems": {"তিরানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 93, Cardinal: \"তিরানব্বই (tiranbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"93 tiranabbdi\""
   },
   {
    "word": "চুরানব্বই",
    "role": "unit",
    "value": "94",
+   "stems": {"চুরানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 94, Cardinal: \"চুরানব্বই (curanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"94 curanabbdi\""
   },
   {
    "word": "পঁচানব্বই",
    "role": "unit",
    "value": "95",
+   "stems": {"পঁচানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 95, Cardinal: \"পঁচানব্বই (põcanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"95 pscanabbdi\""
   },
   {
    "word": "ছিয়ানব্বই",
    "role": "unit",
    "value": "96",
+   "stems": {"ছিয়ানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 96, Cardinal: \"ছিয়ানব্বই (chiẏanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"96 chiyanobbdi\""
   },
   {
    "word": "সাতানব্বই",
    "role": "unit",
    "value": "97",
+   "stems": {"সাতানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 97, Cardinal: \"সাতানব্বই (śatanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"97 satanabbdi\""
   },
   {
    "word": "আটানব্বই",
    "role": "unit",
    "value": "98",
+   "stems": {"আটানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 98, Cardinal: \"আটানব্বই (aṭanbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"98 atanabbdi\""
   },
   {
    "word": "নিরানব্বই",
    "role": "unit",
    "value": "99",
+   "stems": {"নিরানব্বই": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 99, Cardinal: \"নিরানব্বই (niranbboi)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"99 niranabbdi\""
   },
   {
    "word": "একশ",
-   "role": "unit",
+   "role": "hundred",
    "value": "100",
+   "stems": {"একশ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 100, Cardinal: \"একশ (ekoś), শ (śo)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"100 zk so\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"100 zk so\""
+  },
+  {
+   "word": "একশো",
+   "role": "hundred",
+   "value": "100",
+   "stems": {"একশো": ["bn.classifier"]},
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"1: এক;\"; Bangla Academy, Adhunik Bangla Abhidhan (2016; Papers/Languages/Indo-Aryan/Bengali/ba_adhunik2016_ia_djvu.txt, OCR), entry শতকিয়া: \"এক থেকে একশো পযন্ত সংখ্যা গণনা\""
+  },
+  {
+   "word": "দুইশো",
+   "role": "hundred",
+   "value": "200",
+   "stems": {"দুইশো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"2: দুই;\""
+  },
+  {
+   "word": "দুশো",
+   "role": "hundred",
+   "value": "200",
+   "stems": {"দুশো": ["bn.classifier"]},
+   "source": "SILVER (Thompson only, transliteration): Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", p. 374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"200 du $6\" (OCR of \"du śo\")"
+  },
+  {
+   "word": "তিনশো",
+   "role": "hundred",
+   "value": "300",
+   "stems": {"তিনশো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"3: তিন;\""
+  },
+  {
+   "word": "চারশো",
+   "role": "hundred",
+   "value": "400",
+   "stems": {"চারশো": ["bn.classifier"]},
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"4: চার;\"; Bangla Academy, Adhunik Bangla Abhidhan (2016; Papers/Languages/Indo-Aryan/Bengali/ba_adhunik2016_ia_djvu.txt, OCR): \"চারশো /চার্শো/ [বা.] বি. বিণ. “চারশত'র কথ্য\""
+  },
+  {
+   "word": "পাঁচশো",
+   "role": "hundred",
+   "value": "500",
+   "stems": {"পাঁচশো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"5: পাঁচ;\""
+  },
+  {
+   "word": "ছয়শো",
+   "role": "hundred",
+   "value": "600",
+   "stems": {"ছয়শো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"6: ছয়;\""
+  },
+  {
+   "word": "সাতশো",
+   "role": "hundred",
+   "value": "700",
+   "stems": {"সাতশো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"7: সাত;\""
+  },
+  {
+   "word": "আটশো",
+   "role": "hundred",
+   "value": "800",
+   "stems": {"আটশো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"8: আট;\""
+  },
+  {
+   "word": "নয়শো",
+   "role": "hundred",
+   "value": "900",
+   "stems": {"নয়শো": ["bn.classifier"]},
+   "source": "SILVER (CLDR only): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\" with \"9: নয়;\""
   },
   {
    "word": "শ",
@@ -767,24 +945,28 @@
    "word": "হাজার",
    "role": "scale_numeral",
    "value": 3,
+   "stems": {"হাজার": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 10,000, Cardinal: \"দশ হাজার (doś hajar)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"1000 eek hajar\" (OCR of ek hajar)"
   },
   {
    "word": "লাখ",
    "role": "scale_numeral",
    "value": 5,
+   "stems": {"লাখ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 100,000, Cardinal: \"লাখ (lakh)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"100.000 zek lakh\" (OCR of ek lakh)"
   },
   {
    "word": "লক্ষ",
    "role": "scale_numeral",
    "value": 5,
+   "stems": {"লক্ষ": ["bn.classifier"]},
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 100,000, Sanskritic cardinal: \"লক্ষ (lokkho)\""
   },
   {
    "word": "কোটি",
    "role": "scale_numeral",
    "value": 7,
+   "stems": {"কোটি": ["bn.classifier"]},
    "source": "SILVER (Wiktionary only): en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 10,000,000 (107), Cardinal: \"কোটি (kōṭi)\"; row 1010: \"হাজার কোটি (hajar kōṭi)\""
   },
   {
