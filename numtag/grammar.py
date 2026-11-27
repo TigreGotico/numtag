@@ -160,7 +160,7 @@ class Count:
 
 
 def _sum(groups: tuple[Group, ...]) -> Rational:
-    total = Rational("0")
+    total = ZERO
     for group in groups:
         total = total + group.count.scaled(group.exponent)
     return total
@@ -202,6 +202,12 @@ class Grammar:
     # Token access -----------------------------------------------------
     # A position before the first token reads as no word: "i - 1" at the
     # first token must not wrap to the last one.
+
+    def _entries(self, i: int) -> tuple[Entry, ...]:
+        """Every reading of the word at ``i``; none for a digit string."""
+        if not 0 <= i < len(self.tokens) or self.tokens[i].is_digits:
+            return ()
+        return self.lex.readings.get(self.tokens[i].norm, ())
 
     def _readings(self, i: int, role: str) -> tuple[Entry, ...]:
         if not 0 <= i < len(self.tokens) or self.tokens[i].is_digits:
@@ -253,18 +259,14 @@ class Grammar:
                              and (not self.tokens[start - 1].is_digits or self._plural_scale(start))):
                 return True, i
         before = end - 1
-        if before >= 0 and not self.tokens[before].is_digits and any(
-                e.role in AMOUNT_ROLES
-                for e in self.lex.readings.get(self.tokens[before].norm, ())):
+        if any(e.role in AMOUNT_ROLES for e in self._entries(before)):
             return None, before
         return False, i
 
     def _plural_scale(self, i: int) -> bool:
         """"milhões": a plural scale word or collective. With a count before it
         ("3 milhões") it is a number, not a vague quantity."""
-        return not self.tokens[i].is_digits and any(
-            e.role in AMOUNT_ROLES and e.plural
-            for e in self.lex.readings.get(self.tokens[i].norm, ()))
+        return any(e.role in AMOUNT_ROLES and e.plural for e in self._entries(i))
 
     def _goes_on(self, i: int, hundred: Entry) -> bool:
         """A hundred word that takes no count ("cento", "cem", never "dois
@@ -280,8 +282,7 @@ class Grammar:
         "nekoliko tisuća i pet"."""
         if self.lex.joiner_before_last_group != Joiner.REQUIRED:
             return False
-        while i < len(self.tokens) and not self.tokens[i].is_digits and any(
-                e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ())):
+        while any(e.role in SCALE_ROLES for e in self._entries(i)):
             i += 1
         return self._is_word(i, self.lex.joiners) and (
             self.starts_number(i + 1) or bool(self._readings(i + 1, "half")))
@@ -292,26 +293,24 @@ class Grammar:
         return joined if policy == Joiner.REQUIRED else [i] + joined
 
     def _takes_multiplier(self, i: int) -> bool:
-        return i < len(self.tokens) and not self.tokens[i].is_digits and not self.closes(i - 1) and any(
-            e.role in SCALE_ROLES for e in self.lex.readings.get(self.tokens[i].norm, ()))
+        return any(e.role in SCALE_ROLES for e in self._entries(i)) and not self.closes(i - 1)
 
     def closes(self, i: int) -> bool:
         """True when the word at ``i`` takes a case ending that closes the
         number: "ikide" (at two) counts no "yüz" after it."""
-        if i < 0 or i >= len(self.tokens) or self.tokens[i].is_digits:
+        entries = self._entries(i)
+        if not entries:
             return False
-        entries = self.lex.readings.get(self.tokens[i].norm, ())
         # the parts after a decimal marker leave it open: "iki tam onda beş"
         if self.lex.decimal_fraction and self._is_word(i - 1, self.lex.decimal_markers) \
                 and any(e.fraction_case for e in entries):
             return False
-        return bool(entries) and all(e.final for e in entries)
+        return all(e.final for e in entries)
 
     def _ordinal_form(self, i: int) -> bool:
         """True when every reading of the word at ``i`` that can be part of
         a cardinal is an ordinal form ("viides", "kolmannesta")."""
-        entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ()) if e.role in CARDINAL_ROLES] \
-            if i < len(self.tokens) and not self.tokens[i].is_digits else []
+        entries = [e for e in self._entries(i) if e.role in CARDINAL_ROLES]
         return bool(entries) and all(e.ordinal for e in entries)
 
     def _agrees(self, noun: bool, plural: bool, count: Rational, words: bool = False) -> bool:
@@ -357,7 +356,7 @@ class Grammar:
                    for _, exponent, _, noun, _, plural in scale_words)
 
     def _homograph(self, i: int) -> bool:
-        readings = () if self.tokens[i].is_digits else self.lex.readings.get(self.tokens[i].norm, ())
+        readings = self._entries(i)
         return bool(readings) and all(e.ambiguous for e in readings)
 
     def starts_number(self, i: int) -> bool:
@@ -688,9 +687,8 @@ class Grammar:
                 if value == digits.shift("1", places) and len(numerator) <= places:
                     found.append((stop, numerator.rjust(places, "0")))
             places = len(numerator) - 1
-            last = self.tokens[end - 1]
-            if places and (end, numerator) in small and numerator == digits.shift("1", places) and not last.is_digits \
-                    and any(e.fraction_case for e in self.lex.readings.get(last.norm, ())):
+            if places and (end, numerator) in small and numerator == digits.shift("1", places) \
+                    and any(e.fraction_case for e in self._entries(end - 1)):
                 found += [(stop, count.rjust(places, "0")) for stop, count in self.small(end, nonzero=True)
                           if len(count) <= places]
         return found
@@ -1123,8 +1121,7 @@ class Grammar:
         "ikide yüz" (at two, a hundred) is no fraction."""
         last = run[-1]
         at = last.end - 1
-        if last.decimal or self.tokens[at].is_digits or not any(
-                e.fraction_case for e in self.lex.readings.get(self.tokens[at].norm, ())):
+        if last.decimal or not any(e.fraction_case for e in self._entries(at)):
             return []
         shares = _sum(run)
         if _whole(shares) in ("0", "1"):
@@ -1623,10 +1620,7 @@ class Grammar:
         are") anywhere, "neuf" ("new") when no word follows it ("un manteau
         neuf", not "neuf maisons"), hu "hat" ("takes effect") after "nem"
         and before "rám"."""
-        if self.tokens[i].is_digits:
-            return False
-        entries = [e for e in self.lex.readings.get(self.tokens[i].norm, ())
-                   if e.role in ("unit", "ten", "hundred")]
+        entries = [e for e in self._entries(i) if e.role in ("unit", "ten", "hundred")]
         # a hyphenated noun gives no token, so the word before it is not at the end ("hat ITF-tornán")
         at_end = not self.tokens[i].noun_after and (i + 1 == len(self.tokens) or self._is_word(i + 1, self.lex.joiners))
         joined = at_end and i + 1 < len(self.tokens) and self._number_at(i + 2)

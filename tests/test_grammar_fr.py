@@ -145,6 +145,48 @@ class TestStandaloneOrdinals(unittest.TestCase):
                          [("une", "1", "cardinal"), ("seconde", "2", O)])
 
 
+class TestDigitOrdinalSuffixes(unittest.TestCase):
+    """The abbreviations of the Académie ("1ers", "2d", "2es") and the forms in
+    use ("2nde", "2èmes"), with the raised letters as modifier letters."""
+
+    def test_each_suffix_makes_the_whole_token_an_ordinal(self):
+        # 1er, 1re and their plurals are the 1st; 2d, 2de, 2nd and 2nde are
+        # "second(e)", the 2nd; 2es and 2èmes are plurals of the 2nd
+        for text, value, gender in (
+            ("1ers", "1", "masculine"), ("1res", "1", "feminine"), ("1ères", "1", "feminine"),
+            ("2es", "2", None), ("2èmes", "2", None), ("2d", "2", "masculine"), ("2de", "2", "feminine"),
+            ("2ds", "2", "masculine"), ("2des", "2", "feminine"), ("2nd", "2", "masculine"),
+            ("2nde", "2", "feminine"), ("2ndes", "2", "feminine"), ("2ᵉ", "2", None),
+            ("1ᵉʳ", "1", "masculine"), ("1ʳᵉ", "1", "feminine"), ("10es", "10", None),
+        ):
+            with self.subTest(text=text):
+                mentions = tag_numbers(f"les {text} places", "fr-FR")
+                self.assertEqual([(m.text, m.value, m.kind.value, m.gender, m.confidence) for m in mentions],
+                                 [(text, value, O, gender, 1.0)])
+
+    def test_a_suffix_of_one_number_follows_only_that_number(self):
+        # "er" and "re" abbreviate "premier", "première"; "d" and "nd" abbreviate "second"
+        for text, spans in (("3er", [("3", "3", C)]), ("21re", [("21", "21", C)]),
+                            ("3d", [("3", "3", C)]), ("12nd", [("12", "12", C)]),
+                            ("1er", [("1er", "1", O)]), ("21e", [("21e", "21", O)])):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), spans)
+
+    def test_no_mark_stands_between_the_digits_and_the_suffix(self):
+        # "2.d" is figure 2, part d
+        for text, spans in (("Voir la figure 2.d", [("2", "2", C)]), ("la figure 2.de", [("2", "2", C)]),
+                            ("les figures 2.des", [("2", "2", C)]), ("le 2.e", [("2", "2", C)])):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), spans)
+
+    def test_the_letters_of_second_stay_lower_case(self):
+        # "2D" and "3D" are two and three dimensions, "2DS" a console
+        for text, spans in (("le film en 2D", [("2", "2", C)]), ("les imprimantes 3D", [("3", "3", C)]),
+                            ("la Nintendo 2DS", [("2", "2", C)]), ("la 2de partie", [("2de", "2", O)])):
+            with self.subTest(text=text):
+                self.assertEqual(fr(text), spans)
+
+
 class TestENotation(unittest.TestCase):
     def test_a_number_in_e_notation_holds_no_ordinal(self):
         # "1e5" is 10^5 in E notation: neither the 1st nor 1 and 5
@@ -180,6 +222,23 @@ class TestSwissDigits(unittest.TestCase):
         self.assertEqual(read("1'234'567,5", "fr-CH"), [("1'234'567,5", "1234567.5", "decimal")])
         self.assertEqual(read("1 234 567,5", "fr-CH"), [("1 234 567,5", "1234567.5", "decimal")])
         self.assertEqual(read("1'234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
+
+    def test_the_typographic_apostrophe_groups_digits_too(self):
+        # 1 x 10^3 + 234.50 = 1234.5; 1 x 10^6 + 234 x 10^3 + 567.5 = 1234567.5
+        self.assertEqual(read("1’234.50", "fr-CH"), [("1’234.50", "1234.5", "decimal")])
+        self.assertEqual(read("Prix : 1’234’567,5 francs", "fr-CH"), [("1’234’567,5", "1234567.5", "decimal")])
+        self.assertEqual(read("1’234", "fr-FR"), [("1", "1", C), ("234", "234", C)])
+
+    def test_an_apostrophe_before_no_group_of_three_separates_two_numbers(self):
+        # 9"58 and 14h30 in Swiss notation, a score, minutes and seconds: each run is a number
+        for text, spans in (("en 9’58", [("9", "9", C), ("58", "58", C)]),
+                            ("à 14’30", [("14", "14", C), ("30", "30", C)]),
+                            ("J’ai 2’3 ans", [("2", "2", C), ("3", "3", C)]),
+                            ("1’23’’45", [("1", "1", C), ("23", "23", C), ("45", "45", C)]),
+                            ("3'45", [("3", "3", C), ("45", "45", C)]),
+                            ("1'2345", [("1", "1", C), ("2345", "2345", C)])):
+            with self.subTest(text=text):
+                self.assertEqual(read(text, "fr-CH"), spans)
 
 
 class TestBillion(unittest.TestCase):

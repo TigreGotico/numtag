@@ -228,11 +228,23 @@ A cue makes the numeral a sure ordinal:
 |---|---|
 | A series noun before the numeral (`roman_series_noun`) | "século XIX", "World War II", "capítulo xii" |
 | A series noun after a numeral that is no word | "the XXI century" |
-| A title-case word before an upper-case numeral that is no word | "Luís XIV", "Edition XIV" |
+| A title-case word before an upper-case numeral below 100 that is no word | "Luís XIV", "Edition XIV" |
 | A regnal title (`roman_title`), then a name | "King Henry I", "D. João I", "Papst Benedikt XVI" |
 | A cued numeral before it in a list, after a comma or a joiner, for a numeral that is no word | "séculos XI, XII e XIII" |
+| An ordinal suffix in lower case glued to an upper-case numeral of two letters or more, where the language sets `roman_ordinal_suffix`. A single letter with a suffix also needs one of the other cues | fr "au XXe siècle", "François Ier", "la Ve République" |
 
-German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages, so "In MMXXIV we moved" reads a sure 2024.
+German writes every noun in title case, so in German a title-case word is no cue (setting `roman_title_case_cue`): "Größe XIV" is a cardinal with `Reason.HOMOGRAPH`. A capitalised word at the start of a sentence is a cue in the other languages too.
+
+A title-case word is no cue for a numeral of 100 or more. Regnal numbers and the places of a named series stay below 100, so a larger numeral after a name is a year, a code or an abbreviation, and it reads as a cardinal with `Reason.HOMOGRAPH`. A regnal title or a series noun is still a cue for it.
+
+```python
+>>> [(m.text, m.value, m.kind.value, m.confidence) for m in tag_numbers("In MMXXIV we moved.", "en")]
+[('MMXXIV', '2024', 'cardinal', 0.4)]
+>>> [(m.text, m.value, m.kind.value, m.confidence) for m in tag_numbers("Le PDG de Total MDCC", "fr")]
+[('MDCC', '1700', 'cardinal', 0.4)]
+>>> [(m.text, m.value, m.kind.value, m.confidence) for m in tag_numbers("Super Bowl LVIII", "en")]
+[('LVIII', '58', 'ordinal', 1.0)]
+```
 
 A numeral next to a digit is part of a code, and gives no mention: "Mazda CX5", "3XL".
 
@@ -244,6 +256,8 @@ A single letter or a numeral in the language's `roman_word` list ("CD", "MIX", "
 
 - a series noun before it ("World War I", "Part I")
 - a regnal title, then a name of one or two words on the same line: "King Henry I", "Queen Elizabeth I", "Pope John Paul I", "D. João I", "Papa Pio X". Only a one-letter title ends in a period ("D."), so "I met the King. Then I left." gives no mention.
+
+A hyphenated name is one title-case word, as "Jean-Paul" in "Jean-Paul II" and "le pape Jean-Paul I".
 
 A name alone, two names and a list are no cue. So these give no mention for the pronoun: "Can I get a math fact", "Play CD", "Give IV fluids" and "Henry I died". "tell John I am late", "I told Mary Jane I would come" and "After World War I, I moved" give none either. A capital letter before a name is an initial, not a numeral: "General D K Arya".
 
@@ -374,12 +388,12 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 | Argument | Meaning |
 |---|---|
 | `form` | A `SpokenForm`: `CARDINAL` ("twenty-one"), `ORDINAL`, `YEAR` (the cardinal where the lexicon has no year rules) or `DIGITS` (each digit alone) |
-| `gender` | `"masculine"`, `"feminine"` or `"neuter"`. It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
+| `gender` | `"masculine"`, `"feminine"` or `"neuter"`, or `"plural"` for a form whose plural has no gender (the Russian ordinal: "пятых"). It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
 | `case` | A case name that the lexicon lists. Any other case raises `ValueError` |
 | `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
 | `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
 | `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
-| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). Another value raises `ValueError`. The default is the lexicon's |
+| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). `"fraction"` reads the whole part with a whole word and the decimals as a fraction of a power of ten (ru "две целых двадцать пять сотых"). Another value raises `ValueError`. The default is the lexicon's, and a lexicon can list more reads as variant spellings |
 
 ```python
 >>> from numtag import SpokenForm, spell, tag_numbers
@@ -397,6 +411,15 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 'satu koma lima kali sepuluh pangkat sembilan'
 ```
 
+A fraction reads its numerator and its denominator in the nominative. For another case, spell the two numbers: the cardinal in the case, and the ordinal with `gender="plural"` in the same case.
+
+```python
+>>> spell("2/5", "ru")[0].text
+'две пятых'
+>>> f'{spell("2", "ru", gender="feminine", case="instrumental")[0].text} {spell("5", "ru", form=SpokenForm.ORDINAL, gender="plural", case="instrumental")[0].text}'
+'двумя пятыми'
+```
+
 An ordinal below its minimum raises `ValueError`, and so does a case that the lexicon lacks. A fraction with a denominator of 0 raises `ZeroDivisionError`.
 
 ```python
@@ -408,10 +431,10 @@ ValueError: ordinals must be whole numbers from 1
 Traceback (most recent call last):
   ...
 ValueError: id: no case 'genitive'; it has []
->>> spell("1", "sv")
+>>> spell("1", "fi")
 Traceback (most recent call last):
   ...
-numtag.lexicon.UnsupportedLanguageError: no writer for language 'sv'
+numtag.lexicon.UnsupportedLanguageError: no writer for language 'fi'
 ```
 
 ## Spelling

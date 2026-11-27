@@ -60,7 +60,12 @@ Read the pages in this order.
 | [languages/fr-it-ro-eu-id.md](languages/fr-it-ro-eu-id.md) | French, Italian, Romanian, Basque, Indonesian and Malay |
 | [languages/ibero.md](languages/ibero.md) | Spanish, Galician, Catalan, Asturian, Aragonese, Occitan and Mirandese |
 | [adding-a-language.md](adding-a-language.md) | How to add a language: the source rule, gold rows and the test gates |
-| [lexicon-format.md](lexicon-format.md) | The lexicon format, version 1: every key with its type, default and effect, the schema, and the revision |
+| [lexicon-format.md](lexicon-format.md) | The lexicon format, versions 1 to 4: every key with its type, default and effect, the schema, and the revision |
+
+## Inside the library
+
+| Guide | Content |
+|---|---|
 | [design.md](design.md) | Principles, tokenizer, lexicon, grammar, string arithmetic and determinism |
 | [benchmarks.md](benchmarks.md) | Accuracy against ovos-number-parser, with the commands |
 | [roadmap.md](roadmap.md) | Planned features |

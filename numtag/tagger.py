@@ -58,7 +58,8 @@ def _tokenize(text: str, lexicon: Lexicon) -> list[Token]:
                     if lexicon.period_ordinals else None,
                     dot_ordinal=lexicon.dot_ordinal, date_months=lexicon.date_months,
                     phrases=lexicon.phrases, group_mark=lexicon.group_mark,
-                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".")
+                    compounds=lexicon.compounds, day_month=lexicon.decimal_mark != ".",
+                    suffix_fits=lexicon.ordinal_suffix_fits, group_forms=lexicon.group_mark_forms)
 
 
 def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[NumberMention]:
@@ -77,10 +78,10 @@ def tag_numbers(text: str, lang: str, *, scale: Scale | None = None) -> list[Num
     mentions = [m for m in mentions
                 if not any(start < m.char_span[1] and m.char_span[0] < end for start, end in no_value)]
     mentions = _slash_fractions(text, tokens, mentions, after_slash)
-    for token, value, kind, reason in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
+    for token, value, kind, reason, gender in roman_numerals(text, lexicon, tokens, [m.char_span for m in mentions]):
         span = (token.start, token.end)
         mentions.append(NumberMention(
-            span, token.text, value, kind, Form.ROMAN, None, CONFIDENCE[reason],
+            span, token.text, value, kind, Form.ROMAN, gender, CONFIDENCE[reason],
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=(Part(Role.COUNT, span, token.text, value),)))
     mentions.sort(key=lambda m: m.char_span)
@@ -214,7 +215,8 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
         span = (run[i].start, run[best.end - 1].end)
         reason = _reason(number_grammar, lexicon, run, start, best, alone=text.strip() == run[start].text,
                          signed=negative)
-        kind = _kind(lexicon, run[start:best.end], best)
+        words = run[start:best.end]
+        kind = _kind(lexicon, words, best)
         pieces = best.parts
         if signed:
             # the digit string is one part with its sign: "-2" is -2
@@ -224,8 +226,8 @@ def _tag_run(text: str, lexicon: Lexicon, run: list[Token]) -> list[NumberMentio
             pieces = ((Role.MINUS, i, start, None),) + pieces
         mentions.append(NumberMention(
             span, text[span[0]:span[1]], value.canonical(), kind,
-            _form(run[start:best.end]), _gender(lexicon, run[start:best.end]), CONFIDENCE[reason],
-            number_scale=_number_scale(lexicon, run[start:best.end]),
+            _form(words), _gender(lexicon, words), CONFIDENCE[reason],
+            number_scale=_number_scale(lexicon, words),
             reasons=frozenset() if reason is None else frozenset({reason}),
             parts=_parts(text, run, pieces)))
         count_end = best.end if kind == Kind.CARDINAL and reason is None else -1
@@ -317,10 +319,8 @@ def _kind(lexicon: Lexicon, tokens: list[Token], parse: Parse) -> Kind:
     value whose last word is an ordinal form is ordinal ("kahdeskymmenes")."""
     if parse.kind == Kind.ORDINAL:
         return parse.kind
-    if parse.value.is_whole() and _ordinal_word(lexicon, tokens):
-        return Kind.ORDINAL
     if parse.value.is_whole():
-        return Kind.CARDINAL
+        return Kind.ORDINAL if _ordinal_word(lexicon, tokens) else Kind.CARDINAL
     return Kind.DECIMAL if parse.decimal else Kind.FRACTION
 
 
