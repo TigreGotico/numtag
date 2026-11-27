@@ -611,7 +611,20 @@ VARIANT_KEYS = frozenset(("ruleset", "reason", "source"))
 DECIMAL_CASE_KEYS = frozenset(("numerator", "one", "other", "whole"))
 DECIMAL_KEYS = frozenset(("word", "places", "read", "variant_read", "by_case", "source"))
 SCIENTIFIC_KEYS = frozenset(("times", "source"))
-FRACTION_KEYS = frozenset(("limit", "named", "mixed_named", "denominator", "single", "mixed", "capitalise", "plural", "ruleset", "by_count", "numerator", "source"))
+FRACTION_KEYS = frozenset((
+    "limit",
+    "named",
+    "mixed_named",
+    "denominator",
+    "single",
+    "mixed",
+    "capitalise",
+    "plural",
+    "ruleset",
+    "by_count",
+    "numerator",
+    "source",
+))
 ITEM_KEYS = frozenset(("value", "source"))
 INFLECTION_KEYS = ITEM_KEYS | {"ordinal", "fraction_case"}
 NATIVE_DIGITS_KEYS = frozenset(("digits", "decimal_mark", "group_mark"))

@@ -131,6 +131,34 @@ def _issue_339(lang: str, text: str) -> bool:
     return lang == "nl" and re.fullmatch(r"een \w+(joen|jard)ste", text) is not None
 
 
+# The known reader defects that each test skips, one language per line. Each predicate also checks its language.
+UNREAD_WORD_SKIPS = {
+    "es": (_issue_315,),
+    "eu": (_issue_360,),
+    "fr": (_issue_325,),
+    "kab": (_issue_373,),
+    "pt": (_issue_305,),
+    "ro": (_issue_329,),
+    "sv": (_sv_fused,),
+}
+
+ORDINAL_SKIPS = {
+    "da": (_da_hundred,),
+    "en": (_issue_343,),
+    "es": (_issue_315,),
+    "fr": (_issue_325,),
+    "gl": (_issue_331,),
+    "it": (_issue_318, _issue_323),
+    "nl": (_issue_339,),
+    "pt": (_issue_305,),
+    "ro": (_issue_329,),
+}
+
+
+def _skipped(skips: dict, lang: str, text: str) -> bool:
+    return any(skip(lang, text) for skip in skips.get(lang.split("-")[0], ()))
+
+
 def _file(name: str) -> dict:
     return json.loads((LEXICONS / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -336,7 +364,7 @@ class TestRoundTrip(unittest.TestCase):
             with self.subTest(lang=lang):
                 self.assertTrue(words)
                 unread = [word for word in sorted(words - known)
-                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _issue_305(lang, word) and not _issue_315(lang, word) and not _issue_325(lang, word) and not _issue_329(lang, word) and not _issue_360(lang, word) and not _issue_373(lang, word) and not _sv_fused(lang, word)]
+                          if [m.text for m in tag_numbers(word, lang)] != [word] and not _skipped(UNREAD_WORD_SKIPS, lang, word)]
                 self.assertEqual(unread, [])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/360")
@@ -400,7 +428,7 @@ class TestRoundTrip(unittest.TestCase):
                     continue
                 words = spell(str(number), lang, form=SpokenForm.ORDINAL)[0].text
                 found = [(m.text, m.value, m.kind) for m in tag_numbers(words, lang)]
-                if found != [(words, str(number), Kind.ORDINAL)] and not _issue_305(lang, words) and not _issue_315(lang, words) and not _issue_318(lang, words) and not _issue_323(lang, words) and not _issue_325(lang, words) and not _issue_329(lang, words) and not _issue_331(lang, words) and not _issue_343(lang, words) and not _issue_339(lang, words) and not _da_hundred(lang, words):
+                if found != [(words, str(number), Kind.ORDINAL)] and not _skipped(ORDINAL_SKIPS, lang, words):
                     failures.append((number, words, found))
             with self.subTest(lang=lang):
                 self.assertEqual(failures[:3], [])
@@ -408,7 +436,8 @@ class TestRoundTrip(unittest.TestCase):
 
 class TestRevisions(unittest.TestCase):
     def test_every_lexicon_with_no_writer_has_a_stored_revision_and_keeps_it(self):
-        stored = json.loads((Path(__file__).parent / "golden" / "revisions.json").read_text(encoding="utf-8"))
+        stored = {path.stem: path.read_text(encoding="utf-8").strip()
+                  for path in (Path(__file__).parent / "golden" / "revisions").glob("*.txt")}
         names = sorted(path.stem for path in LEXICONS.glob("*.json") if path.stem not in VERSION_TWO)
         self.assertEqual(sorted(stored), names)
         for name, revision in stored.items():

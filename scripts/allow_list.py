@@ -746,14 +746,14 @@ print(len(bad), "in;", len(entries), "allowed;", len(left), "left;", dict(count)
 for r, g in left: print("LEFT", r["fn"], r["arg"], r.get("kw"), r.get("out", r.get("err")), "|", g)
 if left:
     sys.exit(f"{len(left)} rows have no category")
-path = "tests/golden/onp-writers-allow.json"
-text = open(path, encoding="utf-8").read()
-kept = [line.rstrip(",") for line in text.strip()[1:-1].strip().split("\n") if line and f'"lang": "{lang}"' not in line]
-lines = sorted(kept + [json.dumps(e, ensure_ascii=False) for e in entries], key=lambda line: json.loads(line)["lang"])  # stable
-new = "[\n" + ",\n".join(lines) + "\n]\n"
+path = Path(f"tests/golden/onp-writers-allow/{lang}.json")
+lines = [json.dumps(e, ensure_ascii=False) for e in entries]
 if "--check" in sys.argv:
-    old = [line.rstrip(",") for line in text.strip()[1:-1].strip().split("\n") if f'"lang": "{lang}"' in line]
-    if sorted(old) != sorted(json.dumps(e, ensure_ascii=False) for e in entries):
+    text = path.read_text(encoding="utf-8") if path.exists() else "[]"
+    old = [line.rstrip(",") for line in text.strip()[1:-1].strip().split("\n") if line]
+    if sorted(old) != sorted(lines):
         sys.exit(f"{path}: the {lang} entries differ from the golden rows")
+elif lines:
+    path.write_text("[\n" + ",\n".join(lines) + "\n]\n", encoding="utf-8")
 else:
-    open(path, "w", encoding="utf-8").write(new)
+    path.unlink(missing_ok=True)

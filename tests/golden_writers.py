@@ -4,7 +4,7 @@
 ``pronounce_ordinal`` or ``pronounce_fraction`` per row, with the words it
 returned or the name of the exception it raised. ``result`` runs the same call
 through ``numtag.spell``. A row where the stored output is a known defect is on
-the allow-list, ``tests/golden/onp-writers-allow.json``, with the output that a
+the allow-list, one file per language in ``tests/golden/onp-writers-allow/``, with the output that a
 cited source gives.
 """
 import gzip
@@ -18,7 +18,7 @@ from numtag.lexicon import writer_block
 from numtag.tagger import lexicon_name
 
 GOLDEN = Path(__file__).parent / "golden" / "onp-writers.jsonl.gz"
-ALLOW = Path(__file__).parent / "golden" / "onp-writers-allow.json"
+ALLOW = Path(__file__).parent / "golden" / "onp-writers-allow"
 
 # ovos-number-parser spells the third gender "neutral"; a lexicon spells it "neuter".
 GENDERS = {"masculine": "masculine", "feminine": "feminine", "neutral": "neuter"}
@@ -68,7 +68,8 @@ def key(row: dict) -> str:
 
 def allowed() -> dict[str, dict]:
     """The allow-list by row key: each entry names the row and the output that a source gives."""
-    return {key(entry): entry for entry in json.loads(ALLOW.read_text(encoding="utf-8"))}
+    return {key(entry): entry for path in sorted(ALLOW.glob("*.json"))
+            for entry in json.loads(path.read_text(encoding="utf-8"))}
 
 
 def mismatches(rows: list[dict], allow: dict[str, dict]) -> list[tuple[dict, dict]]:
