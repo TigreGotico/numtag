@@ -519,12 +519,20 @@ def _ordinal_of(writer: Writer, number: str) -> str:
     return writer.render(writer.variants(SpokenForm.ORDINAL, None, None)[0]["ruleset"], number)
 
 
-def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str, denominator: str) -> str:
+def _mixed(writer: Writer, ruleset: str, spec: dict, whole: str, numerator: str, denominator: str) -> str | None:
     lead = [writer.render(ruleset, whole)] if whole != "0" else []
     if lead and denominator in spec.get("mixed_named", {}):
         return " ".join([*lead, spec["mixed_named"][denominator]])
+    if lead and "mixed_named" in spec:
+        return None  # the mixed forms are the ones that ``mixed_named`` lists
     if denominator in spec["named"]:
-        return " ".join([*lead, spec["named"][denominator]])
+        word = spec["named"][denominator]
+        if numerator != "1":
+            plural = spec.get("plural", {})
+            if isinstance(plural, dict) and not any(word.endswith(end) for end in plural):
+                return None  # no plural of the named word: the count and the ordinal
+            word = f"{writer.render(ruleset, numerator)} {_plural(word, plural)}"
+        return " ".join([*lead, word])
     word = spec["denominator"].replace("{cardinal}", writer.render(ruleset, denominator))
     if numerator == "1" and not lead:
         return spec["single"].replace("{denominator}", word)
