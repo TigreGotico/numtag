@@ -551,7 +551,7 @@ A number in E notation ("1e5", "2,5e-3") is no number of the reader. Its "e" is 
 [('2e', '2')]
 ```
 
-A suffix that abbreviates one ordinal follows only its number. French "er" and "re" abbreviate "premier" and "première", and "d", "de", "nd" and "nde" abbreviate "second" and "seconde". So "3er" is 3 and a word. The letters of the suffix stay lower case, so "2D", two dimensions, is no ordinal. A plural takes an "s" ("1ers", "2es"), and the raised letters may be modifier letters ("2ᵉ", "1ᵉʳ").
+A suffix that abbreviates one ordinal follows only its number. French "er" and "re" abbreviate "premier" and "première", and "d", "de", "nd" and "nde" abbreviate "second" and "seconde". So "3er" is 3 and a word. The suffixes "d", "de", "ds" and "des" read only in lower case (`cased`), so "2D", two dimensions, is no ordinal. A plural takes an "s" ("1ers", "2es"), and the raised letters may be modifier letters ("2ᵉ", "1ᵉʳ").
 
 ```python
 >>> read("les 1ers et 2es Jeux, la 2de et la 2nde partie", "fr")
@@ -568,7 +568,7 @@ A suffix that abbreviates one ordinal follows only its number. French "er" and "
 
 French writes the same suffixes after a Roman numeral (setting `roman_ordinal_suffix`). The numeral is in upper case and the suffix in lower case, and the word is one ordinal with the gender of its suffix. The suffix keeps its limits, so "Vers" and "Ver" (V and "er") are no ordinal. A single letter is I, V or X, so "Le", "De" and "Me" are no ordinal either.
 
-A single-letter numeral with a suffix is sure only with a cue: a series noun before or after it ("au Xe siècle", "la Ve République"), a title-case name before it ("François Ier") or a regnal title and a name. With no cue it is an ordinal with a low score, as "Ire" is also "ire", anger. A word on the `roman_word` list reads only with a series noun or a regnal cue, as "Xe" is the symbol of xenon and "Cie" the abbreviation of "compagnie". No mark stands between digits and a French suffix, so "2.d", part d of figure 2, is no ordinal.
+A single-letter numeral with a suffix is sure only with a cue: a series noun before or after it ("au Xe siècle", "la Ve République"), a title-case name before it ("François Ier") or a regnal title and a name. With no cue it is an ordinal with a low score, as "Ire" is also "ire", anger. A word on the `roman_word` list, or one whose numeral is on it, reads only with a series noun or a regnal cue, as "Xe" is the symbol of xenon and "Cie" the abbreviation of "compagnie". So "le XLe chapitre" reads 40, and "MMe" alone reads nothing. No mark stands between digits and a French suffix, so "2.d", part d of figure 2, is no ordinal.
 
 ```python
 >>> read("au XXe siècle, sous la Ve République", "fr")

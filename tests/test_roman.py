@@ -342,7 +342,8 @@ class TestHyphenatedNames(unittest.TestCase):
 
     def test_a_regnal_title_before_a_hyphenated_name_reads_a_single_letter(self):
         # I = 1
-        for text, lang in (("le pape Jean-Paul I", "fr-FR"), ("Pope John-Paul I", "en")):
+        for text, lang in (("le pape Jean-Paul I", "fr-FR"), ("Pope John-Paul I", "en"),
+                           ("le pape Jean-Paul Louis I", "fr-FR"), ("le pape Jean Paul I", "fr-FR")):
             with self.subTest(text=text):
                 self.assertEqual(_read(text, lang), [("I", "1", Kind.ORDINAL, SURE)])
 
@@ -365,6 +366,7 @@ class TestFrenchOrdinalSuffix(unittest.TestCase):
             ("la Ire République", "Ire", "1", "feminine"), ("la IIde République", "IIde", "2", "feminine"),
             ("le Xe arrondissement", "Xe", "10", None), ("au Xe siècle", "Xe", "10", None),
             ("les IXe et Xe siècles", "Xe", "10", None), ("Jean-Paul Ier", "Ier", "1", "masculine"),
+            ("le XLe chapitre", "XLe", "40", None),
             ("les XIXes siècles", "XIXes", "19", None), ("L’EUROPE AU XXe SIÈCLE", "XXe", "20", None),
         ]
         for text, numeral, value, gender in rows:
@@ -381,7 +383,8 @@ class TestFrenchOrdinalSuffix(unittest.TestCase):
 
     def test_a_listed_word_with_a_suffix_needs_a_cue(self):
         # "Xe" is the symbol of xenon, "Cie" the abbreviation of compagnie
-        for text in ("Le xénon (Xe) est un gaz noble.", "Xe, Ar et Kr", "Le symbole Xe désigne le xénon.", "CIe"):
+        for text in ("Le xénon (Xe) est un gaz noble.", "Xe, Ar et Kr", "Le symbole Xe désigne le xénon.", "CIe",
+                     "MMe", "Les XLe"):
             with self.subTest(text=text):
                 self.assertEqual(_read(text, "fr-FR"), [])
 
