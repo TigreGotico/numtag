@@ -84,8 +84,11 @@ class _Ruleset:
         return found
 
 
+@cache
 def _divisor(base: str, radix: int) -> str:
     """The radix to the exponent of the base: 1000 for the base 1500 at radix 10."""
+    if radix == 10:
+        return "1" + "0" * (len(base) - 1)
     divisor, step = "1", str(radix)
     while digits.compare(digits.multiply(divisor, step), base) <= 0:
         divisor = digits.multiply(divisor, step)
