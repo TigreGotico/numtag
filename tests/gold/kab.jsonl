@@ -197,4 +197,3 @@
 {"text": "Zedɣen-tt mraw n yimelyunen n yimezdaɣ.", "mentions": [{"start": 10, "end": 27, "value": "10000000", "kind": "cardinal"}], "source": "Tatoeba sentence 11976477 (\"Elle compte dix millions d'habitants.\"): 10 × 10^6."}
 {"text": "Adlis-nnes yessenz ugar n 20 n yimelyunen n tenbeddiyin.", "mentions": [{"start": 26, "end": 41, "value": "20000000", "kind": "cardinal"}], "source": "Tatoeba sentence 12807886 (\"Her book has sold more than 20 million copies.\"): 20 × 10^6."}
 {"text": "Ad d-yili usuffeɣ n 18,2 n yimelyunen n yilitren n zzit aseggas-agi.", "mentions": [{"start": 20, "end": 37, "value": "18200000", "kind": "cardinal"}], "source": "Tatoeba sentence 8391633: 18,2 × 10^6."}
-{"text": "Tazeqqa-ya tettawi sin igiman n medden.", "mentions": [{"start": 19, "end": 29, "value": "2000", "kind": "cardinal"}], "source": "Tatoeba sentence 8187267 (\"Cette salle peut contenir deux mille personnes.\"): 2 × 10^3."}

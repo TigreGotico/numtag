@@ -101,11 +101,19 @@ def test_kab_the_decimal_marker(text, expected):
     # Dallet p. 704: errbaɛ is a quarter; 3/4 = 0.75; 1/3 of a loaf
     ("tlata errbaɛ n weɣrum", [("tlata errbaɛ", "0.75", F)]),
     ("Yečča kan rrbeɛ n uɣrum", [("rrbeɛ", "0.25", F)]),
-    # 2 out of 3; 5 out of 10 = 1/2
-    ("sin ɣef kraḍ n yilmeẓyen", [("sin ɣef kraḍ", "2/3", F)]),
-    ("semmus seg mraw n yixxamen", [("semmus seg mraw", "0.5", F)]),
 ])
 def test_kab_fractions(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.parametrize("text, expected", [
+    # seg, deg and ɣef between two counts are no fraction: "one of the two", "24 on 24", a score
+    ("Issefk-ak ad ferneḍ yiwen seg sin iɣawasen-a.", [("yiwen", "1", C), ("sin", "2", C)]),
+    ("Yettwali 24 ɣef 24", [("24", "24", C), ("24", "24", C)]),
+    ("yiwen deg yiwen", [("yiwen", "1", C), ("yiwen", "1", C)]),
+    ("tlata ɣef yiwen", [("tlata", "3", C), ("yiwen", "1", C)]),
+])
+def test_kab_seg_deg_and_ɣef_make_no_fraction(text, expected):
     assert read(text, "kab") == expected
 
 
