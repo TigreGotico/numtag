@@ -1,13 +1,22 @@
 # Changelog
 
+## [0.46.0a3](https://github.com/TigreGotico/numtag/tree/0.46.0a3) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a2...0.46.0a3)
+
+**Merged pull requests:**
+
+- fix\(kab\): Dallet 1982 forms are the standard writer output [\#411](https://github.com/TigreGotico/numtag/pull/411) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- perf: compute radix-10 rule divisors directly [\#409](https://github.com/TigreGotico/numtag/pull/409) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- refactor: one readings accessor in the grammar, tagger tidy [\#408](https://github.com/TigreGotico/numtag/pull/408) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- fix\(ru\): bare scale words, declined prepositional tens, plural ordinals, целых decimals [\#402](https://github.com/TigreGotico/numtag/pull/402) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.46.0a2](https://github.com/TigreGotico/numtag/tree/0.46.0a2) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.46.0a1...0.46.0a2)
 
 **Merged pull requests:**
 
-- perf: compute radix-10 rule divisors directly [\#409](https://github.com/TigreGotico/numtag/pull/409) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- refactor: one readings accessor in the grammar, tagger tidy [\#408](https://github.com/TigreGotico/numtag/pull/408) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 - chore: integrate the fr, bn, kab, eu, pl/cs and sv reader and writer PRs [\#404](https://github.com/TigreGotico/numtag/pull/404) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.46.0a1](https://github.com/TigreGotico/numtag/tree/0.46.0a1) (2026-11-27)
