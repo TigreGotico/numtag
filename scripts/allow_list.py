@@ -140,7 +140,7 @@ KAB_WP = f"en.wikipedia, «Kabyle grammar», Numerotation ({KAB}kabyle_grammar_e
 KAB_WT = f"fr.wiktionary, «Modèle:cardinaux/kab» ({KAB}cardinaux_kab_frwiktionary_template.html)"
 SRC.update({
  "kab_arabic": KAB_WP + ": \"Only the first two numbers are Berber; for higher numbers, Arabic is used.\"; " + KAB_WT + ": \"3 tlata\", \"10 ɛecṛa\"; ovos-number-parser writes the learned Berber forms (\"kṛaḍ\", \"kuẓ\", \"mraw\").",
- "kab_form": KAB_WT + ": \"400 ṛebɛa-mya\", \"900 tesɛa-mya\", \"3 000 telt-alaf\", \"8 000 temn-alaf\", \"80 tmanyin\", \"90 tesɛin\", \"13 telṭac\"; the writer takes the fr.wiktionary form where languagesandnumbers.com differs, and ovos-number-parser writes the other (\"ṛebɛ-mya\", \"tlat-alaf\").",
+ "kab_form": KAB_WT + ": \"400 ṛebɛa-mya\", \"900 tesɛa-mya\", \"3 000 telt-alaf\", \"8 000 temn-alaf\", \"80 tmanyin\", \"90 tesɛin\", \"13 telṭac\"; the writer takes the fr.wiktionary form where languagesandnumbers.com differs, and ovos-number-parser writes the other (\"ṛebɛ-mya\", \"tlat-alaf\"). For 100, 200 and 2000 the writer takes the form of Dallet (1982), Dictionnaire kabyle-français (" + KAB + "dallet_1982_kf_p*.png), p. 528: \"meyya ; fém.\", \"miṭin / miṭayen / mitayen (duel ar.). ‖ Deux cents.\"; p. 446: \"alfin (wa) ‖ Deux mille.\"; ovos-number-parser writes \"mya\", \"mitin\" and \"juǧ alaf\".",
  "kab_half": f"fr.wiktionary, «azgen» ({KAB}azgen_frwiktionary.html): \"Moitié\"; ovos-number-parser writes \"yiwen wis sin\" (one second).",
  "kab_range": "numtag/lexicon/kab.json, the kab writer: a number goes up to 10^12 - 1, the last scale word of this lexicon (amelyaṛ); ovos-number-parser raises OverflowError from 10000, and past 10^12 - 1 numtag raises ValueError.",
 })
@@ -148,7 +148,8 @@ KAB_ARABIC = {"kṛaḍ": "tlata", "kraḍ": "tlata", "kuẓ": "ṛebɛa", "semm
               "tẓa": "tesɛa", "mraw": "ɛecṛa", "kṛaḍet": "tlata", "kuẓet": "ṛebɛa", "semmuset": "xemsa", "sḍiset": "setta",
               "sat": "sebɛa", "tamet": "tmanya", "tẓat": "tesɛa", "mrawet": "ɛecṛa"}
 KAB_FORM = {"ṛebɛ-mya": "ṛebɛa-mya", "tesɛ-mya": "tesɛa-mya", "tlat-alaf": "telt-alaf", "tmany-alaf": "temn-alaf",
-            "tmanyina": "tmanyin", "tsɛin": "tesɛin", "tleṭṭac": "telṭac", "sebeɛṭac": "sbeɛṭac", "temmenṭac": "tmenṭac"}
+            "tmanyina": "tmanyin", "tsɛin": "tesɛin", "mya": "meyya", "mitin": "miṭin",
+            "mya-alaf": "meyya-alaf", "mitin-alaf": "miṭin-alaf", "tleṭṭac": "telṭac", "sebeɛṭac": "sbeɛṭac", "temmenṭac": "tmenṭac"}
 def category_kab(row, got):
     kw = row.get("kw", {})
     out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
@@ -160,7 +161,7 @@ def category_kab(row, got):
     if out == "OverflowError" and not str(row["arg"]).startswith("-"): return "kab_range"
     if row["fn"] == "fraction" and row["arg"].split("/")[1] == "2" and mine.endswith("zgen"): return "kab_half"
     words = lambda t, table: " ".join(table.get(w, w) for w in re.sub(r"(\S+)-(mya|alaf)", lambda m: table.get(m[0], m[0]), t).split())
-    form = lambda t: words(t, KAB_FORM)
+    form = lambda t: words(t.replace("juǧ alaf", "alfin"), KAB_FORM)
     if form(out) == form(mine): return "kab_form"
     if form(words(out, KAB_ARABIC)) == form(mine): return "kab_arabic"
     return None
@@ -197,7 +198,8 @@ def category_ro(row, got):
 RU_CLDR = "CLDR RBNF ru (common/rbnf/ru.xml as shipped in unicode-rbnf 2.5.1)"
 RU_ROSENTAL = "Д. Э. Розенталь, Справочник по правописанию и литературной правке (1985), § 45 (Papers/Languages/Slavic/rozental1985_spravochnik_pravopisanie_literaturnaya_pravka_ocr.pdf)"
 SRC.update({
- "ru_one_scale": RU_CLDR + ", %spellout-cardinal-masculine: \"1000: ←%spellout-cardinal-feminine← $(cardinal,one{тысяча}few{тысячи}other{тысяч})$[ →→];\" and \"1000000: ←%spellout-cardinal-masculine← $(cardinal,one{миллион}…)$\": a scale noun keeps its count (\"одна тысяча\", \"один миллион\"); ovos-number-parser drops it.",
+ "ru_one_scale": "Русская грамматика (1980), § 1378: \"И. тысяча двести восемьдесят семь\"; Розенталь (1985), § 164, п. 2: \"в тысячу пятьсот тонн\": a number starts with a bare scale word (\"тысяча\", \"триллион\"). After a higher scale word the count one stays, as in " + RU_CLDR + ", %spellout-cardinal-masculine: \"1000: ←%spellout-cardinal-feminine← $(cardinal,one{тысяча}…)$\" (\"триллион один миллион\"); ovos-number-parser drops it.",
+ "ru_decimal_fraction": RU_CLDR + ", %spellout-cardinal-feminine: \"x.x: [←← $(cardinal,one{целая}other{целых})$ ]→%%fractions-feminine→;\"; Русская грамматика (1980), §§ 1366–1383: \"одна целая шесть десятых, три целых и двадцать пять сотых\": a decimal reads as whole units and a fraction of a power of ten; ovos-number-parser writes \"точка\" and one word for each decimal.",
  "ru_decimal": "SILVER: the decimal word \"запятая\" (CLDR ru numbers write the decimal sign \",\"); ovos-number-parser writes \"точка\" and pads the decimals with \"ноль\".",
  "ru_long": "numtag/lexicon/ru.json, the setting scale: Russian counts in the short scale (CLDR RBNF ru: \"миллиард\", \"триллион\"); the writer has no long-scale reading, and ovos-number-parser writes \"биллион\".",
  "ru_fraction": RU_ROSENTAL + ", п. 3: \"Д р о б н ы е числительные пишутся раздельно, например: две пятых ( 2/ 5)\": the numerator in the feminine and the denominator an ordinal, -ая after one and -ых after other counts; ovos-number-parser writes the masculine (\"один миллионный\"), the nominative plural (\"две девятые\") or a mixed number.",
@@ -220,6 +222,7 @@ def category_ru(row, got):
     flat = lambda t: re.sub(r"\b(один|одна) (?=(тысяч|миллион|миллиард|триллион|квадриллион))", "", t.replace("ё", "е"))
     if row["fn"] == "fraction":
         return "ru_fraction" if re.search(r"(ая|ых|ьих|ья)$", mine) else None
+    if re.search(r" цел(ая|ых) ", mine): return "ru_decimal_fraction"
     if " запятая " in mine and flat(re.sub(r"( ноль)+$", "", out.replace(" точка ", " запятая "))) == flat(mine): return "ru_decimal"
     if flat(out) == flat(mine): return "ru_one_scale"
     return None

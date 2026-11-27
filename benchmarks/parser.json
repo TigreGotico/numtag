@@ -1,0 +1,66 @@
+{
+ "lib": "parser",
+ "rss_kib_start": 18700,
+ "import_s": 2.739488434002851,
+ "rss_kib_after_import": 33712,
+ "first_call_s": {
+  "pt-PT": 0.259867785993265,
+  "pt-BR": 0.03469365299679339,
+  "en": 0.009617738003726117
+ },
+ "tracemalloc_peak_first_calls_kib": 64,
+ "accuracy": {
+  "pt-PT": {
+   "rows": 479,
+   "rows_right": 388,
+   "gold_mentions": 530,
+   "mentions_found": 414,
+   "predicted_mentions": 494
+  },
+  "pt-BR": {
+   "rows": 470,
+   "rows_right": 390,
+   "gold_mentions": 513,
+   "mentions_found": 410,
+   "predicted_mentions": 472
+  },
+  "en": {
+   "rows": 444,
+   "rows_right": 358,
+   "gold_mentions": 486,
+   "mentions_found": 400,
+   "predicted_mentions": 501
+  }
+ },
+ "latency_per_sentence": {
+  "pt-PT": {
+   "calls": 2395,
+   "median_ms": 9.908119987812825,
+   "p95_ms": 61.950660005095415,
+   "max_ms": 333.02162200561725
+  },
+  "pt-BR": {
+   "calls": 2350,
+   "median_ms": 12.56014250247972,
+   "p95_ms": 83.7223529961193,
+   "max_ms": 447.8274139983114
+  },
+  "en": {
+   "calls": 2220,
+   "median_ms": 10.850976497749798,
+   "p95_ms": 93.37181100272574,
+   "max_ms": 612.0215150003787
+  }
+ },
+ "short_command_median_ms": {
+  "pt-PT": 19.849584001349285,
+  "pt-BR": 16.15773799858289,
+  "en": 11.52119250036776
+ },
+ "long_text_pt_2000_words": {
+  "words": 2000,
+  "best_s": 4.707390188996214,
+  "mentions": 292
+ },
+ "rss_kib_end": 20960
+}

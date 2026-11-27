@@ -1,0 +1,67 @@
+{
+ "langs": [
+  "pt-PT",
+  "pt-BR",
+  "en"
+ ],
+ "accuracy": {
+  "numtag": {
+   "pt-PT": {
+    "rows": 479,
+    "rows_right": 473,
+    "gold_mentions": 530,
+    "mentions_found": 528,
+    "predicted_mentions": 534
+   },
+   "pt-BR": {
+    "rows": 470,
+    "rows_right": 464,
+    "gold_mentions": 513,
+    "mentions_found": 511,
+    "predicted_mentions": 517
+   },
+   "en": {
+    "rows": 444,
+    "rows_right": 442,
+    "gold_mentions": 486,
+    "mentions_found": 485,
+    "predicted_mentions": 486
+   }
+  },
+  "parser": {
+   "pt-PT": {
+    "rows": 479,
+    "rows_right": 388,
+    "gold_mentions": 530,
+    "mentions_found": 414,
+    "predicted_mentions": 494
+   },
+   "pt-BR": {
+    "rows": 470,
+    "rows_right": 390,
+    "gold_mentions": 513,
+    "mentions_found": 410,
+    "predicted_mentions": 472
+   },
+   "en": {
+    "rows": 444,
+    "rows_right": 358,
+    "gold_mentions": 486,
+    "mentions_found": 400,
+    "predicted_mentions": 501
+   }
+  }
+ },
+ "share": {
+  "numtag": {
+   "pt-PT": 98.7,
+   "pt-BR": 98.7,
+   "en": 99.5
+  },
+  "parser": {
+   "pt-PT": 81.0,
+   "pt-BR": 83.0,
+   "en": 80.6
+  }
+ }
+}

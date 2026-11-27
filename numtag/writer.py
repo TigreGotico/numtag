@@ -84,8 +84,11 @@ class _Ruleset:
         return found
 
 
+@cache
 def _divisor(base: str, radix: int) -> str:
     """The radix to the exponent of the base: 1000 for the base 1500 at radix 10."""
+    if radix == 10:
+        return "1" + "0" * (len(base) - 1)
     divisor, step = "1", str(radix)
     while digits.compare(digits.multiply(divisor, step), base) <= 0:
         divisor = digits.multiply(divisor, step)
@@ -269,7 +272,7 @@ def _writer(name: str) -> Writer:
 
 def _split(value: str, keep_zeros: bool = False) -> tuple[bool, str, str]:
     """The sign, whole digits and fraction digits of a decimal digit string; ``keep_zeros`` keeps the
-    trailing zeros of written decimals that are not all zeros."""
+    trailing zeros of written decimals that are not all zeros ("1.80" reads eighty, "2.50" reads fifty hundredths)."""
     negative = value.startswith("-")
     whole, point, fraction = value.removeprefix("-").partition(".")
     if not _is_digits(whole) or point and not _is_digits(fraction):
@@ -304,30 +307,36 @@ def spell(value: str, lang: str, *, form: SpokenForm = SpokenForm.CARDINAL, gend
     the lexicon's ``scale`` setting. ``case`` raises ``ValueError`` where
     the lexicon has no such case. ``places`` is the count of decimals read,
     default the lexicon's. ``scientific`` reads the exponent form where the
-    lexicon has one. ``decimals`` is "digits" (one word per decimal) or
+    lexicon has one. ``decimals`` is "digits" (one word per decimal),
     "number" (the decimals as one number, with the trailing zeros as
-    written: "1.80" reads eighty), default the lexicon's.
+    written: "1.80" reads eighty) or "fraction" (the whole word and a
+    fraction of a power of ten), default the lexicon's.
     """
     writer = _writer(lexicon_name(lang))
     form = SpokenForm(form)
-    if decimals not in (None, "digits", "number"):
-        raise ValueError(f"decimals is 'digits' or 'number', not {decimals!r}")
+    if decimals not in (None, "digits", "number", "fraction"):
+        raise ValueError(f"decimals is 'digits', 'number' or 'fraction', not {decimals!r}")
+    if decimals == "fraction" and "by_case" not in writer.decimal:
+        raise ValueError(f"{writer.name}: no fraction reading of decimals")
     scale = scale and Scale(scale).value
     spec = writer.spec(form, scale)
     spellings: list[Spelling] = []
-    for variant in writer.variants(form, gender, case, scale):
-        text = _speak(writer, variant["ruleset"], value, form, places, scientific,
-                      decimals or writer.decimal.get("read", "digits"), spec)
-        if all(text != seen.text for seen in spellings):
-            spellings.append(Spelling(text, SpellingReason(variant["reason"]), len(spellings)))
+    reads = [decimals] if decimals else [writer.decimal.get("read", "digits"), *writer.decimal.get("variant_read", [])]
+    for number, read in enumerate(reads):
+        for variant in writer.variants(form, gender, case, scale):
+            text = _speak(writer, variant["ruleset"], value, form, places, scientific, read, spec, case)
+            reason = variant["reason"] if number == 0 else "variant_spelling"
+            if all(text != seen.text for seen in spellings):
+                spellings.append(Spelling(text, SpellingReason(reason), len(spellings)))
     return tuple(spellings)
 
 
 def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: int | None, scientific: bool,
-           decimals: str, spec: dict) -> str:
+           decimals: str, spec: dict, case: str | None = None) -> str:
     if "/" in value:
         return _fraction(writer, ruleset, value)
-    negative, whole, fraction = _split(value, keep_zeros=decimals == "number")
+    negative, whole, fraction = _split(value, keep_zeros=decimals in ("number", "fraction"))
+    pad = places if decimals == "fraction" else None
     places = writer.decimal["places"] if places is None else places
     if form is SpokenForm.ORDINAL:
         return _ordinal(writer, ruleset, negative, whole, fraction, spec)
@@ -347,7 +356,9 @@ def _speak(writer: Writer, ruleset: str, value: str, form: SpokenForm, places: i
         places = first
     else:
         whole, fraction = _round(whole, fraction, max(places, 0))
-    text = _plain(writer, ruleset, negative, whole, fraction, places, decimals)
+    if fraction and pad:
+        fraction = fraction.ljust(pad, "0")
+    text = _plain(writer, ruleset, negative, whole, fraction, places, decimals, case)
     if not fraction and len(whole) > BIG and _padded(writer, ruleset, text):
         return _exponent(writer, ruleset, negative, whole, fraction, places, decimals) or text
     return text
@@ -360,12 +371,19 @@ def _below_quantum(fraction: str, places: int) -> bool:
 
 
 def _plain(writer: Writer, ruleset: str, negative: bool, whole: str, fraction: str, places: int,
-           decimals: str = "digits") -> str:
+           decimals: str = "digits", case: str | None = None) -> str:
     if digits.normalise(whole) == "0" and not fraction:
         negative = False
     text = writer.render(ruleset, whole, negative)
     if fraction and writer.decimal["word"] is None:
         raise ValueError(f"{writer.name}: no decimal word; a number with decimals has no reading")
+    if fraction and decimals == "fraction":
+        fraction = fraction[:places]
+        top, bottom = fraction.lstrip("0"), "1" + "0" * len(fraction)
+        spec = writer.decimal["by_case"][case or "nominative"]
+        category = lambda number: "one" if writer.plural_category(number) == "one" else "other"
+        return " ".join([writer.render(spec["numerator"], whole, negative), spec["whole"][category(whole)],
+                         writer.render(spec["numerator"], top), writer.render(spec[category(top)], bottom)])
     if fraction:
         fraction = fraction[:places]
         if decimals == "number":

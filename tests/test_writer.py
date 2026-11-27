@@ -830,8 +830,18 @@ class TestKabyle(unittest.TestCase):
 
     def test_cardinals(self):
         self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "80", "400", "2000", "3000", "20000")],
-                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "juǧ alaf",
+                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "alfin",
                           "telt-alaf", "ɛecrin-alaf"])
+
+    def test_dallet_forms_are_standard_and_wiktionary_forms_are_variants(self):
+        # Dallet (1982) pp. 528, 446, 825, 703: meyya, miṭin, alef, alfin, tmanyin, ṛebɛa w/u ɛecrin.
+        spellings = {n: [(s.text, s.reason.value) for s in spell(n, "kab")] for n in ("80", "100", "200", "1000", "2000")}
+        self.assertEqual(spellings, {"80": [("tmanyin", "standard")],
+                                     "100": [("meyya", "standard"), ("mya", "variant_spelling")],
+                                     "200": [("miṭin", "standard"), ("mitin", "variant_spelling")],
+                                     "1000": [("alef", "standard")],
+                                     "2000": [("alfin", "standard"), ("juǧ alaf", "variant_spelling")]})
+        self.assertEqual(self.say("24"), "ṛebɛa u ɛecrin")
         self.assertEqual([self.say(n, gender="feminine") for n in ("1", "2", "21")], ["yiwet", "snat", "waḥed u ɛecrin"])
 
     def test_ordinals(self):
@@ -1055,6 +1065,26 @@ class TestLoader(unittest.TestCase):
         data = _tiny([{"value": "0", "text": "nol;"}])
         data["format_version"] = 1
         self.refused(data, "variant: a writer block needs format_version 2")
+
+    def test_a_key_of_version_4_in_a_version_2_file_is_refused_by_name(self):
+        data = _file("ru")
+        data["format_version"] = 2
+        self.refused(data, "variant: the writer decimal key 'variant_read', decimal key 'by_case', decimal read "
+                           "'fraction', gender 'plural' of form 'ordinal' needs format_version 4")
+
+    def test_an_unknown_decimal_read_is_refused_at_load(self):
+        data = _file("ru")
+        data["writer"]["decimal"]["variant_read"] = ["words"]
+        self.refused(data, "variant: the decimal read 'words' is not 'digits', 'number' or 'fraction'")
+
+    def test_a_fraction_decimal_needs_a_lexicon_that_has_it(self):
+        with self.assertRaisesRegex(ValueError, "en: no fraction reading of decimals"):
+            spell("1.5", "en", decimals="fraction")
+
+    def test_a_fraction_decimal_with_no_cases_is_refused_by_name(self):
+        data = _file("ru")
+        del data["writer"]["decimal"]["by_case"]
+        self.refused(data, "variant: the decimal read 'fraction' needs 'by_case'")
 
     def test_an_unknown_key_of_the_block_is_refused_by_name(self):
         data = _tiny([{"value": "0", "text": "nol;"}])
@@ -1362,6 +1392,25 @@ class TestRussian(unittest.TestCase):
     def say(self, value: str, **kw) -> str:
         return spell(value, "ru", **kw)[0].text
 
+    def test_a_fraction_of_decimals_keeps_the_zeros_and_follows_places(self):
+        fraction = {"decimals": "fraction"}
+        for value, places, words in (
+                ("2.50", 2, "две целых пятьдесят сотых"), ("3.10", 2, "три целых десять сотых"),
+                ("1.500", 3, "одна целая пятьсот тысячных"), ("2.5", 2, "две целых пятьдесят сотых"),
+                ("2.50", None, "две целых пятьдесят сотых"), ("2.5", None, "две целых пять десятых"),
+                ("1.500", None, "одна целая пятьсот тысячных"), ("2.504", 2, "две целых пятьдесят сотых"),
+                ("2.5", 3, "две целых пятьсот тысячных")):
+            self.assertEqual(self.say(value, places=places, **fraction), words, (value, places))
+
+    def test_a_fraction_of_decimals_with_trailing_zeros_in_every_case(self):
+        cases = {"nominative": "две целых пятьдесят сотых", "genitive": "двух целых пятидесяти сотых",
+                 "dative": "двум целым пятидесяти сотым", "accusative": "две целых пятьдесят сотых",
+                 "instrumental": "двумя целыми пятьюдесятью сотыми", "prepositional": "двух целых пятидесяти сотых"}
+        for case, words in cases.items():
+            self.assertEqual(self.say("2.50", decimals="fraction", places=2, case=case, gender="masculine"), words, case)
+        self.assertEqual(self.say("1.500", decimals="fraction", places=3, case="instrumental", gender="masculine"),
+                         "одной целой пятьюстами тысячными")
+
     def test_cardinals_agree_with_the_scale_noun(self):
         self.assertEqual([self.say(n) for n in ("21", "2000", "5000", "21000", "2000000", "5000000")],
                          ["двадцать один", "две тысячи", "пять тысяч", "двадцать одна тысяча", "два миллиона",
@@ -1397,6 +1446,81 @@ class TestRussian(unittest.TestCase):
         """§ 45, п. 3: "две пятых"; -ая after a count in one ("двадцать одна сотая")."""
         self.assertEqual([self.say(f) for f in ("2/5", "1/2", "5/8", "21/100", "3/1000")],
                          ["две пятых", "одна вторая", "пять восьмых", "двадцать одна сотая", "три тысячных"])
+
+    def test_a_scale_word_with_the_count_one_is_bare(self):
+        """Русская грамматика (1980), § 1378: "Р. тысячи двухсот восьмидесяти семи"; Розенталь (1985), § 164, п. 2:
+        "в тысячу пятьсот тонн". CLDR "одна тысяча" is the variant; inside a number the count one stays."""
+        def all_of(value, **kw):
+            return [(s.text, s.reason.value) for s in spell(value, "ru", **kw)]
+        self.assertEqual(all_of("1000"), [("тысяча", "standard"), ("одна тысяча", "variant_spelling")])
+        self.assertEqual([self.say(n) for n in ("1000000", "1000000000", "1001000")],
+                         ["миллион", "миллиард", "миллион одна тысяча"])
+        self.assertEqual(self.say("1234", case="genitive", gender="masculine"), "тысячи двухсот тридцати четырёх")
+        self.assertEqual(self.say("1000", case="accusative", gender="feminine"), "тысячу")
+        self.assertEqual(self.say("1000000", case="instrumental", gender="masculine"), "миллионом")
+
+    def test_every_word_of_a_compound_takes_the_prepositional(self):
+        """Русская грамматика (1980), § 1378: "Пр. о тысяче о двухстах о восьмидесяти семи"."""
+        self.assertEqual([self.say(n, case="prepositional", gender="masculine") for n in ("20", "21", "34", "134", "1234")],
+                         ["двадцати", "двадцати одном", "тридцати четырёх", "ста тридцати четырёх",
+                          "тысяче двухстах тридцати четырёх"])
+
+    def test_a_decimal_reads_as_whole_units_and_a_fraction(self):
+        """CLDR RBNF ru x.x: "←← $(cardinal,one{целая}other{целых})$ ]→%%fractions-feminine→"; Русская грамматика
+        (1980): "одна целая шесть десятых, три целых и двадцать пять сотых". "запятая" is the variant."""
+        def all_of(value, **kw):
+            return [(s.text, s.reason.value) for s in spell(value, "ru", **kw)]
+        self.assertEqual(all_of("99.9"), [("девяносто девять целых девять десятых", "standard"),
+                                          ("девяносто девять запятая девять", "variant_spelling")])
+        self.assertEqual([self.say(v) for v in ("1.6", "3.25", "21.1", "0.05", "-2.5")],
+                         ["одна целая шесть десятых", "три целых двадцать пять сотых", "двадцать одна целая одна десятая",
+                          "ноль целых пять сотых", "минус две целых пять десятых"])
+        self.assertEqual(self.say("1.5", decimals="digits"), "один запятая пять")
+        cases = ("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional")
+        self.assertEqual([self.say("2.5", case=c, gender="masculine") for c in cases],
+                         ["две целых пять десятых", "двух целых пяти десятых", "двум целым пяти десятым",
+                          "две целых пять десятых", "двумя целыми пятью десятыми", "двух целых пяти десятых"])
+        self.assertEqual([self.say("1.1", case=c, gender="masculine") for c in cases],
+                         ["одна целая одна десятая", "одной целой одной десятой", "одной целой одной десятой",
+                          "одну целую одну десятую", "одной целой одной десятой", "одной целой одной десятой"])
+        self.assertEqual([m.value for m in tag_numbers("одна целая шесть десятых", "ru")], ["1.6"])
+
+    def test_the_plural_ordinal_has_six_cases(self):
+        """Розенталь (1985), § 45, п. 3: "две пятых"; the plural has no gender."""
+        self.assertEqual([self.say("5", form=SpokenForm.ORDINAL, gender="plural", case=c) for c in
+                          ("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional")],
+                         ["пятые", "пятых", "пятым", "пятые", "пятыми", "пятых"])
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL, gender="plural", case=c) for n, c in
+                          (("10", "genitive"), ("3", "instrumental"), ("2", "dative"), ("1000", "genitive"))],
+                         ["десятых", "третьими", "вторым", "тысячных"])
+        self.assertEqual(f'{self.say("2", gender="feminine", case="instrumental")} '
+                         f'{self.say("5", form=SpokenForm.ORDINAL, gender="plural", case="instrumental")}', "двумя пятыми")
+
+    SCALES = ("квинтиллион", "секстиллион", "септиллион", "октиллион", "нониллион", "дециллион", "ундециллион",
+              "дуодециллион")
+    CASES = ("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional")
+
+    def test_the_short_scale_words_from_10_18_to_10_39_in_six_cases(self):
+        """ru.wiktionary declension tables (type 1a): a masculine inanimate noun, 10^(3 x rank + 3); the accusative
+        is the nominative."""
+        endings = dict(zip(self.CASES, ("", "а", "у", "", "ом", "е")))
+        for rank, word in enumerate(self.SCALES, 5):
+            value = "1" + "0" * (3 * rank + 3)
+            for case in self.CASES:
+                with self.subTest(word=word, case=case):
+                    self.assertEqual(self.say(value, case=case, gender="masculine"), word + endings[case])
+
+    def test_a_count_before_a_short_scale_word_takes_the_plural_of_the_count(self):
+        """Wiktionary plural: Р. мн. ч. "-ов"; the count 2 takes the genitive singular, 5 the genitive plural."""
+        self.assertEqual([self.say(n + "0" * (3 * rank + 3)) for n, rank in
+                          (("2", 5), ("5", 6), ("21", 7), ("3", 8), ("25", 9), ("100", 10), ("2", 11), ("5", 12))],
+                         ["два квинтиллиона", "пять секстиллионов", "двадцать один септиллион", "три октиллиона",
+                          "двадцать пять нониллионов", "сто дециллионов", "два ундециллиона", "пять дуодециллионов"])
+        self.assertEqual(self.say("5" + "0" * 21, case="instrumental", gender="masculine"), "пятью секстиллионами")
+
+    def test_a_number_below_10_42_reads_as_words(self):
+        self.assertEqual(self.say("1" + "0" * 38 + "5"), "дуодециллион пять")
+        self.assertEqual(self.say("1" + "0" * 42), "один умножить на десять в степени сорок два")
 
 
 if __name__ == "__main__":

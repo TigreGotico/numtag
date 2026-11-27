@@ -388,12 +388,12 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 | Argument | Meaning |
 |---|---|
 | `form` | A `SpokenForm`: `CARDINAL` ("twenty-one"), `ORDINAL`, `YEAR` (the cardinal where the lexicon has no year rules) or `DIGITS` (each digit alone) |
-| `gender` | `"masculine"`, `"feminine"` or `"neuter"`. It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
+| `gender` | `"masculine"`, `"feminine"` or `"neuter"`, or `"plural"` for a form whose plural has no gender (the Russian ordinal: "пятых"). It selects a reading where the lexicon lists one, and a lexicon that lists none ignores it |
 | `case` | A case name that the lexicon lists. Any other case raises `ValueError` |
 | `scale` | `Scale.SHORT` or `Scale.LONG`. A lexicon with no scale rules ignores it |
 | `places` | The count of decimals read, rounded half away from zero. The default is the lexicon's |
 | `scientific` | Read a large or small value as a mantissa and an exponent, where the lexicon has the words for it |
-| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). Another value raises `ValueError`. The default is the lexicon's |
+| `decimals` | `"digits"` reads one word for each decimal, and `"number"` reads the decimals as one number ("dois vírgula vinte e cinco"), with the trailing zeros as written ("1.80" reads "um vírgula oitenta"). `"fraction"` reads the whole part with a whole word and the decimals as a fraction of a power of ten (ru "две целых двадцать пять сотых"). The power of ten follows the decimals as written, or `places` when it is given: "2.50" and "2.5" with `places=2` both read "две целых пятьдесят сотых". Another value raises `ValueError`. The default is the lexicon's, and a lexicon can list more reads as variant spellings |
 
 ```python
 >>> from numtag import SpokenForm, spell, tag_numbers
@@ -409,6 +409,15 @@ spell(value: str, lang: str, *, form=SpokenForm.CARDINAL, gender=None, case=None
 ('dua pertiga', 'minus seperempat')
 >>> spell("1500000000", "ms", scientific=True)[0].text
 'satu koma lima kali sepuluh pangkat sembilan'
+```
+
+A fraction reads its numerator and its denominator in the nominative. For another case, spell the two numbers: the cardinal in the case, and the ordinal with `gender="plural"` in the same case.
+
+```python
+>>> spell("2/5", "ru")[0].text
+'две пятых'
+>>> f'{spell("2", "ru", gender="feminine", case="instrumental")[0].text} {spell("5", "ru", form=SpokenForm.ORDINAL, gender="plural", case="instrumental")[0].text}'
+'двумя пятыми'
 ```
 
 An ordinal below its minimum raises `ValueError`, and so does a case that the lexicon lacks. A fraction with a denominator of 0 raises `ZeroDivisionError`.
