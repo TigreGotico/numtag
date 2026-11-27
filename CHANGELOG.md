@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.49.1a1](https://github.com/TigreGotico/numtag/tree/0.49.1a1) (2026-11-27)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.0a1...0.49.1a1)
+
+**Merged pull requests:**
+
+- fix: ru decimals=fraction keeps trailing zeros and follows places [\#426](https://github.com/TigreGotico/numtag/pull/426) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.49.0a1](https://github.com/TigreGotico/numtag/tree/0.49.0a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.48.0a1...0.49.0a1)
