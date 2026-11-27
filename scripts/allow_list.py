@@ -140,7 +140,7 @@ KAB_WP = f"en.wikipedia, «Kabyle grammar», Numerotation ({KAB}kabyle_grammar_e
 KAB_WT = f"fr.wiktionary, «Modèle:cardinaux/kab» ({KAB}cardinaux_kab_frwiktionary_template.html)"
 SRC.update({
  "kab_arabic": KAB_WP + ": \"Only the first two numbers are Berber; for higher numbers, Arabic is used.\"; " + KAB_WT + ": \"3 tlata\", \"10 ɛecṛa\"; ovos-number-parser writes the learned Berber forms (\"kṛaḍ\", \"kuẓ\", \"mraw\").",
- "kab_form": KAB_WT + ": \"400 ṛebɛa-mya\", \"900 tesɛa-mya\", \"3 000 telt-alaf\", \"8 000 temn-alaf\", \"80 tmanyin\", \"90 tesɛin\", \"13 telṭac\"; the writer takes the fr.wiktionary form where languagesandnumbers.com differs, and ovos-number-parser writes the other (\"ṛebɛ-mya\", \"tlat-alaf\").",
+ "kab_form": KAB_WT + ": \"400 ṛebɛa-mya\", \"900 tesɛa-mya\", \"3 000 telt-alaf\", \"8 000 temn-alaf\", \"80 tmanyin\", \"90 tesɛin\", \"13 telṭac\"; the writer takes the fr.wiktionary form where languagesandnumbers.com differs, and ovos-number-parser writes the other (\"ṛebɛ-mya\", \"tlat-alaf\"). For 100, 200 and 2000 the writer takes the form of Dallet (1982), Dictionnaire kabyle-français (" + KAB + "dallet_1982_kf_p*.png), p. 528: \"meyya ; fém.\", \"miṭin / miṭayen / mitayen (duel ar.). ‖ Deux cents.\"; p. 446: \"alfin (wa) ‖ Deux mille.\"; ovos-number-parser writes \"mya\", \"mitin\" and \"juǧ alaf\".",
  "kab_half": f"fr.wiktionary, «azgen» ({KAB}azgen_frwiktionary.html): \"Moitié\"; ovos-number-parser writes \"yiwen wis sin\" (one second).",
  "kab_range": "numtag/lexicon/kab.json, the kab writer: a number goes up to 10^12 - 1, the last scale word of this lexicon (amelyaṛ); ovos-number-parser raises OverflowError from 10000, and past 10^12 - 1 numtag raises ValueError.",
 })
@@ -148,7 +148,8 @@ KAB_ARABIC = {"kṛaḍ": "tlata", "kraḍ": "tlata", "kuẓ": "ṛebɛa", "semm
               "tẓa": "tesɛa", "mraw": "ɛecṛa", "kṛaḍet": "tlata", "kuẓet": "ṛebɛa", "semmuset": "xemsa", "sḍiset": "setta",
               "sat": "sebɛa", "tamet": "tmanya", "tẓat": "tesɛa", "mrawet": "ɛecṛa"}
 KAB_FORM = {"ṛebɛ-mya": "ṛebɛa-mya", "tesɛ-mya": "tesɛa-mya", "tlat-alaf": "telt-alaf", "tmany-alaf": "temn-alaf",
-            "tmanyina": "tmanyin", "tsɛin": "tesɛin", "tleṭṭac": "telṭac", "sebeɛṭac": "sbeɛṭac", "temmenṭac": "tmenṭac"}
+            "tmanyina": "tmanyin", "tsɛin": "tesɛin", "mya": "meyya", "mitin": "miṭin",
+            "mya-alaf": "meyya-alaf", "mitin-alaf": "miṭin-alaf", "tleṭṭac": "telṭac", "sebeɛṭac": "sbeɛṭac", "temmenṭac": "tmenṭac"}
 def category_kab(row, got):
     kw = row.get("kw", {})
     out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
@@ -160,7 +161,7 @@ def category_kab(row, got):
     if out == "OverflowError" and not str(row["arg"]).startswith("-"): return "kab_range"
     if row["fn"] == "fraction" and row["arg"].split("/")[1] == "2" and mine.endswith("zgen"): return "kab_half"
     words = lambda t, table: " ".join(table.get(w, w) for w in re.sub(r"(\S+)-(mya|alaf)", lambda m: table.get(m[0], m[0]), t).split())
-    form = lambda t: words(t, KAB_FORM)
+    form = lambda t: words(t.replace("juǧ alaf", "alfin"), KAB_FORM)
     if form(out) == form(mine): return "kab_form"
     if form(words(out, KAB_ARABIC)) == form(mine): return "kab_arabic"
     return None

@@ -830,8 +830,18 @@ class TestKabyle(unittest.TestCase):
 
     def test_cardinals(self):
         self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "80", "400", "2000", "3000", "20000")],
-                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "juǧ alaf",
+                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "alfin",
                           "telt-alaf", "ɛecrin-alaf"])
+
+    def test_dallet_forms_are_standard_and_wiktionary_forms_are_variants(self):
+        # Dallet (1982) pp. 528, 446, 825, 703: meyya, miṭin, alef, alfin, tmanyin, ṛebɛa w/u ɛecrin.
+        spellings = {n: [(s.text, s.reason.value) for s in spell(n, "kab")] for n in ("80", "100", "200", "1000", "2000")}
+        self.assertEqual(spellings, {"80": [("tmanyin", "standard")],
+                                     "100": [("meyya", "standard"), ("mya", "variant_spelling")],
+                                     "200": [("miṭin", "standard"), ("mitin", "variant_spelling")],
+                                     "1000": [("alef", "standard")],
+                                     "2000": [("alfin", "standard"), ("juǧ alaf", "variant_spelling")]})
+        self.assertEqual(self.say("24"), "ṛebɛa u ɛecrin")
         self.assertEqual([self.say(n, gender="feminine") for n in ("1", "2", "21")], ["yiwet", "snat", "waḥed u ɛecrin"])
 
     def test_ordinals(self):
