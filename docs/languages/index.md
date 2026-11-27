@@ -36,7 +36,7 @@ The leader languages come first, each named by its full tag and the lexicon that
 | `de-DE` (resolves to `de`) | yes | yes | yes | yes | 200 | 200 | 100.0% | [germanic.md](germanic.md) |
 | `nl-NL` (resolves to `nl`) | yes | yes | yes | yes | 187 | 187 | 100.0% | [germanic.md](germanic.md) |
 | `da-DK` (resolves to `da`) | yes | yes | yes | yes | 181 | 181 | 100.0% | [germanic.md](germanic.md) |
-| `kab` | yes | yes | yes | yes | 194 | 194 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
+| `kab` | yes | yes | yes | yes | 199 | 199 | 100.0% | [el-ar-he-fa-kab.md](el-ar-he-fa-kab.md) |
 | `hi-IN` (resolves to `hi`) | yes | yes | no | yes | 284 | 284 | 100.0% | [hi.md](hi.md) |
 | `bn-IN` (resolves to `bn`) | yes | yes | yes | yes | 75 | 75 | 100.0%[^bn] | [bn.md](bn.md) |
 | `mwr` | yes | yes | yes | yes | 26 | 26 | 100.0%[^mwr] |  |

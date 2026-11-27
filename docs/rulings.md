@@ -153,6 +153,21 @@ In Portuguese, a scale noun agrees in number with its count. A singular "milhão
 
 > Wiktionary, "million", usage notes: "Until the early 20th century, million behaved much like an ordinary quantificational noun".
 
+## Kabyle: "n" between a count and a scale noun, and the decimal marker
+
+A Kabyle count of a scale noun has "n" between the count and the noun: "kṛad n yimelyunen" is 3 x 10^6. The lexicon lists the word in `count_of`. The decimal marker "ticcert" is the Kabyle word for the comma sign. The words "tafrayt", "fasila" and "fasel" are SILVER: the leader-bench sentences write them and no saved source gives them.
+
+```python
+>>> read("Sɛiɣ kṛad n yimelyunen n yidularen.", "kab")
+[('kṛad n yimelyunen', '3000000')]
+>>> read("meyya d setta ticcert rebεa u sebεin", "kab")
+[('meyya d setta ticcert rebεa u sebεin', '106.74')]
+```
+
+> Tatoeba sentence 14128398 "Sɛiɣ kṛad n yimelyunen n yidularen." ("I have three million dollars."), 13729949 "Sɛiɣ 13 n yimelyunen n yidulaṛen." ("I have 13 million dollars.").
+
+> Mahrazi (2013), Lexique de didactique et des sciences du langage, Haut Commissariat à l'Amazighité, p. 111: "Virgule  ticcert / tiskert".
+
 ## Collectives
 
 A collective noun ("dúzia", "dezena", "centena", "dozen", "score") takes a count and ends its number. Its count is the whole cardinal before it, so "mil e duas dúzias" is 1002 × 12. After a scale noun, the collective counts only its own group, because the noun closes the group before it.

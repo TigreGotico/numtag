@@ -41,6 +41,10 @@
       "value": false,
       "source": "No saved page shows a round hundred after \"alef u\". The sentences show only a hundred with a rest after it: Tatoeba sentence 11396338 \"alef u xems mya u tesɛa\", 11376255 \"alef u tesεemya u xemsin\"."
     },
+    "bare_noun_counts_one": {
+      "value": true,
+      "source": "SILVER: a part word alone counts one (\"rrbeɛ n weɣrum\", a quarter of the bread); the leader-bench sentences write it, and no saved source gives it. The part words of Dallet (1982) p. 704 \"eṛṛbaɛ ... Quart\" are nouns."
+    },
     "comma_between_classes": {
       "value": false,
       "source": "Tatoeba sentence 11376255 \"alef u tesεemya u xemsin\", 11387744 \"zuǧ alaf u rebεa\": these write \"u\" and no comma between two classes. No source opened shows a comma between two classes of one number, so a comma ends a number."
@@ -56,6 +60,10 @@
     "ordinal_style": {
       "value": "last_word",
       "source": "en.wikipedia \"Kabyle grammar\", \"Numerotation\": \"Other ordinals are formed with the prefix wis (f. tis ): wis sin\"; en.wiktionary \"wis\": \"forms ordinal numbers by preceding a cardinal number\"."
+    },
+    "compound_words": {
+      "value": true,
+      "source": "Tatoeba sentence 11360416 \"Ugar n xemsmeyya n yimelyaṛen\": xems and meyya are written together as one word, the same two words that sentence 11396338 \"xems mya u tesɛa\" writes apart."
     },
     "fold_marks": {
       "value": true,
@@ -88,8 +96,8 @@
       "source": "en.wiktionary \"wis\": \"wis m ( feminine tis )\", \"forms ordinal numbers by preceding a cardinal number\"; omniglot.com, Kabyle numbers: \"wiss sin (m) tiss snat (f)\"."
     },
     "decimal_marker": {
-      "value": [],
-      "source": "languagesandnumbers.com, \"Counting in Kabyle\", \"Kabyle numbering rules\": the rules name no word for the decimal mark."
+      "value": ["ticcert", "tafrayt", "fasila", "fasel"],
+      "source": "Mahrazi (2013), Lexique de didactique et des sciences du langage, Haut Commissariat à l'Amazighité (Papers/Languages/Berber/Kabyle/mahrazi_2013_lexique_didactique_hca.pdf), p. 111: \"Virgule  ticcert / tiskert\": ticcert is the Kabyle word for the comma sign, which French reads as the decimal mark. SILVER: tafrayt, fasila and fasel as decimal marks; the leader-bench sentences write them, and no saved source gives them."
     },
     "minus": {
       "value": [],
@@ -113,6 +121,10 @@
     "of": {
       "value": [],
       "source": "languagesandnumbers.com, \"Counting in Kabyle\", \"Kabyle numbering rules\": the rules name no such word in a Kabyle number."
+    },
+    "count_of": {
+      "value": ["n"],
+      "source": "Tatoeba sentence 13729949 \"Sɛiɣ 13 n yimelyunen n yidulaṛen.\" (\"I have 13 million dollars.\"), 14128398 \"Sɛiɣ kṛad n yimelyunen n yidularen.\" (\"I have three million dollars.\"), 11976477 \"Zedɣen-tt mraw n yimelyunen n yimezdaɣ.\" (\"Elle compte dix millions d'habitants.\"): the count and the scale noun stand either side of \"n\"."
     },
     "fraction_of": {
       "value": [],
@@ -997,6 +1009,204 @@
       "value": 3,
       "plural": true,
       "source": "Tatoeba sentence 8187267 \"Tazeqqa-ya tettawi sin igiman n medden.\" (\"Cette salle peut contenir deux mille personnes.\"), 12872490 \"llan deg-s igiman n yitran\" (\"thousands of stars\")."
+    },
+    {
+      "word": "yimelyunen",
+      "role": "scale_numeral",
+      "value": 6,
+      "plural": true,
+      "source": "Tatoeba sentence 13729949 \"Sɛiɣ 13 n yimelyunen n yidulaṛen.\" (\"I have 13 million dollars.\"): the annexed plural of imelyunen after a count."
+    },
+    {
+      "word": "yimelyaren",
+      "role": "scale_numeral",
+      "value": 9,
+      "plural": true,
+      "source": "Tatoeba sentence 11360416 \"Ugar n xemsmeyya n yimelyaṛen\": the annexed plural of imelyaren after a count."
+    },
+    {
+      "word": "yimelyan",
+      "role": "scale_numeral",
+      "value": 6,
+      "plural": true,
+      "source": "SILVER: the annexed plural of imelyan, by the pattern of yimelyunen (Tatoeba sentence 13729949); no saved example."
+    },
+    {
+      "word": "yigiman",
+      "role": "scale_numeral",
+      "value": 3,
+      "plural": true,
+      "source": "SILVER: the annexed plural of igiman, by the pattern of yimelyunen (Tatoeba sentence 13729949); no saved example."
+    },
+    {
+      "word": "umelyar",
+      "role": "scale_numeral",
+      "value": 9,
+      "source": "SILVER: the annexed form of amelyar, by the pattern of umelyun (Tatoeba sentence 12898417); no saved example."
+    },
+    {
+      "word": "miten",
+      "role": "hundred",
+      "value": "200",
+      "source": "SILVER: a spelling of mitin (200); no saved example."
+    },
+    {
+      "word": "miyatayen",
+      "role": "hundred",
+      "value": "200",
+      "source": "SILVER: a spelling of mitayen (200); no saved example."
+    },
+    {
+      "word": "errbaɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "Dallet (1982), Dictionnaire kabyle-français (Papers/Languages/Berber/Kabyle/dallet_1982_kf_p704-705_errbae_quart.png), p. 704: \"eṛṛbaɛ / eṛṛwaɛ / leṛbaɛ ; ‖ Quart.\" The fold of ṛ and ɛ reads the word as written."
+    },
+    {
+      "word": "errwaɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "Dallet (1982), Dictionnaire kabyle-français (Papers/Languages/Berber/Kabyle/dallet_1982_kf_p704-705_errbae_quart.png), p. 704: \"eṛṛbaɛ / eṛṛwaɛ / leṛbaɛ ; ‖ Quart.\" The fold of ṛ and ɛ reads the word as written."
+    },
+    {
+      "word": "lerbaɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "Dallet (1982), Dictionnaire kabyle-français (Papers/Languages/Berber/Kabyle/dallet_1982_kf_p704-705_errbae_quart.png), p. 704: \"eṛṛbaɛ / eṛṛwaɛ / leṛbaɛ ; ‖ Quart.\" The fold of ṛ and ɛ reads the word as written."
+    },
+    {
+      "word": "rrbaɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "SILVER: a spelling of eṛṛbaɛ (Dallet 1982, p. 704) without the first vowel or with u; no saved example."
+    },
+    {
+      "word": "rrbeɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "SILVER: a spelling of eṛṛbaɛ (Dallet 1982, p. 704) without the first vowel or with u; no saved example."
+    },
+    {
+      "word": "rbuɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "SILVER: a spelling of eṛṛbaɛ (Dallet 1982, p. 704) without the first vowel or with u; no saved example."
+    },
+    {
+      "word": "rrbuɛ",
+      "role": "denominator",
+      "value": "4",
+      "invariant": true,
+      "source": "SILVER: a spelling of eṛṛbaɛ (Dallet 1982, p. 704) without the first vowel or with u; no saved example."
+    },
+    {
+      "word": "tulut",
+      "role": "denominator",
+      "value": "3",
+      "invariant": true,
+      "source": "SILVER: the part word \"third\", written tulut in the leader-bench sentences; no saved dictionary entry."
+    },
+    {
+      "word": "tmanin",
+      "role": "ten",
+      "value": "80",
+      "source": "SILVER: a spelling of tmanyin (80) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "sttin",
+      "role": "ten",
+      "value": "60",
+      "source": "SILVER: a spelling of settin (60) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "setin",
+      "role": "ten",
+      "value": "60",
+      "source": "SILVER: a spelling of settin (60) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "sittin",
+      "role": "ten",
+      "value": "60",
+      "source": "SILVER: a spelling of settin (60) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "myya",
+      "role": "hundred",
+      "value": "100",
+      "source": "SILVER: a spelling of mya (100) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "myya",
+      "role": "hundred_multiplier",
+      "value": 2,
+      "source": "SILVER: a spelling of mya (hundred multiplier) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "myatin",
+      "role": "hundred",
+      "value": "200",
+      "source": "SILVER: a spelling of mitin (200) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "miyatin",
+      "role": "hundred",
+      "value": "200",
+      "source": "SILVER: a spelling of mitin (200) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "miyyatayen",
+      "role": "hundred",
+      "value": "200",
+      "source": "SILVER: a spelling of mitin (200) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "wahd",
+      "role": "unit",
+      "value": "1",
+      "source": "SILVER: a spelling of waḥed (1) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "sitta",
+      "role": "unit",
+      "value": "6",
+      "source": "SILVER: a spelling of setta (6) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "sifr",
+      "role": "unit",
+      "value": "0",
+      "source": "SILVER: a word for zero after the decimal marker in the leader-bench sentences; no saved source gives it."
+    },
+    {
+      "word": "ṣfer",
+      "role": "unit",
+      "value": "0",
+      "source": "SILVER: a word for zero after the decimal marker in the leader-bench sentences; no saved source gives it."
+    },
+    {
+      "word": "ṣṣifer",
+      "role": "unit",
+      "value": "0",
+      "source": "SILVER: a word for zero after the decimal marker in the leader-bench sentences; no saved source gives it."
+    },
+    {
+      "word": "xmeṭṭac",
+      "role": "ten",
+      "value": "15",
+      "source": "SILVER: a spelling of xemseṭṭac (15) that the leader-bench sentences write; no saved source gives it."
+    },
+    {
+      "word": "xmuṭac",
+      "role": "ten",
+      "value": "15",
+      "source": "SILVER: a spelling of xemseṭṭac (15) that the leader-bench sentences write; no saved source gives it."
     }
   ],
   "writer": {

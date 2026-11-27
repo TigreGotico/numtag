@@ -16,7 +16,7 @@ numtag reads Greek, Arabic, Hebrew, Persian, Kabyle and Maltese. Arabic and Pers
 | Arabic | every `ar` tag | `numtag/lexicon/ar.json` | short | 157 | 156 |
 | Hebrew | every `he` tag | `numtag/lexicon/he.json` | long | 160 | 157 |
 | Persian | every `fa` tag | `numtag/lexicon/fa.json` | short | 153 | 153 |
-| Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 194 | 194 |
+| Kabyle | every `kab` tag | `numtag/lexicon/kab.json` | short | 199 | 199 |
 | Maltese | every `mt` tag | `numtag/lexicon/mt.json` | short | 185 | 177 |
 
 The gold rows are in `tests/gold/<lexicon>.jsonl`. Each row holds a sentence, the numbers in it, and the source of its reading. No native speaker has checked these lexicons or their gold rows.
