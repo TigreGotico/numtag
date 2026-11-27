@@ -90,7 +90,7 @@ def _sv_fused(lang: str, word: str) -> bool:
 
 def _issue_373(lang: str, text: str) -> bool:
     """https://github.com/TigreGotico/numtag/issues/373: the kab bound words read only inside a number."""
-    return lang == "kab" and text in ("juǧ", "wis", "tis")
+    return lang == "kab" and text in ("juǧ", "wis", "tis", "n")
 
 
 def _issue_329(lang: str, text: str) -> bool:
@@ -829,20 +829,35 @@ class TestKabyle(unittest.TestCase):
         return spell(value, "kab", **kw)[0].text
 
     def test_cardinals(self):
-        self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "80", "400", "2000", "3000", "20000")],
-                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "tmanyin", "ṛebɛa-mya", "alfin",
-                          "telt-alaf", "ɛecrin-alaf"])
-
-    def test_dallet_forms_are_standard_and_wiktionary_forms_are_variants(self):
-        # Dallet (1982) pp. 528, 446, 825, 703: meyya, miṭin, alef, alfin, tmanyin, ṛebɛa w/u ɛecrin.
-        spellings = {n: [(s.text, s.reason.value) for s in spell(n, "kab")] for n in ("80", "100", "200", "1000", "2000")}
-        self.assertEqual(spellings, {"80": [("tmanyin", "standard")],
-                                     "100": [("meyya", "standard"), ("mya", "variant_spelling")],
-                                     "200": [("miṭin", "standard"), ("mitin", "variant_spelling")],
-                                     "1000": [("alef", "standard")],
-                                     "2000": [("alfin", "standard"), ("juǧ alaf", "variant_spelling")]})
-        self.assertEqual(self.say("24"), "ṛebɛa u ɛecrin")
+        self.assertEqual([self.say(n) for n in ("1", "2", "3", "21", "22", "24", "2000", "20000")],
+                         ["yiwen", "sin", "tlata", "waḥed u ɛecrin", "tnayn u ɛecrin", "ṛebɛa u ɛecrin", "alfin",
+                          "ɛecrin-alaf"])
         self.assertEqual([self.say(n, gender="feminine") for n in ("1", "2", "21")], ["yiwet", "snat", "waḥed u ɛecrin"])
+
+    def test_native_defaults(self):
+        # Mokraoui (2026), native answers on numtag PR #379
+        # (Papers/Languages/Berber/Kabyle/athmanemokraoui_2026_kabyle_number_answers.md).
+        expected = {"400": "ṛebɛ-mya", "900": "tesɛ-mya", "80": "tmanyin", "13": "telṭac", "90": "tesɛin",
+                    "3000": "telt-alaf", "10000": "ɛecṛ-alaf", "21000": "waḥed u ɛecrin n alef",
+                    "100000": "myat-alef", "200000": "mitin n alef", "300000": "telt-myat-alef",
+                    "900000000": "tesɛ-myat melyun", "2000000": "sin n imelyunen", "102": "mya u tnayn",
+                    "1/3": "afkraḍ", "1/4": "afkuẓ", "2/3": "sin ifekṛad"}
+        self.assertEqual({n: self.say(n) for n in expected}, expected)
+
+    def test_native_equal_forms_are_variants(self):
+        variants = {n: [s.text for s in spell(n, "kab") if s.rank > 0] for n in ("2000000", "102", "900000000")}
+        self.assertIn("sin imelyan", variants["2000000"])
+        self.assertIn("mya d sin", variants["102"])
+        self.assertIn("tesɛ-mya imelyan", variants["900000000"])
+        self.assertIn("tesɛ-mya imelyunen", variants["900000000"])
+
+    def test_dallet_and_wiktionary_forms_are_variants(self):
+        # Dallet (1982) pp. 528, 446: meyya, miṭin; fr.wiktionary: ṛebɛa-mya, juǧ alaf.
+        spellings = {n: [(s.text, s.reason.value) for s in spell(n, "kab")] for n in ("100", "200", "400", "2000")}
+        self.assertEqual(spellings, {"100": [("mya", "standard"), ("meyya", "variant_spelling")],
+                                     "200": [("mitin", "standard"), ("miṭin", "variant_spelling")],
+                                     "400": [("ṛebɛ-mya", "standard"), ("ṛebɛa-mya", "variant_spelling")],
+                                     "2000": [("alfin", "standard"), ("juǧ alaf", "variant_spelling")]})
 
     def test_ordinals(self):
         self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in ("1", "2", "3")],
