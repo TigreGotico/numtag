@@ -65,4 +65,4 @@ Lithuanian counts in the short scale: "trilijonas" is 10^12. Pass `scale="long"`
 Each word and each setting in a lexicon carries the source of its rule. [../adding-a-language.md](../adding-a-language.md) describes the lexicon format.
 
 ---
-[← Uralic and Turkic languages](uralic-turkic.md) · [Home](../index.md) · [Slavic languages →](slavic.md)
+[← Uralic and Turkic languages](uralic-turkic.md) · [Home](../index.md) · [Bengali →](bn.md)
