@@ -171,6 +171,7 @@
                     "value": {"type": "string", "pattern": "^(-x|[0-9]+)$"},
                     "radix": {"type": "integer", "minimum": 2},
                     "text": {"type": "string"},
+                    "round": {"type": "string"},
                     "source": {"type": "string"}
                   },
                   "required": ["value", "text"],
@@ -223,6 +224,7 @@
             "mixed": {"type": "boolean"},
             "capitalise": {"type": "boolean"},
             "ruleset": {"type": "string"},
+            "by_count": {"type": "array", "minItems": 1, "items": {"type": "object", "properties": {"count": {"type": "string"}, "ruleset": {"type": "string"}}, "required": ["count", "ruleset"], "additionalProperties": false}},
             "numerator": {"type": "string"},
             "plural": {"oneOf": [{"type": "string"}, {"type": "object", "additionalProperties": {"type": "string"}}]},
             "source": {"type": "string"}

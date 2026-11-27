@@ -8,7 +8,7 @@ import sys, json, collections, os, re
 from pathlib import Path
 os.chdir(Path(__file__).parents[1])
 sys.path.insert(0, "tests"); import golden_writers as gw
-from numtag import spell, SpokenForm
+from numtag import spell, SpokenForm, tag_numbers
 lang = sys.argv[1]
 CIB = "https://ciberduvidas.iscte-iul.pt/consultorio/perguntas/"
 SRC = {
@@ -420,6 +420,83 @@ def category_en(row, got, out=None):
 NB_BM = "Bokmålsordboka (ord.uib.no; Papers/Languages/Germanic/Norwegian Bokmål/)"
 NB_CLDR = "CLDR RBNF no (common/rbnf/no.xml as shipped in unicode-rbnf 2.5.1)"
 NB_SR = "Språkrådet, «Tall, tid og dato» (Papers/Languages/Germanic/Norwegian Bokmål/sprakradet_tall-tid-dato.html)"
+CLDR_CS = "CLDR RBNF cs (common/rbnf/cs.xml as shipped in unicode-rbnf 2.5.1)"
+CS_IJP = "Internetová jazyková příručka (ÚJČ AV ČR), «Členění čísel, víceslovné číslovkové výrazy» (Papers/Languages/Slavic/ijc_prirucka_791_viceslovne_cislovkove_vyrazy.html)"
+SRC.update({
+ "cs_words": CS_IJP + ": \"píšeme každé slovo zvlášť, např. … dva tisíce dvě stě třicet jedna, jeden milion tři sta tisíc sedm set osmdesát tři\": the words of a number have no comma, and 10^6 is \"jeden milion\"; ovos-number-parser writes a comma after each group and a bare \"bilion\".",
+ "cs_ordinal": CS_IJP + ": \"čtyřstý sedmdesátý osmý, tisící devítistý padesátý šestý\": each word of the ordinal is a separate word; ovos-number-parser joins a count and a scale word into one word (\"dvousetdvacetijednamiliontý\"). SILVER: above the thousands, the scale words stay cardinals before a rest (\"jeden milion první\").",
+ "cs_fraction": "Internetová jazyková příručka (ÚJČ AV ČR), «Členění čísel»: \"tisíc celých pět setin\", \"nula celá jedna (desetina)\": a fraction is a feminine count and the part in \"-ina\", \"-iny\", \"-in\"; ovos-number-parser drops \"jedna\" (\"šestnáctina\"), writes a masculine ordinal (\"dva dvacátý první\") or the part of another value (\"jedna setina\" for 1/500).",
+ "cs_minus": CLDR_CS + ", %spellout-cardinal-masculine: \"-x: minus →→;\"; ovos-number-parser writes \"mínus\".",
+ "cs_decimal": CLDR_CS + ", %spellout-cardinal-masculine: \"x.x: ←← čárka →→;\"; " + CS_IJP + ": \"desetinné čárky\"; ovos-number-parser writes \"tečka\".",
+ "cs_zero": "CLDR RBNF cs has no ordinal; the ordinal \"nultý\" of the reader entries of numtag/lexicon/cs.json; ovos-number-parser writes nothing for the ordinal 0.",
+ "cs_compound_one": CS_IJP + ": \"dvacet jedna\", \"dva tisíce dvě stě třicet jedna\": 1 after a number word is \"jedna\" in each gender; ovos-number-parser writes the neuter \"dvacet jedno\".",
+ "cs_ordinal_367": "The cs writer (\"jeden bilion miliontý\", SILVER as cs_ordinal); the reader multiplies the second scale word (#367), so the round trip of this row waits for that fix.",
+ "cs_negative": "numtag/lexicon/cs.json, the cs writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser raises ValueError.",
+ "cs_range": "numtag/lexicon/cs.json, the cs writer: a number goes up to 10^18 - 1, the last scale word of this lexicon (biliarda), and outside it reads the power of ten or raises ValueError.",
+ "cs_short": "numtag/lexicon/cs.json, the setting scale: Czech counts in the long scale (CLDR RBNF cs: 10^9 \"miliarda\"); ovos-number-parser writes English short-scale words (\"million\", \"billion\").",
+})
+def category_cs(row, got):
+    kw = row.get("kw", {})
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if kw.get("scale") == "short":
+        long = category_cs({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("cs_short" if re.search(r"(million|billion|trillion)", out) else None)
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if "krát deset" in mine or got == {"err": "ValueError"}: return "cs_range"
+    if str(row["arg"]).startswith("-") and out == "ValueError" and mine.startswith("minus "): return "cs_negative"
+    if out in ("", "ValueError") and mine.startswith("nult"): return "cs_zero"
+    if out.startswith("mínus ") and mine.startswith("minus "):
+        return category_cs({**row, "out": out.replace("mínus", "minus", 1)}, got) or "cs_minus"
+    if row["fn"] == "number" and " tečka " in out and " čárka " in mine:
+        return category_cs({**row, "out": out.replace(" tečka ", " čárka ")}, got) or "cs_decimal"
+    if row["fn"] == "number":
+        bare = re.sub(r"\b(jeden|jedna) (?=(milion|miliard|bilion|biliard))", "", mine)
+        flat = out.replace(",", "")
+        if flat in (mine, bare): return "cs_words"
+        return "cs_compound_one" if re.sub(r"(?<=\S )jedn[oa]\b", "jedna", flat) in (mine, bare) else None
+    if row["fn"] == "ordinal":
+        read = tag_numbers(mine, "cs")
+        same = len(read) == 1 and read[0].text == mine and read[0].value == str(row["arg"]).lstrip("-")
+        if out != mine and not same and re.search(r"(lion|liard[ay]?|lionů|liard) (mil|bil|tis)", mine): return "cs_ordinal_367"
+        return "cs_ordinal" if out != mine and same and re.search(r"(ý|á|é|í)$", mine) else None
+    if row["fn"] == "fraction":
+        top = row["arg"].split("/")[0].lstrip("-")
+        return "cs_fraction" if mine.removeprefix("minus ").startswith(spell(top, "cs", gender="feminine")[0].text + " ") and re.search(r"in[ay]?$|á$|é$|í$", mine) else None
+    return None
+PL_JG = "G. Jagodziński, «Tworzenie i składnia liczebników» (Papers/Languages/Slavic/Polish/jagodzinski-liczebniki.html)"
+SRC.update({
+ "pl_fraction": PL_JG + ": \"z dwoma trzecimi bochenka, w jednej czwartej miast\", \"trzy czwarte pizzy\": the numerator is a feminine cardinal and the part a feminine ordinal that agrees with it (\"-a\", \"-e\" after 2 to 4, SILVER \"-ych\" after 5 or more); ovos-number-parser writes the masculine singular ordinal (\"jeden pięćdziesiąty\", \"dwa drugi\").",
+ "pl_improper": "SILVER: numtag reads a fraction above 1 as counted parts (\"trzy drugie\", the pattern of \"trzy czwarte\" in G. Jagodziński); ovos-number-parser writes a mixed number (\"jedna i jedna druga\"), with the whole in the feminine. Both are readings of the value; no saved rule ranks them.",
+ "pl_negative": "numtag/lexicon/pl.json, the pl writer: a negative ordinal reads the minus word, as a negative cardinal; ovos-number-parser raises ValueError.",
+ "pl_zero": "CLDR RBNF pl, the ordinal \"zerowy\" of the reader entries of numtag/lexicon/pl.json; ovos-number-parser writes nothing or raises ValueError for the ordinal 0.",
+ "pl_range": "numtag/lexicon/pl.json, the pl writer: a number goes up to 10^21 - 1, the last scale word of this lexicon (trylion), and outside it reads the power of ten or raises ValueError; ovos-number-parser writes scale words that the lexicon does not hold (\"sekstilion\", \"kwintylion\").",
+ "pl_short": "numtag/lexicon/pl.json, the setting scale: Polish counts in the long scale (CLDR RBNF pl: 10^9 \"miliard\", 10^12 \"bilion\"); the writer has no short-scale reading.",
+})
+def category_pl(row, got):
+    kw = row.get("kw", {})
+    if kw.get("scale") == "short":
+        long = category_pl({**row, "kw": {k: v for k, v in kw.items() if k != "scale"}}, got)
+        return long or ("pl_short" if re.search(r"(lion|liard)", str(row.get("out"))) else None)
+    out, mine = str(row.get("out", row.get("err"))), str(got.get("out", got.get("err")))
+    if row["fn"] == "number" and isinstance(row["arg"], float) and row["arg"] == int(row["arg"]): return "whole_float"
+    if kw.get("scientific"): return "scientific"
+    if kw.get("digits") == "number": return "digits_number"
+    if row["fn"] == "fraction" and row["arg"].split("/")[1].lstrip("-") == "0":
+        return "zero_denominator" if got == {"err": "ZeroDivisionError"} else None
+    if "do potęgi" in mine or got == {"err": "ValueError"}: return "pl_range"
+    if row["fn"] in ("ordinal", "number") and str(row["arg"]).startswith("-") and out == "ValueError" and mine.startswith("minus "): return "pl_negative"
+    if out in ("", "ValueError") and mine.startswith("zerow"): return "pl_zero"
+    if row["fn"] == "fraction":  # the numerator agrees; the part is the feminine ordinal of the case
+        top, bottom = (x.lstrip("-") for x in row["arg"].split("/"))
+        if int(top) > int(bottom) and " i " in out: return "pl_improper"
+        theirs, ours = out.removeprefix("minus "), mine.removeprefix("minus ")
+        same = theirs.startswith(spell(top, "pl")[0].text + " ") and ours.startswith(spell(top, "pl", gender="feminine")[0].text + " ")
+        return "pl_fraction" if same and re.search(r"(a|e|ych|ich)$", ours) else None
+    return None
 SRC.update({
  "nb_decimal": "numtag docs/values.md: a value is a canonical digit string, so 2.25 has two decimals; ovos-number-parser pads the decimals with \"null\".",
  "nb_accent": NB_BM + ", «million»: \"én million\"; " + NB_CLDR + ", %spellout-cardinal-reale: \"1000000: én million[ →→];\"; ovos-number-parser writes \"en million\" or no count.",
