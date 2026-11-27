@@ -30,7 +30,7 @@ A file with no `extends` holds `settings`, `words` and `entries`. It holds every
 
 ### Version and refusal
 
-The loader reads `format_version` first. It reads versions 1, 2, 3 and 4. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
+The loader reads `format_version` first. It reads versions 1, 2, 3, 4 and 5. It refuses a file with another version, or with none, and the error names the lexicon and the version. It also refuses a key that it does not read, and the error names the key and the place: the lexicon, a section, a setting, a word list, an inflection class or an entry. An entry holds only the keys that the loader reads for its role, so a key of another role is refused too.
 
 A change to this format that adds a key, a role or a value, or that changes what a key does, raises the version, changes this page and changes the schema in the same commit. A file stays at version 1 until it gets a `writer` block, and then it moves to version 2, so the revision of a lexicon with no writer never changes. A file that holds a key of version 3 moves to version 3, and a file whose writer block holds a key or value of version 4 moves to version 4, and a file that holds a key of version 5 moves to version 5. The loader refuses a `writer` block in a version 1 file, a key of version 3 in a version 1 or 2 file, a key of version 4 in an older file, and a key of version 5 in an older file. The error names the key and the place.
 
