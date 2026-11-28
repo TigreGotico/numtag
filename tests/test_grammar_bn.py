@@ -61,6 +61,33 @@ class TestOrdinalsAndHalf(unittest.TestCase):
         self.assertEqual(bn("প্রথম"), [("প্রথম", "1", O)])
         self.assertEqual(bn("দশম"), [("দশম", "10", O)])
 
+    def test_an_ordinal_past_ten_is_the_cardinal_and_tomo(self):
+        # 58; 100 + 58 = 158; 1000; 1000 + 700 + 30 = 1730
+        self.assertEqual(bn("দাদুর সংগ্রহের আটান্নতম ডাকটিকিটটাই ছিল সবচেয়ে দামি।"), [("আটান্নতম", "58", O)])
+        self.assertEqual(bn("লাইব্রেরিটা এবার তার একশো আটান্নতম প্রতিষ্ঠাদিবস পালন করছে।"),
+                         [("একশো আটান্নতম", "158", O)])
+        self.assertEqual(bn("এটা আমাদের এক হাজারতম অনুষ্ঠান।"), [("এক হাজারতম", "1000", O)])
+        self.assertEqual(bn("লাইনে আমি এক হাজার সাতশো ত্রিশতম।"), [("এক হাজার সাতশো ত্রিশতম", "1730", O)])
+
+    def test_the_sanskrit_ordinals_from_eleven_to_twenty(self):
+        # Wiktionary rows 11 and 20, Ordinal column
+        self.assertEqual(bn("একাদশ শ্রেণির ছাত্র"), [("একাদশ", "11", O)])
+        self.assertEqual(bn("বিংশ শতাব্দী"), [("বিংশ", "20", O)])
+
+    def test_a_decimal_reads_each_digit_after_doshomik(self):
+        # 337 + 0.97 = 337.97; 20 + 0.38 = 20.38
+        self.assertEqual(bn("জমিটার মোট আয়তন তিনশো সাঁইত্রিশ দশমিক নয় সাত বর্গমিটার।"),
+                         [("তিনশো সাঁইত্রিশ দশমিক নয় সাত", "337.97", "decimal")])
+        self.assertEqual(bn("নদীর জলের তাপমাত্রা ছিল বিশ দশমিক তিন আট ডিগ্রি।"),
+                         [("বিশ দশমিক তিন আট", "20.38", "decimal")])
+
+    def test_a_negative_takes_rin(self):
+        # -(5) = -5
+        self.assertEqual(bn("তাপমাত্রা ঋণ পাঁচ ডিগ্রি"), [("ঋণ পাঁচ", "-5", C)])
+
+    def test_adha_is_a_half(self):
+        self.assertEqual(bn("মা আধা কেজি মিষ্টি কিনে আনলেন।"), [("আধা", "0.5", F)])
+
     def test_half(self):
         self.assertEqual(bn("আধ"), [("আধ", "0.5", F)])
 

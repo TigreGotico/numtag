@@ -1,6 +1,10 @@
 {
  "format_version": 2,
  "settings": {
+  "one_before_ordinal_scale_is_fraction": {
+   "value": false,
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"1000: << হাজার[ >>];\": \"এক হাজারতম\" is the ordinal 1000th; Thompson, Bengali (LOALL 18, 2012), 9.3.1, p. 345 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR) names other fractions with \"x parts y parts\", not with an ordinal."
+  },
   "scale": {
    "value": "short",
    "source": "structural, no external source: no word of the lexicon is a power of a million, so the scale is never read."
@@ -83,12 +87,12 @@
    "source": "structural, no external source: the cited pages list no such word."
   },
   "decimal_marker": {
-   "value": [],
-   "source": "structural, no external source: the cited pages list no such word."
+   "value": ["দশমিক"],
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"x.x: << দশমিক >>;\""
   },
   "minus": {
-   "value": [],
-   "source": "structural, no external source: the cited pages list no such word."
+   "value": ["ঋণ"],
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"-x: ঋণ >>;\""
   },
   "minus_idioms": {
    "value": [],
@@ -1046,12 +1050,799 @@
    "role": "half",
    "ambiguous": true,
    "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 2, Fractional: \"অর্ধেক (ordhek), আধ (adh)\"; Thompson, Bengali (2012), p. 374: \"adha/adh half\", \"adh ghonta half an hour\""
+  },
+  {
+   "word": "একতম",
+   "role": "ordinal",
+   "value": "1",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"এক\" of this lexicon; the rule applies to the whole cardinal, so \"একতম\" ends an ordinal above 100 (\"একশো একতম\" for 101)"
+  },
+  {
+   "word": "দুইতম",
+   "role": "ordinal",
+   "value": "2",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"দুই\" of this lexicon; the rule applies to the whole cardinal, so \"দুইতম\" ends an ordinal above 100 (\"একশো দুইতম\" for 102)"
+  },
+  {
+   "word": "তিনতম",
+   "role": "ordinal",
+   "value": "3",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিন\" of this lexicon; the rule applies to the whole cardinal, so \"তিনতম\" ends an ordinal above 100 (\"একশো তিনতম\" for 103)"
+  },
+  {
+   "word": "চারতম",
+   "role": "ordinal",
+   "value": "4",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চার\" of this lexicon; the rule applies to the whole cardinal, so \"চারতম\" ends an ordinal above 100 (\"একশো চারতম\" for 104)"
+  },
+  {
+   "word": "পাঁচতম",
+   "role": "ordinal",
+   "value": "5",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পাঁচ\" of this lexicon; the rule applies to the whole cardinal, so \"পাঁচতম\" ends an ordinal above 100 (\"একশো পাঁচতম\" for 105)"
+  },
+  {
+   "word": "ছয়তম",
+   "role": "ordinal",
+   "value": "6",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছয়\" of this lexicon; the rule applies to the whole cardinal, so \"ছয়তম\" ends an ordinal above 100 (\"একশো ছয়তম\" for 106)"
+  },
+  {
+   "word": "সাততম",
+   "role": "ordinal",
+   "value": "7",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাত\" of this lexicon; the rule applies to the whole cardinal, so \"সাততম\" ends an ordinal above 100 (\"একশো সাততম\" for 107)"
+  },
+  {
+   "word": "আটতম",
+   "role": "ordinal",
+   "value": "8",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আট\" of this lexicon; the rule applies to the whole cardinal, so \"আটতম\" ends an ordinal above 100 (\"একশো আটতম\" for 108)"
+  },
+  {
+   "word": "নয়তম",
+   "role": "ordinal",
+   "value": "9",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"নয়\" of this lexicon; the rule applies to the whole cardinal, so \"নয়তম\" ends an ordinal above 100 (\"একশো নয়তম\" for 109)"
+  },
+  {
+   "word": "দশতম",
+   "role": "ordinal",
+   "value": "10",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"দশ\" of this lexicon; the rule applies to the whole cardinal, so \"দশতম\" ends an ordinal above 100 (\"একশো দশতম\" for 110)"
+  },
+  {
+   "word": "এগারোতম",
+   "role": "ordinal",
+   "value": "11",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"এগারো\" of this lexicon"
+  },
+  {
+   "word": "বারোতম",
+   "role": "ordinal",
+   "value": "12",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বারো\" of this lexicon"
+  },
+  {
+   "word": "তেরোতম",
+   "role": "ordinal",
+   "value": "13",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তেরো\" of this lexicon"
+  },
+  {
+   "word": "চোদ্দোতম",
+   "role": "ordinal",
+   "value": "14",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চোদ্দো\" of this lexicon"
+  },
+  {
+   "word": "পনেরোতম",
+   "role": "ordinal",
+   "value": "15",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পনেরো\" of this lexicon"
+  },
+  {
+   "word": "ষোলোতম",
+   "role": "ordinal",
+   "value": "16",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ষোলো\" of this lexicon"
+  },
+  {
+   "word": "সতেরোতম",
+   "role": "ordinal",
+   "value": "17",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সতেরো\" of this lexicon"
+  },
+  {
+   "word": "আঠারোতম",
+   "role": "ordinal",
+   "value": "18",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আঠারো\" of this lexicon"
+  },
+  {
+   "word": "উনিশতম",
+   "role": "ordinal",
+   "value": "19",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনিশ\" of this lexicon"
+  },
+  {
+   "word": "বিশতম",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বিশ\" of this lexicon"
+  },
+  {
+   "word": "কুড়িতম",
+   "role": "ordinal",
+   "value": "20",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"কুড়ি\" of this lexicon"
+  },
+  {
+   "word": "একুশতম",
+   "role": "ordinal",
+   "value": "21",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একুশ\" of this lexicon"
+  },
+  {
+   "word": "বাইশতম",
+   "role": "ordinal",
+   "value": "22",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বাইশ\" of this lexicon"
+  },
+  {
+   "word": "তেইশতম",
+   "role": "ordinal",
+   "value": "23",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তেইশ\" of this lexicon"
+  },
+  {
+   "word": "চব্বিশতম",
+   "role": "ordinal",
+   "value": "24",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চব্বিশ\" of this lexicon"
+  },
+  {
+   "word": "পঁচিশতম",
+   "role": "ordinal",
+   "value": "25",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁচিশ\" of this lexicon"
+  },
+  {
+   "word": "ছাব্বিশতম",
+   "role": "ordinal",
+   "value": "26",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছাব্বিশ\" of this lexicon"
+  },
+  {
+   "word": "সাতাশতম",
+   "role": "ordinal",
+   "value": "27",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতাশ\" of this lexicon"
+  },
+  {
+   "word": "আঠাশতম",
+   "role": "ordinal",
+   "value": "28",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আঠাশ\" of this lexicon"
+  },
+  {
+   "word": "উনত্রিশতম",
+   "role": "ordinal",
+   "value": "29",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনত্রিশ\" of this lexicon"
+  },
+  {
+   "word": "উনতিরিশতম",
+   "role": "ordinal",
+   "value": "29",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনতিরিশ\" of this lexicon"
+  },
+  {
+   "word": "ত্রিশতম",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ত্রিশ\" of this lexicon"
+  },
+  {
+   "word": "তিরিশতম",
+   "role": "ordinal",
+   "value": "30",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিরিশ\" of this lexicon"
+  },
+  {
+   "word": "একত্রিশতম",
+   "role": "ordinal",
+   "value": "31",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 31, Ordinal: \"একত্রিশতম (ekotriśotom)\""
+  },
+  {
+   "word": "বত্রিশতম",
+   "role": "ordinal",
+   "value": "32",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 32, Ordinal: \"বত্রিশতম (botriśotom)\""
+  },
+  {
+   "word": "তেত্রিশতম",
+   "role": "ordinal",
+   "value": "33",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তেত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 33, Ordinal: \"তেত্রিশতম (tetriśotom)\""
+  },
+  {
+   "word": "চৌত্রিশতম",
+   "role": "ordinal",
+   "value": "34",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চৌত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 34, Ordinal: \"চৌত্রিশতম (cōutriśotom)\""
+  },
+  {
+   "word": "পঁয়ত্রিশতম",
+   "role": "ordinal",
+   "value": "35",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁয়ত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 35, Ordinal: \"পঁয়ত্রিশতম (põẏotriśotom)\""
+  },
+  {
+   "word": "ছত্রিশতম",
+   "role": "ordinal",
+   "value": "36",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 36, Ordinal: \"ছত্রিশতম (chotriśotom)\""
+  },
+  {
+   "word": "সাঁইত্রিশতম",
+   "role": "ordinal",
+   "value": "37",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাঁইত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 37, Ordinal: \"সাঁইত্রিশতম (śãitriśotom)\""
+  },
+  {
+   "word": "আটত্রিশতম",
+   "role": "ordinal",
+   "value": "38",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটত্রিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 38, Ordinal: \"আটত্রিশতম (aṭotriśotom)\""
+  },
+  {
+   "word": "উনচল্লিশতম",
+   "role": "ordinal",
+   "value": "39",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনচল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 39, Ordinal: \"উনচল্লিশতম (uncolliśotom)\""
+  },
+  {
+   "word": "চল্লিশতম",
+   "role": "ordinal",
+   "value": "40",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 40, Ordinal: \"চল্লিশতম (colliśotom)\""
+  },
+  {
+   "word": "একচল্লিশতম",
+   "role": "ordinal",
+   "value": "41",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একচল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 41, Ordinal: \"একচল্লিশতম (ekocolliśotom)\""
+  },
+  {
+   "word": "বিয়াল্লিশতম",
+   "role": "ordinal",
+   "value": "42",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বিয়াল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 42, Ordinal: \"বিয়াল্লিশতম (biẏalliśotom)\""
+  },
+  {
+   "word": "তেতাল্লিশতম",
+   "role": "ordinal",
+   "value": "43",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তেতাল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 43, Ordinal: \"তেতাল্লিশতম (tetalliśotom)\""
+  },
+  {
+   "word": "চুয়াল্লিশতম",
+   "role": "ordinal",
+   "value": "44",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চুয়াল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 44, Ordinal: \"চুয়াল্লিশতম (cuẏalliśotom)\""
+  },
+  {
+   "word": "পঁয়তাল্লিশতম",
+   "role": "ordinal",
+   "value": "45",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁয়তাল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 45, Ordinal: \"পঁয়তাল্লিশতম (põẏotalliśotom)\""
+  },
+  {
+   "word": "ছেচল্লিশতম",
+   "role": "ordinal",
+   "value": "46",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছেচল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 46, Ordinal: \"ছেচল্লিশতম (checolliśotom)\""
+  },
+  {
+   "word": "সাতচল্লিশতম",
+   "role": "ordinal",
+   "value": "47",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতচল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 47, Ordinal: \"সাতচল্লিশতম (śatocolliśotom)\""
+  },
+  {
+   "word": "আটচল্লিশতম",
+   "role": "ordinal",
+   "value": "48",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটচল্লিশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 48, Ordinal: \"আটচল্লিশতম (aṭocolliśotom)\""
+  },
+  {
+   "word": "উনপঞ্চাশতম",
+   "role": "ordinal",
+   "value": "49",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনপঞ্চাশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 49, Ordinal: \"উনপঞ্চাশতম (unponcaśotom)\""
+  },
+  {
+   "word": "পঞ্চাশতম",
+   "role": "ordinal",
+   "value": "50",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঞ্চাশ\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 50, Ordinal: \"পঞ্চাশতম (poncaśotom)\""
+  },
+  {
+   "word": "একান্নতম",
+   "role": "ordinal",
+   "value": "51",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 51, Ordinal: \"একান্নতম (ekannotom)\""
+  },
+  {
+   "word": "বাহান্নতম",
+   "role": "ordinal",
+   "value": "52",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বাহান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 52, Ordinal: \"বাহান্নতম (bahannotom)\""
+  },
+  {
+   "word": "তিপান্নতম",
+   "role": "ordinal",
+   "value": "53",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিপান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 53, Ordinal: \"তিপান্নতম (tipannotom)\""
+  },
+  {
+   "word": "চুয়ান্নতম",
+   "role": "ordinal",
+   "value": "54",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চুয়ান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 54, Ordinal: \"চুয়ান্নতম (cuẏannotom)\""
+  },
+  {
+   "word": "পঞ্চান্নতম",
+   "role": "ordinal",
+   "value": "55",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঞ্চান্ন\" of this lexicon"
+  },
+  {
+   "word": "ছাপান্নতম",
+   "role": "ordinal",
+   "value": "56",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছাপান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 56, Ordinal: \"ছাপান্নতম (chapannotom)\""
+  },
+  {
+   "word": "সাতান্নতম",
+   "role": "ordinal",
+   "value": "57",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 57, Ordinal: \"সাতান্নতম (śatannotom)\""
+  },
+  {
+   "word": "আটান্নতম",
+   "role": "ordinal",
+   "value": "58",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটান্ন\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 58, Ordinal: \"আটান্নতম (aṭannotom)\""
+  },
+  {
+   "word": "উনষাটতম",
+   "role": "ordinal",
+   "value": "59",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনষাট\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 59, Ordinal: \"উনষাটতম (unśaṭotom)\""
+  },
+  {
+   "word": "ষাটতম",
+   "role": "ordinal",
+   "value": "60",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ষাট\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 60, Ordinal: \"ষাটতম (śaṭotom)\""
+  },
+  {
+   "word": "একষট্টিতম",
+   "role": "ordinal",
+   "value": "61",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 61, Ordinal: \"একষট্টিতম (ekośoṭṭitom)\""
+  },
+  {
+   "word": "বাষট্টিতম",
+   "role": "ordinal",
+   "value": "62",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বাষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 62, Ordinal: \"বাষট্টিতম (baśoṭṭitom)\""
+  },
+  {
+   "word": "তেষট্টিতম",
+   "role": "ordinal",
+   "value": "63",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তেষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 63, Ordinal: \"তেষট্টিতম (teśoṭṭitom)\""
+  },
+  {
+   "word": "চৌষট্টিতম",
+   "role": "ordinal",
+   "value": "64",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চৌষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 64, Ordinal: \"চৌষট্টিতম (cōuśoṭṭitom)\""
+  },
+  {
+   "word": "পঁয়ষট্টিতম",
+   "role": "ordinal",
+   "value": "65",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁয়ষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 65, Ordinal: \"পঁয়ষট্টিতম (põẏośoṭṭitom)\""
+  },
+  {
+   "word": "ছেষট্টিতম",
+   "role": "ordinal",
+   "value": "66",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছেষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 66, Ordinal: \"ছেষট্টিতম (cheśoṭṭitom)\""
+  },
+  {
+   "word": "সাতষট্টিতম",
+   "role": "ordinal",
+   "value": "67",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 67, Ordinal: \"সাতষট্টিতম (śatośoṭṭitom)\""
+  },
+  {
+   "word": "আটষট্টিতম",
+   "role": "ordinal",
+   "value": "68",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটষট্টি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 68, Ordinal: \"আটষট্টিতম (aṭośoṭṭitom)\""
+  },
+  {
+   "word": "উনসত্তরতম",
+   "role": "ordinal",
+   "value": "69",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনসত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 69, Ordinal: \"উনসত্তরতম (unośottorotom)\""
+  },
+  {
+   "word": "সত্তরতম",
+   "role": "ordinal",
+   "value": "70",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 70, Ordinal: \"সত্তরতম (śottorotom)\""
+  },
+  {
+   "word": "একাত্তরতম",
+   "role": "ordinal",
+   "value": "71",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একাত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 71, Ordinal: \"একাত্তরতম (ekattorotom)\""
+  },
+  {
+   "word": "বাহাত্তরতম",
+   "role": "ordinal",
+   "value": "72",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বাহাত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 72, Ordinal: \"বাহাত্তরতম (bahattorotom)\""
+  },
+  {
+   "word": "তিয়াত্তরতম",
+   "role": "ordinal",
+   "value": "73",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিয়াত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 73, Ordinal: \"তিয়াত্তরতম (tiẏattorotom)\""
+  },
+  {
+   "word": "চুয়াত্তরতম",
+   "role": "ordinal",
+   "value": "74",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চুয়াত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 74, Ordinal: \"চুয়াত্তরতম (cuẏattorotom)\""
+  },
+  {
+   "word": "পঁচাত্তরতম",
+   "role": "ordinal",
+   "value": "75",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁচাত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 75, Ordinal: \"পঁচাত্তরতম (põcattorotom)\""
+  },
+  {
+   "word": "ছিয়াত্তরতম",
+   "role": "ordinal",
+   "value": "76",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছিয়াত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 76, Ordinal: \"ছিয়াত্তরতম (chiẏattorotom)\""
+  },
+  {
+   "word": "সাতাত্তরতম",
+   "role": "ordinal",
+   "value": "77",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতাত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 77, Ordinal: \"সাতাত্তরতম (śatattorotom)\""
+  },
+  {
+   "word": "আটাত্তরতম",
+   "role": "ordinal",
+   "value": "78",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটাত্তর\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 78, Ordinal: \"আটাত্তরতম (aṭattorotom)\""
+  },
+  {
+   "word": "উনআশিতম",
+   "role": "ordinal",
+   "value": "79",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উনআশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 79, Ordinal: \"উনআশিতম (unaśitom)\""
+  },
+  {
+   "word": "আশিতম",
+   "role": "ordinal",
+   "value": "80",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 80, Ordinal: \"আশিতম (aśitom)\""
+  },
+  {
+   "word": "একাশিতম",
+   "role": "ordinal",
+   "value": "81",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 81, Ordinal: \"একাশিতম (ekaśitom)\""
+  },
+  {
+   "word": "বিরাশিতম",
+   "role": "ordinal",
+   "value": "82",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বিরাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 82, Ordinal: \"বিরাশিতম (biraśitom)\""
+  },
+  {
+   "word": "তিরাশিতম",
+   "role": "ordinal",
+   "value": "83",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিরাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 83, Ordinal: \"তিরাশিতম (tiraśitom)\""
+  },
+  {
+   "word": "চুরাশিতম",
+   "role": "ordinal",
+   "value": "84",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চুরাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 84, Ordinal: \"চুরাশিতম (curaśitom)\""
+  },
+  {
+   "word": "পঁচাশিতম",
+   "role": "ordinal",
+   "value": "85",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁচাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 85, Ordinal: \"পঁচাশিতম (põcaśitom)\""
+  },
+  {
+   "word": "ছিয়াশিতম",
+   "role": "ordinal",
+   "value": "86",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছিয়াশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 86, Ordinal: \"ছিয়াশিতম (chiẏaśitom)\""
+  },
+  {
+   "word": "সাতাশিতম",
+   "role": "ordinal",
+   "value": "87",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 87, Ordinal: \"সাতাশিতম (śataśitom)\""
+  },
+  {
+   "word": "অষ্টাশিতম",
+   "role": "ordinal",
+   "value": "88",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"অষ্টাশি\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 88, Ordinal: \"অষ্টাশিতম (ośṭaśitom)\""
+  },
+  {
+   "word": "উননব্বইতম",
+   "role": "ordinal",
+   "value": "89",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"উননব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 89, Ordinal: \"উননব্বইতম (unonbboitom)\""
+  },
+  {
+   "word": "নব্বইতম",
+   "role": "ordinal",
+   "value": "90",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"নব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 90, Ordinal: \"নব্বইতম (nobboitom)\""
+  },
+  {
+   "word": "একানব্বইতম",
+   "role": "ordinal",
+   "value": "91",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"একানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 91, Ordinal: \"একানব্বইতম (ekanbboitom)\""
+  },
+  {
+   "word": "বিরানব্বইতম",
+   "role": "ordinal",
+   "value": "92",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"বিরানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 92, Ordinal: \"বিরানব্বইতম (biranbboitom)\""
+  },
+  {
+   "word": "তিরানব্বইতম",
+   "role": "ordinal",
+   "value": "93",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"তিরানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 93, Ordinal: \"তিরানব্বইতম (tiranbboitom)\""
+  },
+  {
+   "word": "চুরানব্বইতম",
+   "role": "ordinal",
+   "value": "94",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"চুরানব্বই\" of this lexicon"
+  },
+  {
+   "word": "পঁচানব্বইতম",
+   "role": "ordinal",
+   "value": "95",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"পঁচানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 95, Ordinal: \"পঁচানব্বইতম (põcanbboitom)\""
+  },
+  {
+   "word": "ছিয়ানব্বইতম",
+   "role": "ordinal",
+   "value": "96",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"ছিয়ানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 96, Ordinal: \"ছিয়ানব্বইতম (chiẏanbboitom)\""
+  },
+  {
+   "word": "সাতানব্বইতম",
+   "role": "ordinal",
+   "value": "97",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"সাতানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 97, Ordinal: \"সাতানব্বইতম (śatanbboitom)\""
+  },
+  {
+   "word": "আটানব্বইতম",
+   "role": "ordinal",
+   "value": "98",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"আটানব্বই\" of this lexicon; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 98, Ordinal: \"আটানব্বইতম (aṭanbboitom)\""
+  },
+  {
+   "word": "নিরানব্বইতম",
+   "role": "ordinal",
+   "value": "99",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with the cardinal \"নিরানব্বই\" of this lexicon"
+  },
+  {
+   "word": "একাদশ",
+   "role": "ordinal",
+   "value": "11",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 11, Ordinal: \"একাদশ (ekadoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "দ্বাদশ",
+   "role": "ordinal",
+   "value": "12",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 12, Ordinal: \"দ্বাদশ (dadoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ত্রয়োদশ",
+   "role": "ordinal",
+   "value": "13",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 13, Ordinal: \"ত্রয়োদশ (troẏōdoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "চতুর্দশ",
+   "role": "ordinal",
+   "value": "14",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 14, Ordinal: \"চতুর্দশ (coturdoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "পঞ্চদশ",
+   "role": "ordinal",
+   "value": "15",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 15, Ordinal: \"পঞ্চদশ (poncodoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ষোড়শ",
+   "role": "ordinal",
+   "value": "16",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 16, Ordinal: \"ষোড়শ (śōṛoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "সপ্তদশ",
+   "role": "ordinal",
+   "value": "17",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 17, Ordinal: \"সপ্তদশ (śoptodoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "অষ্টাদশ",
+   "role": "ordinal",
+   "value": "18",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 18, Ordinal: \"অষ্টাদশ (ośṭadoś)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ঊনবিংশ",
+   "role": "ordinal",
+   "value": "19",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 19, Ordinal: \"ঊনবিংশ (unbiṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "বিংশ",
+   "role": "ordinal",
+   "value": "20",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 20, Ordinal: \"বিংশ (biṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ত্রয়োবিংশ",
+   "role": "ordinal",
+   "value": "23",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 23, Ordinal: \"ত্রয়োবিংশ (troẏōbiṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "অষ্টবিংশ",
+   "role": "ordinal",
+   "value": "28",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 28, Ordinal: \"অষ্টবিংশ (ośṭobiṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ঊনত্রিংশ",
+   "role": "ordinal",
+   "value": "29",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 29, Ordinal: \"ঊনত্রিংশ (untriṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "ত্রিংশ",
+   "role": "ordinal",
+   "value": "30",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 30, Ordinal: \"ত্রিংশ (triṅśo)\": the Sanskrit ordinal"
+  },
+  {
+   "word": "একশোতম",
+   "role": "ordinal",
+   "value": "100",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"একশো\" and তম"
+  },
+  {
+   "word": "দুইশোতম",
+   "role": "ordinal",
+   "value": "200",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"দুইশো\" and তম"
+  },
+  {
+   "word": "দুশোতম",
+   "role": "ordinal",
+   "value": "200",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"দুশো\" and তম"
+  },
+  {
+   "word": "তিনশোতম",
+   "role": "ordinal",
+   "value": "300",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"তিনশো\" and তম"
+  },
+  {
+   "word": "চারশোতম",
+   "role": "ordinal",
+   "value": "400",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"চারশো\" and তম"
+  },
+  {
+   "word": "পাঁচশোতম",
+   "role": "ordinal",
+   "value": "500",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"পাঁচশো\" and তম"
+  },
+  {
+   "word": "ছয়শোতম",
+   "role": "ordinal",
+   "value": "600",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"ছয়শো\" and তম"
+  },
+  {
+   "word": "সাতশোতম",
+   "role": "ordinal",
+   "value": "700",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"সাতশো\" and তম"
+  },
+  {
+   "word": "আটশোতম",
+   "role": "ordinal",
+   "value": "800",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"আটশো\" and তম"
+  },
+  {
+   "word": "নয়শোতম",
+   "role": "ordinal",
+   "value": "900",
+   "source": "SILVER (the hundred word is SILVER): CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100: <<শো[ >>];\": \"নয়শো\" and তম"
+  },
+  {
+   "word": "হাজারতম",
+   "role": "ordinal_scale",
+   "value": "হাজার",
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"1000: << হাজার[ >>];\""
+  },
+  {
+   "word": "লাখতম",
+   "role": "ordinal_scale",
+   "value": "লাখ",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), Ordinal: \"লাখতম (lakhtom)\"; CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"100000: << লাখ[ >>];\""
+  },
+  {
+   "word": "লক্ষতম",
+   "role": "ordinal_scale",
+   "value": "লক্ষ",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), Ordinal: \"লক্ষতম (lokkhotom)\""
+  },
+  {
+   "word": "কোটিতম",
+   "role": "ordinal_scale",
+   "value": "কোটি",
+   "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), Ordinal: \"কোটিতম (kōṭitom)\"; CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"11: =%spellout-cardinal=তম;\" with %spellout-cardinal \"10000000: << কোটি[ >>];\""
+  },
+  {
+   "word": "আধা",
+   "role": "half",
+   "ambiguous": true,
+   "source": "Thompson, Bengali (LOALL 18, 2012), Appendix II, p. 374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"adha/adh half\", \"adha keji 500 grams\"; 9.3.1, p. 345: \"adh, adha, ordhek\". The Bengali spelling আধা is the script form of \"adha\", as আধ is of \"adh\" in en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 2, Fractional: \"অর্ধেক (ordhek), আধ (adh)\""
   }
  ],
   "writer": {
     "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html); Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR). Bengali counts in the Indian scale: লাখ for 10^5, কোটি for 10^7.",
     "rulesets": {
       "cardinal": {"source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html): the Cardinal column, rows 0 to 99, one word each (\"একুশ (ekuś)\" for 21); Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"21 ekuS\". SILVER: a count of hundreds reads the unit, a space and \"শ\" (\"দুই শ\"). en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 100: \"একশ (ekoś), শ (śo)\" writes the one word \"একশ\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"100 zk so\", \"200 du $6\" writes two words in roman script and \"du\" for 2. No saved source writes 200 in Bengali script. Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"1000 eek hajar, 100.000 zek lakh\". en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html): \"১,০০,০০০\" \"লাখ (lakh)\"; \"১,০০,০০,০০০\" \"কোটি (kōṭi)\"; \"১,০০,০০,০০,০০০\" \"একশ কোটি (ekoś kōṭi)\"; \"১০,০০,০০,০০,০০০\" \"হাজার কোটি (hajar kōṭi)\": a count above 99 goes before কোটি", "rules": [
+        {"value": "-x", "text": "ঋণ →→;", "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"-x: ঋণ >>;\""},
         {"value": "0", "text": "শূন্য;"},
         {"value": "1", "text": "এক;"},
         {"value": "2", "text": "দুই;"},
@@ -1157,7 +1948,7 @@
         {"value": "100000", "text": "←← লাখ[ →→];"},
         {"value": "10000000", "text": "←← কোটি[ →→];"}
       ]},
-      "ordinal": {"source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html): the Ordinal column, rows 1 to 10, \"প্রথম (prothom)\" to \"দশম (dośom)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"prothom first dvitiyd second trtlyo third céturthd fourth pohcdm fifth sosthd sixth soptom seventh astom eighth noabom ninth dos6m tenth\". Past 10 the appendix gives 99 as \"নিরানব্বই (niranbboi)\", the cardinal, so the writer has no ordinal above 10 (#366)", "rules": [
+      "ordinal": {"source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html): the Ordinal column, rows 1 to 10, \"প্রথম (prothom)\" to \"দশম (dośom)\"; Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"prothom first dvitiyd second trtlyo third céturthd fourth pohcdm fifth sosthd sixth soptom seventh astom eighth noabom ninth dos6m tenth\". Past 10: CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-ordinal: \"10: দশম;\", \"11: =%spellout-cardinal=তম;\"; en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 31, Ordinal: \"একত্রিশতম (ekotriśotom)\", row 58: \"আটান্নতম (aṭannotom)\", row 100,000: \"লাখতম (lakhtom)\"", "rules": [
         {"value": "1", "text": "প্রথম;"},
         {"value": "2", "text": "দ্বিতীয়;"},
         {"value": "3", "text": "তৃতীয়;"},
@@ -1167,11 +1958,118 @@
         {"value": "7", "text": "সপ্তম;"},
         {"value": "8", "text": "অষ্টম;"},
         {"value": "9", "text": "নবম;"},
-        {"value": "10", "text": "দশম;"}
+        {"value": "10", "text": "দশম;"},
+        {"value": "11", "text": "=%ordinal-count=তম;"}
+      ]},
+      "ordinal-count": {"source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"100: <<শো[ >>];\": the cardinal before তম writes the hundred as one word (\"একশো\"), as the ordinal rule of CLDR does. Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"1000 eek hajar, 100.000 zek lakh\". en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html): \"১,০০,০০০\" \"লাখ (lakh)\"; \"১,০০,০০,০০০\" \"কোটি (kōṭi)\"; \"১,০০,০০,০০,০০০\" \"একশ কোটি (ekoś kōṭi)\"; \"১০,০০,০০,০০,০০০\" \"হাজার কোটি (hajar kōṭi)\": a count above 99 goes before কোটি", "rules": [
+        {"value": "0", "text": "শূন্য;"},
+        {"value": "1", "text": "এক;"},
+        {"value": "2", "text": "দুই;"},
+        {"value": "3", "text": "তিন;"},
+        {"value": "4", "text": "চার;"},
+        {"value": "5", "text": "পাঁচ;"},
+        {"value": "6", "text": "ছয়;"},
+        {"value": "7", "text": "সাত;"},
+        {"value": "8", "text": "আট;"},
+        {"value": "9", "text": "নয়;"},
+        {"value": "10", "text": "দশ;"},
+        {"value": "11", "text": "এগারো;"},
+        {"value": "12", "text": "বারো;"},
+        {"value": "13", "text": "তেরো;"},
+        {"value": "14", "text": "চোদ্দো;"},
+        {"value": "15", "text": "পনেরো;"},
+        {"value": "16", "text": "ষোলো;"},
+        {"value": "17", "text": "সতেরো;"},
+        {"value": "18", "text": "আঠারো;"},
+        {"value": "19", "text": "উনিশ;"},
+        {"value": "20", "text": "কুড়ি;"},
+        {"value": "21", "text": "একুশ;"},
+        {"value": "22", "text": "বাইশ;"},
+        {"value": "23", "text": "তেইশ;"},
+        {"value": "24", "text": "চব্বিশ;"},
+        {"value": "25", "text": "পঁচিশ;"},
+        {"value": "26", "text": "ছাব্বিশ;"},
+        {"value": "27", "text": "সাতাশ;"},
+        {"value": "28", "text": "আঠাশ;"},
+        {"value": "29", "text": "উনতিরিশ;"},
+        {"value": "30", "text": "তিরিশ;"},
+        {"value": "31", "text": "একত্রিশ;"},
+        {"value": "32", "text": "বত্রিশ;"},
+        {"value": "33", "text": "তেত্রিশ;"},
+        {"value": "34", "text": "চৌত্রিশ;"},
+        {"value": "35", "text": "পঁয়ত্রিশ;"},
+        {"value": "36", "text": "ছত্রিশ;"},
+        {"value": "37", "text": "সাঁইত্রিশ;"},
+        {"value": "38", "text": "আটত্রিশ;"},
+        {"value": "39", "text": "উনচল্লিশ;"},
+        {"value": "40", "text": "চল্লিশ;"},
+        {"value": "41", "text": "একচল্লিশ;"},
+        {"value": "42", "text": "বিয়াল্লিশ;"},
+        {"value": "43", "text": "তেতাল্লিশ;"},
+        {"value": "44", "text": "চুয়াল্লিশ;"},
+        {"value": "45", "text": "পঁয়তাল্লিশ;"},
+        {"value": "46", "text": "ছেচল্লিশ;"},
+        {"value": "47", "text": "সাতচল্লিশ;"},
+        {"value": "48", "text": "আটচল্লিশ;"},
+        {"value": "49", "text": "উনপঞ্চাশ;"},
+        {"value": "50", "text": "পঞ্চাশ;"},
+        {"value": "51", "text": "একান্ন;"},
+        {"value": "52", "text": "বাহান্ন;"},
+        {"value": "53", "text": "তিপান্ন;"},
+        {"value": "54", "text": "চুয়ান্ন;"},
+        {"value": "55", "text": "পঞ্চান্ন;"},
+        {"value": "56", "text": "ছাপান্ন;"},
+        {"value": "57", "text": "সাতান্ন;"},
+        {"value": "58", "text": "আটান্ন;"},
+        {"value": "59", "text": "উনষাট;"},
+        {"value": "60", "text": "ষাট;"},
+        {"value": "61", "text": "একষট্টি;"},
+        {"value": "62", "text": "বাষট্টি;"},
+        {"value": "63", "text": "তেষট্টি;"},
+        {"value": "64", "text": "চৌষট্টি;"},
+        {"value": "65", "text": "পঁয়ষট্টি;"},
+        {"value": "66", "text": "ছেষট্টি;"},
+        {"value": "67", "text": "সাতষট্টি;"},
+        {"value": "68", "text": "আটষট্টি;"},
+        {"value": "69", "text": "উনসত্তর;"},
+        {"value": "70", "text": "সত্তর;"},
+        {"value": "71", "text": "একাত্তর;"},
+        {"value": "72", "text": "বাহাত্তর;"},
+        {"value": "73", "text": "তিয়াত্তর;"},
+        {"value": "74", "text": "চুয়াত্তর;"},
+        {"value": "75", "text": "পঁচাত্তর;"},
+        {"value": "76", "text": "ছিয়াত্তর;"},
+        {"value": "77", "text": "সাতাত্তর;"},
+        {"value": "78", "text": "আটাত্তর;"},
+        {"value": "79", "text": "উনআশি;"},
+        {"value": "80", "text": "আশি;"},
+        {"value": "81", "text": "একাশি;"},
+        {"value": "82", "text": "বিরাশি;"},
+        {"value": "83", "text": "তিরাশি;"},
+        {"value": "84", "text": "চুরাশি;"},
+        {"value": "85", "text": "পঁচাশি;"},
+        {"value": "86", "text": "ছিয়াশি;"},
+        {"value": "87", "text": "সাতাশি;"},
+        {"value": "88", "text": "অষ্টাশি;"},
+        {"value": "89", "text": "উননব্বই;"},
+        {"value": "90", "text": "নব্বই;"},
+        {"value": "91", "text": "একানব্বই;"},
+        {"value": "92", "text": "বিরানব্বই;"},
+        {"value": "93", "text": "তিরানব্বই;"},
+        {"value": "94", "text": "চুরানব্বই;"},
+        {"value": "95", "text": "পঁচানব্বই;"},
+        {"value": "96", "text": "ছিয়ানব্বই;"},
+        {"value": "97", "text": "সাতানব্বই;"},
+        {"value": "98", "text": "আটানব্বই;"},
+        {"value": "99", "text": "নিরানব্বই;"},
+        {"value": "100", "text": "←←শো[ →→];"},
+        {"value": "1000", "text": "←← হাজার[ →→];"},
+        {"value": "100000", "text": "←← লাখ[ →→];"},
+        {"value": "10000000", "text": "←← কোটি[ →→];"}
       ]}
     },
-    "forms": {"cardinal": {"variants": [{"ruleset": "cardinal", "reason": "standard"}], "maximum": "999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "1", "maximum": "10"}},
-    "decimal": {"word": null, "places": 3, "source": "en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html); Thompson, Bengali (LOALL 18, 2012), Appendix II \"Numbers\", pp. 372-374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): neither source names a word for the decimal mark, so a number with decimals has no reading (#366)."},
+    "forms": {"cardinal": {"variants": [{"ruleset": "cardinal", "reason": "standard"}], "maximum": "999999999999"}, "ordinal": {"variants": [{"ruleset": "ordinal", "reason": "standard"}], "minimum": "1", "maximum": "999999999999"}},
+    "decimal": {"word": "দশমিক", "places": 3, "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"x.x: << দশমিক >>;\". SILVER: each digit after দশমিক reads as one cardinal (\"দশমিক নয় সাত\" for .97); no saved Bengali source spells the digits after the mark."},
     "fraction": null
   }
 }
