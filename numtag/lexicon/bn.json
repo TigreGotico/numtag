@@ -91,8 +91,8 @@
    "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"x.x: << দশমিক >>;\""
   },
   "minus": {
-   "value": ["ঋণ"],
-   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"-x: ঋণ >>;\""
+   "value": [],
+   "source": "CLDR common/rbnf/bn.xml, commit 951424004be6 (Papers/Languages/Indo-Aryan/Bengali/cldr_rbnf_bn_951424004be6.xml), %spellout-cardinal: \"-x: ঋণ >>;\". The reader does not take ঋণ as minus: it is also the common noun 'loan, debt', and 'ব্যাংকের ঋণ দশ হাজার টাকা' is 10000 owed, not -10000 (numtag #446 review)."
   },
   "minus_idioms": {
    "value": [],
@@ -1835,7 +1835,7 @@
    "word": "আধা",
    "role": "half",
    "ambiguous": true,
-   "source": "Thompson, Bengali (LOALL 18, 2012), Appendix II, p. 374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"adha/adh half\", \"adha keji 500 grams\"; 9.3.1, p. 345: \"adh, adha, ordhek\". The Bengali spelling আধা is the script form of \"adha\", as আধ is of \"adh\" in en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 2, Fractional: \"অর্ধেক (ordhek), আধ (adh)\""
+   "source": "SILVER: no saved source prints the Bengali-script spelling. Thompson, Bengali (LOALL 18, 2012), Appendix II, p. 374 (Papers/Languages/Indo-Aryan/Bengali/thompson2012_bengali_loall18_ia_djvu.txt, OCR): \"adha/adh half\", \"adha keji 500 grams\"; 9.3.1, p. 345: \"adh, adha, ordhek\". The Bengali spelling আধা is the script form of \"adha\", as আধ is of \"adh\" in en.wiktionary, \"Appendix:Bengali numerals\" (oldid 95460450; Papers/Languages/Indo-Aryan/Bengali/wikt_en_appendix_bengali_numerals.html), row 2, Fractional: \"অর্ধেক (ordhek), আধ (adh)\""
   }
  ],
   "writer": {

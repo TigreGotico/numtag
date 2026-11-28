@@ -81,9 +81,16 @@ class TestOrdinalsAndHalf(unittest.TestCase):
         self.assertEqual(bn("নদীর জলের তাপমাত্রা ছিল বিশ দশমিক তিন আট ডিগ্রি।"),
                          [("বিশ দশমিক তিন আট", "20.38", "decimal")])
 
+    @pytest.mark.xfail(strict=True, raises=AssertionError,
+                       reason="ঋণ is also 'loan, debt', so the reader does not take it as minus")
     def test_a_negative_takes_rin(self):
         # -(5) = -5
         self.assertEqual(bn("তাপমাত্রা ঋণ পাঁচ ডিগ্রি"), [("ঋণ পাঁচ", "-5", C)])
+
+    def test_rin_the_loan_keeps_a_positive_number(self):
+        # ঋণ "loan": 10 × 1000 = 10000 owed; 5 per cent
+        self.assertEqual(bn("ব্যাংকের ঋণ দশ হাজার টাকা বাকি।"), [("দশ হাজার", "10000", C)])
+        self.assertEqual(bn("কৃষি ঋণ পাঁচ শতাংশ সুদে দেওয়া হয়।"), [("পাঁচ", "5", C)])
 
     def test_adha_is_a_half(self):
         self.assertEqual(bn("মা আধা কেজি মিষ্টি কিনে আনলেন।"), [("আধা", "0.5", F)])
