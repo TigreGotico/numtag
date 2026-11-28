@@ -41,6 +41,10 @@
    "value": "required",
    "source": "CLDR RBNF da (unicode-rbnf 2.4.1 data, da.xml), %spellout-cardinal-common: \"20: [→→og]tyve\", \"50: [→→og]halvtreds\""
   },
+  "joiner_before_half": {
+   "value": "optional",
+   "source": "\"og\" before \"en halv\" is optional (\"to en halv time\" is 2.5): approved da-DK native reviewer andlo, numtag #253 (2026-11-19): \"As a native speaker I hear it in everyday speech (\"to en halv time\")\""
+  },
   "unit_ten_one_word": {
    "value": true,
    "source": "So \"to og fyrre\" is two numbers: Dansk Sprognævn, \"Ét eller flere ord\": \"Talord under 100 – skrives i ét ord: halvtreds, treoghalvtreds, treoghalvtredsindstyvende, nitisyv, halvanden, femogtyve.\"; \"Talord over 100 – skrives i flere ord: to hundred(e), fire hundred(e) (og) niogtyve.\""

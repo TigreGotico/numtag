@@ -967,6 +967,9 @@ class Grammar:
         found = [(alone, i + 1)] if self._is_word(i, self.lex.and_a_half) else []
         for j in self._after_joiner(i, self.lex.joiner_before_half):
             k = j + 1 if self._is_word(j, self.lex.articles) else j
+            # "hundrede og en halv": an article at the end of the whole belongs to the half
+            if k == i and self._is_word(i - 1, self.lex.articles):
+                continue
             found += [(_joined(i, j) + _piece(Role.HALF, j, k + 1, HALF), k + 1)
                       for _ in self._readings(k, "half")[:1]]
         return found + [(alone, i + 1) for half in self._readings(i, "half") if half.bound][:1]
@@ -1126,6 +1129,9 @@ class Grammar:
         for j in starts:
             # digits take no part without the joiner ("tiga dua-pertiga" is 11/3)
             if j == last.end and self.tokens[j - 1].is_digits:
+                continue
+            # "hundrede og en halv": an article at the end of the whole belongs to the part
+            if j == last.end and self._is_word(j - 1, self.lex.articles):
                 continue
             # "três e um quarto"; "три целых и шесть седьмых" has the marker before the joiner
             parts = _run_parts(run) + tuple(
