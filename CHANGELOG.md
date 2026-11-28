@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.50.4a1](https://github.com/TigreGotico/numtag/tree/0.50.4a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.3a2...0.50.4a1)
+
+**Merged pull requests:**
+
+- fix\(mwr\): «बारै» \(outside\) reads as a word after रै/सूं and before a verb of going out \(\#417\) [\#443](https://github.com/TigreGotico/numtag/pull/443) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.3a2](https://github.com/TigreGotico/numtag/tree/0.50.3a2) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.3a1...0.50.3a2)
@@ -652,10 +660,6 @@
 ## [0.19.15a1](https://github.com/TigreGotico/numtag/tree/0.19.15a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.14a1...0.19.15a1)
-
-**Merged pull requests:**
-
-- fix\(hr\): count a half before stotina and no year as a count of hundreds [\#212](https://github.com/TigreGotico/numtag/pull/212) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.14a1](https://github.com/TigreGotico/numtag/tree/0.19.14a1) (2026-11-22)
 
