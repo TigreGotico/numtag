@@ -553,6 +553,29 @@ class TestOpenIssues(unittest.TestCase):
             with self.subTest(text):
                 self.assertEqual(read(text, "da"), [(span, value, F)])
 
+    def test_danish_hundreds_and_a_half_with_og_en(self):
+        # 100 + 1/2, 2 x 100 + 1/2, 3 x 100 + 1/2: "en" belongs to "halv", not to the hundred
+        for text, span, value in (("hundrede og en halv", "hundrede og en halv", "100.5"),
+                                  ("to hundrede og en halv", "to hundrede og en halv", "200.5"),
+                                  ("Sækken vejer tre hundrede og en halv kilo.", "tre hundrede og en halv", "300.5")):
+            with self.subTest(text):
+                self.assertEqual(read(text, "da"), [(span, value, F)])
+
+    def test_danish_and_a_half_with_og_en_keeps(self):
+        # 1000 + 1/2, 5 + 1/2, 100 + 2 + 1/2
+        for text, value in (("tusind og en halv", "1000.5"), ("fem og en halv", "5.5"),
+                            ("hundrede og to og en halv", "102.5")):
+            with self.subTest(text):
+                self.assertEqual(read(text, "da"), [(text, value, F)])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_page_two_then_half_a_page(self):
+        self.assertEqual(read("side to en halv side lang", "da"), [("to", "2", C), ("en halv", "0.5", F)])
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/253")
+    def test_danish_clock_two_then_half_an_hour(self):
+        self.assertEqual(read("klokken to en halv time senere", "da"), [("to", "2", C), ("en halv", "0.5", F)])
+
     def test_danish_half_with_en_controls(self):
         self.assertEqual(read("Filmen varer en halv time.", "da"), [("en halv", "0.5", F)])
         self.assertEqual(read("Det tog to timer og en halv.", "da"), [("to", "2", C), ("en halv", "0.5", F)])
