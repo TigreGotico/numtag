@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.50.3a2](https://github.com/TigreGotico/numtag/tree/0.50.3a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.3a1...0.50.3a2)
+
+**Merged pull requests:**
+
+- docs: the lexicon-format summary names versions 1 to 6 [\#442](https://github.com/TigreGotico/numtag/pull/442) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.3a1](https://github.com/TigreGotico/numtag/tree/0.50.3a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.2a1...0.50.3a1)
@@ -652,10 +660,6 @@
 ## [0.19.14a1](https://github.com/TigreGotico/numtag/tree/0.19.14a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.13a1...0.19.14a1)
-
-**Merged pull requests:**
-
-- fix\(hr, he\): a zero digit count multiplies no counted hundred noun [\#211](https://github.com/TigreGotico/numtag/pull/211) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.13a1](https://github.com/TigreGotico/numtag/tree/0.19.13a1) (2026-11-22)
 
