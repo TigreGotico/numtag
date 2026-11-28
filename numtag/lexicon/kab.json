@@ -719,6 +719,25 @@
       "source": "Mokraoui (2026), native answers on the Kabyle clock (Papers/Languages/Berber/Kabyle/athmanemokraoui_2026_kabyle_clock_answers.md): \"\\\"D lweḥda d wezgen\\\" (grammatically correct annexed state wezgen after the conjunction d)\": wezgen is the annexed state of azgen."
     },
     {
+      "word": "afkraḍ",
+      "role": "denominator",
+      "value": "3",
+      "source": "Mokraoui (2026), native answers on Kabyle numbers (Papers/Languages/Berber/Kabyle/athmanemokraoui_2026_kabyle_number_answers.md): \"3. 1/3: afkraḍ ; 1/4: afkuẓ ; 2/3: sin ifekṛad\""
+    },
+    {
+      "word": "ifekṛad",
+      "role": "denominator",
+      "value": "3",
+      "plural": true,
+      "source": "Mokraoui (2026), native answers on Kabyle numbers (Papers/Languages/Berber/Kabyle/athmanemokraoui_2026_kabyle_number_answers.md): \"3. 1/3: afkraḍ ; 1/4: afkuẓ ; 2/3: sin ifekṛad\""
+    },
+    {
+      "word": "afkuẓ",
+      "role": "denominator",
+      "value": "4",
+      "source": "Mokraoui (2026), native answers on Kabyle numbers (Papers/Languages/Berber/Kabyle/athmanemokraoui_2026_kabyle_number_answers.md): \"3. 1/3: afkraḍ ; 1/4: afkuẓ ; 2/3: sin ifekṛad\""
+    },
+    {
       "word": "amezwaru",
       "role": "ordinal",
       "value": "1",

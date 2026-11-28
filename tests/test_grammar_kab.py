@@ -107,6 +107,29 @@ def test_kab_fractions(text, expected):
 
 
 @pytest.mark.parametrize("text, expected", [
+    # Mokraoui (2026), numtag #379: "1/3: afkraḍ ; 1/4: afkuẓ ; 2/3: sin ifekṛad"
+    ("Ččiɣ afkraḍ n weɣrum.", [("afkraḍ", "1/3", F)]),
+    ("Yeqqim-d afkuẓ n wakud.", [("afkuẓ", "0.25", F)]),
+    # 2 x 1/3 = 2/3
+    ("Yeǧǧa sin ifekṛad n wakal i mmi-s.", [("sin ifekṛad", "2/3", F)]),
+    # no part word after the count: the count stays 2
+    ("Yeǧǧa sin n warrac.", [("sin", "2", C)]),
+])
+def test_kab_named_fractions(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.parametrize("value", ["1/3", "1/4", "2/3"])
+def test_kab_named_fractions_round_trip(value):
+    from fractions import Fraction
+
+    from numtag import spell, tag_numbers
+    words = spell(value, "kab")[0].text
+    mentions = tag_numbers(words, "kab")
+    assert [(m.text, Fraction(m.value)) for m in mentions] == [(words, Fraction(value))]
+
+
+@pytest.mark.parametrize("text, expected", [
     # seg, deg and ɣef between two counts are no fraction: "one of the two", "24 on 24", a score
     ("Issefk-ak ad ferneḍ yiwen seg sin iɣawasen-a.", [("yiwen", "1", C), ("sin", "2", C)]),
     ("Yettwali 24 ɣef 24", [("24", "24", C), ("24", "24", C)]),
