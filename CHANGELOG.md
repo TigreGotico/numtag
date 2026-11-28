@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.50.0a2](https://github.com/TigreGotico/numtag/tree/0.50.0a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a1...0.50.0a2)
+
+**Merged pull requests:**
+
+- ci: run the docs-standard check on pull requests [\#436](https://github.com/TigreGotico/numtag/pull/436) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- ci: release on a merged fork pull request too \(pull\_request\_target\) [\#435](https://github.com/TigreGotico/numtag/pull/435) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [0.50.0a1](https://github.com/TigreGotico/numtag/tree/0.50.0a1) (2026-11-27)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.49.3a3...0.50.0a1)
@@ -621,10 +630,6 @@
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.12a1...0.19.13a1)
 
-**Merged pull requests:**
-
-- fix\(cs, pl, ru, uk, hr\): read a counted hundreds noun before a scale word [\#207](https://github.com/TigreGotico/numtag/pull/207) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-
 ## [0.19.12a1](https://github.com/TigreGotico/numtag/tree/0.19.12a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.11a1...0.19.12a1)
@@ -746,7 +751,6 @@
 **Merged pull requests:**
 
 - fix: tr yuzde yuz reads 100 at full confidence [\#208](https://github.com/TigreGotico/numtag/pull/208) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- fix: read a number whose group marks mix spaces, and check every lexicon's marks [\#205](https://github.com/TigreGotico/numtag/pull/205) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
