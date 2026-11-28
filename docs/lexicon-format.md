@@ -1,14 +1,14 @@
 # The lexicon format
 
 <!-- agent-hint
-covers: The format of a lexicon JSON file, versions 1, 2, 3 and 4: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
+covers: The format of a lexicon JSON file, versions 1 to 6: every key with its type, its default and what the engine does with it, and the version, schema and revision rules.
 source: numtag/lexicon/__init__.py:load, numtag/lexicon/__init__.py:revision, numtag/lexicon.schema.json, tests/test_lexicon_format.py
 generated: no
 verify: for k in $(grep -oP '^ +"\K[a-z_]+(?=": \{"properties")' numtag/lexicon.schema.json); do grep -qF "$k" docs/lexicon-format.md || exit 1; done
 see: adding-a-language.md, design.md
 -->
 
-A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1, 2, 3 and 4 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
+A lexicon is one JSON file that holds the words and the settings of one language. This page defines the formats of versions 1 to 6 for a person who writes a second interpreter of it, in another language or on another runtime. It gives every key with its type, its default and what the engine does with it. The file `numtag/lexicon.schema.json` holds the same keys as a JSON Schema. [adding-a-language.md](adding-a-language.md) tells how to write a lexicon and where its sources come from.
 
 The engine has no code for a language. A language that needs new behaviour gets a new key or a new role here, and the format version goes up in the same change.
 
