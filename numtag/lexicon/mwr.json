@@ -1,6 +1,10 @@
 {
- "format_version": 2,
+ "format_version": 6,
  "words": {
+  "cue_out_verb": {
+   "value": ["गयो", "गयौ", "गई", "नीसरियौ", "नीसरियो", "निकळियौ", "निकळ्यो", "निकळ्यौ"],
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_khand1_djvu.txt, OCR text, line 123011, the example under ग्रासियौ sense 5, from Nainsi): \"ग्रासियों हुय बारै नीसरियौ\": बारै (outside) before a verb of going out. The list holds singular past forms of going and going out; a count of twelve takes a plural verb (structural, no external source)."
+  },
   "joiner": {
    "value": [],
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.2, book p. 60: \"पूणौ दो सौ\", \"साढौ तीन सौ\": no word joins the count and सो"
@@ -258,12 +262,20 @@
    "word": "बारै",
    "role": "unit",
    "value": "12",
+   "context": [
+    {"prev": ["रै", "सूं"], "then": "word", "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal_1964_p136_postpositions.png), book p. 136, the list of compound postpositions: \"रै बारै 'के बाहर'\", \"सूं बारै 'से बाहर'\": after रै or सूं, बारै is the postposition 'outside'."},
+    {"next": ["@out_verb"], "then": "word", "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_khand1_djvu.txt, OCR text, line 123011, from Nainsi): \"ग्रासियों हुय बारै नीसरियौ\" (he became a rebel and went out): बारै (outside) before a singular verb of going out."}
+   ],
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"12. बारै\". SILVER: the scan prints ब and व alike in this type; the writer takes ब as in \"बारै\" and \"बारमौ\" (§5.2.3, book p. 61) and the reader reads both"
   },
   {
    "word": "वारै",
    "role": "unit",
    "value": "12",
+   "context": [
+    {"prev": ["रै", "सूं"], "then": "word", "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal_1964_p136_postpositions.png), book p. 136, the list of compound postpositions: \"रै बारै 'के बाहर'\", \"सूं बारै 'से बाहर'\": after रै or सूं, बारै is the postposition 'outside'."},
+    {"next": ["@out_verb"], "then": "word", "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_rajasthani_sabad_kos_khand1_djvu.txt, OCR text, line 123011, from Nainsi): \"ग्रासियों हुय बारै नीसरियौ\" (he became a rebel and went out): बारै (outside) before a singular verb of going out."}
+   ],
    "source": "Bahal, Kalicharan (1964), Ādhunik Rājasthānī kā Saṃracanātmak Vyākaraṇ (Papers/Languages/Indo-Aryan/Marwari/bahal1964_adhunik_rajasthani_vyakaran.pdf), read from the page scan, §5.2.1, book pp. 55-57: \"12. बारै\". SILVER: the scan prints ब and व alike in this type; the writer takes ब as in \"बारै\" and \"बारमौ\" (§5.2.3, book p. 61) and the reader reads both"
   },
   {
