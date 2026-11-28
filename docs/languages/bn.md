@@ -1,8 +1,14 @@
 # Bengali
 
-<!-- agent-hint: bn reader only. Sources are Thompson 2012 (romanised) and the Wiktionary numeral appendix (script). -->
+<!-- agent-hint
+covers: What numtag reads and writes in Bengali: the number words, the scale words and the sources for each.
+source: numtag/lexicon/bn.json, tests/gold/bn.jsonl
+generated: no
+verify: python -c "from numtag import spell, tag_numbers; assert spell('21', 'bn')[0].text == 'একুশ'; assert tag_numbers('একুশ', 'bn')[0].value == '21'"
+see: index.md, ../lexicon-format.md
+-->
 
-The `bn` lexicon reads Bengali numbers in the Bengali script and in Bengali digits. It has no writer, so `spell(value, "bn")` raises `UnsupportedLanguageError`.
+The `bn` lexicon reads Bengali numbers in the Bengali script and in Bengali digits. It also has a writer: `spell("21", "bn")` gives "একুশ".
 
 ## Words
 

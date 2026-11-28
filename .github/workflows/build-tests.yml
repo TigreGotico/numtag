@@ -12,3 +12,9 @@ jobs:
       python_versions: '["3.11", "3.12", "3.13", "3.14"]'
       install_extras: 'test'
       test_path: 'tests'
+  docs_check:
+    uses: OpenVoiceOS/gh-automations/.github/workflows/docs-check.yml@dev
+    with:
+      docs_standard: true
+      hf_space: TigreGotico/numtag
+    secrets: inherit
