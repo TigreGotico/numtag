@@ -20,7 +20,11 @@ The `bn` lexicon reads Bengali numbers in the Bengali script and in Bengali digi
 | Classifiers | "-টা", "-টো", "-টে", "-টি", "-জন", "-খানা", "-খানি" on the last word of a number: "সাতচল্লিশটা" is 47, "দুটো" is 2 | Thompson, 5.2.5: "tais added to numbers with count nouns" |
 | Scale words | "হাজার" (10^3), "লাখ" and "লক্ষ" (10^5), "কোটি" (10^7) | Wiktionary, and Thompson for হাজার and লাখ |
 | Ordinals | "প্রথম" to "দশম", 1st to 10th | Wiktionary, and Thompson, "ordinal numbers" |
-| Half | "অর্ধেক", "আধ" | Wiktionary, and Thompson: "adha/adh half" |
+| Ordinals past 10 | the cardinal and "তম": "আটান্নতম" is 58th, "একশো আটান্নতম" is 158th, "এক হাজারতম" is 1000th | CLDR RBNF `bn`: "11: =%spellout-cardinal=তম;", Wiktionary rows 31 to 98 |
+| Sanskrit ordinals | "একাদশ" to "বিংশ", 11th to 20th, and "ত্রয়োবিংশ", "অষ্টবিংশ", "ঊনত্রিংশ", "ত্রিংশ" | Wiktionary, the Ordinal column |
+| Decimals | "দশমিক" and one word for each digit: "বিশ দশমিক তিন আট" is 20.38 | CLDR RBNF `bn`: "x.x: << দশমিক >>;" |
+| Minus | "ঋণ": "ঋণ পাঁচ" is -5 | CLDR RBNF `bn`: "-x: ঋণ >>;" |
+| Half | "অর্ধেক", "আধ", "আধা" | Wiktionary, and Thompson: "adha/adh half" |
 
 ```python
 >>> from numtag import tag_numbers
@@ -34,7 +38,9 @@ The `bn` lexicon reads Bengali numbers in the Bengali script and in Bengali digi
 
 - "একটা" and "একটি" also mark an indefinite noun ("a"), but they read as the number 1.
 - Digits grouped in the Indian way ("১,০০,০০০") give no mention.
-- The ordinals past 10 and the fraction words other than the half have no source and are not read.
+- The writer writes ordinals past 10 only with "তম". It reads the Sanskrit ordinals but does not write them.
+- No saved Bengali source spells the digits after "দশমিক". The writer reads each digit as one cardinal.
+- Fractions other than the half are not read or written: "দশ ভাগের ছয় ভাগ" (6/10, Thompson 9.3.1: "x parts y parts") needs a reading rule that the lexicon format does not have.
 
 ---
 [← Baltic languages](baltic.md) · [Home](../index.md) · [Hindi →](hi.md)

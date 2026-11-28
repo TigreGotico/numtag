@@ -719,15 +719,38 @@ class TestBengali(unittest.TestCase):
         self.assertEqual([self.say(str(n), form=SpokenForm.ORDINAL) for n in range(1, 11)],
                          ["প্রথম", "দ্বিতীয়", "তৃতীয়", "চতুর্থ", "পঞ্চম", "ষষ্ঠ", "সপ্তম", "অষ্টম", "নবম", "দশম"])
 
-    def test_no_decimal_minus_fraction_or_ordinal_past_ten(self):
-        for value, kw in (("1.5", {}), ("-3", {}), ("1/2", {}), ("11", {"form": SpokenForm.ORDINAL})):
-            with self.subTest(value=value), self.assertRaises(ValueError):
-                spell(value, "bn", **kw)
+    def test_no_fraction(self):
+        with self.assertRaises(ValueError):
+            spell("1/2", "bn")
 
-    @pytest.mark.xfail(strict=True, raises=ValueError, reason="no saved source gives the bn decimal or minus word "
-                       "https://github.com/TigreGotico/numtag/issues/366")
-    def test_decimals_and_negatives_have_a_reading(self):
-        self.assertTrue(self.say("1.5") and self.say("-3"))
+    def test_decimals_read_each_digit_after_doshomik(self):
+        # CLDR RBNF bn x.x: "<< দশমিক >>": 337 then 9 and 7; 20 then 3 and 8; 0 then 5
+        self.assertEqual([self.say(n) for n in ("337.97", "20.38", "0.5")],
+                         ["তিন শ সাঁইত্রিশ দশমিক নয় সাত", "কুড়ি দশমিক তিন আট", "শূন্য দশমিক পাঁচ"])
+
+    def test_negatives_take_rin(self):
+        # CLDR RBNF bn -x: "ঋণ >>"
+        self.assertEqual(self.say("-3"), "ঋণ তিন")
+
+    def test_ordinals_past_ten_add_tomo_to_the_cardinal(self):
+        # CLDR RBNF bn %spellout-ordinal "11: =%spellout-cardinal=তম;" and "100: <<শো[ >>];"
+        values = ("11", "26", "58", "100", "101", "158", "1000", "100000")
+        self.assertEqual([self.say(n, form=SpokenForm.ORDINAL) for n in values],
+                         ["এগারোতম", "ছাব্বিশতম", "আটান্নতম", "একশোতম", "একশো একতম", "একশো আটান্নতম",
+                          "এক হাজারতম", "এক লাখতম"])
+
+    def test_the_reader_reads_ordinals_and_decimals_back(self):
+        rng = random.Random(366)
+        ordinals = [*range(1, 101), 1000, *(rng.randint(101, 10 ** 9) for _ in range(500))]
+        decimals = [f"{rng.randint(0, 99999)}.{rng.randint(1, 999):03d}".rstrip("0") for _ in range(500)]
+        failures = []
+        for value, form, kind in ([(str(n), SpokenForm.ORDINAL, "ordinal") for n in ordinals]
+                                  + [(d, SpokenForm.CARDINAL, "decimal") for d in decimals]):
+            words = self.say(value, form=form)
+            found = [(m.text, m.value, m.kind.value) for m in tag_numbers(words, "bn")]
+            if found != [(words, value, kind)]:
+                failures.append((value, words, found))
+        self.assertEqual(failures[:5], [])
 
     def test_the_reader_reads_a_sample_of_cardinals_back(self):
         rng = random.Random(366)
