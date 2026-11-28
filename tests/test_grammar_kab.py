@@ -142,3 +142,34 @@ def test_kab_seg_deg_and_ɣef_make_no_fraction(text, expected):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@pytest.mark.parametrize("text, expected", [
+    # the verb "she has": 100 + 5 + 20 = 125, × 1000 = 125000, + 3 = 125003
+    ('Deg useggas-agi, tamdint-nneɣ tesɛa miya u xemsa u ɛecrin alef u tlata n yimezdaɣ.',
+     [('miya u xemsa u ɛecrin alef u tlata', '125003', C)]),
+    ('Tamdint-nneɣ tesεa miya n yimezdaɣ.', [('miya', '100', C)]),
+    ('Taddart-nneɣ tesɛa 300 n yimezdaɣ.', [('300', '300', C)]),
+    # before a noun or "n", "tesɛa" stays the number 9
+    ('Ɛedda-d tesɛa n yiseggasen.', [('tesɛa', '9', C)]),
+    ('Tesɛa ixxamen i yellan deg taddart.', [('Tesɛa', '9', C)]),
+    ('tesɛa u ɛecrin', [('tesɛa u ɛecrin', '29', C)]),
+])
+def test_kab_tesa_before_a_number_is_the_verb(text, expected):
+    assert read(text, "kab") == expected
+
+
+@pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/421")
+@pytest.mark.parametrize("text, expected", [
+    ('Deg taddart-nneɣ, semmus seg mraw n yixxamen ur sɛin ara aman deg unebdu.', [('semmus seg mraw', '5/10', F)]),
+    ('Deg taddart-nneɣ, sin yeḥricen ɣef kraḍ n yilmeẓyen ruḥen ad xedmen di tmdinin timeqranin.',
+     [('sin yeḥricen ɣef kraḍ', '2/3', F)]),
+    ('Ass-a, sdis ɣef tmanya seg yinelmaden ur d-usin ara ɣer uɣerbaz acku yewwi-d ugeffur.', [('sdis ɣef tmanya', '6/8', F)]),
+    ('Deg useggas-a, sebɛa u rebɛin deg temiya n yinelmaden kan i yeɛddan akayad n tagara.',
+     [('sebɛa u rebɛin deg temiya', '47/100', F)]),
+    ('Ass-a, sin ɣef mraw kan seg yinelmaden i d-yusan ɣer uɣerbaz acku yella ugeffur d ameqqran.', [('sin ɣef mraw', '2/10', F)]),
+    ('Ass-a, rebɛa ɣef tnac seg yinelmaden ur d-usin ara ɣer uɣerbaz acku yella ugeffur d aṭas.', [('rebɛa ɣef tnac', '4/12', F)]),
+    ('Ass-a, sebɛa deg mraw n yinelmaden ur d-usin ara ɣer uɣerbaz acku yella ugeffur meqqer.', [('sebɛa deg mraw', '7/10', F)]),
+])
+def test_kab_a_count_over_a_count_is_a_fraction(text, expected):
+    assert read(text, "kab") == expected
