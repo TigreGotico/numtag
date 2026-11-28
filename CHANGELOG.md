@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.50.4a3](https://github.com/TigreGotico/numtag/tree/0.50.4a3) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.4a2...0.50.4a3)
+
+**Merged pull requests:**
+
+- test: per-language benchmark files, kind check, speaking floors [\#445](https://github.com/TigreGotico/numtag/pull/445) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.4a2](https://github.com/TigreGotico/numtag/tree/0.50.4a2) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.4a1...0.50.4a2)
@@ -656,10 +664,6 @@
 ## [0.19.16a1](https://github.com/TigreGotico/numtag/tree/0.19.16a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.15a1...0.19.16a1)
-
-**Merged pull requests:**
-
-- fix\(ru, uk, pl\): digits before a plural ordinal-form part word count things [\#214](https://github.com/TigreGotico/numtag/pull/214) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.15a1](https://github.com/TigreGotico/numtag/tree/0.19.15a1) (2026-11-22)
 
