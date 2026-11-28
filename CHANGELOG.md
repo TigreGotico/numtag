@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.50.4a2](https://github.com/TigreGotico/numtag/tree/0.50.4a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.4a1...0.50.4a2)
+
+**Merged pull requests:**
+
+- test: score numtag on the HF dataset numtag-benchmark at a pinned revision [\#444](https://github.com/TigreGotico/numtag/pull/444) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.4a1](https://github.com/TigreGotico/numtag/tree/0.50.4a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.3a2...0.50.4a1)
@@ -616,10 +624,6 @@
 ## [0.19.21a1](https://github.com/TigreGotico/numtag/tree/0.19.21a1) (2026-11-22)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.19.20a1...0.19.21a1)
-
-**Merged pull requests:**
-
-- fix\(ar\): read the spoken teens, tens and hundreds of the Wiktionary number lists [\#213](https://github.com/TigreGotico/numtag/pull/213) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.19.20a1](https://github.com/TigreGotico/numtag/tree/0.19.20a1) (2026-11-22)
 
