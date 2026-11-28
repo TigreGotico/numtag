@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.50.3a1](https://github.com/TigreGotico/numtag/tree/0.50.3a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.2a1...0.50.3a1)
+
+**Merged pull requests:**
+
+- fix\(kab\): "tesɛa" before a number is the verb; xfails for \#421 [\#440](https://github.com/TigreGotico/numtag/pull/440) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
+## [0.50.2a1](https://github.com/TigreGotico/numtag/tree/0.50.2a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.1a1...0.50.2a1)
+
+**Merged pull requests:**
+
+- fix\(kab\): read the named fractions afkraḍ, afkuẓ, ifekṛad \(\#373\) [\#439](https://github.com/TigreGotico/numtag/pull/439) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.1a1](https://github.com/TigreGotico/numtag/tree/0.50.1a1) (2026-11-28)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a3...0.50.1a1)
