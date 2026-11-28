@@ -7,9 +7,12 @@ Reading: a row scores when tag_numbers returns a mention with the row's
 char_span, kind and value (compared as a fraction). Groups are (language,
 kind, tier), where tier is "gold" or "silver", the first word of the source.
 
-Speaking: on the rows with canonical true, the row scores when the first
-spelling of spell(value, lang, form, gender, case) equals the row's surface,
-ignoring letter case. A spell() error is a miss. Groups are (language, kind).
+Speaking compares spell(value, lang, form, gender, case) with the row's
+surface, ignoring letter case. On a canonical row (a cited source gives the
+form) the first spelling must match. On a variant row (a natural form that no
+source picks) any spelling may match. A spell() error is a miss. Groups are
+(language, kind, canonical or variant). A row with a case and no gender is
+left out, because spell() needs the gender to inflect for case.
 
 Each group must reach its floor. To move to a new revision: change
 "revision", run this file with NUMTAG_BENCH_WRITE=1 to measure the floors,
@@ -71,10 +74,12 @@ def reads(row: dict) -> bool:
 def speaks(row: dict) -> bool:
     form = SpokenForm.ORDINAL if row["kind"] == "ordinal" else SpokenForm.CARDINAL
     try:
-        first = spell(row["value"], row["lang"], form=form, gender=row["gender"], case=row["case"])[0]
+        spellings = spell(row["value"], row["lang"], form=form, gender=row["gender"], case=row["case"])
     except ValueError:
         return False
-    return first.text.casefold() == row["surface"].casefold()
+    if row["canonical"]:
+        spellings = spellings[:1]
+    return row["surface"].casefold() in {spelling.text.casefold() for spelling in spellings}
 
 
 def measure(rows: list[dict]) -> dict[str, float]:
@@ -83,8 +88,9 @@ def measure(rows: list[dict]) -> dict[str, float]:
         group = f"read {row['lang']} {row['kind']} {row['source'].split(':')[0]}"
         totals[group] += 1
         hits[group] += reads(row)
-        if row["canonical"]:
-            group = f"speak {row['lang']} {row['kind']}"
+        tier = "canonical" if row["canonical"] else "variant" if row["variant"] else None
+        if tier and not (row["case"] and not row["gender"]):
+            group = f"speak {row['lang']} {row['kind']} {tier}"
             totals[group] += 1
             hits[group] += speaks(row)
     return {group: hits[group] / totals[group] for group in sorted(totals)}
