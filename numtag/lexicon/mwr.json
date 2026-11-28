@@ -1600,9 +1600,9 @@
   },
   {
    "word": "अरब",
-   "role": "scale_noun",
+   "role": "scale_numeral",
    "value": 9,
-   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_khand1_p121_arab.png), read from the page scan, book p. 121: \"अरव–सं०पु० [सं० अर्बुद] १ सौ करोड़ की संख्या ।\" (the print writes ब as व); a hundred crore is 10^9. The same entry gives \"[अ०] २ ऐशिया महाद्वीप के दक्षिण पश्चिमी भाग में स्थित एक रेगिस्तानी प्रदेश. ३ इस देश का मनुष्य.\" (Arabia, an Arab), so the word reads as a number only after a count, as in hi.json"
+   "source": "Lalas, Sitaram (ed.), Rājasthānī Sabad Kos, Khaṇḍ 1 (Papers/Languages/Indo-Aryan/Marwari/lalas_khand1_p121_arab.png), read from the page scan, book p. 121: \"अरव–सं०पु० [सं० अर्बुद] १ सौ करोड़ की संख्या ।\" (the print writes ब as व); a hundred crore is 10^9"
   },
   {
    "word": "पंदरै",
