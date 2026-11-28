@@ -1,13 +1,28 @@
 # Changelog
 
+## [0.50.1a1](https://github.com/TigreGotico/numtag/tree/0.50.1a1) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a3...0.50.1a1)
+
+**Merged pull requests:**
+
+- fix\(da\): "to en halv" reads 2.5 \(\#253\) [\#437](https://github.com/TigreGotico/numtag/pull/437) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [0.50.0a3](https://github.com/TigreGotico/numtag/tree/0.50.0a3) (2026-11-28)
 
-[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a1...0.50.0a3)
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a2...0.50.0a3)
+
+**Merged pull requests:**
+
+- ci: release on a merged fork pull request too \(pull\_request\_target\) [\#435](https://github.com/TigreGotico/numtag/pull/435) ([goldyfruit](https://github.com/goldyfruit))
+
+## [0.50.0a2](https://github.com/TigreGotico/numtag/tree/0.50.0a2) (2026-11-28)
+
+[Full Changelog](https://github.com/TigreGotico/numtag/compare/0.50.0a1...0.50.0a2)
 
 **Merged pull requests:**
 
 - ci: run the docs-standard check on pull requests [\#436](https://github.com/TigreGotico/numtag/pull/436) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
-- ci: release on a merged fork pull request too \(pull\_request\_target\) [\#435](https://github.com/TigreGotico/numtag/pull/435) ([goldyfruit](https://github.com/goldyfruit))
 
 ## [0.50.0a1](https://github.com/TigreGotico/numtag/tree/0.50.0a1) (2026-11-27)
 
@@ -747,10 +762,6 @@
 ## [0.15.7a1](https://github.com/TigreGotico/numtag/tree/0.15.7a1) (2026-11-19)
 
 [Full Changelog](https://github.com/TigreGotico/numtag/compare/0.15.6a1...0.15.7a1)
-
-**Merged pull requests:**
-
-- fix: tr yuzde yuz reads 100 at full confidence [\#208](https://github.com/TigreGotico/numtag/pull/208) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
 
 ## [0.15.6a1](https://github.com/TigreGotico/numtag/tree/0.15.6a1) (2026-11-18)
 
