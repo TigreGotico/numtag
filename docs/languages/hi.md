@@ -1,8 +1,14 @@
 # Hindi
 
-<!-- agent-hint: hi reader only. Sources are CLDR 49 RBNF hi, en.wikipedia "Indian numbering system" and hi.wikipedia «अंक», as the source fields of numtag/lexicon/hi.json give them. -->
+<!-- agent-hint
+covers: What numtag reads and writes in Hindi: the number words, the scale words and the sources for each.
+source: numtag/lexicon/hi.json, tests/gold/hi.jsonl
+generated: no
+verify: python -c "from numtag import spell, tag_numbers; assert spell('21', 'hi')[0].text == 'इक्कीस'; assert tag_numbers('इक्कीस', 'hi')[0].value == '21'"
+see: index.md, ../lexicon-format.md
+-->
 
-The `hi` lexicon reads Hindi numbers in the Devanagari script and in Devanagari digits. It has no writer, so `spell(value, "hi")` raises `UnsupportedLanguageError`.
+The `hi` lexicon reads Hindi numbers in the Devanagari script and in Devanagari digits. It also has a writer: `spell("21", "hi")` gives "इक्कीस".
 
 ## Words
 
