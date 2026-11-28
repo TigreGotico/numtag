@@ -540,9 +540,24 @@ class TestOpenIssues(unittest.TestCase):
     def test_danish_split_four_and_twenty(self):
         self.assertEqual(read("fire og tyve", "da"), [("fire og tyve", "24", C)])
 
-    @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/253")
     def test_danish_two_and_a_half_with_en(self):
+        # 2 + 1/2; native reviewer andlo on #253: "to en halv time"
         self.assertEqual(read("to en halv", "da"), [("to en halv", "2.5", F)])
+        self.assertEqual(read("Toget er to en halv time forsinket.", "da"), [("to en halv", "2.5", F)])
+
+    def test_danish_count_and_a_half_with_en(self):
+        # 3 + 1/2, 12 + 1/2, 25 + 1/2
+        for text, span, value in (("Hun løb tre en halv kilometer.", "tre en halv", "3.5"),
+                                  ("Vi ventede tolv en halv time.", "tolv en halv", "12.5"),
+                                  ("Pakken vejer femogtyve en halv kilo.", "femogtyve en halv", "25.5")):
+            with self.subTest(text):
+                self.assertEqual(read(text, "da"), [(span, value, F)])
+
+    def test_danish_half_with_en_controls(self):
+        self.assertEqual(read("Filmen varer en halv time.", "da"), [("en halv", "0.5", F)])
+        self.assertEqual(read("Det tog to timer og en halv.", "da"), [("to", "2", C), ("en halv", "0.5", F)])
+        self.assertEqual(read("Jeg har to, en halv er væk.", "da"), [("to", "2", C), ("en halv", "0.5", F)])
+        self.assertEqual(read("Det tog halvanden time.", "da"), [("halvanden", "1.5", F)])
 
     @pytest.mark.xfail(strict=True, raises=AssertionError, reason="https://github.com/TigreGotico/numtag/issues/163")
     def test_danish_minus_before_units_and_tens(self):
